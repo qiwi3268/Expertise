@@ -1,0 +1,165 @@
+.calendar {
+   opacity: 0;
+   /*display: none;*/
+   visibility: hidden;
+
+
+   flex-direction: column;
+   justify-content: space-between;
+
+   width: 100%;
+   max-width: 250px;
+
+   /*min-height: 200px;*/
+
+   position: absolute;
+   /*bottom: 50px;*/
+   /*left: 390px;*/
+
+   z-index: 50;
+
+   padding: 10px;
+
+   font-family: 'Roboto Condensed', sans-serif;
+
+   border-radius: 3px;
+   box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
+   background-color: #fff;
+   transition: 0.3s all;
+}
+
+.calendar-overlay {
+   opacity: 0;
+   visibility: hidden;
+
+   width: 100%;
+   height: 100%;
+
+   position: fixed;
+   top: 0;
+   left: 0;
+}
+
+.calendar.active,
+.calendar-overlay.active {
+   opacity: 1;
+   visibility: visible;
+   /*display: flex;*/
+
+}
+
+.calendar {
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+}
+
+.calendar__nav {
+   display: flex;
+   align-items: center;
+   margin: 0px 0px 10px 0px;
+}
+
+.calendar__arrow {
+   padding: 5px 8px;
+   border-radius: 3px;
+   cursor: pointer;
+}
+
+.calendar__arrow:hover {
+   background-color: #cccccc;
+}
+
+.calendar__selected_label {
+   flex-grow: 1;
+   padding: 5px 0px;
+   font-size: 16px;
+   font-weight: 700;
+   text-align: center;
+   border-radius: 3px;
+   cursor: pointer;
+}
+
+.calendar__selected_label:hover {
+   background-color: #cccccc;
+}
+
+
+.calendar__title {
+   display: flex;
+   justify-content: space-between;
+   margin: 0px 0px 10px 0px;
+   font-weight: 700;
+   cursor: default;
+}
+
+.calendar__title.hidden {
+   display: none;
+}
+
+.calendar__week-day {
+   flex-basis: 14.2%;
+   text-align: center;
+}
+
+.calendar__row {
+   display: flex;
+   justify-content: space-between;
+}
+
+.calendar__item {
+   text-align: center;
+   border-radius: 3px;
+   color: #343a40;
+   cursor: pointer;
+}
+
+.calendar__item[data-type='day'] {
+   padding: 5px 0px;
+   flex-basis: 14.2%;
+}
+
+.calendar__item[data-type='month'],
+.calendar__item[data-type='year'] {
+   padding: 10px 0px;
+   flex-basis: 25%;
+}
+
+.calendar__item.previous,
+.calendar__item.next {
+   color: #c3c3c3;
+}
+
+.calendar__item:hover {
+   color: #343a40;
+   background-color: #cccccc;
+}
+
+
+
+.calendar__item.selected {
+   background-color: #80bdff;
+   color: #343a40;
+}
+
+/*.calendar__day {
+   padding: 5px 0px;
+   flex-basis: 14.2%;
+}
+
+.calendar__month {
+   padding: 10px 0px;
+   flex-basis: 25%;
+}*/
+
+
+
+
+
+
+
+
+
+
+
+

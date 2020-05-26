@@ -1,0 +1,346 @@
+.application-form__header {
+   display: flex;
+   justify-content: space-between;
+   min-height: 50px;
+   margin: 0px 0px 10px 0px;
+   border-radius: 4px;
+   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+   background-color: #ffffff;
+}
+
+.header-form__title {
+   align-self: center;
+   margin: 0px 0px 0px 20px;
+   font-family: 'Bebas Neue', sans-serif;
+   font-weight: 700;
+   font-size: 20px;
+   color: #343a40;
+}
+
+.header-form__actions {
+   display: flex;
+}
+
+.header-form__btn {
+   display: flex;
+   align-items: center;
+   padding: 0px 15px;
+   cursor: pointer;
+   border-bottom: 2px solid #ffffff;
+   transition: background-color 0.15s;
+}
+
+.header-form__btn:hover {
+   border-bottom: 2px solid #ffd354;
+   background-color: #f2f2f2;
+}
+
+.header-form__text {
+   margin: 0px 15px 0px 0px;
+   font-family: 'PT Sans Narrow', sans-serif;
+   font-size: 18px;
+   color: #343a40;
+}
+
+.header-form__icon {
+   font-size: 20px;
+   color: #8e8e8e;
+}
+
+.header-form__btn.fa-trash {
+   font-size: 18px;
+}
+
+/* application-form__header =================================================================== */
+
+.application-form__body {
+   display: flex;
+}
+
+.application-form__sidebar {
+   align-self: flex-start;
+   margin: 0px 10px 0px 0px;
+   border-radius: 4px;
+   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+   background-color: #ffffff;
+}
+
+.sidebar-form__row {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   min-width: 300px;
+   min-height: 35px;
+   padding: 0 15px;
+   border-left: 4px solid #ffffff;
+   cursor: pointer;
+}
+
+.sidebar-form__row:first-child {
+   border-radius: 4px 0 0 0;
+}
+
+.sidebar-form__row:last-child {
+   border-radius: 0 0 0 4px;
+}
+
+.sidebar-form__row--valid {
+   background-color: #f7fff9;
+   border-color: #f7fff9;
+}
+
+.sidebar-form__row--invalid {
+   background-color: #fff5f5;
+   border-color: #fff5f5;
+}
+
+.sidebar-form__row--selected {
+   background-color: #f2f2f2;
+   border-color: #ffd354;
+}
+
+.sidebar-form__row--selected.sidebar-form__row--valid {
+   background-color: #eaffe7;
+   border-color: #87c596;
+}
+
+.sidebar-form__row--selected.sidebar-form__row--invalid {
+   background-color: #ffe4e4;
+   border-color: #ff5151;
+}
+
+.sidebar-form__text {
+   font-family: 'Roboto Condensed', sans-serif;
+   color: #343a40;
+}
+
+.sidebar-form__icon {
+   font-size: 22px;
+}
+
+/* application-form__sidebar =================================================================== */
+
+.application-form__cards {
+   flex-grow: 1;
+}
+
+.card-form {
+   margin: 0px 0px 10px 0px;
+   border-left: 4px solid #ffd354;
+   border-radius: 4px;
+   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+   background-color: #ffffff;
+}
+
+.card-form__header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   min-height: 35px;
+   border-bottom: 1px solid #e0e0e0;
+   color: #1c3959;
+   user-select: none;
+   cursor: pointer;
+}
+
+.card-form__title {
+   margin: 0px 0px 0px 10px;
+   font-family: 'Roboto Condensed', sans-serif;
+   font-size: 16px;
+   font-weight: 400;
+}
+
+.card-form__icon {
+   margin: 0px 20px 0px 0px;
+   font-size: 20px;
+}
+
+.arrow-up {
+   transform: rotate(-180deg);
+   transition: .3s;
+}
+
+.arrow-down {
+   transform: rotate(0);
+   transition: .3s;
+}
+
+.fa-check {
+   color: #87c596;
+}
+
+.fa-times {
+   color: #ff5151;
+}
+
+/* card-form =================================================================== */
+
+.card-form__body {
+   /**/
+   /*max-height: 0;*/
+   overflow: hidden;
+   /*padding: 0px 0px 10px 0px;*/
+   font-family: 'Roboto Condensed', sans-serif;
+   color: #343a40;
+   transition: .3s;
+}
+
+.body-card__row {
+   display: flex;
+   /*align-items: center;*/
+   margin: 20px;
+   position: relative;
+}
+
+.body-card__row.center {
+   align-items: center;
+}
+
+.body-card__title {
+   margin: 10px 20px 0px 0px;
+   text-align: right;
+   width: 30%;
+}
+
+.body-card__field {
+   /*flex-grow: 1;*/
+   align-self: center;
+   width: 70%;
+}
+
+.body-card__select {
+   box-sizing: border-box;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+   padding: 10px 10px;
+   border: 1px solid #cccccc;
+   border-radius: 4px;
+   font-family: 'Roboto Condensed', sans-serif;
+   font-weight: 400;
+   font-size: 14px;
+   color: #6e6e6e;
+   cursor: pointer;
+
+   transition: .10s;
+}
+
+.body-card__select.filled {
+   color: #343a40;
+}
+
+.body-card__select:hover {
+   box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
+   border-color: #80bdff;
+}
+
+.body-card__error {
+   display: none;
+   font-size: 12px;
+   color: #bd4949;
+}
+
+.body-card__error.active {
+   display: inline;
+}
+
+.modal-select__icon .fa-bars {
+   margin: 0px 5px 0px 0px;
+}
+
+.invalid-field {
+   border-color: #db5151;
+   color: #bd4949;
+}
+
+.invalid-field::placeholder {
+   color: #bd4949;
+}
+
+.invalid-field:hover,
+.invalid-field:focus {
+   box-shadow: 0px 0px 0px 3px rgba(255,176,176,1);
+   border-color: #db5151;
+}
+
+/* body-form =================================================================== */
+
+/* tmp ========================================================================= */
+
+.body-card__title.fas {
+   font-size: 12px;
+   color: #343a40;
+}
+
+.body-card.fas {
+   margin-right: 5px;
+}
+
+.body-card .inactive {
+   display: none;
+}
+
+.body-card__input {
+   box-sizing: border-box;
+   width: 100%;
+}
+
+.body-card__title.required:after {
+   content: ' *';
+}
+
+.body-card__input-error {
+   visibility: hidden;
+   font-size: 12px;
+   color: #bd4949;
+}
+
+.body-card__input-error.active {
+   visibility: visible;
+}
+
+.radio {
+   margin: 10px 0px 0px;
+   cursor: default;
+}
+
+.radio__icon {
+   margin: 0px 10px 0px 0px;
+}
+
+.radio__icon.far {
+   font-size: 20px;
+   color: #343a40;
+}
+
+.radio__item {
+   display: flex;
+   align-items: center;
+}
+
+.radio__item:not(:last-child) {
+   margin: 0px 0px 10px 0px;
+}
+
+.radio__text {
+   font-size: 14px;
+}
+
+.radio__title {
+   font-size: 14px;
+}
+
+/* tmp ========================================================================= */
+
+
+
+
+
+
+
+
+
+
+
+

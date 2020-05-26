@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="237ecf96-8374-4d8a-bac5-b9b5ffa775cc" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/phpmailer/phpmailer" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/complex" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/matrix" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="1aCjSZ6pG93SPLevJM5HCeNikHn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\img\tmp" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\img\icon\tmp" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="237ecf96-8374-4d8a-bac5-b9b5ffa775cc" name="Default Changelist" comment="" />
+      <created>1586246470030</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586246470030</updated>
+      <workItem from="1586246471198" duration="26271000" />
+      <workItem from="1589734138898" duration="54000" />
+      <workItem from="1589734317702" duration="54000" />
+      <workItem from="1589734561996" duration="20000" />
+      <workItem from="1589734630617" duration="58000" />
+      <workItem from="1589773638629" duration="41000" />
+      <workItem from="1589774233174" duration="70000" />
+      <workItem from="1589774681096" duration="122000" />
+      <workItem from="1589774855766" duration="722000" />
+      <workItem from="1589871184467" duration="47764000" />
+      <workItem from="1590399706358" duration="27519000" />
+      <workItem from="1590485542535" duration="883000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="791" y="333" key="#Deployment" timestamp="1586248151560">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="791" y="333" key="#Deployment/-1920.220.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1586248151560" />
+    <state x="552" y="178" key="#Notifications" timestamp="1590486923947">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1590486923947" />
+    <state x="872" y="358" key="#Options" timestamp="1586349592443">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="872" y="358" key="#Options/-1920.220.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1586349592443" />
+    <state x="665" y="179" key="#PHP" timestamp="1590406113235">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="665" y="179" key="#PHP/0.0.1920.1040@0.0.1920.1040" timestamp="1590406113235" />
+    <state x="92" y="92" width="2376" height="1216" key="DiffContextDialog" timestamp="1586340489568">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="92" y="92" width="2376" height="1216" key="DiffContextDialog/-1920.220.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1586340489568" />
+    <state x="92" y="92" width="2376" height="1216" key="DirDiffDialog" timestamp="1586261180663">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="92" y="92" width="2376" height="1216" key="DirDiffDialog/-1920.220.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1586261180663" />
+    <state x="1010" y="319" key="FileChooserDialogImpl" timestamp="1589891274244">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1347" y="430" key="FileChooserDialogImpl/-1920.220.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1586247528023" />
+    <state x="1010" y="319" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1589891274244" />
+    <state x="782" y="436" key="Github.CreateGistDialog" timestamp="1590486910146">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="782" y="436" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590486910146" />
+    <state x="184" y="86" key="MergeDialog" timestamp="1590408683336">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590408683336" />
+    <state x="305" y="142" width="1366" height="898" key="SettingsEditor" timestamp="1590485287972">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="607" y="213" key="SettingsEditor/-1920.220.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1586340461770" />
+    <state x="305" y="142" width="1366" height="898" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1590485287972" />
+    <state x="607" y="213" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1589734672836" />
+    <state x="736" y="389" key="com.intellij.ide.util.TipDialog" timestamp="1589774234815">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="736" y="389" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589774234815" />
+    <state x="981" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1589734632162" />
+    <state x="976" y="298" width="737" height="804" key="find.popup" timestamp="1586339762597">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="976" y="298" width="737" height="804" key="find.popup/-1920.220.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1586339762597" />
+    <state x="1078" y="423" key="publish.login" timestamp="1589774269557">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1437" y="569" key="publish.login/-1920.220.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1586246823273" />
+    <state x="1078" y="423" key="publish.login/0.0.1920.1040@0.0.1920.1040" timestamp="1589774269557" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1590482649450">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590482649450" />
+  </component>
+</project>

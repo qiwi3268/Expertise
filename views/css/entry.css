@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'PT_Sans_Narrow';
+    src: url('/views/css/fonts/PT_Sans_Narrow.ttf');
+}
+
+.font-test{
+    font-family: 'PT_Sans_Narrow';
+}

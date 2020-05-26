@@ -1,0 +1,40 @@
+footer {
+   display: flex;
+   align-items: center;
+   min-height: 50px;
+   border-bottom: 3px solid #ffd354;
+   border-radius: 4px 4px 0px 0px;
+   background-color: #1c3959;
+}
+
+.footer__info {
+   display: flex;
+}
+
+.footer-info__item {
+   margin: 0px 0px 0px 30px;
+   color: #ffd354;
+   cursor: default;
+}
+
+.footer-info__text {
+   margin: 0px 0px 0px 12px;
+   font-family: 'Roboto Condensed', sans-serif;
+   transition: color 0.15s;
+}
+
+.footer-info__item:hover {
+   color: #ffffff;
+}
+
+.footer-info__item.fa-phone-alt {
+   font-size: 16px;
+}
+
+.footer-info__item.fa-map-marker-alt {
+   font-size: 16px;
+}
+
+.footer-info__item.fa-envelope {
+   font-size: 16px;
+}

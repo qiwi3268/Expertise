@@ -1,0 +1,9 @@
+{
+    "require": {
+        "ext-json": "*",
+        "phpmailer/phpmailer": "^6.1",
+        "ext-mbstring": "*",
+        "ext-gd": "*",
+        "phpoffice/phpspreadsheet": "^1.12"
+    }
+}
