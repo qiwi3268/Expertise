@@ -10,21 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
       card_header = card.querySelector('.card-form__header');
 
       card_header.addEventListener('click', () => {
-         card_arrow = card.querySelector('.card-form__icon');
-         card_body = card.querySelector('.card-form__body');
 
-         //переворачиваем стрелку
-         card_arrow.classList.toggle('arrow-down');
-         card_arrow.classList.toggle('arrow-up');
-
+         // todo исправить
+         //expandCard(card);
          //раскрываем блок
-         if (card_body.style.maxHeight) {
+
+         /*if (card_body.style.maxHeight) {
             card_body.style.maxHeight = null;
-            // card_body.style.overflow = 'hidden';
          } else {
             card_body.style.maxHeight = card_body.scrollHeight + "px";
-            // card_body.style.overflow = 'visible';
-         }
+         }*/
       });
    });
 });

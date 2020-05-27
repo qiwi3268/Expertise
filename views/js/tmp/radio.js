@@ -36,6 +36,7 @@ function initRadioItems(radio_elem) {
 
                 // Записываем в результат json с id выбранных элементов
                 result_input.value = getRadioResult(body);
+                validateCard(result_input.closest('.card-form'));
             });
         });
     }

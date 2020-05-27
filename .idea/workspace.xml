@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="237ecf96-8374-4d8a-bac5-b9b5ffa775cc" name="Default Changelist" comment="" />
+    <list default="true" id="237ecf96-8374-4d8a-bac5-b9b5ffa775cc" name="Default Changelist" comment="1">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/tmp/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/tmp/create_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/defined_variables.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/defined_variables.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/radio.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/radio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/section.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/section.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/tmp/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/tmp/create_application.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +32,16 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\.idea" />
+      </set>
+    </option>
+  </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/phpmailer/phpmailer" />
@@ -32,13 +53,16 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1aCjSZ6pG93SPLevJM5HCeNikHn" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
@@ -78,7 +102,7 @@
       <workItem from="1589774855766" duration="722000" />
       <workItem from="1589871184467" duration="47764000" />
       <workItem from="1590399706358" duration="27519000" />
-      <workItem from="1590485542535" duration="883000" />
+      <workItem from="1590485542535" duration="16376000" />
     </task>
     <servers />
   </component>
@@ -90,6 +114,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="791" y="333" key="#Deployment/-1920.220.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1586248151560" />
+    <state x="552" y="178" key="#JavaScript" timestamp="1590487649353">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" key="#JavaScript/0.0.1920.1040@0.0.1920.1040" timestamp="1590487649353" />
     <state x="552" y="178" key="#Notifications" timestamp="1590486923947">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -102,6 +130,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="665" y="179" key="#PHP/0.0.1920.1040@0.0.1920.1040" timestamp="1590406113235" />
+    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2" timestamp="1590487132489">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1590487132489" />
     <state x="92" y="92" width="2376" height="1216" key="DiffContextDialog" timestamp="1586340489568">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -134,6 +166,10 @@
     </state>
     <state x="736" y="389" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589774234815" />
     <state x="981" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1589734632162" />
+    <state x="753" y="253" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1590487101329">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="753" y="253" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590487101329" />
     <state x="976" y="298" width="737" height="804" key="find.popup" timestamp="1586339762597">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -143,9 +179,9 @@
     </state>
     <state x="1437" y="569" key="publish.login/-1920.220.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1586246823273" />
     <state x="1078" y="423" key="publish.login/0.0.1920.1040@0.0.1920.1040" timestamp="1589774269557" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1590482649450">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1590561600481">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590482649450" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590561600481" />
   </component>
 </project>

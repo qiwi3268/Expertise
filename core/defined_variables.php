@@ -32,9 +32,10 @@ define('_ROLE_IN_APPLICATION', ['AUTHOR' => 'AUTHOR' // Автор заявле�
                                ]);
 
 // Обозначение полей в заявлении
-define('_PROPERTY_IN_APPLICATION', ['application_id'    => 'application_id',      // id заявления
-                                    'expertise_purpose' => 'expertise_purpose',   // Цель экспертизы
-                                    'expertise_subject' => 'expertise_subject',   // Предмет экспертизы
+define('_PROPERTY_IN_APPLICATION', ['application_id'         => 'application_id',        // id заявления
+                                    'expertise_purpose'      => 'expertise_purpose',     // Цель экспертизы
+                                    'expertise_subject'      => 'expertise_subject',     // Предмет экспертизы
+                                    'additional_information' => 'additional_information' // Дополнительная информация
 
                                    ]);
 

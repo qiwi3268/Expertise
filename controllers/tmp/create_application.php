@@ -1,5 +1,7 @@
 <?php
 
+//var_dump($_SESSION);
+
 $userInfo = Session::getUserInfo();
 $userId = $userInfo['id'];
 
@@ -10,19 +12,20 @@ $internalCounter = ApplicationCounterTable::getInternal();
 // Числовое имя
 $appNumName = ApplicationHelper::getInternalAppNumName($internalCounter);
 
-$appId = ApplicationsTable::createTemporary($userId, $appNumName);
+$applicationId = ApplicationsTable::createTemporary($userId, $appNumName);
 
 // Создание директории заявления
-if(!mkdir(_APPLICATIONS_FILES_."/$appId")){
+if(!mkdir(_APPLICATIONS_FILES_."/$applicationId")){
     exit('Не удалось создать директорию заявления');
 }
+
 // Установка прав на папку. Устанавливается отдельно, т.к. на уровне ОС стоит umask
-if(!chmod(_APPLICATIONS_FILES_."/$appId", 0757)){
+if(!chmod(_APPLICATIONS_FILES_."/$applicationId", 0757)){
     exit('Не удалось задать права на директорию');
 }
 
-Session::createApplicationContext($appId);
-
+// Добавляем созданное заявление в сессию
+Session::addAuthorRoleApplicationId($applicationId);
 
 // Справочник "Цель экспертизы"
 $expertisePurposes = misc_expertisePurposeTable::getAllActive();
@@ -61,7 +64,6 @@ unset($purpose);
 
 
 $typeOfWorksIH = json_encode($typeOfWorksIH);
-var_dump($typeOfWorksIH);
 
 
 $functionalPurposesTV = array_chunk($functionalPurposes, $paginationSize);
@@ -84,17 +86,17 @@ $displayDependencies = [
     'expertise_subject' => [
 
         1 => [
-            'estimate_cost' => false,
+            'estimate_cost'      => false,
             'functional_purpose' => true
         ],
 
         2 => [
-            'estimate_cost' => false,
+            'estimate_cost'      => false,
             'functional_purpose' => true
         ],
 
         3 => [
-            'estimate_cost' => true,
+            'estimate_cost'      => true,
             'functional_purpose' => false
         ],
     ],

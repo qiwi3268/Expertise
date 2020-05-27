@@ -44,34 +44,43 @@
       </div>
       <div class="application-form__body">
          <div class="application-form__sidebar sidebar-form">
-            <div class="sidebar-form__row">
+            <div class="sidebar-form__row warning">
                <span class="sidebar-form__text">Сведения о проекте и цели заявления</span>
+               <i class="sidebar-form__icon fas fa-exclamation warning"></i>
             </div>
-            <div class="sidebar-form__row" data-card="applicant">
+            <div class="sidebar-form__row warning" data-card="purpose">
+               <span class="sidebar-form__text">Сведения о цели обращения</span>
+               <i class="sidebar-form__icon fas fa-exclamation warning"></i>
+            </div>
+            <div class="sidebar-form__row warning" data-card="applicant">
                <span class="sidebar-form__text">Сведения о заявителе</span>
+               <i class="sidebar-form__icon fas fa-exclamation warning"></i>
             </div>
-            <div class="sidebar-form__row">
+            <div class="sidebar-form__row warning">
                <span class="sidebar-form__text">Застройщик(заказчик по договору)</span>
+               <i class="sidebar-form__icon fas fa-exclamation warning"></i>
             </div>
-            <div class="sidebar-form__row sidebar-form__row--valid">
+            <div class="sidebar-form__row warning">
                <span class="sidebar-form__text">Сведения об исполнителях работ</span>
-               <i class="fas fa-check sidebar-form__icon"></i>
+               <i class="sidebar-form__icon fas fa-exclamation warning"></i>
             </div>
-            <div class="sidebar-form__row">
+            <div class="sidebar-form__row warning">
                <span class="sidebar-form__text">Плательщик</span>
+               <i class="sidebar-form__icon fas fa-exclamation warning"></i>
             </div>
-            <div class="sidebar-form__row sidebar-form__row--invalid">
+            <div class="sidebar-form__row warning">
                <span class="sidebar-form__text">Условия предоставления услуги</span>
-               <i class="fas fa-times sidebar-form__icon"></i>
+               <i class="sidebar-form__icon fas fa-exclamation warning"></i>
             </div>
-            <div class="sidebar-form__row">
+            <div class="sidebar-form__row warning">
                <span class="sidebar-form__text">Сведения об исполнителях работ</span>
+               <i class="sidebar-form__icon fas fa-exclamation warning"></i>
             </div>
          </div>
          <form id="application" class="application-form__cards required" action="/tmp/create_application" method="POST">
             <input type="hidden" value="<?= $applicationId ?>" name="<?= _PROPERTY_IN_APPLICATION['application_id'] ?>">
 
-            <div class="application-form__card card-form">
+            <div class="application-form__card card-form" data-type="purpose">
                <div class="card-form__header">
                    <span class="card-form__title">
                        СВЕДЕНИЯ О ЦЕЛИ ОБРАЩЕНИЯ
@@ -115,6 +124,12 @@
                      <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['expertise_subject'] ?>">
                   </div>
 
+                  <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['additional_information'] ?>" data-required="true">
+                     <span class="body-card__title required">Дополнительная информация</span>
+                     <div class="body-card__field" data-multiple="true">
+                        <textarea class="body-card__text application-text-area" name="<?= _PROPERTY_IN_APPLICATION['additional_information'] ?>"></textarea>
+                     </div>
+                  </div>
                </div>
             </div>
             <div class="application-form__card card-form" data-type="applicant">

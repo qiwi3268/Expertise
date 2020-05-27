@@ -33,6 +33,7 @@ function validateModal(modal) {
       } else {
          row_value.classList.remove('invalid-field');
          error.classList.remove('active');
+         validateCard(row_value.closest('.card-form'));
       }
    }
 }
@@ -89,9 +90,30 @@ function validateInput(input, regex, message) {
    } else {
       input.classList.remove('invalid-field');
       error_message.classList.remove('active');
+      validateCard(input.closest('.card-form'));
    }
 
 }
 
+function validateCard(card) {
+   let card_name = card.dataset.type;
+   let is_valid = isValidCard(card);
+   let sidebar_item = document.querySelector(`.sidebar-form__row[data-card=${card_name}]`);
 
+   setSidebarItemState(sidebar_item, is_valid);
+}
+
+function isValidCard(card) {
+   let required_rows = card.querySelectorAll('[data-required="true"]');
+
+   for (let i = 0; i < required_rows.length; i++) {
+      let row_value = required_rows[i].querySelector('.body-card__result');
+
+      if (!row_value.value) {
+         return false;
+      }
+   }
+
+   return true;
+}
 
