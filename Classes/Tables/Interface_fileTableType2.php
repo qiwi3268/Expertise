@@ -3,7 +3,7 @@
 
 // Интерфейс для файловых таблиц типа:
 // id   id_application   id_structure_node   file_name   hash   is_uploaded
-// (2-й уровень _FILES_TABLE_MAPPING)
+// (2-й уровень _FILE_TABLE_MAPPING)
 //
 interface Interface_fileTableType2 extends Interface_fileTable{
 

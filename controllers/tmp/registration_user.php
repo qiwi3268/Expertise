@@ -15,23 +15,23 @@
 // 8 - Пароль
 // 9 - Роли пользователя (всегда массив)
 
-$P_last_name = 'Макаров';
-$P_first_name = 'Владимир';
-$P_middle_name = 'Алексеевич';
-$P_department = '6';
-$P_position = '1';
-$P_email = 'vam@ge74.ru';
-$P_login = 'vam';
+$P_last_name = 'Заявитель';
+$P_first_name = 'Заявительб';
+$P_middle_name = 'Заявитель';
+$P_department = '';
+$P_position = '';
+$P_email = 'vam@ge74.ru123';
+$P_login = 'test';
 $P_password = '123';
-$P_users_role = [2, 9, 12];
+$P_users_role = [1];
 
 // Сделать проверку, что если нет отдела,
 // то не должно быть и должности,
 // то должна быть выбрана только роль заявителя
 
 // !!! Посмотреть что приходит с формы, если ничего не выбрано (подходит ли empty)?
-$P_department = empty($P_department) ? null : (int)$P_department;
-$P_position = empty($P_position) ? null : (int)$P_position;
+$P_department = empty($P_department) ? 0 : (int)$P_department;
+$P_position = empty($P_position) ? 0 : (int)$P_position;
 
 $cryptPassword = password_hash($P_password, PASSWORD_DEFAULT);
 $hash = bin2hex(random_bytes(25)); // Длина 50 символов

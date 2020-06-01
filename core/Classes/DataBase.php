@@ -69,10 +69,10 @@ class DataBase{
 
         // Передаваемые в функцию call_user_func_array параметры в виде индексированного массива
         // в формате: [0] -> типы параметров, далее - параметры запроса
-        $arrToCallback[] = & $bindParamsTypes;
+        $arrToCallback[] = $bindParamsTypes;
 
         for($s = 0; $s < count($bindParams); $s++){
-            $arrToCallback[] = & $bindParams[$s];
+            $arrToCallback[] = &$bindParams[$s];
         }
 
         // Подготовка запроса к выполнению

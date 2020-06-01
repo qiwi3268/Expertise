@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="237ecf96-8374-4d8a-bac5-b9b5ffa775cc" name="Default Changelist" comment="1">
+    <list default="true" id="237ecf96-8374-4d8a-bac5-b9b5ffa775cc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Classes/ApplicationFormHandler.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Classes/Exceptions/ApplicationFormHandlerException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Classes/SaveApplication.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Classes/Tables/ExpertiseSubjectTable.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/tmp/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/tmp/create_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/file_uploader.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/file_uploader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/home/save_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/save_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/ApplicationHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/ApplicationHelper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/FilesTableMapping.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/FilesTableMapping.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Tables/ApplicationsTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/ApplicationsTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Tables/Interface_fileTableType1.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/Interface_fileTableType1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Tables/Interface_fileTableType2.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/Interface_fileTableType2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Tables/UsersRoleTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/UsersRoleTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Tables/UsersTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/UsersTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Tables/misc_expertisePurposeTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/misc_expertisePurposeTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Tables/misc_expertiseSubjectTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/misc_expertiseSubjectTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Tables/misc_typeOfWorkTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/misc_typeOfWorkTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/tmp/registration_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/tmp/registration_user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/DataBase.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/DataBase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/Session.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/Session.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/defined_variables.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/defined_variables.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/radio.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/radio.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/section.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/section.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/sidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/validation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/tmp/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/tmp/create_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions/functions.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,13 +67,16 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1aCjSZ6pG93SPLevJM5HCeNikHn" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -102,12 +119,26 @@
       <workItem from="1589774855766" duration="722000" />
       <workItem from="1589871184467" duration="47764000" />
       <workItem from="1590399706358" duration="27519000" />
-      <workItem from="1590485542535" duration="16376000" />
+      <workItem from="1590485542535" duration="16474000" />
+      <workItem from="1591002598456" duration="722000" />
     </task>
+    <task id="LOCAL-00001" summary="2">
+      <created>1590566324166</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1590566324166</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="2" />
+    <option name="LAST_COMMIT_MESSAGE" value="2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="791" y="333" key="#Deployment" timestamp="1586248151560">
@@ -130,10 +161,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="665" y="179" key="#PHP/0.0.1920.1040@0.0.1920.1040" timestamp="1590406113235" />
-    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2" timestamp="1590487132489">
+    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2" timestamp="1590566321919">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1590487132489" />
+    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1590566321919" />
     <state x="92" y="92" width="2376" height="1216" key="DiffContextDialog" timestamp="1586340489568">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

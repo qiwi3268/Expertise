@@ -10,7 +10,7 @@ class Session{
     // userAssoc array : данные о пользователе
     // userRole  array : данные о ролях пользователя
     //
-    static public function createUser(array $userAssoc, array $userRole){
+    static public function createUser(array $userAssoc, array $userRole):void {
 
         $_SESSION['user_info'] = [
             'id'          => $userAssoc['id'],
@@ -29,18 +29,55 @@ class Session{
 
         $_SESSION['flags'] = [
             'authorized' => !empty(self::getUserRole()),
-            'admin'      => in_array(_ROLES['ADM'], self::getUserRole())
+            'admin'      => in_array(_ROLE['ADM'], self::getUserRole(), true),
+            'applicant'  => in_array(_ROLE['APP'], self::getUserRole(), true)
         ];
     }
 
 
     // Предназначен для удаления данных о пользователе из сессии
     //
-    static public function deleteUser(){
+    static public function deleteUser():void {
 
         unset($_SESSION['user_info']);
         unset($_SESSION['flags']);
+        unset($_SESSION['role_in_application']);
     }
+
+
+    // Предназначен для создания (хранения) в сесии заявителя id-заявлений, в которых он является автором
+    //
+    static public function createAuthorRoleApplicationIds(array $applicationsIds):void {
+        $_SESSION['role_in_application'][_ROLE_IN_APPLICATION['AUTHOR']] = $applicationsIds;
+    }
+
+
+    // Предназначен для добавления id-заявления к списку тех, в которых он является автором
+    //
+    static public function addAuthorRoleApplicationId(int $applicationId):void {
+
+        if(isset($_SESSION['role_in_application'][_ROLE_IN_APPLICATION['AUTHOR']])){
+
+            // Добавляем id в начало массива с заявлениями
+            array_unshift($_SESSION['role_in_application'][_ROLE_IN_APPLICATION['AUTHOR']], $applicationId);
+        }else{
+
+            $_SESSION['role_in_application'][_ROLE_IN_APPLICATION['AUTHOR']] = [$applicationId];
+        }
+    }
+
+    // Предназначен для получения массива id-заявлений, в которых пользователь являтеся автором
+    // Возвращает параметры-----------------------------------
+    // array  : id-заявлений в сессии
+    // null   : в сессии нет записанных id-заявлений
+    //
+    static public function getAuthorRoleApplicationIds():?array {
+
+        return $_SESSION['role_in_application'][_ROLE_IN_APPLICATION['AUTHOR']] ?? null;
+    }
+
+
+
 
     static public function getUserInfo():array {
         return $_SESSION['user_info'];
@@ -59,11 +96,15 @@ class Session{
     // Предназначен для проверки пользователя на заявителя
     // Возвращает параметры-----------------------------------
     // true  : пользователь заявитель
-    // false : пользователь не заявитель (сотрудник)
+    // false : пользователь не заявитель
     //
     static public function isApplicant():bool {
-        $roles = self::getUserRole();
-        return in_array(_ROLES['APP'], $roles, true);
+
+        if(isset($_SESSION['flags']['applicant']) &&
+                 $_SESSION['flags']['applicant'] === true){
+            return true;
+        }
+        return false;
     }
 
 
@@ -80,27 +121,5 @@ class Session{
         }
         return false;
     }
-
-    // ------------------------------------- Блок сессии в контексте заявления -------------------------------------
-
-    // TODO со временем переделать, принимать assoc...
-    static public function createApplicationContext(int $applicationId){
-
-        $_SESSION['application_context'] = [
-            'id' => $applicationId
-        ];
-    }
-
-    static public function deleteApplicationContext(){
-        unset($_SESSION['application_context']);
-    }
-
-    static public function getApplicationId():int {
-        return $_SESSION['application_context']['id'];
-    }
-
-
-
-
 
 }

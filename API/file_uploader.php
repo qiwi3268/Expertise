@@ -46,7 +46,7 @@
 if(!checkParamsPOST('id_application', 'mapping_level_1', 'mapping_level_2')){
     exit_missingParamsPOST();
 
-// Проверка наличия параметра id_structure_node для 2-го уровня _FILES_TABLE_MAPPING
+// Проверка наличия параметра id_structure_node для 2-го уровня _FILE_TABLE_MAPPING
 }elseif($_POST['mapping_level_1'] == 2 && !checkParamsPOST('id_structure_node')){
     exit_missingParamsPOST();
 }

@@ -8,7 +8,7 @@ class ApplicationHelper{
     // дополняет внутренний счетчик ведущим нулем
     // Принимает параметры-----------------------------------
     // internalCounter int : внутренний счетчик заявления
-    // Возвращает параметры-----------------------------------
+    // Возвращает параметры----------------------------------
     // string : числовое имя
     //
     static public function getInternalAppNumName(int $internalCounter):string {
@@ -21,6 +21,29 @@ class ApplicationHelper{
 
         return "$nowDate-$internalCounter";
     }
+
+
+
+    // Предназначен для проверки прав заявителя на сохранение заявления
+    // Принимает параметры-----------------------------------
+    // applicationId int : id заявления
+    // Возвращает параметры----------------------------------
+    // true  : заявитель имеет право на сохранение заявления
+    // false : не имеет
+    //
+    // todo со временем расширять права, чтобы не только автор мог сохранять
+    static public function checkApplicantRightsToSaveApplication(int $applicationId):bool {
+
+        $ids = Session::getAuthorRoleApplicationIds();
+
+        if(!is_null($ids) && in_array($applicationId, $ids, true)){
+            return true;
+        }
+        return false;
+    }
+
+
+
 
 
 

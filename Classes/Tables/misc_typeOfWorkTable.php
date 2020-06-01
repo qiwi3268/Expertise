@@ -10,7 +10,7 @@ final class misc_typeOfWorkTable{
     // Принимает параметры
     // expertisePurposes array : цели обращений, с id которых формируется условие IN
     // Возвращает параметры-----------------------------------
-    // array : функциональные назначения
+    // array : виды работ
     //
     static public function getActive_CORR_ExpertisePurpose(array $expertisePurposes):array {
 

@@ -1,6 +1,8 @@
 <?php
 
+
 final class UsersRoleTable{
+
 
     // Предназначен для создания записи роли пользователя
     // Принимает параметры-----------------------------------
@@ -8,6 +10,7 @@ final class UsersRoleTable{
     // Возвращает параметры-----------------------------------
     // id int : id созданной записи
     //
+    //todo - посмотреть что возвращает. id записи в этой таблице нет
     static public function create(int $id_user, int $role):int {
 
         $query = "INSERT INTO `users_role`

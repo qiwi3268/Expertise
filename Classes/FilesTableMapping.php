@@ -13,13 +13,13 @@ class FilesTableMapping{
     public function __construct(string $mappingLevel1, string $mappingLevel2){
 
         // Проверка существования маппинга
-        if(!isset(_FILES_TABLE_MAPPING[$mappingLevel1][$mappingLevel2])){
+        if(!isset(_FILE_TABLE_MAPPING[$mappingLevel1][$mappingLevel2])){
             $this->error = 1;
             $this->errorText = 'Запрашиваемого маппинга не существует';
             return;
         }
 
-        $Class = _FILES_TABLE_MAPPING[$mappingLevel1][$mappingLevel2];
+        $Class = _FILE_TABLE_MAPPING[$mappingLevel1][$mappingLevel2];
 
         // Проверка на существование указанного в маппинге класса
         if(!class_exists($Class)){

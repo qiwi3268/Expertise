@@ -42,7 +42,7 @@ if(checkParamsPOST('login', 'password')){
                     UsersTable::zeroingIncorrectPasswordInputById($userAssoc['id']);
                 }
 
-                $userRole = UsersTable::getRoleById($userAssoc['id']);
+                $userRole = UsersTable::getRolesById($userAssoc['id']);
 
                 // Пользователь не имеет ролей
                 if(is_null($userRole)){
@@ -68,13 +68,13 @@ if(checkParamsPOST('login', 'password')){
 
                 $ref = '';
 
-                if(in_array(_ROLES['APP'], $roles, true))         $ref = '/home/applicant';
-                elseif(in_array(_ROLES['EXP'], $roles, true))     $ref = '/home/experts';
-                elseif(in_array(_ROLES['EMP_PTO'], $roles, true)) $ref = '/home/pto';
-                elseif(in_array(_ROLES['EMP_BUH'], $roles, true)) $ref = '/home/buh';
-                elseif(in_array(_ROLES['EMP_PKR'], $roles, true)) $ref = '/home/pkr';
-                elseif(in_array(_ROLES['BOSS'], $roles, true))    $ref = '/home/boss';
-                elseif(in_array(_ROLES['ADM'], $roles, true))     $ref = '/home/admin';
+                if(in_array(_ROLE['APP'], $roles, true))         $ref = '/home/applicant';
+                elseif(in_array(_ROLE['EXP'], $roles, true))     $ref = '/home/experts';
+                elseif(in_array(_ROLE['EMP_PTO'], $roles, true)) $ref = '/home/pto';
+                elseif(in_array(_ROLE['EMP_BUH'], $roles, true)) $ref = '/home/buh';
+                elseif(in_array(_ROLE['EMP_PKR'], $roles, true)) $ref = '/home/pkr';
+                elseif(in_array(_ROLE['BOSS'], $roles, true))    $ref = '/home/boss';
+                elseif(in_array(_ROLE['ADM'], $roles, true))     $ref = '/home/admin';
 
                 $ref = '/tmp/create_application';
 

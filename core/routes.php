@@ -47,6 +47,12 @@ return [
         'views'           => ['create_application']
     ],
 
+    'home/API_save_application' => [
+        'access'         => [],
+        'ROOTClasses'    => ['ApplicationFormHandler'],
+        'API'            => ['save_application']
+    ],
+
     'tmp/registration_user' => [
         'controllers'     => ['registration_user']
     ],

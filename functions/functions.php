@@ -65,43 +65,6 @@ function clearHtmlArr(array $arr):array {
 }
 
 
-// Предназначен для получения строки с сокращенными типами входных параметров
-// Принимает параметры-----------------------------------
-// params array: массив c параметрати
-// Возвращает параметры-----------------------------------
-// string : сокращенные типы
-//
-function  GetBindParamsTypes(array $params):string {
-
-    $result = '';
-    foreach($params as $index => $value){
-
-        $type = gettype($value);
-        switch($type){
-            case 'string':
-                $result .= 's';
-                break;
-            case 'integer':
-                $result .= 'i';
-                break;
-            case 'double':
-                $result .= 'd';
-                break;
-            default:
-                $message = "Переданный параметр со значением значением: $value, с индексом (в рамках перебора входного массива): $index, имеет тип: $type, и не подходит под указанные типы";
-                throw new Exception($message);
-                break;
-        }
-    }
-    return  $result;
-}
-
-
-
-
-
-
-
 
 //----------------------------------
 //Возвращает: Фамилия Имя Отчетство / Фамилия И.О.

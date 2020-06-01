@@ -11,7 +11,7 @@ define('_APPLICATIONS_FILES_', '/var/www/applications_files');  // Директ�
 
 
 // Обозначения ролей в соответствии с `code_role`.`system_value`
-define('_ROLES', ['APP'     => 'APP',     // Заявитель
+define('_ROLE', ['APP'     => 'APP',     // Заявитель
                   'ADM'     => 'ADM',     // Администратор
                   'EXP'     => 'EXP',     // Эксперт
                   'EMP_EXP' => 'EMP_EXP', // EMP_EXP
@@ -31,13 +31,24 @@ define('_ROLE_IN_APPLICATION', ['AUTHOR' => 'AUTHOR' // Автор заявле�
 
                                ]);
 
-// Обозначение полей в заявлении
+// Имена полей в форме заявления
 define('_PROPERTY_IN_APPLICATION', ['application_id'         => 'application_id',        // id заявления
                                     'expertise_purpose'      => 'expertise_purpose',     // Цель экспертизы
                                     'expertise_subject'      => 'expertise_subject',     // Предмет экспертизы
                                     'additional_information' => 'additional_information' // Дополнительная информация
-
                                    ]);
+
+// Имена столбцов в таблице applications
+define('_COLUMN_NAME_IN_APPLICATIONS_TABLE', ['id'                     => 'id',                     // id заявления
+                                              'is_saved'               => 'is_saved',               // Флаг сохранения
+                                              'id_author'              => 'id_author',              // id автора
+                                              'numerical_name'         => 'numerical_name',         // Численное имя
+                                              'id_expertise_purpose'   => 'id_expertise_purpose',   // id цели экспертизы
+                                              'additional_information' => 'additional_information', // Дополнительная информация
+                                              'date_creation'          => 'date_creation'           // Дата создания
+                                              ]);
+
+
 
 
 
@@ -49,7 +60,7 @@ define('_PROPERTY_IN_APPLICATION', ['application_id'         => 'application_id'
 //    используется для структурных типов хранения (документации)
 //
 // Второй уровень вложенности соответствует названию класса для этой таблицы
-define('_FILES_TABLE_MAPPING', ['1' => ['1' => 'file_grbsTable'
+define('_FILE_TABLE_MAPPING', ['1' => ['1' => 'file_grbsTable'
 
                                        ],
                                 '2' => ['1' => 'file_documentation1Table',

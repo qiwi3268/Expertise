@@ -16,8 +16,8 @@ final class UsersTable{
     static public function create(string $last_name,
                                   string $first_name,
                                   string $middle_name,
-                                    ?int $department,
-                                    ?int $position,
+                                     int $department,
+                                     int $position,
                                   string $email,
                                   string $login,
                                   string $password,
@@ -72,7 +72,8 @@ final class UsersTable{
     // array : в случае, если роли пользователя существуют
     // null  : в противном случае
     //
-    static public function getRoleById(int $id):?array {
+
+    static public function getRolesById(int $id):?array {
 
         $query = "SELECT `code_role`.`name`,
                          `code_role`.`system_value`
