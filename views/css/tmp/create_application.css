@@ -210,10 +210,12 @@
    position: relative;
 }
 
-
-
 .body-card__row.center {
    align-items: center;
+}
+
+.body-card__row[data-inactive="true"] {
+   display: none;
 }
 
 .body-card__title {
@@ -295,10 +297,6 @@
 
 .body-card.fas {
    margin-right: 5px;
-}
-
-.body-card .inactive {
-   display: none;
 }
 
 .body-card__input,

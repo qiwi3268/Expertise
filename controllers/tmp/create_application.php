@@ -27,33 +27,46 @@ if(!chmod(_APPLICATIONS_FILES_."/$applicationId", 0757)){
 // Добавляем созданное заявление в сессию
 Session::addAuthorRoleApplicationId($applicationId);
 
-// Справочник "Цель экспертизы"
+// -----------------------------------------------------------------------------------------
+// Получение данных о пользователе и номере заявления
+// -----------------------------------------------------------------------------------------
+
+$userFioTV = GetUserFIO($userInfo);
+$appNumNameTV = "ЗАЯВЛЕНИЕ НА ЭКСПЕРТИЗУ $appNumName";
+
+// -----------------------------------------------------------------------------------------
+// Получение справочников
+// -----------------------------------------------------------------------------------------
+
+// Справочник "Цель обращения"
 $expertisePurposes = misc_expertisePurposeTable::getAllActive();
 
 // Справочник "Предмет экспертизы" -> корреляция с "Цель экспертизы"
 $expertiseSubjects = misc_expertiseSubjectTable::getActive_CORR_ExpertisePurpose($expertisePurposes);
 
-// Справочник "Вид работ" -> корреляция с "Цель экспертизы"
-$typeOfWorks = misc_typeOfWorkTable::getActive_CORR_ExpertisePurpose($expertisePurposes);
+// Справочник "Вид объекта"
+$typeOfObjects = misc_typeOfObjectTable::getAllActive();
 
 // Справочник "Функциональное назначение"
 $functionalPurposes = misc_functionalPurposeTable::getAllActive();
 
-// Справочник "Вид объекта"
-$typeOfObjects = misc_typeOfObjectTable::getAllActive();
+// Справочник "Вид работ" -> корреляция с "Цель экспертизы"
+$typeOfWorks = misc_typeOfWorkTable::getActive_CORR_ExpertisePurpose($expertisePurposes);
 
 
-//------------------------------------------------------
-$userFioTV = GetUserFIO($userInfo);
-$appNumNameTV = "ЗАЯВЛЕНИЕ НА ЭКСПЕРТИЗУ $appNumName";
+// -----------------------------------------------------------------------------------------
+// Разбивка справочников для пагинации
+// -----------------------------------------------------------------------------------------
 
-//------------------------------------------------------
+// Количество справочных элементов на странице
 $paginationSize = 5;
 
-$expertisePurposesTV = array_chunk($expertisePurposes, $paginationSize);
-$expertiseSubjectsTV = array_chunk($expertiseSubjects, $paginationSize);
-$expertiseSubjectsIH = json_encode($expertiseSubjects);
+$expertisePurposesTV = array_chunk($expertisePurposes, $paginationSize);   // Цель обращения
+$typeOfObjectsTV = array_chunk($typeOfObjects, $paginationSize);           // Вид работ
+$functionalPurposesTV = array_chunk($functionalPurposes, $paginationSize); // Функциональное назначение
 
+
+//todo тут дальше смотреть
 $typeOfWorksIH = $typeOfWorks;
 
 // Т.к. виды работ упакованы по id целей обращений
@@ -62,14 +75,16 @@ foreach($typeOfWorksIH AS &$purpose){
 }
 unset($purpose);
 
-
+$expertiseSubjectsIH = json_encode($expertiseSubjects);                    // Предметы экспертизы
 $typeOfWorksIH = json_encode($typeOfWorksIH);
 
 
-$functionalPurposesTV = array_chunk($functionalPurposes, $paginationSize);
 
 
-//------------------- Зависимости отображений объектов ---------------------
+
+// -----------------------------------------------------------------------------------------
+// Разбивка справочников для пагинации
+// -----------------------------------------------------------------------------------------
 
 
 // Ключ массива - аттрирут "data-row_name" в элементе "body-card__row" - это
@@ -83,23 +98,20 @@ $functionalPurposesTV = array_chunk($functionalPurposes, $paginationSize);
 
 $displayDependencies = [
 
-    'expertise_subject' => [
-
-        1 => [
-            'estimate_cost'      => false,
-            'functional_purpose' => true
+    // 1 - при
+    _PROPERTY_IN_APPLICATION['type_of_object'] => [
+        1 => [_PROPERTY_IN_APPLICATION['number_planning_documentation_approval'] => true,
+              _PROPERTY_IN_APPLICATION['date_planning_documentation_approval']   => true,
+              _PROPERTY_IN_APPLICATION['number_GPZU']                            => false,
+              _PROPERTY_IN_APPLICATION['date_GPZU']                              => false
         ],
 
-        2 => [
-            'estimate_cost'      => false,
-            'functional_purpose' => true
-        ],
-
-        3 => [
-            'estimate_cost'      => true,
-            'functional_purpose' => false
-        ],
-    ],
+        2 => [_PROPERTY_IN_APPLICATION['number_planning_documentation_approval'] => false,
+              _PROPERTY_IN_APPLICATION['date_planning_documentation_approval']   => false,
+              _PROPERTY_IN_APPLICATION['number_GPZU']                            => true,
+              _PROPERTY_IN_APPLICATION['date_GPZU']                              => true
+        ]
+    ]
 ];
 
 $displayDependenciesIH = json_encode($displayDependencies);

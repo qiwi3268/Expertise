@@ -155,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
          calendar.result_input = result_input;
          calendar.select_value = select_value;
 
+
          calendar.init();
       }
 

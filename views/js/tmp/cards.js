@@ -28,13 +28,19 @@ function handleDependentRows(parent_input) {
                is_display = dependent_rows[row_name];
 
                if (!is_display) {
-                  dependent_row.classList.add('inactive');
+                  dependent_row.dataset.inactive = 'true';
                } else {
-                  dependent_row.classList.remove('inactive');
+                  dependent_row.dataset.inactive = 'false';
                }
 
                // Удаляем записанное значение в зависимом поле
                dependent_row.querySelector('.body-card__result').value = '';
+
+               // Если зависимое поле - дата, удаляем отображаемую дату
+               let dependent_date = dependent_row.querySelector('.modal-calendar__value');
+               if (dependent_date) {
+                  dependent_date.innerHTML = 'Выберите дату';
+               }
             }
          });
       }

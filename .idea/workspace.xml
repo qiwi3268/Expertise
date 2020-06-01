@@ -2,30 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="237ecf96-8374-4d8a-bac5-b9b5ffa775cc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Classes/ApplicationFormHandler.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Classes/Exceptions/ApplicationFormHandlerException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Classes/SaveApplication.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Classes/Tables/ExpertiseSubjectTable.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/file_uploader.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/file_uploader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/home/save_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/save_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/ApplicationHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/ApplicationHelper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/FilesTableMapping.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/FilesTableMapping.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/ApplicationsTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/ApplicationsTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/Interface_fileTableType1.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/Interface_fileTableType1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/Interface_fileTableType2.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/Interface_fileTableType2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/UsersRoleTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/UsersRoleTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/UsersTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/UsersTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/misc_expertisePurposeTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/misc_expertisePurposeTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/misc_expertiseSubjectTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/misc_expertiseSubjectTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/misc_typeOfWorkTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/misc_typeOfWorkTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/tmp/registration_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/tmp/registration_user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Classes/DataBase.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/DataBase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Classes/Session.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/Session.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/tmp/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/tmp/create_application.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/defined_variables.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/defined_variables.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/calendar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/cards.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/cards.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/tmp/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/tmp/create_application.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,9 +70,10 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last.edited.regexp" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -120,7 +105,7 @@
       <workItem from="1589871184467" duration="47764000" />
       <workItem from="1590399706358" duration="27519000" />
       <workItem from="1590485542535" duration="16474000" />
-      <workItem from="1591002598456" duration="722000" />
+      <workItem from="1591002598456" duration="9961000" />
     </task>
     <task id="LOCAL-00001" summary="2">
       <created>1590566324166</created>
@@ -129,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590566324166</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="01.06.2020">
+      <created>1591003832990</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1591003832990</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,7 +130,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="2" />
-    <option name="LAST_COMMIT_MESSAGE" value="2" />
+    <MESSAGE value="01.06.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="01.06.2020" />
   </component>
   <component name="WindowStateProjectService">
     <state x="791" y="333" key="#Deployment" timestamp="1586248151560">
@@ -161,10 +154,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="665" y="179" key="#PHP/0.0.1920.1040@0.0.1920.1040" timestamp="1590406113235" />
-    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2" timestamp="1590566321919">
+    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2" timestamp="1591003830191">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1590566321919" />
+    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1591003830191" />
     <state x="92" y="92" width="2376" height="1216" key="DiffContextDialog" timestamp="1586340489568">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -186,11 +179,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590408683336" />
-    <state x="305" y="142" width="1366" height="898" key="SettingsEditor" timestamp="1590485287972">
+    <state x="136" y="53" width="1366" height="898" key="SettingsEditor" timestamp="1591008813473">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="607" y="213" key="SettingsEditor/-1920.220.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1586340461770" />
-    <state x="305" y="142" width="1366" height="898" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1590485287972" />
+    <state x="136" y="53" width="1366" height="898" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1591008813473" />
     <state x="607" y="213" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1589734672836" />
     <state x="736" y="389" key="com.intellij.ide.util.TipDialog" timestamp="1589774234815">
       <screen x="0" y="0" width="1920" height="1040" />

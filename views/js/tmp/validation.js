@@ -45,8 +45,12 @@ function validateModal(modal) {
 function validateRow(input, pattern) {
    let regex;
    let error_message;
-
+   //todo number
    switch (pattern) {
+      case 'number' :
+         regex = '^\\d+$';
+         error_message = 'Значение должно быть числом';
+         break;
       case 'cost' :
          regex = '^\\d+([.,]\\d{1,3})?$';
          error_message = 'Значение должно быть целым или десятичным неотрицательным числом ' +
@@ -77,7 +81,15 @@ function validateInput(input, regex, message) {
    let value = input.value;
    let error_message = input.nextElementSibling;
 
-   if (!value.match(regex)) {
+   let parent_row = input.parentElement.parentElement;
+   let is_required;
+   if (parent_row) {
+      is_required = parent_row.dataset.required;
+   }
+
+   let is_invalid = !value.match(regex) && (is_required || value);
+
+   if (is_invalid) {
       input.classList.add('invalid-field');
       error_message.classList.add('active');
 
@@ -96,11 +108,11 @@ function validateInput(input, regex, message) {
 }
 
 function validateCard(card) {
-   let card_name = card.dataset.type;
-   let is_valid = isValidCard(card);
-   let sidebar_item = document.querySelector(`.sidebar-form__row[data-card=${card_name}]`);
-
-   setSidebarItemState(sidebar_item, is_valid);
+   // let card_name = card.dataset.type;
+   // let is_valid = isValidCard(card);
+   // let sidebar_item = document.querySelector(`.sidebar-form__row[data-card=${card_name}]`);
+   //
+   // setSidebarItemState(sidebar_item, is_valid);
 }
 
 function isValidCard(card) {

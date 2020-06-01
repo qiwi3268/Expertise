@@ -32,20 +32,36 @@ define('_ROLE_IN_APPLICATION', ['AUTHOR' => 'AUTHOR' // Автор заявле�
                                ]);
 
 // Имена полей в форме заявления
-define('_PROPERTY_IN_APPLICATION', ['application_id'         => 'application_id',        // id заявления
-                                    'expertise_purpose'      => 'expertise_purpose',     // Цель экспертизы
-                                    'expertise_subject'      => 'expertise_subject',     // Предмет экспертизы
-                                    'additional_information' => 'additional_information' // Дополнительная информация
+define('_PROPERTY_IN_APPLICATION', ['application_id'                         => 'application_id',                         // id заявления
+                                    'expertise_purpose'                      => 'expertise_purpose',                      // Цель экспертизы
+                                    'expertise_subject'                      => 'expertise_subject',                      // Предмет экспертизы
+                                    'additional_information'                 => 'additional_information',                 // Дополнительная информация
+                                    'object_name'                            => 'object_name',                            // Наименование объекта
+                                    'type_of_object'                         => 'type_of_object',                         // Вид объекта
+                                    'functional_purpose'                     => 'functional_purpose',                     // Функциональное назначение
+                                    'number_planning_documentation_approval' => 'number_planning_documentation_approval', // Номер утверждения документации по планировке территории
+                                    'date_planning_documentation_approval'   => 'date_planning_documentation_approval',   // Дата утверждения документации по планировке территории
+                                    'number_GPZU'                            => 'number_GPZU',                            // Номер ГПЗУ
+                                    'date_GPZU'                              => 'date_GPZU',                              // Дата ГПЗУ
+                                    'cadastral_number'                       => 'cadastral_number'                        // Кадастровый номер земельного участка
                                    ]);
 
 // Имена столбцов в таблице applications
-define('_COLUMN_NAME_IN_APPLICATIONS_TABLE', ['id'                     => 'id',                     // id заявления
-                                              'is_saved'               => 'is_saved',               // Флаг сохранения
-                                              'id_author'              => 'id_author',              // id автора
-                                              'numerical_name'         => 'numerical_name',         // Численное имя
-                                              'id_expertise_purpose'   => 'id_expertise_purpose',   // id цели экспертизы
-                                              'additional_information' => 'additional_information', // Дополнительная информация
-                                              'date_creation'          => 'date_creation'           // Дата создания
+define('_COLUMN_NAME_IN_APPLICATIONS_TABLE', ['id'                                     => 'id',                                     // id заявления
+                                              'is_saved'                               => 'is_saved',                               // Флаг сохранения
+                                              'id_author'                              => 'id_author',                              // id автора
+                                              'numerical_name'                         => 'numerical_name',                         // Численное имя
+                                              'id_expertise_purpose'                   => 'id_expertise_purpose',                   // id цели экспертизы
+                                              'additional_information'                 => 'additional_information',                 // Дополнительная информация
+                                              'object_name'                            => 'object_name',                            // Наименование объекта
+                                              'id_type_of_object'                      => 'id_type_of_object',                      // Вид объекта
+                                              'id_functional_purpose'                  => 'id_functional_purpose',                  // Функциональное назначение
+                                              'number_planning_documentation_approval' => 'number_planning_documentation_approval', // Номер утверждения документации по планировке территории
+                                              'date_planning_documentation_approval'   => 'date_planning_documentation_approval',   // Дата утверждения документации по планировке территории
+                                              'number_GPZU'                            => 'number_GPZU',                            // Номер ГПЗУ
+                                              'date_GPZU'                              => 'date_GPZU',                              // Дата ГПЗУ
+                                              'date_creation'                          => 'date_creation',                          // Дата создания
+                                              'cadastral_number'                       => 'cadastral_number'                        // Кадастровый номер земельного участка
                                               ]);
 
 
