@@ -53,12 +53,27 @@ final class ApplicationsTable{
                          `applications`.`numerical_name`,
                          `applications`.`id_expertise_purpose`,
                          `applications`.`additional_information`,
+                         `applications`.`object_name`,
+                         `applications`.`id_type_of_object`,
+                         `applications`.`id_functional_purpose`,
+                         `applications`.`number_planning_documentation_approval`,
+                         `applications`.`date_planning_documentation_approval`,
+                         `applications`.`number_GPZU`,
+                         `applications`.`date_GPZU`,
+                         `applications`.`cadastral_number`,
                          `applications`.`date_creation`
 				  FROM `applications`
                   WHERE `applications`.`id`=?";
 
         $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
         return $result ? $result[0] : null;
+    }
+
+    //todo
+    static public function getAssocByIdForView(int $id):?array {
+        $query = "SELECT `applications`.`id`
+                  FROM `applications`
+                  WHERE `applications`.`id`=?";
     }
 
 
@@ -69,7 +84,7 @@ final class ApplicationsTable{
     // true   : заявление существует
     // false  : заявление не существует
     //
-    static public function checkExistById($id):bool {
+    static public function checkExistById(int $id):bool {
 
         $query = "SELECT count(*)>0
                   FROM `applications`

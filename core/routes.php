@@ -53,6 +53,11 @@ return [
         'API'            => ['save_application']
     ],
 
+    'home/application/view' => [
+        'controllers' => ['view'],
+        'views'      => ['view']
+    ],
+
     'tmp/registration_user' => [
         'controllers'     => ['registration_user']
     ],

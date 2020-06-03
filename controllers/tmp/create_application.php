@@ -98,7 +98,7 @@ $typeOfWorksIH = json_encode($typeOfWorksIH);
 
 $displayDependencies = [
 
-    // 1 - при
+    // Зависимость от выбранного "Вида объекта"
     _PROPERTY_IN_APPLICATION['type_of_object'] => [
         1 => [_PROPERTY_IN_APPLICATION['number_planning_documentation_approval'] => true,
               _PROPERTY_IN_APPLICATION['date_planning_documentation_approval']   => true,

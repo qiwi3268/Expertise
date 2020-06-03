@@ -3,7 +3,11 @@
 
 // Справочник "Цель обращения"
 //
-final class misc_expertisePurposeTable{
+final class misc_expertisePurposeTable implements Interface_miscTableValidate{
+
+    static private string $tableName = 'misc_expertise_purpose';
+
+    use Trait_miscTableValidate;
 
     // Предназначен для получения ассициативного массива целей экспертизы,
     // возвращает данные по возрастанию столбца sort
@@ -37,4 +41,6 @@ final class misc_expertisePurposeTable{
         $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
         return $result ? $result[0] : null;
     }
+
+
 }

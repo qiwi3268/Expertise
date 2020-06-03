@@ -9,10 +9,16 @@
 //       {result, error_message : текст ошибки}
 //	3  - Заявление не существует
 //       {result, error_message : текст ошибки}
-//  4  - Указанная Цель обращения не существует
+//  4  - Передано некорректное значение справочника
 //       {result, error_message : текст ошибки}
+//  5  - Запрашиваемый справочник не существует
+//       {result, error_message : текст ошибки}
+
+
 //  5  - Для сохранения Предмета экспертизы необходимо наличие Цели экспертизы
 //       {result, error_message : текст ошибки}
+
+
 //  6  - Произошла ошибка при обработке полученного Предмета экспертизы
 //       {result, error_message : текст ошибки, exception_message : текст ошибки, exception_code: код ошибки}}
 //  7  - В предмете экспертизы присутствуют повторяющиеся элементы
@@ -22,6 +28,8 @@
 //  9  - Указанный Предмет экспертизы не соответствует выбранной Цели экспертизы
 //       {result, error_message : текст ошибки}
 
+
+//
 
 if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
                    _PROPERTY_IN_APPLICATION['expertise_purpose'],
@@ -33,8 +41,9 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     /** @var string $P_expertise_purpose        Цель обращения */
     /** @var string $P_expertise_subject        Предмет экспертизы */
     /** @var string $P_additional_information   Доплнительная информация */
-
-    extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
+    /** @var string $P_object_name              Наименование объекта */
+    $clearPOST = clearHtmlArr($_POST);
+    extract($clearPOST, EXTR_PREFIX_ALL, 'P');
 
     // -----------------------------------------------------------------------------------------------------------------
     // Зона валидации формы
@@ -74,7 +83,7 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
 
             exit(json_encode(['result'        => 2,
                               'error_message' => "У заявителя отсуствуют права на сохранение заявления id: $form_applicationID"
-                             ]));
+            ]));
         }
 
     // Сотрудник
@@ -84,43 +93,46 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
 
             exit(json_encode(['result'        => 3,
                               'error_message' => "Заявление id: $form_applicationID не существует"
-                             ]));
+            ]));
         }
     }
 
     // Объект класса-обработчика
-    $FormHandler = new ApplicationFormHandler($applicationAssoc);
+    $FormHandler = new ApplicationFormHandler($applicationAssoc, $clearPOST);
 
 
     // Проверка Цели обращения -----------------------------------------------------------------
     //
-    $expertisePurposeExist = false;
-
-    // Из формы пришло не пустое значение
     if($P_expertise_purpose !== ''){
 
-        // Преобразуем значение из формы явно к типу int
-        $form_expertisePurposeID = (int)$P_expertise_purpose;
+        $purposeValidateResult =  $FormHandler->validateSingleMisc($P_expertise_purpose, 'misc_expertisePurposeTable');
 
-        $expertisePurposeAssoc = misc_expertisePurposeTable::getAssocById($form_expertisePurposeID);
+        if($purposeValidateResult['error']){
 
-        // Указанной цели не существует
-        if(is_null($expertisePurposeAssoc)){
-
-            exit(json_encode(['result'        => 4,
-                              'error_message' => 'Указанная Цель обращения не существует'
-                             ]));
+            switch($purposeValidateResult['error_code']){
+                case 1:
+                    exit(json_encode(['result'        => 4,
+                                      'error_message' => 'Передано некорректное значение для Цели экспертизы'
+                    ]));
+                case 2:
+                    exit(json_encode(['result'        => 5,
+                                      'error_message' => 'Запрашиваемый справочник не существует'
+                    ]));
+            }
         }
-        $expertisePurposeExist = true;
-    }
-    define('expertise_purpose_exist', $expertisePurposeExist);
 
+        // int'овое значение из формы
+        $form_expertisePurposeID = $purposeValidateResult['int_formValue'];
+
+        define('expertise_purpose_exist', true);
+    }else{
+
+        define('expertise_purpose_exist', false);
+    }
 
 
     // Проверка Предметов экспертизы -----------------------------------------------------------
-    $expertiseSubjectsExist = false;
-
-    // Из формы пришло не пустое значение
+    //
     if($P_expertise_subject !== ''){
 
         // Попытка заполнить Предмет экспертизы без выбранной Цели экспертизы
@@ -182,9 +194,43 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
         }
         unset($id);
 
-        $expertiseSubjectsExist = true;
+        define('expertise_subjects_exist', true);
+    }else{
+        define('expertise_subjects_exist', false);
     }
-    define('expertise_subjects_exist', $expertiseSubjectsExist);
+
+
+    // Проверка Вида объекта -------------------------------------------------------------------
+    //
+    if($P_expertise_purpose !== ''){
+
+        $purposeValidateResult =  $FormHandler->validateSingleMisc($P_expertise_purpose, 'misc_expertisePurposeTable');
+
+        if($purposeValidateResult['error']){
+
+            switch($purposeValidateResult['error_code']){
+                case 1:
+                    exit(json_encode(['result'        => 4,
+                        'error_message' => 'Передано некорректное значение для Цели экспертизы'
+                    ]));
+                case 2:
+                    exit(json_encode(['result'        => 5,
+                        'error_message' => 'Запрашиваемый справочник не существует'
+                    ]));
+            }
+        }
+
+        // int'овое значение из формы
+        $form_expertisePurposeID = $purposeValidateResult['int_formValue'];
+
+        define('expertise_purpose_exist', true);
+    }else{
+
+        define('expertise_purpose_exist', false);
+    }
+
+
+
 
 
     // -----------------------------------------------------------------------------------------------------------------
@@ -247,6 +293,8 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     // Дополнительная информация (текстовое поле) ----------------------------------------------
     $FormHandler->addTextInputValueToUpdate($P_additional_information, _COLUMN_NAME_IN_APPLICATIONS_TABLE['additional_information'], $dataToUpdate);
 
+    // Наименование объекта (текстовое поле) ----------------------------------------------
+    $FormHandler->addTextInputValueToUpdate($P_object_name, _COLUMN_NAME_IN_APPLICATIONS_TABLE['object_name'], $dataToUpdate);
 
 
     // блок сохранения в БД
@@ -277,10 +325,10 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
 
 
 
-    exit(json_encode(['result'        =>777,
+    exit(json_encode(['result'        => 777,
                       'error_message' => 'Все хорошо'
     ]));
 }
 exit(json_encode(['result'        => 1,
                   'error_message' => 'Нет обязательных параметров POST запроса'
-                 ]));
+]));

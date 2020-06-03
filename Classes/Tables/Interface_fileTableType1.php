@@ -7,5 +7,7 @@
 //
 interface Interface_fileTableType1 extends Interface_fileTable{
 
+    // Предназначен для создания записи в файловой таблице
+    //
     static public function create(int $id_application, string $file_name, string $hash):int;
 }
