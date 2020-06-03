@@ -25,7 +25,7 @@ switch(_URNNAME_){
                         ];
         break;
 
-    case 'tmp/create_application' :
+    case 'home/create_application' :
         $pageName = 'АИС';
         $sourcesFiles = [...CreateSource('css', ROOT_CSS, 'entry.css'),
                          ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'modal.css', 'calendar.css'),
@@ -36,6 +36,18 @@ switch(_URNNAME_){
                             'modal.js', 'calendar.js', 'radio.js', 'save_application.js', 'test.js')
                         ];
         break;
+   
+    case 'home/application/view' :
+       $pageName = 'АИС';
+       $sourcesFiles = [...CreateSource('css', ROOT_CSS, 'entry.css'),
+          ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css',
+           'footer.css', 'modal.css', 'calendar.css'),
+          ...CreateSource('css', TMP_CSS, 'create_application.css', 'view_application.css'),
+          ...GetFontAwesome5Case(),
+          ...CreateSource('js', TMP_JS, 'sidebar.js', 'section.js', 'validation.js', 'cards.js',
+             'modal.js', 'calendar.js', 'radio.js', 'save_application.js', 'test.js')
+       ];
+       break;
 
     case 'tmp/form_to_file_download' :
         $pageName = 'Загрузка файлов на сервер';

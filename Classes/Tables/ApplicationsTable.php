@@ -69,11 +69,18 @@ final class ApplicationsTable{
         return $result ? $result[0] : null;
     }
 
-    //todo
+    // Предназначен для получения ассоциативного массива заявления по его id для просмотра заявления
     static public function getAssocByIdForView(int $id):?array {
-        $query = "SELECT `applications`.`id`
-                  FROM `applications`
-                  WHERE `applications`.`id`=?";
+        $query = "SELECT `applications`.`id`,
+                         `misc_expertise_purpose`.`name` as `expertise_purpose`
+                  FROM (SELECT * FROM `applications`
+                        WHERE `applications`.`id`=?) AS `applications`
+                  LEFT JOIN (`misc_expertise_purpose`)
+                        ON (`applications`.`id_expertise_purpose`=`misc_expertise_purpose`.`id`)
+                  ";
+
+        $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
+        return $result ? $result[0] : null;
     }
 
 

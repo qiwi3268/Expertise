@@ -1,4 +1,3 @@
-   </main>
    <footer>
       <div class="footer__info footer-info">
          <div class="footer-info__item">

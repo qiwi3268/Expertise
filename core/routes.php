@@ -39,12 +39,12 @@ return [
 
 
 
-    'tmp/create_application' => [
+    'home/create_application' => [
         'access'          => [],
         'ROOTcontrollers' => ['header'],
         'ROOTviews'       => ['header'],
         'controllers'     => ['create_application'],
-        'views'           => ['create_application']
+        'views'           => ['create_application_dependencies', 'main_header', 'create_application', 'main_footer']
     ],
 
     'home/API_save_application' => [
@@ -54,8 +54,12 @@ return [
     ],
 
     'home/application/view' => [
-        'controllers' => ['view'],
-        'views'      => ['view']
+        'access'          => [],
+        'ROOTcontrollers' => ['header'],
+        'ROOTClasses'     => ['VariablesToView'],
+        'controllers'     => ['view_application'],
+        'ROOTviews'       => ['header'],
+        'views'           => ['sidebar_hierarchy', 'view_application', 'sidebar_actions']
     ],
 
     'tmp/registration_user' => [

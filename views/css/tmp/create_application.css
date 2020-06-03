@@ -236,7 +236,7 @@
    justify-content: space-between;
    align-items: center;
    width: 100%;
-   padding: 10px 10px;
+   padding: 10px;
    border: 1px solid #cccccc;
    border-radius: 4px;
    font-family: 'Roboto Condensed', sans-serif;
@@ -332,6 +332,11 @@
    color: #343a40;
 }
 
+.radio__icon.fas {
+   font-size: 15px;
+   color: #343a40;
+}
+
 .radio__item {
    display: flex;
    align-items: center;
@@ -350,6 +355,10 @@
    display: block;
    margin: 10px 0px 0px 0px;
 
+}
+
+.radio__value {
+   font-size: 15px;
 }
 
 /* tmp ========================================================================= */

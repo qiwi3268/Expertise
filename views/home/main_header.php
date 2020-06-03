@@ -15,4 +15,4 @@
           <i class="fas fa-sign-out-alt header__icon"></i>
       </div>
    </header>
-   <main class="main-body">
+   

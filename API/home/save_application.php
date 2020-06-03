@@ -9,22 +9,30 @@
 //       {result, error_message : текст ошибки}
 //	3  - Заявление не существует
 //       {result, error_message : текст ошибки}
+
 //  4  - Передано некорректное значение справочника
 //       {result, error_message : текст ошибки}
 //  5  - Запрашиваемый справочник не существует
 //       {result, error_message : текст ошибки}
-
-
-//  5  - Для сохранения Предмета экспертизы необходимо наличие Цели экспертизы
+//  6  - Одновременно переданы данные из взаимозаменяемых блоков
+//       {result, error_message : текст ошибки}
+//  7  - Переданы данные из зависимого блока, когда: 1 - Главный блок не заполнен, или
+//                                                   2 - Главный блок имеет не то значение, при котором можно выбрать то,
+//                                                       что пришло из формы зависимого блока
+//       {result, error_message : текст ошибки}
+//  8  - Передана некорректная дата
 //       {result, error_message : текст ошибки}
 
-
+//todo
+//  5  - Для сохранения Предмета экспертизы необходимо наличие Цели экспертизы
+//       {result, error_message : текст ошибки}
 //  6  - Произошла ошибка при обработке полученного Предмета экспертизы
 //       {result, error_message : текст ошибки, exception_message : текст ошибки, exception_code: код ошибки}}
 //  7  - В предмете экспертизы присутствуют повторяющиеся элементы
 //       {result, error_message : текст ошибки}
 //  8  - Указанный Предмет экспертизы не существует
 //       {result, error_message : текст ошибки}
+
 //  9  - Указанный Предмет экспертизы не соответствует выбранной Цели экспертизы
 //       {result, error_message : текст ошибки}
 
@@ -37,11 +45,18 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
 )){
 
 
-    /** @var string $P_application_id           id-заявления */
-    /** @var string $P_expertise_purpose        Цель обращения */
-    /** @var string $P_expertise_subject        Предмет экспертизы */
-    /** @var string $P_additional_information   Доплнительная информация */
-    /** @var string $P_object_name              Наименование объекта */
+    /** @var string $P_application_id                          id-заявления */
+    /** @var string $P_expertise_purpose                       Цель обращения */
+    /** @var string $P_expertise_subject                       Предмет экспертизы */
+    /** @var string $P_additional_information                  Доплнительная информация */
+    /** @var string $P_object_name                             Наименование объекта */
+    /** @var string $P_type_of_object                          Вид объекта */
+    /** @var string $P_functional_purpose                      Функциональное назначение */
+    /** @var string $P_number_planning_documentation_approval  Номер утверждения документации по планировке территории */
+    /** @var string $P_date_planning_documentation_approval    Дата утверждения документации по планировке территории */
+    /** @var string $P_number_GPZU                             Номер ГПЗУ */
+    /** @var string $P_date_GPZU                               Дата ГПЗУ */
+
     $clearPOST = clearHtmlArr($_POST);
     extract($clearPOST, EXTR_PREFIX_ALL, 'P');
 
@@ -105,11 +120,11 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     //
     if($P_expertise_purpose !== ''){
 
-        $purposeValidateResult =  $FormHandler->validateSingleMisc($P_expertise_purpose, 'misc_expertisePurposeTable');
+        $expertisePurposeValidateResult = $FormHandler->validateSingleMisc($P_expertise_purpose, 'misc_expertisePurposeTable');
 
-        if($purposeValidateResult['error']){
+        if($expertisePurposeValidateResult['error']){
 
-            switch($purposeValidateResult['error_code']){
+            switch($expertisePurposeValidateResult['error_code']){
                 case 1:
                     exit(json_encode(['result'        => 4,
                                       'error_message' => 'Передано некорректное значение для Цели экспертизы'
@@ -122,7 +137,7 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
         }
 
         // int'овое значение из формы
-        $form_expertisePurposeID = $purposeValidateResult['int_formValue'];
+        $form_expertisePurposeID = $expertisePurposeValidateResult['int_formValue'];
 
         define('expertise_purpose_exist', true);
     }else{
@@ -202,32 +217,118 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
 
     // Проверка Вида объекта -------------------------------------------------------------------
     //
-    if($P_expertise_purpose !== ''){
+    if($P_type_of_object !== ''){
 
-        $purposeValidateResult =  $FormHandler->validateSingleMisc($P_expertise_purpose, 'misc_expertisePurposeTable');
+        $typeOfObjectValidateResult =  $FormHandler->validateSingleMisc($P_type_of_object, 'misc_typeOfObjectTable');
 
-        if($purposeValidateResult['error']){
+        if($typeOfObjectValidateResult['error']){
 
-            switch($purposeValidateResult['error_code']){
+            switch($typeOfObjectValidateResult['error_code']){
                 case 1:
                     exit(json_encode(['result'        => 4,
-                        'error_message' => 'Передано некорректное значение для Цели экспертизы'
+                                      'error_message' => 'Передано некорректное значение для Вида объекта'
                     ]));
                 case 2:
                     exit(json_encode(['result'        => 5,
-                        'error_message' => 'Запрашиваемый справочник не существует'
+                                      'error_message' => 'Запрашиваемый справочник не существует'
                     ]));
             }
         }
 
         // int'овое значение из формы
-        $form_expertisePurposeID = $purposeValidateResult['int_formValue'];
+        $form_typeOfObjectID = $typeOfObjectValidateResult['int_formValue'];
 
-        define('expertise_purpose_exist', true);
+        define('type_of_object_exist', true);
     }else{
 
-        define('expertise_purpose_exist', false);
+        define('type_of_object_exist', false);
     }
+
+
+    // Проверка Функционального назначения -----------------------------------------------------
+    //
+    if($P_functional_purpose !== ''){
+
+        $functionalPurposeValidateResult = $FormHandler->validateSingleMisc($P_functional_purpose, 'misc_functionalPurposeTable');
+
+        if($functionalPurposeValidateResult['error']){
+
+            switch($functionalPurposeValidateResult['error_code']){
+                case 1:
+                    exit(json_encode(['result'        => 4,
+                                      'error_message' => 'Передано некорректное значение для Функционального назначения'
+                    ]));
+                case 2:
+                    exit(json_encode(['result'        => 5,
+                                      'error_message' => 'Запрашиваемый справочник не существует'
+                    ]));
+            }
+        }
+
+        // int'овое значение из формы
+        $form_functionalPurposeID = $functionalPurposeValidateResult['int_formValue'];
+
+        define('functional_purpose_exist', true);
+    }else{
+
+        define('functional_purpose_exist', false);
+    }
+
+
+    // Проверка блока Номера и Дат -------------------------------------------------------------
+
+    // Из формы одновременное пришли данные из блока Утверждения документации по планировке территории и ГПЗУ
+    if(($P_number_planning_documentation_approval !== '' || $P_date_planning_documentation_approval !== '') && ($P_number_GPZU !== '' || $P_date_GPZU !== '')){
+
+        //todo протестить эту ветку
+        exit(json_encode(['result'        => 6,
+                          'error_message' => 'Одновременно переданы данные из блока Утверждения документации по планировке территории и ГПЗУ'
+        ]));
+    }
+
+
+    if($P_number_planning_documentation_approval !== '' || $P_date_planning_documentation_approval !== ''){
+
+        // Заполнены данные при невыбранном Виде объекта или Вид объекта не того типа
+        if(!type_of_object_exist || $form_typeOfObjectID !== 1){
+
+            exit(json_encode(['result'        => 7,
+                              'error_message' => 'Данные из блока Утверждения документации по планировке территории не могут быть заполнены при указанном Виде объекта'
+            ]));
+        }
+
+        // Валидация Даты
+        if($P_date_planning_documentation_approval !== '' && !$FormHandler->validateDate($P_date_planning_documentation_approval)){
+
+            exit(json_encode(['result'        => 8,
+                              'error_message' => 'Дата утверждения документации по планировке территории некорректна'
+            ]));
+        }
+
+    }elseif($P_number_GPZU !== '' || $P_date_GPZU !== ''){
+
+        // Заполнены данные при невыбранном Виде объекта или Вид объекта не того типа
+        if(!type_of_object_exist || $form_typeOfObjectID !== 2){
+
+            exit(json_encode(['result'        => 7,
+                              'error_message' => 'Данные из блока ГПЗУ не могут быть заполнены при указанном Виде объекта'
+            ]));
+        }
+
+        // Валидация Даты
+        if($P_date_GPZU !== '' && !$FormHandler->validateDate($P_date_GPZU)){
+
+            exit(json_encode(['result'        => 8,
+                              'error_message' => 'Дата ГПЗУ некорректна'
+            ]));
+        }
+    }
+
+
+    // Номера утверждения документации по планировке территории
+    // И
+    // Дата утверждения документации по планировке территории
+    //
 
 
 
@@ -237,13 +338,16 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     // Зона сохранения заявления в БД
     //
     // Имеет bool константы:
-    // 1 - expertise_purpose_exist   : передана корректная Цель экспертизы
-    // 1 - expertise_subjects_exist  : переданы корректные Предметы экспертищы
+    // 1 - expertise_purpose_exist   : передана Цель экспертизы
+    // 2 - expertise_subjects_exist  : передан(ы) Предметы экспертизы
+    // 3 - type_of_object_exist      : передан Вид объекта
+    // 4 - functional_purpose_exist  : передано Функциональное назначение
     //
     // Если константы true, то определены:
     // 1 - form_expertisePurposeID          int : id выбранной Цели обращения
     // 2 - form_expertiseSubjects array[int...] : массив с выбранными предметами (int) экспертизы
-    //
+    // 3 - form_typeOfObjectID              int : id выбранного Вида объекта
+    // 4 - form_functionalPurposeID         int : id выбранного Функционального назначение
     //
     // -----------------------------------------------------------------------------------------------------------------
 
@@ -260,6 +364,7 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
 
 
     // Предмет экспертизы (радио, можно сбросить) ----------------------------------------------
+
     // Предметы экспертизы, которые уже есть у заявления
     $db_expertiseSubjects = ExpertiseSubjectTable::getIdsByIdApplication($form_applicationID);
 
@@ -293,8 +398,41 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     // Дополнительная информация (текстовое поле) ----------------------------------------------
     $FormHandler->addTextInputValueToUpdate($P_additional_information, _COLUMN_NAME_IN_APPLICATIONS_TABLE['additional_information'], $dataToUpdate);
 
-    // Наименование объекта (текстовое поле) ----------------------------------------------
+
+    // Наименование объекта (текстовое поле) ---------------------------------------------------
     $FormHandler->addTextInputValueToUpdate($P_object_name, _COLUMN_NAME_IN_APPLICATIONS_TABLE['object_name'], $dataToUpdate);
+
+
+    // Вид объекта (справочник, нельзя сбросить) -----------------------------------------------
+    if(type_of_object_exist && $form_typeOfObjectID !== $applicationAssoc[_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_type_of_object']]){
+        $dataToUpdate[_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_type_of_object']] = $form_typeOfObjectID;
+    }
+
+
+    // Функциональное назначение (справочник, нельзя сбросить) ----------------------------------
+    if(functional_purpose_exist && $form_functionalPurposeID !== $applicationAssoc[_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose']]){
+        $dataToUpdate[_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose']] = $form_functionalPurposeID;
+    }
+
+
+    // Номер утверждения документации по планировке территории (текстовое поле) -----------------
+    $FormHandler->addTextInputValueToUpdate($P_number_planning_documentation_approval, _COLUMN_NAME_IN_APPLICATIONS_TABLE['number_planning_documentation_approval'], $dataToUpdate);
+
+
+    // Дата утверждения документации по планировке территории (текстовое поле, календарь) -------
+    $FormHandler->addTextInputValueToUpdate(strtotime($P_date_planning_documentation_approval), _COLUMN_NAME_IN_APPLICATIONS_TABLE['date_planning_documentation_approval'], $dataToUpdate);
+
+
+    // Номер ГПЗУ (текстовое поле) -------------------------------------------------------------
+    $FormHandler->addTextInputValueToUpdate($P_number_GPZU, _COLUMN_NAME_IN_APPLICATIONS_TABLE['number_GPZU'], $dataToUpdate);
+
+
+    // Дата ГПЗУ (текстовое поле, календарь) ---------------------------------------------------
+    $FormHandler->addTextInputValueToUpdate(strtotime($P_date_GPZU), _COLUMN_NAME_IN_APPLICATIONS_TABLE['date_GPZU'], $dataToUpdate);
+
+
+
+
 
 
     // блок сохранения в БД

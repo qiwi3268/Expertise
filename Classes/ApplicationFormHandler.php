@@ -35,8 +35,19 @@ class ApplicationFormHandler{
 
 
 
-    public function validateJson(string $inputName){
+   /* public function validateJson(string $inputName){
 
+    }*/
+
+    public function validateDate(string $formValue):bool {
+
+        $dateParts = explode('.', $formValue, 3);
+
+        if(count($dateParts) != 3 || !checkdate($dateParts[1], $dateParts[0], $dateParts[2])){
+            return false;
+        }
+
+        return true;
     }
 
     // Предназначен для добавления нового значения formValue для столбца columnName
@@ -58,7 +69,14 @@ class ApplicationFormHandler{
         // Из формы пришло значение
         }else{
 
+            // Если текстовое поле в БД представлено числом (например, Дата), то необходимо преобразовать его
+            // к int'у, т.к. далее следует жесткое сравнение
+            if(is_int($this->applicationAssoc[$columnName])){
+                $formValue = (int)$formValue;
+            }
+
             // Пользователь отправил данные, отличающиеся от записи в БД
+            // Жесткое сравнение необходимо, чтобы отличать введенный 0 и NULL из БД и т.д.
             if($formValue !== $this->applicationAssoc[$columnName]){
                 $dataToUpdate[$columnName] = $formValue;
             }
