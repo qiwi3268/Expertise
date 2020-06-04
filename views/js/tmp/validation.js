@@ -45,7 +45,6 @@ function validateModal(modal) {
 function validateRow(input, pattern) {
    let regex;
    let error_message;
-   //todo number
    switch (pattern) {
       case 'number' :
          regex = '^\\d+$';
@@ -65,8 +64,8 @@ function validateRow(input, pattern) {
          error_message = 'Значение должно быть числом из 9 символов';
          break;
       default :
-         regex = '';
-         error_message = '';
+         regex = '^\\S+\.*$';
+         error_message = 'Значение должно начинаться с непробельного символа';
    }
 
    validateInput(input, regex, error_message);
@@ -82,6 +81,7 @@ function validateInput(input, regex, message) {
    let error_message = input.nextElementSibling;
 
    let parent_row = input.parentElement.parentElement;
+
    let is_required;
    if (parent_row) {
       is_required = parent_row.dataset.required;

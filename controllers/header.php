@@ -41,11 +41,9 @@ switch(_URNNAME_){
        $pageName = 'АИС';
        $sourcesFiles = [...CreateSource('css', ROOT_CSS, 'entry.css'),
           ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css',
-           'footer.css', 'modal.css', 'calendar.css'),
+           'footer.css'),
           ...CreateSource('css', TMP_CSS, 'create_application.css', 'view_application.css'),
-          ...GetFontAwesome5Case(),
-          ...CreateSource('js', TMP_JS, 'sidebar.js', 'section.js', 'validation.js', 'cards.js',
-             'modal.js', 'calendar.js', 'radio.js', 'save_application.js', 'test.js')
+          ...GetFontAwesome5Case()
        ];
        break;
 

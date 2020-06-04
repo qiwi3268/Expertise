@@ -1,5 +1,5 @@
 <div class="radio__content-change-logic">
-    <input data-when_change="<?= _PROPERTY_IN_APPLICATION['expertise_purpose'] ?>" data-target_change="<?= _PROPERTY_IN_APPLICATION['expertise_subject'] ?>" type="hidden" value='<?= $expertiseSubjectsIH ?>'>
+    <input data-when_change="<?= _PROPERTY_IN_APPLICATION['expertise_purpose'] ?>" data-target_change="<?= _PROPERTY_IN_APPLICATION['expertise_subjects'] ?>" type="hidden" value='<?= $expertiseSubjectsIH ?>'>
 </div>
 
 <!--todo добавить-->

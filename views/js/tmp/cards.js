@@ -54,7 +54,7 @@ function handleDependentRows(parent_input) {
 // parent_input       Element : скрытый инпут со значением родительского поля
 function handleDependentRadios(parent_input) {
    let radio_dependency = document.querySelector('.radio__content-change-logic');
-   let dependency_inputs = radio_dependency.querySelectorAll('input');
+   let dependency_inputs = radio_dependency.querySelectorAll(`input[data-when_change=${parent_input.name}]`);
 
    dependency_inputs.forEach(input => {
       // Все возможные значения для блока с переключателями

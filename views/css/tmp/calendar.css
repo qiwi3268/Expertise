@@ -142,6 +142,15 @@
    color: #343a40;
 }
 
+.modal-calendar__value {
+   flex-grow: 1;
+}
+
+.modal-calendar__icon-delete {
+   margin: 0px 15px 0px 0px;
+
+}
+
 /*.calendar__day {
    padding: 5px 0px;
    flex-basis: 14.2%;

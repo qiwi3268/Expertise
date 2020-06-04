@@ -2,35 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="237ecf96-8374-4d8a-bac5-b9b5ffa775cc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Classes/VariablesToView.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/home/application/view_application.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/home/create_application.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/css/tmp/view_application.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/home/application/sidebar_actions.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/home/application/sidebar_hierarchy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/home/application/view_application.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/home/create_application_dependencies.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/home/main_footer.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/home/main_header.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/tmp/create_application_dependencies.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/tmp/sidebar_actions.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/tmp/sidebar_hierarchy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/tmp/view_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/tmp/create_application.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/home/save_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/save_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/ApplicationFormHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/ApplicationFormHandler.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classes/Tables/ApplicationsTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/ApplicationsTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/misc_functionalPurposeTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/misc_functionalPurposeTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/misc_typeOfObjectTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/misc_typeOfObjectTable.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/view_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/defined_variables.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/defined_variables.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/calendar.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/calendar.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/tmp/create_application.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/tmp/main_footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/tmp/main_footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/tmp/main_header.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/tmp/main_header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/view_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/view_application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/view_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/create_application_dependencies.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application_dependencies.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/cards.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/cards.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/validation.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,8 +33,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -127,7 +114,7 @@
       <workItem from="1590399706358" duration="27519000" />
       <workItem from="1590485542535" duration="16474000" />
       <workItem from="1591002598456" duration="9975000" />
-      <workItem from="1591160460217" duration="23527000" />
+      <workItem from="1591160460217" duration="31921000" />
     </task>
     <task id="LOCAL-00001" summary="2">
       <created>1590566324166</created>
@@ -157,7 +144,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591161206366</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="03.06.2020_1">
+      <created>1591187445074</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1591187445074</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,7 +162,8 @@
     <MESSAGE value="2" />
     <MESSAGE value="01.06.2020" />
     <MESSAGE value="03.06.2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="03.06.2020" />
+    <MESSAGE value="03.06.2020_1" />
+    <option name="LAST_COMMIT_MESSAGE" value="03.06.2020_1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="791" y="333" key="#Deployment" timestamp="1586248151560">
@@ -191,10 +186,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="665" y="179" key="#PHP/0.0.1920.1040@0.0.1920.1040" timestamp="1591164116114" />
-    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2" timestamp="1591161203614">
+    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2" timestamp="1591187442254">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1591161203614" />
+    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1591187442254" />
     <state x="92" y="92" width="2376" height="1216" key="DiffContextDialog" timestamp="1586340489568">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -212,10 +207,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="782" y="436" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590486910146" />
-    <state x="184" y="86" key="MergeDialog" timestamp="1590408683336">
+    <state x="184" y="86" key="MergeDialog" timestamp="1591242533603">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590408683336" />
+    <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591242533603" />
     <state x="794" y="443" key="NewPhpFileDialog" timestamp="1591162562454">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -244,9 +239,9 @@
     </state>
     <state x="1437" y="569" key="publish.login/-1920.220.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1586246823273" />
     <state x="1078" y="423" key="publish.login/0.0.1920.1040@0.0.1920.1040" timestamp="1589774269557" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1590561600481">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1591249932428">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590561600481" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591249932428" />
   </component>
 </project>

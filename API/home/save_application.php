@@ -41,13 +41,13 @@
 
 if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
                    _PROPERTY_IN_APPLICATION['expertise_purpose'],
-                   _PROPERTY_IN_APPLICATION['expertise_subject']
+                   _PROPERTY_IN_APPLICATION['expertise_subjects']
 )){
 
 
     /** @var string $P_application_id                          id-заявления */
     /** @var string $P_expertise_purpose                       Цель обращения */
-    /** @var string $P_expertise_subject                       Предмет экспертизы */
+    /** @var string $P_expertise_subjects                       Предмет экспертизы */
     /** @var string $P_additional_information                  Доплнительная информация */
     /** @var string $P_object_name                             Наименование объекта */
     /** @var string $P_type_of_object                          Вид объекта */
@@ -113,14 +113,14 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     }
 
     // Объект класса-обработчика
-    $FormHandler = new ApplicationFormHandler($applicationAssoc, $clearPOST);
+    $formHandler = new ApplicationFormHandler($applicationAssoc, $clearPOST);
 
 
     // Проверка Цели обращения -----------------------------------------------------------------
     //
     if($P_expertise_purpose !== ''){
 
-        $expertisePurposeValidateResult = $FormHandler->validateSingleMisc($P_expertise_purpose, 'misc_expertisePurposeTable');
+        $expertisePurposeValidateResult = $formHandler->validateSingleMisc($P_expertise_purpose, 'misc_expertisePurposeTable');
 
         if($expertisePurposeValidateResult['error']){
 
@@ -148,7 +148,7 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
 
     // Проверка Предметов экспертизы -----------------------------------------------------------
     //
-    if($P_expertise_subject !== ''){
+    if($P_expertise_subjects !== ''){
 
         // Попытка заполнить Предмет экспертизы без выбранной Цели экспертизы
         if(!expertise_purpose_exist){
@@ -161,7 +161,7 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
         $form_expertiseSubjects = [];
         try{
 
-            $form_expertiseSubjects = json_decode($P_expertise_subject, false, 2, JSON_THROW_ON_ERROR);
+            $form_expertiseSubjects = json_decode($P_expertise_subjects, false, 2, JSON_THROW_ON_ERROR);
         }catch(jsonException $ex){
 
             exit(json_encode(['result'            => 6,
@@ -219,7 +219,7 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     //
     if($P_type_of_object !== ''){
 
-        $typeOfObjectValidateResult =  $FormHandler->validateSingleMisc($P_type_of_object, 'misc_typeOfObjectTable');
+        $typeOfObjectValidateResult =  $formHandler->validateSingleMisc($P_type_of_object, 'misc_typeOfObjectTable');
 
         if($typeOfObjectValidateResult['error']){
 
@@ -249,7 +249,7 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     //
     if($P_functional_purpose !== ''){
 
-        $functionalPurposeValidateResult = $FormHandler->validateSingleMisc($P_functional_purpose, 'misc_functionalPurposeTable');
+        $functionalPurposeValidateResult = $formHandler->validateSingleMisc($P_functional_purpose, 'misc_functionalPurposeTable');
 
         if($functionalPurposeValidateResult['error']){
 
@@ -298,7 +298,7 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
         }
 
         // Валидация Даты
-        if($P_date_planning_documentation_approval !== '' && !$FormHandler->validateDate($P_date_planning_documentation_approval)){
+        if($P_date_planning_documentation_approval !== '' && !$formHandler->validateDate($P_date_planning_documentation_approval)){
 
             exit(json_encode(['result'        => 8,
                               'error_message' => 'Дата утверждения документации по планировке территории некорректна'
@@ -316,7 +316,7 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
         }
 
         // Валидация Даты
-        if($P_date_GPZU !== '' && !$FormHandler->validateDate($P_date_GPZU)){
+        if($P_date_GPZU !== '' && !$formHandler->validateDate($P_date_GPZU)){
 
             exit(json_encode(['result'        => 8,
                               'error_message' => 'Дата ГПЗУ некорректна'
@@ -396,11 +396,11 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
 
 
     // Дополнительная информация (текстовое поле) ----------------------------------------------
-    $FormHandler->addTextInputValueToUpdate($P_additional_information, _COLUMN_NAME_IN_APPLICATIONS_TABLE['additional_information'], $dataToUpdate);
+    $formHandler->addTextInputValueToUpdate($P_additional_information, _COLUMN_NAME_IN_APPLICATIONS_TABLE['additional_information'], $dataToUpdate);
 
 
     // Наименование объекта (текстовое поле) ---------------------------------------------------
-    $FormHandler->addTextInputValueToUpdate($P_object_name, _COLUMN_NAME_IN_APPLICATIONS_TABLE['object_name'], $dataToUpdate);
+    $formHandler->addTextInputValueToUpdate($P_object_name, _COLUMN_NAME_IN_APPLICATIONS_TABLE['object_name'], $dataToUpdate);
 
 
     // Вид объекта (справочник, нельзя сбросить) -----------------------------------------------
@@ -416,19 +416,19 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
 
 
     // Номер утверждения документации по планировке территории (текстовое поле) -----------------
-    $FormHandler->addTextInputValueToUpdate($P_number_planning_documentation_approval, _COLUMN_NAME_IN_APPLICATIONS_TABLE['number_planning_documentation_approval'], $dataToUpdate);
+    $formHandler->addTextInputValueToUpdate($P_number_planning_documentation_approval, _COLUMN_NAME_IN_APPLICATIONS_TABLE['number_planning_documentation_approval'], $dataToUpdate);
 
 
     // Дата утверждения документации по планировке территории (текстовое поле, календарь) -------
-    $FormHandler->addTextInputValueToUpdate(strtotime($P_date_planning_documentation_approval), _COLUMN_NAME_IN_APPLICATIONS_TABLE['date_planning_documentation_approval'], $dataToUpdate);
+    $formHandler->addTextInputValueToUpdate(strtotime($P_date_planning_documentation_approval), _COLUMN_NAME_IN_APPLICATIONS_TABLE['date_planning_documentation_approval'], $dataToUpdate);
 
 
     // Номер ГПЗУ (текстовое поле) -------------------------------------------------------------
-    $FormHandler->addTextInputValueToUpdate($P_number_GPZU, _COLUMN_NAME_IN_APPLICATIONS_TABLE['number_GPZU'], $dataToUpdate);
+    $formHandler->addTextInputValueToUpdate($P_number_GPZU, _COLUMN_NAME_IN_APPLICATIONS_TABLE['number_GPZU'], $dataToUpdate);
 
 
     // Дата ГПЗУ (текстовое поле, календарь) ---------------------------------------------------
-    $FormHandler->addTextInputValueToUpdate(strtotime($P_date_GPZU), _COLUMN_NAME_IN_APPLICATIONS_TABLE['date_GPZU'], $dataToUpdate);
+    $formHandler->addTextInputValueToUpdate(strtotime($P_date_GPZU), _COLUMN_NAME_IN_APPLICATIONS_TABLE['date_GPZU'], $dataToUpdate);
 
 
 

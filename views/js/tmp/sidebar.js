@@ -25,7 +25,7 @@ function expandCard(card) {
    let card_arrow;
    let card_body;
    if (card) {
-      card_arrow = card.querySelector('.card-form__icon');
+      card_arrow = card.querySelector('.card-form__icon-expand');
       card_body = card.querySelector('.card-form__body');
 
       //переворачиваем стрелку

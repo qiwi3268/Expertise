@@ -27,9 +27,14 @@
    <div class="application-form__cards required">
       <div class="application-form__card card-form" data-type="purpose">
          <div class="card-form__header">
-            
+            <?php if($variablesTV->getValue('block1_completed')): ?>
+               <i class="card-form__icon-state fas fa-check-circle valid"></i>
+            <?php else: ?>
+               <i class="card-form__icon-state fas fa-exclamation-circle"></i>
+            <?php endif; ?>
+
             <span class="card-form__title">СВЕДЕНИЯ О ЦЕЛИ ОБРАЩЕНИЯ</span>
-            <i class="fas fa-chevron-down card-form__icon arrow-down"></i>
+            <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
          </div>
          
          <div class="card-form__body body-card">
@@ -74,10 +79,12 @@
             <!--Предмет эекспертизы-->
             
             <!--Дополнительная информация-->
-            <div class="body-card__row">
-               <span class="body-card__title">Дополнительная информация</span>
-               <span class="body-card__value">Информация</span>
-            </div>
+             <?php if($variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['additional_information'])): ?>
+               <div class="body-card__row">
+                  <span class="body-card__title">Дополнительная информация</span>
+                  <span class="body-card__value"><?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['additional_information']) ?></span>
+               </div>
+             <?php endif; ?>
             <!--Дополнительная информация-->
          </div>
       
@@ -85,64 +92,91 @@
       
       <div class="application-form__card card-form" data-type="object">
          <div class="card-form__header">
+            <i class="card-form__icon-state fas fa-check-circle valid"></i>
             <span class="card-form__title">СВЕДЕНИЯ ОБ ОБЪЕКТЕ</span>
-            <i class="fas fa-chevron-down card-form__icon arrow-down"></i>
+            <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
          </div>
          <div class="card-form__body body-card">
             <!--Наименование объекта-->
             <div class="body-card__row">
                <span class="body-card__title">Наименование объекта</span>
-               <div class="body-card__value">
-                  <i class="body-card__icon fas fa-exclamation-circle"></i>
-                  <span class="body-card__text">Не выбрано</span>
-               </div>
+               <span class="body-card__value">
+                  <?php if($variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['object_name'])): ?>
+                     <?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['object_name']) ?>
+                  <?php else: ?>
+                     <i class="body-card__icon fas fa-exclamation-circle"></i>
+                     <span class="body-card__text">Не указано</span>
+                  <?php endif; ?>
+               </span>
             </div>
             <!--Наименование объекта-->
             
             <!--Вид объекта-->
-            <div class="body-card__row">
-               <span class="body-card__title">Вид объекта</span>
-               <span class="body-card__value">Информация</span>
-            </div>
+             <div class="body-card__row">
+                 <div class="body-card__title">
+                     <span class="body-card__title-text">Вид объекта</span>
+                 </div>
+                 <span class="body-card__value">
+                  <?php if($variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['type_of_object'])): ?>
+                      <?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['type_of_object']) ?>
+                  <?php else: ?>
+                      <i class="body-card__icon fas fa-exclamation-circle"></i>
+                      <span class="body-card__text">Не выбран</span>
+                  <?php endif; ?>
+               </span>
+             </div>
             <!--Вид объекта-->
             
             <!--Функциональное назначение-->
             <div class="body-card__row">
                <span class="body-card__title">Функциональное назначение</span>
-               <span class="body-card__value">Информация</span>
+               <span class="body-card__value">
+                  <?php if($variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['functional_purpose'])): ?>
+                     <?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['functional_purpose']) ?>
+                  <?php else: ?>
+                     <i class="body-card__icon fas fa-exclamation-circle"></i>
+                     <span class="body-card__text">Не выбрано</span>
+                  <?php endif; ?>
+               </span>
             </div>
             <!--Функциональное назначение-->
             
-            <!--===============Линейные объекты капитального строительства===============-->
-            <!--Номер утверждения документации по планировке территории-->
-            <div class="body-card__row">
-               <span class="body-card__title">Номер утверждения документации по планировке территории</span>
-               <span class="body-card__value">Информация</span>
-            </div>
-            <!--Номер утверждения документации по планировке территории-->
-            <!--Дата утверждения документации по планировке территории-->
-            <div class="body-card__row">
-               <span class="body-card__title">Дата утверждения документации по планировке территории</span>
-               <span class="body-card__value">Информация</span>
-            </div>
-            <!--Дата утверждения документации по планировке территории-->
-            <!--===============Линейные объекты капитального строительства===============-->
-            
             <!--==========Производственные/непроизводственные объекты капитального строительства==========-->
+            <!--Номер утверждения документации по планировке территории-->
+            <?php if($variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['number_planning_documentation_approval'])): ?>
+               <div class="body-card__row">
+                  <span class="body-card__title">Номер утверждения документации по планировке территории</span>
+                  <span class="body-card__value"><?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['number_planning_documentation_approval']) ?></span>
+               </div>
+            <?php endif; ?>
+
+            <!--Дата утверждения документации по планировке территории-->
+            <?php if($variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['date_planning_documentation_approval'])): ?>
+               <div class="body-card__row">
+                  <span class="body-card__title">Дата утверждения документации по планировке территории</span>
+                  <span class="body-card__value"><?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['date_planning_documentation_approval']) ?></span>
+               </div>
+            <?php endif; ?>
+
+            <!--===============Линейные объекты капитального строительства===============-->
             <!--Номер ГПЗУ-->
-            <div class="body-card__row">
-               <span class="body-card__title">Номер ГПЗУ</span>
-               <span class="body-card__value">Информация</span>
-            </div>
-            <!--Номер ГПЗУ-->
+            <?php if($variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['number_GPZU'])): ?>
+               <div class="body-card__row">
+                  <span class="body-card__title">Номер ГПЗУ</span>
+                  <span class="body-card__value"><?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['number_GPZU']) ?></span>
+               </div>
+            <?php endif; ?>
+
             <!--Дата ГПЗУ-->
-            <div class="body-card__row">
-               <span class="body-card__title">Дата ГПЗУ</span>
-               <span class="body-card__value">Информация</span>
-            </div>
-            <!--Дата ГПЗУ-->
-            <!--==========Производственные/непроизводственные объекты капитального строительства==========-->
-            
+            <?php if($variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['date_GPZU'])): ?>
+               <div class="body-card__row">
+                  <span class="body-card__title">Дата ГПЗУ</span>
+                  <span class="body-card__value"><?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['date_GPZU']) ?></span>
+               </div>
+            <?php endif; ?>
+
+
+
             <!--Вид работ-->
             <div class="body-card__row">
                <span class="body-card__title">Вид работ</span>

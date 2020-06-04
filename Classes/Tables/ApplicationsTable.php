@@ -72,7 +72,8 @@ final class ApplicationsTable{
     // Предназначен для получения ассоциативного массива заявления по его id для просмотра заявления
     static public function getAssocByIdForView(int $id):?array {
         $query = "SELECT `applications`.`id`,
-                         `misc_expertise_purpose`.`name` as `expertise_purpose`
+                         `misc_expertise_purpose`.`name` as `expertise_purpose`,
+                         `applications`.`additional_information`
                   FROM (SELECT * FROM `applications`
                         WHERE `applications`.`id`=?) AS `applications`
                   LEFT JOIN (`misc_expertise_purpose`)
@@ -80,7 +81,38 @@ final class ApplicationsTable{
                   ";
 
         $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
-        return $result ? $result[0] : null;
+
+        if(empty($result)){
+            return null;
+        }
+        $result = $result[0];
+
+        // Предметы экспертизы
+        $queryExpertiseSubjects = "SELECT `misc_expertise_subject`.`name`
+                                   FROM (SELECT * FROM `expertise_subject`
+                                         WHERE `id_application`=?) AS `expertise_subject`
+                                   LEFT JOIN `misc_expertise_subject`
+                                         ON (`expertise_subject`.`id_expertise_subject`=`misc_expertise_subject`.`id`)
+                                   ORDER BY `misc_expertise_subject`.`sort` ASC";
+
+        $expertiseSubjects = ParametrizedQuery::getFetchAssoc($queryExpertiseSubjects, [$id]);
+
+        if(empty($expertiseSubjects)){
+
+            $expertiseSubjects = null;
+        }else{
+
+            // Переносим каждуц цель из подмассива на один уровень вверх
+            foreach($expertiseSubjects AS &$subject){
+                $subject = $subject['name'];
+            }
+            unset($subject);
+        }
+
+        $result['expertise_subjects'] = $expertiseSubjects;
+
+
+        return $result;
     }
 
 

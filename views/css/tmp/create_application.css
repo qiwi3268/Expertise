@@ -160,14 +160,16 @@
    cursor: pointer;
 }
 
+
 .card-form__title {
+   flex-grow: 1;
    margin: 0px 0px 0px 10px;
    font-family: 'Roboto Condensed', sans-serif;
    font-size: 16px;
    font-weight: 400;
 }
 
-.card-form__icon {
+.card-form__icon-expand {
    margin: 0px 20px 0px 0px;
    font-size: 20px;
 }
