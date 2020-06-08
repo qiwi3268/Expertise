@@ -55,26 +55,23 @@ button {
    border-radius: 4px;
    color: #343a40;
    transition: .10s;
+
+   font-family: 'Roboto Condensed', sans-serif;
+   font-weight: 400;
+   font-size: 14px;
 }
 
-
-/*todo сделать как инпут*/
 .application-text-area {
    min-height: 60px;
    padding: 8px;
-   border: 1px solid #cccccc;
-   border-radius: 4px;
    font-family: 'Roboto Condensed', sans-serif;
    font-size: 14px;
-   color: #343a40;
-   transition: box-shadow .10s;
    resize: vertical;
+   transition: box-shadow .10s;
 }
 
 .application-input:focus,
-.application-input:hover,
-.application-text-area:focus,
-.application-text-area:hover{
+.application-input:hover {
    box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
    border-color: #80bdff;
 }

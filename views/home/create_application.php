@@ -107,7 +107,7 @@
                <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['additional_information'] ?>" data-required="true">
                   <span class="body-card__title required">Дополнительная информация</span>
                   <div class="body-card__field">
-                     <textarea class="body-card__text application-text-area" name="<?= _PROPERTY_IN_APPLICATION['additional_information'] ?>"></textarea>
+                     <textarea class="body-card__text application-input application-text-area" name="<?= _PROPERTY_IN_APPLICATION['additional_information'] ?>"></textarea>
                   </div>
                </div>
                <!--//Дополнительная информация//-->
@@ -126,7 +126,7 @@
                <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['object_name'] ?>" data-required="true">
                   <span class="body-card__title required">Наименование объекта</span>
                   <div class="body-card__field">
-                     <textarea class="body-card__text application-text-area" name="<?= _PROPERTY_IN_APPLICATION['object_name'] ?>"></textarea>
+                     <textarea class="body-card__text application-input application-text-area" name="<?= _PROPERTY_IN_APPLICATION['object_name'] ?>"></textarea>
                   </div>
                </div>
                <!--//Наименование объекта//-->
@@ -134,13 +134,21 @@
                <!--Вид объекта-->
                <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['type_of_object'] ?>" data-required="true">
                   <span class="body-card__title required">Вид объекта</span>
-                  <div class="body-card__field">
-                     <div class="body-card__select modal-select">
-                        <span class="modal-select__value">Выберите значение</span>
-                        <i class="modal-select__icon fas fa-bars"></i>
+                  
+                  <div class="body-card__value">
+                     <div class="body-card__field">
+                        <div class="body-card__select application-input modal-select">
+                           <span class="modal-select__value">Выберите значение</span>
+                           <i class="modal-select__icon fas fa-bars"></i>
+                        </div>
+                        <i class="body-card__icon-clear fas fa-calendar-times"></i>
                      </div>
+                     
                      <span class="body-card__error">Поле обязательно для заполнения</span>
+
                   </div>
+                  
+                  
                   <div class="modal">
                      <i class="modal__close fas fa-times"></i>
                      <div class="modal__items">
@@ -285,10 +293,6 @@
             </div>
 
             <div class="card-form__body body-card">
-
-               
-
-
 
 
                <div class="body-card__row" data-inactive="true" data-row_name="estimate_cost" data-pattern="cost">

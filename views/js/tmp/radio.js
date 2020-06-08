@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Принимает параметры-------------------------------
 // radio_elem         Element : блок с переключателями
 function initRadioItems(radio_elem) {
-    let parent_row = radio_elem.parentElement;
+    let parent_row = radio_elem.closest('.body-card__row');
     let body = radio_elem.querySelector('.radio__body');
 
     if (parent_row && body) {

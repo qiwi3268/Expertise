@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
    calendar_selects.forEach(select => {
       select.addEventListener('click', () => {
-         let body_card_row = select.parentElement.parentElement;
+         let body_card_row = select.closest('.body-card__row');
 
          if (body_card_row) {
             let result_input = body_card_row.querySelector('.body-card__result');
@@ -114,21 +114,20 @@ document.addEventListener('DOMContentLoaded', () => {
       constructor(select) {
          this.select = select;
          this.select_value = this.select.querySelector('.modal-calendar__value');
-         this.select_parent = this.select.parentElement.parentElement;
 
-         if (this.select_parent) {
-            this.element = document.querySelector('.calendar');
-            this.body = this.element.querySelector('.calendar__body');
-            this.title = this.element.querySelector('.calendar__title');
-            this.selected_date_label = this.element.querySelector('.calendar__selected_label');
-            this.result_input = this.select_parent.querySelector('.body-card__result');
+         this.parent_row = this.select.closest('.body-card__row');
 
-            this.current_date = new Date();
+         this.element = document.querySelector('.calendar');
+         this.body = this.element.querySelector('.calendar__body');
+         this.title = this.element.querySelector('.calendar__title');
+         this.selected_date_label = this.element.querySelector('.calendar__selected_label');
+         this.result_input = this.parent_row.querySelector('.body-card__result');
 
-            this.init();
-            this.handleDateLabel();
-            this.handleArrows();
-         }
+         this.current_date = new Date();
+
+         this.init();
+         this.handleDateLabel();
+         this.handleArrows();
       }
 
       // Предназначен для инициализации календаря

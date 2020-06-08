@@ -1,9 +1,10 @@
 // Массив хранящий зависимости полей
 let dependencies;
+let radio_dependency;
 
 document.addEventListener('DOMContentLoaded', () => {
    dependencies = JSON.parse(document.querySelector('.row-dependencies').value);
-
+   radio_dependency = document.querySelector('.radio__content-change-logic');
 });
 
 
@@ -53,7 +54,6 @@ function handleDependentRows(parent_input) {
 // Принимает параметры---------------------------------------------------------
 // parent_input       Element : скрытый инпут со значением родительского поля
 function handleDependentRadios(parent_input) {
-   let radio_dependency = document.querySelector('.radio__content-change-logic');
    let dependency_inputs = radio_dependency.querySelectorAll(`input[data-when_change=${parent_input.name}]`);
 
    dependency_inputs.forEach(input => {

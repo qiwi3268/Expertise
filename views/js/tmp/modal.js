@@ -34,10 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
    function getModalBySelect(select) {
       let modal;
       let modal_name;
+      let parent_row = select.closest('.body-card__row');
 
-      if (select.parentElement.parentElement) {
-         modal_name = select.parentElement.parentElement.dataset.row_name;
-      }
+      modal_name = parent_row.dataset.row_name;
 
       if (modals.has(modal_name)) {
          modal = modals.get(modal_name);
@@ -95,8 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
    //Modal--------------------------------------------------------------------------------------------
    class Modal {
-      // родительский Element
-      parent;
+      // Родительское поле
+      parent_row;
 
       // Element модального окна
       element;
@@ -127,25 +126,25 @@ document.addEventListener('DOMContentLoaded', () => {
       constructor(select) {
          this.select = select;
 
-         if (this.select.parentElement.parentElement) {
-            this.parent = this.select.parentElement.parentElement;
+         //this.parent_row = this.select.parentElement.parentElement;
+         this.parent_row = this.select.closest('.body-card__row');
 
-            this.name = this.parent.dataset.row_name;
-            this.element = this.parent.querySelector('.modal');
-            this.content = this.element.querySelector('.modal__items');
-            this.result_input = this.parent.querySelector('.body-card__result');
+         this.name = this.parent_row.dataset.row_name;
+         this.element = this.parent_row.querySelector('.modal');
+         this.content = this.element.querySelector('.modal__items');
+         this.result_input = this.parent_row.querySelector('.body-card__result');
 
-            this.close_button = this.element.querySelector('.modal__close');
-            this.close_button.addEventListener('click', () => {
-               this.close();
-            });
+         this.close_button = this.element.querySelector('.modal__close');
+         this.close_button.addEventListener('click', () => {
+            this.close();
+         });
 
-            //берем готовые страницы или создаем новые, если контент страниц зависит от другого поля
-            this.initPages();
+         //берем готовые страницы или создаем новые, если контент страниц зависит от другого поля
+         this.initPages();
 
-            //добавляем событие для выбора элемента
-            this.initItems();
-         }
+         //добавляем событие для выбора элемента
+         this.initItems();
+
       }
 
       // Предназначен для инициализации страниц с элементами из справочника модального окна

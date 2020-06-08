@@ -20,11 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
 // Принимает параметры-------------------------------
 // modal         Modal : объект модального окна
 function validateModal(modal) {
-   let row = modal.parent;
+   let row = modal.element.closest('.body-card__row');
    let row_value = row.querySelector('.body-card__select');
    let error = row.querySelector('.body-card__error');
 
-   // Если значение обязательно
    if (row.dataset.required === 'true') {
       // Если не выбрано значение
       if (!modal.result_input.value) {
@@ -79,7 +78,9 @@ function validateRow(input, pattern) {
 function validateInput(input, regex, message) {
    let value = input.value;
    let error_message = input.nextElementSibling;
-   let parent_row = input.parentElement.parentElement;
+
+   //let parent_row = input.parentElement.parentElement;
+   let parent_row = input.closest('body-card__row');
 
    let is_required;
    if (parent_row) {
