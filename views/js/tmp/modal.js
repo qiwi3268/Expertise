@@ -262,17 +262,28 @@ document.addEventListener('DOMContentLoaded', () => {
       clearRelatedModals() {
          // Берем объекты модальных окон всех зависимых полей
          let dependent_modals = this.getDependentModals();
-         let select_value;
 
          dependent_modals.forEach(modal => {
             modal.clearRelatedModals();
-            modal.content.innerHTML = '';
-            modal.result_input.value = '';
-            modal.select.classList.remove('filled');
-            select_value = modal.select.querySelector('.modal-select__value');
-            select_value.innerHTML = 'Выберите значение';
-            modals.delete(modal.name);
+            this.clearModal(modal);
          });
+      }
+
+      // Предназначен для удаления выбранного значения из родительского поля
+      // Принимает параметры-------------------------------
+      // modal         Modal : объект модального окна
+      clearModal(modal) {
+         modal.content.innerHTML = '';
+         modal.result_input.value = '';
+         modal.select.classList.remove('filled', 'invalid');
+
+         // Убираем сообщение с ошибкой
+         let error = modal.parent_row.querySelector('.body-card__error');
+         error.classList.remove('active');
+
+         let select_value = modal.select.querySelector('.modal-select__value');
+         select_value.innerHTML = 'Выберите значение';
+         modals.delete(modal.name);
       }
 
       // Предназначен для получения массива зависимых модальных окон

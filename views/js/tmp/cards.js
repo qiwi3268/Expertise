@@ -6,11 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
    dependencies = JSON.parse(document.querySelector('.row-dependencies').value);
    radio_dependency = document.querySelector('.radio__content-change-logic');
 
-   handleFieldButtons();
-
+   handleClearFieldButtons();
 });
 
-function handleFieldButtons() {
+function handleClearFieldButtons() {
    let clear_buttons = document.querySelectorAll('.body-card__icon-clear');
 
    clear_buttons.forEach(button => {
@@ -23,6 +22,8 @@ function handleFieldButtons() {
          }
 
          let row_result = parent_row.querySelector('.body-card__result');
+         // Удаляем зависимые поля
+         hideDependentRows(row_result);
          row_result.value = '';
 
          let parent_select = parent_row.querySelector('.body-card__select');
@@ -32,11 +33,9 @@ function handleFieldButtons() {
          row_value.innerHTML = default_value;
       });
 
-
    });
 
 }
-
 
 // Предназначен для добавления или удаления блоков, зависящих от значения поля на входе
 // Принимает параметры-------------------------------------------
@@ -64,14 +63,7 @@ function handleDependentRows(parent_input) {
                   dependent_row.dataset.inactive = 'false';
                }
 
-               // Удаляем записанное значение в зависимом поле
-               dependent_row.querySelector('.body-card__result').value = '';
-
-               // Если зависимое поле - дата, удаляем отображаемую дату
-               let dependent_date = dependent_row.querySelector('.modal-calendar__value');
-               if (dependent_date) {
-                  dependent_date.innerHTML = 'Выберите дату';
-               }
+               removeRowValue(dependent_row);
             }
          });
       }
@@ -79,6 +71,31 @@ function handleDependentRows(parent_input) {
 
    handleDependentRadios(parent_input);
 }
+
+// Предназначен для удаления значении в поле
+// Принимает параметры-------------------------------
+// row         Element : элемент поля
+function removeRowValue(row) {
+   // Удаляем записанное значение в зависимом поле
+   row.querySelector('.body-card__result').value = '';
+
+   let select = row.querySelector('.body-card__select');
+   if (select) {
+      select.classList.remove('filled');
+   }
+
+   let value = row.querySelector('.field-value');
+   value.value = '';
+   value.innerHTML = '';
+
+
+   // Если зависимое поле - дата, удаляем отображаемую дату
+   let dependent_date = row.querySelector('.modal-calendar__value');
+   if (dependent_date) {
+      dependent_date.innerHTML = 'Выберите дату';
+   }
+}
+
 
 // Предназначен для формирования блока с переключателями в зависимости от значения другого поля
 // Принимает параметры---------------------------------------------------------
@@ -113,6 +130,27 @@ function handleDependentRadios(parent_input) {
          initRadioItems(dependent_radio);
       }
    });
+}
+
+// Предназначен для удаления зависимых полей
+// Принимает параметры-------------------------------
+// parent_input         Element : скрытый инпут родительского поля
+function hideDependentRows(parent_input) {
+   let values = dependencies[parent_input.name];
+
+   if (values) {
+      // Получаем зависимые поля для значения в родительском поле
+      let dependent_rows = dependencies[parent_input.name][parent_input.value];
+
+      if (dependent_rows) {
+         Object.keys(dependent_rows).forEach(row_name => {
+            let dependent_row = document.querySelector(`[data-row_name="${row_name}"]`);
+            dependent_row.dataset.inactive = 'true';
+
+            removeRowValue(dependent_row);
+         });
+      }
+   }
 }
 
 

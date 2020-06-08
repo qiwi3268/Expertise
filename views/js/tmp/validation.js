@@ -4,15 +4,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
    pattern_rows.forEach(row => {
       let input = row.querySelector('.body-card__input');
-      let pattern = row.dataset.pattern;
 
-      input.addEventListener('keyup', () => {
-         validateRow(input, pattern);
-      });
+      if (input) {
+         let pattern = row.dataset.pattern;
 
-      input.addEventListener('blur', () => {
-         validateRow(input, pattern);
-      });
+         input.addEventListener('keyup', () => {
+            validateRow(input, pattern);
+         });
+
+         input.addEventListener('blur', () => {
+            validateRow(input, pattern);
+         });
+      }
+
    });
 });
 
@@ -77,10 +81,8 @@ function validateRow(input, pattern) {
 // message        string : сообщение с ошибкой для отображения
 function validateInput(input, regex, message) {
    let value = input.value;
-   let error_message = input.nextElementSibling;
-
-   //let parent_row = input.parentElement.parentElement;
-   let parent_row = input.closest('body-card__row');
+   let parent_row = input.closest('.body-card__row');
+   let error_element = parent_row.querySelector('.body-card__error');
 
    let is_required;
    if (parent_row) {
@@ -91,17 +93,17 @@ function validateInput(input, regex, message) {
 
    if (is_invalid) {
       input.classList.add('invalid');
-      error_message.classList.add('active');
+      error_element.classList.add('active');
 
       // Если поле непустое
       if (value) {
-         error_message.innerHTML = message;
+         error_element.innerHTML = message;
       } else {
-         error_message.innerHTML = 'Поле обязательно для заполнения';
+         error_element.innerHTML = 'Поле обязательно для заполнения';
       }
    } else {
       input.classList.remove('invalid');
-      error_message.classList.remove('active');
+      error_element.classList.remove('active');
       validateCard(input.closest('.card-form'));
    }
 
