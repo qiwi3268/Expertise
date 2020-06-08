@@ -29,12 +29,14 @@ if(!chmod(_APPLICATIONS_FILES_."/$applicationId", 0757)){
 // Добавляем созданное заявление в сессию
 Session::addAuthorRoleApplicationId($applicationId);
 
-// -----------------------------------------------------------------------------------------
-// Получение данных о пользователе и номере заявления
-// -----------------------------------------------------------------------------------------
+// Получение данных о номере заявления
+//
 
-$userFioTV = GetUserFIO($userInfo);
-$appNumNameTV = "ЗАЯВЛЕНИЕ НА ЭКСПЕРТИЗУ $appNumName";
+$variablesTV = VariableTransfer::getInstance();
+
+$variablesTV->setValue('applicationNumericalName', "ЗАЯВЛЕНИЕ НА ЭКСПЕРТИЗУ $appNumName");
+
+$variablesTV->setValue('applicationId', $applicationId);
 
 // -----------------------------------------------------------------------------------------
 // Получение справочников
@@ -43,7 +45,7 @@ $appNumNameTV = "ЗАЯВЛЕНИЕ НА ЭКСПЕРТИЗУ $appNumName";
 // Справочник "Цель обращения"
 $expertisePurposes = misc_expertisePurposeTable::getAllActive();
 
-// Справочник "Предмет экспертизы" -> корреляция с "Цель экспертизы"
+// Справочник "Предмет экспертизы" -> корреляция с "Цель обращения"
 $expertiseSubjects = misc_expertiseSubjectTable::getActive_CORR_ExpertisePurpose($expertisePurposes);
 
 // Справочник "Вид объекта"
@@ -52,7 +54,7 @@ $typeOfObjects = misc_typeOfObjectTable::getAllActive();
 // Справочник "Функциональное назначение"
 $functionalPurposes = misc_functionalPurposeTable::getAllActive();
 
-// Справочник "Вид работ" -> корреляция с "Цель экспертизы"
+// Справочник "Вид работ" -> корреляция с "Цель обращения"
 $typeOfWorks = misc_typeOfWorkTable::getActive_CORR_ExpertisePurpose($expertisePurposes);
 
 
@@ -61,11 +63,19 @@ $typeOfWorks = misc_typeOfWorkTable::getActive_CORR_ExpertisePurpose($expertiseP
 // -----------------------------------------------------------------------------------------
 
 // Количество справочных элементов на странице
-$paginationSize = 5;
+$paginationSize = 8;
 
-$expertisePurposesTV = array_chunk($expertisePurposes, $paginationSize);   // Цель обращения
-$typeOfObjectsTV = array_chunk($typeOfObjects, $paginationSize);           // Вид работ
-$functionalPurposesTV = array_chunk($functionalPurposes, $paginationSize); // Функциональное назначение
+$expertisePurposes = array_chunk($expertisePurposes, $paginationSize);    // Цель обращения
+$variablesTV->setValue('expertisePurposes', $expertisePurposes);
+
+$typeOfObjects = array_chunk($typeOfObjects, $paginationSize);            // Вид объекта
+$variablesTV->setValue('typeOfObjects', $typeOfObjects);
+
+$functionalPurposes = array_chunk($functionalPurposes, $paginationSize);  // Функциональное назначение
+$variablesTV->setValue('functionalPurposes', $functionalPurposes);
+
+
+
 
 
 //todo тут дальше смотреть
@@ -77,8 +87,8 @@ foreach($typeOfWorksIH AS &$purpose){
 }
 unset($purpose);
 
-$expertiseSubjectsIH = json_encode($expertiseSubjects);                    // Предметы экспертизы
-$typeOfWorksIH = json_encode($typeOfWorksIH);
+$expertiseSubjectsIH = json_encode($expertiseSubjects);  // Предметы экспертизы, упакованные по id целей обращения
+$typeOfWorksIH = json_encode($typeOfWorksIH);            // Виды работ, упакованные по id целей обращения
 
 
 

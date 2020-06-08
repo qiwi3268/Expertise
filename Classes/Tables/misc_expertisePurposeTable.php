@@ -3,13 +3,13 @@
 
 // Справочник "Цель обращения"
 //
-final class misc_expertisePurposeTable implements Interface_miscTableValidate{
+final class misc_expertisePurposeTable implements Interface_singleMiscTableValidate{
 
     static private string $tableName = 'misc_expertise_purpose';
 
-    use Trait_miscTableValidate;
+    use Trait_singleMiscTableValidate;
 
-    // Предназначен для получения ассициативного массива целей экспертизы,
+    // Предназначен для получения ассициативного массива целей обращения,
     // возвращает данные по возрастанию столбца sort
     // Возвращает параметры-----------------------------------
     // array : цели экспертизы
@@ -29,7 +29,7 @@ final class misc_expertisePurposeTable implements Interface_miscTableValidate{
     // Возвращает параметры-----------------------------------
     // int : id цели обращения
     // Возвращает параметры-----------------------------------
-    // array : цель экспертизы
+    // array : цель обращения
     // null  : цель не существует
     //
     static public function getAssocById(int $id):?array {

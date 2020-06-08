@@ -10,7 +10,7 @@
 //	3  - Заявление не существует
 //       {result, error_message : текст ошибки}
 
-//  4  - Передано некорректное значение справочника
+//  4  - Передано некорректное значение (справочника / даты / json'а)
 //       {result, error_message : текст ошибки}
 //  5  - Запрашиваемый справочник не существует
 //       {result, error_message : текст ошибки}
@@ -20,34 +20,27 @@
 //                                                   2 - Главный блок имеет не то значение, при котором можно выбрать то,
 //                                                       что пришло из формы зависимого блока
 //       {result, error_message : текст ошибки}
-//  8  - Передана некорректная дата
-//       {result, error_message : текст ошибки}
 
-//todo
-//  5  - Для сохранения Предмета экспертизы необходимо наличие Цели экспертизы
-//       {result, error_message : текст ошибки}
-//  6  - Произошла ошибка при обработке полученного Предмета экспертизы
-//       {result, error_message : текст ошибки, exception_message : текст ошибки, exception_code: код ошибки}}
-//  7  - В предмете экспертизы присутствуют повторяющиеся элементы
-//       {result, error_message : текст ошибки}
-//  8  - Указанный Предмет экспертизы не существует
-//       {result, error_message : текст ошибки}
-
-//  9  - Указанный Предмет экспертизы не соответствует выбранной Цели экспертизы
-//       {result, error_message : текст ошибки}
-
-
-//
 
 if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
                    _PROPERTY_IN_APPLICATION['expertise_purpose'],
-                   _PROPERTY_IN_APPLICATION['expertise_subjects']
+                   _PROPERTY_IN_APPLICATION['expertise_subjects'],
+                   _PROPERTY_IN_APPLICATION['additional_information'],
+                   _PROPERTY_IN_APPLICATION['object_name'],
+                   _PROPERTY_IN_APPLICATION['type_of_object'],
+                   _PROPERTY_IN_APPLICATION['functional_purpose'],
+                   _PROPERTY_IN_APPLICATION['number_planning_documentation_approval'],
+                   _PROPERTY_IN_APPLICATION['date_planning_documentation_approval'],
+                   _PROPERTY_IN_APPLICATION['number_GPZU'],
+                   _PROPERTY_IN_APPLICATION['date_GPZU'],
+                   _PROPERTY_IN_APPLICATION['type_of_work'],
+                   _PROPERTY_IN_APPLICATION['cadastral_number']
 )){
 
 
     /** @var string $P_application_id                          id-заявления */
     /** @var string $P_expertise_purpose                       Цель обращения */
-    /** @var string $P_expertise_subjects                       Предмет экспертизы */
+    /** @var string $P_expertise_subjects                      Предмет(ы) экспертизы */
     /** @var string $P_additional_information                  Доплнительная информация */
     /** @var string $P_object_name                             Наименование объекта */
     /** @var string $P_type_of_object                          Вид объекта */
@@ -56,26 +49,13 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     /** @var string $P_date_planning_documentation_approval    Дата утверждения документации по планировке территории */
     /** @var string $P_number_GPZU                             Номер ГПЗУ */
     /** @var string $P_date_GPZU                               Дата ГПЗУ */
+    /** @var string $P_type_of_work                            Вид работ */
+    /** @var string $P_cadastral_number                        Кадастровый номер земельного участка */
 
-    $clearPOST = clearHtmlArr($_POST);
-    extract($clearPOST, EXTR_PREFIX_ALL, 'P');
+    extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
 
     // -----------------------------------------------------------------------------------------------------------------
     // Зона валидации формы
-    //
-    // Общие проверки:
-    // 1 - проверка на существование заявления
-    // 2 - проверка на наличие прав доступа к заявлению
-    //
-    // В этой области проверяется, что данные из формы имеют корректную структуру:
-    // 1 - числовые поля содержат число (если float, то преобразуется к int'у),
-    //     если строку, которая не преобразуется к числу - то будет ошибка при передаче этого параметра в метод БД
-    // 2 - записи со значениями числовых полей действительно существуют в БД
-    // 3 - JSON строки являются валидными с точки зрения синтаксиса
-    // 4 - JSON строки не содержат повторяющихся элементов в массиве
-    //
-    // Проверка на соответствие бизнес-логики
-    // 1 - поле1, от которого зависит поле2, должно обязательно существовать, если существует поле2
     // -----------------------------------------------------------------------------------------------------------------
     //
 
@@ -83,7 +63,7 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     $form_applicationID = (int)$P_application_id;
 
     // Проверка на доступ к заявлению и его существование
-    $applicationAssoc = ApplicationsTable::getAssocById($form_applicationID);
+    $applicationAssoc = ApplicationsTable::getFlatAssocById($form_applicationID);
 
     $applicationExist = !is_null($applicationAssoc);
 
@@ -113,7 +93,7 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     }
 
     // Объект класса-обработчика
-    $formHandler = new ApplicationFormHandler($applicationAssoc, $clearPOST);
+    $formHandler = new ApplicationFormHandler($applicationAssoc);
 
 
     // Проверка Цели обращения -----------------------------------------------------------------
@@ -127,11 +107,11 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
             switch($expertisePurposeValidateResult['error_code']){
                 case 1:
                     exit(json_encode(['result'        => 4,
-                                      'error_message' => 'Передано некорректное значение для Цели экспертизы'
+                                      'error_message' => 'Передано некорректное значение Цели обращения'
                     ]));
                 case 2:
                     exit(json_encode(['result'        => 5,
-                                      'error_message' => 'Запрашиваемый справочник не существует'
+                                      'error_message' => 'Запрашиваемый справочник Цели обращения не существует'
                     ]));
             }
         }
@@ -150,64 +130,60 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     //
     if($P_expertise_subjects !== ''){
 
-        // Попытка заполнить Предмет экспертизы без выбранной Цели экспертизы
+        // Попытка заполнить Предмет экспертизы без выбранной Цели обращения
         if(!expertise_purpose_exist){
 
-            exit(json_encode(['result'        => 5,
-                              'error_message' => 'Для сохранения Предмета экспертизы необходимо наличие Цели экспертизы'
-                             ]));
+           exit(json_encode(['result'        => 7,
+                             'error_message' => 'Предмет экспертизы не может быть заполнен при невыбранной Цели обращения'
+           ]));
         }
 
-        $form_expertiseSubjects = [];
-        try{
+        $expertiseSubjectsJSONvalidateResult = $formHandler->validateNumericalJson($P_expertise_subjects);
 
-            $form_expertiseSubjects = json_decode($P_expertise_subjects, false, 2, JSON_THROW_ON_ERROR);
-        }catch(jsonException $ex){
+        if($expertiseSubjectsJSONvalidateResult['error']){
 
-            exit(json_encode(['result'            => 6,
-                              'error_message'     => 'Произошла ошибка при обработке полученного Предмета экспертизы',
-                              'exception_message' => $ex->getMessage(),
-                              'exception_code'    => $ex->getCode()
-                             ]));
+            $errorMessage = 'Передано некорректное значение Предмета экспертизы.';
+
+            switch($expertiseSubjectsJSONvalidateResult['error_code']){
+                case 1: // Ошибка при парсинге json'а
+                    $errorMessage .= ' Ошибка при работе с переданным объектом.';
+                    $errorMessage .= ' Message: '.$expertiseSubjectsJSONvalidateResult['exception_message'];
+                    $errorMessage .= ', Code: '.$expertiseSubjectsJSONvalidateResult['exception_code'];
+                    break;
+                case 2: // В массиве присутствуют нечисловые элементы
+                    $errorMessage .= ' В объекте присутствуют нечисловые элементы';
+                    break;
+                case 3: // В массиве присутствуют одинаковые элементы
+                    $errorMessage .= ' В объекте присутствуют одинаковые элементы';
+                    break;
+            }
+
+            exit(json_encode(['result'        => 4,
+                              'error_message' => $errorMessage
+            ]));
         }
 
+        // int'овый массив из формы
+        $form_expertiseSubjects = $expertiseSubjectsJSONvalidateResult['int_formArray'];
 
-        foreach($form_expertiseSubjects as &$id){
+        foreach($form_expertiseSubjects as $id){
 
-            // Количество таких-же элементов в массиве, как текущий (включая его)
-            // отключаем строгую проверку, т.к. одинаковые, но ранее преобразованные к int'у id
-            // не будут равными
+            $expertiseSubjectValidateResult = $formHandler->validateDependentMisc($form_expertisePurposeID, $id, 'misc_expertiseSubjectTable');
 
-            //todo потом проверить еще раз, что одинаковые ключи нельзя
-            $countIds = count(array_keys($form_expertiseSubjects, $id, false));
+            if($expertiseSubjectValidateResult['error']){
 
-            // Проверка на то, что у нас во входном json-массиве Предметов экспертизы нет повторяющихся элементов
-            if($countIds > 1){
-                exit(json_encode(['result'        => 7,
-                                  'error_message' => "В предмете экспертизы присутствуют повторяющиеся элементы с id: $id"
-                                 ]));
-            }
-
-            // Преобразуем значение из формы явно к типу int
-            $id = (int)$id;
-
-            $assoc = misc_expertiseSubjectTable::getAssocById($id);
-
-            //todo тут можно написать метод для проверки существования записи, а не получать ассок
-            if(is_null($assoc)){
-                exit(json_encode(['result'        => 8,
-                                  'error_message' => "Указанный Предмет экспертизы id: $id не существует"
-                                 ]));
-            }
-
-            // Проверка на то, что выбранный Предмет экспертизы принадлежит выбранной Цели обращения
-            if(!misc_expertiseSubjectTable::checkExist_CORR_ExpertisePurposeByIds($form_expertisePurposeID, $id)){
-                exit(json_encode(['result'        => 9,
-                                  'error_message' => "Указанный Предмет экспертизы не соответствует выбранной Цели экспертизы"
-                                 ]));
+                switch($expertiseSubjectValidateResult['error_code']){
+                    case 1: // Передано некорректное значение зависимого справочника
+                        exit(json_encode(['result'        => 4,
+                                          'error_message' => 'Передано некорректное значение Предмета экспертизы'
+                        ]));
+                    case 2: // Запрашиваемая в форме зависимость не существует
+                        exit(json_encode(['result'        => 5,
+                                          'error_message' => 'Запрашиваемый справочник Предмета экспертизы не существует'
+                        ]));
+                }
             }
         }
-        unset($id);
 
         define('expertise_subjects_exist', true);
     }else{
@@ -219,18 +195,18 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     //
     if($P_type_of_object !== ''){
 
-        $typeOfObjectValidateResult =  $formHandler->validateSingleMisc($P_type_of_object, 'misc_typeOfObjectTable');
+        $typeOfObjectValidateResult = $formHandler->validateSingleMisc($P_type_of_object, 'misc_typeOfObjectTable');
 
         if($typeOfObjectValidateResult['error']){
 
             switch($typeOfObjectValidateResult['error_code']){
-                case 1:
+                case 1: // Передано некорректное значение справочника
                     exit(json_encode(['result'        => 4,
-                                      'error_message' => 'Передано некорректное значение для Вида объекта'
+                                      'error_message' => 'Передано некорректное значение Вида объекта'
                     ]));
-                case 2:
+                case 2: // Запрашиваемый справочник не существует
                     exit(json_encode(['result'        => 5,
-                                      'error_message' => 'Запрашиваемый справочник не существует'
+                                      'error_message' => 'Запрашиваемый справочник Вида объекта не существует'
                     ]));
             }
         }
@@ -254,13 +230,13 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
         if($functionalPurposeValidateResult['error']){
 
             switch($functionalPurposeValidateResult['error_code']){
-                case 1:
+                case 1: // Передано некорректное значение справочника
                     exit(json_encode(['result'        => 4,
-                                      'error_message' => 'Передано некорректное значение для Функционального назначения'
+                                      'error_message' => 'Передано некорректное значение Функционального назначения'
                     ]));
-                case 2:
+                case 2: // Запрашиваемый справочник не существует
                     exit(json_encode(['result'        => 5,
-                                      'error_message' => 'Запрашиваемый справочник не существует'
+                                      'error_message' => 'Запрашиваемый справочник Функционального назначения не существует'
                     ]));
             }
         }
@@ -275,17 +251,16 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     }
 
 
-    // Проверка блока Номера и Дат -------------------------------------------------------------
 
+    // Проверка блока Номера и Даты ------------------------------------------------------------
+    //
     // Из формы одновременное пришли данные из блока Утверждения документации по планировке территории и ГПЗУ
     if(($P_number_planning_documentation_approval !== '' || $P_date_planning_documentation_approval !== '') && ($P_number_GPZU !== '' || $P_date_GPZU !== '')){
 
-        //todo протестить эту ветку
         exit(json_encode(['result'        => 6,
                           'error_message' => 'Одновременно переданы данные из блока Утверждения документации по планировке территории и ГПЗУ'
         ]));
     }
-
 
     if($P_number_planning_documentation_approval !== '' || $P_date_planning_documentation_approval !== ''){
 
@@ -300,8 +275,8 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
         // Валидация Даты
         if($P_date_planning_documentation_approval !== '' && !$formHandler->validateDate($P_date_planning_documentation_approval)){
 
-            exit(json_encode(['result'        => 8,
-                              'error_message' => 'Дата утверждения документации по планировке территории некорректна'
+            exit(json_encode(['result'        => 4,
+                              'error_message' => 'Передано некорректное значение даты Утверждения документации по планировке территории'
             ]));
         }
 
@@ -318,19 +293,49 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
         // Валидация Даты
         if($P_date_GPZU !== '' && !$formHandler->validateDate($P_date_GPZU)){
 
-            exit(json_encode(['result'        => 8,
-                              'error_message' => 'Дата ГПЗУ некорректна'
+            exit(json_encode(['result'        => 4,
+                              'error_message' => 'Передано некорректное значение даты ГПЗУ'
             ]));
         }
     }
 
 
-    // Номера утверждения документации по планировке территории
-    // И
-    // Дата утверждения документации по планировке территории
+
+    // Проверка Вида работ ---------------------------------------------------------------------
     //
+    if($P_type_of_work !== ''){
+
+        if(!expertise_purpose_exist){
+            exit(json_encode(['result'        => 7,
+                              'error_message' => 'Вид работ не может быть заполнен при невыбранной Цели обращения'
+            ]));
+        }
+
+        $typeOfWorkValidateResult = $formHandler->validateDependentMisc($form_expertisePurposeID, $P_type_of_work, 'misc_typeOfWorkTable');
 
 
+        if($typeOfWorkValidateResult['error']){
+
+            switch($typeOfWorkValidateResult['error_code']){
+                case 1: // Передано некорректное значение зависимого справочника
+                    exit(json_encode(['result'        => 4,
+                                      'error_message' => 'Передано некорректное значение Вида работ'
+                    ]));
+                case 2: // Запрашиваемая в форме зависимость не существует
+                    exit(json_encode(['result'        => 5,
+                                      'error_message' => 'Запрашиваемый справочник Вида работ не существует'
+                    ]));
+            }
+        }
+
+        // int'овое значение из формы
+        $form_typeOfWorkID = $typeOfWorkValidateResult['int_formValueDependent'];
+
+        define('type_of_work_exist', true);
+    }else{
+
+        define('type_of_work_exist', false);
+    }
 
 
 
@@ -338,16 +343,18 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     // Зона сохранения заявления в БД
     //
     // Имеет bool константы:
-    // 1 - expertise_purpose_exist   : передана Цель экспертизы
+    // 1 - expertise_purpose_exist   : передана Цель обращения
     // 2 - expertise_subjects_exist  : передан(ы) Предметы экспертизы
     // 3 - type_of_object_exist      : передан Вид объекта
     // 4 - functional_purpose_exist  : передано Функциональное назначение
+    // 5 - type_of_work_exist        : передан Вид работ
     //
     // Если константы true, то определены:
     // 1 - form_expertisePurposeID          int : id выбранной Цели обращения
     // 2 - form_expertiseSubjects array[int...] : массив с выбранными предметами (int) экспертизы
     // 3 - form_typeOfObjectID              int : id выбранного Вида объекта
     // 4 - form_functionalPurposeID         int : id выбранного Функционального назначение
+    // 5 - form_typeOfWorkID                int : id выбранного Вида работ
     //
     // -----------------------------------------------------------------------------------------------------------------
 
@@ -396,11 +403,11 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
 
 
     // Дополнительная информация (текстовое поле) ----------------------------------------------
-    $formHandler->addTextInputValueToUpdate($P_additional_information, _COLUMN_NAME_IN_APPLICATIONS_TABLE['additional_information'], $dataToUpdate);
+    $formHandler->addValueToUpdate($P_additional_information, _COLUMN_NAME_IN_APPLICATIONS_TABLE['additional_information'], $dataToUpdate);
 
 
     // Наименование объекта (текстовое поле) ---------------------------------------------------
-    $formHandler->addTextInputValueToUpdate($P_object_name, _COLUMN_NAME_IN_APPLICATIONS_TABLE['object_name'], $dataToUpdate);
+    $formHandler->addValueToUpdate($P_object_name, _COLUMN_NAME_IN_APPLICATIONS_TABLE['object_name'], $dataToUpdate);
 
 
     // Вид объекта (справочник, нельзя сбросить) -----------------------------------------------
@@ -416,27 +423,36 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
 
 
     // Номер утверждения документации по планировке территории (текстовое поле) -----------------
-    $formHandler->addTextInputValueToUpdate($P_number_planning_documentation_approval, _COLUMN_NAME_IN_APPLICATIONS_TABLE['number_planning_documentation_approval'], $dataToUpdate);
+    $formHandler->addValueToUpdate($P_number_planning_documentation_approval, _COLUMN_NAME_IN_APPLICATIONS_TABLE['number_planning_documentation_approval'], $dataToUpdate);
 
 
     // Дата утверждения документации по планировке территории (текстовое поле, календарь) -------
-    $formHandler->addTextInputValueToUpdate(strtotime($P_date_planning_documentation_approval), _COLUMN_NAME_IN_APPLICATIONS_TABLE['date_planning_documentation_approval'], $dataToUpdate);
+    $formHandler->addValueToUpdate(strtotime($P_date_planning_documentation_approval), _COLUMN_NAME_IN_APPLICATIONS_TABLE['date_planning_documentation_approval'], $dataToUpdate);
 
 
     // Номер ГПЗУ (текстовое поле) -------------------------------------------------------------
-    $formHandler->addTextInputValueToUpdate($P_number_GPZU, _COLUMN_NAME_IN_APPLICATIONS_TABLE['number_GPZU'], $dataToUpdate);
+    $formHandler->addValueToUpdate($P_number_GPZU, _COLUMN_NAME_IN_APPLICATIONS_TABLE['number_GPZU'], $dataToUpdate);
 
 
     // Дата ГПЗУ (текстовое поле, календарь) ---------------------------------------------------
-    $formHandler->addTextInputValueToUpdate(strtotime($P_date_GPZU), _COLUMN_NAME_IN_APPLICATIONS_TABLE['date_GPZU'], $dataToUpdate);
+    $formHandler->addValueToUpdate(strtotime($P_date_GPZU), _COLUMN_NAME_IN_APPLICATIONS_TABLE['date_GPZU'], $dataToUpdate);
+
+
+    // Вид работ (справочник, можно сбросить)
+    if(type_of_work_exist){
+        $formHandler->addValueToUpdate($form_typeOfWorkID, _COLUMN_NAME_IN_APPLICATIONS_TABLE['id_type_of_work'], $dataToUpdate);
+    }else{
+        $formHandler->addValueToUpdate('', _COLUMN_NAME_IN_APPLICATIONS_TABLE['id_type_of_work'], $dataToUpdate);
+    }
+
+
+    // Кадастровый номер земельного участка (текстовое поле) -----------------------------------
+    $formHandler->addValueToUpdate($P_cadastral_number, _COLUMN_NAME_IN_APPLICATIONS_TABLE['cadastral_number'], $dataToUpdate);
 
 
 
-
-
-
-    // блок сохранения в БД
-
+    // Сохранение в БД полей заявления ---------------------------------------------------------
+    //
     // Вызываем умное сохранение, если данные в заявлении поменялись
     if(!empty($dataToUpdate)){
 

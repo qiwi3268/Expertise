@@ -3,7 +3,12 @@
 
 // Справочник "Предмет экспертизы"
 //
-final class misc_expertiseSubjectTable{
+final class misc_expertiseSubjectTable implements Interface_dependentMiscTableValidate{
+
+    // Имя таблицы корреляции с главным справочником (Целью обращения)
+    static private string $CORRtableName = 'misc_expertise_subject_FOR_expertise_purpose';
+
+    use Trait_dependentMiscTableValidate;
 
     // Предназначен для получения ассициативного массива предметов экспертизы,
     // возвращает данные по возрастанию столбца sort
@@ -46,12 +51,12 @@ final class misc_expertiseSubjectTable{
                          `misc_expertise_subject`.`name`
                   FROM (SELECT *
                         FROM `misc_expertise_subject_FOR_expertise_purpose` AS `misc`
-                        WHERE `misc`.`id_experise_purpose` IN ($condition)) AS `corr`
+                        WHERE `misc`.`id_main` IN ($condition)) AS `corr`
 
                   LEFT JOIN `misc_expertise_purpose`
-                         ON (`corr`.`id_experise_purpose`=`misc_expertise_purpose`.`id`)
+                         ON (`corr`.`id_main`=`misc_expertise_purpose`.`id`)
                   LEFT JOIN `misc_expertise_subject`
-                         ON (`corr`.`id_expertise_subject`=`misc_expertise_subject`.`id`)
+                         ON (`corr`.`id_dependent`=`misc_expertise_subject`.`id`)
 
                   WHERE `misc_expertise_subject`.`is_active`=1
                   ORDER BY `misc_expertise_subject`.`sort` ASC";
@@ -95,11 +100,12 @@ final class misc_expertiseSubjectTable{
     // true   : корреляция существует существует
     // false  : корреляция не существует
     //
+    //todo вырезать этот метод, он есть в трейте
     static public function checkExist_CORR_ExpertisePurposeByIds(int $id_expertise_purpose, int $id_expertise_subject):bool {
 
         $query = "SELECT count(*)>0
                   FROM `misc_expertise_subject_FOR_expertise_purpose`
-                  WHERE `id_experise_purpose`=? AND `id_expertise_subject`=?";
+                  WHERE `id_main`=? AND `id_dependent`=?";
 
         return ParametrizedQuery::getSimpleArray($query, [$id_expertise_purpose, $id_expertise_subject])[0];
     }

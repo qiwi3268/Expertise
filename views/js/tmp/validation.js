@@ -28,10 +28,10 @@ function validateModal(modal) {
    if (row.dataset.required === 'true') {
       // Если не выбрано значение
       if (!modal.result_input.value) {
-         row_value.classList.add('invalid-field');
+         row_value.classList.add('invalid');
          error.classList.add('active');
       } else {
-         row_value.classList.remove('invalid-field');
+         row_value.classList.remove('invalid');
          error.classList.remove('active');
          validateCard(row_value.closest('.card-form'));
       }
@@ -79,7 +79,6 @@ function validateRow(input, pattern) {
 function validateInput(input, regex, message) {
    let value = input.value;
    let error_message = input.nextElementSibling;
-
    let parent_row = input.parentElement.parentElement;
 
    let is_required;
@@ -90,7 +89,7 @@ function validateInput(input, regex, message) {
    let is_invalid = !value.match(regex) && (is_required || value);
 
    if (is_invalid) {
-      input.classList.add('invalid-field');
+      input.classList.add('invalid');
       error_message.classList.add('active');
 
       // Если поле непустое
@@ -100,7 +99,7 @@ function validateInput(input, regex, message) {
          error_message.innerHTML = 'Поле обязательно для заполнения';
       }
    } else {
-      input.classList.remove('invalid-field');
+      input.classList.remove('invalid');
       error_message.classList.remove('active');
       validateCard(input.closest('.card-form'));
    }

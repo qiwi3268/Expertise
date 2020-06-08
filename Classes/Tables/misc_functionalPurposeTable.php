@@ -3,11 +3,11 @@
 
 // Справочник "Функциональное назначение"
 //
-final class misc_functionalPurposeTable implements Interface_miscTableValidate{
+final class misc_functionalPurposeTable implements Interface_singleMiscTableValidate{
 
     static private string $tableName = 'misc_functional_purpose';
 
-    use Trait_miscTableValidate;
+    use Trait_singleMiscTableValidate;
 
     // Предназначен для получения ассициативного массива функциональных назначений,
     // возвращает данные по возрастанию столбца sort

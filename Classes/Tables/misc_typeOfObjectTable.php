@@ -2,11 +2,11 @@
 
 // Справочник "Вид объекта"
 //
-final class misc_typeOfObjectTable implements Interface_miscTableValidate{
+final class misc_typeOfObjectTable implements Interface_singleMiscTableValidate{
 
     static private string $tableName = 'misc_type_of_object';
 
-    use Trait_miscTableValidate;
+    use Trait_singleMiscTableValidate;
 
     // Предназначен для получения ассициативного массива "Вид объекта",
     // возвращает активные данные по возрастанию столбца sort

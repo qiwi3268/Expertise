@@ -39,14 +39,14 @@ final class ApplicationsTable{
         return $result ? $result : null;
     }
 
-    // Предназначен для получения ассоциативного массива заявления по его id
+    // Предназначен для получения плоского ассоциативного массива заявления по его id
     // Принимает параметры-----------------------------------
     // id int : id заявления
     // Возвращает параметры----------------------------------
     // array : в случае, если заявление существует
     // null  : в противном случае
     //
-    static public function getAssocById(int $id):?array {
+    static public function getFlatAssocById(int $id):?array {
 
         $query = "SELECT `applications`.`id`,
                          `applications`.`is_saved`,
@@ -60,6 +60,7 @@ final class ApplicationsTable{
                          `applications`.`date_planning_documentation_approval`,
                          `applications`.`number_GPZU`,
                          `applications`.`date_GPZU`,
+                         `applications`.`id_type_of_work`,
                          `applications`.`cadastral_number`,
                          `applications`.`date_creation`
 				  FROM `applications`
@@ -72,12 +73,27 @@ final class ApplicationsTable{
     // Предназначен для получения ассоциативного массива заявления по его id для просмотра заявления
     static public function getAssocByIdForView(int $id):?array {
         $query = "SELECT `applications`.`id`,
-                         `misc_expertise_purpose`.`name` as `expertise_purpose`,
-                         `applications`.`additional_information`
+                         `misc_expertise_purpose`.`name` AS `expertise_purpose`,
+                         `applications`.`additional_information`,
+                         `applications`.`object_name`,
+                         `misc_type_of_object`.`name` AS `type_of_object`,
+                         `misc_functional_purpose`.`name` AS `functional_purpose`,
+                         `applications`.`number_planning_documentation_approval`,
+                         `applications`.`date_planning_documentation_approval`,
+                         `applications`.`number_GPZU`,
+                         `applications`.`date_GPZU`,
+                         `misc_type_of_work`.`name` AS `type_of_work`,
+                         `applications`.`cadastral_number`
                   FROM (SELECT * FROM `applications`
                         WHERE `applications`.`id`=?) AS `applications`
                   LEFT JOIN (`misc_expertise_purpose`)
                         ON (`applications`.`id_expertise_purpose`=`misc_expertise_purpose`.`id`)
+                  LEFT JOIN (`misc_type_of_object`)
+                        ON (`applications`.`id_type_of_object`=`misc_type_of_object`.`id`)
+                  LEFT JOIN (`misc_functional_purpose`)
+                        ON (`applications`.`id_functional_purpose`=`misc_functional_purpose`.`id`)
+                  LEFT JOIN (`misc_type_of_work`)
+                        ON (`applications`.`id_type_of_work`=`misc_type_of_work`.`id`)
                   ";
 
         $result = ParametrizedQuery::getFetchAssoc($query, [$id]);

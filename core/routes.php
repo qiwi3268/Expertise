@@ -43,7 +43,8 @@ return [
         'access'          => [],
         'ROOTcontrollers' => ['header'],
         'ROOTviews'       => ['header'],
-        'controllers'     => ['create_application'],
+        'ROOTClasses'     => ['VariableTransfer'],
+        'controllers'     => ['create_application', 'main_header'],
         'views'           => ['create_application_dependencies', 'main_header', 'create_application', 'main_footer']
     ],
 
@@ -56,7 +57,7 @@ return [
     'home/application/view' => [
         'access'          => [],
         'ROOTcontrollers' => ['header'],
-        'ROOTClasses'     => ['VariablesToView'],
+        'ROOTClasses'     => ['VariableTransfer'],
         'controllers'     => ['view_application'],
         'ROOTviews'       => ['header'],
         'views'           => ['sidebar_hierarchy', 'view_application', 'sidebar_actions']

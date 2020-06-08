@@ -33,7 +33,7 @@ define('_ROLE_IN_APPLICATION', ['AUTHOR' => 'AUTHOR' // Автор заявле�
 
 // Имена полей в форме заявления
 define('_PROPERTY_IN_APPLICATION', ['application_id'                         => 'application_id',                         // id заявления
-                                    'expertise_purpose'                      => 'expertise_purpose',                      // Цель экспертизы
+                                    'expertise_purpose'                      => 'expertise_purpose',                      // Цель обращения
                                     'expertise_subjects'                     => 'expertise_subjects',                     // Предмет экспертизы
                                     'additional_information'                 => 'additional_information',                 // Дополнительная информация
                                     'object_name'                            => 'object_name',                            // Наименование объекта
@@ -61,8 +61,9 @@ define('_COLUMN_NAME_IN_APPLICATIONS_TABLE', ['id'                              
                                               'date_planning_documentation_approval'   => 'date_planning_documentation_approval',   // Дата утверждения документации по планировке территории
                                               'number_GPZU'                            => 'number_GPZU',                            // Номер ГПЗУ
                                               'date_GPZU'                              => 'date_GPZU',                              // Дата ГПЗУ
-                                              'date_creation'                          => 'date_creation',                          // Дата создания
-                                              'cadastral_number'                       => 'cadastral_number'                        // Кадастровый номер земельного участка
+                                              'id_type_of_work'                        => 'id_type_of_work',                        // Вид работ
+                                              'cadastral_number'                       => 'cadastral_number',                       // Кадастровый номер земельного участка
+                                              'date_creation'                          => 'date_creation'                           // Дата создания
                                               ]);
 
 

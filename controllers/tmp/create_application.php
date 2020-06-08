@@ -41,7 +41,7 @@ $appNumNameTV = "ЗАЯВЛЕНИЕ НА ЭКСПЕРТИЗУ $appNumName";
 // Справочник "Цель обращения"
 $expertisePurposes = misc_expertisePurposeTable::getAllActive();
 
-// Справочник "Предмет экспертизы" -> корреляция с "Цель экспертизы"
+// Справочник "Предмет экспертизы" -> корреляция с "Цель обращения"
 $expertiseSubjects = misc_expertiseSubjectTable::getActive_CORR_ExpertisePurpose($expertisePurposes);
 
 // Справочник "Вид объекта"
@@ -50,7 +50,7 @@ $typeOfObjects = misc_typeOfObjectTable::getAllActive();
 // Справочник "Функциональное назначение"
 $functionalPurposes = misc_functionalPurposeTable::getAllActive();
 
-// Справочник "Вид работ" -> корреляция с "Цель экспертизы"
+// Справочник "Вид работ" -> корреляция с "Цель обращения"
 $typeOfWorks = misc_typeOfWorkTable::getActive_CORR_ExpertisePurpose($expertisePurposes);
 
 

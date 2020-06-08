@@ -1,3 +1,5 @@
+<?php $variablesTV = VariableTransfer::getInstance(); ?>
+
 <div class="main-container">
    <header>
       <div class="header__logo">
@@ -9,7 +11,7 @@
               </div>
           </div>
       </div>
-      <div class="header__user"><?= $userFioTV ?></div>
+      <div class="header__user"><?= $variablesTV->getValue('userFIO') ?></div>
       <div class="header__links">
           <i class="fas fa-question-circle header__icon"></i>
           <i class="fas fa-sign-out-alt header__icon"></i>

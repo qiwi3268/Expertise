@@ -1,6 +1,7 @@
+<?php $variablesTV = VariableTransfer::getInstance(); ?>
 
    <div class="application-form__header header-form">
-      <div class="header-form__title"><?= $appNumNameTV ?></div>
+      <div class="header-form__title"><?= $variablesTV->getValue('applicationNumericalName') ?></div>
       <div class="header-form__actions">
          <div id="application_save" class="header-form__btn">
             <span class="header-form__text">Сохранить</span>
@@ -51,8 +52,8 @@
             <i class="sidebar-form__icon fas fa-exclamation warning"></i>
          </div>
       </div>
-      <form id="application" class="application-form__cards required" action="/home/create_application" method="POST">
-         <input type="hidden" value="<?= $applicationId ?>" name="<?= _PROPERTY_IN_APPLICATION['application_id'] ?>">
+      <form id="application" class="application-form__cards required" action="" method="POST">
+         <input type="hidden" value="<?= $variablesTV->getValue('applicationId') ?>" name="<?= _PROPERTY_IN_APPLICATION['application_id'] ?>">
 
          <div class="application-form__card card-form" data-type="purpose">
             <div class="card-form__header">
@@ -77,7 +78,7 @@
                   <div class="modal">
                      <i class="modal__close fas fa-times"></i>
                      <div class="modal__items">
-                        <?php foreach($expertisePurposesTV as $pageNumber => $page): ?>
+                        <?php foreach($variablesTV->getValue('expertisePurposes') as $pageNumber => $page): ?>
                            <div class="modal__page" data-page="<?= $pageNumber ?>">
                               <?php foreach($page as $item): ?>
                                  <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
@@ -143,11 +144,11 @@
                   <div class="modal">
                      <i class="modal__close fas fa-times"></i>
                      <div class="modal__items">
-                         <?php foreach($typeOfObjectsTV as $pageNumber => $page): ?>
+                         <?php foreach($variablesTV->getValue('typeOfObjects') as $pageNumber => $page): ?>
                             <div class="modal__page" data-page="<?= $pageNumber ?>">
-                                <?php foreach($page as $item): ?>
-                                   <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
-                                <?php endforeach; ?>
+                               <?php foreach($page as $item): ?>
+                                  <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                               <?php endforeach; ?>
                             </div>
                          <?php endforeach; ?>
                      </div>
@@ -170,13 +171,13 @@
                   <div class="modal">
                      <i class="modal__close fas fa-times"></i>
                      <div class="modal__items">
-                         <?php foreach($functionalPurposesTV as $pageNumber => $page): ?>
-                            <div class="modal__page" data-page="<?= $pageNumber ?>">
-                                <?php foreach($page as $item): ?>
-                                   <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
-                                <?php endforeach; ?>
-                            </div>
-                         <?php endforeach; ?>
+                        <?php foreach($variablesTV->getValue('functionalPurposes') as $pageNumber => $page): ?>
+                           <div class="modal__page" data-page="<?= $pageNumber ?>">
+                              <?php foreach($page as $item): ?>
+                                 <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                              <?php endforeach; ?>
+                           </div>
+                        <?php endforeach; ?>
                      </div>
                   </div>
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['functional_purpose'] ?>">
@@ -189,7 +190,7 @@
                   <span class="body-card__title">Номер утверждения документации по планировке территории</span>
                   <div class="body-card__field">
                      <input class="body-card__input body-card__result application-input" type="text" name="<?= _PROPERTY_IN_APPLICATION['number_planning_documentation_approval'] ?>" placeholder="Введите значение">
-                     <span class="body-card__error">Поле обязательно для заполнения</span>
+                     <span class="body-card__error"></span>
                   </div>
                </div>
                <!--//Номер утверждения документации по планировке территории//-->
@@ -202,7 +203,7 @@
                         <span class="modal-calendar__value">Выберите дату</span>
                         <i class="modal-calendar__icon fas fa-calendar-alt"></i>
                      </div>
-                     <span class="body-card__error">Поле обязательно для заполнения</span>
+                     <span class="body-card__error"></span>
                   </div>
    
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['date_planning_documentation_approval'] ?>">
@@ -217,7 +218,7 @@
                   <span class="body-card__title">Номер ГПЗУ</span>
                   <div class="body-card__field">
                      <input class="body-card__input body-card__result application-input" type="text" name="<?= _PROPERTY_IN_APPLICATION['number_GPZU'] ?>" placeholder="Введите значение">
-                     <span class="body-card__error">Поле обязательно для заполнения</span>
+                     <span class="body-card__error"></span>
                   </div>
                </div>
                <!--//Номер ГПЗУ//-->
@@ -231,7 +232,7 @@
                         <i class="modal-calendar__icon-delete fas fa-calendar-times"></i>
                         <i class="modal-calendar__icon fas fa-calendar-alt"></i>
                      </div>
-                     <span class="body-card__error">Поле обязательно для заполнения</span>
+                     <span class="body-card__error"></span>
                   </div>
    
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['date_GPZU'] ?>">
@@ -265,7 +266,7 @@
                   <span class="body-card__title">Кадастровый номер земельного участка</span>
                   <div class="body-card__field">
                      <input class="body-card__input body-card__result application-input" type="text" name="<?= _PROPERTY_IN_APPLICATION['cadastral_number'] ?>" placeholder="Введите значение">
-                     <span class="body-card__error">Поле обязательно для заполнения</span>
+                     <span class="body-card__error"></span>
                   </div>
                </div>
                <!--//Кадастровый номер земельного участка//-->

@@ -2,7 +2,12 @@
 
 // Справочник "Вид работ"
 //
-final class misc_typeOfWorkTable{
+final class misc_typeOfWorkTable implements Interface_dependentMiscTableValidate{
+
+    // Имя таблицы корреляции с главным справочником (Целью обращения)
+    static private string $CORRtableName = 'misc_type_of_work_FOR_expertise_purpose';
+
+    use Trait_dependentMiscTableValidate;
 
     // Предназначен для получения массива видов работ, упакованных по id-целей обращений
     // т.е. к каждой цели обращения есть массив с видами работ, которые ей соответствуют
@@ -27,12 +32,12 @@ final class misc_typeOfWorkTable{
                          `misc_type_of_work`.`name`
                   FROM (SELECT *
                         FROM `misc_type_of_work_FOR_expertise_purpose` AS `misc`
-                        WHERE `misc`.`id_experise_purpose` IN ($condition)) AS `corr`
+                        WHERE `misc`.`id_main` IN ($condition)) AS `corr`
 
                   LEFT JOIN `misc_expertise_purpose`
-                         ON (`corr`.`id_experise_purpose`=`misc_expertise_purpose`.`id`)
+                         ON (`corr`.`id_main`=`misc_expertise_purpose`.`id`)
                   LEFT JOIN `misc_type_of_work`
-                         ON (`corr`.`id_type_of_work`=`misc_type_of_work`.`id`)
+                         ON (`corr`.`id_dependent`=`misc_type_of_work`.`id`)
 
                   WHERE `misc_type_of_work`.`is_active`=1
                   ORDER BY `misc_type_of_work`.`sort` ASC";

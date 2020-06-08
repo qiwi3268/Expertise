@@ -87,6 +87,14 @@ class Session{
         return $_SESSION['user_info']['id'];
     }
 
+    static public function getUserFullFIO():string {
+
+        $F = $_SESSION['user_info']['last_name'];
+        $I = $_SESSION['user_info']['first_name'];
+        $O = $_SESSION['user_info']['middle_name'];
+        return "$F $I $O";
+    }
+
     // Предназначен получения для получения ролей пользователя
     //
     static public function getUserRole():array {

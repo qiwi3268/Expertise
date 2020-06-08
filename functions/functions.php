@@ -87,6 +87,9 @@ function GetUserFIO(array $userAssoc, bool $fullFio = true):string {
     }
 }
 
+function GetDdMmYyyyDate(int $timestamp):string {
+    return date('d.m.Y', $timestamp);
+}
 
 // Предназначена для вывода var_dump только у тех пользователей, где в
 // get-параметре присутствует debug=1
