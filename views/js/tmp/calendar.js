@@ -238,6 +238,8 @@ document.addEventListener('DOMContentLoaded', () => {
                this.changeCurrentMonth(day_element.dataset.month);
             }
 
+            this.select.classList.add('filled');
+
             this.setSelectedDate(day_element);
             this.removeSelectedItem();
             this.changeSelectedDay();

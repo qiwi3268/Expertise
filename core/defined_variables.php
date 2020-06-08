@@ -39,6 +39,8 @@ define('_PROPERTY_IN_APPLICATION', ['application_id'                         => 
                                     'object_name'                            => 'object_name',                            // Наименование объекта
                                     'type_of_object'                         => 'type_of_object',                         // Вид объекта
                                     'functional_purpose'                     => 'functional_purpose',                     // Функциональное назначение
+                                    'functional_purpose_subsector'           => 'functional_purpose_subsector',           // Функциональное назначение. Подотрасль
+                                    'functional_purpose_group'               => 'functional_purpose_group',               // Функциональное назначение. Группа
                                     'number_planning_documentation_approval' => 'number_planning_documentation_approval', // Номер утверждения документации по планировке территории
                                     'date_planning_documentation_approval'   => 'date_planning_documentation_approval',   // Дата утверждения документации по планировке территории
                                     'number_GPZU'                            => 'number_GPZU',                            // Номер ГПЗУ
@@ -57,6 +59,8 @@ define('_COLUMN_NAME_IN_APPLICATIONS_TABLE', ['id'                              
                                               'object_name'                            => 'object_name',                            // Наименование объекта
                                               'id_type_of_object'                      => 'id_type_of_object',                      // Вид объекта
                                               'id_functional_purpose'                  => 'id_functional_purpose',                  // Функциональное назначение
+                                              'id_functional_purpose_subsector'        => 'id_functional_purpose_subsector',        // Функциональное назначение. Подотрасль
+                                              'id_functional_purpose_group'            => 'id_functional_purpose_group',            // Функциональное назначение. Группа
                                               'number_planning_documentation_approval' => 'number_planning_documentation_approval', // Номер утверждения документации по планировке территории
                                               'date_planning_documentation_approval'   => 'date_planning_documentation_approval',   // Дата утверждения документации по планировке территории
                                               'number_GPZU'                            => 'number_GPZU',                            // Номер ГПЗУ

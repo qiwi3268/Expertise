@@ -126,7 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
       constructor(select) {
          this.select = select;
 
-         //this.parent_row = this.select.parentElement.parentElement;
          this.parent_row = this.select.closest('.body-card__row');
 
          this.name = this.parent_row.dataset.row_name;
@@ -266,6 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
          let select_value;
 
          dependent_modals.forEach(modal => {
+            modal.clearRelatedModals();
             modal.content.innerHTML = '';
             modal.result_input.value = '';
             modal.select.classList.remove('filled');

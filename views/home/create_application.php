@@ -138,7 +138,7 @@
                   <div class="body-card__value">
                      <div class="body-card__field">
                         <div class="body-card__select application-input modal-select">
-                           <span class="modal-select__value">Выберите значение</span>
+                           <span class="modal-select__value field-value">Выберите значение</span>
                            <i class="modal-select__icon fas fa-bars"></i>
                         </div>
                         <i class="body-card__icon-clear fas fa-calendar-times"></i>
@@ -147,7 +147,6 @@
                      <span class="body-card__error">Поле обязательно для заполнения</span>
 
                   </div>
-                  
                   
                   <div class="modal">
                      <i class="modal__close fas fa-times"></i>
@@ -192,6 +191,43 @@
                </div>
                <!--//Функциональное назначение//-->
    
+               <!--Функциональное назначение. Подотрасль-->
+               <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['functional_purpose_subsector'] ?>" >
+                  <span class="body-card__title required">Функциональное назначение. Подотрасль</span>
+                  <div class="body-card__field">
+                     <div class="body-card__select modal-select">
+                        <span class="modal-select__value">Выберите значение</span>
+                        <i class="modal-select__icon fas fa-bars"></i>
+                     </div>
+                     <span class="body-card__error">Поле обязательно для заполнения</span>
+                  </div>
+                  <div class="modal">
+                     <i class="modal__close fas fa-times"></i>
+                     <div class="modal__items"></div>
+                  </div>
+                  <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['functional_purpose_subsector'] ?>">
+               </div>
+               <!--//Функциональное назначение. Подотрасль//-->
+   
+               <!--Функциональное назначение. Группа-->
+               <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['functional_purpose_group'] ?>" >
+                  <span class="body-card__title required">Функциональное назначение. Группа</span>
+                  <div class="body-card__field">
+                     <div class="body-card__select modal-select">
+                        <span class="modal-select__value">Выберите значение</span>
+                        <i class="modal-select__icon fas fa-bars"></i>
+                     </div>
+                     <span class="body-card__error">Поле обязательно для заполнения</span>
+                  </div>
+                  <div class="modal">
+                     <i class="modal__close fas fa-times"></i>
+                     <div class="modal__items"></div>
+                  </div>
+                  <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['functional_purpose_group'] ?>">
+               </div>
+               <!--//Функциональное назначение. Группа//-->
+               
+               
                <!--Блок производственные/непроизводственные объекты капитального строительства-->
                <!--Номер утверждения документации по планировке территории-->
                <div class="body-card__row" data-inactive="true" data-row_name="<?= _PROPERTY_IN_APPLICATION['number_planning_documentation_approval'] ?>" data-pattern="number">
@@ -203,7 +239,7 @@
                </div>
                <!--//Номер утверждения документации по планировке территории//-->
                <!--Дата утверждения документации по планировке территории-->
-               <div class="body-card__row" data-inactive="true" data-row_name="<?= _PROPERTY_IN_APPLICATION['date_planning_documentation_approval'] ?>">
+               <div class="body-card__row" data-inactive="true" data-row_name="<?= _PROPERTY_IN_APPLICATION['date_planning_documentation_approval'] ?>" data-pattern="date">
                   <span class="body-card__title">Дата утверждения документации по планировке территории</span>
    
                   <div class="body-card__field">
@@ -231,7 +267,7 @@
                </div>
                <!--//Номер ГПЗУ//-->
                <!--Дата ГПЗУ-->
-               <div class="body-card__row" data-inactive="true" data-row_name="<?= _PROPERTY_IN_APPLICATION['date_GPZU'] ?>">
+               <div class="body-card__row" data-inactive="true" data-row_name="<?= _PROPERTY_IN_APPLICATION['date_GPZU'] ?>" data-pattern="date">
                   <span class="body-card__title">Дата ГПЗУ</span>
    
                   <div class="body-card__field">

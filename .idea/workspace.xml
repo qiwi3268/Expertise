@@ -4,15 +4,11 @@
     <list default="true" id="237ecf96-8374-4d8a-bac5-b9b5ffa775cc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/calendar.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/calendar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/defined_variables.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/defined_variables.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/calendar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/cards.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/cards.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/modal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/radio.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/radio.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/validation.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +106,7 @@
       <workItem from="1590485542535" duration="16474000" />
       <workItem from="1591002598456" duration="9975000" />
       <workItem from="1591160460217" duration="37085000" />
-      <workItem from="1591587322406" duration="11232000" />
+      <workItem from="1591587322406" duration="15756000" />
     </task>
     <task id="LOCAL-00001" summary="2">
       <created>1590566324166</created>
@@ -161,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591587565766</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="08.06.2020_1">
+      <created>1591603591408</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1591603591408</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,7 +178,8 @@
     <MESSAGE value="03.06.2020_1" />
     <MESSAGE value="04.06.2020" />
     <MESSAGE value="08.06.2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="08.06.2020" />
+    <MESSAGE value="08.06.2020_1" />
+    <option name="LAST_COMMIT_MESSAGE" value="08.06.2020_1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="791" y="333" key="#Deployment" timestamp="1586248151560">
@@ -198,10 +202,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="665" y="179" key="#PHP/0.0.1920.1040@0.0.1920.1040" timestamp="1591164116114" />
-    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2" timestamp="1591587561876">
+    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2" timestamp="1591603589053">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1591587561876" />
+    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1591603589053" />
     <state x="92" y="92" width="2376" height="1216" key="DiffContextDialog" timestamp="1586340489568">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

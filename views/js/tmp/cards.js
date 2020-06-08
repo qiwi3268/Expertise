@@ -5,7 +5,37 @@ let radio_dependency;
 document.addEventListener('DOMContentLoaded', () => {
    dependencies = JSON.parse(document.querySelector('.row-dependencies').value);
    radio_dependency = document.querySelector('.radio__content-change-logic');
+
+   handleFieldButtons();
+
 });
+
+function handleFieldButtons() {
+   let clear_buttons = document.querySelectorAll('.body-card__icon-clear');
+
+   clear_buttons.forEach(button => {
+      button.addEventListener('click', () => {
+         let parent_row = button.closest('.body-card__row');
+         let default_value = 'Выберите значение';
+
+         if (parent_row.dataset.pattern === 'date') {
+            default_value = 'Выберите дату';
+         }
+
+         let row_result = parent_row.querySelector('.body-card__result');
+         row_result.value = '';
+
+         let parent_select = parent_row.querySelector('.body-card__select');
+         parent_select.classList.remove('filled');
+
+         let row_value = parent_row.querySelector('.field-value');
+         row_value.innerHTML = default_value;
+      });
+
+
+   });
+
+}
 
 
 // Предназначен для добавления или удаления блоков, зависящих от значения поля на входе
