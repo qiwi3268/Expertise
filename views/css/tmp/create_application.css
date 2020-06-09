@@ -212,6 +212,10 @@
    /*margin: 0px 0px 0px 20px;*/
    padding: 10px 0px;
    position: relative;
+
+   /**/
+   align-items: center;
+
 }
 
 .body-card__row.center {
@@ -223,7 +227,8 @@
 }
 
 .body-card__title {
-   margin: 10px 20px 0px 0px;
+   /*margin: 10px 20px 0px 0px;*/
+   margin: 0px 20px 0px 0px;
    text-align: right;
    width: 30%;
 }
@@ -373,6 +378,7 @@
 .radio__item {
    display: flex;
    align-items: center;
+   cursor: pointer;
 }
 
 .radio__item:not(:last-child) {
@@ -386,8 +392,10 @@
 .radio__title {
    font-size: 14px;
    display: block;
-   margin: 10px 0px 0px 0px;
 
+
+   /**/
+   /*margin: 10px 0px 0px 0px;*/
 }
 
 .radio__value {

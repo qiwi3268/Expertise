@@ -332,14 +332,16 @@
                <!--//Кадастровый номер земельного участка//-->
    
                <!--Объект культурного наследия-->
-               <div class="body-card__row center" data-row_name="<?= _PROPERTY_IN_APPLICATION['expertise_subjects'] ?>" data-required="true">
-                  <span class="body-card__title required">Объект культурного наследия</span>
+               <div class="body-card__row center" data-row_name="<?= _PROPERTY_IN_APPLICATION['expertise_subjects'] ?>">
+                  <span class="body-card__title">Объект культурного наследия</span>
                   <div class="body-card__value">
-                     <div class="body-card__field radio" data-multiple="true">
+                     <div class="body-card__field radio" data-multiple="false">
                         <div class="radio__body">
 <!--                           todo qwe-->
-                           <i class="radio__icon fas fa-check-circle"></i>
-                           <span class="radio__text"></span>
+                           <div class="radio__item">
+                              <i class="radio__icon fas fa-check-circle"></i>
+                              <span class="radio__text">Объект культурного наследия</span>
+                           </div>
                         </div>
                      </div>
                   </div>

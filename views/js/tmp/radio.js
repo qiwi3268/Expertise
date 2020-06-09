@@ -26,7 +26,10 @@ function initRadioItems(radio_elem) {
 
         items.forEach(item => {
             item.addEventListener('click', () => {
+
                 if (item.classList.contains('selected')) {
+                    console.log('zxc');
+
                     removeSelectedItem(item, required);
                 } else if (multiple) {
                     addSelectedItem(item);
