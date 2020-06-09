@@ -28,8 +28,6 @@ function initRadioItems(radio_elem) {
             item.addEventListener('click', () => {
 
                 if (item.classList.contains('selected')) {
-                    console.log('zxc');
-
                     removeSelectedItem(item, required);
                 } else if (multiple) {
                     addSelectedItem(item);
@@ -38,7 +36,7 @@ function initRadioItems(radio_elem) {
                 }
 
                 // Записываем в результат json с id выбранных элементов
-                result_input.value = getRadioResult(body);
+                result_input.value = getRadioResult(body, multiple);
                 validateCard(result_input.closest('.card-form'));
             });
         });
@@ -117,7 +115,7 @@ function changeSelectedItem(radio_item) {
 // radio_body      Element : блок переключателей
 // Возвращает параметры------------------------------
 // result             JSON : json с id выбранных элементов
-function getRadioResult(radio_body) {
+function getRadioResult(radio_body, multiple) {
     let result = [];
     let selected_items = radio_body.querySelectorAll('.selected');
 
@@ -125,5 +123,5 @@ function getRadioResult(radio_body) {
         result.push(item.dataset.id)
     });
 
-    return JSON.stringify(result);
+    return multiple ? JSON.stringify(result) : result[0];
 }

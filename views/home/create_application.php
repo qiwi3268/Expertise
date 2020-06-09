@@ -5,11 +5,11 @@
       <div class="header-form__actions">
          <div id="application_save" class="header-form__btn">
             <span class="header-form__text">Сохранить</span>
-            <i class="fas fa-save header-form__icon"></i>
+            <i class="header-form__icon fas fa-save"></i>
          </div>
          <div class="header-form__btn">
             <span class="header-form__text">Удалить</span>
-            <i class="fas fa-trash header-form__icon"></i>
+            <i class="header-form__icon fas fa-trash"></i>
          </div>
       </div>
    </div>
@@ -52,7 +52,7 @@
             <i class="sidebar-form__icon fas fa-exclamation warning"></i>
          </div>
       </div>
-      <form id="application" class="application-form__cards required" action="" method="POST">
+      <form id="application" class="application-form__cards" action="" method="POST">
          <input type="hidden" value="<?= $variablesTV->getValue('applicationId') ?>" name="<?= _PROPERTY_IN_APPLICATION['application_id'] ?>">
 
          <div class="application-form__card card-form" data-type="purpose">
@@ -332,22 +332,78 @@
                <!--//Кадастровый номер земельного участка//-->
    
                <!--Объект культурного наследия-->
-               <div class="body-card__row center" data-row_name="<?= _PROPERTY_IN_APPLICATION['expertise_subjects'] ?>">
-                  <span class="body-card__title">Объект культурного наследия</span>
+               <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['cultural_object_type_checkbox'] ?>">
+                  <span class="body-card__title"></span>
                   <div class="body-card__value">
-                     <div class="body-card__field radio" data-multiple="false">
+                     <div class="body-card__field checkbox">
+                        <div class="checkbox__item">
+                           <i class="far fa-circle checkbox__icon"></i>
+                           <span class="checkbox__text">Объект культурного наследия</span>
+                        </div>
+                     </div>
+                  </div>
+                  <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['cultural_object_type_checkbox'] ?>">
+               </div>
+               <!--//Объект культурного наследия//-->
+   
+               <!--Объект культурного наследия-->
+               <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['cultural_object_type'] ?>" data-required="true">
+                  <span class="body-card__title required">Тип объекта культурного наследия</span>
+                  <div class="body-card__value">
+                     <div class="body-card__field">
+                        <div class="body-card__select modal-select">
+                           <span class="modal-select__value field-value">Выберите значение</span>
+                           <i class="modal-select__icon fas fa-bars"></i>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="modal">
+                     <i class="modal__close fas fa-times"></i>
+                     <div class="modal__items">
+                        <?php foreach($variablesTV->getValue('culturalObjectTypes') as $pageNumber => $page): ?>
+                           <div class="modal__page" data-page="<?= $pageNumber ?>">
+                              <?php foreach($page as $item): ?>
+                                 <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                              <?php endforeach; ?>
+                           </div>
+                        <?php endforeach; ?>
+                     </div>
+                  </div>
+                  <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['cultural_object_type'] ?>">
+               </div>
+               <!--//Объект культурного наследия//-->
+               
+               
+               <!--Национальный проект-->
+               <div class="body-card__row center" data-row_name="<?= _PROPERTY_IN_APPLICATION['expertise_subjects'] ?>" data-required="true">
+                  <span class="body-card__title"></span>
+                  <div class="body-card__value">
+                     <div class="body-card__field radio">
+                        <i class="far fa-play-circle"></i>
+<!--                        <i class="fas fa-dot-circle"></i>-->
+                        <span>Нац проект</span>
+                     </div>
+                  </div>
+                  <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['expertise_subjects'] ?>">
+               </div>
+               <!--//Национальный проект//-->
+   
+               <!--Национальный проект-->
+               <div class="body-card__row center" data-row_name="<?= _PROPERTY_IN_APPLICATION['expertise_subjects'] ?>" data-required="true">
+                  <span class="body-card__title required">Нац проект</span>
+                  <div class="body-card__value">
+                     <div class="body-card__field radio" data-multiple="true">
                         <div class="radio__body">
-<!--                           todo qwe-->
                            <div class="radio__item">
-                              <i class="radio__icon fas fa-check-circle"></i>
-                              <span class="radio__text">Объект культурного наследия</span>
+               
                            </div>
                         </div>
                      </div>
                   </div>
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['expertise_subjects'] ?>">
                </div>
-               <!--//Объект культурного наследия//-->
+               <!--//Национальный проект//-->
+               
                
             </div>
          </div>

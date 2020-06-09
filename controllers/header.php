@@ -33,7 +33,7 @@ switch(_URNNAME_){
                          ...GetFontAwesome5Case(),
                          ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
                          ...CreateSource('js', TMP_JS, 'sidebar.js', 'section.js', 'validation.js', 'cards.js',
-                            'modal.js', 'calendar.js', 'radio.js', 'save_application.js', 'test.js')
+                            'modal.js', 'calendar.js', 'radio.js', 'checkbox.js', 'save_application.js', 'test.js')
                         ];
         break;
    

@@ -299,7 +299,7 @@
    display: inline;
 }
 
-.modal-select__icon .fa-bars {
+.modal-select__icon.fa-bars {
    margin: 0px 5px 0px 0px;
 }
 
@@ -357,31 +357,37 @@
 }
 
 
-.radio {
-   cursor: default;
-}
-
 .radio__icon {
    margin: 0px 10px 0px 0px;
 }
 
-.radio__icon.far {
+.checkbox__icon {
+   margin: 0px 5px 0px 0px
+}
+
+.radio__icon.far,
+.checkbox__icon.far {
    font-size: 20px;
    color: #343a40;
 }
 
-.radio__icon.fas {
+
+
+/*.radio__icon.fas,
+.checkbox__icon.fas {
    font-size: 15px;
    color: #343a40;
-}
+}*/
 
-.radio__item {
+.radio__item,
+.checkbox__item {
    display: flex;
    align-items: center;
    cursor: pointer;
 }
 
-.radio__item:not(:last-child) {
+.radio__item:not(:last-child),
+.checkbox__item:not(:last-child) {
    margin: 0px 0px 10px 0px;
 }
 
@@ -446,6 +452,13 @@
 }
 
 /* tmp ========================================================================= */
+
+.fa-dot-circle,
+.fa-play-circle
+{
+   font-size: 18px;
+   margin: 0px 7px 0px 0px;
+}
 
 
 

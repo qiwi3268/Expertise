@@ -46,7 +46,9 @@ define('_PROPERTY_IN_APPLICATION', ['application_id'                         => 
                                     'number_GPZU'                            => 'number_GPZU',                            // Номер ГПЗУ
                                     'date_GPZU'                              => 'date_GPZU',                              // Дата ГПЗУ
                                     'type_of_work'                           => 'type_of_work',                           // Вид работ
-                                    'cadastral_number'                       => 'cadastral_number'                        // Кадастровый номер земельного участка
+                                    'cadastral_number'                       => 'cadastral_number',                       // Кадастровый номер земельного участка
+                                    'cultural_object_type_checkbox'          => 'cultural_object_type_checkbox',
+                                    'cultural_object_type'                   => 'cultural_object_type',
                                    ]);
 
 // Имена столбцов в таблице applications
@@ -67,6 +69,7 @@ define('_COLUMN_NAME_IN_APPLICATIONS_TABLE', ['id'                              
                                               'date_GPZU'                              => 'date_GPZU',                              // Дата ГПЗУ
                                               'id_type_of_work'                        => 'id_type_of_work',                        // Вид работ
                                               'cadastral_number'                       => 'cadastral_number',                       // Кадастровый номер земельного участка
+
                                               'date_creation'                          => 'date_creation'                           // Дата создания
                                               ]);
 
