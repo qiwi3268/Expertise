@@ -85,9 +85,10 @@ function removeRowValue(row) {
    }
 
    let value = row.querySelector('.field-value');
-   value.value = '';
-   value.innerHTML = '';
-
+   if (value) {
+      value.value = '';
+      value.innerHTML = '';
+   }
 
    // Если зависимое поле - дата, удаляем отображаемую дату
    let dependent_date = row.querySelector('.modal-calendar__value');

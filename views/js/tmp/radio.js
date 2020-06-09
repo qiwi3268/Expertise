@@ -24,20 +24,25 @@ function initRadioItems(radio_elem) {
         let multiple = radio_elem.dataset.multiple === 'true';
         let items = radio_elem.querySelectorAll('.radio__item');
 
+        let is_changed;
+
         items.forEach(item => {
             item.addEventListener('click', () => {
 
                 if (item.classList.contains('selected')) {
-                    removeSelectedItem(item, required);
+                    is_changed = removeSelectedItem(item, required);
                 } else if (multiple) {
-                    addSelectedItem(item);
+                    is_changed = addSelectedItem(item);
                 } else {
-                    changeSelectedItem(item);
+                    is_changed = changeSelectedItem(item);
                 }
 
-                // Записываем в результат json с id выбранных элементов
-                result_input.value = getRadioResult(body, multiple);
-                validateCard(result_input.closest('.card-form'));
+                if (is_changed) {
+                    // Записываем в результат json с id выбранных элементов
+                    result_input.value = getRadioResult(body, multiple, required);
+                    handleDependentRows(result_input);
+                    validateCard(result_input.closest('.card-form'));
+                }
             });
         });
     }
@@ -50,7 +55,7 @@ function initRadioItems(radio_elem) {
 // item         Element : элемент переключателя
 function createRadioItem(value) {
     let item = document.createElement('DIV');
-    item.classList.add('radio__item');
+    item.classList.add('radio__item', 'col');
     item.dataset.id = value.id;
 
     let icon = document.createElement('I');
@@ -76,6 +81,8 @@ function addSelectedItem(radio_item) {
     let radio_icon = radio_item.querySelector('.radio__icon');
     radio_icon.classList.remove('fa-square');
     radio_icon.classList.add('fa-check-square');
+
+    return true;
 }
 
 
@@ -93,7 +100,10 @@ function removeSelectedItem(radio_item, required) {
         let radio_icon = radio_item.querySelector('.radio__icon');
         radio_icon.classList.remove('fa-check-square');
         radio_icon.classList.add('fa-square');
+        return true;
     }
+
+    return false;
 }
 
 // Предназначен для смены выбранного элемента блока переключателя
@@ -103,11 +113,14 @@ function changeSelectedItem(radio_item) {
     let items = radio_item.parentElement;
     let selected_item = items.querySelector('.selected');
 
-    if (selected_item) {
+    if (!selected_item) {
+        return addSelectedItem(radio_item);
+    } else if (selected_item.dataset.id === radio_item.dataset.id) {
+        return false;
+    } else {
         removeSelectedItem(selected_item, false);
+        return addSelectedItem(radio_item);
     }
-
-    addSelectedItem(radio_item);
 }
 
 // Предназначен для получения json с id выбранных элементов блока переключателей
@@ -116,6 +129,7 @@ function changeSelectedItem(radio_item) {
 // Возвращает параметры------------------------------
 // result             JSON : json с id выбранных элементов
 function getRadioResult(radio_body, multiple) {
+    // let value;
     let result = [];
     let selected_items = radio_body.querySelectorAll('.selected');
 
@@ -123,5 +137,14 @@ function getRadioResult(radio_body, multiple) {
         result.push(item.dataset.id)
     });
 
+    /*if (multiple) {
+        value = JSON.stringify(result);
+    } else if (result.length !== 0) {
+        value = result[0];
+    } else {
+        value = 0;
+    }*/
+
     return multiple ? JSON.stringify(result) : result[0];
+    // return value;
 }

@@ -47,8 +47,13 @@ define('_PROPERTY_IN_APPLICATION', ['application_id'                         => 
                                     'date_GPZU'                              => 'date_GPZU',                              // Дата ГПЗУ
                                     'type_of_work'                           => 'type_of_work',                           // Вид работ
                                     'cadastral_number'                       => 'cadastral_number',                       // Кадастровый номер земельного участка
-                                    'cultural_object_type_checkbox'          => 'cultural_object_type_checkbox',
-                                    'cultural_object_type'                   => 'cultural_object_type',
+                                    'cultural_object_type_checkbox'          => 'cultural_object_type_checkbox',          // Тип объекта культурного наследия (ЧЕКБОКС)
+                                    'cultural_object_type'                   => 'cultural_object_type',                   // Тип объекта культурного наследия
+                                    'national_project_checkbox'              => 'national_project_checkbox',              // Национальный проект (ЧЕКБОКС)
+                                    'national_project'                       => 'national_project',                       // Национальный проект
+                                    'federal_project'                        => 'federal_project',                        // Федеральный проект
+                                    'date_finish_building'                   => 'date_finish_building',                   // Дата окончания строительства
+                                    'curator'                                => 'curator'                                 // Куратор
                                    ]);
 
 // Имена столбцов в таблице applications
@@ -69,8 +74,11 @@ define('_COLUMN_NAME_IN_APPLICATIONS_TABLE', ['id'                              
                                               'date_GPZU'                              => 'date_GPZU',                              // Дата ГПЗУ
                                               'id_type_of_work'                        => 'id_type_of_work',                        // Вид работ
                                               'cadastral_number'                       => 'cadastral_number',                       // Кадастровый номер земельного участка
-
-                                              'date_creation'                          => 'date_creation'                           // Дата создания
+                                              'id_cultural_object_type'                => 'id_cultural_object_type',                // Тип объекта культурного наследия
+                                              'id_national_project'                    => 'id_national_project',                    // Национальный проект
+                                              'id_federal_project'                     => 'id_federal_project',                     // Федеральный проект
+                                              'date_finish_building'                   => 'date_finish_building',                   //Дата окончания строительства
+                                              'date_creation'                          => 'date_creation'                           // Дата создания заявления
                                               ]);
 
 
