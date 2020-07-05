@@ -34,8 +34,8 @@
 
 <!-- Зависимость "Федеральный проект" от "Национальный проект" -->
 <div class="modal__content-change-logic">
-   <input data-when_change="<?= _PROPERTY_IN_APPLICATION['functional_purpose_subsector'] ?>"
-          data-target_change="<?= _PROPERTY_IN_APPLICATION['functional_purpose_group'] ?>"
+   <input data-when_change="<?= _PROPERTY_IN_APPLICATION['national_project'] ?>"
+          data-target_change="<?= _PROPERTY_IN_APPLICATION['federal_project'] ?>"
           type="hidden"
           value='<?= $variablesTV->getValue('federalProjects') ?>'>
 </div>

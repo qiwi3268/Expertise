@@ -3,6 +3,7 @@
 
 final class ApplicationsTable{
 
+
     // Предназначен для создания временной записи заявления
     // Принимает параметры-----------------------------------
     // id_author         int : id текущего пользователя
@@ -19,6 +20,7 @@ final class ApplicationsTable{
 
         return ParametrizedQuery::set($query, [$id_author, $numerical_name]);
     }
+
 
     // Предназначен для получения простого массива id заявлений, где пользователь является автором
     // Принимает параметры-----------------------------------
@@ -39,6 +41,7 @@ final class ApplicationsTable{
         return $result ? $result : null;
     }
 
+
     // Предназначен для получения плоского ассоциативного массива заявления по его id
     // Принимает параметры-----------------------------------
     // id int : id заявления
@@ -56,6 +59,8 @@ final class ApplicationsTable{
                          `applications`.`object_name`,
                          `applications`.`id_type_of_object`,
                          `applications`.`id_functional_purpose`,
+                         `applications`.`id_functional_purpose_subsector`,
+                         `applications`.`id_functional_purpose_group`,
                          `applications`.`number_planning_documentation_approval`,
                          `applications`.`date_planning_documentation_approval`,
                          `applications`.`number_GPZU`,
@@ -70,6 +75,7 @@ final class ApplicationsTable{
         return $result ? $result[0] : null;
     }
 
+
     // Предназначен для получения ассоциативного массива заявления по его id для просмотра заявления
     static public function getAssocByIdForView(int $id):?array {
         $query = "SELECT `applications`.`id`,
@@ -78,6 +84,8 @@ final class ApplicationsTable{
                          `applications`.`object_name`,
                          `misc_type_of_object`.`name` AS `type_of_object`,
                          `misc_functional_purpose`.`name` AS `functional_purpose`,
+                         `misc_functional_purpose_subsector`.`name` AS `functional_purpose_subsector`,
+                         `misc_functional_purpose_group`.`name` AS `functional_purpose_group`,
                          `applications`.`number_planning_documentation_approval`,
                          `applications`.`date_planning_documentation_approval`,
                          `applications`.`number_GPZU`,
@@ -92,6 +100,10 @@ final class ApplicationsTable{
                         ON (`applications`.`id_type_of_object`=`misc_type_of_object`.`id`)
                   LEFT JOIN (`misc_functional_purpose`)
                         ON (`applications`.`id_functional_purpose`=`misc_functional_purpose`.`id`)
+                  LEFT JOIN (`misc_functional_purpose_subsector`)
+                        ON (`applications`.`id_functional_purpose_subsector`=`misc_functional_purpose_subsector`.`id`)
+                  LEFT JOIN (`misc_functional_purpose_group`)
+                        ON (`applications`.`id_functional_purpose_group`=`misc_functional_purpose_group`.`id`)
                   LEFT JOIN (`misc_type_of_work`)
                         ON (`applications`.`id_type_of_work`=`misc_type_of_work`.`id`)
                   ";
@@ -118,7 +130,7 @@ final class ApplicationsTable{
             $expertiseSubjects = null;
         }else{
 
-            // Переносим каждуц цель из подмассива на один уровень вверх
+            // Переносим каждую цель из подмассива на один уровень вверх
             foreach($expertiseSubjects AS &$subject){
                 $subject = $subject['name'];
             }
@@ -148,7 +160,6 @@ final class ApplicationsTable{
         // Автоматическое преобразование к bool типу
         return ParametrizedQuery::getSimpleArray($query, [$id])[0];
     }
-
 
 
     // Предназначен для умного обновления заявления по его id

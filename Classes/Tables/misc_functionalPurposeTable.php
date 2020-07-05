@@ -8,22 +8,8 @@ final class misc_functionalPurposeTable implements Interface_singleMiscTableVali
     static private string $tableName = 'misc_functional_purpose';
 
     use Trait_singleMiscTableValidate;
+    // checkExistById(int $id):bool
 
-    // Предназначен для получения ассициативного массива функциональных назначений,
-    // возвращает данные по возрастанию столбца sort
-    // Возвращает параметры-----------------------------------
-    // array : функциональные назначения
-    //
-    static public function getAllActive():array {
-
-        $query = "SELECT `id`,
-                         `name`
-                  FROM `misc_functional_purpose`
-                  WHERE `is_active`=1
-                  ORDER BY `sort` ASC";
-
-        return SimpleQuery::getFetchAssoc($query);
-    }
-
-
+    use Trait_singleMiscTable;
+    // getAllActive():array
 }
