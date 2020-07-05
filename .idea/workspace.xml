@@ -3,13 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="237ecf96-8374-4d8a-bac5-b9b5ffa775cc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/create_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/defined_variables.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/defined_variables.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/create_application_dependencies.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application_dependencies.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/cards.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/cards.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/radio.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/radio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/section.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/section.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/validation.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,9 +19,7 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -32,13 +31,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IgnoredFileRootStore">
-    <option name="generatedRoots">
-      <set>
-        <option value="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\.idea" />
-      </set>
-    </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -56,12 +48,12 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -108,6 +100,7 @@
       <workItem from="1591002598456" duration="9975000" />
       <workItem from="1591160460217" duration="37085000" />
       <workItem from="1591587322406" duration="46930000" />
+      <workItem from="1593928921531" duration="12606000" />
     </task>
     <task id="LOCAL-00001" summary="2">
       <created>1590566324166</created>
@@ -193,11 +186,18 @@
       <option name="project" value="LOCAL" />
       <updated>1591697975080</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="05.07.2020">
+      <created>1593929311427</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1593929311427</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -212,7 +212,8 @@
     <MESSAGE value="08.06.2020_3" />
     <MESSAGE value="09.06.2020" />
     <MESSAGE value="09.06.2020_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="09.06.2020_1" />
+    <MESSAGE value="05.07.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="05.07.2020" />
   </component>
   <component name="WindowStateProjectService">
     <state x="791" y="333" key="#Deployment" timestamp="1586248151560">
@@ -239,9 +240,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="0" y="0" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1591612896082" />
-    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2" timestamp="1591697972921">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="800" y="155" width="734" height="809" key="CommitChangelistDialog2" timestamp="1593929308376">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
+    <state x="800" y="155" key="CommitChangelistDialog2/-1920.191.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1593929308376" />
     <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1591697972921" />
     <state x="69" y="68" width="1782" height="904" key="DiffContextDialog" timestamp="1591704598227">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -284,19 +286,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="753" y="253" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590487101329" />
-    <state x="732" y="221" width="737" height="606" key="find.popup" timestamp="1591704041472">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="976" y="298" width="983" height="816" key="find.popup" timestamp="1593948373287">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
+    <state x="976" y="298" width="983" height="816" key="find.popup/-1920.191.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1593948373287" />
     <state x="976" y="298" width="737" height="804" key="find.popup/-1920.220.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1586339762597" />
     <state x="732" y="221" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591704041472" />
-    <state x="1078" y="423" key="publish.login" timestamp="1589774269557">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="1437" y="569" key="publish.login" timestamp="1593929114168">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
+    <state x="1437" y="569" key="publish.login/-1920.191.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1593929114168" />
     <state x="1437" y="569" key="publish.login/-1920.220.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1586246823273" />
     <state x="1078" y="423" key="publish.login/0.0.1920.1040@0.0.1920.1040" timestamp="1589774269557" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1591249932428">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="831" y="303" width="896" height="913" key="search.everywhere.popup" timestamp="1593948274144">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
+    <state x="831" y="303" width="896" height="913" key="search.everywhere.popup/-1920.191.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1593948274144" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591249932428" />
   </component>
 </project>

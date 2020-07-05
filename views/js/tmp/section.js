@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       card_header.addEventListener('click', () => {
 
          // todo исправить
-         //expandCard(card);
+         expandCard(card);
          //раскрываем блок
 
          /*if (card_body.style.maxHeight) {
@@ -22,4 +22,35 @@ document.addEventListener('DOMContentLoaded', () => {
          }*/
       });
    });
+
+
+   let text_area = document.querySelector('.application-text-area');
+
+   text_area.addEventListener('mousedown', () => {
+      console.log('asd');
+      // let card_body = text_area.closest('.card-form__body');
+      // card_body.style.maxHeight = '100%';
+      changeParentCardMaxHeight(text_area, '100%');
+   });
+
+
+
+   text_area.addEventListener('mouseup', () => {
+      console.log('qwe');
+      //let card_body = text_area.closest('.card-form__body');
+      //card_body.style.maxHeight = card_body.scrollHeight + "px";
+
+      changeParentCardMaxHeight(text_area);
+   });
+
+   /*text_area.addEventListener('blur', () => {
+      console.log('zxc');
+      //let card_body = text_area.closest('.card-form__body');
+      //card_body.style.maxHeight = card_body.scrollHeight + "px";
+
+      changeParentCardMaxHeight(text_area);
+   });*/
+
+
+
 });

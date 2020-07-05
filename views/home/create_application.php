@@ -15,41 +15,41 @@
    </div>
    <div class="application-form__body">
       <div class="application-form__sidebar sidebar-form">
-         <div class="sidebar-form__row warning">
+         <div class="sidebar-form__row">
             <span class="sidebar-form__text">Сведения о проекте и цели заявления</span>
-            <i class="sidebar-form__icon fas fa-exclamation warning"></i>
+            <i class="sidebar-form__icon fas"></i>
          </div>
-         <div class="sidebar-form__row warning" data-card="purpose">
+         <div class="sidebar-form__row" data-card="purpose">
             <span class="sidebar-form__text">Сведения о цели обращения</span>
-            <i class="sidebar-form__icon fas fa-exclamation warning"></i>
+            <i class="sidebar-form__icon fas"></i>
          </div>
-         <div class="sidebar-form__row warning" data-card="object">
+         <div class="sidebar-form__row" data-card="object">
             <span class="sidebar-form__text">Сведения об объекте</span>
-            <i class="sidebar-form__icon fas fa-exclamation warning"></i>
+            <i class="sidebar-form__icon fas"></i>
          </div>
-         <div class="sidebar-form__row warning" data-card="applicant">
+         <div class="sidebar-form__row" data-card="applicant">
             <span class="sidebar-form__text">Сведения о заявителе</span>
-            <i class="sidebar-form__icon fas fa-exclamation warning"></i>
+            <i class="sidebar-form__icon fas"></i>
          </div>
-         <div class="sidebar-form__row warning">
+         <div class="sidebar-form__row">
             <span class="sidebar-form__text">Застройщик(заказчик по договору)</span>
-            <i class="sidebar-form__icon fas fa-exclamation warning"></i>
+            <i class="sidebar-form__icon fas"></i>
          </div>
-         <div class="sidebar-form__row warning">
+         <div class="sidebar-form__row">
             <span class="sidebar-form__text">Сведения об исполнителях работ</span>
-            <i class="sidebar-form__icon fas fa-exclamation warning"></i>
+            <i class="sidebar-form__icon fas"></i>
          </div>
-         <div class="sidebar-form__row warning">
+         <div class="sidebar-form__row">
             <span class="sidebar-form__text">Плательщик</span>
-            <i class="sidebar-form__icon fas fa-exclamation warning"></i>
+            <i class="sidebar-form__icon fas"></i>
          </div>
-         <div class="sidebar-form__row warning">
+         <div class="sidebar-form__row">
             <span class="sidebar-form__text">Условия предоставления услуги</span>
-            <i class="sidebar-form__icon fas fa-exclamation warning"></i>
+            <i class="sidebar-form__icon fas"></i>
          </div>
-         <div class="sidebar-form__row warning">
+         <div class="sidebar-form__row">
             <span class="sidebar-form__text">Сведения об исполнителях работ</span>
-            <i class="sidebar-form__icon fas fa-exclamation warning"></i>
+            <i class="sidebar-form__icon fas"></i>
          </div>
       </div>
       <form id="application" class="application-form__cards" action="" method="POST">
@@ -66,13 +66,14 @@
                <!--Цель обращения-->
                <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['expertise_purpose'] ?>" data-required="true">
                   <span class="body-card__title required">Цель обращения</span>
-   
+
                   <div class="body-card__value">
                      <div class="body-card__field">
                         <div class="body-card__select modal-select">
                            <span class="modal-select__value field-value">Выберите значение</span>
                            <i class="modal-select__icon fas fa-bars"></i>
                         </div>
+                        <i class="body-card__icon-clear fas fa-trash"></i>
                      </div>
                      <span class="body-card__error">Поле обязательно для заполнения</span>
                   </div>
@@ -92,7 +93,7 @@
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['expertise_purpose'] ?>">
                </div>
                <!--//Цель обращения//-->
-               
+
                <!--Предмет экспертизы-->
                <div class="body-card__row center" data-row_name="<?= _PROPERTY_IN_APPLICATION['expertise_subjects'] ?>" data-required="true">
                   <span class="body-card__title required">Предмет экспертизы</span>
@@ -106,10 +107,10 @@
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['expertise_subjects'] ?>">
                </div>
                <!--//Предмет экспертизы//-->
-               
+
                <!--Дополнительная информация-->
-               <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['additional_information'] ?>" data-required="true">
-                  <span class="body-card__title required">Дополнительная информация</span>
+               <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['additional_information'] ?>">
+                  <span class="body-card__title">Дополнительная информация</span>
                   <div class="body-card__value">
                      <div class="body-card__field">
                         <textarea class="body-card__text application-input application-text-area field-value" name="<?= _PROPERTY_IN_APPLICATION['additional_information'] ?>"></textarea>
@@ -117,6 +118,7 @@
                   </div>
                </div>
                <!--//Дополнительная информация//-->
+               <div>asd</div>
             </div>
          </div>
 
@@ -133,16 +135,16 @@
                   <span class="body-card__title required">Наименование объекта</span>
                   <div class="body-card__value">
                      <div class="body-card__field">
-                        <textarea class="body-card__text application-input application-text-area field-value" name="<?= _PROPERTY_IN_APPLICATION['object_name'] ?>"></textarea>
+                        <textarea class="body-card__text body-card__result application-input application-text-area field-value" name="<?= _PROPERTY_IN_APPLICATION['object_name'] ?>"></textarea>
                      </div>
                   </div>
                </div>
                <!--//Наименование объекта//-->
-               
+
                <!--Вид объекта-->
                <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['type_of_object'] ?>" data-required="true">
                   <span class="body-card__title required">Вид объекта</span>
-                  
+
                   <div class="body-card__value">
                      <div class="body-card__field">
                         <div class="body-card__select application-input modal-select">
@@ -153,7 +155,7 @@
                      </div>
                      <span class="body-card__error">Поле обязательно для заполнения</span>
                   </div>
-                  
+
                   <div class="modal">
                      <i class="modal__close fas fa-times"></i>
                      <div class="modal__items">
@@ -169,7 +171,7 @@
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['type_of_object'] ?>">
                </div>
                <!--//Вид объекта//-->
-               
+
                <!--Функциональное назначение-->
                <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['functional_purpose'] ?>" data-required="true">
                   <span class="body-card__title required">Функциональное назначение</span>
@@ -197,7 +199,7 @@
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['functional_purpose'] ?>">
                </div>
                <!--//Функциональное назначение//-->
-   
+
                <!--Функциональное назначение. Подотрасль-->
                <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['functional_purpose_subsector'] ?>" data-required="true">
                   <span class="body-card__title required">Функциональное назначение. Подотрасль</span>
@@ -217,7 +219,7 @@
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['functional_purpose_subsector'] ?>">
                </div>
                <!--//Функциональное назначение. Подотрасль//-->
-   
+
                <!--Функциональное назначение. Группа-->
                <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['functional_purpose_group'] ?>" data-required="true">
                   <span class="body-card__title required">Функциональное назначение. Группа</span>
@@ -237,8 +239,8 @@
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['functional_purpose_group'] ?>">
                </div>
                <!--//Функциональное назначение. Группа//-->
-               
-               
+
+
                <!--Блок производственные/непроизводственные объекты капитального строительства-->
                <!--Номер утверждения документации по планировке территории-->
                <div class="body-card__row" data-inactive="true" data-row_name="<?= _PROPERTY_IN_APPLICATION['number_planning_documentation_approval'] ?>" data-pattern="number">
@@ -260,14 +262,14 @@
                            <span class="modal-calendar__value field-value">Выберите дату</span>
                            <i class="modal-calendar__icon fas fa-calendar-alt"></i>
                         </div>
-                        <span class="body-card__error"></span>
+                        <i class="body-card__icon-clear fas fa-trash"></i>
                      </div>
                   </div>
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['date_planning_documentation_approval'] ?>">
                </div>
                <!--//Дата утверждения документации по планировке территории//-->
                <!--//Блок производственные/непроизводственные объекты капитального строительства//-->
-   
+
                <!--Блок линейные объекты капитального строительства-->
                <!--Номер ГПЗУ-->
                <div class="body-card__row" data-inactive="true" data-row_name="<?= _PROPERTY_IN_APPLICATION['number_GPZU'] ?>" data-pattern="">
@@ -296,7 +298,7 @@
                </div>
                <!--//Дата ГПЗУ//-->
                <!--//Блок линейные объекты капитального строительства//-->
-               
+
 
                <!--Вид работ-->
                <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['type_of_work'] ?>" data-required="true">
@@ -317,7 +319,7 @@
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['type_of_work'] ?>">
                </div>
                <!--//Вид работ//-->
-               
+
                <!--Кадастровый номер земельного участка-->
                <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['cadastral_number'] ?>" data-pattern="number">
                   <span class="body-card__title">Кадастровый номер земельного участка</span>
@@ -329,7 +331,7 @@
                   </div>
                </div>
                <!--//Кадастровый номер земельного участка//-->
-   
+
                <!--CHECKBOX Объект культурного наследия-->
                <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['cultural_object_type_checkbox'] ?>" data-multiple="false" data-required="true">
                   <span class="body-card__title">Объект культурного наследия</span>
@@ -350,7 +352,7 @@
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['cultural_object_type_checkbox'] ?>">
                </div>
                <!--//CHECKBOX Объект культурного наследия//-->
-   
+
                <!--Тип объекта культурного наследия-->
                <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['cultural_object_type'] ?>" data-required="true" data-inactive="true">
                   <span class="body-card__title required">Тип объекта культурного наследия</span>
@@ -378,7 +380,7 @@
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['cultural_object_type'] ?>">
                </div>
                <!--//Тип объекта культурного наследия//-->
-               
+
                <!--CHECKBOX Национальный проект-->
                <div class="body-card__row center" data-row_name="<?= _PROPERTY_IN_APPLICATION['national_project_checkbox'] ?>" data-required="true">
                   <span class="body-card__title">Национальный проект</span>
@@ -399,7 +401,7 @@
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['national_project_checkbox'] ?>">
                </div>
                <!--//CHECKBOX Национальный проект//-->
-               
+
                <!--Название национального проекта-->
                <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['national_project'] ?>" data-required="true" data-inactive="true">
                   <span class="body-card__title required">Название национального проекта</span>
@@ -427,7 +429,7 @@
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['national_project'] ?>">
                </div>
                <!--//Название национального проекта//-->
-   
+
                <!--Название федерального проекта-->
                <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['federal_project'] ?>" data-required="true" data-inactive="true">
                   <span class="body-card__title required">Название федерального проекта</span>
@@ -447,7 +449,7 @@
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['federal_project'] ?>">
                </div>
                <!--//Название федерального проекта//-->
-   
+
                <!--Дата окончания строительства-->
                <div class="body-card__row" data-inactive="true" data-row_name="<?= _PROPERTY_IN_APPLICATION['date_finish_building'] ?>" data-pattern="date">
                   <span class="body-card__title">Дата окончания строительства</span>
@@ -457,12 +459,13 @@
                            <span class="modal-calendar__value field-value">Выберите дату</span>
                            <i class="modal-calendar__icon fas fa-calendar-alt"></i>
                         </div>
+                        <i class="body-card__icon-clear fas fa-trash"></i>
                      </div>
                   </div>
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['date_finish_building'] ?>">
                </div>
                <!--//Дата окончания строительства//-->
-               
+
                <!--Куратор-->
                <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['curator'] ?>" data-required="true">
                   <span class="body-card__title required">Куратор</span>
@@ -490,7 +493,7 @@
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['curator'] ?>">
                </div>
                <!--//Куратор//-->
-               
+
             </div>
          </div>
 

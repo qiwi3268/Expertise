@@ -73,6 +73,8 @@
    min-width: 300px;
    min-height: 35px;
    padding: 0 15px;
+
+   background-color: #ffffff;
    border-left: 4px solid #ffffff;
    cursor: pointer;
 }
@@ -86,8 +88,10 @@
 }
 
 .sidebar-form__row.valid {
-   background-color: #f7fff9;
-   border-color: #f7fff9;
+   background-color: #e8ffed;
+   border-color: #e8ffed;
+   /*background-color: #f7fff9;*/
+   /*border-color: #f7fff9;*/
 }
 
 .sidebar-form__row.warning {
@@ -96,7 +100,6 @@
    border-color: #FEFAEF;
    /*background-color: #FFF9E5;*/
    /*border-color: #FFF9E5;*/
-
 }
 
 .sidebar-form__row.selected {
@@ -104,8 +107,11 @@
    border-color: #ffd354;
 }
 
+
 .sidebar-form__row.selected.sidebar-form__row.valid {
-   background-color: #eaffe7;
+   /*background-color: #eaffe7;*/
+   background-color: #ddfad9;
+
    border-color: #87c596;
 }
 
@@ -122,14 +128,17 @@
 
 .sidebar-form__icon {
    font-size: 22px;
-
+   display: none;
+   color: #87c596;
 }
 
 .sidebar-form__icon.valid {
+   display: inline-block;
    color: #87c596;
 }
 
 .sidebar-form__icon.warning {
+   display: inline-block;
    color: #ffd354;
 }
 
@@ -197,10 +206,10 @@
 
 .card-form__body {
    /**/
-   /*max-height: 0;*/
+   max-height: 0;
 
    overflow: hidden;
-   padding: 10px 0px;
+   /*padding: 10px 0px;*/
    font-family: 'Roboto Condensed', sans-serif;
    color: #343a40;
    transition: .3s;

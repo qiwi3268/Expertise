@@ -36,8 +36,8 @@ function validateModal(modal) {
       } else {
          row_value.classList.remove('invalid');
          error.classList.remove('active');
-         validateCard(row_value.closest('.card-form'));
       }
+      validateCard(row_value.closest('.card-form'));
    }
 }
 
@@ -110,11 +110,12 @@ function validateInput(input, regex, message) {
 }
 
 function validateCard(card) {
-   // let card_name = card.dataset.type;
-   // let is_valid = isValidCard(card);
-   // let sidebar_item = document.querySelector(`.sidebar-form__row[data-card=${card_name}]`);
-   //
-   // setSidebarItemState(sidebar_item, is_valid);
+   let card_name = card.dataset.type;
+   let is_valid = isValidCard(card);
+
+   let sidebar_item = document.querySelector(`.sidebar-form__row[data-card=${card_name}]`);
+
+    setSidebarItemState(sidebar_item, is_valid);
 }
 
 function isValidCard(card) {

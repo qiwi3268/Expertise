@@ -21,38 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-function expandCard(card) {
-   let card_arrow;
-   let card_body;
-   if (card) {
-      card_arrow = card.querySelector('.card-form__icon-expand');
-      card_body = card.querySelector('.card-form__body');
-
-      //переворачиваем стрелку
-      card_arrow.classList.toggle('arrow-down');
-      card_arrow.classList.toggle('arrow-up');
-
-      // let card_body = card.querySelector('.body-card');
-      // Раскрываем блок
-      // todo исправить
-      if (!card_body.style.minHeight) {
-
-
-         card_body.style.minHeight = card_body.scrollHeight + "px";
-         card_body.style.maxHeight = '100%';
-
-      } else {
-         card_body.style.minHeight = null;
-         card_body.style.maxHeight = null;
-      }
-
-      /*// Раскрываем блок
-      if (!card_body.style.maxHeight) {
-         card_body.style.maxHeight = card_body.scrollHeight + "px";
-      }*/
-   }
-}
-
 function setSidebarItemState(sidebar_item, is_valid) {
    let sidebar_icon = sidebar_item.querySelector('.sidebar-form__icon');
 
