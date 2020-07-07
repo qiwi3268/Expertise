@@ -20,6 +20,7 @@ switch(_URNNAME_){
         $pageName = 'АИС';
         $sourcesFiles = [...GetFontAwesome4Case(),
                          ...CreateSource('css', ROOT_CSS, 'entry.css'),
+                         ...CreateSource('css', TMP_CSS, 'null.css', 'main.css'),
                          ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
                          ...CreateSource('js', ROOT_JS, 'API_login.js')
                         ];

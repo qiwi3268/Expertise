@@ -39,11 +39,7 @@ function handleClearFieldButtons() {
          }
 
          validateCard(parent_row.closest('.card-form'));
-
-         // let card_body = parent_row.closest('.card-form__body');
-         // card_body.style.maxHeight = card_body.scrollHeight + "px";
          changeParentCardMaxHeight(parent_row);
-
       });
 
    });
@@ -83,10 +79,6 @@ function handleDependentRows(parent_input) {
    }
 
    handleDependentRadios(parent_input);
-
-
-   // let card_body = parent_input.closest('.card-form__body');
-   // card_body.style.maxHeight = card_body.scrollHeight + "px";
    changeParentCardMaxHeight(parent_input);
 }
 
@@ -183,34 +175,14 @@ function expandCard(card) {
       card_arrow.classList.toggle('arrow-down');
       card_arrow.classList.toggle('arrow-up');
 
-
-      //let card_body = card.querySelector('.body-card');
       // Раскрываем блок
-      // todo исправить
+      // todo плавное сужение
       if (card_body.style.maxHeight) {
-         if (card_body.style.maxHeight.includes('%')) {
-            changeParentCardMaxHeight(card_body);
-         }
          card_body.style.maxHeight = null;
       } else {
-         //card_body.style.maxHeight = card_body.scrollHeight + "px";
          changeParentCardMaxHeight(card_body);
       }
 
-
-      /*if (!card_body.style.minHeight) {
-         card_body.style.minHeight = card_body.scrollHeight + "px";
-         card_body.style.maxHeight = '100%';
-
-      } else {
-         card_body.style.minHeight = null;
-         card_body.style.maxHeight = null;
-      }*/
-
-      // Раскрываем блок
-      /*if (!card_body.style.maxHeight) {
-         card_body.style.maxHeight = card_body.scrollHeight + "px";
-      }*/
    }
 }
 
