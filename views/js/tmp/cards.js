@@ -39,7 +39,6 @@ function handleClearFieldButtons() {
          }
 
          validateCard(parent_row.closest('.card-form'));
-         changeParentCardMaxHeight(parent_row);
       });
 
    });
@@ -187,6 +186,8 @@ function expandCard(card) {
 }
 
 function changeParentCardMaxHeight(inner_element, value) {
+   console.log('asd');
+
    let card_body = inner_element.closest('.card-form__body');
 
    if (value) {

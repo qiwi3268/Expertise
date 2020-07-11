@@ -33,6 +33,7 @@ function validateModal(modal) {
       if (!modal.result_input.value) {
          row_value.classList.add('invalid');
          error.classList.add('active');
+         changeParentCardMaxHeight(row);
       } else {
          row_value.classList.remove('invalid');
          error.classList.remove('active');
@@ -101,6 +102,8 @@ function validateInput(input, regex, message) {
       } else {
          error_element.innerHTML = 'Поле обязательно для заполнения';
       }
+
+      changeParentCardMaxHeight(parent_row);
    } else {
       input.classList.remove('invalid');
       error_element.classList.remove('active');
@@ -115,7 +118,7 @@ function validateCard(card) {
 
    let sidebar_item = document.querySelector(`.sidebar-form__row[data-card=${card_name}]`);
 
-    setSidebarItemState(sidebar_item, is_valid);
+   setSidebarItemState(sidebar_item, is_valid);
 }
 
 function isValidCard(card) {

@@ -353,6 +353,7 @@
 
 .body-card__title.required:after {
    content: ' *';
+   color: #bd4949;
 }
 
 .body-card__input-error {
