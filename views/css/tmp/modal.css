@@ -45,7 +45,25 @@
 }
 
 .alert-modal {
-   min-height: 50px;
+   /*display: flex;*/
+
+   flex-direction: row;
+   align-items: center;
+   justify-content: flex-start;
+   font-family: 'Roboto Condensed', sans-serif;
+   /*min-height: 50px;*/
+}
+
+.alert-modal__icon {
+   margin: 0px 0px 0px 20px;
+   color: #bd4949;
+   font-size: 24px;
+}
+
+.alert-modal__message {
+   padding: 15px 25px 15px 15px;
+   font-size: 18px;
+   cursor: default;
 }
 
 .alert-modal.active,
@@ -100,6 +118,9 @@
 
    transition: 0.15s;
 }
+
+
+
 
 .modal__item:hover {
    background-color: #f2f2f2;

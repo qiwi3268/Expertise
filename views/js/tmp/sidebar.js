@@ -11,7 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       let related_card = document.querySelector(`.card-form[data-type='${row.dataset.card}']`);
-      expandCard(related_card);
+      let card_body = related_card.querySelector('.card-form__body');
+
+      if (!card_body.style.maxHeight) {
+         expandCard(related_card);
+      }
 
       // Выделяем элемент и добавляем линию слева
       row.classList.add('selected');

@@ -587,8 +587,8 @@
 <div class="calendar-overlay"></div>
 
 <div class="modal alert-modal">
-   <span class="alert-modal__message modal__item"></span>
-<!--   <i class="modal__close fas fa-times"></i>-->
+   <i class="alert-modal__icon fas fa-exclamation"></i>
+   <span class="alert-modal__message"></span>
 </div>
 
 <div class="calendar">
