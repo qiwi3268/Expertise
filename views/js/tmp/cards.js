@@ -30,15 +30,17 @@ function handleClearFieldButtons() {
          parent_select.classList.remove('filled');
 
          let row_value = parent_row.querySelector('.field-value');
-         row_value.innerHTML = default_value;
 
-         let related_modal = parent_row.querySelector('.modal');
+         if (row_value.innerHTML !== default_value) {
+            let related_modal = parent_row.querySelector('.modal');
+            if (related_modal) {
+               validateModal(getModalBySelect(parent_select));
+            }
 
-         if (related_modal) {
-            validateModal(getModalBySelect(parent_select));
+            validateCard(parent_row.closest('.card-form'));
+            row_value.innerHTML = default_value;
          }
 
-         validateCard(parent_row.closest('.card-form'));
       });
 
    });
@@ -186,8 +188,6 @@ function expandCard(card) {
 }
 
 function changeParentCardMaxHeight(inner_element, value) {
-   console.log('asd');
-
    let card_body = inner_element.closest('.card-form__body');
 
    if (value) {

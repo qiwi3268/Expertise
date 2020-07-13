@@ -1,4 +1,5 @@
-.modal {
+.modal,
+.alert-modal {
    opacity: 0;
    visibility: hidden;
 
@@ -9,10 +10,12 @@
    width: 100%;
    max-width: 500px;
 
-   min-height: 500px;
+   /*min-height: 500px;*/
 
    position: fixed;
-   top: 50%;
+
+   /*top: 500px;*/
+   top: 45%;
    left: 50%;
    transform: translate(-50%, -50%);
    z-index: 50;
@@ -21,7 +24,7 @@
 
    border-radius: 3px;
    box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
-   background-color: #fff;
+   background-color: #ffffff;
    transition: 0.3s all;
 }
 
@@ -47,21 +50,38 @@
 
 .alert-modal.active,
 .modal.active,
-.modal-overlay.active{
+.modal-overlay.active,
+.modal__close.active
+{
    opacity: 1;
    visibility: visible;
 }
 
-.modal__close.fas {
-   width: 15px;
-   height: 15px;
+.modal__close {
+
+   opacity: 0;
+   visibility: hidden;
+
+   /*width: 30px;*/
+   /*height: 30px;*/
    position: absolute;
-   top: 20px;
-   right: 20px;
+   /*top: -35px;*/
+   /*right: -37px;*/
+   top: -23px;
+   right: -25px;
    cursor: pointer;
    font-size: 26px;
    color: #343a40;
+   background-color: #ffffff;
+   padding: 5px 10px 5px 10px;
+   border-radius: 3px;
+   /*border: #f2f2f2 solid 1px;*/
+   box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
+   /*transition: .3s all;*/
 }
+
+
+
 
 .modal__page {
    display: none;
@@ -86,15 +106,19 @@
 }
 
 .modal__pagination {
-   margin: 15px 0px;
    display: flex;
    justify-content: center;
 }
 
 .pagination__item {
-   margin: 0px 10px;
+   padding: 20px 0px;
    align-self: center;
    cursor: pointer;
+   font-size: 18px;
+}
+
+.pagination__item.fa {
+   padding: 20px 25px;
 }
 
 .pagination__arrow-left {

@@ -13,14 +13,16 @@ document.addEventListener('DOMContentLoaded', () => {
       });
    });
 
-   let text_area = document.querySelector('.application-text-area');
+   let text_areas = document.querySelectorAll('.application-text-area');
 
-   text_area.addEventListener('mousedown', () => {
-      changeParentCardMaxHeight(text_area, '100%');
-   });
+   text_areas.forEach(text_area => {
+      text_area.addEventListener('mousedown', () => {
+         changeParentCardMaxHeight(text_area, '100%');
+      });
 
-   text_area.addEventListener('keypress', () => {
-      changeParentCardMaxHeight(text_area);
+      text_area.addEventListener('keypress', () => {
+         changeParentCardMaxHeight(text_area);
+      });
    });
 
 });

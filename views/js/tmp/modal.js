@@ -97,6 +97,8 @@ function createModalCloseButton(modal) {
    close_button.addEventListener('click', () => {
       closeModal(modal);
    });
+   close_button.classList.add('active');
+
    modal.appendChild(close_button);
 }
 
@@ -331,6 +333,8 @@ class Modal {
          this.pagination.element.style.display = 'none';
       }
 
+      this.close_button.classList.remove('active');
+
       overlay.classList.remove('active');
 
       validateModal(this);
@@ -342,6 +346,7 @@ class Modal {
       this.element.classList.add('active');
       this.active_page = this.pages[0];
       this.active_page.classList.add('active');
+      this.close_button.classList.add('active');
       overlay.classList.add('active');
    }
 

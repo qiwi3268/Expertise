@@ -352,7 +352,7 @@
 }
 
 .body-card__title.required:after {
-   content: ' *';
+   content: '*';
    color: #bd4949;
 }
 

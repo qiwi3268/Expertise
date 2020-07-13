@@ -1,20 +1,14 @@
 
 <div class="main-container">
    <div class="form-login">
-
       <div class="form-login__title">Вход в АИС Экспертиза</div>
 
-
       <form id="form" class="form-login__body" action="" method="POST">
-
-
-
          <input id="login" class="form-login__input application-input" required type="text" name="login" placeholder="Логин">
          <input id="password" class="form-login__input application-input" required type="password" name="password" placeholder="Пароль">
-
-         <div class="form-login__button application-button">
-            <input type="submit" value="Войти">
-         </div>
+<!--         <div class="form-login__button application-button">-->
+            <input class="form-login__button application-button" type="submit" value="Войти">
+<!--         </div>-->
       </form>
 
       <div id="form-login__error">

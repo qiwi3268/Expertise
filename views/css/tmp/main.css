@@ -83,5 +83,18 @@ button {
 
 
 .application-button {
+   height: 36px;
+   width: 126px;
+   border-radius: 3px;
+   /*border: #343a40 1px solid;*/
+   color: #ffffff;
+   background-color: #5181b8;
+   cursor: pointer;
+   font-family: 'Roboto Condensed', sans-serif;
+   font-size: 16px;
+   transition: background-color .15s;
+}
 
+.application-button:hover {
+   background-color: #4574AA;
 }
