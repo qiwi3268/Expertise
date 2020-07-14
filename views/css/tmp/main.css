@@ -62,7 +62,7 @@ button {
    font-size: 14px;
 }
 
-.application-text-area {
+textarea.application-input {
    min-height: 60px;
    padding: 8px;
    font-family: 'Roboto Condensed', sans-serif;
@@ -77,16 +77,10 @@ button {
    border-color: #80bdff;
 }
 
-
-
-/* Общие элементы*/
-
-
 .application-button {
    height: 36px;
    width: 126px;
    border-radius: 3px;
-   /*border: #343a40 1px solid;*/
    color: #ffffff;
    background-color: #5181b8;
    cursor: pointer;
@@ -96,5 +90,9 @@ button {
 }
 
 .application-button:hover {
-   background-color: #4574AA;
+   background-color: #4574aa;
 }
+
+/* Общие элементы*/
+
+

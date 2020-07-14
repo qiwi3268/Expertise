@@ -1,21 +1,12 @@
 .calendar {
    opacity: 0;
-   /*display: none;*/
    visibility: hidden;
 
-
-   flex-direction: column;
-   justify-content: space-between;
 
    width: 100%;
    max-width: 250px;
 
-   /*min-height: 200px;*/
-
    position: absolute;
-   /*bottom: 50px;*/
-   /*left: 390px;*/
-
    z-index: 50;
 
    padding: 10px;
@@ -44,12 +35,6 @@
 .calendar-overlay.active {
    opacity: 1;
    visibility: visible;
-}
-
-.calendar {
-   display: flex;
-   flex-direction: column;
-   justify-content: flex-start;
 }
 
 .calendar__nav {
@@ -82,7 +67,6 @@
    background-color: #cccccc;
 }
 
-
 .calendar__title {
    display: flex;
    justify-content: space-between;
@@ -108,7 +92,7 @@
 .calendar__item {
    text-align: center;
    border-radius: 3px;
-   color: #343a40;
+   /*color: #343a40;*/
    cursor: pointer;
 }
 
@@ -133,31 +117,18 @@
    background-color: #cccccc;
 }
 
-
-
 .calendar__item.selected {
    background-color: #80bdff;
    color: #343a40;
 }
 
-.modal-calendar__value {
+.body-card__value {
    flex-grow: 1;
 }
 
-.modal-calendar__icon-delete {
+.body-card__icon-delete {
    margin: 0px 15px 0px 0px;
-
 }
-
-/*.calendar__day {
-   padding: 5px 0px;
-   flex-basis: 14.2%;
-}
-
-.calendar__month {
-   padding: 10px 0px;
-   flex-basis: 25%;
-}*/
 
 
 

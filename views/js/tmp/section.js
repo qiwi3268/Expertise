@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
    });
 
-   let text_areas = document.querySelectorAll('.application-text-area');
+   let text_areas = document.querySelectorAll('textarea.application-input');
 
    text_areas.forEach(text_area => {
       text_area.addEventListener('mousedown', () => {

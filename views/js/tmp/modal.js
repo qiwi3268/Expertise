@@ -254,7 +254,7 @@ class Modal {
 
                // В поле для выбора записываем значение
                this.select.classList.add('filled');
-               this.select.querySelector('.modal-select__value').innerHTML = item.innerHTML;
+               this.select.querySelector('.body-card__value').innerHTML = item.innerHTML;
 
                // Показывает или скрывает поля, зависящие от выбранного значения
                handleDependentRows(this.result_input);
@@ -293,7 +293,7 @@ class Modal {
       let error = modal.parent_row.querySelector('.body-card__error');
       error.classList.remove('active');
 
-      let select_value = modal.select.querySelector('.modal-select__value');
+      let select_value = modal.select.querySelector('.body-card__value');
       select_value.innerHTML = 'Выберите значение';
       modals.delete(modal.name);
 

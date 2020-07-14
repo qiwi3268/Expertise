@@ -297,7 +297,7 @@
    display: inline;
 }
 
-.modal-select__icon.fa-bars {
+.body-card__icon.fa-bars {
    margin: 0px 5px 0px 0px;
 }
 
@@ -437,7 +437,7 @@
 }
 
 
-.body-card__value {
+.body-card__item {
    /*flex-grow: 1;*/
    /*align-self: center;*/
    width: 100%;
