@@ -94,15 +94,11 @@ function removeRowValue(row) {
    }
 
    let value = row.querySelector('.body-card__value');
-   if (value) {
-      value.value = '';
-      value.innerHTML = '';
-   }
 
    // Если зависимое поле - дата, удаляем отображаемую дату
-   let dependent_date = row.querySelector('.body-card__value');
+   let dependent_date = row.querySelector('.modal-calendar');
    if (dependent_date) {
-      dependent_date.innerHTML = 'Выберите дату';
+      value.innerHTML = 'Выберите дату';
    }
 }
 

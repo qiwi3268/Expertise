@@ -105,7 +105,7 @@
             <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['additional_information'] ?>" data-required="true">
                <span class="body-card__title required">Дополнительная информация</span>
                <div class="body-card__field">
-                  <textarea class="body-card__text application-text-area" name="<?= _PROPERTY_IN_APPLICATION['additional_information'] ?>"></textarea>
+                  <textarea class="body-card__text application-input" name="<?= _PROPERTY_IN_APPLICATION['additional_information'] ?>"></textarea>
                </div>
             </div>
             <!--Дополнительная информация-->
@@ -124,7 +124,7 @@
             <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['object_name'] ?>" data-required="true">
                <span class="body-card__title required">Наименование объекта</span>
                <div class="body-card__field">
-                  <textarea class="body-card__text application-text-area" name="<?= _PROPERTY_IN_APPLICATION['object_name'] ?>"></textarea>
+                  <textarea class="body-card__text application-input" name="<?= _PROPERTY_IN_APPLICATION['object_name'] ?>"></textarea>
                </div>
             </div>
             <!--Наименование объекта-->
@@ -271,90 +271,6 @@
          </div>
       </div>
 
-      <div class="application-form__card card-form" data-type="applicant">
-         <div class="card-form__header">
-                  <span class="card-form__title">
-                     СВЕДЕНИЯ О ЗАЯВИТЕЛЕ
-                  </span>
-            <i class="fas fa-chevron-down card-form__icon arrow-down"></i>
-         </div>
 
-         <div class="card-form__body body-card">
-
-
-
-
-
-
-            <div class="body-card__row" data-inactive="true" data-row_name="estimate_cost" data-pattern="cost">
-               <span class="body-card__title required">Сведения о сметной или предполагаемой (предельной) стоимости объекта капитального строительства, содержащиеся в решении по объекту или письме. тыс. руб.</span>
-               <div class="body-card__field">
-                  <input class="body-card__input body-card__result application-input" type="text" name="estimate_cost" placeholder="Введите значение">
-                  <span class="body-card__input-error">Поле обязательно для заполнения</span>
-               </div>
-            </div>
-
-
-            <div class="body-card__row" data-row_name="kpp" data-pattern="kpp">
-               <span class="body-card__title required">КПП</span>
-               <div class="body-card__field">
-                  <input class="body-card__input body-card__result application-input" type="text" name="kpp" placeholder="Введите значение" maxlength="9">
-                  <span class="body-card__error">Поле обязательно для заполнения</span>
-               </div>
-            </div>
-
-            <div class="body-card__row" data-row_name="email" data-pattern="email">
-               <span class="body-card__title required">Email</span>
-               <div class="body-card__field">
-                  <input class="body-card__input body-card__result application-input" type="text" name="email" placeholder="Введите значение">
-                  <span class="body-card__error">Поле обязательно для заполнения</span>
-               </div>
-            </div>
-
-            <div class="body-card__row" data-row_name="calendar-test" data-required="true">
-               <span class="body-card__title required">Дата</span>
-
-               <div class="body-card__field">
-                  <div class="body-card__select modal-calendar">
-                     <span class="body-card__value">Выберите дату</span>
-                     <i class="body-card__icon fas fa-calendar-alt"></i>
-                  </div>
-                  <span class="body-card__error">Поле обязательно для заполнения</span>
-               </div>
-
-               <input class="body-card__result" type="hidden" name="calendar-test">
-            </div>
-
-            <div class="body-card__row" data-row_name="calendar-test1" data-required="true">
-               <span class="body-card__title required">Дата</span>
-
-               <div class="body-card__field">
-                  <div class="body-card__select modal-calendar">
-                     <span class="body-card__value">Выберите дату</span>
-                     <i class="body-card__icon fas fa-calendar-alt"></i>
-                  </div>
-                  <span class="body-card__error">Поле обязательно для заполнения</span>
-               </div>
-
-               <input class="body-card__result" type="hidden" name="calendar-test1">
-            </div>
-
-            <div class="body-card__row" data-row_name="grbs" data-required="true" data-multiple="true" >
-               <span class="body-card__title required">Файл ГРБС</span>
-               <div class="body-card__field">
-                  <div class="body-card__select" data-modal-type="file">
-                     <span class="modal-select__title">Загрузите файл</span>
-                     <i class="body-card__icon fas fa-bars"></i>
-                  </div>
-                  <span class="body-card__error">Поле обязательно для заполнения</span>
-               </div>
-
-
-
-               <input class="body-card__result" type="hidden" name="grbs">
-            </div>
-
-         </div>
-      </div>
    </form>
 </div>

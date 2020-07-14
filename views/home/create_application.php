@@ -131,7 +131,7 @@
                   <span class="body-card__title required">Наименование объекта</span>
                   <div class="body-card__item">
                      <div class="body-card__field">
-                        <textarea class="body-card__text body-card__result application-input application-text-area" name="<?= _PROPERTY_IN_APPLICATION['object_name'] ?>"></textarea>
+                        <textarea class="body-card__text body-card__result application-input" name="<?= _PROPERTY_IN_APPLICATION['object_name'] ?>"></textarea>
                      </div>
                   </div>
                </div>
@@ -261,7 +261,7 @@
                            <span class="body-card__value">Выберите дату</span>
                            <i class="body-card__icon fas fa-calendar-alt"></i>
                         </div>
-                        <i class="body-card__icon-clear fas fa-trash"></i>
+                        <i class="body-card__icon-clear fas fa-calendar-times"></i>
                      </div>
                   </div>
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['date_planning_documentation_approval'] ?>">
@@ -462,7 +462,7 @@
                            <span class="body-card__value">Выберите дату</span>
                            <i class="body-card__icon fas fa-calendar-alt"></i>
                         </div>
-                        <i class="body-card__icon-clear fas fa-trash"></i>
+                        <i class="body-card__icon-clear fas fa-calendar-times"></i>
                      </div>
                   </div>
                   <input class="body-card__result" type="hidden" name="<?= _PROPERTY_IN_APPLICATION['date_finish_building'] ?>">

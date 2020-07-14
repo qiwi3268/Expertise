@@ -138,7 +138,7 @@
                   <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['additional_information'] ?>" data-required="true">
                      <span class="body-card__title required">Дополнительная информация</span>
                      <div class="body-card__field">
-                        <textarea class="body-card__text application-text-area" name="<?= _PROPERTY_IN_APPLICATION['additional_information'] ?>"></textarea>
+                        <textarea class="body-card__text application-input" name="<?= _PROPERTY_IN_APPLICATION['additional_information'] ?>"></textarea>
                      </div>
                   </div>
                   <!--Дополнительная информация-->
@@ -157,7 +157,7 @@
                   <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['object_name'] ?>" data-required="true">
                      <span class="body-card__title required">Наименование объекта</span>
                      <div class="body-card__field">
-                        <textarea class="body-card__text application-text-area" name="<?= _PROPERTY_IN_APPLICATION['object_name'] ?>"></textarea>
+                        <textarea class="body-card__text application-input" name="<?= _PROPERTY_IN_APPLICATION['object_name'] ?>"></textarea>
                      </div>
                   </div>
                   <!--Наименование объекта-->

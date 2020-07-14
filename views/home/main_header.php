@@ -13,8 +13,7 @@
       </div>
       <div class="header__user"><?= $variablesTV->getValue('userFIO') ?></div>
       <div class="header__links">
-          <i class="fas fa-question-circle header__icon"></i>
-          <i class="fas fa-sign-out-alt header__icon"></i>
+          <i class="header__icon fas fa-question-circle"></i>
+          <i class="header__icon fas fa-sign-out-alt"></i>
       </div>
    </header>
-   
