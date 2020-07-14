@@ -57,16 +57,13 @@
 
          <div class="application-form__card card-form" data-type="purpose">
             <div class="card-form__header">
-                <span class="card-form__title">
-                    СВЕДЕНИЯ О ЦЕЛИ ОБРАЩЕНИЯ
-                </span>
+               <span class="card-form__title">СВЕДЕНИЯ О ЦЕЛИ ОБРАЩЕНИЯ</span>
                <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
             </div>
             <div class="card-form__body body-card">
                <!--Цель обращения-->
                <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['expertise_purpose'] ?>" data-required="true">
                   <span class="body-card__title required">Цель обращения</span>
-
                   <div class="body-card__value">
                      <div class="body-card__field">
                         <div class="body-card__select modal-select">

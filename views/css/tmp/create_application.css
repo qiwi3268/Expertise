@@ -194,14 +194,6 @@
    transition: .3s;
 }
 
-/*.fa-check {
-   color: #87c596;
-}*/
-
-/*.fa-times {
-   color: #ff5151;
-}*/
-
 /* card-form =================================================================== */
 
 .card-form__body {
@@ -218,13 +210,10 @@
 .body-card__row {
    display: flex;
    margin: 0px 20px;
-   /*margin: 0px 0px 0px 20px;*/
    padding: 10px 0px;
    position: relative;
 
-   /**/
    align-items: center;
-
 }
 
 .body-card__row.center {
@@ -380,14 +369,6 @@
    font-size: 20px;
    color: #343a40;
 }
-
-
-
-/*.radio__icon.fas,
-.checkbox__icon.fas {
-   font-size: 15px;
-   color: #343a40;
-}*/
 
 .radio__item,
 .checkbox__item {

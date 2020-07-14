@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="237ecf96-8374-4d8a-bac5-b9b5ffa775cc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/sshConfigs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sshConfigs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/modal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/view_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/view_application.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/cards.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/cards.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/section.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/section.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +103,8 @@
       <workItem from="1594031698039" duration="500000" />
       <workItem from="1594136616108" duration="3069000" />
       <workItem from="1594458987067" duration="5759000" />
-      <workItem from="1594646272928" duration="8443000" />
+      <workItem from="1594646272928" duration="8452000" />
+      <workItem from="1594709315576" duration="3322000" />
     </task>
     <task id="LOCAL-00001" summary="2">
       <created>1590566324166</created>
@@ -220,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594652545262</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="13.07.2020_1">
+      <created>1594656560473</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1594656560473</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,7 +256,8 @@
     <MESSAGE value="07.07.2020" />
     <MESSAGE value="11.07.2020" />
     <MESSAGE value="13.07.2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="13.07.2020" />
+    <MESSAGE value="13.07.2020_1" />
+    <option name="LAST_COMMIT_MESSAGE" value="13.07.2020_1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="791" y="333" key="#Deployment" timestamp="1586248151560">
@@ -272,12 +285,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="0" y="0" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1591612896082" />
-    <state x="800" y="155" width="745" height="809" key="CommitChangelistDialog2" timestamp="1594652544740">
+    <state x="800" y="155" width="745" height="809" key="CommitChangelistDialog2" timestamp="1594656560074">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="800" y="155" key="CommitChangelistDialog2/-1920.191.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1594137597457" />
     <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1591697972921" />
-    <state x="800" y="155" width="745" height="809" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1594652544740" />
+    <state x="800" y="155" width="745" height="809" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1594656560074" />
     <state x="69" y="68" width="1782" height="904" key="DiffContextDialog" timestamp="1591704598227">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -319,20 +332,20 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="753" y="253" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590487101329" />
-    <state x="976" y="298" width="983" height="816" key="find.popup" timestamp="1594649672988">
+    <state x="976" y="298" width="983" height="816" key="find.popup" timestamp="1594712231098">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="976" y="298" width="983" height="816" key="find.popup/-1920.191.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1594137579191" />
     <state x="976" y="298" width="737" height="804" key="find.popup/-1920.220.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1586339762597" />
     <state x="732" y="221" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591704041472" />
-    <state x="976" y="298" width="983" height="816" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1594649672988" />
-    <state x="1437" y="569" key="publish.login" timestamp="1594646726608">
+    <state x="976" y="298" width="983" height="816" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1594712231098" />
+    <state x="1437" y="569" key="publish.login" timestamp="1594709461435">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1437" y="569" key="publish.login/-1920.191.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1594136931442" />
     <state x="1437" y="569" key="publish.login/-1920.220.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1586246823273" />
     <state x="1078" y="423" key="publish.login/0.0.1920.1040@0.0.1920.1040" timestamp="1589774269557" />
-    <state x="1437" y="569" key="publish.login/0.0.2560.1400@0.0.2560.1400" timestamp="1594646726608" />
+    <state x="1437" y="569" key="publish.login/0.0.2560.1400@0.0.2560.1400" timestamp="1594709461435" />
     <state x="936" y="330" key="run.anything.popup" timestamp="1594032050026">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
