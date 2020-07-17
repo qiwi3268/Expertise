@@ -10,10 +10,10 @@
 .form-login {
     text-align: center;
     align-self: center;
-    margin: 100px 0px 0px 0px;
     width: 500px;
-    background-color: #ffffff;
+    margin: 100px 0px 0px 0px;
     border-radius: 4px;
+    background-color: #ffffff;
     box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
 }
 
