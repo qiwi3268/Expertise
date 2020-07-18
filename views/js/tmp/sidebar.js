@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let related_card = document.querySelector(`.card-form[data-type='${row.dataset.card}']`);
       let card_body = related_card.querySelector('.card-form__body');
 
+      // Раскрываем связанный блок, если он не раскрыт
       if (!card_body.style.maxHeight) {
          expandCard(related_card);
       }
@@ -21,10 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
       row.classList.add('selected');
    }));
 
-
-
 });
 
+
+// Предназначен для изменения стиля элемента сайдбара, в зависимости от состояния блока анкеты
+// Принимает параметры-------------------------------
+// sidebar_item      Element : элемент сайдбара
+// is_valid          boolean : заполнен ли блок анкеты
 function setSidebarItemState(sidebar_item, is_valid) {
    let sidebar_icon = sidebar_item.querySelector('.sidebar-form__icon');
 

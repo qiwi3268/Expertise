@@ -129,7 +129,6 @@ function changeSelectedItem(radio_item) {
 // Возвращает параметры------------------------------
 // result             JSON : json с id выбранных элементов
 function getRadioResult(radio_body, multiple) {
-    // let value;
     let result = [];
     let selected_items = radio_body.querySelectorAll('.selected');
 
@@ -137,14 +136,5 @@ function getRadioResult(radio_body, multiple) {
         result.push(item.dataset.id)
     });
 
-    /*if (multiple) {
-        value = JSON.stringify(result);
-    } else if (result.length !== 0) {
-        value = result[0];
-    } else {
-        value = 0;
-    }*/
-
     return multiple ? JSON.stringify(result) : result[0];
-    // return value;
 }

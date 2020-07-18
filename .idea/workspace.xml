@@ -4,12 +4,10 @@
     <list default="true" id="237ecf96-8374-4d8a-bac5-b9b5ffa775cc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/sshConfigs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sshConfigs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/entry.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/entry.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/calendar.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/calendar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/modal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/radio.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/radio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/section.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/section.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/validation.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +103,8 @@
       <workItem from="1594458987067" duration="5759000" />
       <workItem from="1594646272928" duration="8452000" />
       <workItem from="1594709315576" duration="11899000" />
-      <workItem from="1594997541237" duration="1964000" />
+      <workItem from="1594997541237" duration="2282000" />
+      <workItem from="1595039793214" duration="868000" />
     </task>
     <task id="LOCAL-00001" summary="2">
       <created>1590566324166</created>
@@ -254,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594723304353</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="17.07.2020">
+      <created>1594999518142</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1594999518142</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,7 +288,8 @@
     <MESSAGE value="14.07.2020" />
     <MESSAGE value="14.07.2020_1" />
     <MESSAGE value="14.07.2020_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="14.07.2020_2" />
+    <MESSAGE value="17.07.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="17.07.2020" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#JavaScript" timestamp="1590487649353">
@@ -302,11 +309,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="0" y="0" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1591612896082" />
-    <state x="800" y="155" width="745" height="809" key="CommitChangelistDialog2" timestamp="1594723303987">
+    <state x="800" y="155" width="745" height="809" key="CommitChangelistDialog2" timestamp="1594999517641">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="800" y="155" key="CommitChangelistDialog2/-1920.191.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1594137597457" />
     <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1591697972921" />
+    <state x="800" y="155" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1594999517641" />
     <state x="800" y="155" width="745" height="809" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1594723303987" />
     <state x="69" y="68" width="1782" height="904" key="DiffContextDialog" timestamp="1591704598227">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -348,12 +356,12 @@
     <state x="976" y="298" width="983" height="816" key="find.popup/-1920.191.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1594137579191" />
     <state x="732" y="221" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591704041472" />
     <state x="976" y="298" width="983" height="816" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1594721796361" />
-    <state x="1437" y="569" key="publish.login" timestamp="1594997611366">
+    <state x="1437" y="569" key="publish.login" timestamp="1595039808328">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1437" y="569" key="publish.login/-1920.191.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1594136931442" />
     <state x="1078" y="423" key="publish.login/0.0.1920.1040@0.0.1920.1040" timestamp="1589774269557" />
-    <state x="1437" y="569" key="publish.login/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1594997611366" />
+    <state x="1437" y="569" key="publish.login/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1595039808328" />
     <state x="1437" y="569" key="publish.login/0.0.2560.1400@0.0.2560.1400" timestamp="1594709461435" />
     <state x="936" y="330" key="run.anything.popup" timestamp="1594997954801">
       <screen x="0" y="0" width="2560" height="1400" />
