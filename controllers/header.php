@@ -18,8 +18,9 @@ switch(_URNNAME_){
 
     case '':
         $pageName = 'АИС';
-        $sourcesFiles = [...CreateSource('css', ROOT_CSS, 'entry.css'),
-                         ...GetFontAwesome4Case(),
+        $sourcesFiles = [...GetFontAwesome4Case(),
+                         ...CreateSource('css', ROOT_CSS, 'entry.css'),
+                         ...CreateSource('css', TMP_CSS, 'null.css', 'main.css'),
                          ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
                          ...CreateSource('js', ROOT_JS, 'API_login.js')
                         ];
@@ -27,23 +28,23 @@ switch(_URNNAME_){
 
     case 'home/create_application' :
         $pageName = 'АИС';
-        $sourcesFiles = [...CreateSource('css', ROOT_CSS, 'entry.css'),
+        $sourcesFiles = [...GetFontAwesome5Case(),
+                         ...CreateSource('css', ROOT_CSS, 'entry.css'),
                          ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'modal.css', 'calendar.css'),
                          ...CreateSource('css', TMP_CSS, 'create_application.css'),
-                         ...GetFontAwesome5Case(),
                          ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
                          ...CreateSource('js', TMP_JS, 'sidebar.js', 'section.js', 'validation.js', 'cards.js',
                             'modal.js', 'calendar.js', 'radio.js', 'checkbox.js', 'save_application.js', 'test.js')
                         ];
         break;
-   
+
     case 'home/application/view' :
        $pageName = 'АИС';
-       $sourcesFiles = [...CreateSource('css', ROOT_CSS, 'entry.css'),
-          ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css',
-           'footer.css'),
-          ...CreateSource('css', TMP_CSS, 'create_application.css', 'view_application.css'),
-          ...GetFontAwesome5Case()
+       $sourcesFiles = [...GetFontAwesome5Case(),
+                        ...CreateSource('css', ROOT_CSS, 'entry.css'),
+                        ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css'),
+                        ...CreateSource('css', TMP_CSS, 'create_application.css', 'view_application.css'),
+                        ...CreateSource('js', TMP_JS, 'section.js')
        ];
        break;
 
@@ -51,7 +52,7 @@ switch(_URNNAME_){
         $pageName = 'Загрузка файлов на сервер';
         $sourcesFiles = [...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
                          ...CreateSource('js', TMP_JS, 'file_download.js')
-                        ];
+        ];
         break;
 }
 

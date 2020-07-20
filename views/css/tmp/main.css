@@ -50,23 +50,19 @@ button {
 }
 
 .application-input {
-   /*padding: 12px;*/
    padding: 10px 12px;
+   font-family: 'Roboto Condensed', sans-serif;
+   font-size: 14px;
+   font-weight: 400;
    border: 1px solid #cccccc;
    border-radius: 4px;
    color: #343a40;
    transition: .10s;
-
-   font-family: 'Roboto Condensed', sans-serif;
-   font-weight: 400;
-   font-size: 14px;
 }
 
-.application-text-area {
+textarea.application-input {
    min-height: 60px;
    padding: 8px;
-   font-family: 'Roboto Condensed', sans-serif;
-   font-size: 14px;
    resize: vertical;
    transition: box-shadow .10s;
 }
@@ -77,5 +73,22 @@ button {
    border-color: #80bdff;
 }
 
+.application-button {
+   width: 126px;
+   height: 36px;
+   font-family: 'Roboto Condensed', sans-serif;
+   font-size: 16px;
+   border-radius: 3px;
+   background-color: #5181b8;
+   color: #ffffff;
+   cursor: pointer;
+   transition: background-color .15s;
+}
+
+.application-button:hover {
+   background-color: #4574aa;
+}
+
 /* Общие элементы*/
+
 

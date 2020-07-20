@@ -3,13 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="237ecf96-8374-4d8a-bac5-b9b5ffa775cc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/create_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/defined_variables.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/defined_variables.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/create_application_dependencies.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application_dependencies.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/cards.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/cards.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/radio.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/radio.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +100,9 @@
       <workItem from="1590485542535" duration="16474000" />
       <workItem from="1591002598456" duration="9975000" />
       <workItem from="1591160460217" duration="37085000" />
-      <workItem from="1591587322406" duration="46930000" />
+      <workItem from="1591587322406" duration="47087000" />
+      <workItem from="1593925051919" duration="2029000" />
+      <workItem from="1595215737948" duration="186000" />
     </task>
     <task id="LOCAL-00001" summary="2">
       <created>1590566324166</created>
@@ -193,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591697975080</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="09.06.2020_2">
+      <created>1591705849468</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1591705849468</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,7 +214,8 @@
     <MESSAGE value="08.06.2020_3" />
     <MESSAGE value="09.06.2020" />
     <MESSAGE value="09.06.2020_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="09.06.2020_1" />
+    <MESSAGE value="09.06.2020_2" />
+    <option name="LAST_COMMIT_MESSAGE" value="09.06.2020_2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="791" y="333" key="#Deployment" timestamp="1586248151560">
@@ -239,10 +242,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="0" y="0" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1591612896082" />
-    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2" timestamp="1591697972921">
+    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2" timestamp="1591705847926">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1591697972921" />
+    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1591705847926" />
     <state x="69" y="68" width="1782" height="904" key="DiffContextDialog" timestamp="1591704598227">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

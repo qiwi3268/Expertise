@@ -123,7 +123,7 @@ $variablesTV->setValue('functionalPurposeGroups', json_encode(ApplicationHelper:
 $variablesTV->setValue('federalProjects', json_encode(ApplicationHelper::getPaginationDependentMisc($federalProjects, $paginationSize)));
 
 
-var_dump(ApplicationHelper::getPaginationDependentMisc($federalProjects, $paginationSize));
+var_dump($variablesTV->getValue('federalProjects'));
 
 
 

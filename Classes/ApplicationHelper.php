@@ -42,6 +42,16 @@ class ApplicationHelper{
         return false;
     }
 
+    static public function getPaginationDependentMisc(array $dependentMisc, int $paginationSize):array {
+
+        foreach($dependentMisc as &$misc){
+            $misc = array_chunk($misc, $paginationSize);
+        }
+        unset($misc);
+
+        return  $dependentMisc;
+    }
+
 
 
 

@@ -29,6 +29,8 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
                    _PROPERTY_IN_APPLICATION['object_name'],
                    _PROPERTY_IN_APPLICATION['type_of_object'],
                    _PROPERTY_IN_APPLICATION['functional_purpose'],
+                   _PROPERTY_IN_APPLICATION['functional_purpose_subsector'],
+                   _PROPERTY_IN_APPLICATION['functional_purpose_group'],
                    _PROPERTY_IN_APPLICATION['number_planning_documentation_approval'],
                    _PROPERTY_IN_APPLICATION['date_planning_documentation_approval'],
                    _PROPERTY_IN_APPLICATION['number_GPZU'],
@@ -45,6 +47,8 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     /** @var string $P_object_name                             Наименование объекта */
     /** @var string $P_type_of_object                          Вид объекта */
     /** @var string $P_functional_purpose                      Функциональное назначение */
+    /** @var string $P_functional_purpose_subsector            Функциональное назначение. Подотрасль */
+    /** @var string $P_functional_purpose_group                Функциональное назначение. Группа */
     /** @var string $P_number_planning_documentation_approval  Номер утверждения документации по планировке территории */
     /** @var string $P_date_planning_documentation_approval    Дата утверждения документации по планировке территории */
     /** @var string $P_number_GPZU                             Номер ГПЗУ */
@@ -251,6 +255,81 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     }
 
 
+    // Проверка Функциональное назначение. Подотрасль ------------------------------------------
+    //
+    if($P_functional_purpose_subsector !== ''){
+
+        if(!functional_purpose_exist){
+            exit(json_encode(['result'        => 7,
+                              'error_message' => 'Функциональное назначение. Подотрасль не может быть заполнена при невыбранном Функциональном назначении'
+            ]));
+        }
+
+        $functionalPurposeSubsectorValidateResult = $formHandler->validateDependentMisc($form_functionalPurposeID,
+                                                                                        $P_functional_purpose_subsector,
+                                                                             'misc_functionalPurposeSubsectorTable');
+
+        if($functionalPurposeSubsectorValidateResult['error']){
+
+            switch($functionalPurposeSubsectorValidateResult['error_code']){
+                case 1: // Передано некорректное значение зависимого справочника
+                    exit(json_encode(['result'        => 4,
+                                      'error_message' => 'Передано некорректное значение Функциональное назначение. Подотрасль'
+                    ]));
+                case 2: // Запрашиваемая в форме зависимость не существует
+                    exit(json_encode(['result'        => 5,
+                                      'error_message' => 'Запрашиваемый справочник Функциональное назначение. Подотрасль не существует'
+                    ]));
+            }
+        }
+
+        // int'овое значение из формы
+        $form_functionalPurposeSubsectorID = $functionalPurposeSubsectorValidateResult['int_formValueDependent'];
+
+        define('functional_purpose_subsector_exist', true);
+    }else{
+
+        define('functional_purpose_subsector_exist', false);
+    }
+
+
+    // Проверка Функциональное назначение. Группа ----------------------------------------------
+    //
+    if($P_functional_purpose_group !== ''){
+
+        if(!functional_purpose_subsector_exist){
+            exit(json_encode(['result'        => 7,
+                              'error_message' => 'Функциональное назначение. Группа не может быть заполнена при невыбранной Функциональном назначении. Подотрасль'
+            ]));
+        }
+
+        $functionalPurposeGroupValidateResult = $formHandler->validateDependentMisc($form_functionalPurposeSubsectorID,
+                                                                                    $P_functional_purpose_group,
+                                                                         'misc_functionalPurposeGroupTable');
+
+        if($functionalPurposeGroupValidateResult['error']){
+
+            switch($functionalPurposeGroupValidateResult['error_code']){
+                case 1: // Передано некорректное значение зависимого справочника
+                    exit(json_encode(['result'        => 4,
+                        'error_message' => 'Передано некорректное значение Функциональное назначение. Группа'
+                    ]));
+                case 2: // Запрашиваемая в форме зависимость не существует
+                    exit(json_encode(['result'        => 5,
+                                     'error_message' => 'Запрашиваемый справочник Функциональное назначение. Группа не существует'
+                    ]));
+            }
+        }
+
+        // int'овое значение из формы
+        $form_functionalPurposeGroupID = $functionalPurposeGroupValidateResult['int_formValueDependent'];
+
+        define('functional_purpose_group_exist', true);
+    }else{
+
+        define('functional_purpose_group_exist', false);
+    }
+
 
     // Проверка блока Номера и Даты ------------------------------------------------------------
     //
@@ -343,18 +422,22 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     // Зона сохранения заявления в БД
     //
     // Имеет bool константы:
-    // 1 - expertise_purpose_exist   : передана Цель обращения
-    // 2 - expertise_subjects_exist  : передан(ы) Предметы экспертизы
-    // 3 - type_of_object_exist      : передан Вид объекта
-    // 4 - functional_purpose_exist  : передано Функциональное назначение
-    // 5 - type_of_work_exist        : передан Вид работ
+    // 1 - expertise_purpose_exist            : передана Цель обращения
+    // 2 - expertise_subjects_exist           : передан(ы) Предметы экспертизы
+    // 3 - type_of_object_exist               : передан Вид объекта
+    // 4 - functional_purpose_exist           : передано Функциональное назначение
+    // 5 - functional_purpose_subsector_exist : передано Функциональное назначение. Подотрасль
+    // 6 - functional_purpose_group_exist     : передано Функциональное назначение. Группа
+    // 7 - type_of_work_exist                 : передан Вид работ
     //
     // Если константы true, то определены:
-    // 1 - form_expertisePurposeID          int : id выбранной Цели обращения
-    // 2 - form_expertiseSubjects array[int...] : массив с выбранными предметами (int) экспертизы
-    // 3 - form_typeOfObjectID              int : id выбранного Вида объекта
-    // 4 - form_functionalPurposeID         int : id выбранного Функционального назначение
-    // 5 - form_typeOfWorkID                int : id выбранного Вида работ
+    // 1 - form_expertisePurposeID           int : id выбранной Цели обращения
+    // 2 - form_expertiseSubjects  array[int...] : массив с выбранными предметами (int) экспертизы
+    // 3 - form_typeOfObjectID               int : id выбранного Вида объекта
+    // 4 - form_functionalPurposeID          int : id выбранного Функционального назначение
+    // 5 - form_functionalPurposeSubsectorID int : id выбранного Функциональное назначение. Подотрасль
+    // 6 - form_functionalPurposeGroupID     int : id выбранного Функциональное назначение. Группа
+    // 7 - form_typeOfWorkID                 int : id выбранного Вида работ
     //
     // -----------------------------------------------------------------------------------------------------------------
 
@@ -419,6 +502,22 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     // Функциональное назначение (справочник, нельзя сбросить) ----------------------------------
     if(functional_purpose_exist && $form_functionalPurposeID !== $applicationAssoc[_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose']]){
         $dataToUpdate[_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose']] = $form_functionalPurposeID;
+    }
+
+
+    // Функциональное назначение. Подотрасль (справочник, можно сбросить) -----------------------
+    if(functional_purpose_subsector_exist){
+        $formHandler->addValueToUpdate($form_functionalPurposeSubsectorID, _COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose_subsector'], $dataToUpdate);
+    }else{
+        $formHandler->addValueToUpdate('', _COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose_subsector'], $dataToUpdate);
+    }
+
+
+    // Функциональное назначение. Группа (справочник, можно сбросить) ---------------------------
+    if(functional_purpose_group_exist){
+        $formHandler->addValueToUpdate($form_functionalPurposeGroupID, _COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose_group'], $dataToUpdate);
+    }else{
+        $formHandler->addValueToUpdate('', _COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose_group'], $dataToUpdate);
     }
 
 

@@ -29,12 +29,20 @@ function handleClearFieldButtons() {
          let parent_select = parent_row.querySelector('.body-card__select');
          parent_select.classList.remove('filled');
 
-         let row_value = parent_row.querySelector('.field-value');
-         row_value.innerHTML = default_value;
+         let row_value = parent_row.querySelector('.body-card__value');
+
+         if (row_value.innerHTML !== default_value) {
+            let related_modal = parent_row.querySelector('.modal');
+            if (related_modal) {
+               validateModal(getModalBySelect(parent_select));
+            }
+
+            validateCard(parent_row.closest('.card-form'));
+            row_value.innerHTML = default_value;
+         }
+
       });
-
    });
-
 }
 
 // Предназначен для добавления или удаления блоков, зависящих от значения поля на входе
@@ -70,6 +78,7 @@ function handleDependentRows(parent_input) {
    }
 
    handleDependentRadios(parent_input);
+   changeParentCardMaxHeight(parent_input);
 }
 
 // Предназначен для удаления значении в поле
@@ -84,16 +93,12 @@ function removeRowValue(row) {
       select.classList.remove('filled');
    }
 
-   let value = row.querySelector('.field-value');
-   if (value) {
-      value.value = '';
-      value.innerHTML = '';
-   }
+   let value = row.querySelector('.body-card__value');
 
    // Если зависимое поле - дата, удаляем отображаемую дату
-   let dependent_date = row.querySelector('.modal-calendar__value');
+   let dependent_date = row.querySelector('.modal-calendar');
    if (dependent_date) {
-      dependent_date.innerHTML = 'Выберите дату';
+      value.innerHTML = 'Выберите дату';
    }
 }
 
@@ -153,6 +158,8 @@ function hideDependentRows(parent_input) {
       }
    }
 }
+
+
 
 
 

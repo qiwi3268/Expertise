@@ -5,7 +5,7 @@ return [
 
     '' => [
         'controllers' 	 => ['header', 'entry'],
-        'views'          => ['header', 'entry']
+        'views'          => ['header', 'entry'],
     ],
 
 

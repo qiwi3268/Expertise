@@ -8,22 +8,10 @@ final class misc_expertisePurposeTable implements Interface_singleMiscTableValid
     static private string $tableName = 'misc_expertise_purpose';
 
     use Trait_singleMiscTableValidate;
+    // checkExistById(int $id):bool
 
-    // Предназначен для получения ассициативного массива целей обращения,
-    // возвращает данные по возрастанию столбца sort
-    // Возвращает параметры-----------------------------------
-    // array : цели экспертизы
-    //
-    static public function getAllActive():array {
-
-        $query = "SELECT `id`,
-                         `name`
-                  FROM `misc_expertise_purpose`
-                  WHERE `is_active`=1
-                  ORDER BY `sort` ASC";
-
-        return SimpleQuery::getFetchAssoc($query);
-    }
+    use Trait_singleMiscTable;
+    // getAllActive():array
 
     // Предназначен для получения ассициативного массива цели обращения по её id
     // Возвращает параметры-----------------------------------

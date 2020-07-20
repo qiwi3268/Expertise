@@ -113,7 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       constructor(select) {
          this.select = select;
-         this.select_value = this.select.querySelector('.modal-calendar__value');
+
+         console.log(this.select);
+
+         this.select_value = this.select.querySelector('.body-card__value');
+
+         console.log(this.select_value);
 
          this.parent_row = this.select.closest('.body-card__row');
 
@@ -147,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // select         Element : родительское поле
       // result_input   Element : поле с выбранной датой
       clear(select, result_input) {
-         let select_value = select.querySelector('.modal-calendar__value');
+         let select_value = select.querySelector('.body-card__value');
 
          calendar.current_date = result_input.value ? getDateFromString(result_input.value) : new Date();
          calendar.select = select;

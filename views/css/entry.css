@@ -4,5 +4,39 @@
 }
 
 .font-test{
-    font-family: 'PT_Sans_Narrow';
+    font-family: 'PT_Sans_Narrow', sans-serif;;
 }
+
+.form-login {
+    text-align: center;
+    align-self: center;
+    width: 500px;
+    margin: 100px 0px 0px 0px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+}
+
+.form-login__title {
+    margin: 20px 0px;
+    font-size: 22px;
+}
+
+.form-login__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-login__input {
+    margin: 0px 0px 10px 0px;
+}
+
+.form-login__button {
+    margin: 0px 0px 20px 0px;
+}
+
+.form-login__error {
+    display: none;
+}
+

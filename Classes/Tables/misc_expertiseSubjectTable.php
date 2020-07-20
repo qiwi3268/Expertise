@@ -5,73 +5,22 @@
 //
 final class misc_expertiseSubjectTable implements Interface_dependentMiscTableValidate{
 
-    // Имя таблицы корреляции с главным справочником (Целью обращения)
+    // Имя таблицы корреляции с главным справочником (Цель обращения)
     static private string $CORRtableName = 'misc_expertise_subject_FOR_expertise_purpose';
 
     use Trait_dependentMiscTableValidate;
+    // checkExistCORRByIds(int $id_main, int $id_dependent):bool
 
-    // Предназначен для получения ассициативного массива предметов экспертизы,
-    // возвращает данные по возрастанию столбца sort
-    // Возвращает параметры-----------------------------------
-    // array : цели экспертизы
-    //
-    // todo не используется
-    static public function getAllActive():array {
-
-        $query = "SELECT `id`,
-                         `name`
-                  FROM `misc_expertise_subject`
-                  WHERE `is_active`=1
-                  ORDER BY `sort` ASC";
-
-        return SimpleQuery::getFetchAssoc($query);
-    }
-
-
-    // Предназначен для получения массива предметов экспертизы, упакованных по id-целей обращений
-    // т.е. к каждой цели обращения есть массив с предметами экспертизы, которые ей соответствуют
-    // возвращает данные по возрастанию столбца sort
-    // Принимает параметры
-    // expertisePurposes array : цели обращений, с id которых формируется условие IN
-    // Возвращает параметры-----------------------------------
-    // array : предметы экспертизы
+    // Предназначен для получения ассоциативного массива предметов экспертизы, упакованных по id-целей обращений
     //
     static public function getActive_CORR_ExpertisePurpose(array $expertisePurposes):array {
 
-        // Генерируем состав оператора IN по id целей обращений
-        $purposesIds = [];
-        foreach($expertisePurposes as ['id' => $id]){
-            $purposesIds[] = $id;
-        }
-        $condition = implode(',', $purposesIds);
-
-        // corr - таблица корреляции
-        $query = "SELECT `misc_expertise_purpose`.`id` AS `id_ep`,
-                         `misc_expertise_subject`.`id`,
-                         `misc_expertise_subject`.`name`
-                  FROM (SELECT *
-                        FROM `misc_expertise_subject_FOR_expertise_purpose` AS `misc`
-                        WHERE `misc`.`id_main` IN ($condition)) AS `corr`
-
-                  LEFT JOIN `misc_expertise_purpose`
-                         ON (`corr`.`id_main`=`misc_expertise_purpose`.`id`)
-                  LEFT JOIN `misc_expertise_subject`
-                         ON (`corr`.`id_dependent`=`misc_expertise_subject`.`id`)
-
-                  WHERE `misc_expertise_subject`.`is_active`=1
-                  ORDER BY `misc_expertise_subject`.`sort` ASC";
-
-        $result = SimpleQuery::getFetchAssoc($query);
-
-        // Укладываем виды работ по целям обращений
-        $arr = [];
-        foreach($result as ['id_ep' => $id_ep, 'id' => $id, 'name' => $name]){
-
-            $arr[$id_ep][] = ['id' => $id, 'name' => $name];
-        }
-
-        return $arr;
+        return TableUtils::getActiveDependent_CORR_mainAssoc($expertisePurposes,
+                                                             self::$CORRtableName,
+                                              'misc_expertise_purpose',
+                                          'misc_expertise_subject');
     }
+
 
     // Предназначен для получения ассициативного массива предмета экспертизы по еего id
     // Возвращает параметры-----------------------------------

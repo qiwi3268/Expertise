@@ -86,6 +86,28 @@ if(!is_null($functionalPurpose)){
 }
 
 
+// Функциональное назначение. Подотрасль ------------------------------------------
+//
+$functionalPurposeSubsector = $applicationAssoc[_PROPERTY_IN_APPLICATION['functional_purpose_subsector']];
+if(!is_null($functionalPurposeSubsector)){
+    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['functional_purpose_subsector'], true);
+    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['functional_purpose_subsector'], $functionalPurposeSubsector);
+}else{
+    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['functional_purpose_subsector'], false);
+}
+
+
+// Функциональное назначение. Группа ----------------------------------------------
+//
+$functionalPurposeGroup = $applicationAssoc[_PROPERTY_IN_APPLICATION['functional_purpose_group']];
+if(!is_null($functionalPurposeGroup)){
+    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['functional_purpose_group'], true);
+    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['functional_purpose_group'], $functionalPurposeGroup);
+}else{
+    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['functional_purpose_group'], false);
+}
+
+
 // Номер утверждения документации по планировке территории ------------------------
 //
 $numberPlanningDocumentationApproval = $applicationAssoc[_PROPERTY_IN_APPLICATION['number_planning_documentation_approval']];

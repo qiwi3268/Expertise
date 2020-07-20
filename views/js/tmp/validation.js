@@ -33,11 +33,12 @@ function validateModal(modal) {
       if (!modal.result_input.value) {
          row_value.classList.add('invalid');
          error.classList.add('active');
+         changeParentCardMaxHeight(row);
       } else {
          row_value.classList.remove('invalid');
          error.classList.remove('active');
-         validateCard(row_value.closest('.card-form'));
       }
+      validateCard(row_value.closest('.card-form'));
    }
 }
 
@@ -101,6 +102,8 @@ function validateInput(input, regex, message) {
       } else {
          error_element.innerHTML = 'Поле обязательно для заполнения';
       }
+
+      changeParentCardMaxHeight(parent_row);
    } else {
       input.classList.remove('invalid');
       error_element.classList.remove('active');
@@ -109,24 +112,38 @@ function validateInput(input, regex, message) {
 
 }
 
+
+// Предназначен для валидации блока анкеты и отображения состояния в связанном элементе сайдбара
+// Принимает параметры-------------------------------
+// card         Element : блок для валидации
 function validateCard(card) {
-   // let card_name = card.dataset.type;
-   // let is_valid = isValidCard(card);
-   // let sidebar_item = document.querySelector(`.sidebar-form__row[data-card=${card_name}]`);
-   //
-   // setSidebarItemState(sidebar_item, is_valid);
+   let card_name = card.dataset.type;
+   let is_valid = isValidCard(card);
+
+   let sidebar_item = document.querySelector(`.sidebar-form__row[data-card=${card_name}]`);
+
+   // Отображаем состояние проверки в связанном элементе сайдбара
+   setSidebarItemState(sidebar_item, is_valid);
 }
 
+
+// Предназначен для валидации блока анкеты и отображения состояния в связанном элементе сайдбара
+// Принимает параметры-------------------------------
+// card         Element : блок для валидации
+// Возвращает параметры------------------------------
+// is_valid     boolean : заполнен ли блок
 function isValidCard(card) {
    let required_rows = card.querySelectorAll('[data-required="true"]');
+   let row_value;
 
-   for (let i = 0; i < required_rows.length; i++) {
-      let row_value = required_rows[i].querySelector('.body-card__result');
+   // Для всех обязательных полей, проверяем наличие значений
+   required_rows.forEach(row => {
+      row_value = row.querySelector('.body-card__result');
 
       if (!row_value.value) {
          return false;
       }
-   }
+   });
 
    return true;
 }
