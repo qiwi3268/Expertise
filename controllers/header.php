@@ -14,7 +14,7 @@ $sourcesFiles = [];
 // Название страницы
 $pageName = '';
 
-switch(_URNNAME_){
+switch(_URN_){
 
     case '':
         $pageName = 'АИС';

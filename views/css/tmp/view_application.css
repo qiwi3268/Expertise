@@ -38,6 +38,14 @@
     border-color: #ffd354;
 }
 
+.sidebar-hierarchy__section {
+    /*min-height: 50px;*/
+}
+
+.sidebar-hierarchy__item[data-level='1'] {
+    padding: 10px 10px 10px 20px;
+}
+
 .body-card__item {
     display: flex;
     align-items: center;

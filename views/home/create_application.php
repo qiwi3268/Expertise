@@ -54,7 +54,7 @@
     </div>
     <form id="application" class="application-form__cards" action="" method="POST">
         <input type="hidden" value="<?= $variablesTV->getValue('applicationId') ?>"
-               name="<?= _PROPERTY_IN_APPLICATION['application_id'] ?>">
+               name="<?= _PROPERTY_IN_APPLICATION['id_application'] ?>">
         
         <div class="application-form__card card-form" data-type="purpose">
             <div class="card-form__header">
