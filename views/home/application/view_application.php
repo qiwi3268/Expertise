@@ -1,3 +1,5 @@
+<?php $variablesTV = VariableTransfer::getInstance(); ?>
+
 <div class="application-form__header header-form">
    <div class="header-form__title">Заявление</div>
 </div>
@@ -24,7 +26,7 @@
 
 
 
-   <div class="application-form__cards required">
+   <div class="application-form__cards">
       <div class="application-form__card card-form" data-type="purpose">
          <div class="card-form__header">
             <?php if($variablesTV->getValue('block1_completed')): ?>
@@ -36,7 +38,7 @@
             <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
          </div>
 
-         <div class="card-form__body body-card">
+         <div class="card-form__body body-card expanded">
 
             <!--Цель обращения-->
             <div class="body-card__row">
@@ -48,10 +50,11 @@
                      <?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['expertise_purpose']) ?>
                   <?php else: ?>
                      <i class="body-card__icon fas fa-exclamation-circle"></i>
-                     <span class="body-card__text">Не выбрана</span>
+                     <span class="body-card__input">Не выбрана</span>
                   <?php endif; ?>
                </span>
             </div>
+            <!--//Цель обращения//-->
 
             <!--Предмет экспертизы-->
             <div class="body-card__row center">
@@ -70,10 +73,11 @@
                   <?php else: ?>
                      <div class="body-card__item">
                         <i class="body-card__icon fas fa-exclamation-circle"></i>
-                        <span class="body-card__text">Не выбран</span>
+                        <span class="body-card__input">Не выбран</span>
                      </div>
                   <?php endif; ?>
             </div>
+            <!--//Предмет экспертизы//-->
 
             <!--Дополнительная информация-->
             <?php if($variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['additional_information'])): ?>
@@ -82,6 +86,7 @@
                   <span class="body-card__item"><?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['additional_information']) ?></span>
                </div>
             <?php endif; ?>
+            <!--//Дополнительная информация//-->
          </div>
       </div>
 
@@ -95,7 +100,7 @@
             <span class="card-form__title">СВЕДЕНИЯ ОБ ОБЪЕКТЕ</span>
             <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
          </div>
-         <div class="card-form__body body-card">
+         <div class="card-form__body body-card expanded">
 
             <!--Наименование объекта-->
             <div class="body-card__row">
@@ -105,25 +110,27 @@
                      <?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['object_name']) ?>
                   <?php else: ?>
                      <i class="body-card__icon fas fa-exclamation-circle"></i>
-                     <span class="body-card__text">Не указано</span>
+                     <span class="body-card__input">Не указано</span>
                   <?php endif; ?>
                </span>
             </div>
+            <!--//Наименование объекта//-->
 
             <!--Вид объекта-->
-             <div class="body-card__row">
-                 <div class="body-card__title">
-                     <span class="body-card__title-text">Вид объекта</span>
-                 </div>
-                 <span class="body-card__item">
+            <div class="body-card__row">
+               <div class="body-card__title">
+                  <span class="body-card__title-text">Вид объекта</span>
+               </div>
+               <span class="body-card__item">
                   <?php if($variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['type_of_object'])): ?>
-                      <?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['type_of_object']) ?>
+                     <?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['type_of_object']) ?>
                   <?php else: ?>
-                      <i class="body-card__icon fas fa-exclamation-circle"></i>
-                      <span class="body-card__text">Не выбран</span>
+                     <i class="body-card__icon fas fa-exclamation-circle"></i>
+                     <span class="body-card__input">Не выбран</span>
                   <?php endif; ?>
                </span>
-             </div>
+            </div>
+            <!--//Вид объекта//-->
 
             <!--Функциональное назначение-->
             <div class="body-card__row">
@@ -133,10 +140,11 @@
                      <?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['functional_purpose']) ?>
                   <?php else: ?>
                      <i class="body-card__icon fas fa-exclamation-circle"></i>
-                     <span class="body-card__text">Не выбрано</span>
+                     <span class="body-card__input">Не выбрано</span>
                   <?php endif; ?>
                </span>
             </div>
+            <!--//Функциональное назначение//-->
 
             <!--Функциональное назначение. Подотрасль-->
             <div class="body-card__row">
@@ -146,10 +154,11 @@
                      <?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['functional_purpose_subsector']) ?>
                   <?php else: ?>
                      <i class="body-card__icon fas fa-exclamation-circle"></i>
-                     <span class="body-card__text">Не выбрано</span>
+                     <span class="body-card__input">Не выбрано</span>
                   <?php endif; ?>
                </span>
             </div>
+            <!--//Функциональное назначение. Подотрасль//-->
 
             <!--Функциональное назначение. Группа-->
             <div class="body-card__row">
@@ -159,13 +168,13 @@
                      <?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['functional_purpose_group']) ?>
                   <?php else: ?>
                      <i class="body-card__icon fas fa-exclamation-circle"></i>
-                     <span class="body-card__text">Не выбрано</span>
+                     <span class="body-card__input">Не выбрано</span>
                   <?php endif; ?>
                </span>
             </div>
-
-
-            <!----Производственные/непроизводственные объекты капитального строительства---->
+            <!--//Функциональное назначение. Группа//-->
+   
+            <!--Блок производственные/непроизводственные объекты капитального строительства-->
 
             <!--Номер утверждения документации по планировке территории-->
             <?php if($variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['number_planning_documentation_approval'])): ?>
@@ -174,6 +183,7 @@
                   <span class="body-card__item"><?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['number_planning_documentation_approval']) ?></span>
                </div>
             <?php endif; ?>
+            <!--//Номер утверждения документации по планировке территории//-->
 
             <!--Дата утверждения документации по планировке территории-->
             <?php if($variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['date_planning_documentation_approval'])): ?>
@@ -182,9 +192,10 @@
                   <span class="body-card__item"><?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['date_planning_documentation_approval']) ?></span>
                </div>
             <?php endif; ?>
-
-
-            <!----Линейные объекты капитального строительства---->
+            <!--//Дата утверждения документации по планировке территории//-->
+            <!--//Блок производственные/непроизводственные объекты капитального строительства//-->
+   
+            <!--Блок линейные объекты капитального строительства-->
             <!--Номер ГПЗУ-->
             <?php if($variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['number_GPZU'])): ?>
                <div class="body-card__row">
@@ -192,6 +203,7 @@
                   <span class="body-card__item"><?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['number_GPZU']) ?></span>
                </div>
             <?php endif; ?>
+            <!--//Номер ГПЗУ//-->
 
             <!--Дата ГПЗУ-->
             <?php if($variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['date_GPZU'])): ?>
@@ -200,7 +212,9 @@
                   <span class="body-card__item"><?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['date_GPZU']) ?></span>
                </div>
             <?php endif; ?>
-
+            <!--//Дата ГПЗУ//-->
+            <!--//Блок линейные объекты капитального строительства//-->
+            
             <!--Вид работ-->
             <div class="body-card__row">
                <span class="body-card__title">Вид работ</span>
@@ -209,10 +223,11 @@
                      <?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['type_of_work']) ?>
                   <?php else: ?>
                      <i class="body-card__icon fas fa-exclamation-circle"></i>
-                     <span class="body-card__text">Не выбран</span>
+                     <span class="body-card__input">Не выбран</span>
                   <?php endif; ?>
                </span>
             </div>
+            <!--//Вид работ//-->
 
             <!--Кадастровый номер земельного участка-->
             <?php if($variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['cadastral_number'])): ?>
@@ -221,22 +236,8 @@
                   <span class="body-card__item"><?= $variablesTV->getValue(_PROPERTY_IN_APPLICATION['cadastral_number']) ?></span>
                </div>
             <?php endif; ?>
+            <!--//Кадастровый номер земельного участка//-->
+
          </div>
       </div>
    </div>
-
-   <div class="sidebar-actions">
-      <div class="sidebar-actions__section">
-         <div class="sidebar-actions__item" data-level="0">Редактировать</div>
-      </div>
-      <div class="sidebar-actions__section">
-         <div class="sidebar-actions__item" data-level="0">Передать на экспертизу</div>
-      </div>
-      <div class="sidebar-actions__section">
-         <div class="sidebar-actions__item" data-level="0">Редактировать</div>
-      </div>
-      <div class="sidebar-actions__section">
-         <div class="sidebar-actions__item" data-level="0">Редактировать</div>
-      </div>
-   </div>
-</div>

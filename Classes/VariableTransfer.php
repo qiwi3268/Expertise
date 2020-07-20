@@ -23,15 +23,19 @@ class VariableTransfer{
         $this->isHardMode = true;
     }
 
-    // Прдназначен для получения сущности класса
+
+    // Предназначен для получения сущности класса
+    // Возвращает параметры----------------------------------
+    // VariableTransfer : сущность класса
     //
     static public function getInstance():VariableTransfer {
 
         if(empty(self::$instance)){
-            self::$instance = new VariableTransfer();
+            self::$instance = new self();
         }
         return self::$instance;
     }
+
 
     // Предназначен для установки жесткого режима работы
     //
@@ -39,11 +43,13 @@ class VariableTransfer{
         $this->isHardMode = true;
     }
 
+
     // Предназначен для установки мягкого режима работы
     //
     public function setSoftMode():void {
         $this->isHardMode = false;
     }
+
 
     // Предназначен для проверки существования ключа в указанном массиве при жестком режиме работы
     // Принимает параметры-----------------------------------
@@ -66,6 +72,7 @@ class VariableTransfer{
         $this->checkIssetVariable($this->existenceFlags, $key);
         return $this->existenceFlags[$key] ?? null;
     }
+
 
     // Блок установки/получения значений
     //

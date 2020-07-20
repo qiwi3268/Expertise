@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (input) {
          let pattern = row.dataset.pattern;
+         let is_required = row.dataset.required;
 
          input.addEventListener('keyup', () => {
             validateRow(input, pattern);
@@ -14,6 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
          input.addEventListener('blur', () => {
             validateRow(input, pattern);
+
+            if (is_required === 'true') {
+               validateCard(input.closest('.card-form'));
+            }
          });
       }
 
@@ -85,11 +90,7 @@ function validateInput(input, regex, message) {
    let parent_row = input.closest('.body-card__row');
    let error_element = parent_row.querySelector('.body-card__error');
 
-   let is_required;
-   if (parent_row) {
-      is_required = parent_row.dataset.required;
-   }
-
+   let is_required = parent_row.dataset.required === 'true';
    let is_invalid = !value.match(regex) && (is_required || value);
 
    if (is_invalid) {
@@ -107,7 +108,6 @@ function validateInput(input, regex, message) {
    } else {
       input.classList.remove('invalid');
       error_element.classList.remove('active');
-      validateCard(input.closest('.card-form'));
    }
 
 }
@@ -135,16 +135,19 @@ function validateCard(card) {
 function isValidCard(card) {
    let required_rows = card.querySelectorAll('[data-required="true"]');
    let row_value;
+   let is_valid = true;
 
    // Для всех обязательных полей, проверяем наличие значений
    required_rows.forEach(row => {
-      row_value = row.querySelector('.body-card__result');
+      if (row.dataset.inactive !== 'true') {
+         row_value = row.querySelector('.body-card__result');
 
-      if (!row_value.value) {
-         return false;
+         if (!row_value.value) {
+            is_valid = false;
+         }
       }
    });
 
-   return true;
+   return is_valid;
 }
 
