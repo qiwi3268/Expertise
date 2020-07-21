@@ -79,6 +79,7 @@ final class ApplicationsTable{
     // Предназначен для получения ассоциативного массива заявления по его id для просмотра заявления
     static public function getAssocByIdForView(int $id):?array {
         $query = "SELECT `applications`.`id`,
+                         `applications`.`numerical_name`,
                          `misc_expertise_purpose`.`name` AS `expertise_purpose`,
                          `applications`.`additional_information`,
                          `applications`.`object_name`,
@@ -142,6 +143,77 @@ final class ApplicationsTable{
 
         return $result;
     }
+    
+    
+    
+    // Предназначен для получения ассоциативного массива заявления по его id для редактирования заявления
+    static public function getAssocByIdForEdit(int $id):?array {
+        $query = "SELECT `applications`.`id`,
+                         `applications`.`numerical_name`,
+                         `applications`.`id_expertise_purpose`,
+                         `misc_expertise_purpose`.`name` AS `expertise_purpose`,
+                         `applications`.`additional_information`,
+                         `applications`.`object_name`,
+                         `applications`.`id_type_of_object`,
+                         `misc_type_of_object`.`name` AS `type_of_object`,
+                         `applications`.`id_functional_purpose`,
+                         `misc_functional_purpose`.`name` AS `functional_purpose`,
+                         `applications`.`id_functional_purpose_subsector`,
+                         `misc_functional_purpose_subsector`.`name` AS `functional_purpose_subsector`,
+                         `applications`.`id_functional_purpose_group`,
+                         `misc_functional_purpose_group`.`name` AS `functional_purpose_group`,
+                         `applications`.`number_planning_documentation_approval`,
+                         `applications`.`date_planning_documentation_approval`,
+                         `applications`.`number_GPZU`,
+                         `applications`.`date_GPZU`,
+                         `misc_type_of_work`.`name` AS `type_of_work`,
+                         `applications`.`cadastral_number`
+                  FROM (SELECT * FROM `applications`
+                        WHERE `applications`.`id`=?) AS `applications`
+                  LEFT JOIN (`misc_expertise_purpose`)
+                        ON (`applications`.`id_expertise_purpose`=`misc_expertise_purpose`.`id`)
+                  LEFT JOIN (`misc_type_of_object`)
+                        ON (`applications`.`id_type_of_object`=`misc_type_of_object`.`id`)
+                  LEFT JOIN (`misc_functional_purpose`)
+                        ON (`applications`.`id_functional_purpose`=`misc_functional_purpose`.`id`)
+                  LEFT JOIN (`misc_functional_purpose_subsector`)
+                        ON (`applications`.`id_functional_purpose_subsector`=`misc_functional_purpose_subsector`.`id`)
+                  LEFT JOIN (`misc_functional_purpose_group`)
+                        ON (`applications`.`id_functional_purpose_group`=`misc_functional_purpose_group`.`id`)
+                  LEFT JOIN (`misc_type_of_work`)
+                        ON (`applications`.`id_type_of_work`=`misc_type_of_work`.`id`)
+                  ";
+        
+        $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
+        
+        if(empty($result)){
+            return null;
+        }
+        $result = $result[0];
+        
+        // Предметы экспертизы
+        $queryExpertiseSubjects = "SELECT `misc_expertise_subject`.`id`,
+                                          `misc_expertise_subject`.`name`
+                                   FROM (SELECT * FROM `expertise_subject`
+                                         WHERE `id_application`=?) AS `expertise_subject`
+                                   LEFT JOIN `misc_expertise_subject`
+                                         ON (`expertise_subject`.`id_expertise_subject`=`misc_expertise_subject`.`id`)
+                                   ORDER BY `misc_expertise_subject`.`sort` ASC";
+        
+        $expertiseSubjects = ParametrizedQuery::getFetchAssoc($queryExpertiseSubjects, [$id]);
+        
+        if(empty($expertiseSubjects)){
+            
+            $expertiseSubjects = null;
+        }
+        
+        $result['expertise_subjects'] = $expertiseSubjects;
+        
+        return $result;
+    }
+    
+    
+    
 
 
     // Предназначен для проверки существования заявления по его id

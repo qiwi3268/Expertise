@@ -2,8 +2,8 @@
 
 // API предназначен для сохранения анкеты заявления
 //
-//API result:
-//	1  - Нет обязательных параметров POST запроса
+// API result:
+//  1  - Нет обязательных параметров POST запроса
 //       {result, error_message : текст ошибки}
 //	2  - У заявителя отсутствуют права на сохранение заявления
 //       {result, error_message : текст ошибки}
@@ -22,7 +22,7 @@
 //       {result, error_message : текст ошибки}
 
 
-if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
+if(checkParamsPOST(_PROPERTY_IN_APPLICATION['id_application'],
                    _PROPERTY_IN_APPLICATION['expertise_purpose'],
                    _PROPERTY_IN_APPLICATION['expertise_subjects'],
                    _PROPERTY_IN_APPLICATION['additional_information'],
@@ -40,7 +40,7 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
 )){
 
 
-    /** @var string $P_application_id                          id-заявления */
+    /** @var string $P_id_application                          id-заявления */
     /** @var string $P_expertise_purpose                       Цель обращения */
     /** @var string $P_expertise_subjects                      Предмет(ы) экспертизы */
     /** @var string $P_additional_information                  Доплнительная информация */
@@ -64,7 +64,7 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     //
 
     // Преобразуем значение из формы явно к типу int
-    $form_applicationID = (int)$P_application_id;
+    $form_applicationID = (int)$P_id_application;
 
     // Проверка на доступ к заявлению и его существование
     $applicationAssoc = ApplicationsTable::getFlatAssocById($form_applicationID);
@@ -97,7 +97,7 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['application_id'],
     }
 
     // Объект класса-обработчика
-    $formHandler = new ApplicationFormHandler($applicationAssoc);
+    $formHandler = new SaveHandler($applicationAssoc);
 
 
     // Проверка Цели обращения -----------------------------------------------------------------

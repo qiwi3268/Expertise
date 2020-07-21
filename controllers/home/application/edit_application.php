@@ -5,13 +5,13 @@ $variablesTV = VariableTransfer::getInstance();
 
 $applicationId = $_GET[_PROPERTY_IN_APPLICATION['id_application']];
 
-$applicationAssoc = ApplicationsTable::getAssocByIdForView($applicationId);
+$applicationAssoc = ApplicationsTable::getAssocByIdForEdit($applicationId);
 
 $appNumName = $applicationAssoc[_COLUMN_NAME_IN_APPLICATIONS_TABLE['numerical_name']];
 
 $variablesTV->setValue('applicationNumericalName', "ЗАЯВЛЕНИЕ НА ЭКСПЕРТИЗУ $appNumName");
 
-
+$variablesTV->setValue('applicationId', $applicationId);
 
 
 // -----------------------------------------------------------------------------------------------------------------
@@ -25,6 +25,7 @@ $expertisePurpose = $applicationAssoc[_PROPERTY_IN_APPLICATION['expertise_purpos
 if(!is_null($expertisePurpose)){
     $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['expertise_purpose'], true);
     $variablesTV->setValue(_PROPERTY_IN_APPLICATION['expertise_purpose'], $expertisePurpose);
+    $variablesTV->setValue(_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_expertise_purpose'], $applicationAssoc[_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_expertise_purpose']]);
 }else{
     $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['expertise_purpose'], false);
 }
@@ -34,11 +35,23 @@ if(!is_null($expertisePurpose)){
 //
 $expertiseSubjects = $applicationAssoc[_PROPERTY_IN_APPLICATION['expertise_subjects']];
 if(!is_null($expertiseSubjects)){
+    
+    // Выносим name и id из подмассивов
+    $tmpIds = [];
+    $tmpNames = [];
+    
+    foreach($expertiseSubjects as ['id' => $id, 'name' => $name]){
+        $tmpIds[] = $id;
+        $tmpNames[] = $name;
+    }
+    
     $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['expertise_subjects'], true);
-    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['expertise_subjects'], $expertiseSubjects);
+    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['expertise_subjects'], $tmpNames);
+    $variablesTV->setValue(_COLUMN_NAME_IN_APPLICATIONS_TABLE['JSON_id_expertise_subjects'], json_encode($tmpIds));
 }else{
     $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['expertise_subjects'], false);
 }
+
 
 
 // Дополнительная инфформация -----------------------------------------------------
@@ -69,6 +82,7 @@ $typeOfObject = $applicationAssoc[_PROPERTY_IN_APPLICATION['type_of_object']];
 if(!is_null($typeOfObject)){
     $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['type_of_object'], true);
     $variablesTV->setValue(_PROPERTY_IN_APPLICATION['type_of_object'], $typeOfObject);
+    $variablesTV->setValue(_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_type_of_object'], $applicationAssoc[_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_type_of_object']]);
 }else{
     $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['type_of_object'], false);
 }
@@ -80,6 +94,7 @@ $functionalPurpose = $applicationAssoc[_PROPERTY_IN_APPLICATION['functional_purp
 if(!is_null($functionalPurpose)){
     $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['functional_purpose'], true);
     $variablesTV->setValue(_PROPERTY_IN_APPLICATION['functional_purpose'], $functionalPurpose);
+    $variablesTV->setValue(_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose'], $applicationAssoc[_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose']]);
 }else{
     $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['functional_purpose'], false);
 }
@@ -91,6 +106,7 @@ $functionalPurposeSubsector = $applicationAssoc[_PROPERTY_IN_APPLICATION['functi
 if(!is_null($functionalPurposeSubsector)){
     $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['functional_purpose_subsector'], true);
     $variablesTV->setValue(_PROPERTY_IN_APPLICATION['functional_purpose_subsector'], $functionalPurposeSubsector);
+    $variablesTV->setValue(_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose_subsector'], $applicationAssoc[_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose_subsector']]);
 }else{
     $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['functional_purpose_subsector'], false);
 }
@@ -102,6 +118,7 @@ $functionalPurposeGroup = $applicationAssoc[_PROPERTY_IN_APPLICATION['functional
 if(!is_null($functionalPurposeGroup)){
     $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['functional_purpose_group'], true);
     $variablesTV->setValue(_PROPERTY_IN_APPLICATION['functional_purpose_group'], $functionalPurposeGroup);
+    $variablesTV->setValue(_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose_group'], $applicationAssoc[_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose_group']]);
 }else{
     $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['functional_purpose_group'], false);
 }
@@ -155,10 +172,10 @@ if(!is_null($dateGPZU)){
 //
 $typeOfWork = $applicationAssoc[_PROPERTY_IN_APPLICATION['type_of_work']];
 if(!is_null($typeOfWork)){
-   $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['type_of_work'], true);
-   $variablesTV->setValue(_PROPERTY_IN_APPLICATION['type_of_work'], $typeOfWork);
+    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['type_of_work'], true);
+    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['type_of_work'], $typeOfWork);
 }else{
-   $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['type_of_work'], false);
+    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['type_of_work'], false);
 }
 
 
@@ -166,8 +183,12 @@ if(!is_null($typeOfWork)){
 //
 $cadastralNumber = $applicationAssoc[_PROPERTY_IN_APPLICATION['cadastral_number']];
 if(!is_null($cadastralNumber)){
-   $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['cadastral_number'], true);
-   $variablesTV->setValue(_PROPERTY_IN_APPLICATION['cadastral_number'], $cadastralNumber);
+    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['cadastral_number'], true);
+    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['cadastral_number'], $cadastralNumber);
 }else{
-   $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['cadastral_number'], false);
+    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['cadastral_number'], false);
 }
+
+
+
+// Реорганизация справочников

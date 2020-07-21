@@ -12,27 +12,33 @@ define('_APPLICATIONS_FILES_', '/var/www/applications_files');  // Директ�
 
 // Обозначения ролей в соответствии с `code_role`.`system_value`
 define('_ROLE', ['APP'     => 'APP',     // Заявитель
-                  'ADM'     => 'ADM',     // Администратор
-                  'EXP'     => 'EXP',     // Эксперт
-                  'EMP_EXP' => 'EMP_EXP', // EMP_EXP
-                  'EMP_EST' => 'EMP_EST', // Сотрудник сметного отдела
-                  'EMP_PTO' => 'EMP_PTO', // Сотрудник производственно-технического отдела
-                  'EMP_PKR' => 'EMP_PKR', // Сотрудник отдела правовой и кадровой работы
-                  'EMP_BUH' => 'EMP_BUH', // Сотрудник бухгалтерии
-                  'EMP_RKS' => 'EMP_RKS', // Сотрудник отдела развития, контроля, сопровождения
-                  'ZAM'     => 'ZAM',     // Заместитель руководителя учреждения
-                  'BOSS'    => 'BOSS',    // Руководитель учреждения
-                  'REPORT'  => 'REPORT'   // Формирование отчетов
-                  ]);
+                 'ADM'     => 'ADM',     // Администратор
+                 'EXP'     => 'EXP',     // Эксперт
+                 'EMP_EXP' => 'EMP_EXP', // EMP_EXP
+                 'EMP_EST' => 'EMP_EST', // Сотрудник сметного отдела
+                 'EMP_PTO' => 'EMP_PTO', // Сотрудник производственно-технического отдела
+                 'EMP_PKR' => 'EMP_PKR', // Сотрудник отдела правовой и кадровой работы
+                 'EMP_BUH' => 'EMP_BUH', // Сотрудник бухгалтерии
+                 'EMP_RKS' => 'EMP_RKS', // Сотрудник отдела развития, контроля, сопровождения
+                 'ZAM'     => 'ZAM',     // Заместитель руководителя учреждения
+                 'BOSS'    => 'BOSS',    // Руководитель учреждения
+                 'REPORT'  => 'REPORT'   // Формирование отчетов
+]);
+
+
+// Обозначения типов документов
+define('_DOCUMENT_TYPE', ['application' => 'application',    // Заявление
+                          'contract'    => 'contract'        // Договор
+]);
 
 
 // Обозначения ролей в заявлении
 define('_ROLE_IN_APPLICATION', ['AUTHOR' => 'AUTHOR' // Автор заявления
 
-                               ]);
+]);
 
 // Имена полей в форме заявления
-define('_PROPERTY_IN_APPLICATION', ['application_id'                         => 'application_id',                         // id заявления
+define('_PROPERTY_IN_APPLICATION', ['id_application'                         => 'id_application',                         // id заявления
                                     'expertise_purpose'                      => 'expertise_purpose',                      // Цель обращения
                                     'expertise_subjects'                     => 'expertise_subjects',                     // Предмет экспертизы
                                     'additional_information'                 => 'additional_information',                 // Дополнительная информация
@@ -54,7 +60,7 @@ define('_PROPERTY_IN_APPLICATION', ['application_id'                         => 
                                     'federal_project'                        => 'federal_project',                        // Федеральный проект
                                     'date_finish_building'                   => 'date_finish_building',                   // Дата окончания строительства
                                     'curator'                                => 'curator'                                 // Куратор
-                                   ]);
+]);
 
 // Имена столбцов в таблице applications
 define('_COLUMN_NAME_IN_APPLICATIONS_TABLE', ['id'                                     => 'id',                                     // id заявления
@@ -62,6 +68,7 @@ define('_COLUMN_NAME_IN_APPLICATIONS_TABLE', ['id'                              
                                               'id_author'                              => 'id_author',                              // id автора
                                               'numerical_name'                         => 'numerical_name',                         // Численное имя
                                               'id_expertise_purpose'                   => 'id_expertise_purpose',                   // id цели экспертизы
+                                              'JSON_id_expertise_subjects'             => 'JSON_id_expertise_subjects',             // JSON с id предметами заявления
                                               'additional_information'                 => 'additional_information',                 // Дополнительная информация
                                               'object_name'                            => 'object_name',                            // Наименование объекта
                                               'id_type_of_object'                      => 'id_type_of_object',                      // Вид объекта
@@ -79,7 +86,7 @@ define('_COLUMN_NAME_IN_APPLICATIONS_TABLE', ['id'                              
                                               'id_federal_project'                     => 'id_federal_project',                     // Федеральный проект
                                               'date_finish_building'                   => 'date_finish_building',                   //Дата окончания строительства
                                               'date_creation'                          => 'date_creation'                           // Дата создания заявления
-                                              ]);
+]);
 
 
 

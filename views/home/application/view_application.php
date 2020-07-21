@@ -1,14 +1,17 @@
 <?php $variablesTV = VariableTransfer::getInstance(); ?>
 
 <div class="application-form__header header-form">
-    <div class="header-form__title">Заявление</div>
+    <div class="header-form__title"><?= $variablesTV->getValue('applicationNumericalName') ?></div>
 </div>
 
 
 <div class="application-form__body">
     <div class="sidebar-hierarchy">
         <div class="sidebar-hierarchy__section">
-            <div class="sidebar-hierarchy__item" data-level="0">Заявление</div>
+            <div class="sidebar-hierarchy__item" data-level="0">
+                <i class="sidebar-hierarchy__icon fas fa-caret-right"></i>
+                <div>Заявление</div>
+            </div>
             <div class="sidebar-hierarchy__item" data-level="1">Договор</div>
         </div>
         <div class="sidebar-hierarchy__section">
@@ -57,7 +60,7 @@
                 <div class="body-card__row center">
                     <span class="body-card__title">Предмет экспертизы</span>
                     <?php if ($variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['expertise_subjects'])): ?>
-                        <div class="body-card__field radio">
+                        <div class="body-card__value radio">
                             <div class="radio__body">
                                 <?php foreach ($variablesTV->getValue(_PROPERTY_IN_APPLICATION['expertise_subjects']) as $subject): ?>
                                     <div class="radio__item">

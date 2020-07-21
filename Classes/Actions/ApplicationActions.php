@@ -26,11 +26,11 @@ class ApplicationActions extends Actions{
     // -----------------------------------------------------------------------------------------
 
     protected function test1():bool {
-        return false;
+        return true;
     }
 
     protected function test2():bool {
-        return false;
+        return true;
     }
 
     protected function test3():bool {
@@ -38,6 +38,6 @@ class ApplicationActions extends Actions{
     }
 
     protected function test4():bool {
-        return false;
+        return true;
     }
 }

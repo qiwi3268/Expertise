@@ -1,7 +1,7 @@
 <?php
 
 
-// exception, связанный с ошибками при работе класса ApplicationFormHandler
+// exception, связанный с ошибками при работе класса SaveHandler
 //
 class ApplicationFormHandlerException extends Exception{
 

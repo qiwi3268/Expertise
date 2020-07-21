@@ -72,7 +72,6 @@
                                 <span class="body-card__value">Выберите значение</span>
                                 <i class="body-card__icon fas fa-bars"></i>
                             </div>
-                            <i class="body-card__icon-clear fas fa-trash"></i>
                         </div>
                         <span class="body-card__error">Поле обязательно для заполнения</span>
                     </div>

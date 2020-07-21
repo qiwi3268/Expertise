@@ -9,13 +9,13 @@ $URIMessage = 'Ваш запрос: '.$_SERVER['REQUEST_URI'].'</br>';
 
 
 
-if(!checkParamsGET('id_application', 'fs_name', 'file_name')){
+if(!checkParamsGET(_PROPERTY_IN_APPLICATION['id_application'], 'fs_name', 'file_name')){
 
     $message = '<h1>ОШИБКА. Нет обязательных параметров GET запроса</h1><br/>';
     $message .= $URIMessage;
     $message .= '<h3>Результаты проверок параметров на существование:</h3><br/>';
 
-    $isset = isset($_GET['id_application']);
+    $isset = isset($_GET[_PROPERTY_IN_APPLICATION['id_application']]);
     $isset_string = $isset ? 'true' : '<strong>false</strong>';
     $message .= 'Существование id_application = '.$isset_string.'<br/>';
     if($isset) $message .= 'Значение id_application = '.$_GET['id_application'].'<br/>';

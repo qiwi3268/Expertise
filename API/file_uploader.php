@@ -43,7 +43,7 @@
 
 
 // Проверка наличия обязательных параметров
-if(!checkParamsPOST('id_application', 'mapping_level_1', 'mapping_level_2')){
+if(!checkParamsPOST(_PROPERTY_IN_APPLICATION['id_application'], 'mapping_level_1', 'mapping_level_2')){
     exit_missingParamsPOST();
 
 // Проверка наличия параметра id_structure_node для 2-го уровня _FILE_TABLE_MAPPING

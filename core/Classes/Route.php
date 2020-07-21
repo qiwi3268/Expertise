@@ -254,17 +254,30 @@ final class Route{
                 $calcFilePath = function(array $property):string {
                     return _ROOT_.$property[0];
                 };
+                
+            }elseif($routeUnit[0] === '/'){                         // Множественные абсолютные файлы
+    
+                $tmpStrPos =  mb_strpos($routeUnit, '%');
+                
+                if($tmpStrPos !== false){
+                    $routeUnit = mb_substr($routeUnit, 0, $tmpStrPos);
+                }
+    
+                $calcFilePath = function(array $property):string {
+                    return _ROOT_."{$property[1]}{$property[0]}.php";
+                };
+                
             }elseif(mb_strpos($routeUnit, 'ROOT') !== false){
 
                 $calcFilePath = function(array $property):string {
                     $fileFolder = str_replace('ROOT', '', $property[1]);
-                    return _ROOT_.'/'.$fileFolder.'/'.$property[0].'.php';
+                    return _ROOT_."/{$fileFolder}/{$property[0]}.php";
                 };
             }else{
 
                 $calcFilePath = function(array $property):string {
                     $separator = empty($this->dir) ? '' : '/';
-                    return _ROOT_.'/'.$property[1].$separator.$this->dir.'/'.$property[0].'.php';
+                    return _ROOT_."/{$property[1]}{$separator}{$this->dir}/{$property[0]}.php";
                 };
             }
 
