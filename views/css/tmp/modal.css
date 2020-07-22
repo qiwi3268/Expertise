@@ -1,5 +1,7 @@
 .modal,
-.alert-modal {
+.alert-modal,
+.modal.file-modal
+{
    visibility: hidden;
    opacity: 0;
    display: flex;
@@ -18,7 +20,10 @@
    transition: 0.3s all;
 }
 
-.modal-overlay {
+
+.modal-overlay,
+.file-overlay
+{
    visibility: hidden;
    opacity: 0;
    position: fixed;
@@ -53,7 +58,9 @@
 .alert-modal.active,
 .modal.active,
 .modal-overlay.active,
-.modal__close.active
+.file-overlay.active,
+.modal__close.active,
+.modal.file-modal.active
 {
    visibility: visible;
    opacity: 1;
@@ -112,6 +119,79 @@
 .pagination__arrow-left {
    visibility: hidden;
 }
+
+.modal[data-type='file'] {
+   min-height: 300px;
+}
+
+
+
+
+
+/* tmp========================================= */
+.modal.file-modal {
+   min-height: 300px;
+   font-family: 'Roboto Condensed', sans-serif;
+}
+
+.file-modal__drop-area {
+
+   border: #ffffff 1px solid;
+   flex-grow: 1;
+   margin: 10px;
+}
+
+.file-modal__drop-area.active {
+
+   border: #343a40 1px dashed;
+   border-radius: 3px;
+}
+
+.file-modal__header {
+   display: flex;
+   align-items: center;
+}
+
+.file-modal__title {
+   margin: 5px;
+   font-size: 20px;
+
+}
+
+.file-modal__icon {
+   font-size: 20px;
+   margin: 0px 0px 0px 10px;
+   cursor: pointer;
+}
+
+.file-modal__item {
+   margin: 10px 0px;
+}
+
+.file-modal__body {
+
+}
+
+.file-modal__body.active {
+
+}
+
+/* tmp========================================= */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

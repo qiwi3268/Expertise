@@ -259,8 +259,7 @@
    border-color: #80bdff;
 }
 
-.body-card__input,
-.body-card__text {
+.body-card__input {
    box-sizing: border-box;
    width: 100%;
 }

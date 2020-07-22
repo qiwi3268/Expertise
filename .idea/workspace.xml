@@ -1,30 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="237ecf96-8374-4d8a-bac5-b9b5ffa775cc" name="Default Changelist" comment="">
+    <list default="true" id="3052c4db-b17b-45ef-9874-1a02eb86f4cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/sshConfigs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sshConfigs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/radio.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/radio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/file_checker.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/file_checker.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/file_uploader.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/file_uploader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/home/save_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/save_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Exceptions/ApplicationFormHandlerException.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Exceptions/ApplicationFormHandlerException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Exceptions/FileException.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Exceptions/FileException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Tables/ApplicationsTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/ApplicationsTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Tables/misc_expertiseSubjectTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/misc_expertiseSubjectTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Tables/misc_functionalPurposeGroupTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/misc_functionalPurposeGroupTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Tables/misc_functionalPurposeSubsectorTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/misc_functionalPurposeSubsectorTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/VariableTransfer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/VariableTransfer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/view_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/file_unloader.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/file_unloader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/Route.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/Route.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/defined_variables.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/defined_variables.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/modal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/view_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/view_application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/view_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/file_download.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_download.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/section.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/section.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/sidebar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/tmp/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/tmp/create_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/tmp/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/tmp/view_application.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JavaScript File" />
-        <option value="CSS File" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -39,339 +56,39 @@
       <path value="$PROJECT_DIR$/vendor/markbaker/matrix" />
     </include_path>
   </component>
-  <component name="ProjectId" id="1aCjSZ6pG93SPLevJM5HCeNikHn" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="1f1cOid9zA7lUXegO2gsPVXxvfy" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
-    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last.edited.regexp" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\img\tmp" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\img\icon\tmp" />
-    </key>
+    <property name="WebServerToolWindowFactoryState" value="true" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="237ecf96-8374-4d8a-bac5-b9b5ffa775cc" name="Default Changelist" comment="" />
-      <created>1586246470030</created>
+      <changelist id="3052c4db-b17b-45ef-9874-1a02eb86f4cf" name="Default Changelist" comment="" />
+      <created>1595389008613</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1586246470030</updated>
-      <workItem from="1586246471198" duration="26271000" />
-      <workItem from="1589734138898" duration="54000" />
-      <workItem from="1589734317702" duration="54000" />
-      <workItem from="1589734561996" duration="20000" />
-      <workItem from="1589734630617" duration="58000" />
-      <workItem from="1589773638629" duration="41000" />
-      <workItem from="1589774233174" duration="70000" />
-      <workItem from="1589774681096" duration="122000" />
-      <workItem from="1589774855766" duration="722000" />
-      <workItem from="1589871184467" duration="47764000" />
-      <workItem from="1590399706358" duration="27519000" />
-      <workItem from="1590485542535" duration="16474000" />
-      <workItem from="1591002598456" duration="9975000" />
-      <workItem from="1591160460217" duration="37085000" />
-      <workItem from="1591587322406" duration="46930000" />
-      <workItem from="1593928921531" duration="15388000" />
-      <workItem from="1594031698039" duration="500000" />
-      <workItem from="1594136616108" duration="3069000" />
-      <workItem from="1594458987067" duration="5759000" />
-      <workItem from="1594646272928" duration="8452000" />
-      <workItem from="1594709315576" duration="11899000" />
-      <workItem from="1594997541237" duration="2282000" />
-      <workItem from="1595039793214" duration="868000" />
+      <updated>1595389008613</updated>
+      <workItem from="1595389011212" duration="336000" />
+      <workItem from="1595389355453" duration="192000" />
     </task>
-    <task id="LOCAL-00001" summary="2">
-      <created>1590566324166</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1590566324166</updated>
-    </task>
-    <task id="LOCAL-00002" summary="01.06.2020">
-      <created>1591003832990</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1591003832990</updated>
-    </task>
-    <task id="LOCAL-00003" summary="01.06.2020">
-      <created>1591014766434</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1591014766434</updated>
-    </task>
-    <task id="LOCAL-00004" summary="03.06.2020">
-      <created>1591161206366</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1591161206366</updated>
-    </task>
-    <task id="LOCAL-00005" summary="03.06.2020_1">
-      <created>1591187445074</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1591187445074</updated>
-    </task>
-    <task id="LOCAL-00006" summary="04.06.2020">
-      <created>1591250815665</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1591250815665</updated>
-    </task>
-    <task id="LOCAL-00007" summary="08.06.2020">
-      <created>1591587565766</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1591587565766</updated>
-    </task>
-    <task id="LOCAL-00008" summary="08.06.2020_1">
-      <created>1591603591408</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1591603591408</updated>
-    </task>
-    <task id="LOCAL-00009" summary="08.06.2020_2">
-      <created>1591608116849</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1591608116849</updated>
-    </task>
-    <task id="LOCAL-00010" summary="08.06.2020_3">
-      <created>1591619212183</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1591619212183</updated>
-    </task>
-    <task id="LOCAL-00011" summary="09.06.2020">
-      <created>1591677388412</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1591677388412</updated>
-    </task>
-    <task id="LOCAL-00012" summary="09.06.2020_1">
-      <created>1591697975080</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1591697975080</updated>
-    </task>
-    <task id="LOCAL-00013" summary="05.07.2020">
-      <created>1593929311427</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1593929311427</updated>
-    </task>
-    <task id="LOCAL-00014" summary="05.07.2020_1">
-      <created>1593949275955</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1593949275955</updated>
-    </task>
-    <task id="LOCAL-00015" summary="07.07.2020">
-      <created>1594137597936</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1594137597936</updated>
-    </task>
-    <task id="LOCAL-00016" summary="11.07.2020">
-      <created>1594461089807</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1594461089807</updated>
-    </task>
-    <task id="LOCAL-00017" summary="13.07.2020">
-      <created>1594652545262</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1594652545262</updated>
-    </task>
-    <task id="LOCAL-00018" summary="13.07.2020_1">
-      <created>1594656560473</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1594656560473</updated>
-    </task>
-    <task id="LOCAL-00019" summary="14.07.2020">
-      <created>1594712690101</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1594712690101</updated>
-    </task>
-    <task id="LOCAL-00020" summary="14.07.2020_1">
-      <created>1594718414509</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1594718414510</updated>
-    </task>
-    <task id="LOCAL-00021" summary="14.07.2020_2">
-      <created>1594723304353</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1594723304353</updated>
-    </task>
-    <task id="LOCAL-00022" summary="17.07.2020">
-      <created>1594999518142</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1594999518142</updated>
-    </task>
-    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2" />
-    <MESSAGE value="01.06.2020" />
-    <MESSAGE value="03.06.2020" />
-    <MESSAGE value="03.06.2020_1" />
-    <MESSAGE value="04.06.2020" />
-    <MESSAGE value="08.06.2020" />
-    <MESSAGE value="08.06.2020_1" />
-    <MESSAGE value="08.06.2020_2" />
-    <MESSAGE value="08.06.2020_3" />
-    <MESSAGE value="09.06.2020" />
-    <MESSAGE value="09.06.2020_1" />
-    <MESSAGE value="05.07.2020" />
-    <MESSAGE value="05.07.2020_1" />
-    <MESSAGE value="07.07.2020" />
-    <MESSAGE value="11.07.2020" />
-    <MESSAGE value="13.07.2020" />
-    <MESSAGE value="13.07.2020_1" />
-    <MESSAGE value="14.07.2020" />
-    <MESSAGE value="14.07.2020_1" />
-    <MESSAGE value="14.07.2020_2" />
-    <MESSAGE value="17.07.2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="17.07.2020" />
-  </component>
   <component name="WindowStateProjectService">
-    <state x="552" y="178" key="#JavaScript" timestamp="1590487649353">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="552" y="178" key="#JavaScript/0.0.1920.1040@0.0.1920.1040" timestamp="1590487649353" />
-    <state x="552" y="178" key="#Notifications" timestamp="1590486923947">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="552" y="178" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1590486923947" />
-    <state x="887" y="173" key="#PHP" timestamp="1594462500820">
+    <state x="1150" y="591" key="publish.login" timestamp="1595389381110">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="665" y="179" key="#PHP/0.0.1920.1040@0.0.1920.1040" timestamp="1591164116114" />
-    <state x="887" y="173" key="#PHP/0.0.2560.1400@0.0.2560.1400" timestamp="1594462500820" />
-    <state x="0" y="0" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1591612896082">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="0" y="0" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1591612896082" />
-    <state x="800" y="155" width="745" height="809" key="CommitChangelistDialog2" timestamp="1594999517641">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="800" y="155" key="CommitChangelistDialog2/-1920.191.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1594137597457" />
-    <state x="600" y="115" width="734" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1591697972921" />
-    <state x="800" y="155" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1594999517641" />
-    <state x="800" y="155" width="745" height="809" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1594723303987" />
-    <state x="69" y="68" width="1782" height="904" key="DiffContextDialog" timestamp="1591704598227">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="69" y="68" width="1782" height="904" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591704598227" />
-    <state x="1010" y="319" key="FileChooserDialogImpl" timestamp="1589891274244">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="1010" y="319" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1589891274244" />
-    <state x="782" y="436" key="Github.CreateGistDialog" timestamp="1590486910146">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="782" y="436" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590486910146" />
-    <state x="184" y="86" key="MergeDialog" timestamp="1591242533603">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591242533603" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1591162562454">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591162562454" />
-    <state x="206" y="14" width="1366" height="898" key="SettingsEditor" timestamp="1591163698560">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="206" y="14" width="1366" height="898" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1591163698560" />
-    <state x="607" y="213" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1589734672836" />
-    <state x="736" y="389" key="com.intellij.ide.util.TipDialog" timestamp="1589774234815">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="736" y="389" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589774234815" />
-    <state x="981" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1589734632162" />
-    <state x="753" y="253" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1590487101329">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="753" y="253" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590487101329" />
-    <state x="976" y="298" width="983" height="816" key="find.popup" timestamp="1594721796361">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="976" y="298" width="983" height="816" key="find.popup/-1920.191.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1594137579191" />
-    <state x="732" y="221" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591704041472" />
-    <state x="976" y="298" width="983" height="816" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1594721796361" />
-    <state x="1437" y="569" key="publish.login" timestamp="1595039808328">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1437" y="569" key="publish.login/-1920.191.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1594136931442" />
-    <state x="1078" y="423" key="publish.login/0.0.1920.1040@0.0.1920.1040" timestamp="1589774269557" />
-    <state x="1437" y="569" key="publish.login/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1595039808328" />
-    <state x="1437" y="569" key="publish.login/0.0.2560.1400@0.0.2560.1400" timestamp="1594709461435" />
-    <state x="936" y="330" key="run.anything.popup" timestamp="1594997954801">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="936" y="330" key="run.anything.popup/-1920.191.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1594032050026" />
-    <state x="936" y="330" key="run.anything.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1594997954801" />
-    <state x="831" y="303" width="896" height="913" key="search.everywhere.popup" timestamp="1593948274144">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="831" y="303" width="896" height="913" key="search.everywhere.popup/-1920.191.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1593948274144" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591249932428" />
+    <state x="1150" y="591" key="publish.login/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1595389381110" />
   </component>
 </project>

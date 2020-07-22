@@ -1,17 +1,17 @@
 <?php
 
-//todo проверка на корректные гет параметры
-$applicationId = $_GET['id_application'];
-
-//todo проверка на доступ пользователя
-
-//todo проверка на существование заявления
-//или все эти проверки вынести в отдельный предбанник?
-$applicationAssoc = ApplicationsTable::getAssocByIdForView($applicationId);
-
-var_dump($applicationAssoc);
 
 $variablesTV = VariableTransfer::getInstance();
+
+$applicationId = $_GET[_PROPERTY_IN_APPLICATION['id_application']];
+
+$applicationAssoc = ApplicationsTable::getAssocByIdForView($applicationId);
+
+$appNumName = $applicationAssoc[_COLUMN_NAME_IN_APPLICATIONS_TABLE['numerical_name']];
+
+$variablesTV->setValue('applicationNumericalName', "ЗАЯВЛЕНИЕ НА ЭКСПЕРТИЗУ $appNumName");
+
+
 
 
 // -----------------------------------------------------------------------------------------------------------------
@@ -29,7 +29,6 @@ if(!is_null($expertisePurpose)){
     $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['expertise_purpose'], false);
 }
 
-//
 
 // Предметы экспертизы ------------------------------------------------------------
 //
@@ -172,52 +171,3 @@ if(!is_null($cadastralNumber)){
 }else{
    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['cadastral_number'], false);
 }
-
-
-
-
-
-
-
-
-
-
-
-// -----------------------------------------------------------------------------------------------------------------
-// Зона валидации заполненности блоков анкеты
-// -----------------------------------------------------------------------------------------------------------------
-
-
-// Сведения о цели обращения ------------------------------------- block1_completed
-// Обязательные поля: Цель обращения
-//                    Предмет экспертизы
-//
-if($variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['expertise_purpose']) &&
-   $variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['expertise_subjects'])){
-
-    $variablesTV->setValue('block1_completed', true);
-}else{
-    $variablesTV->setValue('block1_completed', false);
-}
-
-
-
-// Сведения об объекте ------------------------------------------- block2_completed
-// Обязательные поля: Наименование объекта
-//                    Вид объекта
-//                    Функциональное назначение
-//                    Вид работ
-//
-if($variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['object_name']) &&
-   $variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['type_of_object']) &&
-   $variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['functional_purpose']) &&
-   $variablesTV->getExistenceFlag(_PROPERTY_IN_APPLICATION['type_of_work'])){
-
-   $variablesTV->setValue('block2_completed', true);
-}else{
-   $variablesTV->setValue('block2_completed', false);
-}
-
-
-
-

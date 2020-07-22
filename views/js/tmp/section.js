@@ -16,19 +16,29 @@ document.addEventListener('DOMContentLoaded', () => {
    let text_areas = document.querySelectorAll('textarea.application-input');
 
    text_areas.forEach(text_area => {
-      // При изменении размера text area максимальная высота блока должна стать 100%
       text_area.addEventListener('mousedown', () => {
+         // При изменении размера текстового поля для расширения блока
+         // ставим максимальную высоту в процентах
          changeParentCardMaxHeight(text_area, '100%');
-      });
 
-      // После изменении размера text area ставим максимальную высоту блока в пикселях для плавного сужения
-      text_area.addEventListener('keypress', () => {
-         changeParentCardMaxHeight(text_area);
+         // При изменении размера текстового поля добавляем разовый обработчик,
+         // который при отпускании мыши ставит максимальную высоту блока в пикселях
+         document.addEventListener(
+            'mouseup',
+            expandListener.bind(this, text_area),
+            {
+               once: true,
+            });
       });
    });
 
-});
+   let cards_view = document.querySelectorAll('.card-form__body.expanded');
+   cards_view.forEach(card_body => {
+      changeParentCardMaxHeight(card_body);
+      card_body.classList.remove('expanded');
+   });
 
+});
 
 // Предназначен для раскрытия или сужения блока анкеты
 // Принимает параметры-------------------------------
@@ -66,4 +76,12 @@ function changeParentCardMaxHeight(inner_element, value) {
    } else {
       card_body.style.maxHeight = card_body.scrollHeight + 'px';
    }
+}
+
+// Предназначен для обработки события отпускания кнопки мыши
+// при изменении размера текстового поля
+// Принимает параметры-------------------------------
+// text_area       Element : текстовое поле, которое изменяется
+function expandListener(text_area) {
+   changeParentCardMaxHeight(text_area);
 }

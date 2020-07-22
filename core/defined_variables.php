@@ -12,29 +12,35 @@ define('_APPLICATIONS_FILES_', '/var/www/applications_files');  // Директ�
 
 // Обозначения ролей в соответствии с `code_role`.`system_value`
 define('_ROLE', ['APP'     => 'APP',     // Заявитель
-                  'ADM'     => 'ADM',     // Администратор
-                  'EXP'     => 'EXP',     // Эксперт
-                  'EMP_EXP' => 'EMP_EXP', // EMP_EXP
-                  'EMP_EST' => 'EMP_EST', // Сотрудник сметного отдела
-                  'EMP_PTO' => 'EMP_PTO', // Сотрудник производственно-технического отдела
-                  'EMP_PKR' => 'EMP_PKR', // Сотрудник отдела правовой и кадровой работы
-                  'EMP_BUH' => 'EMP_BUH', // Сотрудник бухгалтерии
-                  'EMP_RKS' => 'EMP_RKS', // Сотрудник отдела развития, контроля, сопровождения
-                  'ZAM'     => 'ZAM',     // Заместитель руководителя учреждения
-                  'BOSS'    => 'BOSS',    // Руководитель учреждения
-                  'REPORT'  => 'REPORT'   // Формирование отчетов
-                  ]);
+                 'ADM'     => 'ADM',     // Администратор
+                 'EXP'     => 'EXP',     // Эксперт
+                 'EMP_EXP' => 'EMP_EXP', // EMP_EXP
+                 'EMP_EST' => 'EMP_EST', // Сотрудник сметного отдела
+                 'EMP_PTO' => 'EMP_PTO', // Сотрудник производственно-технического отдела
+                 'EMP_PKR' => 'EMP_PKR', // Сотрудник отдела правовой и кадровой работы
+                 'EMP_BUH' => 'EMP_BUH', // Сотрудник бухгалтерии
+                 'EMP_RKS' => 'EMP_RKS', // Сотрудник отдела развития, контроля, сопровождения
+                 'ZAM'     => 'ZAM',     // Заместитель руководителя учреждения
+                 'BOSS'    => 'BOSS',    // Руководитель учреждения
+                 'REPORT'  => 'REPORT'   // Формирование отчетов
+]);
+
+
+// Обозначения типов документов
+define('_DOCUMENT_TYPE', ['application' => 'application',    // Заявление
+                          'contract'    => 'contract'        // Договор
+]);
 
 
 // Обозначения ролей в заявлении
 define('_ROLE_IN_APPLICATION', ['AUTHOR' => 'AUTHOR' // Автор заявления
 
-                               ]);
+]);
 
 // Имена полей в форме заявления
-define('_PROPERTY_IN_APPLICATION', ['application_id'                         => 'application_id',                         // id заявления
+define('_PROPERTY_IN_APPLICATION', ['id_application'                         => 'id_application',                         // id заявления
                                     'expertise_purpose'                      => 'expertise_purpose',                      // Цель обращения
-                                    'expertise_subjects'                     => 'expertise_subjects',                     // Предмет экспертизы
+                                    'expertise_subjects'                     => 'expertise_subjects',                     // Предметы экспертизы
                                     'additional_information'                 => 'additional_information',                 // Дополнительная информация
                                     'object_name'                            => 'object_name',                            // Наименование объекта
                                     'type_of_object'                         => 'type_of_object',                         // Вид объекта
@@ -54,7 +60,70 @@ define('_PROPERTY_IN_APPLICATION', ['application_id'                         => 
                                     'federal_project'                        => 'federal_project',                        // Федеральный проект
                                     'date_finish_building'                   => 'date_finish_building',                   // Дата окончания строительства
                                     'curator'                                => 'curator'                                 // Куратор
-                                   ]);
+]);
+
+
+
+
+// Имена данных о заявления в программном коде (application code names)
+//  s - single (один)
+//  m - many (много)
+define('_APP_CN', ['id_application'                        => ['s' => 'id_application'  // id заявления
+                  ],
+                  'expertise_purpose'                      => ['s' => 'expertise_purpose', // Цель обращения
+                                                               'm' => 'expertise_purposes'
+                  ],
+                  'expertise_subject'                      => ['m' => 'expertise_subjects', // Цель обращения
+                  ],
+                  'additional_information'                 => ['s' => 'additional_information', //
+                  ],
+                  'object_name'                            => ['s' => 'object_name', //
+                  ],
+                  'type_of_object'                         => ['s' => 'type_of_object', //
+                                                               'm' => 'type_of_objects'
+                  ],
+                  'functional_purpose'                     => ['s' => 'functional_purpose',
+                                                               'm' => 'functional_purposes'
+                  ],
+                  'functional_purpose_subsector'           => ['s' => 'functional_purpose_subsector', //
+                                                               'm' => 'functional_purpose_subsectors'
+                  ],
+                  'functional_purpose_group'               => ['s' => 'functional_purpose_group', //
+                                                               'm' => 'functional_purpose_groups'
+                  ],
+                  'number_planning_documentation_approval' => ['s' => 'number_planning_documentation_approval', //
+                  ],
+                  'date_planning_documentation_approval'   => ['s' => 'date_planning_documentation_approval', //
+                  ],
+                  'number_GPZU'                            => ['s' => 'number_GPZU', //
+                  ],
+                  'date_GPZU'                              => ['s' => 'date_GPZU', //
+                  ],
+                  'type_of_work'                           => ['s' => 'type_of_work', //
+                                                               'm' => 'type_of_works'
+                  ],
+                  'cadastral_number'                       => ['s' => 'cadastral_number', //
+                  ],
+                  'cultural_object_type_checkbox'          => ['s' => 'cultural_object_type_checkbox', //
+                  ],
+                  'cultural_object_type'                   => ['s' => 'cultural_object_type', //
+                                                               'm' => 'cultural_object_types'
+                  ],
+                  'national_project_checkbox'              => ['s' => 'national_project_checkbox', //
+                  ],
+                  'national_project'                       => ['s' => 'national_project', //
+                                                               'm' => 'national_projects'
+                  ],
+                  'federal_project'                        => ['s' => 'federal_project', //
+                                                               'm' => 'federal_projects'
+                  ],
+                  'date_finish_building'                   => ['s' => 'date_finish_building', //
+                  ],
+                  'curator'                                => ['s' => 'curator', //
+                                                               'm' => 'curators'
+                  ],
+]);
+
 
 // Имена столбцов в таблице applications
 define('_COLUMN_NAME_IN_APPLICATIONS_TABLE', ['id'                                     => 'id',                                     // id заявления
@@ -79,7 +148,8 @@ define('_COLUMN_NAME_IN_APPLICATIONS_TABLE', ['id'                              
                                               'id_federal_project'                     => 'id_federal_project',                     // Федеральный проект
                                               'date_finish_building'                   => 'date_finish_building',                   //Дата окончания строительства
                                               'date_creation'                          => 'date_creation'                           // Дата создания заявления
-                                              ]);
+]);
+
 
 
 

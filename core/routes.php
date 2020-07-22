@@ -36,34 +36,55 @@ return [
     'test' => [
         'ROOTcontrollers' => ['test']
     ],
-
-
-
-    'home/create_application' => [
-        'access'          => [],
-        'ROOTcontrollers' => ['header'],
-        'ROOTviews'       => ['header'],
-        'ROOTClasses'     => ['VariableTransfer'],
-        'controllers'     => ['create_application', 'main_header'],
-        'views'           => ['create_application_dependencies', 'main_header', 'create_application', 'main_footer']
-    ],
-
+    
+    //todo перенести в ветку /home/application/
     'home/API_save_application' => [
-        'access'         => [],
-        'ROOTClasses'    => ['ApplicationFormHandler'],
-        'API'            => ['save_application']
+        'access'                       => [],
+        '/Classes/ApplicationForm/'    => ['SaveHandler'],
+        'API'                          => ['save_application']
+    ],
+    
+    //todo перенести view create_application в ветку /home/application/
+    'home/application/create' => [
+        'access'               => [],
+        'ROOTcontrollers'      => ['header'],
+        'ROOTviews'            => ['header'],
+        'ROOTClasses'          => ['VariableTransfer'],
+        '/Classes/ApplicationForm/'   => ['MiscInitialization'],
+        'controllers'          => ['create_application',
+                                   'initialization_misc_application_form',
+                                   'display_dependencies_application_form'],
+        '/controllers/home/'   => ['main_header'],
+        '/views/home/'         => ['create_application_dependencies', 'main_header', 'create_application', 'main_footer'],
     ],
 
+    
     'home/application/view' => [
-        'access'          => [],
-        'ROOTcontrollers' => ['header'],
-        'ROOTClasses'     => ['VariableTransfer'],
-        'ABScontrollers'  => ['/controllers/home/main_header.php'],
-        'controllers'     => ['view_application'],
-        'ROOTviews'       => ['header'],
-        'ABSmainHeader'   => ['/views/home/main_header.php'],
-        'views'           => ['sidebar_hierarchy', 'view_application', 'sidebar_actions'],
-        'ABSmainFooter'   => ['/views/home/main_footer.php'],
+        'access'              => [],
+        'ROOTcontrollers'     => ['header'],
+        'ROOTClasses'         => ['VariableTransfer'],
+        'ABScontrollers'      => ['/controllers/home/main_header.php'],
+        'controllers'         => ['view_application',
+                                  'action_sidebar',
+                                  'validation_block_application_form'],
+        'ROOTviews'           => ['header'],
+        '/views/home/%header' => ['main_header'],
+        'views'               => ['hierarchy_sidebar', 'view_application', 'action_sidebar'],
+        '/views/home/%footer' => ['main_footer'],
+    ],
+    
+    'home/application/edit'  => [
+        'access'             => [],
+        'ROOTcontrollers'    => ['header'],
+        'ROOTviews'          => ['header'],
+        'ROOTClasses'        => ['VariableTransfer'],
+        '/Classes/ApplicationForm/'   => ['MiscInitialization'],
+        'controllers'        => ['initialization_misc_application_form',
+                                 'edit_application',
+                                 'validation_block_application_form',
+                                 'display_dependencies_application_form'],
+        '/controllers/home/' => ['main_header'],
+        '/views/home/'       => ['create_application_dependencies', 'main_header', 'create_application', 'main_footer']
     ],
 
     'tmp/registration_user' => [
@@ -97,6 +118,7 @@ return [
 
 ];
 
+//todo должны начинаться и заканчиваться на /
 
 // redirect  	Необязтательный парметр	СТРОКА
 //					Переадресует страницу на указанный роут,

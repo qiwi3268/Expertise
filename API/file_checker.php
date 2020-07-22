@@ -26,7 +26,7 @@
 //       {result, message : текст ошибки, code: код ошибки}
 
 // Проверка наличия обязательных параметров
-if(!checkParamsPOST('id_application', 'id_file', 'mapping_level_1', 'mapping_level_2')){
+if(!checkParamsPOST(_PROPERTY_IN_APPLICATION['id_application'], 'id_file', 'mapping_level_1', 'mapping_level_2')){
     exit(json_encode(['result'        => 1,
                       'error_message' => 'Нет обязательных параметров POST запроса'
                      ]));
