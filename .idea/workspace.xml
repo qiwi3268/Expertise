@@ -2,37 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3052c4db-b17b-45ef-9874-1a02eb86f4cf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sshConfigs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sshConfigs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/file_checker.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/file_checker.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/file_uploader.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/file_uploader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/home/save_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/save_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Exceptions/ApplicationFormHandlerException.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Exceptions/ApplicationFormHandlerException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Exceptions/FileException.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Exceptions/FileException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/ApplicationsTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/ApplicationsTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/misc_expertiseSubjectTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/misc_expertiseSubjectTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/misc_functionalPurposeGroupTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/misc_functionalPurposeGroupTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/misc_functionalPurposeSubsectorTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/misc_functionalPurposeSubsectorTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/VariableTransfer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/VariableTransfer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/view_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/file_unloader.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/file_unloader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Classes/Route.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/Route.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/defined_variables.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/defined_variables.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/header.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/modal.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/view_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/view_application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/view_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/file_download.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_download.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/section.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/section.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/validation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/tmp/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/tmp/create_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/tmp/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/tmp/view_application.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,14 +50,30 @@
       <option name="presentableId" value="Default" />
       <updated>1595389008613</updated>
       <workItem from="1595389011212" duration="336000" />
-      <workItem from="1595389355453" duration="192000" />
+      <workItem from="1595389355453" duration="6228000" />
     </task>
+    <task id="LOCAL-00001" summary="22.07.2020">
+      <created>1595389670254</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1595389670254</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="22.07.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="22.07.2020" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1595389669617">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1595389669617" />
     <state x="1150" y="591" key="publish.login" timestamp="1595389381110">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
