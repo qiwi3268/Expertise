@@ -1,24 +1,27 @@
+// let file_modal;
+
+// let forms_data;
 
 document.addEventListener('DOMContentLoaded', () => {
+   let form = document.querySelector('#file_uploader');
+   let forms_data = new Map();
+   let current_form_data;
+   let file_number = 0;
 
    let file_selects = document.querySelectorAll('.modal-file');
 
    let file_modal = document.querySelector('.modal.file-modal');
-
-   // let current_select;
-   let result_input;
-
+   // file_modal = document.querySelector('.modal.file-modal');
 
    let overlay = document.querySelector('.file-overlay');
 
    let drop_area = file_modal.querySelector('.file-modal__drop-area');
+
    let file_input = document.getElementById('upload_id');
+
    let modal_body = file_modal.querySelector('.file-modal__body');
 
-   let all_files = [];
-
-   let formData = new FormData();
-
+   let files_arr = [];
 
    clearDefaultDropEvents();
 
@@ -27,23 +30,67 @@ document.addEventListener('DOMContentLoaded', () => {
          file_modal.classList.add('active');
          overlay.classList.add('active');
 
-         // current_select = select;
          let parent_row = select.closest('.body-card__row');
-         result_input = parent_row.querySelector('.body-card__result');
+         let name = parent_row.dataset.row_name;
+
+         if (forms_data.has(name)) {
+            current_form_data = forms_data.get(name);
+            /*let iterator = current_form_data.keys();
+            let elem = iterator.next();
+            while (!elem.done) {
+               console.log(current_form_data.getAll(elem.value));
+               elem = iterator.next();
+            }*/
+            // addUploadedFiles();
+         } else {
+            current_form_data = new FormData(form);
+            forms_data.set(name, current_form_data);
+         }
+
+
+
       });
    });
 
    overlay.addEventListener('click', () => {
       file_modal.classList.remove('active')
       overlay.classList.remove('active');
+      modal_body.innerHTML = '';
+
+
+      let json = JSON.stringify(files_arr);
+
+
+      // console.log(JSON.stringify(files_arr));
+
+      let arr = JSON.parse(json);
+
+      console.log(arr);
+
+      // current_form_data.append('files', files_arr);
+
+      // console.log(current_form_data.get('files'));
+      let counter = 0;
+
+      let iterator = current_form_data.keys();
+      let elem = iterator.next();
+      while (!elem.done) {
+         /*current_form_data.getAll(elem.value).forEach(file => {
+            console.log(counter++);
+
+            // if (file.name) {
+            //    createFileElement(file);
+            // }
+         });*/
+         elem = iterator.next();
+      }
+
    });
 
 
    handleDropArea();
 
    handleFileUploadButton();
-
-
 
 
    // functions========================================
@@ -64,65 +111,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
       drop_area.addEventListener('drop', event => {
          let files = event.dataTransfer.files;
-
-
-         let formData = new FormData();
-
-
-         for (let i = 0; i < files.length; i++) {
-            formData.append(files[i].name, files[i]);
-         }
-
-         // console.log(new Map(formData));
-
-
          addFilesToModal(files);
       });
    }
 
    function addFilesToModal(files) {
+      // let file_item;
 
-
-
-
-
-      let file_item;
-
-      let new_files = Array.from(files);
-
-
-
-      let fileStore = files;
-
-      // let list = new DataTransfer();
-
-
-
-      let files_1 = file_input.files;
-
-      // files_1.push(Array.from(files)[0]);
-
-
-      // let new_files = [...files];
-
-
-
-      // let all_files = Array.from(file_input.files).concat(new_files);
-
-
-      new_files.forEach(file => {
-         file_item = document.createElement('DIV');
+      Array.from(files).forEach(file => {
+         createFileElement(file);
+         /*file_item = document.createElement('DIV');
          file_item.classList.add('file-modal__item');
          file_item.innerHTML = file.name;
 
-         modal_body.appendChild(file_item);
+         modal_body.appendChild(file_item);*/
 
+         // current_form_data.append(file_number++, file)
+
+
+         // files_arr.push(file);
+
+         current_form_data.append(file.name, file);
+         //
+         // console.log(current_form_data.getAll(file.name));
 
       });
 
+      // console.log(files_arr);
+      // current_form_data.append('files', files_arr);
+
+      // console.log(current_form_data.get('files'));
 
 
-      // console.log(file_input.files);
+      let iterator = current_form_data.keys();
+      let elem = iterator.next();
+      while (!elem.done) {
+         // console.log(current_form_data.getAll(elem.value));
+         elem = iterator.next();
+      }
+
+   }
+
+   function createFileElement(file) {
+      let file_item = document.createElement('DIV');
+      file_item.classList.add('file-modal__item');
+      file_item.innerHTML = file.name;
+
+      modal_body.appendChild(file_item);
    }
 
    function handleFileUploadButton() {
@@ -134,19 +169,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
       file_input.addEventListener('change', () => {
          addFilesToModal(file_input.files)
-
-         let files = file_input.files;
-
-         let form = document.querySelector('#file_uploader');
-         let formData = new FormData(form);
-
-         for (let i = 0; i < files.length; i++) {
-            formData.append(files[i].name, files[i]);
-
-         }
-
       });
    }
+
+   function addUploadedFiles() {
+      let iterator = current_form_data.keys();
+      let elem = iterator.next();
+      while (!elem.done) {
+         current_form_data.getAll(elem.value).forEach(file => {
+            console.log(file.name);
+
+            // if (file.name) {
+            //    createFileElement(file);
+            // }
+         });
+         elem = iterator.next();
+      }
+   }
+
+   /*function getFileNumber(form_data) {
+      let file_id;
+      let number = 0;
+
+      new Map(form_data).forEach(file => {
+         file_id = +file.name;
+
+
+         if (file_id > number) {
+            number = file_id;
+         }
+      });
+
+      return number;
+   }*/
 
    //--functions========================================
 
@@ -156,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
    //=================================================
    // этот файл можешь привести к форматированию кода по своему типу
 
-   let form = document.querySelector('#file_uploader');
+   // let form = document.querySelector('#file_uploader');
    let progress_bar = document.querySelector('#progress_bar');
 
    let request_urn = '/API_file_uploader';
@@ -166,6 +221,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       event.preventDefault();
 
+
+
+
+
       // тут делаешь все требуемые проверки, и если не удовлетворяет - сообщение и выход из функции
       // а еще лучше проверки делать в момент попадания файлов в input type="file", и нажатие на отправку
       // формы запрещать, если проверки не пройдены
@@ -173,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
       XHR('post', request_urn, new FormData(form), null, 'json', null, uploadProgressCallback)
          .then(response => {
 
-
+            console.log(response);
 
          })
          .catch(error => {
@@ -222,14 +281,14 @@ function clearDefaultDropEvents() {
 }
 
 
-class FileUploader {
+/*class FileUploader {
    select;
+   result_input
 
 
 
 
-
-}
+}*/
 
 
 

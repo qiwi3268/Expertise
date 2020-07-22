@@ -548,7 +548,7 @@
 
 
                 <!--Загрузчик файла-->
-                <div class="body-card__row" data-row_name="<?= _PROPERTY_IN_APPLICATION['curator'] ?>"
+                <div class="body-card__row" data-row_name="File"
                      data-required="true">
                     <span class="body-card__title required">Файл</span>
                     <div class="body-card__item">
@@ -567,6 +567,27 @@
                     <input class="body-card__result" type="hidden" name="">
                 </div>
                 <!--//Загрузчик файла//-->
+
+                <!--Загрузчик файла2-->
+                <div class="body-card__row" data-row_name="File_2"
+                     data-required="true">
+                    <span class="body-card__title required">Файл_2</span>
+                    <div class="body-card__item">
+                        <div class="body-card__field">
+                            <div class="body-card__select modal-file">
+                                <span class="body-card__value">Загрузите файлы</span>
+                                <i class="body-card__icon fas fa-bars"></i>
+                            </div>
+                            <i class="body-card__icon-clear fas fa-trash"></i>
+                        </div>
+                        <span class="body-card__error">Поле обязательно для заполнения</span>
+                    </div>
+
+
+
+                    <input class="body-card__result" type="hidden" name="">
+                </div>
+                <!--//Загрузчик файла2//-->
 
             </div>
         </div>
@@ -613,13 +634,16 @@
             <i class="file-modal__icon fas fa-file-upload"></i>
         </div>
 
-        <div class="file-modal__body active">
+        <div class="file-modal__body">
         </div>
 
     </div>
 
-    <form id="file_uploader" action="/" enctype="multipart/form-data">
+    <form id="file_uploader" action="" method="POST" enctype="multipart/form-data" >
         <input id="upload_id" type="file" multiple name="filename" hidden/>
+        <input id="id_application" name="id_application" value="<?= _PROPERTY_IN_APPLICATION['id_application'] ?>" hidden/>
+        <input id="mapping_level_1" name="mapping_level_1" value="1" hidden/>
+        <input id="mapping_level_2" name="mapping_level_2" value="1" hidden/>
     </form>
 
 </div>
