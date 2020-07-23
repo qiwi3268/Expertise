@@ -5,6 +5,9 @@
 document.addEventListener('DOMContentLoaded', () => {
    let form = document.querySelector('#file_uploader');
    let forms_data = new Map();
+
+   let results = new Map();
+
    let current_form_data;
    let file_number = 0;
 
@@ -21,7 +24,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
    let modal_body = file_modal.querySelector('.file-modal__body');
 
-   let files_arr = [];
+   let delete_icon = file_modal.querySelector('.file-modal__delete-icon');
+
+   let current_field_name;
+
+//==================
+   let request_urn = '/API_file_uploader';
+
+   // когда идет загрузка файла на серер нужно запрещать клик по кнопке "загрузить файл"
+   form.addEventListener('submit', event => {
+
+      event.preventDefault();
+
+      // тут делаешь все требуемые проверки, и если не удовлетворяет - сообщение и выход из функции
+      // а еще лучше проверки делать в момент попадания файлов в input type="file", и нажатие на отправку
+      // формы запрещать, если проверки не пройдены
+
+      XHR('post', request_urn, new FormData(form), null, 'json', null, uploadProgressCallback)
+         .then(response => {
+
+            console.log(response);
+
+         })
+         .catch(error => {
+
+            // p.s. все сообщения об ошибках везде делаем однотипными
+            console.error('XHR error: ', error);
+            // Ошибка XHR запроса. Обратитесь к администратору
+         });
+   });
+
+   let submit_button = file_modal.querySelector('.file-modal__submit');
+   submit_button.addEventListener('click', () => {
+      let event = new Event('submit');
+      form.dispatchEvent(event);
+   });
+
+
+//==================
+
 
    clearDefaultDropEvents();
 
@@ -31,23 +72,13 @@ document.addEventListener('DOMContentLoaded', () => {
          overlay.classList.add('active');
 
          let parent_row = select.closest('.body-card__row');
-         let name = parent_row.dataset.row_name;
+         current_field_name = parent_row.dataset.row_name;
 
-         if (forms_data.has(name)) {
-            current_form_data = forms_data.get(name);
-            /*let iterator = current_form_data.keys();
-            let elem = iterator.next();
-            while (!elem.done) {
-               console.log(current_form_data.getAll(elem.value));
-               elem = iterator.next();
-            }*/
-            // addUploadedFiles();
-         } else {
-            current_form_data = new FormData(form);
-            forms_data.set(name, current_form_data);
+         if (results.has(current_field_name)) {
+            file_input.files = results.get(current_field_name);
+
+            addUploadedFiles();
          }
-
-
 
       });
    });
@@ -57,40 +88,17 @@ document.addEventListener('DOMContentLoaded', () => {
       overlay.classList.remove('active');
       modal_body.innerHTML = '';
 
-
-      let json = JSON.stringify(files_arr);
-
-
-      // console.log(JSON.stringify(files_arr));
-
-      let arr = JSON.parse(json);
-
-      console.log(arr);
-
-      // current_form_data.append('files', files_arr);
-
-      // console.log(current_form_data.get('files'));
-      let counter = 0;
-
-      let iterator = current_form_data.keys();
-      let elem = iterator.next();
-      while (!elem.done) {
-         /*current_form_data.getAll(elem.value).forEach(file => {
-            console.log(counter++);
-
-            // if (file.name) {
-            //    createFileElement(file);
-            // }
-         });*/
-         elem = iterator.next();
-      }
-
+      results.set(current_field_name, file_input.files);
    });
 
 
    handleDropArea();
 
    handleFileUploadButton();
+
+   delete_icon.addEventListener('click', () => {
+      clearFileModal();
+   });
 
 
    // functions========================================
@@ -108,48 +116,23 @@ document.addEventListener('DOMContentLoaded', () => {
          });
       })
 
-
       drop_area.addEventListener('drop', event => {
+         clearFileModal();
          let files = event.dataTransfer.files;
+         file_input.files = files;
          addFilesToModal(files);
       });
    }
 
    function addFilesToModal(files) {
-      // let file_item;
-
       Array.from(files).forEach(file => {
          createFileElement(file);
-         /*file_item = document.createElement('DIV');
-         file_item.classList.add('file-modal__item');
-         file_item.innerHTML = file.name;
-
-         modal_body.appendChild(file_item);*/
-
-         // current_form_data.append(file_number++, file)
-
-
-         // files_arr.push(file);
-
-         current_form_data.append(file.name, file);
-         //
-         // console.log(current_form_data.getAll(file.name));
-
       });
+   }
 
-      // console.log(files_arr);
-      // current_form_data.append('files', files_arr);
-
-      // console.log(current_form_data.get('files'));
-
-
-      let iterator = current_form_data.keys();
-      let elem = iterator.next();
-      while (!elem.done) {
-         // console.log(current_form_data.getAll(elem.value));
-         elem = iterator.next();
-      }
-
+   function clearFileModal() {
+      modal_body.innerHTML = '';
+      file_input.value = '';
    }
 
    function createFileElement(file) {
@@ -164,6 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let upload_button = file_modal.querySelector('.file-modal__icon');
 
       upload_button.addEventListener('click', () => {
+         clearFileModal();
          file_input.click();
       });
 
@@ -173,18 +157,10 @@ document.addEventListener('DOMContentLoaded', () => {
    }
 
    function addUploadedFiles() {
-      let iterator = current_form_data.keys();
-      let elem = iterator.next();
-      while (!elem.done) {
-         current_form_data.getAll(elem.value).forEach(file => {
-            console.log(file.name);
+      Array.from(file_input.files).forEach(file => {
+         createFileElement(file);
+      });
 
-            // if (file.name) {
-            //    createFileElement(file);
-            // }
-         });
-         elem = iterator.next();
-      }
    }
 
    /*function getFileNumber(form_data) {
@@ -214,34 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
    // let form = document.querySelector('#file_uploader');
    let progress_bar = document.querySelector('#progress_bar');
 
-   let request_urn = '/API_file_uploader';
-
-   // когда идет загрузка файла на серер нужно запрещать клик по кнопке "загрузить файл"
-   form.addEventListener('submit', event => {
-
-      event.preventDefault();
-
-
-
-
-
-      // тут делаешь все требуемые проверки, и если не удовлетворяет - сообщение и выход из функции
-      // а еще лучше проверки делать в момент попадания файлов в input type="file", и нажатие на отправку
-      // формы запрещать, если проверки не пройдены
-
-      XHR('post', request_urn, new FormData(form), null, 'json', null, uploadProgressCallback)
-         .then(response => {
-
-            console.log(response);
-
-         })
-         .catch(error => {
-
-            // p.s. все сообщения об ошибках везде делаем однотипными
-            console.error('XHR error: ', error);
-            // Ошибка XHR запроса. Обратитесь к администратору
-         });
-   });
 
    function uploadProgressCallback(event){
       let download_percent = Math.round(100 * event.loaded / event.total);

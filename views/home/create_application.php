@@ -98,7 +98,7 @@
                      data-required="true">
                     <span class="body-card__title required">Предмет экспертизы</span>
                     <div class="body-card__item">
-                        <div class="body-card__field radio" data-multiple="true">
+                        <div class="body-card__field radio" data-multiple="true" data-required="true">
                             <div class="radio__body">
                                 <span class="radio__title">Выберите цель обращения</span>
                             </div>
@@ -115,7 +115,7 @@
                     <span class="body-card__title">Дополнительная информация</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
-                            <textarea class="body-card__input application-input"
+                            <textarea class="body-card__input application-input body-card__result"
                                       name="<?= _PROPERTY_IN_APPLICATION['additional_information'] ?>"></textarea>
                         </div>
                         <span class="body-card__error"></span>
@@ -372,7 +372,7 @@
                      data-multiple="false">
                     <span class="body-card__title">Объект культурного наследия</span>
                     <div class="body-card__item">
-                        <div class="body-card__field radio">
+                        <div class="body-card__field radio" data-required="true">
                             <div class="radio__body inline">
                                 <div class="radio__item inline" data-id="1">
                                     <i class="radio__icon inline far fa-square"></i>
@@ -426,7 +426,7 @@
                      data-row_name="<?= _PROPERTY_IN_APPLICATION['national_project_checkbox'] ?>">
                     <span class="body-card__title">Национальный проект</span>
                     <div class="body-card__item">
-                        <div class="body-card__field radio">
+                        <div class="body-card__field radio" data-required="true">
                             <div class="radio__body inline">
                                 <div class="radio__item inline" data-id="1">
                                     <i class="radio__icon inline far fa-square"></i>
@@ -632,15 +632,20 @@
         <div class="file-modal__header">
             <div class="file-modal__title">Выберите или перетащите файлы</div>
             <i class="file-modal__icon fas fa-file-upload"></i>
+            <i class="file-modal__delete-icon fas fa-trash"></i>
+            <div class="file-modal__submit application-button">Загрузить</div>
         </div>
 
         <div class="file-modal__body">
         </div>
 
+        <div id="progress_bar" class="file-modal__progress_bar"></div>
+
+
     </div>
 
     <form id="file_uploader" action="" method="POST" enctype="multipart/form-data" >
-        <input id="upload_id" type="file" multiple name="filename" hidden/>
+        <input id="upload_id" type="file" multiple name="files" hidden/>
         <input id="id_application" name="id_application" value="<?= _PROPERTY_IN_APPLICATION['id_application'] ?>" hidden/>
         <input id="mapping_level_1" name="mapping_level_1" value="1" hidden/>
         <input id="mapping_level_2" name="mapping_level_2" value="1" hidden/>

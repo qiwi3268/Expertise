@@ -133,7 +133,7 @@ function validateCard(card) {
 // Возвращает параметры------------------------------
 // is_valid     boolean : заполнен ли блок
 function isValidCard(card) {
-   let required_rows = card.querySelectorAll('[data-required="true"]');
+   let required_rows = card.querySelectorAll('.body-card__row[data-required="true"]');
    let row_value;
    let is_valid = true;
 

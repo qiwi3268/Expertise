@@ -77,7 +77,11 @@ final class ApplicationsTable{
 
 
     // Предназначен для получения ассоциативного массива заявления по его id для просмотра заявления
-    static public function getAssocByIdForView(int $id):?array {
+    // Возвращает параметры----------------------------------
+    // array : в случае, если заявление существует
+    // null  : в противном случае
+    //
+    static public function getAssocByIdForView(int $id):array {
         $query = "SELECT `applications`.`id`,
                          `applications`.`numerical_name`,
                          `misc_expertise_purpose`.`name` AS `expertise_purpose`,
@@ -148,6 +152,10 @@ final class ApplicationsTable{
     
     
     // Предназначен для получения ассоциативного массива заявления по его id для редактирования заявления
+    // Возвращает параметры----------------------------------
+    // array : в случае, если заявление существует
+    // null  : в противном случае
+    //
     static public function getAssocByIdForEdit(int $id):?array {
         $query = "SELECT `applications`.`id`,
                          `applications`.`numerical_name`,
@@ -201,32 +209,14 @@ final class ApplicationsTable{
             return null;
         }
         $result = $result[0];
-    
-        // Перекидываем каждый справочник в отдельный подмассив
-        $result[_PROPERTY_IN_APPLICATION['expertise_purpose']]['id'] = $result['id_expertise_purpose'];
-        $result[_PROPERTY_IN_APPLICATION['expertise_purpose']]['name'] = $result['name_expertise_purpose'];
-        unset($result['id_expertise_purpose'], $result['name_expertise_purpose']);
-    
-        $result[_PROPERTY_IN_APPLICATION['type_of_object']]['id'] = $result['id_type_of_object'];
-        $result[_PROPERTY_IN_APPLICATION['type_of_object']]['name'] = $result['name_type_of_object'];
-        unset($result['id_type_of_object'], $result['name_type_of_object']);
-    
-        $result[_PROPERTY_IN_APPLICATION['functional_purpose']]['id'] = $result['id_functional_purpose'];
-        $result[_PROPERTY_IN_APPLICATION['functional_purpose']]['name'] = $result['name_functional_purpose'];
-        unset($result['id_functional_purpose'], $result['name_functional_purpose']);
-    
-        $result[_PROPERTY_IN_APPLICATION['functional_purpose_subsector']]['id'] = $result['id_functional_purpose_subsector'];
-        $result[_PROPERTY_IN_APPLICATION['functional_purpose_subsector']]['name'] = $result['name_functional_purpose_subsector'];
-        unset($result['id_functional_purpose_subsector'], $result['name_functional_purpose_subsector']);
-    
-        $result[_PROPERTY_IN_APPLICATION['functional_purpose_group']]['id'] = $result['id_functional_purpose_group'];
-        $result[_PROPERTY_IN_APPLICATION['functional_purpose_group']]['name'] = $result['name_functional_purpose_group'];
-        unset($result['id_functional_purpose_group'], $result['name_functional_purpose_group']);
-    
-        $result[_PROPERTY_IN_APPLICATION['type_of_work']]['id'] = $result['id_type_of_work'];
-        $result[_PROPERTY_IN_APPLICATION['type_of_work']]['name'] = $result['name_type_of_work'];
-        unset($result['id_type_of_work'], $result['name_type_of_work']);
         
+        // Перекладываем каждый справочник в отдельный подмассив
+        self::restructureMiscToSubarray($result, 'id_expertise_purpose', 'name_expertise_purpose', 'expertise_purpose');
+        self::restructureMiscToSubarray($result, 'id_type_of_object', 'name_type_of_object', 'type_of_object');
+        self::restructureMiscToSubarray($result, 'id_functional_purpose', 'name_functional_purpose', 'functional_purpose');
+        self::restructureMiscToSubarray($result, 'id_functional_purpose_subsector', 'name_functional_purpose_subsector', 'functional_purpose_subsector');
+        self::restructureMiscToSubarray($result, 'id_functional_purpose_group', 'name_functional_purpose_group', 'functional_purpose_group');
+        self::restructureMiscToSubarray($result, 'id_type_of_work', 'name_type_of_work', 'type_of_work');
         
         // Предметы экспертизы
         $queryExpertiseSubjects = "SELECT `misc_expertise_subject`.`id`,
@@ -244,9 +234,40 @@ final class ApplicationsTable{
             $expertiseSubjects = null;
         }
         
-        $result[_PROPERTY_IN_APPLICATION['expertise_subjects']] = $expertiseSubjects;
+        $result['expertise_subjects'] = $expertiseSubjects;
         
         return $result;
+    }
+    
+
+    // Предназначен для реструктуризации ассоциативного массива заявления
+    // Перекладывает полученные данные о справочнике в отдельный подмассив. В случае, если данные null, то
+    // новое свойство также null
+    // Полученные данные id_misc и name_misc вырезаются из массива
+    // Принимает параметры-----------------------------------
+    // &result           array : ссылка на результирующий запрос в БД
+    // id_misc          string : id справочника из запроса в БД
+    // name_misc        string : имя справочника из запроса в БД
+    // restructuredName string : имя нового свойства, в которое будет записаны 'id' и 'name'
+    //
+    static private function restructureMiscToSubarray(array &$result,
+                                                      string $id_misc,
+                                                      string $name_misc,
+                                                      string $restructuredName):void {
+        
+        if(!array_key_exists($id_misc, $result) || !array_key_exists($name_misc, $result)){
+            throw new TableException("В массиве result отсутствует(ют) свойства: $id_misc и/или $name_misc");
+        }
+        
+        if(is_null($result[$id_misc])){
+        
+            $result[$restructuredName] = null;
+        }else{
+        
+            $result[$restructuredName]['id'] = $result[$id_misc];
+            $result[$restructuredName]['name'] = $result[$name_misc];
+        }
+        unset($result[$id_misc], $result[$name_misc]);
     }
     
     

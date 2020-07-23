@@ -50,7 +50,9 @@ return [
         'ROOTcontrollers'      => ['header'],
         'ROOTviews'            => ['header'],
         'ROOTClasses'          => ['VariableTransfer'],
+        
         '/Classes/ApplicationForm/'   => ['MiscInitialization'],
+        
         'controllers'          => ['create_application',
                                    'initialization_misc_application_form',
                                    'display_dependencies_application_form'],

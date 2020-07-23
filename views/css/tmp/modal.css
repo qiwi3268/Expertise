@@ -177,6 +177,12 @@
 
 }
 
+.file-modal__delete-icon {
+   font-size: 20px;
+   cursor: pointer;
+   margin: 0px 10px;
+}
+
 /* tmp========================================= */
 
 
