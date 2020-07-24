@@ -2,17 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3052c4db-b17b-45ef-9874-1a02eb86f4cf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sshConfigs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sshConfigs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/home/save_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/save_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/ApplicationsTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/ApplicationsTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/view_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/modal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/view_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/view_application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/view_application.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/calendar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/cards.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/cards.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/file_download.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_download.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/modal.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +58,7 @@
       <workItem from="1595389011212" duration="336000" />
       <workItem from="1595389355453" duration="21147000" />
       <workItem from="1595480585288" duration="10070000" />
-      <workItem from="1595562960811" duration="4117000" />
+      <workItem from="1595562960811" duration="21232000" />
     </task>
     <task id="LOCAL-00001" summary="22.07.2020">
       <created>1595389670254</created>
@@ -90,7 +88,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595517569215</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="24.07.2020">
+      <created>1595567900810</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1595567900810</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -101,20 +106,25 @@
     <MESSAGE value="22.07.2020_1" />
     <MESSAGE value="22.07.2020_2" />
     <MESSAGE value="23.07.2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="23.07.2020" />
+    <MESSAGE value="24.07.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="24.07.2020" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1595517568629">
+    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1595567900313">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1595517568629" />
-    <state x="987" y="433" width="585" height="592" key="find.popup" timestamp="1595567869220">
+    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1595567900313" />
+    <state x="987" y="433" width="585" height="592" key="find.popup" timestamp="1595591696090">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="987" y="433" width="585" height="592" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1595567869220" />
+    <state x="987" y="433" width="585" height="592" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1595591696090" />
     <state x="1150" y="591" key="publish.login" timestamp="1595562982672">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1150" y="591" key="publish.login/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1595562982672" />
+    <state x="943" y="315" width="670" height="58" key="search.everywhere.popup" timestamp="1595572409795">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="943" y="315" width="670" height="58" key="search.everywhere.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1595572409795" />
   </component>
 </project>

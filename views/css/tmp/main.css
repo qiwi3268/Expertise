@@ -74,6 +74,9 @@ textarea.application-input {
 }
 
 .application-button {
+   display: flex;
+   align-items: center;
+   justify-content: center;
    width: 126px;
    height: 36px;
    font-family: 'Roboto Condensed', sans-serif;

@@ -35,7 +35,7 @@
 .sidebar-hierarchy__item:hover,
 .sidebar-actions__item:hover {
     background-color: #f2f2f2;
-    border-color: #ffd354;
+    /*border-color: #ffd354;*/
 }
 
 .sidebar-hierarchy__section {
@@ -51,7 +51,7 @@
 }
 
 .sidebar-hierarchy__icon {
-    margin: 0px 10px 0px 0px;
+    margin: 0px 10px 0px 5px;
     font-size: 18px;
 }
 
@@ -101,8 +101,23 @@ a.sidebar-actions__section {
    color: #343a40;
 }
 
-.sidebar-hierarchy__item {
-    margin: 10px;
+/*.sidebar-hierarchy__item {
+    border-left: 4px solid #ffffff;
+    padding: 10px;
+}
+
+.sidebar-hierarchy__item.expanded {
+    border-color: #ffd354;
+}*/
+
+.sidebar-hierarchy__section {
+    border-left: 4px solid #ffffff;
+
+    padding: 10px;
+}
+
+.sidebar-hierarchy__section.expanded {
+    border-color: #ffd354;
 }
 
 .sidebar-hierarchy__item[data-level='1'] {

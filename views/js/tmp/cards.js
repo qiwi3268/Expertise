@@ -121,12 +121,14 @@ function removeRowValue(row) {
 function handleDependentRadios(parent_input) {
    let dependency_inputs = radio_dependency.querySelectorAll(`input[data-when_change=${parent_input.name}]`);
 
+
+
    dependency_inputs.forEach(input => {
       // Все возможные значения для блока с переключателями
       let values = JSON.parse(input.value);
 
       // Берем нужные значения, по значению родительского поля
-      let radio_values = values[parent_input.value];
+      let radio_values = values[parent_input.value][0];
 
       let dependent_row = document.querySelector(`[data-row_name=${input.dataset.target_change}]`);
       let dependent_radio = dependent_row.querySelector('.radio');
