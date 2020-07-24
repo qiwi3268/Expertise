@@ -67,6 +67,11 @@ final class ApplicationsTable{
                          `applications`.`date_GPZU`,
                          `applications`.`id_type_of_work`,
                          `applications`.`cadastral_number`,
+                         `applications`.`id_cultural_object_type`,
+                         `applications`.`id_national_project`,
+                         `applications`.`id_federal_project`,
+                         `applications`.`date_finish_building`,
+                         `applications`.`id_curator`,
                          `applications`.`date_creation`
 				  FROM `applications`
                   WHERE `applications`.`id`=?";
@@ -186,6 +191,20 @@ final class ApplicationsTable{
                          `applications`.`id_type_of_work`,
                          `misc_type_of_work`.`name` AS `name_type_of_work`,
        
+                         `applications`.`id_cultural_object_type`,
+                         `misc_cultural_object_type`.`name` AS `name_cultural_object_type`,
+       
+                         `applications`.`id_national_project`,
+                         `misc_national_project`.`name` AS `name_national_project`,
+       
+                         `applications`.`id_federal_project`,
+                         `misc_federal_project`.`name` AS `name_federal_project`,
+       
+                         `applications`.`date_finish_building`,
+       
+                         `applications`.`id_curator`,
+                         `misc_curator`.`name` AS `name_curator`,
+       
                          `applications`.`cadastral_number`
                   FROM (SELECT * FROM `applications`
                         WHERE `applications`.`id`=?) AS `applications`
@@ -201,6 +220,17 @@ final class ApplicationsTable{
                         ON (`applications`.`id_functional_purpose_group`=`misc_functional_purpose_group`.`id`)
                   LEFT JOIN (`misc_type_of_work`)
                         ON (`applications`.`id_type_of_work`=`misc_type_of_work`.`id`)
+                  LEFT JOIN (`misc_cultural_object_type`)
+                        ON (`applications`.`id_cultural_object_type`=`misc_cultural_object_type`.`id`)
+                  LEFT JOIN (`misc_national_project`)
+                        ON (`applications`.`id_national_project`=`misc_national_project`.`id`)
+                  LEFT JOIN (`misc_federal_project`)
+                        ON (`applications`.`id_federal_project`=`misc_federal_project`.`id`)
+                  LEFT JOIN (`misc_curator`)
+                        ON (`applications`.`id_curator`=`misc_curator`.`id`)
+
+
+
                   ";
         
         $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
@@ -217,6 +247,10 @@ final class ApplicationsTable{
         self::restructureMiscToSubarray($result, 'id_functional_purpose_subsector', 'name_functional_purpose_subsector', 'functional_purpose_subsector');
         self::restructureMiscToSubarray($result, 'id_functional_purpose_group', 'name_functional_purpose_group', 'functional_purpose_group');
         self::restructureMiscToSubarray($result, 'id_type_of_work', 'name_type_of_work', 'type_of_work');
+        self::restructureMiscToSubarray($result, 'id_cultural_object_type', 'name_cultural_object_type', 'cultural_object_type');
+        self::restructureMiscToSubarray($result, 'id_national_project', 'name_national_project', 'national_project');
+        self::restructureMiscToSubarray($result, 'id_federal_project', 'name_federal_project', 'federal_project');
+        self::restructureMiscToSubarray($result, 'id_curator', 'name_curator', 'curator');
         
         // Предметы экспертизы
         $queryExpertiseSubjects = "SELECT `misc_expertise_subject`.`id`,

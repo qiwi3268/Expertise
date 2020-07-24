@@ -234,6 +234,7 @@
 
 .body-card__field {
    display: flex;
+   align-items: center;
 }
 
 .body-card__select {

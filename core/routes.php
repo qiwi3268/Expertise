@@ -80,7 +80,7 @@ return [
         'ROOTcontrollers'    => ['header'],
         'ROOTviews'          => ['header'],
         'ROOTClasses'        => ['VariableTransfer'],
-        '/Classes/ApplicationForm/'   => ['MiscInitialization'],
+        '/Classes/ApplicationForm/'   => ['MiscInitialization', 'MiscInitializationEditForm'],
         'controllers'        => ['initialization_misc_application_form',
                                  'edit_application',
                                  'validation_block_application_form',

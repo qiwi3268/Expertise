@@ -70,7 +70,6 @@
                         <div class="body-card__field">
                             <div class="body-card__select modal-select">
                                 <span class="body-card__value">Выберите значение</span>
-                                <i class="body-card__icon fas fa-bars"></i>
                             </div>
                         </div>
                         <span class="body-card__error">Поле обязательно для заполнения</span>
@@ -158,7 +157,6 @@
                                 <span class="body-card__value">Выберите значение</span>
                                 <i class="body-card__icon fas fa-bars"></i>
                             </div>
-                            <i class="body-card__icon-clear fas fa-trash"></i>
                         </div>
                         <span class="body-card__error">Поле обязательно для заполнения</span>
                     </div>
@@ -526,7 +524,6 @@
                                 <span class="body-card__value">Выберите значение</span>
                                 <i class="body-card__icon fas fa-bars"></i>
                             </div>
-                            <i class="body-card__icon-clear fas fa-trash"></i>
                         </div>
                         <span class="body-card__error">Поле обязательно для заполнения</span>
                     </div>
@@ -646,9 +643,9 @@
 
     <form id="file_uploader" action="" method="POST" enctype="multipart/form-data" >
         <input id="upload_id" type="file" multiple name="files" hidden/>
-        <input id="id_application" name="id_application" value="<?= _PROPERTY_IN_APPLICATION['id_application'] ?>" hidden/>
-        <input id="mapping_level_1" name="mapping_level_1" value="1" hidden/>
-        <input id="mapping_level_2" name="mapping_level_2" value="1" hidden/>
+        <input id="id_application" name="id_application" value="<?= _PROPERTY_IN_APPLICATION['id_application'] ?>" type="hidden"/>
+        <input id="mapping_level_1" name="mapping_level_1" value="1" type="hidden"/>
+        <input id="mapping_level_2" name="mapping_level_2" value="1" type="hidden"/>
     </form>
 
 </div>

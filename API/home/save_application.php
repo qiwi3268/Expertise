@@ -1,6 +1,7 @@
 <?php
 
-// API предназначен для сохранения анкеты заявления
+
+// API предназначен для динамической сохранения анкеты заявления
 //
 // API result:
 //  1  - Нет обязательных параметров POST запроса
@@ -22,21 +23,28 @@
 //       {result, error_message : текст ошибки}
 
 
-if(checkParamsPOST(_PROPERTY_IN_APPLICATION['id_application'],
-                   _PROPERTY_IN_APPLICATION['expertise_purpose'],
-                   _PROPERTY_IN_APPLICATION['expertise_subjects'],
-                   _PROPERTY_IN_APPLICATION['additional_information'],
-                   _PROPERTY_IN_APPLICATION['object_name'],
-                   _PROPERTY_IN_APPLICATION['type_of_object'],
-                   _PROPERTY_IN_APPLICATION['functional_purpose'],
-                   _PROPERTY_IN_APPLICATION['functional_purpose_subsector'],
-                   _PROPERTY_IN_APPLICATION['functional_purpose_group'],
-                   _PROPERTY_IN_APPLICATION['number_planning_documentation_approval'],
-                   _PROPERTY_IN_APPLICATION['date_planning_documentation_approval'],
-                   _PROPERTY_IN_APPLICATION['number_GPZU'],
-                   _PROPERTY_IN_APPLICATION['date_GPZU'],
-                   _PROPERTY_IN_APPLICATION['type_of_work'],
-                   _PROPERTY_IN_APPLICATION['cadastral_number']
+if(checkParamsPOST('id_application',
+                   'expertise_purpose',
+                   'expertise_subjects',
+                   'additional_information',
+                   'object_name',
+                   'type_of_object',
+                   'functional_purpose',
+                   'functional_purpose_subsector',
+                   'functional_purpose_group',
+                   'number_planning_documentation_approval',
+                   'date_planning_documentation_approval',
+                   'number_GPZU',
+                   'date_GPZU',
+                   'type_of_work',
+                   'cadastral_number',
+                   'cultural_object_type_checkbox',
+                   'cultural_object_type',
+                   'national_project_checkbox',
+                   'national_project',
+                   'federal_project',
+                   'date_finish_building',
+                   'curator'
 )){
 
 
@@ -55,13 +63,20 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['id_application'],
     /** @var string $P_date_GPZU                               Дата ГПЗУ */
     /** @var string $P_type_of_work                            Вид работ */
     /** @var string $P_cadastral_number                        Кадастровый номер земельного участка */
-
+    /** @var string $P_cultural_object_type_checkbox           Тип объекта культурного наследия (ЧЕКБОКС) */
+    /** @var string $P_cultural_object_type                    Тип объекта культурного наследия */
+    /** @var string $P_national_project_checkbox               Национальный проект (ЧЕКБОКС) */
+    /** @var string $P_national_project                        Национальный проект */
+    /** @var string $P_federal_project                         Федеральный проект */
+    /** @var string $P_date_finish_building                    Дата окончания строительства */
+    /** @var string $P_curator                                 Куратор */
+    
     extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
+    
 
     // -----------------------------------------------------------------------------------------------------------------
     // Зона валидации формы
     // -----------------------------------------------------------------------------------------------------------------
-    //
 
     // Преобразуем значение из формы явно к типу int
     $form_applicationID = (int)$P_id_application;
@@ -87,7 +102,7 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['id_application'],
 
     // Сотрудник
     }else{
-        // todo проверить эту ветку на сотруднике
+
         if(!$applicationExist){
 
             exit(json_encode(['result'        => 3,
@@ -171,7 +186,8 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['id_application'],
         $form_expertiseSubjects = $expertiseSubjectsJSONvalidateResult['int_formArray'];
 
         foreach($form_expertiseSubjects as $id){
-
+            
+            // Проверка каждого выбранного Предмета экспертизы на зависимость от выбранной Цели обращения
             $expertiseSubjectValidateResult = $formHandler->validateDependentMisc($form_expertisePurposeID, $id, 'misc_expertiseSubjectTable');
 
             if($expertiseSubjectValidateResult['error']){
@@ -312,11 +328,11 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['id_application'],
             switch($functionalPurposeGroupValidateResult['error_code']){
                 case 1: // Передано некорректное значение зависимого справочника
                     exit(json_encode(['result'        => 4,
-                        'error_message' => 'Передано некорректное значение Функциональное назначение. Группа'
+                                      'error_message' => 'Передано некорректное значение Функциональное назначение. Группа'
                     ]));
                 case 2: // Запрашиваемая в форме зависимость не существует
                     exit(json_encode(['result'        => 5,
-                                     'error_message' => 'Запрашиваемый справочник Функциональное назначение. Группа не существует'
+                                      'error_message' => 'Запрашиваемый справочник Функциональное назначение. Группа не существует'
                     ]));
             }
         }
@@ -391,8 +407,7 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['id_application'],
         }
 
         $typeOfWorkValidateResult = $formHandler->validateDependentMisc($form_expertisePurposeID, $P_type_of_work, 'misc_typeOfWorkTable');
-
-
+        
         if($typeOfWorkValidateResult['error']){
 
             switch($typeOfWorkValidateResult['error_code']){
@@ -415,29 +430,198 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['id_application'],
 
         define('type_of_work_exist', false);
     }
+    
+    
+    // Проверка Типа объекта культурного наследия ----------------------------------------------
+    //
+    if($P_cultural_object_type !== ''){
+        
+        if($P_cultural_object_type_checkbox !== '1'){
+            exit(json_encode(['result'        => 7,
+                              'error_message' => 'Тип объекта культурного наследия не может быть заполнен при невыбраном чекбоксе Объект культурного наследия (Да)'
+            ]));
+        }
+        
+        $culturalObjectTypeValidateResult = $formHandler->validateSingleMisc($P_cultural_object_type, 'misc_culturalObjectTypeTable');
+    
+        if($culturalObjectTypeValidateResult['error']){
+        
+            switch($culturalObjectTypeValidateResult['error_code']){
+                case 1: // Передано некорректное значение справочника
+                    exit(json_encode(['result'        => 4,
+                                      'error_message' => 'Передано некорректное значение Типа объекта культурного наследия'
+                    ]));
+                case 2: // Запрашиваемый справочник не существует
+                    exit(json_encode(['result'        => 5,
+                                      'error_message' => 'Запрашиваемый справочник Типа объекта культурного наследия не существует'
+                    ]));
+            }
+        }
+    
+        // int'овое значение из формы
+        $form_culturalObjectTypeID = $culturalObjectTypeValidateResult['int_formValue'];
+        
+        define('cultural_object_type_exist', true);
+    }else{
+    
+        define('cultural_object_type_exist', false);
+    }
+    
+
+    // Проверка Национального проекта ----------------------------------------------------------
+    //
+    if($P_national_project !== ''){
+        
+        if($P_national_project_checkbox !== '1'){
+            exit(json_encode(['result'        => 7,
+                              'error_message' => 'Название национального проекта не может быть заполнен при невыбраном чекбоксе Национальный проект (Да)'
+            ]));
+        }
+        
+        $nationalProjectValidateResult = $formHandler->validateSingleMisc($P_national_project, 'misc_nationalProjectTable');
+    
+        if($nationalProjectValidateResult['error']){
+        
+            switch($nationalProjectValidateResult['error_code']){
+                case 1: // Передано некорректное значение справочника
+                    exit(json_encode(['result'        => 4,
+                                      'error_message' => 'Передано некорректное значение Национального проекта'
+                    ]));
+                case 2: // Запрашиваемый справочник не существует
+                    exit(json_encode(['result'        => 5,
+                                      'error_message' => 'Запрашиваемый справочник Национального проекта не существует'
+                    ]));
+            }
+        }
+    
+        // int'овое значение из формы
+        $form_nationalProjectID = $nationalProjectValidateResult['int_formValue'];
+    
+        define('national_project_exist', true);
+    }else{
+    
+        define('national_project_exist', false);
+    }
+    
+
+    // Проверка Федерального проекта -----------------------------------------------------------
+    //
+    if($P_federal_project !== ''){
+        
+        if(!national_project_exist){
+            exit(json_encode(['result'        => 7,
+                              'error_message' => 'Федеральный проект не может быть заполнен при невыбранном Национальном проекте'
+            ]));
+        }
+    
+        $federalProjectValidateResult = $formHandler->validateDependentMisc($form_nationalProjectID, $P_federal_project, 'misc_federalProjectTable');
+    
+        if($federalProjectValidateResult['error']){
+        
+            switch($federalProjectValidateResult['error_code']){
+                case 1: // Передано некорректное значение зависимого справочника
+                    exit(json_encode(['result'        => 4,
+                                      'error_message' => 'Передано некорректное значение Федерального проекта'
+                    ]));
+                case 2: // Запрашиваемая в форме зависимость не существует
+                    exit(json_encode(['result'        => 5,
+                                      'error_message' => 'Запрашиваемый справочник Федерального проекта не существует'
+                    ]));
+            }
+        }
+    
+        // int'овое значение из формы
+        $form_federalProjectID = $federalProjectValidateResult['int_formValueDependent'];
+    
+        define('federal_project_exist', true);
+    }else{
+    
+        define('federal_project_exist', false);
+    }
+    
+
+    // Проверка Даты окончания строительства -----------------------------------------------------------
+    //
+    if($P_date_finish_building !== ''){
+        
+        if($P_national_project_checkbox !== '1'){
+            exit(json_encode(['result'        => 7,
+                              'error_message' => 'Дата окончания строительства не может быть заполнена при невыбраном чекбоксе Национальный проект (Да)'
+            ]));
+        }
+        
+        if(!$formHandler->validateDate($P_date_finish_building)){
+    
+            exit(json_encode(['result'        => 4,
+                              'error_message' => 'Передано некорректное значение Даты окончания строительства'
+            ]));
+        }
+    }
+    
+    // Проверка Куратора -------------------------------------------------------------------------------
+    //
+    if($P_curator !== ''){
+        
+        $curatorValidateResult = $formHandler->validateSingleMisc($P_curator, 'misc_curatorTable');
+    
+        if($curatorValidateResult['error']){
+        
+            switch($curatorValidateResult['error_code']){
+                case 1: // Передано некорректное значение справочника
+                    exit(json_encode(['result'        => 4,
+                                      'error_message' => 'Передано некорректное значение Куратора'
+                    ]));
+                case 2: // Запрашиваемый справочник не существует
+                    exit(json_encode(['result'        => 5,
+                                      'error_message' => 'Запрашиваемый справочник Куратора не существует'
+                    ]));
+            }
+        }
+    
+        // int'овое значение из формы
+        $form_curatorID = $curatorValidateResult['int_formValue'];
+    
+        define('curator_exist', true);
+    }else{
+    
+        define('curator_exist', false);
+    }
+    
+    
+    
+    
 
 
 
     // -----------------------------------------------------------------------------------------------------------------
     // Зона сохранения заявления в БД
+    // -----------------------------------------------------------------------------------------------------------------
     //
     // Имеет bool константы:
-    // 1 - expertise_purpose_exist            : передана Цель обращения
-    // 2 - expertise_subjects_exist           : передан(ы) Предметы экспертизы
-    // 3 - type_of_object_exist               : передан Вид объекта
-    // 4 - functional_purpose_exist           : передано Функциональное назначение
-    // 5 - functional_purpose_subsector_exist : передано Функциональное назначение. Подотрасль
-    // 6 - functional_purpose_group_exist     : передано Функциональное назначение. Группа
-    // 7 - type_of_work_exist                 : передан Вид работ
+    //  1 - expertise_purpose_exist            : передана Цель обращения
+    //  2 - expertise_subjects_exist           : передан(ы) Предметы экспертизы
+    //  3 - type_of_object_exist               : передан Вид объекта
+    //  4 - functional_purpose_exist           : передано Функциональное назначение
+    //  5 - functional_purpose_subsector_exist : передано Функциональное назначение. Подотрасль
+    //  6 - functional_purpose_group_exist     : передано Функциональное назначение. Группа
+    //  7 - type_of_work_exist                 : передан Вид работ
+    //  8 - cultural_object_type_exist         : передан Тип объекта культурного наследия
+    //  9 - national_project_exist             : передан Национальный проект
+    // 10 - federal_project_exist              : передан Федеральный проект
+    // 11 - curator_exist                      : передан Куратор
     //
     // Если константы true, то определены:
-    // 1 - form_expertisePurposeID           int : id выбранной Цели обращения
-    // 2 - form_expertiseSubjects  array[int...] : массив с выбранными предметами (int) экспертизы
-    // 3 - form_typeOfObjectID               int : id выбранного Вида объекта
-    // 4 - form_functionalPurposeID          int : id выбранного Функционального назначение
-    // 5 - form_functionalPurposeSubsectorID int : id выбранного Функциональное назначение. Подотрасль
-    // 6 - form_functionalPurposeGroupID     int : id выбранного Функциональное назначение. Группа
-    // 7 - form_typeOfWorkID                 int : id выбранного Вида работ
+    //  1 - form_expertisePurposeID           int : id выбранной Цели обращения
+    //  2 - form_expertiseSubjects  array[int...] : массив с выбранными предметами (int) экспертизы
+    //  3 - form_typeOfObjectID               int : id выбранного Вида объекта
+    //  4 - form_functionalPurposeID          int : id выбранного Функционального назначение
+    //  5 - form_functionalPurposeSubsectorID int : id выбранного Функциональное назначение. Подотрасль
+    //  6 - form_functionalPurposeGroupID     int : id выбранного Функциональное назначение. Группа
+    //  7 - form_typeOfWorkID                 int : id выбранного Вида работ
+    //  8 - form_culturalObjectTypeID         int : id выбранного Типа объекта культурного наследия
+    //  9 - form_nationalProjectID            int : id выбранного Национального проекта
+    // 10 - form_federalProjectID             int : id выбранного Федерального проекта
+    // 11 - form_curatorID                    int : id выбранного Куратора
     //
     // -----------------------------------------------------------------------------------------------------------------
 
@@ -448,8 +632,8 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['id_application'],
 
 
     // Цель обращения (справочник, нельзя сбросить) --------------------------------------------
-    if(expertise_purpose_exist && $form_expertisePurposeID !== $applicationAssoc[_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_expertise_purpose']]){
-        $dataToUpdate[_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_expertise_purpose']] = $form_expertisePurposeID;
+    if(expertise_purpose_exist && $form_expertisePurposeID !== $applicationAssoc['id_expertise_purpose']){
+        $dataToUpdate['id_expertise_purpose'] = $form_expertisePurposeID;
     }
 
 
@@ -472,83 +656,97 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['id_application'],
 
     // Из формы пришло пустое значение, удаляем все Предметы экспертизы
     }else{
-
         $expertiseSubjectsToDelete = $db_expertiseSubjects;
     }
 
     // Удаляем и записываем в БД новые записи о Предмете экспертизы
-    foreach($expertiseSubjectsToDelete As $id){
+    foreach($expertiseSubjectsToDelete as $id){
         ExpertiseSubjectTable::delete($form_applicationID, $id);
     }
-    foreach($expertiseSubjectsToCreate As $id){
+    foreach($expertiseSubjectsToCreate as $id){
         ExpertiseSubjectTable::create($form_applicationID, $id);
     }
 
 
     // Дополнительная информация (текстовое поле) ----------------------------------------------
-    $formHandler->addValueToUpdate($P_additional_information, _COLUMN_NAME_IN_APPLICATIONS_TABLE['additional_information'], $dataToUpdate);
+    $formHandler->addValueToUpdate($P_additional_information, 'additional_information', $dataToUpdate);
 
 
     // Наименование объекта (текстовое поле) ---------------------------------------------------
-    $formHandler->addValueToUpdate($P_object_name, _COLUMN_NAME_IN_APPLICATIONS_TABLE['object_name'], $dataToUpdate);
+    $formHandler->addValueToUpdate($P_object_name, 'object_name', $dataToUpdate);
 
 
     // Вид объекта (справочник, нельзя сбросить) -----------------------------------------------
-    if(type_of_object_exist && $form_typeOfObjectID !== $applicationAssoc[_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_type_of_object']]){
-        $dataToUpdate[_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_type_of_object']] = $form_typeOfObjectID;
+    if(type_of_object_exist && $form_typeOfObjectID !== $applicationAssoc['id_type_of_object']){
+        $dataToUpdate['id_type_of_object'] = $form_typeOfObjectID;
     }
 
 
     // Функциональное назначение (справочник, нельзя сбросить) ----------------------------------
-    if(functional_purpose_exist && $form_functionalPurposeID !== $applicationAssoc[_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose']]){
-        $dataToUpdate[_COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose']] = $form_functionalPurposeID;
+    if(functional_purpose_exist && $form_functionalPurposeID !== $applicationAssoc['id_functional_purpose']){
+        $dataToUpdate['id_functional_purpose'] = $form_functionalPurposeID;
     }
 
 
     // Функциональное назначение. Подотрасль (справочник, можно сбросить) -----------------------
-    if(functional_purpose_subsector_exist){
-        $formHandler->addValueToUpdate($form_functionalPurposeSubsectorID, _COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose_subsector'], $dataToUpdate);
-    }else{
-        $formHandler->addValueToUpdate('', _COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose_subsector'], $dataToUpdate);
-    }
-
-
+    $tmpFormValue = functional_purpose_subsector_exist ? $form_functionalPurposeSubsectorID : '';
+    $formHandler->addValueToUpdate($tmpFormValue, 'id_functional_purpose_subsector', $dataToUpdate);
+    
+    
     // Функциональное назначение. Группа (справочник, можно сбросить) ---------------------------
-    if(functional_purpose_group_exist){
-        $formHandler->addValueToUpdate($form_functionalPurposeGroupID, _COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose_group'], $dataToUpdate);
-    }else{
-        $formHandler->addValueToUpdate('', _COLUMN_NAME_IN_APPLICATIONS_TABLE['id_functional_purpose_group'], $dataToUpdate);
-    }
-
+    $tmpFormValue = functional_purpose_group_exist ? $form_functionalPurposeGroupID : '';
+    $formHandler->addValueToUpdate($tmpFormValue, 'id_functional_purpose_group', $dataToUpdate);
 
     // Номер утверждения документации по планировке территории (текстовое поле) -----------------
-    $formHandler->addValueToUpdate($P_number_planning_documentation_approval, _COLUMN_NAME_IN_APPLICATIONS_TABLE['number_planning_documentation_approval'], $dataToUpdate);
+    $formHandler->addValueToUpdate($P_number_planning_documentation_approval, 'number_planning_documentation_approval', $dataToUpdate);
 
 
     // Дата утверждения документации по планировке территории (текстовое поле, календарь) -------
-    $formHandler->addValueToUpdate(strtotime($P_date_planning_documentation_approval), _COLUMN_NAME_IN_APPLICATIONS_TABLE['date_planning_documentation_approval'], $dataToUpdate);
+    $formHandler->addValueToUpdate(strtotime($P_date_planning_documentation_approval), 'date_planning_documentation_approval', $dataToUpdate);
 
 
     // Номер ГПЗУ (текстовое поле) -------------------------------------------------------------
-    $formHandler->addValueToUpdate($P_number_GPZU, _COLUMN_NAME_IN_APPLICATIONS_TABLE['number_GPZU'], $dataToUpdate);
+    $formHandler->addValueToUpdate($P_number_GPZU, 'number_GPZU', $dataToUpdate);
 
 
     // Дата ГПЗУ (текстовое поле, календарь) ---------------------------------------------------
-    $formHandler->addValueToUpdate(strtotime($P_date_GPZU), _COLUMN_NAME_IN_APPLICATIONS_TABLE['date_GPZU'], $dataToUpdate);
+    $formHandler->addValueToUpdate(strtotime($P_date_GPZU), 'date_GPZU', $dataToUpdate);
 
 
     // Вид работ (справочник, можно сбросить)
-    if(type_of_work_exist){
-        $formHandler->addValueToUpdate($form_typeOfWorkID, _COLUMN_NAME_IN_APPLICATIONS_TABLE['id_type_of_work'], $dataToUpdate);
-    }else{
-        $formHandler->addValueToUpdate('', _COLUMN_NAME_IN_APPLICATIONS_TABLE['id_type_of_work'], $dataToUpdate);
-    }
+    $tmpFormValue = type_of_work_exist ? $form_typeOfWorkID : '';
+    $formHandler->addValueToUpdate($tmpFormValue, 'id_type_of_work', $dataToUpdate);
 
 
     // Кадастровый номер земельного участка (текстовое поле) -----------------------------------
-    $formHandler->addValueToUpdate($P_cadastral_number, _COLUMN_NAME_IN_APPLICATIONS_TABLE['cadastral_number'], $dataToUpdate);
+    $formHandler->addValueToUpdate($P_cadastral_number, 'cadastral_number', $dataToUpdate);
+    
+    
+    // Тип объекта культурного наследия (справочник, можно сбросить) ---------------------------
+    $tmpFormValue = cultural_object_type_exist ? $form_culturalObjectTypeID : '';
+    $formHandler->addValueToUpdate($tmpFormValue, 'id_cultural_object_type', $dataToUpdate);
 
-
+    
+    // Национальный проект (справочник, можно сбросить) ----------------------------------------
+    $tmpFormValue = national_project_exist ? $form_nationalProjectID : '';
+    $formHandler->addValueToUpdate($tmpFormValue, 'id_national_project', $dataToUpdate);
+    
+    
+    // Федеральный проект (справочник, можно сбросить) -----------------------------------------
+    $tmpFormValue = federal_project_exist ? $form_federalProjectID : '';
+    $formHandler->addValueToUpdate($tmpFormValue, 'id_federal_project', $dataToUpdate);
+    
+    
+    // Дата окончания строительства (текстовое поле, календарь) --------------------------------
+    $formHandler->addValueToUpdate(strtotime($P_date_finish_building), 'date_finish_building', $dataToUpdate);
+    
+    
+    // Куратор (справочник, нельзя сбросить) ----------------------------------------------------
+    if(curator_exist && $form_curatorID !== $applicationAssoc['id_curator']){
+        $dataToUpdate['id_curator'] = $form_curatorID;
+    }
+    
+    
 
     // Сохранение в БД полей заявления ---------------------------------------------------------
     //
@@ -556,28 +754,12 @@ if(checkParamsPOST(_PROPERTY_IN_APPLICATION['id_application'],
     if(!empty($dataToUpdate)){
 
         // Обновляем флаг сохраненности заявления для новых заявлений
-        if(!$applicationAssoc[_COLUMN_NAME_IN_APPLICATIONS_TABLE['is_saved']]){
-            $dataToUpdate[_COLUMN_NAME_IN_APPLICATIONS_TABLE['is_saved']] = 1;
+        if(!$applicationAssoc['is_saved']){
+            $dataToUpdate['is_saved'] = 1;
         }
         ApplicationsTable::smartUpdateById($dataToUpdate, $form_applicationID);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
     exit(json_encode(['result'        => 777,
                       'error_message' => 'Все хорошо'
     ]));

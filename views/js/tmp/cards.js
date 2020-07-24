@@ -15,31 +15,41 @@ function handleClearFieldButtons() {
    clear_buttons.forEach(button => {
       button.addEventListener('click', () => {
          let parent_row = button.closest('.body-card__row');
-         let default_value = 'Выберите значение';
+         /*let default_value = 'Выберите значение';
 
          if (parent_row.dataset.pattern === 'date') {
             default_value = 'Выберите дату';
-         }
+         }*/
+
 
          let row_result = parent_row.querySelector('.body-card__result');
          // Удаляем зависимые поля
          hideDependentRows(row_result);
-         row_result.value = '';
+
+         // row_result.value = '';
 
          let parent_select = parent_row.querySelector('.body-card__select');
-         parent_select.classList.remove('filled');
+         // parent_select.classList.remove('filled');
 
-         let row_value = parent_row.querySelector('.body-card__value');
+         // let row_value = parent_row.querySelector('.body-card__value');
 
-         if (row_value.innerHTML !== default_value) {
+         // if (row_value.innerHTML !== default_value) {
+
+         if (row_result.value) {
+
+            removeRowValue(parent_row);
+
             let related_modal = parent_row.querySelector('.modal');
             if (related_modal) {
-               validateModal(getModalBySelect(parent_select));
+               let modal = getModalBySelect(parent_select);
+               modal.clearRelatedModals();
+               validateModal(modal);
             }
 
             validateCard(parent_row.closest('.card-form'));
-            row_value.innerHTML = default_value;
+            // row_value.innerHTML = default_value;
          }
+
 
       });
    });
@@ -94,12 +104,13 @@ function removeRowValue(row) {
    }
 
    let value = row.querySelector('.body-card__value');
-   value.innerHTML = 'Выберите значение';
 
    // Если зависимое поле - дата, удаляем отображаемую дату
    let dependent_date = row.querySelector('.modal-calendar');
    if (dependent_date) {
       value.innerHTML = 'Выберите дату';
+   } else if (value) {
+      value.innerHTML = 'Выберите значение';
    }
 }
 

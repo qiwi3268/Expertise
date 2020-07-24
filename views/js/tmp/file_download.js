@@ -42,9 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       XHR('post', request_urn, new FormData(form), null, 'json', null, uploadProgressCallback)
          .then(response => {
-
             console.log(response);
-
          })
          .catch(error => {
 
@@ -59,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
       let event = new Event('submit');
       form.dispatchEvent(event);
    });
-
 
 //==================
 

@@ -113,15 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       constructor(select) {
          this.select = select;
-
-         console.log(this.select);
-
          this.select_value = this.select.querySelector('.body-card__value');
-
-         console.log(this.select_value);
-
          this.parent_row = this.select.closest('.body-card__row');
-
          this.element = document.querySelector('.calendar');
          this.body = this.element.querySelector('.calendar__body');
          this.title = this.element.querySelector('.calendar__title');

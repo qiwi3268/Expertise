@@ -278,6 +278,7 @@ class Modal {
       dependent_modals.forEach(modal => {
          modal.clearRelatedModals();
          this.clearModal(modal);
+         validateModal(modal);
       });
    }
 
