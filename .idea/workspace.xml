@@ -49,6 +49,7 @@
       <workItem from="1595389355453" duration="21147000" />
       <workItem from="1595480585288" duration="10070000" />
       <workItem from="1595562960811" duration="21248000" />
+      <workItem from="1595751085608" duration="308000" />
     </task>
     <task id="LOCAL-00001" summary="22.07.2020">
       <created>1595389670254</created>
@@ -92,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595593437429</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="26.07.2020">
+      <created>1595751373849</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1595751373849</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -104,7 +112,8 @@
     <MESSAGE value="22.07.2020_2" />
     <MESSAGE value="23.07.2020" />
     <MESSAGE value="24.07.2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="24.07.2020" />
+    <MESSAGE value="26.07.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="26.07.2020" />
   </component>
   <component name="WindowStateProjectService">
     <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1595593437006">
