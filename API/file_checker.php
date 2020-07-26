@@ -103,6 +103,8 @@ try{
                       'fs_name'   => $pathToFile,
                       'file_name' => $fileAssoc['file_name']
                      ]));
+    
+// Непредвиденная ошибка
 }catch(Exception $e){
 
     exit(json_encode(['result'  => 10,

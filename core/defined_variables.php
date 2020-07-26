@@ -1,7 +1,7 @@
 <?php
 
 // Блок объявления констант, связанных с путями в ФС сервера
-define('_ROOT_', $_SERVER['DOCUMENT_ROOT']);                    // Корневая директория веб-проекта
+define('_ROOT_', '/var/www/html');                              // Корневая директория веб-проекта
 define('_APPLICATIONS_FILES_', '/var/www/applications_files');  // Директория файлов заявлений
 
 
@@ -93,7 +93,7 @@ define('_COLUMN_NAME_IN_APPLICATIONS_TABLE', ['id'                              
 
 
 
-
+//todo дописать изменную с учетом крона структуру таблиц
 // Маппинг кодов и названий классов
 // Первый уровень вложенности соответствует типу таблиц:
 //    1 - Тип таблицы:   id   id_application   file_name   hash   is_uploaded
@@ -103,9 +103,7 @@ define('_COLUMN_NAME_IN_APPLICATIONS_TABLE', ['id'                              
 //
 // Второй уровень вложенности соответствует названию класса для этой таблицы
 define('_FILE_TABLE_MAPPING', ['1' => ['1' => 'file_grbsTable'
-
                                        ],
-                                '2' => ['1' => 'file_documentation1Table',
-                                        '2' => ''
+                                '2' => ['1' => 'file_documentation1Table'
                                        ]
                                ]);

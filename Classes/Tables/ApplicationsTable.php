@@ -43,6 +43,7 @@ final class ApplicationsTable{
 
 
     // Предназначен для получения плоского ассоциативного массива заявления по его id
+    // * плоский - не содержащий подмассиве. Результирующий массив содержит данные только из таблицы с заявлениями
     // Принимает параметры-----------------------------------
     // id int : id заявления
     // Возвращает параметры----------------------------------
@@ -79,81 +80,6 @@ final class ApplicationsTable{
         $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
         return $result ? $result[0] : null;
     }
-
-
-    // Предназначен для получения ассоциативного массива заявления по его id для просмотра заявления
-    // Возвращает параметры----------------------------------
-    // array : в случае, если заявление существует
-    // null  : в противном случае
-    //
-    static public function getAssocByIdForView(int $id):array {
-        $query = "SELECT `applications`.`id`,
-                         `applications`.`numerical_name`,
-                         `misc_expertise_purpose`.`name` AS `expertise_purpose`,
-                         `applications`.`additional_information`,
-                         `applications`.`object_name`,
-                         `misc_type_of_object`.`name` AS `type_of_object`,
-                         `misc_functional_purpose`.`name` AS `functional_purpose`,
-                         `misc_functional_purpose_subsector`.`name` AS `functional_purpose_subsector`,
-                         `misc_functional_purpose_group`.`name` AS `functional_purpose_group`,
-                         `applications`.`number_planning_documentation_approval`,
-                         `applications`.`date_planning_documentation_approval`,
-                         `applications`.`number_GPZU`,
-                         `applications`.`date_GPZU`,
-                         `misc_type_of_work`.`name` AS `type_of_work`,
-                         `applications`.`cadastral_number`
-                  FROM (SELECT * FROM `applications`
-                        WHERE `applications`.`id`=?) AS `applications`
-                  LEFT JOIN (`misc_expertise_purpose`)
-                        ON (`applications`.`id_expertise_purpose`=`misc_expertise_purpose`.`id`)
-                  LEFT JOIN (`misc_type_of_object`)
-                        ON (`applications`.`id_type_of_object`=`misc_type_of_object`.`id`)
-                  LEFT JOIN (`misc_functional_purpose`)
-                        ON (`applications`.`id_functional_purpose`=`misc_functional_purpose`.`id`)
-                  LEFT JOIN (`misc_functional_purpose_subsector`)
-                        ON (`applications`.`id_functional_purpose_subsector`=`misc_functional_purpose_subsector`.`id`)
-                  LEFT JOIN (`misc_functional_purpose_group`)
-                        ON (`applications`.`id_functional_purpose_group`=`misc_functional_purpose_group`.`id`)
-                  LEFT JOIN (`misc_type_of_work`)
-                        ON (`applications`.`id_type_of_work`=`misc_type_of_work`.`id`)
-                  ";
-
-        $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
-
-        if(empty($result)){
-            return null;
-        }
-        $result = $result[0];
-        
-
-        // Предметы экспертизы
-        $queryExpertiseSubjects = "SELECT `misc_expertise_subject`.`name`
-                                   FROM (SELECT * FROM `expertise_subject`
-                                         WHERE `id_application`=?) AS `expertise_subject`
-                                   LEFT JOIN `misc_expertise_subject`
-                                         ON (`expertise_subject`.`id_expertise_subject`=`misc_expertise_subject`.`id`)
-                                   ORDER BY `misc_expertise_subject`.`sort` ASC";
-
-        $expertiseSubjects = ParametrizedQuery::getFetchAssoc($queryExpertiseSubjects, [$id]);
-
-        if(empty($expertiseSubjects)){
-
-            $expertiseSubjects = null;
-        }else{
-
-            // Переносим каждую цель из подмассива на один уровень вверх
-            foreach($expertiseSubjects AS &$subject){
-                $subject = $subject['name'];
-            }
-            unset($subject);
-        }
-
-        $result['expertise_subjects'] = $expertiseSubjects;
-
-
-        return $result;
-    }
-    
     
     
     // Предназначен для получения ассоциативного массива заявления по его id для редактирования заявления
@@ -161,8 +87,8 @@ final class ApplicationsTable{
     // array : в случае, если заявление существует
     // null  : в противном случае
     //
-    static public function getAssocByIdForEdit(int $id):?array {
-        $query = "SELECT `applications`.`id`,
+    static public function getAssocById(int $id):?array {
+        $query = "SELECT `applications`.`id` as `id_application`,
                          `applications`.`numerical_name`,
        
                          `applications`.`id_expertise_purpose`,
@@ -191,6 +117,8 @@ final class ApplicationsTable{
                          `applications`.`id_type_of_work`,
                          `misc_type_of_work`.`name` AS `name_type_of_work`,
        
+                         `applications`.`cadastral_number`,
+       
                          `applications`.`id_cultural_object_type`,
                          `misc_cultural_object_type`.`name` AS `name_cultural_object_type`,
        
@@ -203,9 +131,7 @@ final class ApplicationsTable{
                          `applications`.`date_finish_building`,
        
                          `applications`.`id_curator`,
-                         `misc_curator`.`name` AS `name_curator`,
-       
-                         `applications`.`cadastral_number`
+                         `misc_curator`.`name` AS `name_curator`
                   FROM (SELECT * FROM `applications`
                         WHERE `applications`.`id`=?) AS `applications`
                   LEFT JOIN (`misc_expertise_purpose`)

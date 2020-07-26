@@ -68,6 +68,10 @@ switch(_URN_){
         break;
 }
 
+$variablesTV = VariableTransfer::getInstance();
+$variablesTV->setValue('pageName', $pageName);
+$variablesTV->setValue('sourcesFiles', $sourcesFiles);
+
 
 // Предназначен для создания html ссылки на ресурс
 // Принимает параметры-----------------------------------

@@ -2,42 +2,42 @@
 
 <!-- Зависимость "Предмет экспертизы" от "Цель обращения" -->
 <div class="radio__content-change-logic">
-    <input data-when_change="<?= _PROPERTY_IN_APPLICATION['expertise_purpose'] ?>"
-           data-target_change="<?= _PROPERTY_IN_APPLICATION['expertise_subjects'] ?>"
+    <input data-when_change="expertise_purpose"
+           data-target_change="expertise_subjects"
            type="hidden"
-           value='<?= $variablesTV->getValue('expertiseSubjects') ?>'>
+           value='<?= $variablesTV->getValue('expertise_subjects') ?>'>
 </div>
 
 <!-- Зависимость "Вид работ" от "Цель обращения" -->
 <div class="modal__content-change-logic">
-    <input data-when_change="<?= _PROPERTY_IN_APPLICATION['expertise_purpose'] ?>"
-           data-target_change="<?= _PROPERTY_IN_APPLICATION['type_of_work'] ?>"
+    <input data-when_change="expertise_purpose"
+           data-target_change="type_of_work"
            type="hidden"
-           value='<?= $variablesTV->getValue('typeOfWorks') ?>'>
+           value='<?= $variablesTV->getValue('type_of_work') ?>'>
 </div>
 
 <!-- Зависимость "Функциональное назначение. Подотрасль" от "Функциональное назначение" -->
 <div class="modal__content-change-logic">
-   <input data-when_change="<?= _PROPERTY_IN_APPLICATION['functional_purpose'] ?>"
-          data-target_change="<?= _PROPERTY_IN_APPLICATION['functional_purpose_subsector'] ?>"
+   <input data-when_change="functional_purpose"
+          data-target_change="functional_purpose_subsector"
           type="hidden"
-          value='<?= $variablesTV->getValue('functionalPurposeSubsectors') ?>'>
+          value='<?= $variablesTV->getValue('functional_purpose_subsector') ?>'>
 </div>
 
 <!-- Зависимость "Функциональное назначение. Группа" от "Функциональное назначение. Подотрасль" -->
 <div class="modal__content-change-logic">
-   <input data-when_change="<?= _PROPERTY_IN_APPLICATION['functional_purpose_subsector'] ?>"
-          data-target_change="<?= _PROPERTY_IN_APPLICATION['functional_purpose_group'] ?>"
+   <input data-when_change="functional_purpose_subsector"
+          data-target_change="functional_purpose_group"
           type="hidden"
-          value='<?= $variablesTV->getValue('functionalPurposeGroups') ?>'>
+          value='<?= $variablesTV->getValue('functional_purpose_group') ?>'>
 </div>
 
 <!-- Зависимость "Федеральный проект" от "Национальный проект" -->
 <div class="modal__content-change-logic">
-   <input data-when_change="<?= _PROPERTY_IN_APPLICATION['national_project'] ?>"
-          data-target_change="<?= _PROPERTY_IN_APPLICATION['federal_project'] ?>"
+   <input data-when_change="national_project"
+          data-target_change="federal_project"
           type="hidden"
-          value='<?= $variablesTV->getValue('federalProjects') ?>'>
+          value='<?= $variablesTV->getValue('federal_project') ?>'>
 </div>
 
 
