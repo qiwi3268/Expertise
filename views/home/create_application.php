@@ -523,7 +523,7 @@
 
                 <!--Загрузчик файла-->
                 <div class="body-card__row" data-row_name="File"
-                     data-required="true">
+                     data-required="true" data-multiple="true" data-mapping_level_1="1" data-mapping_level_2="1">
                     <span class="body-card__title required">Файл</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
@@ -544,7 +544,7 @@
 
                 <!--Загрузчик файла2-->
                 <div class="body-card__row" data-row_name="File_2"
-                     data-required="true">
+                     data-required="true" data-multiple="false" data-mapping_level_1="2" data-mapping_level_2="2">
                     <span class="body-card__title required">Файл_2</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
@@ -601,41 +601,26 @@
 <div class="modal file-modal">
     <i class="modal__close active fas fa-times"></i>
 
+    <div class="file-modal__header">
+        <div class="file-modal__title">Выберите или перетащите файлы</div>
+        <div class="file-modal__progress_bar"></div>
+    </div>
+
     <div class="file-modal__drop-area">
-
-        <div class="file-modal__header">
-            <div class="file-modal__title">Выберите или перетащите файлы</div>
-            <i class="file-modal__icon fas fa-file-upload"></i>
-            <i class="file-modal__delete-icon fas fa-trash"></i>
-        </div>
-
-        <div class="file-modal__body">
-        </div>
-
-
-
-
-
-
-        <div id="progress_bar" class="file-modal__progress_bar">
-            <div class="file-modal__progress-line"></div>
-            <div class="file-modal__percent"></div>
-        </div>
-
-
+        <div class="file-modal__body"></div>
     </div>
 
     <div class="file-modal__actions">
-        <div class="file-modal__button file-modal__submit">Загрузить</div>
         <div class="file-modal__button file-modal__upload">Выбрать</div>
+        <div class="file-modal__button file-modal__submit">Загрузить</div>
         <div class="file-modal__button file-modal__delete">Удалить файлы</div>
     </div>
 
     <form id="file_uploader" action="" method="POST" enctype="multipart/form-data" >
         <input type="file" name="download_files[]" hidden/>
         <input name="id_application" value="<?= $variablesTV->getValue('id_application') ?>" type="hidden"/>
-        <input name="mapping_level_1" value="1" type="hidden"/>
-        <input name="mapping_level_2" value="1" type="hidden"/>
+        <input name="mapping_level_1" type="hidden"/>
+        <input name="mapping_level_2" type="hidden"/>
     </form>
 
 </div>

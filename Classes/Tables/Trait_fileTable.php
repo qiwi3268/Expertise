@@ -60,6 +60,26 @@ trait  Trait_fileTable{
     }
     
     
+    // Предназначен для проверки существования записи по id
+    // Принимает параметры-----------------------------------
+    // id  int : id записи
+    // Возвращает параметры----------------------------------
+    // true   : запись существует
+    // false  : запись не существует
+    //
+    static public function checkExistById(int $id):bool {
+    
+        $table = self::$tableName;
+        
+        $query = "SELECT count(*)>0
+                  FROM `$table`
+                  WHERE `id`=?";
+        
+        // Автоматическое преобразование к bool типу
+        return ParametrizedQuery::getSimpleArray($query, [$id])[0];
+    }
+    
+    
     // Реализация метода интерфейса
     // Предназнчен для получения ассоциативного массива ненужных файлов
     // Возвращает параметры-----------------------------------
@@ -77,6 +97,35 @@ trait  Trait_fileTable{
         $result = SimpleQuery::getFetchAssoc($query);
     
         return $result ? $result : null;
+    }
+    
+    
+    // Предназначен для установки поля 'is_needs' в 1 по id записи
+    // Помимо установки флага is_needs - удаляем флаг cron_deleted_flag и date_cron_deleted_flag
+    // Принимает параметры-----------------------------------
+    // id int : id записи
+    static public function setIsNeedsToTrueById(int $id):void {
+        
+        $table = self::$tableName;
+        
+        $query = "UPDATE `$table`
+                  SET `is_needs`='1', `cron_deleted_flag`='0', `date_cron_deleted_flag`=NULL
+                  WHERE `id`=?";
+        ParametrizedQuery::set($query, [$id]);
+    }
+    
+    
+    // Предназначен для установки поля 'is_needs' в 0 по id записи
+    // Принимает параметры-----------------------------------
+    // id int : id записи
+    static public function setIsNeedsToFalseById(int $id):void {
+        
+        $table = self::$tableName;
+    
+        $query = "UPDATE `$table`
+                  SET `is_needs`='0'
+                  WHERE `id`=?";
+        ParametrizedQuery::set($query, [$id]);
     }
     
     

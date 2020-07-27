@@ -19,18 +19,20 @@ class StartingInitialization{
     
         // Автозагрузка классов
         spl_autoload_register(function(string $className){
-        
-            if(mb_stripos($className, 'exception') !== false){                // Исключения
-                require_once "{$this->rootPath}/Classes/Exceptions/{$className}.php";
             
-            }elseif(mb_stripos($className,'table') !== false){                // Таблицы
-                require_once "{$this->rootPath}/Classes/Tables/{$className}.php";
+            $path = null;
+    
+            // Исключения
+            if(mb_stripos($className, 'exception') !== false) $path = "{$this->rootPath}/Classes/Exceptions/{$className}.php";
+            // Таблицы
+            elseif(mb_stripos($className,'table') !== false) $path = "{$this->rootPath}/Classes/Tables/{$className}.php";
+            // Действия
+            elseif(mb_stripos($className, 'actions') !== false) $path = "{$this->rootPath}/Classes/Actions/{$className}.php";
+            // Вспомогательные классы
+            elseif(mb_stripos($className, 'helper') !== false) $path = "{$this->rootPath}/Classes/Helpers/{$className}.php";
             
-            }elseif(mb_stripos($className, 'actions') !== false){             // Действия
-                require_once "{$this->rootPath}/Classes/Actions/{$className}.php";
-            
-            }elseif(mb_stripos($className, 'helper') !== false){              // Вспомогательные классы
-                require_once "{$this->rootPath}/Classes/Helpers/{$className}.php";
+            if(!is_null($path) && file_exists($path)){
+                require_once $path;
             }
         });
     }

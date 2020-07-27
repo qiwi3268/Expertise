@@ -15,9 +15,21 @@ interface Interface_fileTable{
     //
     static public function getAssocById(int $id):?array;
     
+    // Предназначен для проверки существования записи по id
+    //
+    static public function checkExistById(int $id):bool;
+    
     // Предназнчен для получения ассоциативного массива ненужных файлов
     //
     static public function getNoNeedsAssoc():?array;
+    
+    // Предназначен для установки поля 'is_needs' в 1 по id записи
+    //
+    static public function setIsNeedsToTrueById(int $id):void;
+    
+    // Предназначен для установки поля 'is_needs' в 0 по id записи
+    //
+    static public function setIsNeedsToFalseById(int $id):void;
     
     // Предназначен для установки флага удаления крона по id
     //

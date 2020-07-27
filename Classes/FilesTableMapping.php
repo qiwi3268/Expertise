@@ -6,7 +6,7 @@
 class FilesTableMapping{
 
     private string $neededInterface = 'Interface_fileTable';
-    private ?int $error = null;
+    private ?int $errorCode = null;
     private string $errorText;
     private string $Class;
 
@@ -14,7 +14,7 @@ class FilesTableMapping{
 
         // Проверка существования маппинга
         if(!isset(_FILE_TABLE_MAPPING[$mappingLevel1][$mappingLevel2])){
-            $this->error = 1;
+            $this->errorCode = 1;
             $this->errorText = 'Запрашиваемого маппинга не существует';
             return;
         }
@@ -23,7 +23,7 @@ class FilesTableMapping{
 
         // Проверка на существование указанного в маппинге класса
         if(!class_exists($Class)){
-            $this->error = 2;
+            $this->errorCode = 2;
             $this->errorText = 'Указанного в маппинге класса не существует';
             return;
         }
@@ -32,7 +32,7 @@ class FilesTableMapping{
 
         // Проверка на реализацию интерфейса Interface_fileTable в нужном классе
         if(!$interfaces || !in_array($this->neededInterface, $interfaces, true)){
-            $this->error = 3;
+            $this->errorCode = 3;
             $this->errorText = 'Указанный в маппинге класс не реализует требуемый интерфейс';
             return;
         }
@@ -45,8 +45,8 @@ class FilesTableMapping{
     // null  : нет ошибок
     // int   : есть ошибки
     //
-    public function getError(){
-        return $this->error;
+    public function getErrorCode(){
+        return $this->errorCode;
     }
 
     // Предназначен для получения текста ошибки при проверке маппинга

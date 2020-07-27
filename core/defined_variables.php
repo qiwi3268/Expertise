@@ -103,7 +103,7 @@ define('_COLUMN_NAME_IN_APPLICATIONS_TABLE', ['id'                              
 //
 // Второй уровень вложенности соответствует названию класса для этой таблицы
 define('_FILE_TABLE_MAPPING', ['1' => ['1' => 'file_grbsTable'
-                                       ],
-                                '2' => ['1' => 'file_documentation1Table'
-                                       ]
+                                      ],
+                               '2' => ['1' => 'file_documentation1Table'
+                                      ]
                                ]);

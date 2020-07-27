@@ -27,7 +27,8 @@
    padding: 0px 15px;
    border-bottom: 2px solid #ffffff;
    cursor: pointer;
-   transition: background-color 0.15s;
+   /*transition: background-color 0.15s;*/
+   transition: 0.15s;
 }
 
 .header-form__btn:hover {

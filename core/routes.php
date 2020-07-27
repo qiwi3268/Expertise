@@ -19,31 +19,44 @@ return [
         'API'   => ['login']
     ],
 
+    
     'home/file_unloader' => [
         'ROOTClasses'     => ['FilesUnload'],
         'controllers'     => ['file_unloader']
     ],
-
-    'API_file_uploader' => [
-        'Classes'         => ['FilesUpload', 'FilesTableMapping'],
-        'API'             => ['file_uploader']
+    'home/API_file_uploader' => [
+        '/Classes/'         => ['FilesUpload', 'FilesTableMapping'],
+        'API'               => ['file_uploader']
     ],
-
-    'API_file_checker' => [
-        'Classes'         => ['FilesTableMapping'],
-        'API'             => ['file_checker']
+    'home/API_file_checker' => [
+        '/Classes/'         => ['FilesTableMapping'],
+        'API'               => ['file_checker']
     ],
+    'home/API_file_needs_setter' => [
+        '/Classes/'         => ['FilesTableMapping'],
+        'API'               => ['file_needs_setter']
+    ],
+    
+    //-------------------------------
+    
 
     'test' => [
         'ROOTcontrollers' => ['test']
     ],
     
-    //todo перенести в ветку /home/application/
-    'home/API_save_application' => [
-        'access'                       => [],
-        '/Classes/ApplicationForm/'    => ['SaveHandler'],
-        'API'                          => ['save_application']
+    
+    'home/application/API_save_form' => [
+        'access'                     => [],
+        '/Classes/ApplicationForm/'  => ['SaveHandler'],
+        'API'                        => ['save_form']
     ],
+    
+    'home/API_save_files' => [
+        'access'                      => [],
+        'API'                         => ['save_files']
+    ],
+    
+    
     
     //todo перенести view create_application в ветку /home/application/
     //todo привести display_dependencies_application_form и create_application_dependencies к единообразному названию
