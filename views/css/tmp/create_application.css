@@ -380,7 +380,7 @@
 /* tmp ========================================================================= */
 
 
-.body-card__files {
+.files {
    box-sizing: border-box;
    display: none;
    /*align-items: center;*/
@@ -397,7 +397,7 @@
    border-radius: 0px 0px 4px 4px;
 }
 
-.body-card__files.filled {
+.files.filled {
    display: block;
 }
 
@@ -410,7 +410,7 @@
    font-size: 16px;
 }
 
-.body-card__file-info {
+.files__info {
    display: flex;
    align-items: center;
 
@@ -422,35 +422,35 @@
    cursor: pointer;
 }
 
-/*.body-card__file:hover {
+/*.files__item:hover {
    background-color: #f2f2f2;
 }*/
 
-.body-card__file-icon {
+.files__icon {
    font-size: 18px;
    margin: 0px 10px 0px 0px;
    cursor: pointer;
    color: #6e6e6e;
 }
 
-.body-card__file-info {
+.files__info {
    display: flex;
    align-items: center;
    flex-grow: 1;
 }
 
-.body-card__file-info:hover {
+.files__info:hover {
    background-color: #f2f2f2;
 }
 
-.body-card__file-delete {
+.files__delete {
 
 }
 
 /*поменять*/
 
-.body-card__file-delete,
-.body-card__file-unload {
+.files__delete,
+.files__unload {
    padding: 8px;
    border: #ffffff solid 2px;
    border-radius: 4px;
@@ -460,27 +460,27 @@
    font-size: 16px;
 }
 
-/*.body-card__file-delete.fa-trash,
-.body-card__file-unload.
+/*.files__delete.fa-trash,
+.files__unload.
 {
    font-size: 18px;
 }*/
 
-.body-card__file-delete:hover {
+.files__delete:hover {
    border-color: #ffb0b0;
    background-color: #ffb0b0;
    color: #a93d3d;
 
 }
 
-.body-card__file-unload:hover {
+.files__unload:hover {
    border-color: #A4D0FF;
    background-color: #A4D0FF;
    color: #3395FF;
 
 }
 
-.body-card__file {
+.files__item {
    display: flex;
    justify-content: space-between;
 }

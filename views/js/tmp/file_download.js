@@ -106,54 +106,41 @@ document.addEventListener('DOMContentLoaded', () => {
       let parent_select = parent_row.querySelector('.body-card__select');
       parent_select.classList.add('filled');
 
-      let files_body = parent_row.querySelector('.body-card__files');
+      let files_body = parent_row.querySelector('.files');
       files_body.classList.add('filled');
 
       files.forEach(file => {
-         putFileElementToRow(file, files_body);
+         addFileElement(file, files_body)
       });
 
       changeParentCardMaxHeight(parent_row);
    }
 
-   function putFileElementToRow(file, files_body) {
+   function addFileElement(file, files_body) {
       let file_item = document.createElement('DIV');
-      file_item.classList.add('body-card__file');
+      file_item.classList.add('files__item');
       file_item.dataset.id = file.id;
-
-      let file_info = document.createElement('DIV');
-      file_info.classList.add('body-card__file-info');
-
-
-      let file_actions = document.createElement('DIV');
-      file_actions.classList.add('body-card__file-actions', 'file-actions');
-
-
-      let delete_button = document.createElement('I');
-      delete_button.classList.add('body-card__file-delete', 'file-delete', 'fas', 'fa-trash');
-
-      let unload_button = document.createElement('I');
-      unload_button.classList.add('body-card__file-unload', 'file-unload', 'fas', 'fa-file-download');
-      unload_button.addEventListener('click', () => {
-
-      });
-
-      let file_icon = document.createElement('I');
-      file_icon.classList.add('body-card__file-icon', 'fas', getFileIconClass(file.name));
-
-      let file_name = document.createElement('DIV');
-      file_name.classList.add('body-card__file-name');
-      file_name.innerHTML = file.name;
-
-      file_info.appendChild(file_icon);
-      file_info.appendChild(file_name);
-      file_actions.appendChild(unload_button);
-      file_actions.appendChild(delete_button);
-      file_item.appendChild(file_info);
-      file_item.appendChild(file_actions);
       files_body.appendChild(file_item);
 
-      addDeleteButton(file_item);
+      addFileInfo(file_item, file);
+      addFileActions(file_item);
+
+      return file_item;
+   }
+
+   function addFileInfo(file_item, file) {
+      let file_info = document.createElement('DIV');
+      file_info.classList.add('files__info');
+      file_item.appendChild(file_info);
+
+      let file_icon = document.createElement('I');
+      file_icon.classList.add('files__icon', 'fas', getFileIconClass(file.name));
+      file_info.appendChild(file_icon);
+
+      let file_name = document.createElement('DIV');
+      file_name.classList.add('files__name');
+      file_name.innerHTML = file.name;
+      file_info.appendChild(file_name);
    }
 
    function showFileModal(select) {
@@ -221,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
    function addFilesToModal(files) {
       Array.from(files).forEach(file => {
-         modal_body.appendChild(createFileElement(file));
+         modal_body.appendChild(createFileModalItem(file));
       });
    }
 
@@ -231,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
       clearModalTitle();
    }
 
-   function createFileElement(file) {
+   function createFileModalItem(file) {
       let file_item = document.createElement('DIV');
       file_item.classList.add('file-modal__item');
 

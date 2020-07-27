@@ -531,7 +531,7 @@
                             <span class="body-card__value">Загрузите файлы</span>
                             <i class="body-card__icon fas fa-file"></i>
                         </div>
-                        <div class="body-card__files"></div>
+                        <div class="files"></div>
                     </div>
 
 

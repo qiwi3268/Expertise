@@ -87,9 +87,9 @@ try{
                           'error_message' => 'У запрашиваемой записи файла в БД не проставлен флаг загрузки на сервер'
                          ]));
     }
-
-    $applicationDir = _APPLICATIONS_FILES_.'/'.$P_id_application.'/';
-    $pathToFile = $applicationDir.$fileAssoc['hash'];
+    
+    $applicationDir = _APPLICATIONS_FILES_."/{$P_id_application}";
+    $pathToFile = "{$applicationDir}/{$fileAssoc['hash']}";
 
     // Проверка файла на физическое существование
     if(!file_exists($pathToFile)){
