@@ -34,7 +34,7 @@ switch(_URN_){
                          ...CreateSource('css', TMP_CSS, 'create_application.css'),
                          ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
                          ...CreateSource('js', TMP_JS, 'sidebar.js', 'section.js', 'validation.js', 'cards.js',
-                            'modal.js', 'calendar.js', 'radio.js', 'checkbox.js', 'save_application.js', 'file_download.js', 'test.js')
+                            'modal.js', 'calendar.js', 'radio.js', 'checkbox.js', 'save_application.js', 'file_download.js', 'file_actions.js','test.js')
                         ];
         break;
 

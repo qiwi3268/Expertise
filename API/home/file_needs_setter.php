@@ -1,5 +1,6 @@
 <?php
 
+
 // API предназначен для установки флага 'is_needs' файла в контексте заявления
 //
 // API result:
@@ -22,25 +23,11 @@
 //       {result, message : текст ошибки, code: код ошибки}
 //
 
-/*if(!checkParamsPOST('id_application', 'file_needs_json')){
+if(!checkParamsPOST('id_application', 'file_needs_json')){
     exit(json_encode(['result'        => 1,
                       'error_message' => 'Нет обязательных параметров POST запроса'
     ]));
-}*/
-
-
-$json = ['to_save' => [['id_file'         => 10,
-                        'mapping_level_1' => 1,
-                        'mapping_level_2' => 1,],
-                       ['id_file'         => 11,
-                        'mapping_level_1' => 1,
-                        'mapping_level_2' => 1,]],
-    
-         'to_delete' => [],
-    
-];
-$P_file_needs_json = json_encode($json);
-
+}
 
 try{
     
@@ -146,14 +133,8 @@ try{
     // Сначала ставим метку ненужности, потом нужности. В случае, если на стороне клиентского js будет ошибка - файл останется "нужным"
     try{
 
-        foreach($fileNeedsAssoc['to_delete'] as $file){
-            $className = $file['class_name'];
-            $className::setIsNeedsToTrueById($file['id_file']);
-        }
-        foreach($fileNeedsAssoc['to_save'] as $file){
-            $className = $file['class_name'];
-            $className::setIsNeedsToFalseById($file['id_file']);
-        }
+        foreach($fileNeedsAssoc['to_delete'] as $file) call_user_func_array([$file['class_name'], 'setIsNeedsToFalseById'], [$file['id_file']]);
+        foreach($fileNeedsAssoc['to_save'] as $file) call_user_func_array([$file['class_name'], 'setIsNeedsToTrueById'], [$file['id_file']]);
     }catch(DataBaseException $e){
         
         exit(json_encode(['result'  => 7,

@@ -524,16 +524,14 @@
                 <!--Загрузчик файла-->
                 <div class="body-card__row" data-row_name="File"
                      data-required="true" data-multiple="true" data-mapping_level_1="1" data-mapping_level_2="1">
-                    <span class="body-card__title required">Файл</span>
+                    <span class="body-card__title required">Файл ГРБС</span>
                     <div class="body-card__item">
-                        <div class="body-card__field">
-                            <div class="body-card__select modal-file">
-                                <span class="body-card__value">Загрузите файлы</span>
-                                <i class="body-card__icon fas fa-bars"></i>
-                            </div>
-                            <i class="body-card__icon-clear fas fa-trash"></i>
+                        <!--TODO стили-->
+                        <div class="body-card__select modal-file">
+                            <span class="body-card__value">Загрузите файлы</span>
+                            <i class="body-card__icon fas fa-file"></i>
                         </div>
-                        <span class="body-card__error">Поле обязательно для заполнения</span>
+                        <div class="body-card__files"></div>
                     </div>
 
 

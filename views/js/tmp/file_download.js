@@ -10,16 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
    let drop_area = file_modal.querySelector('.file-modal__drop-area');
    let modal_body = file_modal.querySelector('.file-modal__body');
-   let current_field_name;
 
    let modal_title = file_modal.querySelector('.file-modal__title');
    let progress_bar = file_modal.querySelector('.file-modal__progress_bar');
 
    let is_uploading = false;
 
+   let parent_row;
+
    let submit_button = file_modal.querySelector('.file-modal__submit');
    submit_button.addEventListener('click', () => {
-      sendFiles();
+      if (!is_uploading) {
+         sendFiles();
+         file_input.value = '';
+      }
    });
 
    clearDefaultDropEvents();
@@ -71,6 +75,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             is_uploading = false;
 
+            switch (response.result) {
+               case 16:
+                  putFilesToRow(response.uploaded_files);
+                  closeFileModal();
+                  break;
+               default:
+                  console.log(response);
+            }
+
+
          })
          .catch(error => {
 
@@ -88,6 +102,60 @@ document.addEventListener('DOMContentLoaded', () => {
       progress_bar.style.width = download_percent + '%';
    }
 
+   function putFilesToRow(files) {
+      let parent_select = parent_row.querySelector('.body-card__select');
+      parent_select.classList.add('filled');
+
+      let files_body = parent_row.querySelector('.body-card__files');
+      files_body.classList.add('filled');
+
+      files.forEach(file => {
+         putFileElementToRow(file, files_body);
+      });
+
+      changeParentCardMaxHeight(parent_row);
+   }
+
+   function putFileElementToRow(file, files_body) {
+      let file_item = document.createElement('DIV');
+      file_item.classList.add('body-card__file');
+      file_item.dataset.id = file.id;
+
+      let file_info = document.createElement('DIV');
+      file_info.classList.add('body-card__file-info');
+
+
+      let file_actions = document.createElement('DIV');
+      file_actions.classList.add('body-card__file-actions', 'file-actions');
+
+
+      let delete_button = document.createElement('I');
+      delete_button.classList.add('body-card__file-delete', 'file-delete', 'fas', 'fa-trash');
+
+      let unload_button = document.createElement('I');
+      unload_button.classList.add('body-card__file-unload', 'file-unload', 'fas', 'fa-file-download');
+      unload_button.addEventListener('click', () => {
+
+      });
+
+      let file_icon = document.createElement('I');
+      file_icon.classList.add('body-card__file-icon', 'fas', getFileIconClass(file.name));
+
+      let file_name = document.createElement('DIV');
+      file_name.classList.add('body-card__file-name');
+      file_name.innerHTML = file.name;
+
+      file_info.appendChild(file_icon);
+      file_info.appendChild(file_name);
+      file_actions.appendChild(unload_button);
+      file_actions.appendChild(delete_button);
+      file_item.appendChild(file_info);
+      file_item.appendChild(file_actions);
+      files_body.appendChild(file_item);
+
+      addDeleteButton(file_item);
+   }
+
    function showFileModal(select) {
       clearModalTitle();
       file_modal.classList.add('active');
@@ -96,8 +164,9 @@ document.addEventListener('DOMContentLoaded', () => {
    }
 
    function addFieldData(select) {
-      let parent_row = select.closest('.body-card__row');
-      current_field_name = parent_row.dataset.row_name;
+      // let parent_row = select.closest('.body-card__row');
+      parent_row = select.closest('.body-card__row');
+      // current_field_name = parent_row.dataset.row_name;
 
       mapping_input_1.value = parent_row.dataset.mapping_level_1;
       mapping_input_2.value = parent_row.dataset.mapping_level_2;
@@ -152,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
    function addFilesToModal(files) {
       Array.from(files).forEach(file => {
-         createFileElement(file);
+         modal_body.appendChild(createFileElement(file));
       });
    }
 
@@ -180,11 +249,12 @@ document.addEventListener('DOMContentLoaded', () => {
       file_size.classList.add('file-modal__size');
       file_size.innerHTML = getFileSizeString(file);
 
+      file_item.appendChild(file_icon);
       file_info.appendChild(file_name);
       file_info.appendChild(file_size);
-      file_item.appendChild(file_icon);
       file_item.appendChild(file_info);
-      modal_body.appendChild(file_item);
+
+      return file_item;
    }
 
    function getFileSizeString(file) {
@@ -218,8 +288,10 @@ document.addEventListener('DOMContentLoaded', () => {
       let upload_button = file_modal.querySelector('.file-modal__upload');
 
       upload_button.addEventListener('click', () => {
-         clearFileModal();
-         file_input.click();
+         if (!is_uploading) {
+            clearFileModal();
+            file_input.click();
+         }
       });
 
       file_input.addEventListener('change', () => {

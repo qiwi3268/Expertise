@@ -380,6 +380,115 @@
 /* tmp ========================================================================= */
 
 
+.body-card__files {
+   box-sizing: border-box;
+   display: none;
+   /*align-items: center;*/
+   flex-grow: 1;
+   padding: 5px;
+   border: 1px solid #cccccc;
+
+   font-size: 14px;
+   color: #6e6e6e;
+   cursor: pointer;
+   transition: box-shadow .10s;
+
+   border-top: 0px;
+   border-radius: 0px 0px 4px 4px;
+}
+
+.body-card__files.filled {
+   display: block;
+}
+
+.body-card__select.modal-file.filled {
+   border-radius: 4px 4px 0px 0px;
+   color: #6e6e6e;
+}
+
+.body-card__icon.fa-file {
+   font-size: 16px;
+}
+
+.body-card__file-info {
+   display: flex;
+   align-items: center;
+
+   padding: 6px 0px 6px 10px;
+   margin: 0px 6px 0px 0px;
+   transition: .15s;
+   border-radius: 4px;
+
+   cursor: pointer;
+}
+
+/*.body-card__file:hover {
+   background-color: #f2f2f2;
+}*/
+
+.body-card__file-icon {
+   font-size: 18px;
+   margin: 0px 10px 0px 0px;
+   cursor: pointer;
+   color: #6e6e6e;
+}
+
+.body-card__file-info {
+   display: flex;
+   align-items: center;
+   flex-grow: 1;
+}
+
+.body-card__file-info:hover {
+   background-color: #f2f2f2;
+}
+
+.body-card__file-delete {
+
+}
+
+/*поменять*/
+
+.body-card__file-delete,
+.body-card__file-unload {
+   padding: 8px;
+   border: #ffffff solid 2px;
+   border-radius: 4px;
+   color: #6e6e6e;
+   cursor: pointer;
+   transition: 0.15s;
+   font-size: 16px;
+}
+
+/*.body-card__file-delete.fa-trash,
+.body-card__file-unload.
+{
+   font-size: 18px;
+}*/
+
+.body-card__file-delete:hover {
+   border-color: #ffb0b0;
+   background-color: #ffb0b0;
+   color: #a93d3d;
+
+}
+
+.body-card__file-unload:hover {
+   border-color: #A4D0FF;
+   background-color: #A4D0FF;
+   color: #3395FF;
+
+}
+
+.body-card__file {
+   display: flex;
+   justify-content: space-between;
+}
+
+
+
+/**/
+
 /* tmp ========================================================================= */
 
 
