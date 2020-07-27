@@ -64,20 +64,19 @@ document.addEventListener('DOMContentLoaded', () => {
    function sendFiles() {
       let request_urn = '/home/API_file_uploader';
 
-
       progress_bar.style.transition = '.15s';
       is_uploading = true;
 
 
       XHR('post', request_urn, new FormData(form), null, 'json', null, uploadProgressCallback)
          .then(response => {
-            console.log(response);
 
             is_uploading = false;
 
             switch (response.result) {
                case 16:
                   putFilesToRow(response.uploaded_files);
+                  putFilesToSave();
                   closeFileModal();
                   break;
                default:
@@ -141,6 +140,16 @@ document.addEventListener('DOMContentLoaded', () => {
       file_name.classList.add('files__name');
       file_name.innerHTML = file.name;
       file_info.appendChild(file_name);
+   }
+
+   function putFilesToSave() {
+      let files = parent_row.querySelectorAll('.files__item');
+      files.forEach(file => {
+         let id_file = file.dataset.id;
+
+         FileNeeds.putFileToSave(id_file, mapping_input_1.value, mapping_input_2.value);
+      });
+
    }
 
    function showFileModal(select) {

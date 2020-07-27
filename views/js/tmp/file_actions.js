@@ -23,19 +23,35 @@ function addDeleteButton(delete_button) {
    let files = file.closest('.files');
 
    delete_button.addEventListener('click', () => {
-      file.remove();
-
-      if (!files.querySelector('.files__item')) {
-         files.classList.remove('filled');
-
-         let parent_select = files.previousElementSibling;
-         if (parent_select && parent_select.classList.contains('modal-file')) {
-            parent_select.classList.remove('filled');
-         }
-      }
-
+      removeFileElement(file, files);
+      putFileToDelete()
    });
 
+}
+
+function removeFileElement(file, files) {
+   file.remove();
+
+   if (!files.querySelector('.files__item')) {
+      files.classList.remove('filled');
+
+      let parent_select = files.previousElementSibling;
+      if (parent_select && parent_select.classList.contains('modal-file')) {
+         parent_select.classList.remove('filled');
+      }
+   }
+}
+
+function putFileToDelete(file) {
+   let parent_row = file.closest('[data-mapping_level_1]');
+   let id_file = file.dataset.id;
+
+
+   FileNeeds.putFileToDelete(
+      id_file,
+      parent_row.dataset.mapping_level_1,
+      parent_row.dataset.mapping_level_2
+   );
 }
 
 function addUnloadButton(unload_button) {
@@ -44,10 +60,8 @@ function addUnloadButton(unload_button) {
    unload_button.addEventListener('click', () => {
       let form_data = createUnloadFileFormData(file);
 
-
       XHR('post', '/home/API_file_checker', form_data, null, 'json')
          .then(response => {
-            console.log(response);
 
             switch (response.result) {
                case 9:
@@ -80,8 +94,7 @@ function getIdApplication() {
 }
 
 function getUnloadFileURN(check_result) {
-   return `/home/file_unloader?id_application=${getIdApplication()}` +
-   `&fs_name=${check_result.fs_name}&file_name=${check_result.file_name}`;
+   return `/home/file_unloader?fs_name=${check_result.fs_name}&file_name=${check_result.file_name}`;
 }
 
 
