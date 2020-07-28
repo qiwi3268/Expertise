@@ -23,8 +23,8 @@ function addDeleteButton(delete_button) {
    let files = file.closest('.files');
 
    delete_button.addEventListener('click', () => {
+      putFileToDelete(file);
       removeFileElement(file, files);
-      putFileToDelete()
    });
 
 }
@@ -46,12 +46,12 @@ function putFileToDelete(file) {
    let parent_row = file.closest('[data-mapping_level_1]');
    let id_file = file.dataset.id;
 
-
    FileNeeds.putFileToDelete(
       id_file,
       parent_row.dataset.mapping_level_1,
       parent_row.dataset.mapping_level_2
    );
+
 }
 
 function addUnloadButton(unload_button) {

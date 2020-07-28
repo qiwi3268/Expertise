@@ -533,33 +533,65 @@
                         </div>
                         <div class="files"></div>
                     </div>
-
-
-
                     <input class="body-card__result" type="hidden" name="">
                 </div>
                 <!--//Загрузчик файла//-->
 
                 <!--Загрузчик файла2-->
                 <div class="body-card__row" data-row_name="File_2"
-                     data-required="true" data-multiple="false" data-mapping_level_1="2" data-mapping_level_2="2">
-                    <span class="body-card__title required">Файл_2</span>
+                     data-required="true" data-multiple="false" data-mapping_level_1="1" data-mapping_level_2="1">
+                    <span class="body-card__title required">Файл ГРБС_2</span>
                     <div class="body-card__item">
-                        <div class="body-card__field">
-                            <div class="body-card__select modal-file">
-                                <span class="body-card__value">Загрузите файлы</span>
-                                <i class="body-card__icon fas fa-bars"></i>
-                            </div>
-                            <i class="body-card__icon-clear fas fa-trash"></i>
+                        <div class="body-card__select modal-file">
+                            <span class="body-card__value">Загрузите файлы</span>
+                            <i class="body-card__icon fas fa-file"></i>
                         </div>
-                        <span class="body-card__error">Поле обязательно для заполнения</span>
+                        <div class="files"></div>
                     </div>
-
-
-
                     <input class="body-card__result" type="hidden" name="">
                 </div>
                 <!--//Загрузчик файла2//-->
+
+                <!--Загрузчик файла просмотр-->
+                <div class="body-card__row" data-row_name="File_2"
+                     data-required="true" data-multiple="false" data-mapping_level_1="1" data-mapping_level_2="1">
+                    <span class="body-card__title required">Файл ГРБС_3</span>
+                    <div class="body-card__item">
+                        <div class="files view">
+                            <div class="files__item" data-id="381">
+                                <div class="files__info">
+                                    <i class="files__icon fas fa-file-word"></i>
+                                    <div class="files__name">Экспертное сопровождение_финальный тест (1).docx</div>
+                                </div>
+                                <div class="files__actions">
+                                    <i class="files__unload fas fa-file-download"></i>
+                                </div>
+                            </div>
+                            <div class="files__item" data-id="385">
+                                <div class="files__info">
+                                    <i class="files__icon fas fa-file-word"></i>
+                                    <div class="files__name">FullDocumentTemplate.docx</div>
+                                </div>
+                                <div class="files__actions">
+                                    <i class="files__unload fas fa-file-download"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="body-card__result" type="hidden" name="">
+                </div>
+                <!--//Загрузчик файла просмотр//-->
+
+                <!--Загрузчик файла просмотр-->
+                <div class="body-card__row" data-row_name="File_2"
+                     data-required="true" data-multiple="false" data-mapping_level_1="1" data-mapping_level_2="1">
+                    <span class="body-card__title required">Файл ГРБС_3</span>
+                    <div class="body-card__item">
+                        <i class="body-card__icon fas fa-exclamation-circle"></i>
+                        <span class="body-card__input">Не выбран</span>
+                    </div>
+                </div>
+                <!--//Загрузчик файла просмотр//-->
 
             </div>
         </div>

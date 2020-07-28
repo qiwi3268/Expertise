@@ -2,8 +2,9 @@
 
 
 $variablesTV = VariableTransfer::getInstance();
+$applicationId = $_GET['id_application'];
 
-$applicationAssoc = ApplicationsTable::getAssocById($_GET['id_application']);
+$applicationAssoc = ApplicationsTable::getAssocById($applicationId);
 
 // Преобразование дат к строкам
 UpdateDatesTimestampToDdMmYyyy($applicationAssoc,
@@ -11,7 +12,7 @@ UpdateDatesTimestampToDdMmYyyy($applicationAssoc,
                                            'date_GPZU',
                                            'date_finish_building');
 
-// Заполнение сохраненных в заявлении данных
+// Заполнение сохраненных в заявлении данных (не включая файлы)
 foreach($applicationAssoc as $property => $value){
     
     if(is_null($value)){
@@ -23,3 +24,55 @@ foreach($applicationAssoc as $property => $value){
     $variablesTV->setExistenceFlag($property, true);
     $variablesTV->setValue($property, $value);
 }
+
+
+// Сохранен Вид объекта, показываем документацию
+if($variablesTV->getExistenceFlag('type_of_object')){
+    
+    // В зависимости от Вида объекта выбираем нужную таблицу
+    switch($variablesTV->getValue('type_of_object')['id']){
+        case 1: // Производственные/непроизводственны
+            $mapping_level_1 = 2;
+            $mapping_level_2 = 1;
+            $className = 'structure_documentation1Table';
+            break;
+        case 2: // Линейные
+            $mapping_level_1 = 2;
+            $mapping_level_2 = 2;
+            $className = 'structure_documentation2Table';
+            break;
+        default:
+            throw new Exception('Указан Вид объекта, при котором не определены действия для отображения загруженных файлов');
+    }
+    
+    // Структура разделов документации
+    $structureDocumentation = $className::getAllActive();
+    $NodeStructure = new NodeStructure($structureDocumentation);
+    
+    // Объект нужных маппингов (только документация выбранного Вида объекта)
+    $requiredMappings = new RequiredMappingsSetter();
+    $requiredMappings->setMappingLevel2($mapping_level_1, $mapping_level_2);
+    
+    $filesInitialization = new FilesInitialization($requiredMappings, $applicationId);
+    // Нужные (is_needs) файлы
+    $needsFiles = $filesInitialization->getNeedsFiles()[$mapping_level_1][$mapping_level_2];
+    
+    // В документации нет загруженных файлов
+    if(is_null($needsFiles)){
+        $needsFiles = [];
+    }
+    
+    // Структура разделов документации с вложенностью дочерних разделов в родительские
+    $depthStructure = $NodeStructure->getDepthStructure();
+    
+    $filesInStructure = $filesInitialization->getFilesInStructure($needsFiles, $depthStructure);
+    
+    var_dump($filesInStructure);
+    
+    $variablesTV->setValue('documentation_files_in_structure', $filesInStructure);
+}
+
+
+
+
+

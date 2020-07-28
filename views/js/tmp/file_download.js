@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
    submit_button.addEventListener('click', () => {
       if (!is_uploading) {
          sendFiles();
-         file_input.value = '';
       }
    });
 
@@ -54,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
    let close_button = file_modal.querySelector('.modal__close');
    close_button.addEventListener('click', () => {
       if (!is_uploading) {
-         clearModalTitle();
          closeFileModal();
       }
    });
@@ -76,7 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
             switch (response.result) {
                case 16:
                   putFilesToRow(response.uploaded_files);
-                  putFilesToSave();
+                  FileNeeds.putFilesToSave();
+                  // putFilesToSave();
                   closeFileModal();
                   break;
                default:
@@ -142,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
       file_info.appendChild(file_name);
    }
 
-   function putFilesToSave() {
+   /*function putFilesToSave() {
       let files = parent_row.querySelectorAll('.files__item');
       files.forEach(file => {
          let id_file = file.dataset.id;
@@ -150,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
          FileNeeds.putFileToSave(id_file, mapping_input_1.value, mapping_input_2.value);
       });
 
-   }
+   }*/
 
    function showFileModal(select) {
       clearModalTitle();
@@ -183,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
    function closeFileModal() {
       file_modal.classList.remove('active')
       overlay.classList.remove('active');
-      modal_body.innerHTML = '';
+      clearFileModal();
    }
 
    function handleDropArea() {
@@ -224,7 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
    function clearFileModal() {
       modal_body.innerHTML = '';
       file_input.value = '';
-      clearModalTitle();
    }
 
    function createFileModalItem(file) {
@@ -364,7 +362,6 @@ function clearDefaultDropEvents() {
       });
    });
 }
-
 
 
 

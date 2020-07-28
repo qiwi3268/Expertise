@@ -401,6 +401,12 @@
    display: block;
 }
 
+.files.view {
+   display: block;
+   border: 1px solid #cccccc;
+   border-radius: 4px;
+}
+
 .body-card__select.modal-file.filled {
    border-radius: 4px 4px 0px 0px;
    color: #6e6e6e;

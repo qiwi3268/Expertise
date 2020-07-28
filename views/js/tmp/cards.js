@@ -7,6 +7,17 @@ document.addEventListener('DOMContentLoaded', () => {
    radio_dependency = document.querySelector('.radio__content-change-logic');
 
    handleClearFieldButtons();
+
+
+   // TODO вынести отдельно
+   window.addEventListener('resize', () => {
+      let cards = document.querySelectorAll('.card-form__body');
+
+      cards.forEach(card_body => {
+         changeParentCardMaxHeight(card_body);
+      });
+
+   });
 });
 
 function handleClearFieldButtons() {
