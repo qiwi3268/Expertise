@@ -75,7 +75,7 @@ return [
     
     'home/application/view' => [
         'access'              => [],
-        'ROOTClasses'         => ['VariableTransfer'],
+        'ROOTClasses'         => ['VariableTransfer', 'FilesTableMapping', 'NodeStructure', 'FilesInitialization'],
         'ROOTcontrollers'     => ['header'],
         'ABScontrollers'      => ['/controllers/home/main_header.php'],
         'controllers'         => ['action_sidebar',
@@ -126,6 +126,7 @@ return [
     ],
 
     'tmp/documentation_structure' => [
+        'ROOTClasses'     => ['NodeStructure'],
         'controllers'     => ['documentation_structure'],
         'views'           => ['documentation_structure']
     ]

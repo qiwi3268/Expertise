@@ -102,8 +102,9 @@ define('_COLUMN_NAME_IN_APPLICATIONS_TABLE', ['id'                              
 //    используется для структурных типов хранения (документации)
 //
 // Второй уровень вложенности соответствует названию класса для этой таблицы
-define('_FILE_TABLE_MAPPING', ['1' => ['1' => 'file_grbsTable'
-                                      ],
-                               '2' => ['1' => 'file_documentation1Table'
-                                      ]
+define('_FILE_TABLE_MAPPING', [1 => [1 => 'file_grbsTable',
+                                    ],
+                               2 => [1 => 'file_documentation1Table',
+                                     2 => 'file_documentation2Table'
+                                    ]
                                ]);

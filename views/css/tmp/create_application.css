@@ -403,8 +403,9 @@
 
 .files.view {
    display: block;
-   border: 1px solid #cccccc;
-   border-radius: 4px;
+   border: 0px;
+   padding: 0px;
+
 }
 
 .body-card__select.modal-file.filled {

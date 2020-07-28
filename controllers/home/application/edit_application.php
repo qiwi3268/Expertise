@@ -17,7 +17,7 @@ $miscNames = MiscInitialization::getMiscNames();
 
 $applicationAssocTV = $applicationAssoc;
 
-// Преобразование дат к строкам
+// Преобразование дат к строкам todo тоже переделать
 if(!is_null($applicationAssocTV['date_planning_documentation_approval'])){
     $applicationAssocTV['date_planning_documentation_approval'] = GetDdMmYyyyDate($applicationAssocTV['date_planning_documentation_approval']);
 }

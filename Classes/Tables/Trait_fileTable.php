@@ -79,6 +79,24 @@ trait  Trait_fileTable{
         return ParametrizedQuery::getSimpleArray($query, [$id])[0];
     }
     
+    // Предназначен для получения ассоциативного массива нужных файлов к заявлению по его id
+    // Принимает параметры-----------------------------------
+    // id_application  int : id заявления
+    // Возвращает параметры----------------------------------
+    // array : в случае, если запись сущестует(ют)
+    // null  : в противном случае
+    //
+    static public function getNeedsAssocByIdApplication(int $id_application):?array{
+    
+        $table = self::$tableName;
+        
+        $query = "SELECT *
+                  FROM `$table`
+                  WHERE `id_application`=? AND `is_needs`='1'";
+        $result = ParametrizedQuery::getFetchAssoc($query, [$id_application]);
+        return $result ? $result : null;
+    }
+    
     
     // Реализация метода интерфейса
     // Предназнчен для получения ассоциативного массива ненужных файлов
@@ -107,7 +125,7 @@ trait  Trait_fileTable{
     static public function setIsNeedsToTrueById(int $id):void {
         
         $table = self::$tableName;
-        
+
         $query = "UPDATE `$table`
                   SET `is_needs`='1', `cron_deleted_flag`='0', `date_cron_deleted_flag`=NULL
                   WHERE `id`=?";
@@ -143,5 +161,4 @@ trait  Trait_fileTable{
                   WHERE `id`=?";
         ParametrizedQuery::set($query, [$id]);
     }
-    
 }

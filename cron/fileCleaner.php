@@ -23,9 +23,9 @@ try{
 $Logger = new Logger(_ROOT_.'/logs/cron', 'fileCleaner.log');
 $Logger->write("НАЧИНАЮ работу");
 
-foreach(_FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_1){
+foreach(_FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_2){
     
-    foreach($mapping_level_1 as $mapping_level_2_code => $className){
+    foreach($mapping_level_2 as $mapping_level_2_code => $className){
         
         $Mapping = new FilesTableMapping($mapping_level_1_code, $mapping_level_2_code);
     
@@ -51,6 +51,12 @@ foreach(_FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_1){
             if(!$file['cron_deleted_flag']){
                 $className::setCronDeletedFlagById($file['id']);
                 $Logger->write("Проставлена метка cron_deleted_flag. $description");
+                continue;
+            }
+            
+            // Метка проставлена, но дата null
+            if(is_null($file['date_cron_deleted_flag'])){
+                $Logger->write("ОТСУТСТВУЕТ ДАТА date_cron_deleted_flag. $description");
                 continue;
             }
             

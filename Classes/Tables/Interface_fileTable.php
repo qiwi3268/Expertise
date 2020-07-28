@@ -19,6 +19,10 @@ interface Interface_fileTable{
     //
     static public function checkExistById(int $id):bool;
     
+    // Предназначен для получения ассоциативного массива нужных файлов к заявлению по его id
+    //
+    static public function getNeedsAssocByIdApplication(int $id_application):?array;
+    
     // Предназнчен для получения ассоциативного массива ненужных файлов
     //
     static public function getNoNeedsAssoc():?array;

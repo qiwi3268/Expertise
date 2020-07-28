@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+   // initializeFileActions
 
 });
+
+function initializeFileActions() {
+
+}
 
 function addFileActions(file) {
    let file_actions = document.createElement('DIV');

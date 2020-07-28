@@ -522,8 +522,7 @@
 
 
                 <!--Загрузчик файла-->
-                <div class="body-card__row" data-row_name="File"
-                     data-required="true" data-multiple="true" data-mapping_level_1="1" data-mapping_level_2="1">
+                <div class="body-card__row" data-required="true" data-multiple="true" data-mapping_level_1="1" data-mapping_level_2="1">
                     <span class="body-card__title required">Файл ГРБС</span>
                     <div class="body-card__item">
                         <!--TODO стили-->
@@ -533,13 +532,11 @@
                         </div>
                         <div class="files"></div>
                     </div>
-                    <input class="body-card__result" type="hidden" name="">
                 </div>
                 <!--//Загрузчик файла//-->
 
                 <!--Загрузчик файла2-->
-                <div class="body-card__row" data-row_name="File_2"
-                     data-required="true" data-multiple="false" data-mapping_level_1="1" data-mapping_level_2="1">
+                <div class="body-card__row" data-required="true" data-multiple="false" data-mapping_level_1="1" data-mapping_level_2="1">
                     <span class="body-card__title required">Файл ГРБС_2</span>
                     <div class="body-card__item">
                         <div class="body-card__select modal-file">
@@ -548,12 +545,11 @@
                         </div>
                         <div class="files"></div>
                     </div>
-                    <input class="body-card__result" type="hidden" name="">
                 </div>
                 <!--//Загрузчик файла2//-->
 
-                <!--Загрузчик файла просмотр-->
-                <div class="body-card__row" data-row_name="File_2"
+                <!--Загрузчик файла2-->
+                <!--<div class="body-card__row" data-row_name="File_2"
                      data-required="true" data-multiple="false" data-mapping_level_1="1" data-mapping_level_2="1">
                     <span class="body-card__title required">Файл ГРБС_3</span>
                     <div class="body-card__item">
@@ -579,19 +575,20 @@
                         </div>
                     </div>
                     <input class="body-card__result" type="hidden" name="">
-                </div>
-                <!--//Загрузчик файла просмотр//-->
+                </div>-->
+                <!--//Загрузчик файла2//-->
 
-                <!--Загрузчик файла просмотр-->
-                <div class="body-card__row" data-row_name="File_2"
+                <!--Загрузчик файла2-->
+                <!--<div class="body-card__row" data-row_name="File_2"
                      data-required="true" data-multiple="false" data-mapping_level_1="1" data-mapping_level_2="1">
                     <span class="body-card__title required">Файл ГРБС_3</span>
-                    <div class="body-card__item">
+                    <span class="body-card__item">
                         <i class="body-card__icon fas fa-exclamation-circle"></i>
                         <span class="body-card__input">Не выбран</span>
-                    </div>
-                </div>
-                <!--//Загрузчик файла просмотр//-->
+                    </span>
+
+                </div>-->
+                <!--//Загрузчик файла2//-->
 
             </div>
         </div>

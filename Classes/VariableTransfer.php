@@ -52,12 +52,25 @@ class VariableTransfer{
 
 
     // Предназначен для проверки существования ключа в указанном массиве при жестком режиме работы
+    // Возможно переопределить текущий режим работы для конкретного вызова, указав в ключе:
+    // %S(soft) или %H(hard)
     // Принимает параметры-----------------------------------
-    // container array : контейнер для хранения значений
-    // key      string : ключ массива
+    // container  array : контейнер для хранения значений
+    // &key      string : ключ массива. Из значения будет вырезан режим работы, если он указан
     //
-    private function checkIssetVariable(array $container, string $key):void {
-        if($this->isHardMode && !isset($container[$key])){
+    private function checkIssetVariable(array $container, string &$key):void {
+    
+        $isHardMode = $this->isHardMode;
+        
+        if(mb_strpos($key, '%S') !== false){
+            $isHardMode = false;
+            $key = str_replace('%S', '', $key);
+        }elseif(mb_strpos($key, '%H') !== false){
+            $isHardMode = true;
+            $key = str_replace('%H', '', $key);
+        }
+        
+        if($isHardMode && !isset($container[$key])){
             throw new Exception("Ключ '$key' не существует в запрашиваемом контейнере");
         }
     }

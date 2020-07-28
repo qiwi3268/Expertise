@@ -18,7 +18,7 @@ final class Route{
 
         $this->dir = mb_substr($this->URN, 0, mb_strripos($this->URN,'/'));
 
-        //Массив всех роутов
+        // Массив всех роутов
         $allRoutes = require_once(_ROOT_.'/core/routes.php');
 
         if(isset($allRoutes[$this->URN])){
@@ -64,6 +64,7 @@ final class Route{
     // + если массив НЕ индексный (ограниченного доступа) - внутри только массивы,
     //	 в которых только строки
     //
+    //todo проверку на абсолютную директорию (новый функционал)
     public function checkRouteCorrect(){
 
         $tmpArr = $this->route;
@@ -245,7 +246,7 @@ final class Route{
         foreach ($routeForUser as $routeUnit => $unitList){
 
             // Выбор типа функции рассчета пути в зависимости от routeUnit
-            if(mb_strpos($routeUnit, 'ABS') !== false){
+            if(mb_strpos($routeUnit, 'ABS') !== false){    // Абсолютный файл
 
                 // Расчет пути к файлу
                 //	property : индексный массив
@@ -255,7 +256,7 @@ final class Route{
                     return _ROOT_.$property[0];
                 };
                 
-            }elseif($routeUnit[0] === '/'){                         // Множественные абсолютные файлы
+            }elseif($routeUnit[0] === '/'){                         // Абсолютная директория
     
                 $tmpStrPos =  mb_strpos($routeUnit, '%');
                 

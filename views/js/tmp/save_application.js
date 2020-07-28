@@ -27,31 +27,47 @@ document.addEventListener('DOMContentLoaded', () => {
    });
 
 
-
-
 });
 
 function sendFiles() {
-   // FileNeeds.putFilesToSave();
 
+   if (FileNeeds.isHasFiles()) {
+      updateFileNeeds();
+   }
+}
+
+function updateFileNeeds() {
    let request_urn = '/home/API_file_needs_setter';
    let form_data = getFilesNeedsFormData();
+
+
+   console.log(FileNeeds.getFileNeeds());
+   // console.log(FileNeeds.file_needs.to_save);
+
+
+   // FileNeeds.file_needs.to_save.splice(0, FileNeeds.file_needs.to_save.length);
+   // FileNeeds.file_needs.to_delete.splice(0, FileNeeds.file_needs.to_delete.length);
+
+   // FileNeeds.file_needs.to_save.length = 0;
+   // FileNeeds.file_needs.to_delete.length = 0;
+
 
    XHR('post', request_urn, form_data, null, 'json', null, null)
       .then(response => {
 
-         console.log(FileNeeds.getFileNeeds());
-
 
          switch (response.result) {
             case 8:
-               FileNeeds.clear();
+               // console.log(FileNeeds.getFileNeeds());
+               console.log(FileNeeds.file_needs);
+               FileNeeds.file_needs.to_save.length = 0;
+               FileNeeds.file_needs.to_delete.length = 0;
+               // console.log(FileNeeds.getFileNeeds());
+               // FileNeeds.clear();
                break;
             default:
                console.log(response);
          }
-
-         console.log(FileNeeds.getFileNeeds());
 
 
       })
@@ -61,7 +77,9 @@ function sendFiles() {
          console.error('XHR error: ', error);
       });
 
+
 }
+
 
 function getFilesNeedsFormData() {
    let form_data = new FormData();
