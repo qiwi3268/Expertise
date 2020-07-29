@@ -92,6 +92,25 @@ textarea.application-input {
    background-color: #4574aa;
 }
 
+::-webkit-scrollbar {
+   width: 5px;
+}
+
+::-webkit-scrollbar-track {
+   background: #f1f1f1;
+   border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+   background: #ffd354;
+   border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+   /*background: #EFC64F;*/
+   background: #FFC828;
+}
+
 /* Общие элементы*/
 
 

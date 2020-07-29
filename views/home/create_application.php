@@ -592,6 +592,188 @@
 
             </div>
         </div>
+
+        <div class="application-form__card card-form" data-type="documentation">
+            <div class="card-form__header">
+                <span class="card-form__title">ДОКУМЕНТАЦИЯ</span>
+                <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
+            </div>
+            <div class="card-form__body body-card">
+                <div class="documentation">
+
+                    <div class="documentation__node" data-node-id="1234" data-depth="0">
+                        <div class="documentation__header">
+                            <span class="documentation__name">Раздел с файлами</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+
+                        <div class="documentation__files files filled">
+                            <div class="files__item" data-id="381">
+                                <div class="files__info">
+                                    <i class="files__icon fas fa-file-word"></i>
+                                    <div class="files__name">Экспертное сопровождение_финальный тест (1).docx</div>
+                                </div>
+                                <div class="files__actions">
+                                    <i class="files__unload fas fa-file-download"></i>
+                                    <i class="files__delete fas fa-trash"></i>
+                                </div>
+                            </div>
+                            <div class="files__item" data-id="385">
+                                <div class="files__info">
+                                    <i class="files__icon fas fa-file-word"></i>
+                                    <div class="files__name">FullDocumentTemplate.docx</div>
+                                </div>
+                                <div class="files__actions">
+                                    <i class="files__unload fas fa-file-download"></i>
+                                    <i class="files__delete fas fa-trash"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="documentation__node" data-node-id="1" data-depth="0">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="0">Раздел 1. Пояснительная записка</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="2" data-depth="0">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="0">Раздел 2. Схема планировочной организации земельного участка</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="3" data-depth="1">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="1">Ведомости объемов работ по разделу и спецификации, выполненные на основании проектной документации</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="4" data-depth="0">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="0">Раздел 3. Архитектурные решения</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="5" data-depth="1">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="1">Ведомости объемов работ по разделу и спецификации, выполненные на основании проектной документации</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="6" data-depth="0">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="0">Раздел 4. Конструктивные и объёмно-планировочные решения</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="7" data-depth="1">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="1">Ведомости объемов работ по разделу и спецификации, выполненные на основании проектной документации</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="8" data-depth="0">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="0">Раздел 5. Сведения об инженерном оборудовании, о сетях инженерно-технического обеспечения, перечень инженерно-технических мероприятий, содержание технологических решений</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="9" data-depth="1">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="1">Система электроснабжения</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="10" data-depth="2">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="2">Ведомости объемов работ по разделу и спецификации, выполненные на основании проектной документации</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="11" data-depth="1">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="1">Система водоснабжения</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="12" data-depth="2">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="2">Ведомости объемов работ по разделу и спецификации, выполненные на основании проектной документации</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="13" data-depth="1">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="1">Система водоотведения</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="14" data-depth="2">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="2">Ведомости объемов работ по разделу и спецификации, выполненные на основании проектной документации</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="15" data-depth="1">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="1">Отопление, вентиляция и кондиционирование воздуха, тепловые сети</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="16" data-depth="2">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="2">Ведомости объемов работ по разделу и спецификации, выполненные на основании проектной документации</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="17" data-depth="1">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="1">Сети связи</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="18" data-depth="2">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="2">Ведомости объемов работ по разделу и спецификации, выполненные на основании проектной документации</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="19" data-depth="1">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="1">Система газоснабжения</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="20" data-depth="2">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="2">Ведомости объемов работ по разделу и спецификации, выполненные на основании проектной документации</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="21" data-depth="1">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="1">Технологические решения</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="22" data-depth="2">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="2">Ведомости объемов работ по разделу и спецификации, выполненные на основании проектной документации</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="documentation__node" data-node-id="23" data-depth="1">
+                        <div class="documentation__header">
+                            <span class="documentation__name" data-depth="1">Ведомости объемов работ по разделу и спецификации, выполненные на основании проектной документации</span>
+                            <i class="documentation__icon fas fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </form>
 </div>
 

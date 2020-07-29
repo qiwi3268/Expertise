@@ -1,0 +1,220 @@
+.modal.file-modal {
+   height: 550px;
+   font-family: 'Roboto Condensed', sans-serif;
+   color: #343a40;
+}
+
+.file-modal__drop-area {
+   flex-grow: 1;
+   margin: 3px;
+   padding: 2px 2px 0px 0px;
+   border: #ffffff 1px solid;
+}
+
+.file-modal__drop-area.active {
+   border: #343a40 1px dashed;
+   border-radius: 3px;
+}
+
+.file-modal__header {
+   display: flex;
+   align-items: center;
+   position: relative;
+   height: 40px;
+   border-bottom: #ffd354 2px solid;
+   cursor: default;
+   font-size: 18px;
+
+}
+
+.file-modal__title {
+   margin: 0px 0px 0px 10px;
+}
+
+.file-modal__progress_bar {
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: -1;
+   height: 40px;
+   width: 0;
+   background-color: #FFE69D;
+   transition: .15s;
+}
+
+
+
+.file-modal__body {
+   flex-grow: 1;
+   max-height: 440px;
+   overflow-y: auto;
+   overflow-x: hidden;
+}
+
+.file-modal__item {
+   display: flex;
+   align-items: center;
+
+   padding: 6px 0px 6px 10px;
+   margin: 0px 6px;
+   cursor: default;
+   transition: .15s;
+   border-radius: 4px;
+}
+
+.file-modal__icon {
+   font-size: 20px;
+   margin: 0px 10px 0px 0px;
+   cursor: pointer;
+   color: #6e6e6e;
+}
+
+.file-modal__item:hover {
+   background-color: #f2f2f2;
+}
+
+.file-modal__info {
+
+}
+
+.file-modal__size {
+   font-size: 14px;
+   color: #6e6e6e;
+}
+
+.file-modal__delete-icon {
+   font-size: 20px;
+   cursor: pointer;
+   margin: 0px 10px;
+}
+
+.file-modal__actions {
+   width: 500px;
+   display: flex;
+   justify-content: space-between;
+   border-top: #ffd354 2px solid;
+}
+
+
+.file-modal__button {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-grow: 1;
+   height: 50px;
+   background-color: #ffffff;
+   cursor: pointer;
+   transition: .15s;
+}
+
+.file-modal__button:first-child {
+   border-radius: 0px 0px 0px 3px;
+}
+
+.file-modal__button:last-child {
+   border-radius: 0px 0px 3px 0px;
+}
+
+.file-modal__button:hover {
+   background-color: #f2f2f2;
+}
+
+/*file-modal===================================*/
+
+.files {
+   box-sizing: border-box;
+   display: none;
+   flex-grow: 1;
+   padding: 5px;
+   border: 1px solid #cccccc;
+   font-size: 14px;
+   color: #6e6e6e;
+   cursor: pointer;
+   transition: box-shadow .10s;
+   border-top: 0px;
+   border-radius: 0px 0px 4px 4px;
+}
+
+.files.filled {
+   display: block;
+}
+
+.files.view {
+   display: block;
+   border: 0px;
+   padding: 0px;
+
+}
+
+.body-card__select.modal-file.filled {
+   border-radius: 4px 4px 0px 0px;
+   color: #6e6e6e;
+}
+
+.body-card__icon.fa-file {
+   font-size: 16px;
+}
+
+.files__info {
+   display: flex;
+   align-items: center;
+
+   padding: 6px 0px 6px 10px;
+   margin: 0px 6px 0px 0px;
+   transition: .15s;
+   border-radius: 4px;
+
+   cursor: pointer;
+}
+
+.files__icon {
+   font-size: 18px;
+   margin: 0px 10px 0px 0px;
+   cursor: pointer;
+   color: #6e6e6e;
+}
+
+.files__info {
+   display: flex;
+   align-items: center;
+   flex-grow: 1;
+}
+
+.files__info:hover {
+   background-color: #f2f2f2;
+}
+
+.files__delete {
+
+}
+
+/*поменять*/
+
+.files__delete,
+.files__unload {
+   padding: 8px;
+   border: #ffffff solid 2px;
+   border-radius: 4px;
+   color: #6e6e6e;
+   cursor: pointer;
+   transition: 0.15s;
+   font-size: 16px;
+}
+
+.files__delete:hover {
+   border-color: #ffb0b0;
+   background-color: #ffb0b0;
+   color: #a93d3d;
+}
+
+.files__unload:hover {
+   border-color: #A4D0FF;
+   background-color: #A4D0FF;
+   /*color: #3395FF;*/
+   color: #287DD8;
+}
+
+.files__item {
+   display: flex;
+   justify-content: space-between;
+}

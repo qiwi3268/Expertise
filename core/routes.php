@@ -101,6 +101,15 @@ return [
         '/views/home/'       => ['create_application_dependencies', 'main_header', 'create_application', 'main_footer']
     ],
 
+
+    'home/navigation' => [
+        'controllers' => ['navigation']
+    ],
+
+
+
+
+
     'tmp/registration_user' => [
         'controllers'     => ['registration_user']
     ],
@@ -126,14 +135,15 @@ return [
     ],
 
     'tmp/documentation_structure' => [
-        'ROOTClasses'     => ['NodeStructure'],
+        'ROOTClasses'     => ['NodeStructure', 'VariableTransfer'],
+        'ROOTcontrollers' => ['header'],
+        'ROOTviews'       => ['header'],
         'controllers'     => ['documentation_structure'],
         'views'           => ['documentation_structure']
     ]
 
 ];
 
-//todo должны начинаться и заканчиваться на /
 
 // redirect  	Необязтательный парметр	СТРОКА
 //					Переадресует страницу на указанный роут,

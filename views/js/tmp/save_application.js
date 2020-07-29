@@ -42,7 +42,8 @@ function updateFileNeeds() {
       .then(response => {
 
          switch (response.result) {
-            case 8:
+            case 9:
+               console.log('file_clear');
                FileNeeds.clear();
                break;
             default:

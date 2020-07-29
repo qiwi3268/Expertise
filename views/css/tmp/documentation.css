@@ -1,0 +1,134 @@
+.documentation {
+   /*max-width: 1400px;*/
+   /*margin: 50px;*/
+   font-size: 16px;
+
+   cursor: default;
+}
+
+.documentation__node {
+   box-sizing: border-box;
+
+   display: flex;
+   flex-direction: column;
+
+   /*border-bottom: 1px solid #cccccc;*/
+   border-bottom: 1px solid #e0e0e0;
+
+
+
+   /*align-items: center;*/
+   /*flex-grow: 1;*/
+   /*padding: 15px;*/
+
+
+
+
+
+   /*border-radius: 4px;*/
+   /*box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);*/
+   /*border-bottom: 0px;*/
+   /*border-top: 0px;*/
+
+   background-color: #ffffff;
+
+   color: #343a40;
+   /*cursor: pointer;*/
+
+
+}
+
+.documentation__node.filled {
+   border-left: 3px solid #ffd354;
+   border-bottom: 3px solid #ffd354;
+}
+
+.documentation__header {
+   display: flex;
+}
+
+
+.documentation__name {
+   flex-grow: 1;
+   padding: 13px 15px;
+   border-right: 1px solid #e0e0e0;
+   /*border-right: 1px solid #cccccc;*/
+   transition: .1s;
+}
+
+.documentation__name:last-child {
+
+}
+
+.documentation__icon {
+   display: flex;
+   align-items: center;
+   /*border-left: 1px solid #cccccc;*/
+   /*padding: 16px 20px;*/
+   padding: 13px 15px;
+   transition: .1s;
+   cursor: pointer;
+}
+
+/*.documentation__name:hover,*/
+.documentation__icon:hover {
+   background-color: #f2f2f2;
+}
+
+
+/*
+.documentation__node:first-child {
+   !*border-top: 1px solid #cccccc;*!
+   border-radius: 4px 4px 0px 0px;
+}*/
+
+.documentation__node:last-child {
+   /*border-bottom: 1px solid #cccccc;*/
+   /*border-bottom: 1px solid #e0e0e0;*/
+   /*border-radius: 0px 0px 4px 4px;*/
+}
+
+
+
+.documentation__node[data-depth='0'] {
+
+}
+
+/*.documentation__node[data-depth='1'] {
+   padding-left: 35px;
+   !*margin-left: 35px;*!
+}*/
+
+.documentation__name[data-depth='1'] {
+   padding-left: 35px;
+   /*margin-left: 35px;*/
+}
+
+
+
+.documentation__files {
+   border: 0px;
+   color: #343a40;
+   border-top: 1px solid #e0e0e0;
+   /*border-left: 1px solid #cccccc;*/
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,5 @@
 class FileNeeds {
-   static #file_needs = {
+   static file_needs = {
       to_save: [],
       to_delete: []
    };
@@ -29,15 +29,15 @@ class FileNeeds {
    }
 
    static getFileNeeds() {
-      return FileNeeds.#file_needs;
+      return FileNeeds.file_needs;
    }
 
    static getFileNeedsJSON() {
-      return JSON.stringify(FileNeeds.#file_needs);
+      return JSON.stringify(FileNeeds.file_needs);
    }
 
    static putFileToSave(id_file, mapping_level_1, mapping_level_2) {
-      let to_save = FileNeeds.#file_needs.to_save;
+      let to_save = FileNeeds.file_needs.to_save;
       let file_data = FileNeeds.getFileData(id_file, mapping_level_1, mapping_level_2);
 
       if (FileNeeds.getFileToSaveIndex(file_data) === null) {
@@ -47,13 +47,13 @@ class FileNeeds {
 
    static putFileToDelete(id_file, mapping_level_1, mapping_level_2) {
       let file_data = FileNeeds.getFileData(id_file, mapping_level_1, mapping_level_2);
-      let to_save = FileNeeds.#file_needs.to_save;
+      let to_save = FileNeeds.file_needs.to_save;
 
       let to_save_index = FileNeeds.getFileToSaveIndex(file_data);
       if (to_save_index !== null) {
          to_save.splice(to_save_index, 1);
       } else {
-         let to_delete = FileNeeds.#file_needs.to_delete;
+         let to_delete = FileNeeds.file_needs.to_delete;
          to_delete.push(FileNeeds.getFileData(id_file, mapping_level_1, mapping_level_2));
       }
    }
@@ -61,7 +61,7 @@ class FileNeeds {
    static getFileToSaveIndex(file_data) {
       let index = null;
 
-      let to_save = FileNeeds.#file_needs.to_save;
+      let to_save = FileNeeds.file_needs.to_save;
       for (let i = 0; i < to_save.length; i++) {
 
          if (to_save[i].id_file === file_data.id_file
@@ -84,11 +84,11 @@ class FileNeeds {
    }
 
    static clear() {
-      FileNeeds.#file_needs.to_save = [];
-      FileNeeds.#file_needs.to_delete = [];
+      FileNeeds.file_needs.to_save = [];
+      FileNeeds.file_needs.to_delete = [];
    }
 
    static isHasFiles() {
-      return FileNeeds.#file_needs.to_save.length !== 0 || FileNeeds.#file_needs.to_delete.length !== 0;
+      return FileNeeds.file_needs.to_save.length !== 0 || FileNeeds.file_needs.to_delete.length !== 0;
    }
 }
