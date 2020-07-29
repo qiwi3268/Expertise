@@ -4,7 +4,6 @@ class FileNeeds {
       to_delete: []
    };
 
-
    static putFilesToSave() {
       let file_blocks = document.querySelectorAll('.modal-file');
       let parent_row;
@@ -16,11 +15,14 @@ class FileNeeds {
          files = parent_row.querySelectorAll('.files__item');
 
          files.forEach(file => {
-            let id_file = file.dataset.id;
-            let mapping_level_1 = parent_row.dataset.mapping_level_1;
-            let mapping_level_2 = parent_row.dataset.mapping_level_2;
+            if (file.dataset.saved !== 'true') {
+               let id_file = file.dataset.id;
+               let mapping_level_1 = parent_row.dataset.mapping_level_1;
+               let mapping_level_2 = parent_row.dataset.mapping_level_2;
 
-            FileNeeds.putFileToSave(id_file, mapping_level_1, mapping_level_2);
+               FileNeeds.putFileToSave(id_file, mapping_level_1, mapping_level_2);
+               file.dataset.saved = 'true';
+            }
          });
       });
 

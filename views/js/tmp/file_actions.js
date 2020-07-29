@@ -1,10 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
-   // initializeFileActions
-
+   initializeFileActions();
 });
 
 function initializeFileActions() {
+   let action_blocks = document.querySelectorAll('.files__actions');
 
+   action_blocks.forEach(actions => {
+      handleActionButton(actions);
+   });
+
+}
+
+function handleActionButton(actions) {
+   let unload_button = actions.querySelector('.files__unload');
+   if (unload_button) {
+      addUnloadButton(unload_button);
+   }
+
+   let delete_button = actions.querySelector('.files__delete');
+   if (delete_button) {
+      addDeleteButton(delete_button);
+   }
 }
 
 function addFileActions(file) {

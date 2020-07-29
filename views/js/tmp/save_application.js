@@ -36,12 +36,13 @@ function updateFileNeeds() {
    let request_urn = '/home/API_file_needs_setter';
    let form_data = getFilesNeedsFormData();
 
+   console.log(FileNeeds.getFileNeedsJSON());
+
    XHR('post', request_urn, form_data, null, 'json', null, null)
       .then(response => {
 
          switch (response.result) {
             case 8:
-               console.log('clear');
                FileNeeds.clear();
                break;
             default:

@@ -44,7 +44,8 @@ switch(_URN_){
                         ...CreateSource('css', ROOT_CSS, 'entry.css'),
                         ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css'),
                         ...CreateSource('css', TMP_CSS, 'create_application.css', 'view_application.css'),
-                        ...CreateSource('js', TMP_JS, 'section.js')
+                        ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
+                        ...CreateSource('js', TMP_JS, 'section.js', 'file_actions.js')
        ];
        break;
 

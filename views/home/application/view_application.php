@@ -4,6 +4,7 @@
     <div class="header-form__title">Заявление на экспертизу <?= $variablesTV->getValue('numerical_name') ?></div>
 </div>
 
+<input type="hidden" value="<?= $variablesTV->getValue('id_application') ?>" name="id_application">
 
 <div class="application-form__body">
     <!--<div class="sidebar-hierarchy">
@@ -305,6 +306,29 @@
                     </div>
                 <?php endif; ?>
                 <!--//Куратор//-->
+
+                <!--ГРБС-->
+                <?php if (!is_null($variablesTV->getValue('form_files')[1][1])): ?>
+                    <div class="body-card__row" data-mapping_level_1="1" data-mapping_level_2="1">
+                        <span class="body-card__title">Файл ГРБС</span>
+                        <div class="body-card__item">
+                            <div class="files view">
+                                <?php foreach ($variablesTV->getValue('form_files')[1][1] as $file): ?>
+                                    <div class="files__item" data-id="<?= $file['id'] ?>">
+                                        <div class="files__info">
+                                            <i class="files__icon fas fa-file-word"></i>
+                                            <div class="files__name"><?= $file['file_name'] ?></div>
+                                        </div>
+                                        <div class="files__actions">
+                                            <i class="files__unload fas fa-file-download"></i>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <!--//ГРБС//-->
 
             </div>
         </div>

@@ -16,7 +16,6 @@ UpdateDatesTimestampToDdMmYyyy($applicationAssoc,
 foreach($applicationAssoc as $property => $value){
     
     if(is_null($value)){
-        
         $variablesTV->setExistenceFlag($property, false);
         continue;
     }
@@ -26,8 +25,26 @@ foreach($applicationAssoc as $property => $value){
 }
 
 
+// Сохраненные файлы
+$requiredMappings = new RequiredMappingsSetter();
+$requiredMappings->setMappingLevel1(1);
+
+$filesInitialization = new FilesInitialization($requiredMappings, $applicationId);
+$needsFiles = $filesInitialization->getNeedsFiles();
+
+$variablesTV->setValue('form_files', $needsFiles);
+
+
+
+var_dump($needsFiles);
+
 // Сохранен Вид объекта, показываем документацию
 if($variablesTV->getExistenceFlag('type_of_object')){
+    
+    // Удаление переменных, служивших выше
+    unset($requiredMappings);
+    unset($filesInitialization);
+    unset($needsFiles);
     
     // В зависимости от Вида объекта выбираем нужную таблицу
     switch($variablesTV->getValue('type_of_object')['id']){
@@ -64,15 +81,13 @@ if($variablesTV->getExistenceFlag('type_of_object')){
     
     // Структура разделов документации с вложенностью дочерних разделов в родительские
     $depthStructure = $NodeStructure->getDepthStructure();
-    
     $filesInStructure = $filesInitialization->getFilesInStructure($needsFiles, $depthStructure);
-    
-    var_dump($filesInStructure);
     
     $variablesTV->setValue('documentation_files_in_structure', $filesInStructure);
 }
 
-
+$test = shell_exec('lala 2>&1');
+var_dump($test);
 
 
 
