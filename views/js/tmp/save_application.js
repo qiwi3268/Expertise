@@ -11,7 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             switch (response.result) {
                case 8:
-                  sendFiles();
+                  if (FileNeeds.isHasFiles()) {
+                     updateFileNeeds();
+                  }
                   break;
                default:
                   console.log(response);
@@ -29,41 +31,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-function sendFiles() {
-
-   if (FileNeeds.isHasFiles()) {
-      updateFileNeeds();
-   }
-}
 
 function updateFileNeeds() {
    let request_urn = '/home/API_file_needs_setter';
    let form_data = getFilesNeedsFormData();
 
-
-   console.log(FileNeeds.getFileNeeds());
-   // console.log(FileNeeds.file_needs.to_save);
-
-
-   // FileNeeds.file_needs.to_save.splice(0, FileNeeds.file_needs.to_save.length);
-   // FileNeeds.file_needs.to_delete.splice(0, FileNeeds.file_needs.to_delete.length);
-
-   // FileNeeds.file_needs.to_save.length = 0;
-   // FileNeeds.file_needs.to_delete.length = 0;
-
-
    XHR('post', request_urn, form_data, null, 'json', null, null)
       .then(response => {
 
-
          switch (response.result) {
             case 8:
-               // console.log(FileNeeds.getFileNeeds());
-               console.log(FileNeeds.file_needs);
-               FileNeeds.file_needs.to_save.length = 0;
-               FileNeeds.file_needs.to_delete.length = 0;
-               // console.log(FileNeeds.getFileNeeds());
-               // FileNeeds.clear();
+               console.log('clear');
+               FileNeeds.clear();
                break;
             default:
                console.log(response);
@@ -76,7 +55,6 @@ function updateFileNeeds() {
          alert(error.message);
          console.error('XHR error: ', error);
       });
-
 
 }
 

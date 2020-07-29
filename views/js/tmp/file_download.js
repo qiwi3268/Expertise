@@ -75,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
                case 16:
                   putFilesToRow(response.uploaded_files);
                   FileNeeds.putFilesToSave();
-                  // putFilesToSave();
                   closeFileModal();
                   break;
                default:

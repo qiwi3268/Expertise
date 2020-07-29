@@ -19,7 +19,7 @@ return [
         'API'   => ['login']
     ],
 
-    
+
     'home/file_unloader' => [
         'ROOTClasses'     => ['FilesUnload'],
         'controllers'     => ['file_unloader']
@@ -36,28 +36,28 @@ return [
         '/Classes/'         => ['FilesTableMapping'],
         'API'               => ['file_needs_setter']
     ],
-    
+
     //-------------------------------
-    
+
 
     'test' => [
         'ROOTcontrollers' => ['test']
     ],
-    
-    
+
+
     'home/application/API_save_form' => [
         'access'                     => [],
         '/Classes/ApplicationForm/'  => ['SaveHandler'],
         'API'                        => ['save_form']
     ],
-    
+
     'home/API_save_files' => [
         'access'                      => [],
         'API'                         => ['save_files']
     ],
-    
-    
-    
+
+
+
     //todo перенести view create_application в ветку /home/application/
     //todo привести display_dependencies_application_form и create_application_dependencies к единообразному названию
     'home/application/create' => [
@@ -72,7 +72,7 @@ return [
         '/views/home/'              => ['create_application_dependencies', 'main_header', 'create_application', 'main_footer'],
     ],
 
-    
+
     'home/application/view' => [
         'access'              => [],
         'ROOTClasses'         => ['VariableTransfer', 'FilesTableMapping', 'NodeStructure', 'FilesInitialization'],
@@ -86,7 +86,7 @@ return [
         'views'               => ['hierarchy_sidebar', 'view_application', 'action_sidebar'],
         '/views/home/%footer' => ['main_footer'],
     ],
-    
+
     'home/application/edit'  => [
         'access'             => [],
         'ROOTClasses'          => ['VariableTransfer'],
