@@ -22,6 +22,16 @@ class ApplicationHelper{
 
         return "$nowDate-$internalCounter";
     }
+    
+    
+    // Предназначен для получения дефолтных GET-параметров для навигационной страницы
+    //
+    static public function getDefaultNavigationPage():array {
+    
+        $roles = Session::getUserRoles();
+    
+        if(in_array(_ROLE['APP'], $roles)) return ['b' => 'block_1', 'v' => 'view_1'];
+    }
 
 
 

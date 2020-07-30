@@ -5,25 +5,30 @@ class FileNeeds {
    };
 
    static putFilesToSave() {
-      let file_blocks = document.querySelectorAll('.modal-file');
+      let file_blocks = document.querySelectorAll('.files');
       let parent_row;
       let files;
 
       file_blocks.forEach(file_block => {
-         parent_row = file_block.closest('[data-mapping_level_1]');
+         if (file_block.innerHTML) {
+            parent_row = file_block.closest('[data-mapping_level_1]');
 
-         files = parent_row.querySelectorAll('.files__item');
+            if (parent_row.dataset.inactive !== 'true') {
+               files = parent_row.querySelectorAll('.files__item');
 
-         files.forEach(file => {
-            if (file.dataset.saved !== 'true') {
-               let id_file = file.dataset.id;
-               let mapping_level_1 = parent_row.dataset.mapping_level_1;
-               let mapping_level_2 = parent_row.dataset.mapping_level_2;
+               files.forEach(file => {
+                  if (file.dataset.saved !== 'true') {
+                     let id_file = file.dataset.id;
+                     let mapping_level_1 = parent_row.dataset.mapping_level_1;
+                     let mapping_level_2 = parent_row.dataset.mapping_level_2;
 
-               FileNeeds.putFileToSave(id_file, mapping_level_1, mapping_level_2);
-               file.dataset.saved = 'true';
+                     FileNeeds.putFileToSave(id_file, mapping_level_1, mapping_level_2);
+                     file.dataset.saved = 'true';
+                  }
+               });
             }
-         });
+         }
+
       });
 
    }
@@ -40,25 +45,29 @@ class FileNeeds {
       let to_save = FileNeeds.file_needs.to_save;
       let file_data = FileNeeds.getFileData(id_file, mapping_level_1, mapping_level_2);
 
-      if (FileNeeds.getFileToSaveIndex(file_data) === null) {
-         to_save.push(FileNeeds.getFileData(id_file, mapping_level_1, mapping_level_2));
-      }
+      // if (FileNeeds.getFileToSaveIndex(file_data) === null) {
+         to_save.push(file_data);
+      // }
    }
 
-   static putFileToDelete(id_file, mapping_level_1, mapping_level_2) {
+   static putFileToDelete(id_file, mapping_level_1, mapping_level_2, file_item) {
       let file_data = FileNeeds.getFileData(id_file, mapping_level_1, mapping_level_2);
-      let to_save = FileNeeds.file_needs.to_save;
+      // let to_save = FileNeeds.file_needs.to_save;
 
-      let to_save_index = FileNeeds.getFileToSaveIndex(file_data);
-      if (to_save_index !== null) {
-         to_save.splice(to_save_index, 1);
-      } else {
+      let is_file_saved = file_item.dataset.saved;
+      // let to_save_index = FileNeeds.getFileToSaveIndex(file_data);
+      // if (to_save_index !== null) {
+      if (is_file_saved) {
          let to_delete = FileNeeds.file_needs.to_delete;
-         to_delete.push(FileNeeds.getFileData(id_file, mapping_level_1, mapping_level_2));
+         to_delete.push(file_data);
+         // to_save.splice(to_save_index, 1);
+      } else {
+         // let to_delete = FileNeeds.file_needs.to_delete;
+         // to_delete.push(FileNeeds.getFileData(id_file, mapping_level_1, mapping_level_2));
       }
    }
 
-   static getFileToSaveIndex(file_data) {
+  /* static getFileToSaveIndex(file_data) {
       let index = null;
 
       let to_save = FileNeeds.file_needs.to_save;
@@ -73,7 +82,7 @@ class FileNeeds {
       }
 
       return index;
-   }
+   }*/
 
    static getFileData(id_file, mapping_level_1, mapping_level_2) {
       return {

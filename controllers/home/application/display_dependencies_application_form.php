@@ -61,12 +61,14 @@ $blockDependencies = [
     'type_of_object' => [
         1 => ['planning_documentation_approval' => true,
               'GPZU'                            => false,
-              'test_node'                       => true
+              'structureDocumentation1'         => true,
+              'structureDocumentation2'         => false
         ],
 
         2 => ['planning_documentation_approval' => false,
               'GPZU'                            => true,
-              'test_node'                       => false
+              'structureDocumentation1'         => false,
+              'structureDocumentation2'         => true
         ]
     ],
 

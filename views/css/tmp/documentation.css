@@ -114,11 +114,12 @@
    border: 0px;
    color: #343a40;
    border-top: 1px solid #e0e0e0;
-   /*border-left: 1px solid #cccccc;*/
 }
 
 
-
+.documentation__files[data-depth='1'] {
+   padding-left: 35px;
+}
 
 
 

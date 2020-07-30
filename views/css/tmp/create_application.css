@@ -213,7 +213,7 @@
    display: none;
 }*/
 
-.body-card__block[data-inactive="true"] {
+[data-inactive="true"] {
    display: none;
 }
 

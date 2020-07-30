@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
    let form = document.querySelector('#application');
    let request_urn = '/home/application/API_save_form';
 
+
    save_button.addEventListener('click', () => {
+      FileNeeds.putFilesToSave();
 
       XHR('post', request_urn, new FormData(form), null, 'json', null, null)
          .then(response => {
@@ -30,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 });
+
+
 
 
 function updateFileNeeds() {

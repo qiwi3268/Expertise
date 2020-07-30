@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
    let is_uploading = false;
 
    let parent_row;
+   let parent_node;
 
    let submit_button = file_modal.querySelector('.file-modal__submit');
    submit_button.addEventListener('click', () => {
@@ -75,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             switch (response.result) {
                case 16:
                   putFilesToRow(response.uploaded_files);
-                  FileNeeds.putFilesToSave();
+                  // FileNeeds.putFilesToSave();
                   closeFileModal();
                   break;
                default:
@@ -106,7 +107,13 @@ document.addEventListener('DOMContentLoaded', () => {
          parent_select.classList.add('filled');
       }
 
-      let files_body = parent_row.querySelector('.files');
+      let files_body;
+      if (parent_node) {
+         files_body = parent_node.querySelector('.files');
+      } else {
+         files_body = parent_row.querySelector('.files');
+      }
+
       files_body.classList.add('filled');
 
       files.forEach(file => {
@@ -161,13 +168,14 @@ document.addEventListener('DOMContentLoaded', () => {
    }
 
    function addFieldData(select) {
+      parent_node = select.closest('[data-id_structure_node]');
       parent_row = select.closest('[data-mapping_level_1]');
 
       mapping_input_1.value = parent_row.dataset.mapping_level_1;
       mapping_input_2.value = parent_row.dataset.mapping_level_2;
 
-      if (parent_row.dataset.id_structure_node) {
-         id_structure_node_input.value = parent_row.dataset.id_structure_node;
+      if (parent_node) {
+         id_structure_node_input.value = parent_node.dataset.id_structure_node;
       }
 
       if (parent_row.dataset.multiple !== 'false') {
@@ -186,6 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
    function closeFileModal() {
       file_modal.classList.remove('active')
       overlay.classList.remove('active');
+      parent_node = null;
       clearFileModal();
    }
 

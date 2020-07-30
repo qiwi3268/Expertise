@@ -74,7 +74,8 @@ function putFileToDelete(file) {
    FileNeeds.putFileToDelete(
       id_file,
       parent_row.dataset.mapping_level_1,
-      parent_row.dataset.mapping_level_2
+      parent_row.dataset.mapping_level_2,
+      file
    );
 
 }

@@ -558,47 +558,6 @@
                 </div>
                 <!--//Загрузчик файла2//-->
 
-                <!--Загрузчик файла2-->
-                <!--<div class="body-card__row" data-row_name="File_2"
-                     data-required="true" data-multiple="false" data-mapping_level_1="1" data-mapping_level_2="1">
-                    <span class="body-card__title required">Файл ГРБС_3</span>
-                    <div class="body-card__item">
-                        <div class="files view">
-                            <div class="files__item" data-id="381">
-                                <div class="files__info">
-                                    <i class="files__icon fas fa-file-word"></i>
-                                    <div class="files__name">Экспертное сопровождение_финальный тест (1).docx</div>
-                                </div>
-                                <div class="files__actions">
-                                    <i class="files__unload fas fa-file-download"></i>
-                                </div>
-                            </div>
-                            <div class="files__item" data-id="385">
-                                <div class="files__info">
-                                    <i class="files__icon fas fa-file-word"></i>
-                                    <div class="files__name">FullDocumentTemplate.docx</div>
-                                </div>
-                                <div class="files__actions">
-                                    <i class="files__unload fas fa-file-download"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <input class="body-card__result field-result" type="hidden" name="">
-                </div>-->
-                <!--//Загрузчик файла2//-->
-
-                <!--Загрузчик файла2-->
-                <!--<div class="body-card__row" data-row_name="File_2"
-                     data-required="true" data-multiple="false" data-mapping_level_1="1" data-mapping_level_2="1">
-                    <span class="body-card__title required">Файл ГРБС_3</span>
-                    <span class="body-card__item">
-                        <i class="body-card__icon fas fa-exclamation-circle"></i>
-                        <span class="body-card__input">Не выбран</span>
-                    </span>
-
-                </div>-->
-                <!--//Загрузчик файла2//-->
 
             </div>
         </div>
@@ -609,53 +568,27 @@
                 <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
             </div>
             <div class="card-form__body body-card">
-                <div class="documentation">
-
-                    <div class="documentation__node" data-id_structure_node="1234"  data-mapping_level_1="1" data-mapping_level_2="1">
-                        <div class="documentation__header">
-                            <span class="documentation__name">Раздел с файлами</span>
-                            <i class="documentation__icon modal-file fas fa-plus"></i>
+                <div class="documentation" data-block_name="structureDocumentation1" data-mapping_level_1="2" data-mapping_level_2="1" data-inactive="true">
+                    <?php foreach ($variablesTV->getValue('structureDocumentation1') as ['id' => $id_structure_node, 'name' => $name, 'depth' => $depth]): ?>
+                        <div class="documentation__node" data-id_structure_node="<?= $id_structure_node ?>">
+                            <div class="documentation__header">
+                                <span class="documentation__name" data-depth="<?= $depth ?>"><?= $name ?></span>
+                                <i class="documentation__icon modal-file fas fa-plus"></i>
+                            </div>
+                            <div class="documentation__files files" data-depth="<?= $depth ?>"></div>
                         </div>
-                        <div class="documentation__files files"></div>
-                    </div>
-
-
-                    <div class="documentation__node" data-block_name="test_node" data-id_structure_node="1" data-mapping_level_1="1" data-mapping_level_2="1" data-inactive="true">
-                        <div class="documentation__header">
-                            <span class="documentation__name" data-depth="0">Раздел 1. Пояснительная записка</span>
-                            <i class="documentation__icon fas fa-plus"></i>
+                    <?php endforeach; ?>
+                </div>
+                <div class="documentation" data-block_name="structureDocumentation2" data-mapping_level_1="2" data-mapping_level_2="2" data-inactive="true">
+                    <?php foreach ($variablesTV->getValue('structureDocumentation2') as ['id' => $id_structure_node, 'name' => $name, 'depth' => $depth]): ?>
+                        <div class="documentation__node" data-id_structure_node="<?= $id_structure_node ?>">
+                            <div class="documentation__header">
+                                <span class="documentation__name" data-depth="<?= $depth ?>"><?= $name ?></span>
+                                <i class="documentation__icon modal-file fas fa-plus"></i>
+                            </div>
+                            <div class="documentation__files files" data-depth="<?= $depth ?>"></div>
                         </div>
-                    </div>
-                    <div class="documentation__node" data-id_structure_node="2" data-mapping_level_1="1" data-mapping_level_2="1">
-                        <div class="documentation__header">
-                            <span class="documentation__name" data-depth="0">Раздел 2. Схема планировочной организации земельного участка</span>
-                            <i class="documentation__icon fas fa-plus"></i>
-                        </div>
-                    </div>
-                    <div class="documentation__node" data-id_structure_node="3" data-mapping_level_1="1" data-mapping_level_2="1">
-                        <div class="documentation__header">
-                            <span class="documentation__name" data-depth="1">Ведомости объемов работ по разделу и спецификации, выполненные на основании проектной документации</span>
-                            <i class="documentation__icon fas fa-plus"></i>
-                        </div>
-                    </div>
-                    <div class="documentation__node" data-id_structure_node="4" data-mapping_level_1="1" data-mapping_level_2="1">
-                        <div class="documentation__header">
-                            <span class="documentation__name" data-depth="0">Раздел 3. Архитектурные решения</span>
-                            <i class="documentation__icon fas fa-plus"></i>
-                        </div>
-                    </div>
-                    <div class="documentation__node" data-id_structure_node="5" data-mapping_level_1="1" data-mapping_level_2="1">
-                        <div class="documentation__header">
-                            <span class="documentation__name" data-depth="1">Ведомости объемов работ по разделу и спецификации, выполненные на основании проектной документации</span>
-                            <i class="documentation__icon fas fa-plus"></i>
-                        </div>
-                    </div>
-                    <div class="documentation__node" data-id_structure_node="23" data-mapping_level_1="1" data-mapping_level_2="1">
-                        <div class="documentation__header">
-                            <span class="documentation__name" data-depth="1">Ведомости объемов работ по разделу и спецификации, выполненные на основании проектной документации</span>
-                            <i class="documentation__icon fas fa-plus"></i>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
