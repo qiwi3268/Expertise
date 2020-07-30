@@ -38,6 +38,10 @@
 
 }
 
+.documentation__node[data-inactive="true"] {
+   display: none;
+}
+
 .documentation__node.filled {
    border-left: 3px solid #ffd354;
    border-bottom: 3px solid #ffd354;

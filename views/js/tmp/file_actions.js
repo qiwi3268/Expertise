@@ -50,6 +50,10 @@ function addDeleteButton(delete_button) {
 
 }
 
+function isDocumentationFile(file) {
+   return file.closest('[data-id_structure_node]');
+}
+
 function removeFileElement(file, files) {
    file.remove();
 

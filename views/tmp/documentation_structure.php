@@ -1,7 +1,7 @@
 
 <div class="documentation">
 
-    <div class="documentation__node" data-node-id="1234" data-depth="0">
+    <div class="documentation__node" field-title="1234" data-depth="0">
         <div class="documentation__header">
             <span class="documentation__name">Раздел с файлами</span>
             <i class="documentation__icon fas fa-plus"></i>

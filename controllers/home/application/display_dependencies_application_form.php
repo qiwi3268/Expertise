@@ -60,11 +60,13 @@ $blockDependencies = [
     // Зависимость от выбранного "Вида объекта"
     'type_of_object' => [
         1 => ['planning_documentation_approval' => true,
-              'GPZU'                            => false
+              'GPZU'                            => false,
+              'test_node'                       => true
         ],
 
         2 => ['planning_documentation_approval' => false,
-              'GPZU'                            => true
+              'GPZU'                            => true,
+              'test_node'                       => false
         ]
     ],
 
@@ -79,6 +81,9 @@ $blockDependencies = [
         0 => ['national_project'     => false,],
         1 => ['national_project'     => true,],
     ],
+
+
+
 ];
 
 $variablesTV->setValue('blockDependencies', json_encode($blockDependencies));

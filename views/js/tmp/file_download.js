@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
    let file_input = form.querySelector('[name="download_files[]"]');
    let mapping_input_1 = form.querySelector('[name="mapping_level_1"]');
    let mapping_input_2 = form.querySelector('[name="mapping_level_2"]');
+   let id_structure_node_input = form.querySelector('[name="id_structure_node"]');
 
    let file_selects = document.querySelectorAll('.modal-file');
    let file_modal = document.querySelector('.modal.file-modal');
@@ -165,7 +166,11 @@ document.addEventListener('DOMContentLoaded', () => {
       mapping_input_1.value = parent_row.dataset.mapping_level_1;
       mapping_input_2.value = parent_row.dataset.mapping_level_2;
 
-      if (parent_row.dataset.multiple === 'true') {
+      if (parent_row.dataset.id_structure_node) {
+         id_structure_node_input.value = parent_row.dataset.id_structure_node;
+      }
+
+      if (parent_row.dataset.multiple !== 'false') {
          file_input.setAttribute('multiple', '');
       } else {
          file_input.removeAttribute('multiple');

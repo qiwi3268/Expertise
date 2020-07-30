@@ -63,25 +63,25 @@ function handleDependentRows(parent_input) {
 
    if (values) {
       // Получаем зависимые поля для значения в родительском поле
-      let dependent_blocks = block_dependencies[parent_input.name][parent_input.value];
+      let dependent_block_names = block_dependencies[parent_input.name][parent_input.value];
 
-      if (dependent_blocks) {
-         Object.keys(dependent_blocks).forEach(block_name => {
-            let dependent_block = document.querySelector(`[data-block_name="${block_name}"]`);
+      if (dependent_block_names) {
+         Object.keys(dependent_block_names).forEach(block_name => {
+            let dependent_blocks = document.querySelectorAll(`[data-block_name="${block_name}"]`);
             let is_display;
 
-            if (dependent_block) {
+            dependent_blocks.forEach(block => {
                // Определяем показать или скрыть блок
-               is_display = dependent_blocks[block_name];
+               is_display = dependent_block_names[block_name];
 
                if (!is_display) {
-                  dependent_block.dataset.inactive = 'true';
+                  block.dataset.inactive = 'true';
                } else {
-                  dependent_block.dataset.inactive = 'false';
+                  block.dataset.inactive = 'false';
                }
 
-               clearBlock(dependent_block);
-            }
+               clearBlock(block);
+            });
          });
       }
 
@@ -96,9 +96,22 @@ function clearBlock(block) {
    dependent_fields.forEach(field => {
 
       removeRowValue(field);
+
+      if (block.querySelector('.files')) {
+         removeDependentFiles(block);
+      }
+
    });
 
 }
+
+function removeDependentFiles(block) {
+   let files = block.querySelectorAll('.file__item');
+   files.forEach(file => {
+
+   });
+}
+
 
 // Предназначен для удаления значении в поле
 // Принимает параметры-------------------------------

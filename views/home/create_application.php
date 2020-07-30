@@ -620,37 +620,37 @@
                     </div>
 
 
-                    <div class="documentation__node" data-node-id="1" data-mapping_level_1="1" data-mapping_level_2="1">
+                    <div class="documentation__node" data-block_name="test_node" data-id_structure_node="1" data-mapping_level_1="1" data-mapping_level_2="1" data-inactive="true">
                         <div class="documentation__header">
                             <span class="documentation__name" data-depth="0">Раздел 1. Пояснительная записка</span>
                             <i class="documentation__icon fas fa-plus"></i>
                         </div>
                     </div>
-                    <div class="documentation__node" data-node-id="2" data-mapping_level_1="1" data-mapping_level_2="1">
+                    <div class="documentation__node" data-id_structure_node="2" data-mapping_level_1="1" data-mapping_level_2="1">
                         <div class="documentation__header">
                             <span class="documentation__name" data-depth="0">Раздел 2. Схема планировочной организации земельного участка</span>
                             <i class="documentation__icon fas fa-plus"></i>
                         </div>
                     </div>
-                    <div class="documentation__node" data-node-id="3" data-mapping_level_1="1" data-mapping_level_2="1">
+                    <div class="documentation__node" data-id_structure_node="3" data-mapping_level_1="1" data-mapping_level_2="1">
                         <div class="documentation__header">
                             <span class="documentation__name" data-depth="1">Ведомости объемов работ по разделу и спецификации, выполненные на основании проектной документации</span>
                             <i class="documentation__icon fas fa-plus"></i>
                         </div>
                     </div>
-                    <div class="documentation__node" data-node-id="4" data-mapping_level_1="1" data-mapping_level_2="1">
+                    <div class="documentation__node" data-id_structure_node="4" data-mapping_level_1="1" data-mapping_level_2="1">
                         <div class="documentation__header">
                             <span class="documentation__name" data-depth="0">Раздел 3. Архитектурные решения</span>
                             <i class="documentation__icon fas fa-plus"></i>
                         </div>
                     </div>
-                    <div class="documentation__node" data-node-id="5" data-mapping_level_1="1" data-mapping_level_2="1">
+                    <div class="documentation__node" data-id_structure_node="5" data-mapping_level_1="1" data-mapping_level_2="1">
                         <div class="documentation__header">
                             <span class="documentation__name" data-depth="1">Ведомости объемов работ по разделу и спецификации, выполненные на основании проектной документации</span>
                             <i class="documentation__icon fas fa-plus"></i>
                         </div>
                     </div>
-                    <div class="documentation__node" data-node-id="23" data-mapping_level_1="1" data-mapping_level_2="1">
+                    <div class="documentation__node" data-id_structure_node="23" data-mapping_level_1="1" data-mapping_level_2="1">
                         <div class="documentation__header">
                             <span class="documentation__name" data-depth="1">Ведомости объемов работ по разделу и спецификации, выполненные на основании проектной документации</span>
                             <i class="documentation__icon fas fa-plus"></i>
@@ -716,6 +716,7 @@
         <input name="id_application" value="<?= $variablesTV->getValue('id_application') ?>" type="hidden"/>
         <input name="mapping_level_1" type="hidden"/>
         <input name="mapping_level_2" type="hidden"/>
+        <input name="id_structure_node" type="hidden"/>
     </form>
 
 </div>
