@@ -28,9 +28,9 @@ class Session{
         }
 
         $_SESSION['flags'] = [
-            'authorized' => !empty(self::getUserRole()),
-            'admin'      => in_array(_ROLE['ADM'], self::getUserRole(), true),
-            'applicant'  => in_array(_ROLE['APP'], self::getUserRole(), true)
+            'authorized' => !empty(self::getUserRoles()),
+            'admin'      => in_array(_ROLE['ADM'], self::getUserRoles(), true),
+            'applicant'  => in_array(_ROLE['APP'], self::getUserRoles(), true)
         ];
     }
 
@@ -97,7 +97,7 @@ class Session{
 
     // Предназначен получения для получения ролей пользователя
     //
-    static public function getUserRole():array {
+    static public function getUserRoles():array {
         return $_SESSION['user_info']['role'];
     }
 

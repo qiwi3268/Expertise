@@ -1,0 +1,18 @@
+<navigation>
+
+
+    <!-- Блок для заявителя -->
+    <block name="block_2" label="Мои документы">
+
+        <view name="view_1" label="В работе" class_name="type_1" view_name="view_1.php" show_counter="1" />
+        <view name="view_2" label="Мои заявления" class_name="type_2" view_name="view_2.php" show_counter="1" />
+        <view name="view_1" label="В работе" class_name="type_1" view_name="view_1.php" show_counter="1" />
+        <view name="view_2" label="Мои заявления" class_name="type_2" view_name="view_2.php" show_counter="1" />
+
+        <ref label="Тестовая первая" value="/home/application/create1" dsa="12" />
+        <ref label="Тестовая вторая" value="/home/application/create2" />
+
+    </block>
+
+
+</navigation>

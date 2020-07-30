@@ -64,7 +64,7 @@ if(checkParamsPOST('login', 'password')){
 
 
                 // Определяем, на какую страницу перенаправлять пользователя
-                $roles = Session::getUserRole();
+                $roles = Session::getUserRoles();
 
                 $ref = '';
 

@@ -10,16 +10,18 @@
 //       {result, message : текст ошибки, code: код ошибки}
 //	3  - Ошибка при валидации входного json'а
 //       {result, error_message : текст ошибки}
-//  4  - todo забронировано под проверку на доступ к заявлению
-//	5  - Ошибка в указанном маппинге
+//	4  - Переданые пустые массивы to_save и to_delete
 //       {result, error_message : текст ошибки}
-//	6  - Указанный файл не существует
+//  5  - todo забронировано под проверку на доступ к заявлению
+//	6  - Ошибка в указанном маппинге
 //       {result, error_message : текст ошибки}
-//  7  - Ошибка при обновлении данных в БД
+//	7  - Указанный файл не существует
+//       {result, error_message : текст ошибки}
+//  8  - Ошибка при обновлении данных в БД
 //       {result, message : текст ошибки, code: код ошибки}
-//  8  - Все операции прошли усешно
+//  9  - Все операции прошли усешно
 //       {result}
-//  9  - Непредвиденная ошибка
+//  10  - Непредвиденная ошибка
 //       {result, message : текст ошибки, code: код ошибки}
 //
 
@@ -53,7 +55,7 @@ try{
         ]));
     }
 
-    //to_save и to_delete должны быть ключами массивов
+    // to_save и to_delete должны быть ключами массивов
     if(!is_array($fileNeedsAssoc['to_save']) || !is_array($fileNeedsAssoc['to_delete'])){
         exit(json_encode(['result'        => 3,
                           'error_message' => "Элемент to_save и(или) to_delete не являются ключами массива"
@@ -87,11 +89,18 @@ try{
             }
         }
     }
+    
+    // Проверка на то, что в одном из массивов есть файлы
+   if(empty($fileNeedsAssoc['to_save']) && empty($fileNeedsAssoc['to_delete'])){
+       exit(json_encode(['result'        => 4,
+                         'error_message' => 'Переданые пустые массивы to_save и to_delete'
+       ]));
+   }
 
     // Проверка заявителя на доступ к сохранению (установке флагов) файлов в указанное заявление
     if(Session::isApplicant()){
         //TODO для заявителя необходимо реализовать проверку, что он имеет право получать документы из указанного заявления
-        //exit result 4
+        //exit result 5
     }
 
     // Проверка указанных маппингов на корректность
@@ -109,7 +118,7 @@ try{
 
                 var_dump($Mapping->getErrorText());
 
-                exit(json_encode(['result'        => 5,
+                exit(json_encode(['result'        => 6,
                                   'error_message' => $Mapping->getErrorText()
                 ]));
             }
@@ -120,7 +129,7 @@ try{
             // Проверка существования указанного файла
             if(!$className::checkExistById($file['id_file'])){
 
-                exit(json_encode(['result'        => 6,
+                exit(json_encode(['result'        => 7,
                                   'error_message' => "Файл id: {$file['id_file']} таблицы класса $className не существует"
                 ]));
             }
@@ -137,18 +146,18 @@ try{
         foreach($fileNeedsAssoc['to_save'] as $file) call_user_func_array([$file['class_name'], 'setIsNeedsToTrueById'], [$file['id_file']]);
     }catch(DataBaseException $e){
 
-        exit(json_encode(['result'  => 7,
+        exit(json_encode(['result'  => 8,
                           'message' => $e->getMessage(),
                           'code'	=> $e->getCode()
         ]));
     }
 
     // Успешное обновление данных
-    exit(json_encode(['result' => 8]));
+    exit(json_encode(['result' => 9]));
 
 }catch(Exception $e){
 
-    exit(json_encode(['result'  => 9,
+    exit(json_encode(['result'  => 10,
                       'message' => $e->getMessage(),
                       'code'	=> $e->getCode()
     ]));
