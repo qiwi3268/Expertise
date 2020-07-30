@@ -209,7 +209,11 @@
    align-items: center;
 }
 
-.body-card__row[data-inactive="true"] {
+/*.body-card__row[data-inactive="true"] {
+   display: none;
+}*/
+
+.body-card__block[data-inactive="true"] {
    display: none;
 }
 

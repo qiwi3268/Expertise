@@ -63,7 +63,7 @@
             <div class="card-form__body body-card">
                 <!--Цель обращения-->
                 <div class="body-card__row field" data-row_name="expertise_purpose" data-required="true">
-                    <span class="body-card__title modal-title required">Цель обращения</span>
+                    <span class="body-card__title field-title required">Цель обращения</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
                             <div class="body-card__select field-select modal-select">
@@ -110,7 +110,7 @@
                         <div class="body-card__field">
                             <textarea class="body-card__input application-input body-card__result field-result" name="additional_information"></textarea>
                         </div>
-                        <span class="body-card__error"></span>
+                        <span class="body-card__error field-error"></span>
                     </div>
                 </div>
                 <!--//Дополнительная информация//-->
@@ -132,7 +132,7 @@
                         <div class="body-card__field">
                             <textarea class="body-card__input body-card__result field-result application-input" name="object_name"></textarea>
                         </div>
-                        <span class="body-card__error"></span>
+                        <span class="body-card__error field-error"></span>
                     </div>
                 </div>
                 <!--//Наименование объекта//-->
@@ -140,7 +140,7 @@
                 <!--Вид объекта-->
                 <div class="body-card__row field" data-row_name="type_of_object"
                      data-required="true">
-                    <span class="body-card__title modal-title required">Вид объекта</span>
+                    <span class="body-card__title field-title required">Вид объекта</span>
 
                     <div class="body-card__item">
                         <div class="body-card__field">
@@ -170,7 +170,7 @@
 
                 <!--Функциональное назначение-->
                 <div class="body-card__row field" data-row_name="functional_purpose" data-required="true">
-                    <span class="body-card__title modal-title required">Функциональное назначение</span>
+                    <span class="body-card__title field-title required">Функциональное назначение</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
                             <div class="body-card__select field-select modal-select">
@@ -198,7 +198,7 @@
 
                 <!--Функциональное назначение. Подотрасль-->
                 <div class="body-card__row field" data-row_name="functional_purpose_subsector" data-required="true">
-                    <span class="body-card__title modal-title required">Функциональное назначение. Подотрасль</span>
+                    <span class="body-card__title field-title required">Функциональное назначение. Подотрасль</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
                             <div class="body-card__select field-select modal-select">
@@ -220,7 +220,7 @@
                 <!--Функциональное назначение. Группа-->
                 <div class="body-card__row field" data-row_name="functional_purpose_group"
                      data-required="true">
-                    <span class="body-card__title modal-title required">Функциональное назначение. Группа</span>
+                    <span class="body-card__title field-title required">Функциональное назначение. Группа</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
                             <div class="body-card__select field-select modal-select">
@@ -239,11 +239,10 @@
                 </div>
                 <!--//Функциональное назначение. Группа//-->
 
-
-                <div class="body-card__block">
-                    <!--Блок производственные/непроизводственные объекты капитального строительства-->
+                <!--Блок производственные/непроизводственные объекты капитального строительства-->
+                <div class="body-card__block" data-block_name="planning_documentation_approval" data-inactive="true">
                     <!--Номер утверждения документации по планировке территории-->
-                    <div class="body-card__row field" data-inactive="true"
+                    <div class="body-card__row field"
                          data-row_name="number_planning_documentation_approval"
                          data-pattern="number">
                         <span class="body-card__title">Номер утверждения документации по планировке территории</span>
@@ -253,14 +252,12 @@
                                        name="number_planning_documentation_approval"
                                        placeholder="Введите значение">
                             </div>
-                            <span class="body-card__error"></span>
+                            <span class="body-card__error field-error"></span>
                         </div>
                     </div>
                     <!--//Номер утверждения документации по планировке территории//-->
                     <!--Дата утверждения документации по планировке территории-->
-                    <div class="body-card__row field" data-inactive="true"
-                         data-row_name="date_planning_documentation_approval"
-                         data-pattern="date">
+                    <div class="body-card__row field" data-row_name="date_planning_documentation_approval" data-pattern="date">
                         <span class="body-card__title">Дата утверждения документации по планировке территории</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
@@ -275,46 +272,46 @@
                                name="date_planning_documentation_approval">
                     </div>
                     <!--//Дата утверждения документации по планировке территории//-->
-                    <!--//Блок производственные/непроизводственные объекты капитального строительства//-->
                 </div>
+                <!--//Блок производственные/непроизводственные объекты капитального строительства//-->
 
 
                 <!--Блок линейные объекты капитального строительства-->
-                <!--Номер ГПЗУ-->
-                <div class="body-card__row field" data-inactive="true"
-                     data-row_name="number_GPZU" data-pattern="">
-                    <span class="body-card__title">Номер ГПЗУ</span>
-                    <div class="body-card__item">
-                        <div class="body-card__field">
-                            <input class="body-card__input body-card__result field-result application-input" type="text" name="number_GPZU" placeholder="Введите значение">
-                            <span class="body-card__error"></span>
-                        </div>
-                    </div>
-                </div>
-                <!--//Номер ГПЗУ//-->
-                <!--Дата ГПЗУ-->
-                <div class="body-card__row field" data-inactive="true"
-                     data-row_name="date_GPZU" data-pattern="date">
-                    <span class="body-card__title">Дата ГПЗУ</span>
-                    <div class="body-card__item">
-                        <div class="body-card__field">
-                            <div class="body-card__select field-select modal-calendar">
-                                <span class="body-card__value field-value">Выберите дату</span>
-                                <i class="body-card__icon fas fa-calendar-alt"></i>
+                <div class="body-card__block" data-block_name="GPZU" data-inactive="true">
+                    <!--Номер ГПЗУ-->
+                    <div class="body-card__row field" data-row_name="number_GPZU" data-pattern="">
+                        <span class="body-card__title">Номер ГПЗУ</span>
+                        <div class="body-card__item">
+                            <div class="body-card__field">
+                                <input class="body-card__input body-card__result field-result application-input" type="text" name="number_GPZU" placeholder="Введите значение">
+                                <span class="body-card__error field-error"></span>
                             </div>
-                            <i class="body-card__icon-clear fas fa-calendar-times"></i>
                         </div>
                     </div>
-                    <input class="body-card__result field-result" type="hidden" name="date_GPZU">
-                </div>
+                    <!--//Номер ГПЗУ//-->
+                    <!--Дата ГПЗУ-->
+                    <div class="body-card__row field" data-row_name="date_GPZU" data-pattern="date">
+                        <span class="body-card__title">Дата ГПЗУ</span>
+                        <div class="body-card__item">
+                            <div class="body-card__field">
+                                <div class="body-card__select field-select modal-calendar">
+                                    <span class="body-card__value field-value">Выберите дату</span>
+                                    <i class="body-card__icon fas fa-calendar-alt"></i>
+                                </div>
+                                <i class="body-card__icon-clear fas fa-calendar-times"></i>
+                            </div>
+                        </div>
+                        <input class="body-card__result field-result" type="hidden" name="date_GPZU">
+                    </div>
                 <!--//Дата ГПЗУ//-->
+                </div>
                 <!--//Блок линейные объекты капитального строительства//-->
 
 
                 <!--Вид работ-->
                 <div class="body-card__row field" data-row_name="type_of_work"
                      data-required="true">
-                    <span class="body-card__title modal-title required">Вид работ</span>
+                    <span class="body-card__title field-title required">Вид работ</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
                             <div class="body-card__select field-select modal-select">
@@ -343,7 +340,7 @@
                                    name="cadastral_number"
                                    placeholder="Введите значение">
                         </div>
-                        <span class="body-card__error"></span>
+                        <span class="body-card__error field-error"></span>
                     </div>
                 </div>
                 <!--//Кадастровый номер земельного участка//-->
@@ -371,35 +368,40 @@
                 </div>
                 <!--//CHECKBOX Объект культурного наследия//-->
 
-                <!--Тип объекта культурного наследия-->
-                <div class="body-card__row field" data-row_name="cultural_object_type"
-                     data-required="true" data-inactive="true">
-                    <span class="body-card__title modal-title required">Тип объекта культурного наследия</span>
-                    <div class="body-card__item">
-                        <div class="body-card__field">
-                            <div class="body-card__select field-select modal-select">
-                                <span class="body-card__value field-value">Выберите значение</span>
-                                <i class="body-card__icon fas fa-bars"></i>
-                            </div>
-                            <i class="body-card__icon-clear fas fa-trash"></i>
-                        </div>
-                        <span class="body-card__error field-error">Поле обязательно для заполнения</span>
-                    </div>
-                    <div class="modal">
-                        <i class="modal__close fas fa-times"></i>
-                        <div class="modal__items">
-                            <?php foreach ($variablesTV->getValue('cultural_object_type') as $pageNumber => $page): ?>
-                                <div class="modal__page" data-page="<?= $pageNumber ?>">
-                                    <?php foreach ($page as $item): ?>
-                                        <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
-                                    <?php endforeach; ?>
+                <!--Блок культурное наследие-->
+                <div class="body-card__block" data-block_name="cultural_object_type" data-inactive="true">
+                    <!--Тип объекта культурного наследия-->
+                    <div class="body-card__row field" data-row_name="cultural_object_type"
+                         data-required="true">
+                        <span class="body-card__title field-title required">Тип объекта культурного наследия</span>
+                        <div class="body-card__item">
+                            <div class="body-card__field">
+                                <div class="body-card__select field-select modal-select">
+                                    <span class="body-card__value field-value">Выберите значение</span>
+                                    <i class="body-card__icon fas fa-bars"></i>
                                 </div>
-                            <?php endforeach; ?>
+                                <i class="body-card__icon-clear fas fa-trash"></i>
+                            </div>
+                            <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                         </div>
+                        <div class="modal">
+                            <i class="modal__close fas fa-times"></i>
+                            <div class="modal__items">
+                                <?php foreach ($variablesTV->getValue('cultural_object_type') as $pageNumber => $page): ?>
+                                    <div class="modal__page" data-page="<?= $pageNumber ?>">
+                                        <?php foreach ($page as $item): ?>
+                                            <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <input class="body-card__result field-result" type="hidden" name="cultural_object_type">
                     </div>
-                    <input class="body-card__result field-result" type="hidden" name="cultural_object_type">
+                    <!--//Тип объекта культурного наследия//-->
                 </div>
-                <!--//Тип объекта культурного наследия//-->
+                <!--//Блок культурное наследие//-->
+
 
                 <!--CHECKBOX Национальный проект-->
                 <div class="body-card__row field center"
@@ -423,82 +425,84 @@
                 </div>
                 <!--//CHECKBOX Национальный проект//-->
 
-                <div class="body-card__block" data-block_name="national_project">
 
-                </div>
-
-                <!--Название национального проекта-->
-                <div class="body-card__row field" data-row_name="national_project"
-                     data-required="true" data-inactive="true">
-                    <span class="body-card__title modal-title required">Название национального проекта</span>
-                    <div class="body-card__item">
-                        <div class="body-card__field">
-                            <div class="body-card__select field-select modal-select">
-                                <span class="body-card__value field-value">Выберите значение</span>
-                                <i class="body-card__icon fas fa-bars"></i>
-                            </div>
-                            <i class="body-card__icon-clear fas fa-trash"></i>
-                        </div>
-                        <span class="body-card__error field-error">Поле обязательно для заполнения</span>
-                    </div>
-                    <div class="modal">
-                        <i class="modal__close fas fa-times"></i>
-                        <div class="modal__items">
-                            <?php foreach ($variablesTV->getValue('national_project') as $pageNumber => $page): ?>
-                                <div class="modal__page" data-page="<?= $pageNumber ?>">
-                                    <?php foreach ($page as $item): ?>
-                                        <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
-                                    <?php endforeach; ?>
+                <!--Блок национальный проект-->
+                <div class="body-card__block" data-block_name="national_project" data-inactive="true">
+                    <!--Название национального проекта-->
+                    <div class="body-card__row field" data-row_name="national_project"
+                         data-required="true">
+                        <span class="body-card__title field-title required">Название национального проекта</span>
+                        <div class="body-card__item">
+                            <div class="body-card__field">
+                                <div class="body-card__select field-select modal-select">
+                                    <span class="body-card__value field-value">Выберите значение</span>
+                                    <i class="body-card__icon fas fa-bars"></i>
                                 </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                    <input class="body-card__result field-result" type="hidden" name="national_project">
-                </div>
-                <!--//Название национального проекта//-->
-
-                <!--Название федерального проекта-->
-                <div class="body-card__row field" data-row_name="federal_project"
-                     data-required="true" data-inactive="true">
-                    <span class="body-card__title modal-title required">Название федерального проекта</span>
-                    <div class="body-card__item">
-                        <div class="body-card__field">
-                            <div class="body-card__select field-select modal-select">
-                                <span class="body-card__value field-value">Выберите значение</span>
-                                <i class="body-card__icon fas fa-bars"></i>
+                                <i class="body-card__icon-clear fas fa-trash"></i>
                             </div>
-                            <i class="body-card__icon-clear fas fa-trash"></i>
+                            <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                         </div>
-                        <span class="body-card__error field-error">Поле обязательно для заполнения</span>
-                    </div>
-                    <div class="modal">
-                        <i class="modal__close fas fa-times"></i>
-                        <div class="modal__items"></div>
-                    </div>
-                    <input class="body-card__result field-result" type="hidden" name="federal_project">
-                </div>
-                <!--//Название федерального проекта//-->
-
-                <!--Дата окончания строительства-->
-                <div class="body-card__row field" data-inactive="true" data-row_name="date_finish_building" data-pattern="date">
-                    <span class="body-card__title">Дата окончания строительства</span>
-                    <div class="body-card__item">
-                        <div class="body-card__field">
-                            <div class="body-card__select field-select modal-calendar">
-                                <span class="body-card__value field-value">Выберите дату</span>
-                                <i class="body-card__icon fas fa-calendar-alt"></i>
+                        <div class="modal">
+                            <i class="modal__close fas fa-times"></i>
+                            <div class="modal__items">
+                                <?php foreach ($variablesTV->getValue('national_project') as $pageNumber => $page): ?>
+                                    <div class="modal__page" data-page="<?= $pageNumber ?>">
+                                        <?php foreach ($page as $item): ?>
+                                            <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
-                            <i class="body-card__icon-clear fas fa-calendar-times"></i>
                         </div>
+                        <input class="body-card__result field-result" type="hidden" name="national_project">
                     </div>
-                    <input class="body-card__result field-result" type="hidden" name="date_finish_building">
+                    <!--//Название национального проекта//-->
+
+                    <!--Название федерального проекта-->
+                    <div class="body-card__row field" data-row_name="federal_project"
+                         data-required="true">
+                        <span class="body-card__title field-title required">Название федерального проекта</span>
+                        <div class="body-card__item">
+                            <div class="body-card__field">
+                                <div class="body-card__select field-select modal-select">
+                                    <span class="body-card__value field-value">Выберите значение</span>
+                                    <i class="body-card__icon fas fa-bars"></i>
+                                </div>
+                                <i class="body-card__icon-clear fas fa-trash"></i>
+                            </div>
+                            <span class="body-card__error field-error">Поле обязательно для заполнения</span>
+                        </div>
+                        <div class="modal">
+                            <i class="modal__close fas fa-times"></i>
+                            <div class="modal__items"></div>
+                        </div>
+                        <input class="body-card__result field-result" type="hidden" name="federal_project">
+                    </div>
+                    <!--//Название федерального проекта//-->
+
+                    <!--Дата окончания строительства-->
+                    <div class="body-card__row field" data-row_name="date_finish_building" data-pattern="date">
+                        <span class="body-card__title">Дата окончания строительства</span>
+                        <div class="body-card__item">
+                            <div class="body-card__field">
+                                <div class="body-card__select field-select modal-calendar">
+                                    <span class="body-card__value field-value">Выберите дату</span>
+                                    <i class="body-card__icon fas fa-calendar-alt"></i>
+                                </div>
+                                <i class="body-card__icon-clear fas fa-calendar-times"></i>
+                            </div>
+                        </div>
+                        <input class="body-card__result field-result" type="hidden" name="date_finish_building">
+                    </div>
+                    <!--//Дата окончания строительства//-->
                 </div>
-                <!--//Дата окончания строительства//-->
+                <!--//Блок национальный проект//-->
+
 
                 <!--Куратор-->
                 <div class="body-card__row field" data-row_name="curator"
                      data-required="true">
-                    <span class="body-card__title modal-title required">Куратор</span>
+                    <span class="body-card__title field-title required">Куратор</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
                             <div class="body-card__select field-select modal-select">

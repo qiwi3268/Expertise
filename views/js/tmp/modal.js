@@ -197,11 +197,11 @@ class Modal {
                // Создаем сообщение, в котором записываем поле, которое нужно заполнить
                is_empty = true;
 
-               if (related_modal_input.parentElement) {
-                  let related_modal_card = related_modal_input.parentElement;
-                  let related_modal_title = related_modal_card.querySelector('.modal-title').innerHTML;
+               // if (related_modal_input.closest) {
+                  let related_modal_card = related_modal_input.closest('.field');
+                  let related_modal_title = related_modal_card.querySelector('.field-title').innerHTML;
                   this.alert_message = `Выберите ${related_modal_title.toLowerCase()}`;
-               }
+               // }
             }
          }
       } else {

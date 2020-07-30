@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
    }
 
    function putFilesToRow(files) {
-      let parent_select = parent_row.querySelector('.body-card__select');
+      let parent_select = parent_row.querySelector('.field-select');
       if (parent_select) {
          parent_select.classList.add('filled');
       }
@@ -160,7 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
    }
 
    function addFieldData(select) {
-      // parent_row = select.closest('.body-card__row');
       parent_row = select.closest('[data-mapping_level_1]');
 
       mapping_input_1.value = parent_row.dataset.mapping_level_1;

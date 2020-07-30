@@ -5,12 +5,9 @@ let radio_dependency;
 let block_dependencies;
 
 document.addEventListener('DOMContentLoaded', () => {
-   dependencies = JSON.parse(document.querySelector('.row-dependencies').value);
+   // dependencies = JSON.parse(document.querySelector('.row-dependencies').value);
    radio_dependency = document.querySelector('.radio__content-change-logic');
-
    block_dependencies = JSON.parse(document.querySelector('.block-dependencies').value);
-
-   console.log(block_dependencies);
 
    handleClearFieldButtons();
 
@@ -20,7 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
       let cards = document.querySelectorAll('.card-form__body');
 
       cards.forEach(card_body => {
-         changeParentCardMaxHeight(card_body);
+         if (card_body.style.maxHeight) {
+            changeParentCardMaxHeight(card_body);
+         }
       });
 
    });
@@ -60,35 +59,45 @@ function handleClearFieldButtons() {
 // parent_input  Element : скрытый инпут со значением родительского поля
 function handleDependentRows(parent_input) {
    // Получаем массив с зависимостями всех значений родительского поля
-   let values = dependencies[parent_input.name];
+   let values = block_dependencies[parent_input.name];
 
    if (values) {
       // Получаем зависимые поля для значения в родительском поле
-      let dependent_rows = dependencies[parent_input.name][parent_input.value];
+      let dependent_blocks = block_dependencies[parent_input.name][parent_input.value];
 
-      if (dependent_rows) {
-         Object.keys(dependent_rows).forEach(row_name => {
-            let dependent_row = document.querySelector(`[data-row_name="${row_name}"]`);
+      if (dependent_blocks) {
+         Object.keys(dependent_blocks).forEach(block_name => {
+            let dependent_block = document.querySelector(`[data-block_name="${block_name}"]`);
             let is_display;
 
-            if (dependent_row) {
+            if (dependent_block) {
                // Определяем показать или скрыть блок
-               is_display = dependent_rows[row_name];
+               is_display = dependent_blocks[block_name];
 
                if (!is_display) {
-                  dependent_row.dataset.inactive = 'true';
+                  dependent_block.dataset.inactive = 'true';
                } else {
-                  dependent_row.dataset.inactive = 'false';
+                  dependent_block.dataset.inactive = 'false';
                }
 
-               removeRowValue(dependent_row);
+               clearBlock(dependent_block);
             }
          });
       }
+
    }
 
    handleDependentRadios(parent_input);
    changeParentCardMaxHeight(parent_input);
+}
+
+function clearBlock(block) {
+   let dependent_fields = block.querySelectorAll('.field');
+   dependent_fields.forEach(field => {
+
+      removeRowValue(field);
+   });
+
 }
 
 // Предназначен для удаления значении в поле
@@ -118,8 +127,6 @@ function removeRowValue(row) {
 // parent_input       Element : скрытый инпут со значением родительского поля
 function handleDependentRadios(parent_input) {
    let dependency_inputs = radio_dependency.querySelectorAll(`input[data-when_change=${parent_input.name}]`);
-
-
 
    dependency_inputs.forEach(input => {
       // Все возможные значения для блока с переключателями

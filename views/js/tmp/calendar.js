@@ -240,6 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.setSelectedDate(day_element);
             this.removeSelectedItem();
             this.changeSelectedDay();
+            this.close();
          });
       }
 

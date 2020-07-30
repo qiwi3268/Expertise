@@ -10,7 +10,8 @@
    border-radius: 3px;
    box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
    background-color: #fff;
-   transition: opacity .3s;
+   /*transition: opacity .3s;*/
+   transition: .15s;
 }
 
 .calendar-overlay {
