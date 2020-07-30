@@ -103,6 +103,7 @@ return [
 
 
     'home/navigation' => [
+        'ROOTClasses' => ['VariableTransfer', 'Navigation'],
         'controllers' => ['navigation']
     ],
 

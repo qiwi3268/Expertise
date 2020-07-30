@@ -13,10 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
    calendar_selects.forEach(select => {
       select.addEventListener('click', () => {
-         let calendar_row = select.closest('.calendar-row');
+         let calendar_row = select.closest('.field');
 
          if (calendar_row) {
-            let result_input = calendar_row.querySelector('.calendar-result');
+            let result_input = calendar_row.querySelector('.field-result');
 
             calendar = getCalendarBySelect(select, result_input);
             calendar.setPosition();
@@ -113,13 +113,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       constructor(select) {
          this.select = select;
-         this.select_value = this.select.querySelector('.calendar-value');
-         this.parent_row = this.select.closest('.calendar-row');
+         this.select_value = this.select.querySelector('.field-value');
+         this.parent_field = this.select.closest('.field');
          this.element = document.querySelector('.calendar');
          this.body = this.element.querySelector('.calendar__body');
          this.title = this.element.querySelector('.calendar__title');
          this.selected_date_label = this.element.querySelector('.calendar__selected_label');
-         this.result_input = this.parent_row.querySelector('.calendar-result');
+         this.result_input = this.parent_field.querySelector('.field-result');
 
          this.current_date = new Date();
 
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // select         Element : родительское поле
       // result_input   Element : поле с выбранной датой
       clear(select, result_input) {
-         let select_value = select.querySelector('.calendar-value');
+         let select_value = select.querySelector('.field-value');
 
          calendar.current_date = result_input.value ? getDateFromString(result_input.value) : new Date();
          calendar.select = select;

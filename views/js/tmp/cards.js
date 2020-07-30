@@ -2,9 +2,15 @@
 let dependencies;
 let radio_dependency;
 
+let block_dependencies;
+
 document.addEventListener('DOMContentLoaded', () => {
    dependencies = JSON.parse(document.querySelector('.row-dependencies').value);
    radio_dependency = document.querySelector('.radio__content-change-logic');
+
+   block_dependencies = JSON.parse(document.querySelector('.block-dependencies').value);
+
+   console.log(block_dependencies);
 
    handleClearFieldButtons();
 
@@ -25,27 +31,13 @@ function handleClearFieldButtons() {
 
    clear_buttons.forEach(button => {
       button.addEventListener('click', () => {
-         let parent_row = button.closest('.body-card__row');
-         /*let default_value = 'Выберите значение';
+         let parent_row = button.closest('.field');
 
-         if (parent_row.dataset.pattern === 'date') {
-            default_value = 'Выберите дату';
-         }*/
-
-
-         let row_result = parent_row.querySelector('.body-card__result');
+         let row_result = parent_row.querySelector('.field-result');
          // Удаляем зависимые поля
          hideDependentRows(row_result);
 
-         // row_result.value = '';
-
-         let parent_select = parent_row.querySelector('.body-card__select');
-         // parent_select.classList.remove('filled');
-
-         // let row_value = parent_row.querySelector('.body-card__value');
-
-         // if (row_value.innerHTML !== default_value) {
-
+         let parent_select = parent_row.querySelector('.modal-select');
          if (row_result.value) {
 
             removeRowValue(parent_row);
@@ -58,10 +50,7 @@ function handleClearFieldButtons() {
             }
 
             validateCard(parent_row.closest('.card-form'));
-            // row_value.innerHTML = default_value;
          }
-
-
       });
    });
 }
@@ -107,21 +96,19 @@ function handleDependentRows(parent_input) {
 // row         Element : элемент поля
 function removeRowValue(row) {
    // Удаляем записанное значение в зависимом поле
-   row.querySelector('.body-card__result').value = '';
+   row.querySelector('.field-result').value = '';
 
-   let select = row.querySelector('.body-card__select');
+   let select = row.querySelector('.field-select');
    if (select) {
       select.classList.remove('filled');
-   }
 
-   let value = row.querySelector('.body-card__value');
-
-   // Если зависимое поле - дата, удаляем отображаемую дату
-   let dependent_date = row.querySelector('.modal-calendar');
-   if (dependent_date) {
-      value.innerHTML = 'Выберите дату';
-   } else if (value) {
-      value.innerHTML = 'Выберите значение';
+      let value = row.querySelector('.field-value');
+      // Если зависимое поле - дата, удаляем отображаемую дату
+      if (select.classList.contains('modal-calendar')) {
+         value.innerHTML = 'Выберите дату';
+      } else if (value) {
+         value.innerHTML = 'Выберите значение';
+      }
    }
 }
 
@@ -146,7 +133,7 @@ function handleDependentRadios(parent_input) {
 
       if (dependent_radio) {
          let radio_body = dependent_radio.querySelector('.radio__body');
-         let result_input = dependent_row.querySelector('.body-card__result');
+         let result_input = dependent_row.querySelector('.field-result');
 
          result_input.value = '';
          radio_body.innerHTML = '';

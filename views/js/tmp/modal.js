@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function getModalBySelect(select) {
    let modal;
    let modal_name;
-   let parent_row = select.closest('.modal-row');
+   let parent_row = select.closest('.field');
 
    modal_name = parent_row.dataset.row_name;
 
@@ -136,12 +136,12 @@ class Modal {
    constructor(select) {
       this.select = select;
 
-      this.parent_row = this.select.closest('.modal-row');
+      this.parent_row = this.select.closest('.field');
 
       this.name = this.parent_row.dataset.row_name;
       this.element = this.parent_row.querySelector('.modal');
       this.content = this.element.querySelector('.modal__items');
-      this.result_input = this.parent_row.querySelector('.modal-result');
+      this.result_input = this.parent_row.querySelector('.field-result');
 
       this.close_button = this.element.querySelector('.modal__close');
       this.close_button.addEventListener('click', () => {
@@ -181,7 +181,7 @@ class Modal {
       if (related_input) {
          // Инпут со значением поля, от которого зависит модальное окно
          related_modal_input = document.querySelector(
-            `.modal-result[name="${related_input.dataset.when_change}"]`
+            `.field-result[name="${related_input.dataset.when_change}"]`
          );
 
          if (related_modal_input) {
@@ -254,7 +254,7 @@ class Modal {
 
                // В поле для выбора записываем значение
                this.select.classList.add('filled');
-               this.select.querySelector('.modal-value').innerHTML = item.innerHTML;
+               this.select.querySelector('.field-value').innerHTML = item.innerHTML;
 
                // Показывает или скрывает поля, зависящие от выбранного значения
                handleDependentRows(this.result_input);
@@ -278,7 +278,10 @@ class Modal {
       dependent_modals.forEach(modal => {
          modal.clearRelatedModals();
          this.clearModal(modal);
-         validateModal(modal);
+
+         if (modal.parent_row.dataset.required === 'true' && modal.result_input.value) {
+            validateModal(modal);
+         }
       });
    }
 
@@ -291,14 +294,12 @@ class Modal {
       modal.select.classList.remove('filled', 'invalid');
 
       // Убираем сообщение с ошибкой
-      let error = modal.parent_row.querySelector('.modal-error');
+      let error = modal.parent_row.querySelector('.field-error');
       error.classList.remove('active');
 
-      let select_value = modal.select.querySelector('.modal-value');
+      let select_value = modal.select.querySelector('.field-value');
       select_value.innerHTML = 'Выберите значение';
       modals.delete(modal.name);
-
-
    }
 
    // Предназначен для получения массива зависимых модальных окон

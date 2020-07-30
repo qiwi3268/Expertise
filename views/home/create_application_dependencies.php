@@ -43,5 +43,6 @@
 
 <div>
     <input class="row-dependencies" type="hidden" value='<?= $variablesTV->getValue('displayDependencies') ?>'>
+    <input class="block-dependencies" type="hidden" value='<?= $variablesTV->getValue('blockDependencies') ?>'>
 </div>
 

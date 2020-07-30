@@ -18,7 +18,7 @@ $variablesTV = VariableTransfer::getInstance();
 //
 
 $displayDependencies = [
-    
+
     // Зависимость от выбранного "Вида объекта"
     'type_of_object' => [
         1 => ['number_planning_documentation_approval' => true,
@@ -26,20 +26,20 @@ $displayDependencies = [
               'number_GPZU'                            => false,
               'date_GPZU'                              => false
         ],
-        
+
         2 => ['number_planning_documentation_approval' => false,
               'date_planning_documentation_approval'   => false,
               'number_GPZU'                            => true,
               'date_GPZU'                              => true
         ]
     ],
-    
+
     // Зависимость от ЧЕКБОКСА "Объект культурного наследия"
     'cultural_object_type_checkbox' => [
         0 => ['cultural_object_type' => false],
         1 => ['cultural_object_type' => true]
     ],
-    
+
     // Зависимость от ЧЕКБОКСА "Национальный проект"
     'national_project_checkbox' => [
         0 => ['national_project'     => false,
@@ -54,3 +54,31 @@ $displayDependencies = [
 ];
 
 $variablesTV->setValue('displayDependencies', json_encode($displayDependencies));
+
+$blockDependencies = [
+
+    // Зависимость от выбранного "Вида объекта"
+    'type_of_object' => [
+        1 => ['planning_documentation_approval' => true,
+              'GPZU'                            => false
+        ],
+
+        2 => ['planning_documentation_approval' => false,
+              'GPZU'                            => true
+        ]
+    ],
+
+    // Зависимость от ЧЕКБОКСА "Объект культурного наследия"
+    'cultural_object_type_checkbox' => [
+        0 => ['cultural_object_type' => false],
+        1 => ['cultural_object_type' => true]
+    ],
+
+    // Зависимость от ЧЕКБОКСА "Национальный проект"
+    'national_project_checkbox' => [
+        0 => ['national_project'     => false,],
+        1 => ['national_project'     => true,],
+    ],
+];
+
+$variablesTV->setValue('blockDependencies', json_encode($blockDependencies));

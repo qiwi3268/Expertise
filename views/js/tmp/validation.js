@@ -29,9 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // Принимает параметры-------------------------------
 // modal         Modal : объект модального окна
 function validateModal(modal) {
-   let row = modal.element.closest('.modal-row');
+   let row = modal.element.closest('.field');
    let row_value = row.querySelector('.modal-select');
-   let error = row.querySelector('.modal-error');
+   let error = row.querySelector('.field-error');
 
    if (row.dataset.required === 'true') {
       // Если не выбрано значение
@@ -91,8 +91,8 @@ function validateRow(input, pattern) {
 // message        string : сообщение с ошибкой для отображения
 function validateInput(input, regex, message) {
    let value = input.value;
-   let parent_row = input.closest('.body-card__row');
-   let error_element = parent_row.querySelector('.body-card__error');
+   let parent_row = input.closest('.field');
+   let error_element = parent_row.querySelector('.field-error');
 
    let is_required = parent_row.dataset.required === 'true';
    let is_invalid = !value.match(regex) && (is_required || value);
@@ -137,14 +137,14 @@ function validateCard(card) {
 // Возвращает параметры------------------------------
 // is_valid     boolean : заполнен ли блок
 function isValidCard(card) {
-   let required_rows = card.querySelectorAll('.body-card__row[data-required="true"]');
+   let required_rows = card.querySelectorAll('.field[data-required="true"]');
    let row_value;
    let is_valid = true;
 
    // Для всех обязательных полей, проверяем наличие значений
    required_rows.forEach(row => {
       if (row.dataset.inactive !== 'true') {
-         row_value = row.querySelector('.body-card__result');
+         row_value = row.querySelector('.field-result');
 
          if (!row_value.value) {
             is_valid = false;
