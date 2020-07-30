@@ -101,7 +101,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
    function putFilesToRow(files) {
       let parent_select = parent_row.querySelector('.body-card__select');
-      parent_select.classList.add('filled');
+      if (parent_select) {
+         parent_select.classList.add('filled');
+      }
 
       let files_body = parent_row.querySelector('.files');
       files_body.classList.add('filled');
@@ -158,9 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
    }
 
    function addFieldData(select) {
-      // let parent_row = select.closest('.body-card__row');
-      parent_row = select.closest('.body-card__row');
-      // current_field_name = parent_row.dataset.row_name;
+      // parent_row = select.closest('.body-card__row');
+      parent_row = select.closest('[data-mapping_level_1]');
 
       mapping_input_1.value = parent_row.dataset.mapping_level_1;
       mapping_input_2.value = parent_row.dataset.mapping_level_2;

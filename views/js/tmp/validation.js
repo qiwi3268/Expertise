@@ -29,9 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // Принимает параметры-------------------------------
 // modal         Modal : объект модального окна
 function validateModal(modal) {
-   let row = modal.element.closest('.body-card__row');
-   let row_value = row.querySelector('.body-card__select');
-   let error = row.querySelector('.body-card__error');
+   let row = modal.element.closest('.modal-row');
+   let row_value = row.querySelector('.modal-select');
+   let error = row.querySelector('.modal-error');
 
    if (row.dataset.required === 'true') {
       // Если не выбрано значение
@@ -43,7 +43,11 @@ function validateModal(modal) {
          row_value.classList.remove('invalid');
          error.classList.remove('active');
       }
-      validateCard(row_value.closest('.card-form'));
+
+      let parent_card = row_value.closest('.card-form');
+      if (parent_card) {
+         validateCard(row_value.closest('.card-form'));
+      }
    }
 }
 

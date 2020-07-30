@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Принимает параметры-------------------------------
 // radio_elem         Element : блок с переключателями
 function initRadioItems(radio_elem) {
-   let parent_row = radio_elem.closest('.body-card__row');
+   let parent_row = radio_elem.closest('.radio-row');
    let body = radio_elem.querySelector('.radio__body');
 
    if (parent_row && body) {
@@ -20,7 +20,7 @@ function initRadioItems(radio_elem) {
       let required = radio_elem.dataset.required === 'true';
 
       // Скрытый инпут, в который записывается json с выбранными элементами
-      let result_input = parent_row.querySelector('.body-card__result');
+      let result_input = parent_row.querySelector('.radio-result');
       let multiple = radio_elem.dataset.multiple === 'true';
       let items = radio_elem.querySelectorAll('.radio__item');
 
@@ -41,7 +41,10 @@ function initRadioItems(radio_elem) {
                // Записываем в результат json с id выбранных элементов
                result_input.value = getRadioResult(body, multiple, required);
                handleDependentRows(result_input);
-               validateCard(result_input.closest('.card-form'));
+
+               if (required) {
+                  validateCard(result_input.closest('.card-form'));
+               }
             }
          });
       });
