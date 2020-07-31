@@ -59,8 +59,7 @@ foreach($userNavigation as $block){
         $tmp_section['label'] = $ref['label'];
         $tmp_section['ref'] = $ref['value'];
         $tmp_section['counter'] = false;
-        //todo проверить на корректную работу с учетом /
-        $tmp_section['is_selected'] = ($ref['value'] == _URN_) ? true : false;
+        $tmp_section['is_selected'] = ($ref['value'] == '/'._URN_) ? true : false;
         $tmp_block['sections'][] = $tmp_section;
     }
     

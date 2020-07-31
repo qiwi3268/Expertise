@@ -62,7 +62,7 @@ return [
     //todo привести display_dependencies_application_form и create_application_dependencies к единообразному названию
     'home/application/create' => [
         'access'                    => [],
-        'ROOTClasses'               => ['VariableTransfer'],
+        'ROOTClasses'               => ['VariableTransfer', 'NodeStructure'],
         'ROOTcontrollers'           => ['header'],
         'ROOTviews'                 => ['header'],
         '/Classes/ApplicationForm/' => ['MiscInitialization'],

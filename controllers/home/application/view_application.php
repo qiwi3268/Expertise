@@ -48,7 +48,7 @@ if($variablesTV->getExistenceFlag('type_of_object')){
     
     // В зависимости от Вида объекта выбираем нужную таблицу
     switch($variablesTV->getValue('type_of_object')['id']){
-        case 1: // Производственные/непроизводственны
+        case 1: // Производственные/непроизводственные
             $mapping_level_1 = 2;
             $mapping_level_2 = 1;
             $className = 'structure_documentation1Table';
