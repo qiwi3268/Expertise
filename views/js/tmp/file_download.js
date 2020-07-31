@@ -150,16 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
       file_info.appendChild(file_name);
    }
 
-   /*function putFilesToSave() {
-      let files = parent_row.querySelectorAll('.files__item');
-      files.forEach(file => {
-         let id_file = file.dataset.id;
-
-         FileNeeds.putFileToSave(id_file, mapping_input_1.value, mapping_input_2.value);
-      });
-
-   }*/
-
    function showFileModal(select) {
       clearModalTitle();
       file_modal.classList.add('active');
@@ -305,63 +295,6 @@ document.addEventListener('DOMContentLoaded', () => {
          addFilesToModal(file_input.files);
       });
    }
-
-  /* function addUploadedFiles() {
-      Array.from(file_input.files).forEach(file => {
-         createFileElement(file);
-      });
-   }*/
-
-
-   //--functions========================================
-
-
-
-
-   //=================================================
-   // этот файл можешь привести к форматированию кода по своему типу
-
-   // let form = document.querySelector('#file_uploader');
-
-
-   // файл чекер
-   /*let form_check = document.querySelector('#form_check');
-
-   form_check.addEventListener('submit', event => {
-
-       event.preventDefault();
-
-       XHR('post', '/API_file_checker', new FormData(form_check), null, 'json')
-           .then(response => {
-
-               console.log(response)
-
-           })
-           .catch(error => {
-               console.error('XHR error: ', error);
-           });
-   });*/
-
-   // когда идет загрузка файла на серер нужно запрещать клик по кнопке "загрузить файл"
-   /*form.addEventListener('submit', event => {
-
-      event.preventDefault();
-
-      // тут делаешь все требуемые проверки, и если не удовлетворяет - сообщение и выход из функции
-      // а еще лучше проверки делать в момент попадания файлов в input type="file", и нажатие на отправку
-      // формы запрещать, если проверки не пройдены
-
-      XHR('post', request_urn, new FormData(form), null, 'json', null, uploadProgressCallback)
-         .then(response => {
-            console.log(response);
-         })
-         .catch(error => {
-
-            // p.s. все сообщения об ошибках везде делаем однотипными
-            console.error('XHR error: ', error);
-            // Ошибка XHR запроса. Обратитесь к администратору
-         });
-   });*/
 
 });
 

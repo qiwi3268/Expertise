@@ -45,44 +45,18 @@ class FileNeeds {
       let to_save = FileNeeds.file_needs.to_save;
       let file_data = FileNeeds.getFileData(id_file, mapping_level_1, mapping_level_2);
 
-      // if (FileNeeds.getFileToSaveIndex(file_data) === null) {
-         to_save.push(file_data);
-      // }
+      to_save.push(file_data);
    }
 
    static putFileToDelete(id_file, mapping_level_1, mapping_level_2, file_item) {
       let file_data = FileNeeds.getFileData(id_file, mapping_level_1, mapping_level_2);
-      // let to_save = FileNeeds.file_needs.to_save;
 
       let is_file_saved = file_item.dataset.saved;
-      // let to_save_index = FileNeeds.getFileToSaveIndex(file_data);
-      // if (to_save_index !== null) {
       if (is_file_saved) {
          let to_delete = FileNeeds.file_needs.to_delete;
          to_delete.push(file_data);
-         // to_save.splice(to_save_index, 1);
-      } else {
-         // let to_delete = FileNeeds.file_needs.to_delete;
-         // to_delete.push(FileNeeds.getFileData(id_file, mapping_level_1, mapping_level_2));
       }
    }
-
-  /* static getFileToSaveIndex(file_data) {
-      let index = null;
-
-      let to_save = FileNeeds.file_needs.to_save;
-      for (let i = 0; i < to_save.length; i++) {
-
-         if (to_save[i].id_file === file_data.id_file
-            && to_save[i].mapping_level_1 === file_data.mapping_level_1
-            && to_save[i].mapping_level_2 === file_data.mapping_level_2
-         ) {
-            index = i;
-         }
-      }
-
-      return index;
-   }*/
 
    static getFileData(id_file, mapping_level_1, mapping_level_2) {
       return {

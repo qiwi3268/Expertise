@@ -28,14 +28,37 @@
 
     <div class="sidebar-hierarchy">
 
-        <div class="sidebar-hierarchy__section">
-            <div class="sidebar-hierarchy__item expanded" data-level="0">
-                <i class="sidebar-hierarchy__icon fas fa-caret-right"></i>
-                <span>Заявление</span>
+        <div class="sidebar-hierarchy__block">
+            <div class="sidebar-hierarchy__section">
+                <div class="sidebar-hierarchy__item" data-depth="0">
+                    <i class="sidebar-hierarchy__icon fas fa-caret-right"></i>
+                    <div class="sidebar-hierarchy__info">
+                        <span class="sidebar-hierarchy__name">Заявление</span>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-hierarchy__section">
+                <div class="sidebar-hierarchy__item" data-depth="1">
+                    <i class="sidebar-hierarchy__icon fas fa-caret-right"></i>
+                    <div class="sidebar-hierarchy__info">
+                        <span class="sidebar-hierarchy__name">Договор</span>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-hierarchy__section">
+                <div class="sidebar-hierarchy__item" data-depth="2">
+                    <i class="sidebar-hierarchy__icon fas fa-caret-right"></i>
+                    <div class="sidebar-hierarchy__info">
+                        <span class="sidebar-hierarchy__name">Счет</span>
+                        <span class="sidebar-hierarchy__text">Процент оплаты - 100%</span>
+                    </div>
+                </div>
             </div>
         </div>
 
 
+
+        <div class="sidebar-hierarchy__item" data-level="1">   </div>
         <div class="sidebar-hierarchy__item" data-level="1">Договор</div>
 
         <div class="sidebar-hierarchy__section">
@@ -311,25 +334,64 @@
                 <?php if (!is_null($variablesTV->getValue('form_files')[1][1])): ?>
                     <div class="body-card__row" data-mapping_level_1="1" data-mapping_level_2="1">
                         <span class="body-card__title">Файл ГРБС</span>
-                        <div class="body-card__item">
-                            <div class="files view">
-                                <?php foreach ($variablesTV->getValue('form_files')[1][1] as $file): ?>
-                                    <div class="files__item" data-id="<?= $file['id'] ?>">
-                                        <div class="files__info">
-                                            <i class="files__icon fas fa-file-word"></i>
-                                            <div class="files__name"><?= $file['file_name'] ?></div>
-                                        </div>
-                                        <div class="files__actions">
-                                            <i class="files__unload fas fa-file-download"></i>
-                                        </div>
+                        <div class="body-card__files files">
+                            <?php foreach ($variablesTV->getValue('form_files')[1][1] as $file): ?>
+                                <div class="files__item" data-id="<?= $file['id'] ?>">
+                                    <div class="files__info">
+                                        <i class="files__icon fas fa-file-word"></i>
+                                        <div class="files__name"><?= $file['file_name'] ?></div>
                                     </div>
-                                <?php endforeach; ?>
-                            </div>
+                                    <div class="files__actions">
+                                        <i class="files__unload fas fa-file-download"></i>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 <?php endif; ?>
                 <!--//ГРБС//-->
 
             </div>
+        </div>
+    
+        <div class="application-form__cards">
+            <!-- todo data-type-->
+            <div class="application-form__card card-form" data-type="ещвщ">
+                <div class="card-form__header">
+                    <!-- todo block1_completed-->
+                    <?php if ($variablesTV->getValue('block1_completed')): ?>
+                        <i class="card-form__icon-state fas fa-check-circle valid"></i>
+                    <?php else: ?>
+                        <i class="card-form__icon-state fas fa-exclamation-circle"></i>
+                    <?php endif; ?>
+                    <span class="card-form__title">ДОКУМЕНТАЦИЯ</span>
+                    <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
+                </div>
+            </div>
+            
+            <?php if (!$variablesTV->getExistenceFlag('type_of_object')): ?>
+                Для отображения структуры разделов документации выберите вид объекта
+            <?php else: ?>
+                <?php foreach ($variablesTV->getValue('documentation_files_in_structure') as $node): ?>
+        
+                    <!-- отрисовка разделов-->
+                    <?= $node['name'] ?>
+        
+                    <!-- проверка наличия файлов в разделе-->
+                    <?php if (isset($node['files'])): ?>
+                    
+                        <?php foreach ($node['files'] as $file): ?>
+                
+                            <!-- отрисовка файлов в разделе-->
+                            <?= $file['file_name'] ?>
+                        <?php endforeach; ?>
+                    
+                    <?php endif; ?>
+                
+                <?php endforeach; ?>
+            <?php endif; ?>
+            
+            
+            
         </div>
     </div>
