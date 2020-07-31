@@ -28,47 +28,26 @@
 
     <div class="sidebar-hierarchy">
 
-        <div class="sidebar-hierarchy__block">
-            <div class="sidebar-hierarchy__section">
-                <div class="sidebar-hierarchy__item" data-depth="0">
-                    <i class="sidebar-hierarchy__icon fas fa-caret-right"></i>
-                    <div class="sidebar-hierarchy__info">
-                        <span class="sidebar-hierarchy__name">Заявление</span>
-                    </div>
-                </div>
-            </div>
-            <div class="sidebar-hierarchy__section">
-                <div class="sidebar-hierarchy__item" data-depth="1">
-                    <i class="sidebar-hierarchy__icon fas fa-caret-right"></i>
-                    <div class="sidebar-hierarchy__info">
-                        <span class="sidebar-hierarchy__name">Договор</span>
-                    </div>
-                </div>
-            </div>
-            <div class="sidebar-hierarchy__section">
-                <div class="sidebar-hierarchy__item" data-depth="2">
-                    <i class="sidebar-hierarchy__icon fas fa-caret-right"></i>
-                    <div class="sidebar-hierarchy__info">
-                        <span class="sidebar-hierarchy__name">Счет</span>
-                        <span class="sidebar-hierarchy__text">Процент оплаты - 100%</span>
-                    </div>
-                </div>
+        <div class="sidebar-hierarchy__section">
+            <div class="sidebar-hierarchy__item" data-depth="0">
+                <span class="sidebar-hierarchy__name">Заявление</span>
             </div>
         </div>
-
-
-
-        <div class="sidebar-hierarchy__item" data-level="1">   </div>
-        <div class="sidebar-hierarchy__item" data-level="1">Договор</div>
-
         <div class="sidebar-hierarchy__section">
-            <div class="sidebar-hierarchy__item" data-level="0">Сводное заключение</div>
+            <div class="sidebar-hierarchy__item" data-depth="1">
+                <span class="sidebar-hierarchy__name">Договор</span>
+            </div>
         </div>
         <div class="sidebar-hierarchy__section">
-            <div class="sidebar-hierarchy__item" data-level="0">Заявление</div>
+            <div class="sidebar-hierarchy__item" data-depth="2">
+                <span class="sidebar-hierarchy__name">Счет</span>
+                <span class="sidebar-hierarchy__text">Процент оплаты - 100%</span>
+            </div>
         </div>
         <div class="sidebar-hierarchy__section">
-            <div class="sidebar-hierarchy__item" data-level="0">Заявление</div>
+            <div class="sidebar-hierarchy__item" data-depth="0">
+                <span class="sidebar-hierarchy__name">Сводное заключение</span>
+            </div>
         </div>
     </div>
 
@@ -338,7 +317,7 @@
                             <?php foreach ($variablesTV->getValue('form_files')[1][1] as $file): ?>
                                 <div class="files__item" data-id="<?= $file['id'] ?>">
                                     <div class="files__info">
-                                        <i class="files__icon fas fa-file-word"></i>
+                                        <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
                                         <div class="files__name"><?= $file['file_name'] ?></div>
                                     </div>
                                     <div class="files__actions">
@@ -353,45 +332,48 @@
 
             </div>
         </div>
-    
-        <div class="application-form__cards">
+
             <!-- todo data-type-->
-            <div class="application-form__card card-form" data-type="ещвщ">
-                <div class="card-form__header">
-                    <!-- todo block1_completed-->
-                    <?php if ($variablesTV->getValue('block1_completed')): ?>
-                        <i class="card-form__icon-state fas fa-check-circle valid"></i>
-                    <?php else: ?>
-                        <i class="card-form__icon-state fas fa-exclamation-circle"></i>
-                    <?php endif; ?>
-                    <span class="card-form__title">ДОКУМЕНТАЦИЯ</span>
-                    <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
-                </div>
+        <div class="application-form__card card-form" data-type="ещвщ">
+            <div class="card-form__header">
+                <?php if ($variablesTV->getValue('block77_completed')): ?>
+                    <i class="card-form__icon-state fas fa-check-circle valid"></i>
+                <?php else: ?>
+                    <i class="card-form__icon-state fas fa-exclamation-circle"></i>
+                <?php endif; ?>
+                <span class="card-form__title">ДОКУМЕНТАЦИЯ</span>
+                <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
             </div>
-            
-            <?php if (!$variablesTV->getExistenceFlag('type_of_object')): ?>
-                Для отображения структуры разделов документации выберите вид объекта
-            <?php else: ?>
-                <?php foreach ($variablesTV->getValue('documentation_files_in_structure') as $node): ?>
-        
-                    <!-- отрисовка разделов-->
-                    <?= $node['name'] ?>
-        
-                    <!-- проверка наличия файлов в разделе-->
-                    <?php if (isset($node['files'])): ?>
-                    
-                        <?php foreach ($node['files'] as $file): ?>
-                
-                            <!-- отрисовка файлов в разделе-->
-                            <?= $file['file_name'] ?>
-                        <?php endforeach; ?>
-                    
-                    <?php endif; ?>
-                
-                <?php endforeach; ?>
-            <?php endif; ?>
-            
-            
-            
+            <div class="card-form__body body-card expanded">
+                <?php if (!$variablesTV->getExistenceFlag('type_of_object')): ?>
+                    <div class="body-card__message">
+                        <i class="body-card__message-icon fas fa-exclamation"></i>
+                        <span class="body-card__message-text">Для отображения структуры разделов документации выберите вид объекта</span>
+                    </div>
+                <?php else: ?>
+                    <?php foreach ($variablesTV->getValue('documentation_files_in_structure') as $node): ?>
+                        <div class="documentation__node">
+                            <span class="documentation__name" style="padding-left: <?= $node['depth']*25 + 15 ?>px"><?= $node['name'] ?></span>
+                            <?php if (isset($node['files'])): ?>
+                                <div class="documentation__files files" style="padding-left: <?= $node['depth']*25 + 15 ?>px">
+                                    <?php foreach ($node['files'] as $file): ?>
+                                        <div class="files__item">
+                                            <div class="files__info">
+                                                <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
+                                                <span class="files__name"><?= $file['file_name'] ?></span>
+                                            </div>
+                                        </div>
+                                        <?= $file['file_name'] ?>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+
         </div>
+
+
+
     </div>

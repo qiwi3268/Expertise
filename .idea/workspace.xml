@@ -2,18 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3052c4db-b17b-45ef-9874-1a02eb86f4cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/views/css/tmp/action_sidebar.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/action_sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_sidebar.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/files.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/files.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/view_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/view_application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/sidebar_actions.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/sidebar_hierarchy.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/view_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/file_actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_actions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/file_download.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_download.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/file_needs.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_needs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/tmp/sidebar_hierarchy.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +79,7 @@
       <workItem from="1595997075468" duration="20961000" />
       <workItem from="1596082621309" duration="1656000" />
       <workItem from="1596084344898" duration="24335000" />
-      <workItem from="1596168695490" duration="11753000" />
+      <workItem from="1596168695490" duration="20887000" />
     </task>
     <task id="LOCAL-00001" summary="22.07.2020">
       <created>1595389670254</created>
@@ -260,7 +256,14 @@
       <option name="project" value="LOCAL" />
       <updated>1596177722499</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="31.07.2020_3">
+      <created>1596186858976</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1596186858976</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,21 +293,26 @@
     <MESSAGE value="30.07.2020_5" />
     <MESSAGE value="31.07.2020" />
     <MESSAGE value="31.07.2020_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="31.07.2020_2" />
+    <MESSAGE value="31.07.2020_3" />
+    <option name="LAST_COMMIT_MESSAGE" value="31.07.2020_3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1596177721879">
+    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1596186858536">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596177721879" />
+    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596186858536" />
+    <state x="248" y="121" key="MergeDialog" timestamp="1596186835322">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="248" y="121" key="MergeDialog/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596186835322" />
     <state x="781" y="344" key="SettingsEditor" timestamp="1596084331421">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="781" y="344" key="SettingsEditor/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596084331421" />
-    <state x="987" y="433" width="585" height="624" key="find.popup" timestamp="1596173151354">
+    <state x="987" y="433" width="585" height="624" key="find.popup" timestamp="1596192732162">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596173151354" />
+    <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596192732162" />
     <state x="1150" y="591" key="publish.login" timestamp="1596168913639">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

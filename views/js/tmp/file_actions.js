@@ -44,30 +44,12 @@ function addDeleteButton(delete_button) {
    let files = file.closest('.files');
 
    delete_button.addEventListener('click', () => {
-      putFileToDelete(file);
+      deleteFile(file);
       removeFileElement(file, files);
    });
-
 }
 
-function isDocumentationFile(file) {
-   return file.closest('[data-id_structure_node]');
-}
-
-function removeFileElement(file, files) {
-   file.remove();
-
-   if (!files.querySelector('.files__item')) {
-      files.classList.remove('filled');
-
-      let parent_select = files.previousElementSibling;
-      if (parent_select && parent_select.classList.contains('modal-file')) {
-         parent_select.classList.remove('filled');
-      }
-   }
-}
-
-function putFileToDelete(file) {
+function deleteFile(file) {
    let parent_row = file.closest('[data-mapping_level_1]');
    let id_file = file.dataset.id;
 
@@ -123,7 +105,18 @@ function getUnloadFileURN(check_result) {
    return `/home/file_unloader?fs_name=${check_result.fs_name}&file_name=${check_result.file_name}`;
 }
 
+function removeFileElement(file, files) {
+   file.remove();
 
+   if (!files.querySelector('.files__item')) {
+      files.classList.remove('filled');
+
+      let parent_select = files.previousElementSibling;
+      if (parent_select && parent_select.classList.contains('modal-file')) {
+         parent_select.classList.remove('filled');
+      }
+   }
+}
 
 
 

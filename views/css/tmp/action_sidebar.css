@@ -22,6 +22,7 @@
    padding: 10px 15px;
    font-size: 16px;
    border-right: 4px solid #ffffff;
+   transition: .1s;
 }
 
 .sidebar-actions__section:first-child {
@@ -62,7 +63,6 @@ a.sidebar-actions__section {
 
 .sidebar-hierarchy__item {
    display: flex;
-   align-items: center;
 }
 
 .sidebar-hierarchy__section {
@@ -70,20 +70,25 @@ a.sidebar-actions__section {
 
    /*padding: 10px;*/
    padding: 7px 10px;
+   transition: .1s;
 }
 
 .sidebar-hierarchy__section:hover {
-   /*min-height: 50px;*/
    background-color: #f2f2f2;
    border-color: #ffd354;
 }
 
 .sidebar-hierarchy__item {
    display: flex;
+   flex-direction: column;
 }
 
 .sidebar-hierarchy__item[data-depth='1'] {
    padding-left: 10px;
+}
+
+.sidebar-hierarchy__item[data-depth='2'] {
+   padding-left: 20px;
 }
 
 .sidebar-hierarchy__icon {
@@ -91,10 +96,10 @@ a.sidebar-actions__section {
    /*font-size: 18px;*/
 }
 
-.sidebar-hierarchy__info {
+/*.sidebar-hierarchy__info {
    display: flex;
    flex-direction: column;
-}
+}*/
 
 
 .sidebar-hierarchy__text {
