@@ -5,7 +5,6 @@ let radio_dependency;
 let block_dependencies;
 
 document.addEventListener('DOMContentLoaded', () => {
-   // dependencies = JSON.parse(document.querySelector('.row-dependencies').value);
    radio_dependency = document.querySelector('.radio__content-change-logic');
    block_dependencies = JSON.parse(document.querySelector('.block-dependencies').value);
 
@@ -34,7 +33,7 @@ function handleClearFieldButtons() {
 
          let row_result = parent_row.querySelector('.field-result');
          // Удаляем зависимые поля
-         hideDependentRows(row_result);
+         handleDependentBlocks(row_result);
 
          let parent_select = parent_row.querySelector('.modal-select');
          if (row_result.value) {
@@ -57,7 +56,7 @@ function handleClearFieldButtons() {
 // Предназначен для добавления или удаления блоков, зависящих от значения поля на входе
 // Принимает параметры-------------------------------------------
 // parent_input  Element : скрытый инпут со значением родительского поля
-function handleDependentRows(parent_input) {
+function handleDependentBlocks(parent_input) {
    // Получаем массив с зависимостями всех значений родительского поля
    let values = block_dependencies[parent_input.name];
 
@@ -94,24 +93,14 @@ function handleDependentRows(parent_input) {
 function clearBlock(block) {
    let dependent_fields = block.querySelectorAll('.field');
    dependent_fields.forEach(field => {
-
       removeRowValue(field);
-
-      if (block.querySelector('.files')) {
-         removeDependentFiles(block);
-      }
-
    });
 
+   let parent_card_body = block.closest('.card-form__body');
+   if (parent_card_body.style.maxHeight) {
+      changeParentCardMaxHeight(block);
+   }
 }
-
-function removeDependentFiles(block) {
-   let files = block.querySelectorAll('.file__item');
-   files.forEach(file => {
-
-   });
-}
-
 
 // Предназначен для удаления значении в поле
 // Принимает параметры-------------------------------
@@ -169,28 +158,6 @@ function handleDependentRadios(parent_input) {
       }
    });
 }
-
-// Предназначен для удаления зависимых полей
-// Принимает параметры-------------------------------
-// parent_input         Element : скрытый инпут родительского поля
-function hideDependentRows(parent_input) {
-   let values = dependencies[parent_input.name];
-
-   if (values) {
-      // Получаем зависимые поля для значения в родительском поле
-      let dependent_rows = dependencies[parent_input.name][parent_input.value];
-
-      if (dependent_rows) {
-         Object.keys(dependent_rows).forEach(row_name => {
-            let dependent_row = document.querySelector(`[data-row_name="${row_name}"]`);
-            dependent_row.dataset.inactive = 'true';
-
-            removeRowValue(dependent_row);
-         });
-      }
-   }
-}
-
 
 
 

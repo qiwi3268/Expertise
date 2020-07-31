@@ -30,7 +30,7 @@ switch(_URN_){
         $pageName = 'АИС';
         $sourcesFiles = [...GetFontAwesome5Case(),
                          ...CreateSource('css', ROOT_CSS, 'entry.css'),
-                         ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'modal.css', 'calendar.css', 'files.css', 'documentation.css'),
+                         ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'modal.css', 'radio.css', 'calendar.css', 'files.css', 'documentation.css'),
                          ...CreateSource('css', TMP_CSS, 'create_application.css'),
                          ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
                          ...CreateSource('js', TMP_JS, 'sidebar.js', 'section.js', 'validation.js', 'cards.js',

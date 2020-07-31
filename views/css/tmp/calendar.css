@@ -10,7 +10,6 @@
    border-radius: 3px;
    box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
    background-color: #fff;
-   /*transition: opacity .3s;*/
    transition: .15s;
 }
 
@@ -112,14 +111,6 @@
 .calendar__item.selected {
    background-color: #80bdff;
    color: #343a40;
-}
-
-.body-card__value {
-   flex-grow: 1;
-}
-
-.body-card__icon-delete {
-   margin: 0px 15px 0px 0px;
 }
 
 

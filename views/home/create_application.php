@@ -568,14 +568,18 @@
                 <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
             </div>
             <div class="card-form__body body-card">
+                <div class="body-card__message" data-block_name="empty_documentation" data-inactive="false">
+                    <i class="body-card__message-icon fas fa-exclamation"></i>
+                    <span class="body-card__message-text">Для отображения структуры разделов документации выберите вид объекта</span>
+                </div>
                 <div class="documentation" data-block_name="structureDocumentation1" data-mapping_level_1="2" data-mapping_level_2="1" data-inactive="true">
                     <?php foreach ($variablesTV->getValue('structureDocumentation1') as ['id' => $id_structure_node, 'name' => $name, 'depth' => $depth]): ?>
                         <div class="documentation__node" data-id_structure_node="<?= $id_structure_node ?>">
                             <div class="documentation__header">
-                                <span class="documentation__name" data-depth="<?= $depth ?>"><?= $name ?></span>
+                                <span class="documentation__name" style="padding-left: <?= $depth*25 + 15 ?>px"><?= $name ?></span>
                                 <i class="documentation__icon modal-file fas fa-plus"></i>
                             </div>
-                            <div class="documentation__files files" data-depth="<?= $depth ?>"></div>
+                            <div class="documentation__files files" style="padding-left: <?= $depth*25 + 15 ?>px"></div>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -583,10 +587,10 @@
                     <?php foreach ($variablesTV->getValue('structureDocumentation2') as ['id' => $id_structure_node, 'name' => $name, 'depth' => $depth]): ?>
                         <div class="documentation__node" data-id_structure_node="<?= $id_structure_node ?>">
                             <div class="documentation__header">
-                                <span class="documentation__name" data-depth="<?= $depth ?>"><?= $name ?></span>
+                                <span class="documentation__name" style="padding-left: <?= $depth*25 + 15 ?>px"><?= $name ?></span>
                                 <i class="documentation__icon modal-file fas fa-plus"></i>
                             </div>
-                            <div class="documentation__files files" data-depth="<?= $depth ?>"></div>
+                            <div class="documentation__files files" style="padding-left: <?= $depth*25 + 15 ?>px"></div>
                         </div>
                     <?php endforeach; ?>
                 </div>

@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
    save_button.addEventListener('click', () => {
       FileNeeds.putFilesToSave();
 
+      console.log(FileNeeds.getFileNeeds());
+
       XHR('post', request_urn, new FormData(form), null, 'json', null, null)
          .then(response => {
 
@@ -27,13 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
             alert(error.message);
             console.error('XHR error: ', error);
          });
-
    });
 
-
 });
-
-
 
 
 function updateFileNeeds() {
@@ -61,9 +59,7 @@ function updateFileNeeds() {
          alert(error.message);
          console.error('XHR error: ', error);
       });
-
 }
-
 
 function getFilesNeedsFormData() {
    let form_data = new FormData();

@@ -24,7 +24,6 @@
    border-bottom: #ffd354 2px solid;
    cursor: default;
    font-size: 18px;
-
 }
 
 .file-modal__title {
@@ -42,8 +41,6 @@
    transition: .15s;
 }
 
-
-
 .file-modal__body {
    flex-grow: 1;
    max-height: 440px;
@@ -54,7 +51,6 @@
 .file-modal__item {
    display: flex;
    align-items: center;
-
    padding: 6px 0px 6px 10px;
    margin: 0px 6px;
    cursor: default;
@@ -71,10 +67,6 @@
 
 .file-modal__item:hover {
    background-color: #f2f2f2;
-}
-
-.file-modal__info {
-
 }
 
 .file-modal__size {
@@ -143,27 +135,20 @@
    display: block;
    border: 0px;
    padding: 0px;
-
 }
 
-.body-card__select.modal-file.filled {
+.field-select.modal-file.filled {
    border-radius: 4px 4px 0px 0px;
    color: #6e6e6e;
-}
-
-.body-card__icon.fa-file {
-   font-size: 16px;
 }
 
 .files__info {
    display: flex;
    align-items: center;
-
    padding: 6px 0px 6px 10px;
    margin: 0px 6px 0px 0px;
    transition: .15s;
    border-radius: 4px;
-
    cursor: pointer;
 }
 
@@ -183,12 +168,6 @@
 .files__info:hover {
    background-color: #f2f2f2;
 }
-
-.files__delete {
-
-}
-
-/*поменять*/
 
 .files__delete,
 .files__unload {
@@ -210,7 +189,6 @@
 .files__unload:hover {
    border-color: #A4D0FF;
    background-color: #A4D0FF;
-   /*color: #3395FF;*/
    color: #287DD8;
 }
 

@@ -1,0 +1,46 @@
+.radio__icon {
+   margin: 0px 10px 0px 0px;
+}
+
+.radio__icon.inline {
+   margin: 0px 5px 0px 0px;
+}
+
+.radio__icon.far,
+.checkbox__icon.far {
+   font-size: 20px;
+   color: #343a40;
+}
+
+.radio__item,
+.checkbox__item {
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+}
+
+.radio__item.col:not(:last-child) {
+   margin: 0px 0px 10px 0px;
+}
+
+.radio__item.inline {
+   margin: 0px 10px 0px 0px;
+}
+
+.radio__text {
+   font-size: 14px;
+}
+
+.radio__title {
+   display: block;
+   font-size: 14px;
+}
+
+.radio__value {
+   font-size: 15px;
+}
+
+.radio__body.inline {
+   display: flex;
+   align-items: center;
+}
