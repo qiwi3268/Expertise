@@ -104,7 +104,10 @@ return [
 
     'home/navigation' => [
         'ROOTClasses' => ['VariableTransfer', 'Navigation'],
-        'controllers' => ['navigation']
+        'ROOTcontrollers'    => ['header'],
+        'ROOTviews'          => ['header'],
+        'controllers' => ['navigation'],
+        '/views/home/%footer' => ['main_footer'],
     ],
 
 

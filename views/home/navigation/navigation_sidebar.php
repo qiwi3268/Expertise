@@ -25,34 +25,29 @@
     .section__counter{
         font-weight: bold;
     }
-    
-    
+
+
 </style>
 
-<?php foreach ($variablesTV->getValue('navigationBlocks') as $block): ?>
-        
-    <div class="block">
-        <div class="block__header"><?= $block['label'] ?></div>
-        
-        <?php foreach ($block['sections'] as $section): ?>
-            
-            <?php if ($section['is_selected']): ?>
-                <div class="block__section_selected">
-            <?php else: ?>
-                <div class="block__section">
-            <?php endif; ?>
-            
-                    <div class="section__label">
-                        <a href="<?= $section['ref'] ?>"><?= $section['label'] ?></a>
-                    </div>
-            
-                    <?php if ($section['counter'] !== false): ?>
-                        <div class="section__counter">
-                            <?= $section['counter'] ?>
+<div class="main-container">
+    <div class="navigation">
+
+        <div class="navigation__sidebar sidebar-navigation">
+            <?php foreach ($variablesTV->getValue('navigationBlocks') as $block): ?>
+                <div class="sidebar-navigation__block">
+                    <div class="sidebar-navigation__header"><?= $block['label'] ?></div>
+                    <?php foreach ($block['sections'] as $section): ?>
+                        <div class="sidebar-navigation__section" data-selected="<?= $section['is_selected'] ?>">
+                            <a class="sidebar-navigation__label" href="<?= $section['ref'] ?>"><?= $section['label'] ?></a>
+                            <?php if ($section['counter'] !== false): ?>
+                                <div class="sidebar-navigation__counter">
+                                    <?= $section['counter'] ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
-                    <?php endif; ?>
+                    <?php endforeach; ?>
                 </div>
-        <?php endforeach; ?>
-    </div>
-    
-<?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
+
+

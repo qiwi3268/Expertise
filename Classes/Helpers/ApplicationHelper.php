@@ -29,8 +29,8 @@ class ApplicationHelper{
     static public function getDefaultNavigationPage():array {
     
         $roles = Session::getUserRoles();
-    
-        if(in_array(_ROLE['APP'], $roles)) return ['b' => 'block_1', 'v' => 'view_1'];
+        
+        if(in_array(_ROLE['APP'], $roles)) return ['b' => 'block_1', 'v' => 'view_2'];
     }
 
 

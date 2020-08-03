@@ -76,6 +76,15 @@ switch(_URN_){
             ...CreateSource('css', TMP_CSS, 'documentation.css')
         ];
         break;
+
+    case 'home/navigation' :
+        $pageName = 'Навигация';
+        $sourcesFiles = [...GetFontAwesome5Case(),
+            ...CreateSource('css', ROOT_CSS, 'entry.css'),
+            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css'),
+            ...CreateSource('css', TMP_CSS, 'navigation.css')
+        ];
+        break;
 }
 
 $variablesTV = VariableTransfer::getInstance();

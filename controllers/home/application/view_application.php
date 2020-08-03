@@ -28,7 +28,6 @@ foreach($applicationAssoc as $property => $value){
 // Сохраненные файлы анкеты (не включая документацию)
 $requiredMappings = new RequiredMappingsSetter();
 $requiredMappings->setMappingLevel1(1);
-$requiredMappings->setMappingLevel1(2);
 
 $filesInitialization = new FilesInitialization($requiredMappings, $applicationId);
 $needsFiles = $filesInitialization->getNeedsFiles();

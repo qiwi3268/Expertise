@@ -1,17 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
-   initializeFileActions();
+   initializeFileBlocks();
 });
 
-function initializeFileActions() {
-   let action_blocks = document.querySelectorAll('.files__actions');
+function initializeFileBlocks() {
+   let file_blocks = document.querySelectorAll('.files');
+   let actions;
 
-   action_blocks.forEach(actions => {
-      handleActionButton(actions);
+   file_blocks.forEach(files => {
+      if (files.querySelector('.files__item')) {
+         actions = files.querySelector('.files__actions');
+         handleActionButtons(files);
+         files.classList.add('filled');
+      }
    });
 
 }
 
-function handleActionButton(actions) {
+function handleActionButtons(actions) {
    let unload_button = actions.querySelector('.files__unload');
    if (unload_button) {
       addUnloadButton(unload_button);
@@ -66,23 +71,23 @@ function addUnloadButton(unload_button) {
    let file = unload_button.closest('.files__item');
 
    unload_button.addEventListener('click', () => {
-      let form_data = createUnloadFileFormData(file);
+   let form_data = createUnloadFileFormData(file);
 
-      XHR('post', '/home/API_file_checker', form_data, null, 'json')
-         .then(response => {
+   XHR('post', '/home/API_file_checker', form_data, null, 'json')
+      .then(response => {
 
-            switch (response.result) {
-               case 9:
-                  location.href = getUnloadFileURN(response);
-                  break;
-               default:
-                  console.log(response);
-            }
+         switch (response.result) {
+            case 9:
+               location.href = getUnloadFileURN(response);
+               break;
+            default:
+               console.log(response);
+         }
 
-         })
-         .catch(error => {
-            console.error('XHR error: ', error);
-         });
+      })
+      .catch(error => {
+         console.error('XHR error: ', error);
+      });
    });
 
 }

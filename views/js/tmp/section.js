@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       card_header.addEventListener('click', () => {
          // Раскрываем блок
+         //TODO на вью открывать сразу
          expandCard(card);
       });
    });
