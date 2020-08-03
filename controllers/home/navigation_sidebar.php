@@ -18,17 +18,8 @@ if($isNavigationPage){
     $userNavigation = $Navigation->getUserNavigation();
 }
 
-//todo - проверка на реализацию интерфейса где происходит?
-
 // Получение параметров навигационной страницы
-if(checkParamsGET('b', 'v')){
-    $G_block = $_GET['b'];
-    $G_view = $_GET['v'];
-}else{ // Дефолтная страница
-    $params = ApplicationHelper::getDefaultNavigationPage();
-    $G_block = $params['b'];
-    $G_view = $params['v'];
-}
+list('b' => $G_block, 'v' => $G_view) = checkParamsGET('b', 'v') ? $_GET : ApplicationHelper::getDefaultNavigationPage();
 
 // Формирование навигационного массива для view
 $navigationBlocksTV = [];
@@ -39,12 +30,10 @@ foreach($userNavigation as $block){
     $tmp_block['label'] = $block['label'];
     
     foreach($block['views'] as $view){
-    
-        $tmp_section = [];
+        
         $tmp_section['label'] = $view['label'];
         $tmp_section['ref'] = "/home/navigation?b={$block['name']}&v={$view['name']}";
-        //todo сделать счетчики
-        $tmp_section['counter'] = 0;
+        $tmp_section['counter'] = $view['show_counter'] ? $view['class_name']::getCount(Session::getUserId()) : false;
         $tmp_section['is_selected'] = (($G_block == $block['name']) && ($G_view == $view['name'])) ? true : false;
         $tmp_block['sections'][] = $tmp_section;
     }
@@ -70,7 +59,8 @@ foreach($userNavigation as $block){
 
 $variablesTV->setValue('navigationBlocks', $navigationBlocksTV);
 
+// В случае НЕ навигационной странцы, view необходимо подключать через routes
 if($isNavigationPage){
     // Проверка на существование view файла была выполнена ранее
-    require_once _ROOT_.'/views/home/navigation_sidebar.php';
+    require_once _ROOT_.'/views/home/navigation/navigation_sidebar.php';
 }

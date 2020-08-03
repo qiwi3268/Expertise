@@ -54,3 +54,22 @@ if($variablesTV->getExistenceFlag('object_name') &&
 }else{
     $variablesTV->setValue('block2_completed', false);
 }
+
+
+// Документация -------------------------------------------------- block77_completed //todo со временем преименовать название блока
+// Обязательные поля: Вид объекта
+//                    Как минимум 1 загруженный файл в стркутуру документации
+//
+
+$tmpResult = false;
+
+if($variablesTV->getExistenceFlag('type_of_object')){
+    
+    foreach($variablesTV->getValue('documentation_files_in_structure') as $node){
+        if(isset($node['files'])){
+            $tmpResult = true;
+            break;
+        }
+    }
+}
+$variablesTV->setValue('block77_completed', $tmpResult);

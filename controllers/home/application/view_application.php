@@ -25,18 +25,28 @@ foreach($applicationAssoc as $property => $value){
 }
 
 
-// Сохраненные файлы
+// Сохраненные файлы анкеты (не включая документацию)
 $requiredMappings = new RequiredMappingsSetter();
 $requiredMappings->setMappingLevel1(1);
+$requiredMappings->setMappingLevel1(2);
 
 $filesInitialization = new FilesInitialization($requiredMappings, $applicationId);
 $needsFiles = $filesInitialization->getNeedsFiles();
 
+// Установка файловых иконок
+foreach($needsFiles as &$mapping_level_2){
+    foreach($mapping_level_2 as &$files){
+        if(!is_null($files)){
+            FontAwesome5Helper::setFileIconClass($files);
+        }
+    }
+    unset($files);
+}
+unset($mapping_level_2);
+
 $variablesTV->setValue('form_files', $needsFiles);
 
-
-
-var_dump($needsFiles);
+var_dump($variablesTV->getValue('form_files')[1][1]);
 
 // Сохранен Вид объекта, показываем документацию
 if($variablesTV->getExistenceFlag('type_of_object')){
@@ -77,17 +87,20 @@ if($variablesTV->getExistenceFlag('type_of_object')){
     // В документации нет загруженных файлов
     if(is_null($needsFiles)){
         $needsFiles = [];
+    }else{
+        // Установка файловых иконок
+        FontAwesome5Helper::setFileIconClass($needsFiles);
     }
     
     // Структура разделов документации с вложенностью дочерних разделов в родительские
     $depthStructure = $NodeStructure->getDepthStructure();
     $filesInStructure = $filesInitialization->getFilesInStructure($needsFiles, $depthStructure);
-    
+    //var_dump($filesInStructure);
     $variablesTV->setValue('documentation_files_in_structure', $filesInStructure);
 }
 
 $test = shell_exec('lala 2>&1');
-var_dump($test);
+//var_dump($test);
 
 
 

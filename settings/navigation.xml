@@ -3,8 +3,16 @@
 
     <!-- Блок для заявителя -->
     <block name="block_1" label="Мои документы">
-        <view name="view_1" label="Мои текущие" class_name="block_1_type_1" view_name="view_1" show_counter="1" />
         <view name="view_2" label="Мои заявления" class_name="block_1_type_2" view_name="view_1" show_counter="1" />
+        <view name="view_3" label="Мои заявления2" class_name="block_1_type_2" view_name="view_1" show_counter="1" />
+        <view name="view_4" label="Мои заявления3" class_name="block_1_type_2" view_name="view_1" show_counter="1" />
+        <ref label="Ссылочка на документацию" value="/tmp/documentation_structure"/>
+    </block>
+
+    <block name="block_2" label="Мои документы2">
+        <view name="view_5" label="Мои заявления4" class_name="block_1_type_2" view_name="view_1" show_counter="1" />
+        <view name="view_6" label="Мои заявления5" class_name="block_1_type_2" view_name="view_1" show_counter="1" />
+        <view name="view_7" label="Мои заявления6" class_name="block_1_type_2" view_name="view_1" show_counter="1" />
         <ref label="Ссылочка на документацию" value="/tmp/documentation_structure"/>
     </block>
 

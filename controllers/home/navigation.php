@@ -4,25 +4,12 @@
 // Данная страница представляет собой мини-движок по формированию навигационных страниц
 // Подключение sidebar'а и view происходит напрямую, поскольку заранее неизвестно, какая view нужна
 
-if(checkParamsGET('b', 'v')){
-    
-    $G_block = $_GET['b'];
-    $G_view = $_GET['v'];
-}else{
-    // Если отсутствуют параметры в GET-запросе, берем дефолтные для этого пользователя
-    $params = ApplicationHelper::getDefaultNavigationPage();
-    $G_block = $params['b'];
-    $G_view = $params['v'];
-}
-
-var_dump($G_block);
-var_dump($G_view);
-
+// Получение параметров навигационной страницы
+list('b' => $G_block, 'v' => $G_view) = checkParamsGET('b', 'v') ? $_GET : ApplicationHelper::getDefaultNavigationPage();
 
 $Navigation = new Navigation(Session::getUserRoles());
 $userNavigation = $Navigation->getUserNavigation();
 
-//var_dump($userNavigation);
 
 // Проверка на то, что указанная в GET-параметрах навигационная страница существует в навигации пользователя
 $blockIsset = false;
@@ -53,14 +40,14 @@ if(!$blockIsset || !$viewIsset){
 }
 
 
-$path_controller = _ROOT_.'/controllers/home/navigation_sidebar.php';
-$path_view = _ROOT_.'/views/home/navigation_sidebar.php';
+$path_sidebar_controller = _ROOT_.'/controllers/home/navigation_sidebar.php';
+$path_sidebar_view = _ROOT_.'/views/home/navigation/navigation_sidebar.php';
 
-if(!file_exists($path_controller)){
-    throw new Exception("Отсутствует controller navigation_sidebar по пути: $path_controller");
+if(!file_exists($path_sidebar_controller)){
+    throw new Exception("Отсутствует controller navigation_sidebar по пути: '{$path_sidebar_controller}'");
 }
-if(!file_exists($path_view)){
-    throw new Exception("Отсутствует view navigation_sidebar по пути: $path_view");
+if(!file_exists($path_sidebar_view)){
+    throw new Exception("Отсутствует view navigation_sidebar по пути: '{$path_sidebar_view}'");
 }
 
 // Прокидываем переменные в navigation_sidebar
@@ -68,5 +55,17 @@ $variablesTV = VariableTransfer::getInstance();
 $variablesTV->setExistenceFlag('isNavigationPage', true);
 $variablesTV->setValue('userNavigation', $userNavigation);
 
-require_once $path_controller;
+// Поключаем контроллер, который внутри себя подключает своё view
+require_once $path_sidebar_controller;
 
+// Получаем блок и view текущей страницы. NB NV - navigation block/name
+$NB = array_filter($userNavigation, fn($block) => ($block['name'] == $G_block));
+$NV = array_filter(array_shift($NB)['views'], fn($view) => ($view['name'] == $G_view));
+
+var_dump($NV);
+
+list('class_name' => $class, 'view_name' => $name) = array_shift($NV);
+
+// Подключаем основное view
+$variablesTV->setValue('navigationData', $class::getAssoc(Session::getUserId()));
+require_once _ROOT_."/views/home/navigation/{$name}.php";
