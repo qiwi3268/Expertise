@@ -11,10 +11,17 @@ abstract class NavigationTable{
         return ParametrizedQuery::getSimpleArray($query, [$id_user])[0];
     }
     
-    static public function getAssoc(int $id_user):?array {
+    //
+    // id_user         int : id пользователя
+    // LIMIT_offset    int :
+    // LIMIT_row_count int :
+    //
+    static public function getAssoc(int $id_user, int $LIMIT_offset, int $LIMIT_row_count):?array {
         
         $section = static::getSection();
-        $query = "SELECT * $section";
+        $query = "SELECT *
+                  $section
+                  LIMIT $LIMIT_offset, $LIMIT_row_count";
         
         return ParametrizedQuery::getFetchAssoc($query, [$id_user]);
         

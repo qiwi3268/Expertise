@@ -5,19 +5,19 @@
 
     <div class="navigation__table table-navigation">
         <div class="table-navigation__header">
-            <div class="table-navigation__column">id-заявления</div>
-            <div class="table-navigation__column">Номер заявления</div>
+            <div class="table-navigation__title">id-заявления</div>
+            <div class="table-navigation__title">Номер заявления</div>
         </div>
         <?php foreach ($variablesTV->getValue('navigationData') as $app): ?>
-            <div>
-                <div>
+            <tr>
+                <td>
                     <?= $app['id'] ?>
-                </div>
-                <div>
+                </td>
+                <td>
                     <a target="_blank" href="/home/application/view?id_application=<?= $app['id'] ?>"><?= $app['numerical_name'] ?></a>
 
-                </div>
-            </div>
+                </td>
+            </tr>
         <?php endforeach; ?>
     </div>
 

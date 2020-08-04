@@ -76,7 +76,7 @@ if(checkParamsPOST('login', 'password')){
                 elseif(in_array(_ROLE['BOSS'], $roles, true))    $ref = '/home/boss';
                 elseif(in_array(_ROLE['ADM'], $roles, true))     $ref = '/home/admin';
 
-                $ref = '/home/application/create';
+                $ref = '/home/navigation';
 
                 // Авторизация прошла успешно
                 exit(json_encode(['result' => 5,

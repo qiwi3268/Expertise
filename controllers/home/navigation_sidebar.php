@@ -32,7 +32,7 @@ foreach($userNavigation as $block){
     foreach($block['views'] as $view){
         
         $tmp_section['label'] = $view['label'];
-        $tmp_section['ref'] = "/home/navigation?b={$block['name']}&v={$view['name']}";
+        $tmp_section['ref'] = '/'._URN_."?b={$block['name']}&v={$view['name']}";
         $tmp_section['counter'] = $view['show_counter'] ? $view['class_name']::getCount(Session::getUserId()) : false;
         $tmp_section['is_selected'] = (($G_block == $block['name']) && ($G_view == $view['name'])) ? true : false;
         $tmp_block['sections'][] = $tmp_section;

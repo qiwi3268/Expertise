@@ -71,6 +71,10 @@ if($variablesTV->getExistenceFlag('type_of_object')){
             throw new Exception('Указан Вид объекта, при котором не определены действия для отображения загруженных файлов');
     }
     
+    // Устанавливаем маппинги для работы js по скачиванию файлов
+    $variablesTV->setValue('documentation_mapping_level_1', $mapping_level_1);
+    $variablesTV->setValue('documentation_mapping_level_2', $mapping_level_2);
+    
     // Структура разделов документации
     $structureDocumentation = $className::getAllActive();
     $NodeStructure = new NodeStructure($structureDocumentation);

@@ -6,6 +6,7 @@
 
 // Получение параметров навигационной страницы
 list('b' => $G_block, 'v' => $G_view) = checkParamsGET('b', 'v') ? $_GET : ApplicationHelper::getDefaultNavigationPage();
+$G_page = checkParamsGET('page') ? clearHtmlArr($_GET)['page'] : 1;
 
 $Navigation = new Navigation(Session::getUserRoles());
 $userNavigation = $Navigation->getUserNavigation();
@@ -50,7 +51,7 @@ if(!file_exists($path_sidebar_view)){
     throw new Exception("Отсутствует view navigation_sidebar по пути: '{$path_sidebar_view}'");
 }
 
-// Прокидываем переменные в navigation_sidebar
+// Прокидываем навигацию пользователя в navigation_sidebar
 $variablesTV = VariableTransfer::getInstance();
 $variablesTV->setExistenceFlag('isNavigationPage', true);
 $variablesTV->setValue('userNavigation', $userNavigation);
@@ -62,10 +63,37 @@ require_once $path_sidebar_controller;
 $NB = array_filter($userNavigation, fn($block) => ($block['name'] == $G_block));
 $NV = array_filter(array_shift($NB)['views'], fn($view) => ($view['name'] == $G_view));
 
-var_dump($NV);
+list('class_name' => $className, 'view_name' => $viewName) = array_shift($NV);
 
-list('class_name' => $class, 'view_name' => $name) = array_shift($NV);
 
-// Подключаем основное view
-$variablesTV->setValue('navigationData', $class::getAssoc(Session::getUserId()));
-require_once _ROOT_."/views/home/navigation/{$name}.php";
+
+// Получеие сортировки и пагинации ---------------------------------------------------------
+//
+$userId = Session::getUserId();
+
+$NavigationParameters = new NavigationParameters($viewName);
+// Количество отображаемых элементов на странице
+$dataPerPage = $NavigationParameters->getDataPerPage();
+
+$Pagination = new Pagination($className::getCount($userId), $dataPerPage, $G_page);
+
+// Флаги существования предыдущей/следующей страницы
+$issetPreviousPage = $Pagination->checkIssetPreviousPage();
+$issetNextPage = $Pagination->checkIssetNextPage();
+$variablesTV->setExistenceFlag('pagination_PreviousPage', $issetPreviousPage);
+$variablesTV->setExistenceFlag('pagination_NextPage', $issetNextPage);
+
+// Ссылки на предыдущую/следующую страницу
+$currentPage = $Pagination->getCurrentPage();
+
+if($issetPreviousPage)$variablesTV->setValue('pagination_PreviousPageRef', '/'._URN_."?b={$G_block}&v={$G_view}&page=".($currentPage - 1));
+if($issetNextPage) $variablesTV->setValue('pagination_NextPageRef', '/'._URN_."?b={$G_block}&v={$G_view}&page=".($currentPage + 1));
+// Надпись текущая страницы / все страницы
+$variablesTV->setValue('pagination_CurrentPage', "{$currentPage} / {$Pagination->getPageCount()}");
+
+
+// Запрос в БД c учётом пагинации, подключение view ----------------------------------------
+//
+$LIMIT_offset = ($currentPage - 1) * $dataPerPage;
+$variablesTV->setValue('navigationData', $className::getAssoc($userId, $LIMIT_offset, $dataPerPage));
+require_once _ROOT_."/views/home/navigation/{$viewName}.php";

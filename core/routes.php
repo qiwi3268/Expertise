@@ -103,11 +103,13 @@ return [
 
 
     'home/navigation' => [
-        'ROOTClasses' => ['VariableTransfer', 'Navigation'],
-        'ROOTcontrollers'    => ['header'],
-        'ROOTviews'          => ['header'],
-        'controllers' => ['navigation'],
-        '/views/home/%footer' => ['main_footer'],
+        'ROOTClasses'             => ['VariableTransfer', 'Pagination'],
+        '/Classes/Navigation/'    => ['Navigation', 'NavigationParameters'],
+        'ROOTcontrollers'         => ['header'],
+        'ROOTviews'               => ['header'],
+        'controllers'             => ['navigation'],
+        '/views/home/navigation/' => ['pagination'],
+        'views'                   => ['main_footer'],
     ],
 
 
