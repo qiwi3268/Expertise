@@ -56,6 +56,11 @@ return [
         'API'                         => ['save_files']
     ],
 
+    'home/API_navigation_cookie' => [
+        'access'                      => [],
+        'API'                         => ['navigation_cookie']
+    ],
+
 
 
     //todo перенести view create_application в ветку /home/application/
@@ -107,9 +112,11 @@ return [
         '/Classes/Navigation/'    => ['Navigation', 'NavigationParameters'],
         'ROOTcontrollers'         => ['header'],
         'ROOTviews'               => ['header'],
+        '/controllers/home/'      => ['main_header'],
+        'views'                   => ['main_header'],
         'controllers'             => ['navigation'],
         '/views/home/navigation/' => ['pagination'],
-        'views'                   => ['main_footer'],
+        '/views/home/%footer'     => ['main_footer'],
     ],
 
 

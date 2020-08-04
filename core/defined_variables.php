@@ -55,14 +55,18 @@ define('_FILE_TABLE_MAPPING', [1 => [1 => 'file_grbsTable',
 
 
 
+
 // Наименование столбцов в таблице БД, по которым можно сортировать указанное view
+// *** Данный константный массив валидируется в классе Navigation
 // Ключ - название view -> view_name из XML-схемы
 // Значение - массив, где ключ=значение -> название столбца в таблице БД
 //
 // view_1 - столбцы таблицы applications
 //
-define('_NAVIGATION_SORTING', ['view_1' => ['id'             => 'id',
-                                            'numerical_name' => 'numerical_name'
+define('_NAVIGATION_SORTING', ['view_1' => ['id' => ['description' => 'По id',
+                                                     'column_name' => 'id'],
+                                            'numerical_name' => ['description' => 'По наименованию',
+                                                                 'column_name' => 'numerical_name']
                                            ]
 ]);
 

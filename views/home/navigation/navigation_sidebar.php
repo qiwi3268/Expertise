@@ -1,35 +1,5 @@
 <?php $variablesTV = VariableTransfer::getInstance(); ?>
 
-<style>
-    .block{
-        border: #1c3959;
-        color: white;
-        margin-bottom: 10px;
-    }
-    .block__header{
-        background: #8e8e8e;
-    }
-    .block__section{
-        display: flex;
-        flex-direction: row;
-        background: #87c596;
-    }
-    .block__section_selected{
-        display: flex;
-        flex-direction: row;
-        background-color: #db5151;
-    }
-    .section__label{
-        text-align: center;
-    }
-    .section__counter{
-        font-weight: bold;
-    }
-
-
-</style>
-
-<div class="main-container">
     <div class="navigation">
 
         <div class="navigation__sidebar sidebar-navigation">
