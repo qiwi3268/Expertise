@@ -7,10 +7,6 @@ $variablesTV = VariableTransfer::getInstance();
 // (существуют страницы, в которых есть этот sidebar, но они не /home/navigation)
 $isNavigationPage = $variablesTV->getExistenceFlag('isNavigationPage%S');
 
-if(is_null($isNavigationPage)){
-    $isNavigationPage = false;
-}
-
 if($isNavigationPage){
     $userNavigation = $variablesTV->getValue('userNavigation');
 }else{
@@ -29,33 +25,33 @@ foreach($userNavigation as $block){
     $tmp_block = [];
     $tmp_block['label'] = $block['label'];
     
-    foreach($block['views'] as $view){
+    if(isset($block['views'])){
         
-        $tmp_section['label'] = $view['label'];
-        $tmp_section['ref'] = '/'._URN_."?b={$block['name']}&v={$view['name']}";
-        $tmp_section['counter'] = $view['show_counter'] ? $view['class_name']::getCount(Session::getUserId()) : false;
-        $tmp_section['is_selected'] = (($G_block == $block['name']) && ($G_view == $view['name'])) ? true : false;
-        $tmp_block['sections'][] = $tmp_section;
+        foreach($block['views'] as $view){
+        
+            $tmp_section['label'] = $view['label'];
+            $tmp_section['ref'] = '/'._URN_."?b={$block['name']}&v={$view['name']}";
+            $tmp_section['counter'] = $view['show_counter'] ? $view['class_name']::getCountByIdUser(Session::getUserId()) : false;
+            $tmp_section['is_selected'] = (($G_block == $block['name']) && ($G_view == $view['name'])) ? true : false;
+            $tmp_block['sections'][] = $tmp_section;
+        }
     }
     
-    if(!isset($block['refs'])){
-        $navigationBlocksTV[] = $tmp_block;
-        continue;
+    if(isset($block['refs'])){
+        
+        foreach($block['refs'] as $ref){
+        
+            $tmp_section['label'] = $ref['label'];
+            $tmp_section['ref'] = $ref['value'];
+            $tmp_section['counter'] = false;
+            $tmp_section['is_selected'] = ($ref['value'] == '/'._URN_) ? true : false;
+            $tmp_block['sections'][] = $tmp_section;
+        }
     }
     
-    foreach($block['refs'] as $ref){
-        
-        $tmp_section['label'] = $ref['label'];
-        $tmp_section['ref'] = $ref['value'];
-        $tmp_section['counter'] = false;
-        $tmp_section['is_selected'] = ($ref['value'] == '/'._URN_) ? true : false;
-        $tmp_block['sections'][] = $tmp_section;
-    }
     
     $navigationBlocksTV[] = $tmp_block;
 }
-
-//var_dump($navigationBlocksTV);
 
 $variablesTV->setValue('navigationBlocks', $navigationBlocksTV);
 

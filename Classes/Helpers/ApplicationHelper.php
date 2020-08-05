@@ -30,7 +30,7 @@ class ApplicationHelper{
     
         $roles = Session::getUserRoles();
         
-        if(in_array(_ROLE['APP'], $roles)) return ['b' => 'block_1', 'v' => 'view_2'];
+        if(in_array(_ROLE['APP'], $roles)) return ['b' => 'block_2', 'v' => 'view_2'];
     }
 
 

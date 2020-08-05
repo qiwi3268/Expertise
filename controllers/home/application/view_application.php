@@ -102,8 +102,23 @@ if($variablesTV->getExistenceFlag('type_of_object')){
     $variablesTV->setValue('documentation_files_in_structure', $filesInStructure);
 }
 
+
 $test = shell_exec('lala 2>&1');
 //var_dump($test);
+
+
+$options = ['options' => ['min_range' => 25,
+                          'max_range' => 75
+           ]
+];
+$test = "24";
+
+$test2 = filter_var($test, FILTER_VALIDATE_INT, $options);
+var_dump($test2);
+
+
+
+
 
 
 

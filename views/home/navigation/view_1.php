@@ -12,7 +12,12 @@
                 </div>
                 <div class="navigation-table__sort-header">
                     <?php foreach ($variablesTV->getValue('navigationSorting') as $category): ?>
-                        <span class="navigation-table__category" data-sort_name="<?= $category['sort_name'] ?>" <?php if ($category['is_selected'] == 'true'): ?>data-sort_type="<?= $category['sort_type'] ?>"<?php endif; ?>><?= $category['description'] ?></span>
+                        <span class="navigation-table__category" data-sort_name="<?= $category['sort_name'] ?>"
+                            <?php if ($category['is_selected']): ?>
+                                data-sort_type="<?= $category['sort_type'] ?>"
+                            <?php endif; ?>>
+                            <?= $category['description'] ?>
+                        </span>
                     <?php endforeach; ?>
                 </div>
             </div>

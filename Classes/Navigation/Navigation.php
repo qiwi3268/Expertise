@@ -6,7 +6,7 @@
 class Navigation{
     
     // Соответствие Ключ = роль => Значение = перечисление блоков из XML-схемы навигации
-    public const BLOCKS = [_ROLE['APP'] => ['block_1', 'block_2'],
+    public const BLOCKS = [_ROLE['APP'] => ['block_1', 'block_2', 'block_3'],
     
     ];
     
@@ -22,8 +22,11 @@ class Navigation{
             throw new Exception("Ошибка при инициализации XML-схемы навигации");
         }
         
-        // Валидации схемы
+        // Валидации структуры схемы
         $this->validateNavigationXML($data);
+        
+        // Проверка уникальности значения аттрибута name
+        $this->checkNameUniqueness($data);
         
         //todo
         $userRoles = ['APP', 'ADM', 'EXP'];
@@ -67,7 +70,11 @@ class Navigation{
             throw new Exception("В XML-схеме навигации отсутствуют блоки: $msg");
         }
         
+        // Валидация значений схемы
         $this->validateUserNavigation();
+        
+        // Валидация константного массива _NAVIGATION_SORTING
+        $this->validateNavigationSorting();
     }
     
     
@@ -103,7 +110,7 @@ class Navigation{
     }
     
     
-    // Предназначен для валидации СТРКУТУРЫ XML-схемы согласно принятым правилам:
+    // Предназначен для валидации СТРКУТУРЫ XML-схемы согласно правилам:
     // <block />
     //    name get-параметр b
     //    label имя для отображения блока
@@ -153,6 +160,36 @@ class Navigation{
     }
     
     
+    // Предназначен для проверки уникальности имен в XML схеме согласно правилам:
+    // name всех <block /> должны быть уникальны
+    // name всех <view /> внутри <block /> должны быть уникальны
+    // Принимает параметры-----------------------------------
+    // XML SimpleXMLElement : XML-схема навигации
+    //
+    private function checkNameUniqueness(SimpleXMLElement $XML):void {
+    
+        $blockNames = [];
+        foreach($XML->block as $block){
+            
+            $blockName = (string)$block['name'];
+            $blockNames[] = $blockName;
+            
+            $viewNames = [];
+            foreach($block->view as $view){
+                $viewNames[] = (string)$view['name'];
+            }
+    
+            foreach(array_count_values($viewNames) as $name => $count){
+                if($count > 1) throw new Exception("В узле <block /> name: '{$blockName} присутствуют узлы <view /> с одинаковыми атрибутами name: '{$name}'");
+            }
+        }
+
+        foreach(array_count_values($blockNames) as $name => $count){
+            if($count > 1) throw new Exception("Присутствуют узлы <block /> с одинаковыми аттрибутами name: '{$name}'");
+        }
+    }
+    
+    
     // Предназначен для проверки наличия обязательных аттрибутов в узле
     // Принимает параметры-----------------------------------
     // node     SimpleXMLElement : проверяемый узел
@@ -171,7 +208,7 @@ class Navigation{
         // Строка для дампа ошибок берется сейчас, т.к. в цикле удаляются элементы массива
         $string_nodeAttributes = implode(', ', $nodeAttributes);
         
-        $entryCount = 0; // Счетчик требуемых аттрибутов среди имеющихся в узле
+        $entryCount = 0;                               // Счетчик требуемых аттрибутов среди имеющихся в узле
         $countNodeAttributes = count($nodeAttributes); // Счетчик аттрибутов в узле
         
         foreach($requiredAttributes as $requiredAttribute){
@@ -228,55 +265,83 @@ class Navigation{
         }
         
         foreach($this->userNavigation as $block){
-            
-            foreach($block['views'] as ['name' => $name, 'class_name' => $class_name, 'view_name' => $view_name, 'show_counter' => $show_counter]){
-                
-                $nodeName = "'{$block['name']}'->'{$name}'";
-                
-                // Валидация подключаемого класса ----------------------------------------------------------
-                $class_path = _ROOT_."/Classes/Navigation/{$class_name}.php";
-                
-                // Проверка существования файла класса
-                if(!file_exists($class_path)){
-                    throw new Exception("Файл класса в узле: $nodeName по пути: '$class_path' не существует");
-                }
-                require_once $class_path;
-                
-                // Проверка существования класса
-                if(!class_exists($class_name)){
-                    throw new Exception("Класс: '{$class_name}' в узле: $nodeName не существует");
-                }
-                
-                $parents = class_parents($class_name, false);
-                
-                if(!$parents || !isset($parents[$abstract_class_name])){
-                    throw new Exception("Класс: '{$class_name}' в узле: $nodeName не наследуется от абстрактного класса: '{$abstract_class_name}'");
-                }
     
+            if(isset($block['views'])){
                 
-                // Валидация подключаемой view -------------------------------------------------------------
-                $view_path = _ROOT_."/views/home/navigation/{$view_name}.php";
-                // Проверка существования файла view
-                if(!file_exists($view_path)){
-                    throw new Exception("Файл view в узле: $nodeName по пути: '$view_path' не существует");
-                }
-    
-                
-                // Валидация флага отображения счетчика ----------------------------------------------------
-                $show_counter_valid = is_numeric($show_counter) && (($show_counter == 0) || ($show_counter == 1));
-                if(!$show_counter_valid){
-                    throw new Exception("Аттрибут show_counter со значением: '{$show_counter}' в узле: $nodeName не равен 0 или 1");
+                foreach($block['views'] as ['name' => $name, 'class_name' => $class_name, 'view_name' => $view_name, 'show_counter' => $show_counter]){
+        
+                    $nodeName = "'{$block['name']}'->'{$name}'";
+        
+                    // Валидация подключаемого класса ----------------------------------------------------------
+                    $class_path = _ROOT_."/Classes/Navigation/{$class_name}.php";
+        
+                    // Проверка существования файла класса
+                    if(!file_exists($class_path)){
+                        throw new Exception("Файл класса в узле: $nodeName по пути: '$class_path' не существует");
+                    }
+                    require_once $class_path;
+        
+                    // Проверка существования класса
+                    if(!class_exists($class_name)){
+                        throw new Exception("Класс: '{$class_name}' в узле: $nodeName не существует");
+                    }
+        
+                    $parents = class_parents($class_name, false);
+        
+                    if(!$parents || !isset($parents[$abstract_class_name])){
+                        throw new Exception("Класс: '{$class_name}' в узле: $nodeName не наследуется от абстрактного класса: '{$abstract_class_name}'");
+                    }
+                    
+                    // Валидация подключаемой view -------------------------------------------------------------
+                    $view_path = _ROOT_."/views/home/navigation/{$view_name}.php";
+                    // Проверка существования файла view
+                    if(!file_exists($view_path)){
+                        throw new Exception("Файл view в узле: $nodeName по пути: '$view_path' не существует");
+                    }
+        
+                    // Валидация флага отображения счетчика ----------------------------------------------------
+                    $show_counter_valid = is_numeric($show_counter) && (($show_counter == 0) || ($show_counter == 1));
+                    if(!$show_counter_valid){
+                        throw new Exception("Аттрибут show_counter со значением: '{$show_counter}' в узле: $nodeName не равен 0 или 1");
+                    }
                 }
             }
             
-            if(!isset($block['refs'])) continue;
-            
-            foreach($block['refs'] as ['value' => $value]){
-
-                // Валидация ссылки на указанную страницу --------------------------------------------------
-                if((mb_strpos($value, 'http') === false && ($value[0] != '/'))){
-                    throw new Exception("Внутренняя ссылка: '{$value}' в блоке: '{$block['label']}' на внутренний ресурс должна начинаться с символа '/'");
+            if(isset($block['refs'])){
+                
+                foreach($block['refs'] as ['value' => $value]){
+        
+                    // Валидация ссылки на указанную страницу --------------------------------------------------
+                    if((mb_strpos($value, 'http') === false && ($value[0] != '/'))){
+                        throw new Exception("Внутренняя ссылка: '{$value}' в блоке: '{$block['label']}' на внутренний ресурс должна начинаться с символа '/'");
+                    }
                 }
+            }
+        }
+    }
+    
+    
+    // Предназначен для валидации константного массива _NAVIGATION_SORTING
+    // Все view, имеющиеся в навигационном массиве пользователя должны быть объявлены в массиве _NAVIGATION_SORTING
+    //
+    private function validateNavigationSorting():void {
+        
+        // Формирование списка уникальных (не повторяющихся view пользователя)
+        $uniqueViews= [];
+        
+        foreach($this->userNavigation as $block){
+            
+            if(isset($block['views'])){
+                foreach($block['views'] as ['view_name' => $view_name]){
+                    $uniqueViews[$view_name] = $view_name;
+                }
+            }
+        }
+        
+        // Проверка существования каждой view в константном массиве
+        foreach($uniqueViews as $view_name){
+            if(!isset(_NAVIGATION_SORTING[$view_name])){
+                throw new Exception("В константном массиве _NAVIGATION_SORTING отсутствует объявление view: '{$view_name}'");
             }
         }
     }

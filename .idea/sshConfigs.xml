@@ -4,7 +4,7 @@
     <configs>
       <sshConfig authType="PASSWORD" host="192.168.1.251" id="b0d09bc5-e59f-4716-8a2a-6243b3530cc9" port="22" customName="Expertise" nameFormat="CUSTOM" username="root" />
       <sshConfig authType="PASSWORD" host="192.168.1.251" id="c2d02a33-7d88-4fdb-a9d0-101a6e3f20fd" port="22" customName="Expertise" nameFormat="CUSTOM" />
-      <sshConfig authType="PASSWORD" host="192.168.1.251" id="1d61847d-2b7f-442f-a937-ef80de01757e" port="22" customName="Expertise" nameFormat="CUSTOM" username="root" />
+      <sshConfig authType="PASSWORD" host="192.168.1.251" id="e89f12c5-916c-4624-9741-9471afd30dae" port="22" customName="Expertise" nameFormat="CUSTOM" username="root" />
     </configs>
   </component>
 </project>

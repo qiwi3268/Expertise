@@ -36,6 +36,11 @@ return [
         '/Classes/'         => ['FilesTableMapping'],
         'API'               => ['file_needs_setter']
     ],
+    
+    'csp' => [
+        '/core/Classes/' => ['CSP'],
+        'controllers'    => ['csp']
+    ],
 
     //-------------------------------
 
@@ -92,6 +97,7 @@ return [
         '/views/home/%footer' => ['main_footer'],
     ],
 
+    //todo на эту мусорку не обращать внимание
     'home/application/edit'  => [
         'access'             => [],
         'ROOTClasses'          => ['VariableTransfer'],

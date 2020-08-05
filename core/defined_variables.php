@@ -63,8 +63,8 @@ define('_FILE_TABLE_MAPPING', [1 => [1 => 'file_grbsTable',
 //
 // view_1 - столбцы таблицы applications
 //
-define('_NAVIGATION_SORTING', ['view_1' => ['id' => ['description' => 'По id',
-                                                     'column_name' => 'id'],
+define('_NAVIGATION_SORTING', ['view_1' => ['id'             => ['description' => 'По id',
+                                                                 'column_name' => 'id'],
                                             'numerical_name' => ['description' => 'По наименованию',
                                                                  'column_name' => 'numerical_name']
                                            ]
