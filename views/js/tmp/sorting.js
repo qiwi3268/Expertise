@@ -38,7 +38,17 @@ document.addEventListener('DOMContentLoaded', () => {
    let sort_buttons = sort_header.querySelectorAll('.navigation-table__category');
    sort_buttons.forEach(button => {
       button.addEventListener('click', () => {
+         /*let sort_icon = document.createElement('I');
+         if (button.dataset.sort_type === 'ASC') {
+            button.dataset.sort_type = 'DESC';
+            sort_icon.classList.add('navigation-table__sort-icon', 'fas', 'fa-caret-up');
+         } else {
+
+         }*/
+
          button.dataset.sort_type = button.dataset.sort_type === 'ASC' ? 'DESC' : 'ASC';
+
+
 
          let form_data = getNavigationTableSortFormData(button);
 

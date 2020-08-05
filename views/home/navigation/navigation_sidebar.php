@@ -7,7 +7,8 @@
                 <div class="sidebar-navigation__block">
                     <div class="sidebar-navigation__header"><?= $block['label'] ?></div>
                     <?php foreach ($block['sections'] as $section): ?>
-                        <div class="sidebar-navigation__section" data-selected="<?= $section['is_selected'] ?>">
+                        <div class="sidebar-navigation__section
+                        <?php if ($section['is_selected']): ?>selected<?php endif; ?>">
                             <a class="sidebar-navigation__label" href="<?= $section['ref'] ?>"><?= $section['label'] ?></a>
                             <?php if ($section['counter'] !== false): ?>
                                 <div class="sidebar-navigation__counter">
