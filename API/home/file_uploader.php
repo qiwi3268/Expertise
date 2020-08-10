@@ -3,11 +3,7 @@
 
 // API предназначен для загрузке файлов в контексте заявления
 //
-<<<<<<< HEAD
 // API result:
-=======
-//API result:
->>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb
 //	1  - Нет обязательных параметров POST запроса
 //       {result, error_message : текст ошибки}
 //  2  - todo забронировано под проверку на доступ к заявлению
@@ -47,17 +43,8 @@
 
 
 // Проверка наличия обязательных параметров
-<<<<<<< HEAD
 if(!checkParamsPOST('id_application', 'mapping_level_1', 'mapping_level_2')){
     
-=======
-<<<<<<<< HEAD:API/home/file_uploader.php
-if(!checkParamsPOST('id_application', 'mapping_level_1', 'mapping_level_2')){
-    
-========
-if(!checkParamsPOST(_PROPERTY_IN_APPLICATION['id_application'], 'mapping_level_1', 'mapping_level_2')){
->>>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb:API/file_uploader.php
->>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb
     exit_missingParamsPOST();
 // Проверка наличия параметра id_structure_node для 2-го уровня _FILE_TABLE_MAPPING
 }elseif($_POST['mapping_level_1'] == 2 && !checkParamsPOST('id_structure_node')){

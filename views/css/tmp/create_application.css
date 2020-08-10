@@ -331,6 +331,8 @@
    display: flex;
    align-items: center;
    padding: 15px 10px;
+   font-family: 'Roboto Condensed', sans-serif;
+
 }
 
 .body-card__message-icon {
@@ -340,7 +342,7 @@
 }
 
 .body-card__message-text {
-   font-size: 16px;
+   color: #343a40;
    cursor: default;
 }
 

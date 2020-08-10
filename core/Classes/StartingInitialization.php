@@ -56,12 +56,8 @@ class StartingInitialization{
     //todo после разработки системы callback'ов - перебрать данный метод
     public function requireWebPack():void {
         require_once "{$this->rootPath}/core/Classes/Session.php";
-<<<<<<< HEAD
         require_once "{$this->rootPath}/core/Classes/Cookie.php";
         require_once "{$this->rootPath}/core/Classes/Access.php"; //todo
-=======
-        require_once "{$this->rootPath}/core/Classes/Access.php";
->>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb
         require_once "{$this->rootPath}/core/Classes/Route.php";
     }
 }

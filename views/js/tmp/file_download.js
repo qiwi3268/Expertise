@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
       file_icon.classList.add('files__icon', 'fas', getFileIconClass(file.name));
       file_info.appendChild(file_icon);
 
-      let file_name = document.createElement('DIV');
+      let file_name = document.createElement('SPAN');
       file_name.classList.add('files__name');
       file_name.innerHTML = file.name;
       file_info.appendChild(file_name);

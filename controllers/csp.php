@@ -12,7 +12,7 @@ foreach($files as $file){
     
     //echo '--------------------------------------------';
     
-    //var_dump($path);
+    var_dump($path);
     $CSP->validateInternal($path);
     
 }

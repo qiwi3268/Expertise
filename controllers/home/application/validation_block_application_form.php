@@ -54,7 +54,6 @@ if($variablesTV->getExistenceFlag('object_name') &&
 }else{
     $variablesTV->setValue('block2_completed', false);
 }
-<<<<<<< HEAD
 
 
 // Документация -------------------------------------------------- block77_completed //todo со временем преименовать название блока
@@ -74,5 +73,3 @@ if($variablesTV->getExistenceFlag('type_of_object')){
     }
 }
 $variablesTV->setValue('block77_completed', $tmpResult);
-=======
->>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb

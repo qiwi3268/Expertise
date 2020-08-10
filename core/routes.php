@@ -36,6 +36,11 @@ return [
         '/Classes/'         => ['FilesTableMapping'],
         'API'               => ['file_needs_setter']
     ],
+    
+    'csp' => [
+        '/core/Classes/' => ['CSP'],
+        'controllers'    => ['csp']
+    ],
 
     //-------------------------------
 
@@ -54,6 +59,11 @@ return [
     'home/API_save_files' => [
         'access'                      => [],
         'API'                         => ['save_files']
+    ],
+
+    'home/API_navigation_cookie' => [
+        'access'                      => [],
+        'API'                         => ['navigation_cookie']
     ],
 
 
@@ -87,6 +97,7 @@ return [
         '/views/home/%footer' => ['main_footer'],
     ],
 
+    //todo на эту мусорку не обращать внимание
     'home/application/edit'  => [
         'access'             => [],
         'ROOTClasses'          => ['VariableTransfer'],
@@ -103,8 +114,15 @@ return [
 
 
     'home/navigation' => [
-        'ROOTClasses' => ['VariableTransfer', 'Navigation'],
-        'controllers' => ['navigation']
+        'ROOTClasses'             => ['VariableTransfer', 'Pagination'],
+        '/Classes/Navigation/'    => ['Navigation', 'NavigationParameters'],
+        'ROOTcontrollers'         => ['header'],
+        'ROOTviews'               => ['header'],
+        '/controllers/home/'      => ['main_header'],
+        'views'                   => ['main_header'],
+        'controllers'             => ['navigation'],
+        '/views/home/navigation/' => ['pagination'],
+        '/views/home/%footer'     => ['main_footer'],
     ],
 
 

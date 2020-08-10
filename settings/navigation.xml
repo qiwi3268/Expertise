@@ -2,7 +2,6 @@
 
 
     <!-- Блок для заявителя -->
-<<<<<<< HEAD
     <block name="block_1" label="Доступные действия">
         <ref label="Создать новое заявление" value="/home/application/create" />
     </block>
@@ -25,12 +24,6 @@
         <ref label="Ссылочка на документацию" value="/tmp/documentation_structure"/>
         <view name="view_3" label="Мои заявления2" class_name="block_1_type_2" view_name="view_1" show_counter="1" />
         <view name="view_4" label="Мои заявления3" class_name="block_1_type_2" view_name="view_1" show_counter="1" />
-=======
-    <block name="block_1" label="Мои документы">
-        <view name="view_1" label="Мои текущие" class_name="block_1_type_1" view_name="view_1" show_counter="1" />
-        <view name="view_2" label="Мои заявления" class_name="block_1_type_2" view_name="view_1" show_counter="1" />
-        <ref label="Ссылочка на документацию" value="/tmp/documentation_structure"/>
->>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb
     </block>
 
 
