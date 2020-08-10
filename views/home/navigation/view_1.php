@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- view отображения заявления в табличной форме -->
 <?php $variablesTV = VariableTransfer::getInstance(); ?>
 
@@ -94,3 +95,6 @@
 
 </div>
 <div class="empty-block"></div>
+=======
+
+>>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb

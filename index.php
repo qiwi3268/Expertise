@@ -47,19 +47,12 @@ $route->checkAccess();
 
 define('_URN_', $route->getURN());
 
-$benchmark = [];
+foreach($route->getRequiredFiles() as $file){
 
-foreach($route->getRequiredFiles() as $routeRequiredFile){
-    
-    if(!file_exists($routeRequiredFile['path'])){
-        throw new RouteException("Отсутствует {$routeRequiredFile['type']} файл по пути: {$routeRequiredFile['path']}");
+    if(!file_exists($file['path'])){
+        throw new RouteException("Отсутствует {$file['type']} файл по пути: {$file['path']}");
     }
-    
-    $benchmarkTimeStart = microtime(true);
-    require_once $routeRequiredFile['path'];
-    $benchmark[] = microtime(true) - $benchmarkTimeStart;
+    require_once $file['path'];
 };
 
 DataBase::closeDB();
-
-$benchmark['sum'] = array_sum($benchmark);

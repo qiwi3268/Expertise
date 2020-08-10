@@ -3,28 +3,56 @@
 
 // Данная страница представляет собой мини-движок по формированию навигационных страниц
 // Подключение sidebar'а и view происходит напрямую, поскольку заранее неизвестно, какая view нужна
+<<<<<<< HEAD
 $variablesTV = VariableTransfer::getInstance();
 
 // Получение параметров навигационной страницы
 list('b' => $G_block, 'v' => $G_view) = checkParamsGET('b', 'v') ? $_GET : ApplicationHelper::getDefaultNavigationPage();
 $G_page = checkParamsGET('page') ? clearHtmlArr($_GET)['page'] : 1;
+=======
+
+if(checkParamsGET('b', 'v')){
+    
+    $G_block = $_GET['b'];
+    $G_view = $_GET['v'];
+}else{
+    // Если отсутствуют параметры в GET-запросе, берем дефолтные для этого пользователя
+    $params = ApplicationHelper::getDefaultNavigationPage();
+    $G_block = $params['b'];
+    $G_view = $params['v'];
+}
+
+var_dump($G_block);
+var_dump($G_view);
+
+>>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb
 
 $Navigation = new Navigation(Session::getUserRoles());
 $userNavigation = $Navigation->getUserNavigation();
 
+<<<<<<< HEAD
+=======
+//var_dump($userNavigation);
+>>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb
 
 // Проверка на то, что указанная в GET-параметрах навигационная страница существует в навигации пользователя
 $blockIsset = false;
 $viewIsset = false;
 
+<<<<<<< HEAD
 
 foreach($userNavigation as $block){
     
     // Находим выбранной блок
+=======
+foreach($userNavigation as $block){
+    
+>>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb
     if($block['name'] != $G_block) continue;
     
     $blockIsset = true;
     
+<<<<<<< HEAD
     if(isset($block['views'])){
         
         foreach($block['views'] as $view){
@@ -35,6 +63,14 @@ foreach($userNavigation as $block){
             $viewIsset = true;
             break 2;
         }
+=======
+    foreach($block['views'] as $view){
+        
+        if($view['name'] != $G_view) continue;
+        
+        $viewIsset = true;
+        break 2;
+>>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb
     }
     break;
 }
@@ -48,6 +84,7 @@ if(!$blockIsset || !$viewIsset){
 }
 
 
+<<<<<<< HEAD
 $path_sidebar_controller = _ROOT_.'/controllers/home/navigation_sidebar.php';
 $path_sidebar_view = _ROOT_.'/views/home/navigation/navigation_sidebar.php';
 
@@ -145,3 +182,22 @@ $variablesTV->setValue('viewName', $viewName);
 
 // Подключение view
 require_once _ROOT_."/views/home/navigation/{$viewName}.php";
+=======
+$path_controller = _ROOT_.'/controllers/home/navigation_sidebar.php';
+$path_view = _ROOT_.'/views/home/navigation_sidebar.php';
+
+if(!file_exists($path_controller)){
+    throw new Exception("Отсутствует controller navigation_sidebar по пути: $path_controller");
+}
+if(!file_exists($path_view)){
+    throw new Exception("Отсутствует view navigation_sidebar по пути: $path_view");
+}
+
+// Прокидываем переменные в navigation_sidebar
+$variablesTV = VariableTransfer::getInstance();
+$variablesTV->setExistenceFlag('isNavigationPage', true);
+$variablesTV->setValue('userNavigation', $userNavigation);
+
+require_once $path_controller;
+
+>>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb

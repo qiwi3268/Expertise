@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+<<<<<<< HEAD
    initializeFileBlocks();
 });
 
@@ -12,11 +13,25 @@ function initializeFileBlocks() {
          handleActionButtons(files);
          files.classList.add('filled');
       }
+=======
+   initializeFileActions();
+});
+
+function initializeFileActions() {
+   let action_blocks = document.querySelectorAll('.files__actions');
+
+   action_blocks.forEach(actions => {
+      handleActionButton(actions);
+>>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb
    });
 
 }
 
+<<<<<<< HEAD
 function handleActionButtons(actions) {
+=======
+function handleActionButton(actions) {
+>>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb
    let unload_button = actions.querySelector('.files__unload');
    if (unload_button) {
       addUnloadButton(unload_button);
@@ -49,12 +64,39 @@ function addDeleteButton(delete_button) {
    let files = file.closest('.files');
 
    delete_button.addEventListener('click', () => {
+<<<<<<< HEAD
       deleteFile(file);
       removeFileElement(file, files);
    });
 }
 
 function deleteFile(file) {
+=======
+      putFileToDelete(file);
+      removeFileElement(file, files);
+   });
+
+}
+
+function isDocumentationFile(file) {
+   return file.closest('[data-id_structure_node]');
+}
+
+function removeFileElement(file, files) {
+   file.remove();
+
+   if (!files.querySelector('.files__item')) {
+      files.classList.remove('filled');
+
+      let parent_select = files.previousElementSibling;
+      if (parent_select && parent_select.classList.contains('modal-file')) {
+         parent_select.classList.remove('filled');
+      }
+   }
+}
+
+function putFileToDelete(file) {
+>>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb
    let parent_row = file.closest('[data-mapping_level_1]');
    let id_file = file.dataset.id;
 
@@ -71,6 +113,7 @@ function addUnloadButton(unload_button) {
    let file = unload_button.closest('.files__item');
 
    unload_button.addEventListener('click', () => {
+<<<<<<< HEAD
    let form_data = createUnloadFileFormData(file);
 
    XHR('post', '/home/API_file_checker', form_data, null, 'json')
@@ -88,6 +131,25 @@ function addUnloadButton(unload_button) {
       .catch(error => {
          console.error('XHR error: ', error);
       });
+=======
+      let form_data = createUnloadFileFormData(file);
+
+      XHR('post', '/home/API_file_checker', form_data, null, 'json')
+         .then(response => {
+
+            switch (response.result) {
+               case 9:
+                  location.href = getUnloadFileURN(response);
+                  break;
+               default:
+                  console.log(response);
+            }
+
+         })
+         .catch(error => {
+            console.error('XHR error: ', error);
+         });
+>>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb
    });
 
 }
@@ -110,6 +172,7 @@ function getUnloadFileURN(check_result) {
    return `/home/file_unloader?fs_name=${check_result.fs_name}&file_name=${check_result.file_name}`;
 }
 
+<<<<<<< HEAD
 function removeFileElement(file, files) {
    file.remove();
 
@@ -122,6 +185,9 @@ function removeFileElement(file, files) {
       }
    }
 }
+=======
+
+>>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb
 
 
 

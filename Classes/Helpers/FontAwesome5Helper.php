@@ -2,6 +2,7 @@
 
 
 class FontAwesome5Helper{
+<<<<<<< HEAD
     
     
     // Предназначен для установки файловой иконки в свойство file_icon
@@ -29,4 +30,7 @@ class FontAwesome5Helper{
         unset($file);
     }
     
+=======
+
+>>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb
 }

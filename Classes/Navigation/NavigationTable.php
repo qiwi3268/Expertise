@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 // Абстрактный класс предназначен для получения количества строк в выборке (для навигационного сайдбара) и ассоциативного
 // массива для отображения данных во view
 //
@@ -51,4 +52,9 @@ abstract class NavigationTable{
     
     // Абстрактный метод для получения динамической секции FROM, WHERE
     abstract static protected function getSection():string;
+=======
+
+abstract class NavigationTable{
+
+>>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb
 }
