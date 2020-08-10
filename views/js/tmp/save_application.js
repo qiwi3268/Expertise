@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
    save_button.addEventListener('click', () => {
-      FileNeeds.putFilesToSave();
+      FileNeeds.putFilesToFileNeeds();
 
       console.log(FileNeeds.getFileNeeds());
 

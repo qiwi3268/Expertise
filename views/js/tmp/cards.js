@@ -9,21 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
    block_dependencies = JSON.parse(document.querySelector('.block-dependencies').value);
 
    handleClearFieldButtons();
-
-
-   // TODO вынести отдельно
-   window.addEventListener('resize', () => {
-      let cards = document.querySelectorAll('.card-form__body');
-
-      cards.forEach(card_body => {
-         if (card_body.style.maxHeight) {
-            changeParentCardMaxHeight(card_body);
-         }
-      });
-
-   });
 });
 
+// Предназначен для обработки кнопок удаления значений полей
 function handleClearFieldButtons() {
    let clear_buttons = document.querySelectorAll('.body-card__icon-clear');
 
@@ -90,6 +78,9 @@ function handleDependentBlocks(parent_input) {
    changeParentCardMaxHeight(parent_input);
 }
 
+// Предназначен для очищения полей в блоке
+// Принимает параметры-------------------------------
+// block         Element : очищаемый блок
 function clearBlock(block) {
    let dependent_fields = block.querySelectorAll('.field');
    dependent_fields.forEach(field => {

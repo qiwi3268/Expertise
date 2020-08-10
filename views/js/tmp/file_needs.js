@@ -1,10 +1,12 @@
+// Предназначен для проставления меток к файлам для сохранения и удаления
 class FileNeeds {
    static file_needs = {
       to_save: [],
       to_delete: []
    };
 
-   static putFilesToSave() {
+   // Предназначен для добавления файлов для сохранения и удаления во всех блоках с файлами
+   static putFilesToFileNeeds() {
       let file_blocks = document.querySelectorAll('.files');
       let parent_field;
       let is_active;
@@ -16,16 +18,20 @@ class FileNeeds {
             is_active = parent_field.dataset.inactive !== 'true';
 
             files = parent_field.querySelectorAll('.files__item');
+            // Если блок не скрыт, сохраняем все файлы в нем, иначе - удаляем
             if (is_active) {
                FileNeeds.saveFiles(files, parent_field);
             } else {
                FileNeeds.deleteFiles(files, parent_field, file_block);
             }
          }
-
       });
    }
 
+   // Предназначен для добавления файлов для сохранения
+   // Принимает параметры-------------------------------
+   // files            Array[Element] : массив с элементами файлов
+   // parent_field     Array[Element] : родительское поле блока с файлами
    static saveFiles(files, parent_field) {
       files.forEach(file => {
          FileNeeds.putFileToSave(
@@ -36,6 +42,19 @@ class FileNeeds {
          );
          file.dataset.saved = 'true';
       });
+   }
+
+   // Предназначен для добавления файла для сохранения
+   // Принимает параметры-------------------------------
+   // id_file         string : id файла
+   // mapping_         string : id файла
+   static putFileToSave(id_file, mapping_level_1, mapping_level_2, file_item) {
+      let is_file_saved = file_item.dataset.saved === 'true';
+      if (!is_file_saved) {
+         let to_save = FileNeeds.file_needs.to_save;
+         let file_data = FileNeeds.getFileData(id_file, mapping_level_1, mapping_level_2);
+         to_save.push(file_data);
+      }
    }
 
    static deleteFiles(files, parent_field, file_block) {
@@ -58,14 +77,7 @@ class FileNeeds {
       return JSON.stringify(FileNeeds.file_needs);
    }
 
-   static putFileToSave(id_file, mapping_level_1, mapping_level_2, file_item) {
-      let is_file_saved = file_item.dataset.saved === 'true';
-      if (!is_file_saved) {
-         let to_save = FileNeeds.file_needs.to_save;
-         let file_data = FileNeeds.getFileData(id_file, mapping_level_1, mapping_level_2);
-         to_save.push(file_data);
-      }
-   }
+
 
    static putFileToDelete(id_file, mapping_level_1, mapping_level_2, file_item) {
       let is_file_saved = file_item.dataset.saved === 'true';
