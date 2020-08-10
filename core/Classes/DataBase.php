@@ -12,7 +12,7 @@ class DataBase{
     //
     static public function constructDB(string $dbName){
 
-        $allConfig = require(_ROOT_.'/core/dbConfig.php');
+        $allConfig = require_once('/var/www/html/core/dbConfig.php');
         $config = $allConfig[$dbName];
 
         self::$mysqli = new mysqli($config['host'],
@@ -21,7 +21,7 @@ class DataBase{
                                    $config['dbname']);
 
         if(self::$mysqli->connect_error){
-            die('Ошибка подключения ('.self::$mysqli->connect_errno.') '.self::$mysqli->connect_error);
+            throw new DataBaseException('Ошибка подключения к базе данных: '.self::$mysqli->connect_errno, self::$mysqli->connect_error);
         }
     }
 

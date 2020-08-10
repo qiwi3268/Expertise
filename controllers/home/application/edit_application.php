@@ -3,20 +3,60 @@
 
 $variablesTV = VariableTransfer::getInstance();
 
-$applicationId = $_GET[_PROPERTY_IN_APPLICATION['id_application']];
+$applicationId = $_GET['id_application'];
+$applicationAssoc = ApplicationsTable::getAssocById($applicationId);
 
-$applicationAssoc = ApplicationsTable::getAssocByIdForEdit($applicationId);
-
-$appNumName = $applicationAssoc[_COLUMN_NAME_IN_APPLICATIONS_TABLE['numerical_name']];
-
-$variablesTV->setValue('applicationNumericalName', "ЗАЯВЛЕНИЕ НА ЭКСПЕРТИЗУ $appNumName");
-
-$variablesTV->setValue('applicationId', $applicationId);
+//var_dump($applicationAssoc);
 
 
 // -----------------------------------------------------------------------------------------------------------------
 // Зона заполнения данных анкеты singleton'а
 // -----------------------------------------------------------------------------------------------------------------
+
+$miscNames = MiscInitialization::getMiscNames();
+
+$applicationAssocTV = $applicationAssoc;
+
+// Преобразование дат к строкам todo тоже переделать
+if(!is_null($applicationAssocTV['date_planning_documentation_approval'])){
+    $applicationAssocTV['date_planning_documentation_approval'] = GetDdMmYyyyDate($applicationAssocTV['date_planning_documentation_approval']);
+}
+if(!is_null($applicationAssocTV['date_GPZU'])){
+    $applicationAssocTV['date_GPZU'] = GetDdMmYyyyDate($applicationAssocTV['date_GPZU']);
+}
+if(!is_null($applicationAssocTV['date_finish_building'])){
+    $applicationAssocTV['date_finish_building'] = GetDdMmYyyyDate($applicationAssocTV['date_finish_building']);
+}
+
+
+// Заполнение сохраненных в заявлении данных
+foreach($applicationAssocTV as $property => $value){
+    
+    if(is_null($value)){
+    
+        $variablesTV->setExistenceFlag($property, false);
+        continue;
+    }
+    
+    $variablesTV->setExistenceFlag($property, true);
+    $variablesTV->setValue($property, $value);
+}
+
+
+$miscInitialization = new MiscInitializationEditForm($applicationAssoc);
+
+// Заполнение одиночных справочников
+foreach($miscInitialization->getSingleMiscsIncludeInactive() as $miscName => $misc){
+    $variablesTV->setValue($miscName, $misc);
+}
+
+// Заполнение зависимых справочников
+foreach($miscInitialization->getDependentMiscsIncludeInactive() as $miscName => $mainMiscIds){
+    $variablesTV->setValue($miscName, json_encode($mainMiscIds));
+}
+
+
+
 
 // Цель обращения -----------------------------------------------------------------
 //
@@ -47,7 +87,7 @@ if(!is_null($expertiseSubjects)){
     
     $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['expertise_subjects'], true);
     $variablesTV->setValue(_PROPERTY_IN_APPLICATION['expertise_subjects'], $tmpNames);
-    $variablesTV->setValue(_COLUMN_NAME_IN_APPLICATIONS_TABLE['JSON_id_expertise_subjects'], json_encode($tmpIds));
+    //$variablesTV->setValue(_COLUMN_NAME_IN_APPLICATIONS_TABLE['JSON_id_expertise_subjects'], json_encode($tmpIds));
 }else{
     $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['expertise_subjects'], false);
 }

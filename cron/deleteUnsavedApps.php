@@ -1,7 +1,7 @@
 <?php
 
 
-require_once './initialization.php';
+//require_once './initialization.php';
 
 file_put_contents(_ROOT_.'/logs/cron/deleteUnsavedApps.log', 'я работаю'."\n", FILE_APPEND);
 

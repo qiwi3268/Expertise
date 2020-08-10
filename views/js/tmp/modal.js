@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function getModalBySelect(select) {
    let modal;
    let modal_name;
-   let parent_row = select.closest('.body-card__row');
+   let parent_row = select.closest('.field');
 
    modal_name = parent_row.dataset.row_name;
 
@@ -136,12 +136,12 @@ class Modal {
    constructor(select) {
       this.select = select;
 
-      this.parent_row = this.select.closest('.body-card__row');
+      this.parent_row = this.select.closest('.field');
 
       this.name = this.parent_row.dataset.row_name;
       this.element = this.parent_row.querySelector('.modal');
       this.content = this.element.querySelector('.modal__items');
-      this.result_input = this.parent_row.querySelector('.body-card__result');
+      this.result_input = this.parent_row.querySelector('.field-result');
 
       this.close_button = this.element.querySelector('.modal__close');
       this.close_button.addEventListener('click', () => {
@@ -181,7 +181,7 @@ class Modal {
       if (related_input) {
          // Инпут со значением поля, от которого зависит модальное окно
          related_modal_input = document.querySelector(
-            `.body-card__result[name="${related_input.dataset.when_change}"]`
+            `.field-result[name="${related_input.dataset.when_change}"]`
          );
 
          if (related_modal_input) {
@@ -197,11 +197,11 @@ class Modal {
                // Создаем сообщение, в котором записываем поле, которое нужно заполнить
                is_empty = true;
 
-               if (related_modal_input.parentElement) {
-                  let related_modal_card = related_modal_input.parentElement;
-                  let related_modal_title = related_modal_card.querySelector('.body-card__title').innerHTML;
+               // if (related_modal_input.closest) {
+                  let related_modal_card = related_modal_input.closest('.field');
+                  let related_modal_title = related_modal_card.querySelector('.field-title').innerHTML;
                   this.alert_message = `Выберите ${related_modal_title.toLowerCase()}`;
-               }
+               // }
             }
          }
       } else {
@@ -254,10 +254,10 @@ class Modal {
 
                // В поле для выбора записываем значение
                this.select.classList.add('filled');
-               this.select.querySelector('.body-card__value').innerHTML = item.innerHTML;
+               this.select.querySelector('.field-value').innerHTML = item.innerHTML;
 
                // Показывает или скрывает поля, зависящие от выбранного значения
-               handleDependentRows(this.result_input);
+               handleDependentBlocks(this.result_input);
 
                // Очищаем зависимые поля
                this.clearRelatedModals();
@@ -278,6 +278,10 @@ class Modal {
       dependent_modals.forEach(modal => {
          modal.clearRelatedModals();
          this.clearModal(modal);
+
+         if (modal.parent_row.dataset.required === 'true' && modal.result_input.value) {
+            validateModal(modal);
+         }
       });
    }
 
@@ -290,14 +294,12 @@ class Modal {
       modal.select.classList.remove('filled', 'invalid');
 
       // Убираем сообщение с ошибкой
-      let error = modal.parent_row.querySelector('.body-card__error');
+      let error = modal.parent_row.querySelector('.field-error');
       error.classList.remove('active');
 
-      let select_value = modal.select.querySelector('.body-card__value');
+      let select_value = modal.select.querySelector('.field-value');
       select_value.innerHTML = 'Выберите значение';
       modals.delete(modal.name);
-
-
    }
 
    // Предназначен для получения массива зависимых модальных окон

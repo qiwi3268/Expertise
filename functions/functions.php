@@ -91,6 +91,24 @@ function GetDdMmYyyyDate(int $timestamp):string {
     return date('d.m.Y', $timestamp);
 }
 
+// Предназначен для перезаписи дат в ассоциативном массиве из timestamp в 'dd.mm.yyyy'
+// Принимает параметры-----------------------------------
+// &assocArray       array : ссылка на ассоциативный массив
+// datePropertyNames string: перечисление названий свойств, в которых находятся даты в формате timestamp
+//
+function UpdateDatesTimestampToDdMmYyyy(array &$assocArray, string ...$datePropertyNames):void {
+    
+    foreach($datePropertyNames as $propertyName){
+        
+        $timeStamp = $assocArray[$propertyName];
+        
+        if(is_numeric($timeStamp)){
+            $assocArray[$propertyName] = date('d.m.Y', $timeStamp);
+        }
+    }
+}
+
+
 // Предназначена для вывода var_dump только у тех пользователей, где в
 // get-параметре присутствует debug=1
 //

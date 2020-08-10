@@ -4,6 +4,7 @@
 return [
 
     '' => [
+        'Classes'        => ['VariableTransfer'],
         'controllers' 	 => ['header', 'entry'],
         'views'          => ['header', 'entry'],
     ],
@@ -18,73 +19,115 @@ return [
         'API'   => ['login']
     ],
 
+
     'home/file_unloader' => [
         'ROOTClasses'     => ['FilesUnload'],
         'controllers'     => ['file_unloader']
     ],
-
-    'API_file_uploader' => [
-        'Classes'         => ['FilesUpload', 'FilesTableMapping'],
-        'API'             => ['file_uploader']
+    'home/API_file_uploader' => [
+        '/Classes/'         => ['FilesUpload', 'FilesTableMapping'],
+        'API'               => ['file_uploader']
+    ],
+    'home/API_file_checker' => [
+        '/Classes/'         => ['FilesTableMapping'],
+        'API'               => ['file_checker']
+    ],
+    'home/API_file_needs_setter' => [
+        '/Classes/'         => ['FilesTableMapping'],
+        'API'               => ['file_needs_setter']
+    ],
+    
+    'csp' => [
+        '/core/Classes/' => ['CSP'],
+        'controllers'    => ['csp']
     ],
 
-    'API_file_checker' => [
-        'Classes'         => ['FilesTableMapping'],
-        'API'             => ['file_checker']
-    ],
+    //-------------------------------
+
 
     'test' => [
         'ROOTcontrollers' => ['test']
     ],
-    
-    //todo перенести в ветку /home/application/
-    'home/API_save_application' => [
-        'access'                       => [],
-        '/Classes/ApplicationForm/'    => ['SaveHandler'],
-        'API'                          => ['save_application']
-    ],
-    
-    //todo перенести view create_application в ветку /home/application/
-    'home/application/create' => [
-        'access'               => [],
-        'ROOTcontrollers'      => ['header'],
-        'ROOTviews'            => ['header'],
-        'ROOTClasses'          => ['VariableTransfer'],
-        '/Classes/ApplicationForm/'   => ['MiscInitialization'],
-        'controllers'          => ['create_application',
-                                   'initialization_misc_application_form',
-                                   'display_dependencies_application_form'],
-        '/controllers/home/'   => ['main_header'],
-        '/views/home/'         => ['create_application_dependencies', 'main_header', 'create_application', 'main_footer'],
+
+
+    'home/application/API_save_form' => [
+        'access'                     => [],
+        '/Classes/ApplicationForm/'  => ['SaveHandler'],
+        'API'                        => ['save_form']
     ],
 
-    
+    'home/API_save_files' => [
+        'access'                      => [],
+        'API'                         => ['save_files']
+    ],
+
+    'home/API_navigation_cookie' => [
+        'access'                      => [],
+        'API'                         => ['navigation_cookie']
+    ],
+
+
+
+    //todo перенести view create_application в ветку /home/application/
+    //todo привести display_dependencies_application_form и create_application_dependencies к единообразному названию
+    'home/application/create' => [
+        'access'                    => [],
+        'ROOTClasses'               => ['VariableTransfer', 'NodeStructure'],
+        'ROOTcontrollers'           => ['header'],
+        'ROOTviews'                 => ['header'],
+        '/Classes/ApplicationForm/' => ['MiscInitialization'],
+        'controllers'               => ['create_application',
+                                        'display_dependencies_application_form'],
+        '/controllers/home/'        => ['main_header'],
+        '/views/home/'              => ['create_application_dependencies', 'main_header', 'create_application', 'main_footer'],
+    ],
+
+
     'home/application/view' => [
         'access'              => [],
+        'ROOTClasses'         => ['VariableTransfer', 'FilesTableMapping', 'NodeStructure', 'FilesInitialization'],
         'ROOTcontrollers'     => ['header'],
-        'ROOTClasses'         => ['VariableTransfer'],
         'ABScontrollers'      => ['/controllers/home/main_header.php'],
-        'controllers'         => ['view_application',
-                                  'action_sidebar',
+        'controllers'         => ['action_sidebar',
+                                  'view_application',
                                   'validation_block_application_form'],
         'ROOTviews'           => ['header'],
         '/views/home/%header' => ['main_header'],
         'views'               => ['hierarchy_sidebar', 'view_application', 'action_sidebar'],
         '/views/home/%footer' => ['main_footer'],
     ],
-    
+
+    //todo на эту мусорку не обращать внимание
     'home/application/edit'  => [
         'access'             => [],
+        'ROOTClasses'          => ['VariableTransfer'],
         'ROOTcontrollers'    => ['header'],
         'ROOTviews'          => ['header'],
-        'ROOTClasses'        => ['VariableTransfer'],
-        'controllers'        => ['initialization_misc_application_form',
+        '/Classes/ApplicationForm/'   => ['MiscInitialization', 'MiscInitializationEditForm'],
+        'controllers'        => [
                                  'edit_application',
                                  'validation_block_application_form',
                                  'display_dependencies_application_form'],
         '/controllers/home/' => ['main_header'],
         '/views/home/'       => ['create_application_dependencies', 'main_header', 'create_application', 'main_footer']
     ],
+
+
+    'home/navigation' => [
+        'ROOTClasses'             => ['VariableTransfer', 'Pagination'],
+        '/Classes/Navigation/'    => ['Navigation', 'NavigationParameters'],
+        'ROOTcontrollers'         => ['header'],
+        'ROOTviews'               => ['header'],
+        '/controllers/home/'      => ['main_header'],
+        'views'                   => ['main_header'],
+        'controllers'             => ['navigation'],
+        '/views/home/navigation/' => ['pagination'],
+        '/views/home/%footer'     => ['main_footer'],
+    ],
+
+
+
+
 
     'tmp/registration_user' => [
         'controllers'     => ['registration_user']
@@ -111,13 +154,15 @@ return [
     ],
 
     'tmp/documentation_structure' => [
+        'ROOTClasses'     => ['NodeStructure', 'VariableTransfer'],
+        'ROOTcontrollers' => ['header'],
+        'ROOTviews'       => ['header'],
         'controllers'     => ['documentation_structure'],
         'views'           => ['documentation_structure']
     ]
 
 ];
 
-//todo должны начинаться и заканчиваться на /
 
 // redirect  	Необязтательный парметр	СТРОКА
 //					Переадресует страницу на указанный роут,

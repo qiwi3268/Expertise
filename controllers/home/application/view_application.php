@@ -2,172 +2,123 @@
 
 
 $variablesTV = VariableTransfer::getInstance();
+$applicationId = $_GET['id_application'];
 
-$applicationId = $_GET[_PROPERTY_IN_APPLICATION['id_application']];
+$applicationAssoc = ApplicationsTable::getAssocById($applicationId);
 
-$applicationAssoc = ApplicationsTable::getAssocByIdForView($applicationId);
+// Преобразование дат к строкам
+UpdateDatesTimestampToDdMmYyyy($applicationAssoc,
+                        'date_planning_documentation_approval',
+                                           'date_GPZU',
+                                           'date_finish_building');
 
-$appNumName = $applicationAssoc[_COLUMN_NAME_IN_APPLICATIONS_TABLE['numerical_name']];
-
-$variablesTV->setValue('applicationNumericalName', "ЗАЯВЛЕНИЕ НА ЭКСПЕРТИЗУ $appNumName");
-
-
-
-
-// -----------------------------------------------------------------------------------------------------------------
-// Зона заполнения данных анкеты singleton'а
-// -----------------------------------------------------------------------------------------------------------------
-
-// Цель обращения -----------------------------------------------------------------
-//
-$expertisePurpose = $applicationAssoc[_PROPERTY_IN_APPLICATION['expertise_purpose']];
-
-if(!is_null($expertisePurpose)){
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['expertise_purpose'], true);
-    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['expertise_purpose'], $expertisePurpose);
-}else{
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['expertise_purpose'], false);
+// Заполнение сохраненных в заявлении данных (не включая файлы)
+foreach($applicationAssoc as $property => $value){
+    
+    if(is_null($value)){
+        $variablesTV->setExistenceFlag($property, false);
+        continue;
+    }
+    
+    $variablesTV->setExistenceFlag($property, true);
+    $variablesTV->setValue($property, $value);
 }
 
 
-// Предметы экспертизы ------------------------------------------------------------
-//
-$expertiseSubjects = $applicationAssoc[_PROPERTY_IN_APPLICATION['expertise_subjects']];
-if(!is_null($expertiseSubjects)){
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['expertise_subjects'], true);
-    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['expertise_subjects'], $expertiseSubjects);
-}else{
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['expertise_subjects'], false);
+// Сохраненные файлы анкеты (не включая документацию)
+$requiredMappings = new RequiredMappingsSetter();
+$requiredMappings->setMappingLevel1(1);
+
+$filesInitialization = new FilesInitialization($requiredMappings, $applicationId);
+$needsFiles = $filesInitialization->getNeedsFiles();
+
+// Установка файловых иконок
+foreach($needsFiles as &$mapping_level_2){
+    foreach($mapping_level_2 as &$files){
+        if(!is_null($files)){
+            FontAwesome5Helper::setFileIconClass($files);
+        }
+    }
+    unset($files);
+}
+unset($mapping_level_2);
+
+$variablesTV->setValue('form_files', $needsFiles);
+
+var_dump($variablesTV->getValue('form_files')[1][1]);
+
+// Сохранен Вид объекта, показываем документацию
+if($variablesTV->getExistenceFlag('type_of_object')){
+    
+    // Удаление переменных, служивших выше
+    unset($requiredMappings);
+    unset($filesInitialization);
+    unset($needsFiles);
+    
+    // В зависимости от Вида объекта выбираем нужную таблицу
+    switch($variablesTV->getValue('type_of_object')['id']){
+        case 1: // Производственные/непроизводственные
+            $mapping_level_1 = 2;
+            $mapping_level_2 = 1;
+            $className = 'structure_documentation1Table';
+            break;
+        case 2: // Линейные
+            $mapping_level_1 = 2;
+            $mapping_level_2 = 2;
+            $className = 'structure_documentation2Table';
+            break;
+        default:
+            throw new Exception('Указан Вид объекта, при котором не определены действия для отображения загруженных файлов');
+    }
+    
+    // Устанавливаем маппинги для работы js по скачиванию файлов
+    $variablesTV->setValue('documentation_mapping_level_1', $mapping_level_1);
+    $variablesTV->setValue('documentation_mapping_level_2', $mapping_level_2);
+    
+    // Структура разделов документации
+    $structureDocumentation = $className::getAllActive();
+    $NodeStructure = new NodeStructure($structureDocumentation);
+    
+    // Объект нужных маппингов (только документация выбранного Вида объекта)
+    $requiredMappings = new RequiredMappingsSetter();
+    $requiredMappings->setMappingLevel2($mapping_level_1, $mapping_level_2);
+    
+    $filesInitialization = new FilesInitialization($requiredMappings, $applicationId);
+    // Нужные (is_needs) файлы
+    $needsFiles = $filesInitialization->getNeedsFiles()[$mapping_level_1][$mapping_level_2];
+    
+    // В документации нет загруженных файлов
+    if(is_null($needsFiles)){
+        $needsFiles = [];
+    }else{
+        // Установка файловых иконок
+        FontAwesome5Helper::setFileIconClass($needsFiles);
+    }
+    
+    // Структура разделов документации с вложенностью дочерних разделов в родительские
+    $depthStructure = $NodeStructure->getDepthStructure();
+    $filesInStructure = $filesInitialization->getFilesInStructure($needsFiles, $depthStructure);
+    //var_dump($filesInStructure);
+    $variablesTV->setValue('documentation_files_in_structure', $filesInStructure);
 }
 
 
-// Дополнительная инфформация -----------------------------------------------------
-//
-$additionalInformation = $applicationAssoc[_PROPERTY_IN_APPLICATION['additional_information']];
-if(!is_null($additionalInformation)){
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['additional_information'], true);
-    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['additional_information'], $additionalInformation);
-}else{
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['additional_information'], false);
-}
+$test = shell_exec('lala 2>&1');
+//var_dump($test);
 
 
-// Наименование объекта -----------------------------------------------------------
-//
-$objectName = $applicationAssoc[_PROPERTY_IN_APPLICATION['object_name']];
-if(!is_null($objectName)){
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['object_name'], true);
-    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['object_name'], $objectName);
-}else{
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['object_name'], false);
-}
+$options = ['options' => ['min_range' => 25,
+                          'max_range' => 75
+           ]
+];
+$test = "24";
+
+$test2 = filter_var($test, FILTER_VALIDATE_INT, $options);
+var_dump($test2);
 
 
-// Вид объекта --------------------------------------------------------------------
-//
-$typeOfObject = $applicationAssoc[_PROPERTY_IN_APPLICATION['type_of_object']];
-if(!is_null($typeOfObject)){
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['type_of_object'], true);
-    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['type_of_object'], $typeOfObject);
-}else{
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['type_of_object'], false);
-}
 
 
-// Функциональное назначение ------------------------------------------------------
-//
-$functionalPurpose = $applicationAssoc[_PROPERTY_IN_APPLICATION['functional_purpose']];
-if(!is_null($functionalPurpose)){
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['functional_purpose'], true);
-    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['functional_purpose'], $functionalPurpose);
-}else{
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['functional_purpose'], false);
-}
 
 
-// Функциональное назначение. Подотрасль ------------------------------------------
-//
-$functionalPurposeSubsector = $applicationAssoc[_PROPERTY_IN_APPLICATION['functional_purpose_subsector']];
-if(!is_null($functionalPurposeSubsector)){
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['functional_purpose_subsector'], true);
-    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['functional_purpose_subsector'], $functionalPurposeSubsector);
-}else{
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['functional_purpose_subsector'], false);
-}
 
-
-// Функциональное назначение. Группа ----------------------------------------------
-//
-$functionalPurposeGroup = $applicationAssoc[_PROPERTY_IN_APPLICATION['functional_purpose_group']];
-if(!is_null($functionalPurposeGroup)){
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['functional_purpose_group'], true);
-    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['functional_purpose_group'], $functionalPurposeGroup);
-}else{
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['functional_purpose_group'], false);
-}
-
-
-// Номер утверждения документации по планировке территории ------------------------
-//
-$numberPlanningDocumentationApproval = $applicationAssoc[_PROPERTY_IN_APPLICATION['number_planning_documentation_approval']];
-if(!is_null($numberPlanningDocumentationApproval)){
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['number_planning_documentation_approval'], true);
-    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['number_planning_documentation_approval'], $numberPlanningDocumentationApproval);
-}else{
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['number_planning_documentation_approval'], false);
-}
-
-
-// Дата утверждения документации по планировке территории -------------------------
-//
-$datePlanningDocumentationApproval = $applicationAssoc[_PROPERTY_IN_APPLICATION['date_planning_documentation_approval']];
-if(!is_null($datePlanningDocumentationApproval)){
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['date_planning_documentation_approval'], true);
-    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['date_planning_documentation_approval'], GetDdMmYyyyDate($datePlanningDocumentationApproval));
-}else{
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['date_planning_documentation_approval'], false);
-}
-
-
-// Номер ГПЗУ ---------------------------------------------------------------------
-//
-$numberGPZU = $applicationAssoc[_PROPERTY_IN_APPLICATION['number_GPZU']];
-if(!is_null($numberGPZU)){
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['number_GPZU'], true);
-    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['number_GPZU'], $numberGPZU);
-}else{
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['number_GPZU'], false);
-}
-
-
-// Дата ГПЗУ ----------------------------------------------------------------------
-//
-$dateGPZU = $applicationAssoc[_PROPERTY_IN_APPLICATION['date_GPZU']];
-if(!is_null($dateGPZU)){
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['date_GPZU'], true);
-    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['date_GPZU'], GetDdMmYyyyDate($dateGPZU));
-}else{
-    $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['date_GPZU'], false);
-}
-
-
-// Вид работ ----------------------------------------------------------------------
-//
-$typeOfWork = $applicationAssoc[_PROPERTY_IN_APPLICATION['type_of_work']];
-if(!is_null($typeOfWork)){
-   $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['type_of_work'], true);
-   $variablesTV->setValue(_PROPERTY_IN_APPLICATION['type_of_work'], $typeOfWork);
-}else{
-   $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['type_of_work'], false);
-}
-
-
-// Кадастровый номер земельного участка -------------------------------------------
-//
-$cadastralNumber = $applicationAssoc[_PROPERTY_IN_APPLICATION['cadastral_number']];
-if(!is_null($cadastralNumber)){
-   $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['cadastral_number'], true);
-   $variablesTV->setValue(_PROPERTY_IN_APPLICATION['cadastral_number'], $cadastralNumber);
-}else{
-   $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['cadastral_number'], false);
-}

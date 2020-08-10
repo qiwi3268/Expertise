@@ -22,6 +22,16 @@ class ApplicationHelper{
 
         return "$nowDate-$internalCounter";
     }
+    
+    
+    // Предназначен для получения дефолтных GET-параметров для навигационной страницы
+    //
+    static public function getDefaultNavigationPage():array {
+    
+        $roles = Session::getUserRoles();
+        
+        if(in_array(_ROLE['APP'], $roles)) return ['b' => 'block_2', 'v' => 'view_2'];
+    }
 
 
 
@@ -33,6 +43,8 @@ class ApplicationHelper{
     // false : не имеет
     //
     // todo со временем расширять права, чтобы не только автор мог сохранять
+    // todo перенести это дело в специализированный класс
+    // todo тут необходимо проверять стадии заявления на возможность сохранять (тут значтит надо будет вызвать коллбек, ответственный за действие "редактировать заявление")
     static public function checkApplicantRightsToSaveApplication(int $applicationId):bool {
 
         $ids = Session::getAuthorRoleApplicationIds();
@@ -42,20 +54,4 @@ class ApplicationHelper{
         }
         return false;
     }
-
-    static public function getPaginationDependentMisc(array $dependentMisc, int $paginationSize):array {
-
-        foreach($dependentMisc as &$misc){
-            $misc = array_chunk($misc, $paginationSize);
-        }
-        unset($misc);
-
-        return  $dependentMisc;
-    }
-
-
-
-
-
-
 }

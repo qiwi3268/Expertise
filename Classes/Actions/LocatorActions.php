@@ -39,7 +39,6 @@ class LocatorActions{
     // LocatorActions : сущность класса
     //
     static public function getInstance():LocatorActions {
-
         if(empty(self::$instance)){
             self::$instance = new self();
         }
@@ -52,7 +51,6 @@ class LocatorActions{
     // Actions : сущность класса
     //
     public function getActions():Actions {
-
         return $this->Actions;
     }
 }

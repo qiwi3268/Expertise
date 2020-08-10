@@ -105,9 +105,12 @@ class SaveHandler{
     // Предназначен для добавления нового значения formValue для столбца columnName
     // в общий список данных, которым нужен update
     // Принимает параметры-----------------------------------
-    // formValue     string : значение из переданной формы (всегда строка)
-    // columnName    string : имя столбца в БД, оно же имя ключа в ассоциативном массиве
-    // & dataToUpdate array : ссылка на массив для сохранения данных, которым нужно сделать update
+    // formValue    string : значение из переданной формы (всегда строка)
+    // columnName   string : имя столбца в БД, оно же имя ключа в ассоциативном массиве
+    // &dataToUpdate array : ссылка на массив для сохранения данных, которым нужно сделать update
+    //
+    // * formValue false (например, при передаче через функцию strtotime) корректно работает, т.к. преобразование
+    //   (string) false === ''
     //
     public function addValueToUpdate(string $formValue, string $columnName, array &$dataToUpdate):void {
 
@@ -116,7 +119,7 @@ class SaveHandler{
 
             // В БД было что-то записано (пользователь удалил информацию)
             if(!is_null($this->applicationAssoc[$columnName])){
-                $dataToUpdate[$columnName] = NULL;
+                $dataToUpdate[$columnName] = null;
             }
         // Из формы пришло значение
         }else{

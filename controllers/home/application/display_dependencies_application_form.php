@@ -18,39 +18,77 @@ $variablesTV = VariableTransfer::getInstance();
 //
 
 $displayDependencies = [
-    
+
     // Зависимость от выбранного "Вида объекта"
-    _PROPERTY_IN_APPLICATION['type_of_object'] => [
-        1 => [_PROPERTY_IN_APPLICATION['number_planning_documentation_approval'] => true,
-            _PROPERTY_IN_APPLICATION['date_planning_documentation_approval']   => true,
-            _PROPERTY_IN_APPLICATION['number_GPZU']                            => false,
-            _PROPERTY_IN_APPLICATION['date_GPZU']                              => false
+    'type_of_object' => [
+        1 => ['number_planning_documentation_approval' => true,
+              'date_planning_documentation_approval'   => true,
+              'number_GPZU'                            => false,
+              'date_GPZU'                              => false
         ],
-        
-        2 => [_PROPERTY_IN_APPLICATION['number_planning_documentation_approval'] => false,
-            _PROPERTY_IN_APPLICATION['date_planning_documentation_approval']   => false,
-            _PROPERTY_IN_APPLICATION['number_GPZU']                            => true,
-            _PROPERTY_IN_APPLICATION['date_GPZU']                              => true
+
+        2 => ['number_planning_documentation_approval' => false,
+              'date_planning_documentation_approval'   => false,
+              'number_GPZU'                            => true,
+              'date_GPZU'                              => true
         ]
     ],
-    
+
     // Зависимость от ЧЕКБОКСА "Объект культурного наследия"
-    _PROPERTY_IN_APPLICATION['cultural_object_type_checkbox'] => [
-        0 => [_PROPERTY_IN_APPLICATION['cultural_object_type'] => false],
-        1 => [_PROPERTY_IN_APPLICATION['cultural_object_type'] => true]
+    'cultural_object_type_checkbox' => [
+        0 => ['cultural_object_type' => false],
+        1 => ['cultural_object_type' => true]
     ],
-    
+
     // Зависимость от ЧЕКБОКСА "Национальный проект"
-    _PROPERTY_IN_APPLICATION['national_project_checkbox'] => [
-        0 => [_PROPERTY_IN_APPLICATION['national_project']     => false,
-            _PROPERTY_IN_APPLICATION['federal_project']      => false,
-            _PROPERTY_IN_APPLICATION['date_finish_building'] => false
+    'national_project_checkbox' => [
+        0 => ['national_project'     => false,
+              'federal_project'      => false,
+              'date_finish_building' => false
         ],
-        1 => [_PROPERTY_IN_APPLICATION['national_project']     => true,
-            _PROPERTY_IN_APPLICATION['federal_project']       => true,
-            _PROPERTY_IN_APPLICATION['date_finish_building']  => true
+        1 => ['national_project'      => true,
+              'federal_project'       => true,
+              'date_finish_building'  => true
         ],
     ],
 ];
 
 $variablesTV->setValue('displayDependencies', json_encode($displayDependencies));
+
+$blockDependencies = [
+
+    // Зависимость от выбранного "Вида объекта"
+    'type_of_object' => [
+        1 => ['planning_documentation_approval' => true,
+              'GPZU'                            => false,
+              'structureDocumentation1'         => true,
+              'structureDocumentation2'         => false,
+              'empty_documentation'             => false
+
+        ],
+
+        2 => ['planning_documentation_approval' => false,
+              'GPZU'                            => true,
+              'structureDocumentation1'         => false,
+              'structureDocumentation2'         => true,
+              'empty_documentation'             => false
+        ]
+    ],
+
+    // Зависимость от ЧЕКБОКСА "Объект культурного наследия"
+    'cultural_object_type_checkbox' => [
+        0 => ['cultural_object_type' => false],
+        1 => ['cultural_object_type' => true]
+    ],
+
+    // Зависимость от ЧЕКБОКСА "Национальный проект"
+    'national_project_checkbox' => [
+        0 => ['national_project'     => false,],
+        1 => ['national_project'     => true,],
+    ],
+
+
+
+];
+
+$variablesTV->setValue('blockDependencies', json_encode($blockDependencies));

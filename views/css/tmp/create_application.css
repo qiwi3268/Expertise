@@ -27,7 +27,8 @@
    padding: 0px 15px;
    border-bottom: 2px solid #ffffff;
    cursor: pointer;
-   transition: background-color 0.15s;
+   /*transition: background-color 0.15s;*/
+   transition: 0.15s;
 }
 
 .header-form__btn:hover {
@@ -78,11 +79,11 @@
 }
 
 .sidebar-form__row:first-child {
-   border-radius: 4px 0 0 0;
+   border-radius: 4px 0px 0px 0px;
 }
 
 .sidebar-form__row:last-child {
-   border-radius: 0 0 0 4px;
+   border-radius: 0px 0px 0px 4px;
 }
 
 .sidebar-form__row.valid {
@@ -208,10 +209,6 @@
    align-items: center;
 }
 
-.body-card__row[data-inactive="true"] {
-   display: none;
-}
-
 .body-card__title {
    text-align: right;
    width: 30%;
@@ -234,6 +231,7 @@
 
 .body-card__field {
    display: flex;
+   align-items: center;
 }
 
 .body-card__select {
@@ -257,6 +255,10 @@
 .body-card__select:hover {
    box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
    border-color: #80bdff;
+}
+
+.body-card__value {
+   flex-grow: 1;
 }
 
 .body-card__input {
@@ -286,6 +288,10 @@
 
 .body-card__icon.fa-bars {
    margin: 0px 5px 0px 0px;
+}
+
+.body-card__icon.fa-file {
+   font-size: 16px;
 }
 
 .body-card__select.invalid,
@@ -321,62 +327,38 @@
    color: #a93d3d;
 }
 
+.body-card__message {
+   display: flex;
+   align-items: center;
+   padding: 15px 10px;
+   font-family: 'Roboto Condensed', sans-serif;
+
+}
+
+.body-card__message-icon {
+   margin: 0px 10px 0px 10px;
+   font-size: 22px;
+   color: #bd4949;
+}
+
+.body-card__message-text {
+   color: #343a40;
+   cursor: default;
+}
+
 /* card-form =================================================================== */
 
-/* radio ======================================================================= */
-
-.radio__icon {
-   margin: 0px 10px 0px 0px;
+[data-inactive="true"] {
+   display: none;
 }
-
-.radio__icon.inline {
-   margin: 0px 5px 0px 0px;
-}
-
-.radio__icon.far,
-.checkbox__icon.far {
-   font-size: 20px;
-   color: #343a40;
-}
-
-.radio__item,
-.checkbox__item {
-   display: flex;
-   align-items: center;
-   cursor: pointer;
-}
-
-.radio__item.col:not(:last-child) {
-   margin: 0px 0px 10px 0px;
-}
-
-.radio__item.inline {
-   margin: 0px 10px 0px 0px;
-}
-
-.radio__text {
-   font-size: 14px;
-}
-
-.radio__title {
-   display: block;
-   font-size: 14px;
-}
-
-.radio__value {
-   font-size: 15px;
-}
-
-.radio__body.inline {
-   display: flex;
-   align-items: center;
-}
-
-/* radio ======================================================================= */
-
 
 /* tmp ========================================================================= */
 
+
+
+
+
+/**/
 
 /* tmp ========================================================================= */
 

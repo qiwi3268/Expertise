@@ -1,9 +1,11 @@
+<?php $variablesTV = VariableTransfer::getInstance(); ?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title><?= $pageName ?></title>
+    <title><?= $variablesTV->getValue('pageName') ?></title>
     <meta charset="utf-8">
-    <?php foreach($sourcesFiles as $file): ?>
+    <?php foreach($variablesTV->getValue('sourcesFiles') as $file): ?>
         <?= $file ?>
     <?php endforeach; ?>
 </head>

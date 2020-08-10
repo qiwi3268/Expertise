@@ -38,8 +38,7 @@ class FilesUpload{
     // false : файлы отсутствуют
     //
     public function checkFilesExist():bool {
-        foreach ($this->FILESCount as $count){
-
+        foreach($this->FILESCount as $count){
             if($count > 0) return true;
         }
         return false;
@@ -249,5 +248,4 @@ class FilesUpload{
         $this->errors = $errors;
         return false;
     }
-
 }

@@ -43,6 +43,7 @@ final class ApplicationsTable{
 
 
     // Предназначен для получения плоского ассоциативного массива заявления по его id
+    // * плоский - не содержащий подмассиве. Результирующий массив содержит данные только из таблицы с заявлениями
     // Принимает параметры-----------------------------------
     // id int : id заявления
     // Возвращает параметры----------------------------------
@@ -67,6 +68,11 @@ final class ApplicationsTable{
                          `applications`.`date_GPZU`,
                          `applications`.`id_type_of_work`,
                          `applications`.`cadastral_number`,
+                         `applications`.`id_cultural_object_type`,
+                         `applications`.`id_national_project`,
+                         `applications`.`id_federal_project`,
+                         `applications`.`date_finish_building`,
+                         `applications`.`id_curator`,
                          `applications`.`date_creation`
 				  FROM `applications`
                   WHERE `applications`.`id`=?";
@@ -74,100 +80,58 @@ final class ApplicationsTable{
         $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
         return $result ? $result[0] : null;
     }
-
-
-    // Предназначен для получения ассоциативного массива заявления по его id для просмотра заявления
-    static public function getAssocByIdForView(int $id):?array {
-        $query = "SELECT `applications`.`id`,
-                         `applications`.`numerical_name`,
-                         `misc_expertise_purpose`.`name` AS `expertise_purpose`,
-                         `applications`.`additional_information`,
-                         `applications`.`object_name`,
-                         `misc_type_of_object`.`name` AS `type_of_object`,
-                         `misc_functional_purpose`.`name` AS `functional_purpose`,
-                         `misc_functional_purpose_subsector`.`name` AS `functional_purpose_subsector`,
-                         `misc_functional_purpose_group`.`name` AS `functional_purpose_group`,
-                         `applications`.`number_planning_documentation_approval`,
-                         `applications`.`date_planning_documentation_approval`,
-                         `applications`.`number_GPZU`,
-                         `applications`.`date_GPZU`,
-                         `misc_type_of_work`.`name` AS `type_of_work`,
-                         `applications`.`cadastral_number`
-                  FROM (SELECT * FROM `applications`
-                        WHERE `applications`.`id`=?) AS `applications`
-                  LEFT JOIN (`misc_expertise_purpose`)
-                        ON (`applications`.`id_expertise_purpose`=`misc_expertise_purpose`.`id`)
-                  LEFT JOIN (`misc_type_of_object`)
-                        ON (`applications`.`id_type_of_object`=`misc_type_of_object`.`id`)
-                  LEFT JOIN (`misc_functional_purpose`)
-                        ON (`applications`.`id_functional_purpose`=`misc_functional_purpose`.`id`)
-                  LEFT JOIN (`misc_functional_purpose_subsector`)
-                        ON (`applications`.`id_functional_purpose_subsector`=`misc_functional_purpose_subsector`.`id`)
-                  LEFT JOIN (`misc_functional_purpose_group`)
-                        ON (`applications`.`id_functional_purpose_group`=`misc_functional_purpose_group`.`id`)
-                  LEFT JOIN (`misc_type_of_work`)
-                        ON (`applications`.`id_type_of_work`=`misc_type_of_work`.`id`)
-                  ";
-
-        $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
-
-        if(empty($result)){
-            return null;
-        }
-        $result = $result[0];
-
-        // Предметы экспертизы
-        $queryExpertiseSubjects = "SELECT `misc_expertise_subject`.`name`
-                                   FROM (SELECT * FROM `expertise_subject`
-                                         WHERE `id_application`=?) AS `expertise_subject`
-                                   LEFT JOIN `misc_expertise_subject`
-                                         ON (`expertise_subject`.`id_expertise_subject`=`misc_expertise_subject`.`id`)
-                                   ORDER BY `misc_expertise_subject`.`sort` ASC";
-
-        $expertiseSubjects = ParametrizedQuery::getFetchAssoc($queryExpertiseSubjects, [$id]);
-
-        if(empty($expertiseSubjects)){
-
-            $expertiseSubjects = null;
-        }else{
-
-            // Переносим каждую цель из подмассива на один уровень вверх
-            foreach($expertiseSubjects AS &$subject){
-                $subject = $subject['name'];
-            }
-            unset($subject);
-        }
-
-        $result['expertise_subjects'] = $expertiseSubjects;
-
-
-        return $result;
-    }
-    
     
     
     // Предназначен для получения ассоциативного массива заявления по его id для редактирования заявления
-    static public function getAssocByIdForEdit(int $id):?array {
-        $query = "SELECT `applications`.`id`,
+    // Возвращает параметры----------------------------------
+    // array : в случае, если заявление существует
+    // null  : в противном случае
+    //
+    static public function getAssocById(int $id):?array {
+        $query = "SELECT `applications`.`id` as `id_application`,
                          `applications`.`numerical_name`,
+       
                          `applications`.`id_expertise_purpose`,
-                         `misc_expertise_purpose`.`name` AS `expertise_purpose`,
+                         `misc_expertise_purpose`.`name` AS `name_expertise_purpose`,
+       
                          `applications`.`additional_information`,
                          `applications`.`object_name`,
+       
                          `applications`.`id_type_of_object`,
-                         `misc_type_of_object`.`name` AS `type_of_object`,
+                         `misc_type_of_object`.`name` AS `name_type_of_object`,
+       
                          `applications`.`id_functional_purpose`,
-                         `misc_functional_purpose`.`name` AS `functional_purpose`,
+                         `misc_functional_purpose`.`name` AS `name_functional_purpose`,
+       
                          `applications`.`id_functional_purpose_subsector`,
-                         `misc_functional_purpose_subsector`.`name` AS `functional_purpose_subsector`,
+                         `misc_functional_purpose_subsector`.`name` AS `name_functional_purpose_subsector`,
+       
                          `applications`.`id_functional_purpose_group`,
-                         `misc_functional_purpose_group`.`name` AS `functional_purpose_group`,
+                         `misc_functional_purpose_group`.`name` AS `name_functional_purpose_group`,
+       
                          `applications`.`number_planning_documentation_approval`,
                          `applications`.`date_planning_documentation_approval`,
                          `applications`.`number_GPZU`,
                          `applications`.`date_GPZU`,
-                         `misc_type_of_work`.`name` AS `type_of_work`,
-                         `applications`.`cadastral_number`
+                        
+                         `applications`.`id_type_of_work`,
+                         `misc_type_of_work`.`name` AS `name_type_of_work`,
+       
+                         `applications`.`cadastral_number`,
+       
+                         `applications`.`id_cultural_object_type`,
+                         `misc_cultural_object_type`.`name` AS `name_cultural_object_type`,
+       
+                         `applications`.`id_national_project`,
+                         `misc_national_project`.`name` AS `name_national_project`,
+       
+                         `applications`.`id_federal_project`,
+                         `misc_federal_project`.`name` AS `name_federal_project`,
+       
+                         `applications`.`date_finish_building`,
+       
+                         `applications`.`id_curator`,
+                         `misc_curator`.`name` AS `name_curator`
                   FROM (SELECT * FROM `applications`
                         WHERE `applications`.`id`=?) AS `applications`
                   LEFT JOIN (`misc_expertise_purpose`)
@@ -182,6 +146,17 @@ final class ApplicationsTable{
                         ON (`applications`.`id_functional_purpose_group`=`misc_functional_purpose_group`.`id`)
                   LEFT JOIN (`misc_type_of_work`)
                         ON (`applications`.`id_type_of_work`=`misc_type_of_work`.`id`)
+                  LEFT JOIN (`misc_cultural_object_type`)
+                        ON (`applications`.`id_cultural_object_type`=`misc_cultural_object_type`.`id`)
+                  LEFT JOIN (`misc_national_project`)
+                        ON (`applications`.`id_national_project`=`misc_national_project`.`id`)
+                  LEFT JOIN (`misc_federal_project`)
+                        ON (`applications`.`id_federal_project`=`misc_federal_project`.`id`)
+                  LEFT JOIN (`misc_curator`)
+                        ON (`applications`.`id_curator`=`misc_curator`.`id`)
+
+
+
                   ";
         
         $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
@@ -190,6 +165,18 @@ final class ApplicationsTable{
             return null;
         }
         $result = $result[0];
+        
+        // Перекладываем каждый справочник в отдельный подмассив
+        self::restructureMiscToSubarray($result, 'id_expertise_purpose', 'name_expertise_purpose', 'expertise_purpose');
+        self::restructureMiscToSubarray($result, 'id_type_of_object', 'name_type_of_object', 'type_of_object');
+        self::restructureMiscToSubarray($result, 'id_functional_purpose', 'name_functional_purpose', 'functional_purpose');
+        self::restructureMiscToSubarray($result, 'id_functional_purpose_subsector', 'name_functional_purpose_subsector', 'functional_purpose_subsector');
+        self::restructureMiscToSubarray($result, 'id_functional_purpose_group', 'name_functional_purpose_group', 'functional_purpose_group');
+        self::restructureMiscToSubarray($result, 'id_type_of_work', 'name_type_of_work', 'type_of_work');
+        self::restructureMiscToSubarray($result, 'id_cultural_object_type', 'name_cultural_object_type', 'cultural_object_type');
+        self::restructureMiscToSubarray($result, 'id_national_project', 'name_national_project', 'national_project');
+        self::restructureMiscToSubarray($result, 'id_federal_project', 'name_federal_project', 'federal_project');
+        self::restructureMiscToSubarray($result, 'id_curator', 'name_curator', 'curator');
         
         // Предметы экспертизы
         $queryExpertiseSubjects = "SELECT `misc_expertise_subject`.`id`,
@@ -210,6 +197,37 @@ final class ApplicationsTable{
         $result['expertise_subjects'] = $expertiseSubjects;
         
         return $result;
+    }
+    
+
+    // Предназначен для реструктуризации ассоциативного массива заявления
+    // Перекладывает полученные данные о справочнике в отдельный подмассив. В случае, если данные null, то
+    // новое свойство также null
+    // Полученные данные id_misc и name_misc вырезаются из массива
+    // Принимает параметры-----------------------------------
+    // &result           array : ссылка на результирующий запрос в БД
+    // id_misc          string : id справочника из запроса в БД
+    // name_misc        string : имя справочника из запроса в БД
+    // restructuredName string : имя нового свойства, в которое будет записаны 'id' и 'name'
+    //
+    static private function restructureMiscToSubarray(array &$result,
+                                                      string $id_misc,
+                                                      string $name_misc,
+                                                      string $restructuredName):void {
+        
+        if(!array_key_exists($id_misc, $result) || !array_key_exists($name_misc, $result)){
+            throw new TableException("В массиве result отсутствует(ют) свойства: $id_misc и/или $name_misc");
+        }
+        
+        if(is_null($result[$id_misc])){
+        
+            $result[$restructuredName] = null;
+        }else{
+        
+            $result[$restructuredName]['id'] = $result[$id_misc];
+            $result[$restructuredName]['name'] = $result[$name_misc];
+        }
+        unset($result[$id_misc], $result[$name_misc]);
     }
     
     
