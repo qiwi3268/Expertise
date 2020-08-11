@@ -21,94 +21,103 @@ class CSP{
     public function validateInternal(string $path){
         
         $cmd = sprintf('%s -verify -mca -all -errchain -verall "%s" 2>&1', self::CPROCSP, $path);
+        
         $message = shell_exec($cmd);
         
-        $this->parseMessage($message);
+        $messageParts = $this->getMessageWithoutTechnicalPart($message);
+        
+        $signers = [];
+        $errorCodes = [];
+        
+        for($s = 0; $s < count($messageParts); $s++){
+            
+            $part = $messageParts[$s];
+    
+            if(mb_strpos($part, 'Signer:') !== false){
+        
+                try{
+            
+                    $FIO = $this->getFIO($part);
+                }catch(Exception $e){
+            
+                }
+        
+                // После подписанта либо:
+                //      Signature's verified.
+                //      или:
+                //      Сообщение об ошибке И
+                //      Error: Signature.
+                $next_1_part = $messageParts[$s + 1];
+                $next_2_part = $messageParts[$s + 2];
+                
+                //todo конвертировать сообщение
+                
+                
+                if($next_1_part == "Signature's verified."){
+    
+                    $verifyResult = true;
+                    $verifyMessage = "Signature's verified.";
+                    $s += 1; // Перескакиваем через Signature's verified.
+                }elseif($next_2_part == "Error: Signature."){
+    
+                    $verifyResult = false;
+                    $verifyMessage = $next_1_part;
+                    $s += 2; // Перескакиваем через сообщение об ошибке и Error: Signature.
+                }else{
+                    throw new Exception('Неизвестный формат сообщения');
+                }
+    
+                $signers[] = ['fio'         => $FIO,
+                              'certificate' => $this->getCertificateInfo($part),
+                              'result'      => $verifyResult,
+                              'message'     => $verifyMessage,
+                              'userMessage' => $this->getUserVerifyMessage($verifyMessage)
+                ];
+        
+            }elseif(mb_strpos($part, 'ErrorCode:') !== false){
+    
+                $errorCodes[] = $this->getErrorCode($part);
+    
+            }elseif(mb_strpos($part, 'Error: The parameter is incorrect.') !== false){
+                
+                continue; // Ошибку пропускаем, т.к. дальше отловится ее ErrorCode
+            }else{
+                // В данную ветку ничего не может попасть, т.к. блоки Signer и ErrorCode обрабатываются выше
+                throw new Exception("Неизвестное сообщение: '{$part}'");
+            }
+        }
+    
+        if(count($errorCodes) != 1){
+            throw new Exception('Получено некорректное количетство блоков ErrorCode');
+        }
+    
+        $validateResult['singers'] = $signers;
+        $validateResult['errorCode'] = $errorCodes[0];
+        
+        
+        
+        
         var_dump($message);
+        var_dump($validateResult);
+        
+        
+        
+        //$this->parseMessage($message);
+        //var_dump($messageParts);
         echo '--------------------------------------------';
     }
     
-    private function parseMessage(string $message){
-        
-        
-        $pos_Signer = mb_strpos($message, 'Signer:');
-        
-        
-        if($pos_Signer !== false){
-            $posEOL_Signer = mb_strpos($message, PHP_EOL, $pos_Signer);
-            
-            if($posEOL_Signer === false){
-                // все плохо
-            }
-            $start = $pos_Signer + 8;
-            $length = $posEOL_Signer - $pos_Signer - 8;
-            $Signer = mb_substr($message, $start, $length);
-            
-            $FIO = $this->getFIO($Signer);
-            var_dump($FIO);
-        }else{
-            echo 'Отсутствует SIGNER'; //todo выход
-        }
-    }
     
     
     
-    private function getErrorCode(string $message){
-    
-    }
     
     
-    private function getFIO(string $Signer){
     
-        // запятая (может и не быть)            | если ФИО начинает строку
-        // пробел (может и не быть)             | если ФИО начинает строку или просто нет пробела после запятой
-        // слово из одного и более символов     | Фамилия
-        // запятая
-        // пробел (может и не быть)             | просто нет пробела после запятой
-        // слово из одного и более символов     | Имя
-        // пробел
-        // слово из одного и более символов     | Отчество
-        // запятая (может и не быть)            | если ФИО завершает строку
-        // - регистронезависимых
-        // - использование кодировки utf-8
-        $pattern = '/,\s*[а-яё]+,\s*[а-яё]+\s[а-яё]+,*/iu';
     
-        $result = preg_match_all($pattern, $Signer, $matches);
-        
-        // Ошибка в регулярном выражении или нет вхождений ФИО
-        if($result === false || $result === 0){
-            echo 'ОШИБКА 1'; //todo выход
-        }
-        
-        $matches = $matches[0]; // Массив полных вхождений шаблона
-        $count = 0;             // Количество найденных ФИО
-        
-        foreach($matches as $match){
-            
-            // Получаем слова
-            preg_match_all('/[а-яё]+/iu', $match, $fio_matches);
+   
     
-            // Так как нет уверенности в том, что имя следует именно вторым, поэтому проверяю все
-            foreach($fio_matches[0] as $part){
-                if(isset($this->hashNames[$part])){
-                    $count++;
-                    break;
-                }
-            }
-        }
-        
-        if($count == 0){
-            echo 'ОШИБКА 2'; //todo выход (В БД не нашлось подходящего имени)
-        }
-        if($count > 1){
-            echo 'ОШИБКА 3'; //todo выход
-        }
-        return implode(' ', $fio_matches[0]);
-    }
     
-    private function getErrorMessage($errorCode){
-        $pattern = '/\[errorcode:\s*(.+)]/i';
-    }
+    
 }
 
 // [ErrorCode: 0x00000000] - все хорошо
@@ -123,3 +132,5 @@ class CSP{
  * /opt/cprocsp/bin/amd64/cryptcp -verify -mca -all -errchain -verall /var/www/internal/истек серт но был годен (1).pdf.sig 2>&1
  *
  */
+
+

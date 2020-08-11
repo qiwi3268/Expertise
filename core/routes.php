@@ -38,6 +38,7 @@ return [
     ],
     
     'csp' => [
+        '/core/Classes/csp/' => ['Validator', 'MessageParser', 'Shell', 'InternalSignature', 'ExternalSignature'],
         '/core/Classes/' => ['CSP'],
         'controllers'    => ['csp']
     ],

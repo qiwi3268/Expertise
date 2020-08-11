@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             switch (response.result) {
                case 8:
-                  if (FileNeeds.isHasFiles()) {
+                  if (FileNeeds.hasFiles()) {
                      updateFileNeeds();
                   }
                   break;

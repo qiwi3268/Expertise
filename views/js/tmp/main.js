@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-
+   // Меняем размер раскрытых блоков при изменении размера страницы
    window.addEventListener('resize', () => {
       let cards = document.querySelectorAll('.card-form__body');
 

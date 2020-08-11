@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/views/js/tmp/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/navigation.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/navigation.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/navigation/pagination.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/navigation/pagination.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/cards.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/cards.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/file_actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/file_download.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_download.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/CSP.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/CSP.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/view_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/view_application.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/file_needs.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_needs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/save_application.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/save_application.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/section.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/section.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/sorting.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/sorting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/tmp/view_application.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +68,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3052c4db-b17b-45ef-9874-1a02eb86f4cf" name="Default Changelist" comment="" />
+      <changelist id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="" />
       <created>1595389008613</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -83,6 +84,7 @@
       <workItem from="1596082621309" duration="1656000" />
       <workItem from="1596084344898" duration="24335000" />
       <workItem from="1596168695490" duration="11753000" />
+      <workItem from="1597121957786" duration="10896000" />
     </task>
     <task id="LOCAL-00001" summary="22.07.2020">
       <created>1595389670254</created>
@@ -266,11 +268,18 @@
       <option name="project" value="LOCAL" />
       <updated>1597046978034</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="10.08.2020_2">
+      <created>1597063074651</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1597063074651</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="22.07.2020" />
@@ -297,14 +306,19 @@
     <MESSAGE value="31.07.2020" />
     <MESSAGE value="31.07.2020_2" />
     <MESSAGE value="10.08.2020_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="10.08.2020_1" />
+    <MESSAGE value="10.08.2020_2" />
+    <option name="LAST_COMMIT_MESSAGE" value="10.08.2020_2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1597046975494">
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1597063072679">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1597046975494" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1597063072679" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596177721879" />
+    <state x="184" y="86" key="MergeDialog" timestamp="1597124014338">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1597124014338" />
     <state x="794" y="443" key="NewPhpFileDialog" timestamp="1597048841486">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -313,10 +327,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="781" y="344" key="SettingsEditor/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596084331421" />
-    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1597061930534">
+    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1597134661033">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1597061930534" />
+    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1597134661033" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596173151354" />
     <state x="1150" y="591" key="publish.login" timestamp="1596168913639">
       <screen x="0" y="0" width="2560" height="1400" />
