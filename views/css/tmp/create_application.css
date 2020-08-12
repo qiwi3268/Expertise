@@ -226,7 +226,7 @@
 }
 
 .body-card__item {
-   width: 100%;
+   flex-grow: 1;
 }
 
 .body-card__field {
@@ -353,6 +353,40 @@
 }
 
 /* tmp ========================================================================= */
+
+.save-modal {
+   padding: 10px;
+   font-family: 'Roboto Condensed', sans-serif;
+   font-size: 18px;
+   color: #343a40;
+}
+
+.save-modal__info {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 10px 0px;
+}
+
+.save-modal__icon {
+   font-size: 22px;
+   color: #87c596;
+   margin: 0px 10px 0px 0px;
+}
+
+.save-modal__actions {
+   display: flex;
+   padding: 10px 0px 0px;
+}
+
+.save-modal__link {
+   flex-grow: 1;
+}
+
+.save-modal__close {
+   flex-grow: 1;
+   margin: 0px 10px 0px 0px;
+}
 
 
 /**/

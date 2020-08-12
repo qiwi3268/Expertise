@@ -2,11 +2,26 @@ document.addEventListener('DOMContentLoaded', () => {
    let save_button = document.getElementById('application_save');
 
    save_button.addEventListener('click', () => {
-      console.log('save');
       saveApplication();
    });
 
+
+   let save_overlay = document.querySelector('.save-overlay');
+   save_overlay.addEventListener('click', () => {
+      closeSaveModal(save_overlay);
+   });
+
+   let save_close_button = document.querySelector('.save-modal__close');
+   save_close_button.addEventListener('click', () => {
+      closeSaveModal(save_overlay);
+   });
 });
+
+function closeSaveModal(save_overlay) {
+   let save_modal = document.querySelector('.save-modal');
+   save_modal.classList.remove('active');
+   save_overlay.classList.remove('active');
+}
 
 function saveApplication() {
    let application_form = document.getElementById('application');
@@ -23,7 +38,7 @@ function saveApplication() {
                if (FileNeeds.hasFiles()) {
                   updateFileNeeds();
                }
-               showSaveAlert();
+               showSaveModal();
                break;
             default:
                console.log(response);
@@ -37,10 +52,11 @@ function saveApplication() {
       });
 }
 
-function showSaveAlert() {
-   let notification = document.querySelector('юsave-modal');
-   notification.classList.add('active');
-
+function showSaveModal() {
+   let save_modal = document.querySelector('.save-modal');
+   let save_overlay = document.querySelector('.save-overlay');
+   save_modal.classList.add('active');
+   save_overlay.classList.add('active');
 }
 
 function updateFileNeeds() {

@@ -63,7 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
    // date            Date : объект даты из строки
    function getDateFromString(date_string) {
       let date_parts = date_string.split('.');
-      return new Date(+date_parts[2], +date_parts[1] - 1, +date_parts[0]);
+      return new Date(
+         parseInt(date_parts[2]),
+         parseInt(date_parts[1]) - 1,
+         parseInt(date_parts[0])
+      );
    }
 
    class Calendar {
@@ -268,9 +272,9 @@ document.addEventListener('DOMContentLoaded', () => {
          day_element.innerHTML = current_day;
 
          // Если день сопадает с выбранной датой, отображаем его как выбранный
-         if (+day_element.innerHTML === this.selected_day &&
-             +day_element.dataset.month === this.selected_month &&
-             +day_element.dataset.year === this.selected_year
+         if (parseInt(day_element.innerHTML) === this.selected_day &&
+            parseInt(day_element.dataset.month) === this.selected_month &&
+            parseInt(day_element.dataset.year) === this.selected_year
          ) {
             day_element.classList.add('selected');
          }
@@ -311,7 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
          month_element.dataset.month = month;
 
          // Если месяц совпадает с выбранной датой, отображаем как выбранный
-         if (month === this.selected_month && +month_element.dataset.year === this.selected_year) {
+         if (month === this.selected_month && parseInt(month_element.dataset.year) === this.selected_year) {
             month_element.classList.add('selected');
          }
 
@@ -336,7 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
          year_element.addEventListener('click', () => {
             this.level++;
-            this.changeCurrentYear(+year_element.innerHTML);
+            this.changeCurrentYear(parseInt(year_element.innerHTML));
          });
 
          // Если год сопадает с выбранной датой, отображаем как выбранный
@@ -353,7 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
          this.selected_day = this.current_date.getDate();
 
          this.selected_month = this.current_month;
-         this.selected_year = +day_element.dataset.year;
+         this.selected_year = parseInt(day_element.dataset.year);
          this.current_month = this.selected_month;
          this.current_year = this.selected_year;
 
@@ -390,7 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
          let days = Array.from(this.body.querySelectorAll('.calendar__item'));
 
          let selected_day = days.find(day => {
-            return +day.innerHTML === this.selected_day && +day.dataset.month === this.selected_month
+            return parseInt(day.innerHTML) === this.selected_day && parseInt(day.dataset.month) === this.selected_month
          });
 
          if (selected_day) {

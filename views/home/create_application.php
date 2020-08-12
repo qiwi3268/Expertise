@@ -138,8 +138,7 @@
                 <!--//Наименование объекта//-->
 
                 <!--Вид объекта-->
-                <div class="body-card__row field" data-row_name="type_of_object"
-                     data-required="true">
+                <div class="body-card__row field" data-row_name="type_of_object" data-required="true">
                     <span class="body-card__title field-title required">Вид объекта</span>
 
                     <div class="body-card__item">
@@ -218,8 +217,7 @@
                 <!--//Функциональное назначение. Подотрасль//-->
 
                 <!--Функциональное назначение. Группа-->
-                <div class="body-card__row field" data-row_name="functional_purpose_group"
-                     data-required="true">
+                <div class="body-card__row field" data-row_name="functional_purpose_group" data-required="true">
                     <span class="body-card__title field-title required">Функциональное назначение. Группа</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
@@ -242,15 +240,11 @@
                 <!--Блок производственные/непроизводственные объекты капитального строительства-->
                 <div class="body-card__block" data-block_name="planning_documentation_approval" data-inactive="true">
                     <!--Номер утверждения документации по планировке территории-->
-                    <div class="body-card__row field"
-                         data-row_name="number_planning_documentation_approval"
-                         data-pattern="number">
+                    <div class="body-card__row field" data-row_name="number_planning_documentation_approval" data-pattern="number">
                         <span class="body-card__title">Номер утверждения документации по планировке территории</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
-                                <input class="body-card__input body-card__result field-result application-input" type="text"
-                                       name="number_planning_documentation_approval"
-                                       placeholder="Введите значение">
+                                <input class="body-card__input body-card__result field-result application-input" type="text" name="number_planning_documentation_approval" placeholder="Введите значение">
                             </div>
                             <span class="body-card__error field-error"></span>
                         </div>
@@ -268,8 +262,7 @@
                                 <i class="body-card__icon-clear fas fa-calendar-times"></i>
                             </div>
                         </div>
-                        <input class="body-card__result field-result" type="hidden"
-                               name="date_planning_documentation_approval">
+                        <input class="body-card__result field-result" type="hidden" name="date_planning_documentation_approval">
                     </div>
                     <!--//Дата утверждения документации по планировке территории//-->
                 </div>
@@ -309,8 +302,7 @@
 
 
                 <!--Вид работ-->
-                <div class="body-card__row field" data-row_name="type_of_work"
-                     data-required="true">
+                <div class="body-card__row field" data-row_name="type_of_work" data-required="true">
                     <span class="body-card__title field-title required">Вид работ</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
@@ -331,14 +323,11 @@
                 <!--//Вид работ//-->
 
                 <!--Кадастровый номер земельного участка-->
-                <div class="body-card__row field" data-row_name="cadastral_number"
-                     data-pattern="number">
+                <div class="body-card__row field" data-row_name="cadastral_number" data-pattern="number">
                     <span class="body-card__title">Кадастровый номер земельного участка</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
-                            <input class="body-card__input body-card__result field-result application-input" type="text"
-                                   name="cadastral_number"
-                                   placeholder="Введите значение">
+                            <input class="body-card__input body-card__result field-result application-input" type="text" name="cadastral_number" placeholder="Введите значение">
                         </div>
                         <span class="body-card__error field-error"></span>
                     </div>
@@ -346,9 +335,7 @@
                 <!--//Кадастровый номер земельного участка//-->
 
                 <!--CHECKBOX Объект культурного наследия-->
-                <div class="body-card__row field"
-                     data-row_name="cultural_object_type_checkbox"
-                     data-multiple="false">
+                <div class="body-card__row field" data-row_name="cultural_object_type_checkbox" data-multiple="false">
                     <span class="body-card__title">Объект культурного наследия</span>
                     <div class="body-card__item">
                         <div class="body-card__field radio" data-required="true">
@@ -371,8 +358,7 @@
                 <!--Блок культурное наследие-->
                 <div class="body-card__block" data-block_name="cultural_object_type" data-inactive="true">
                     <!--Тип объекта культурного наследия-->
-                    <div class="body-card__row field" data-row_name="cultural_object_type"
-                         data-required="true">
+                    <div class="body-card__row field" data-row_name="cultural_object_type" data-required="true">
                         <span class="body-card__title field-title required">Тип объекта культурного наследия</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
@@ -404,8 +390,7 @@
 
 
                 <!--CHECKBOX Национальный проект-->
-                <div class="body-card__row field center"
-                     data-row_name="national_project_checkbox">
+                <div class="body-card__row field center" data-row_name="national_project_checkbox">
                     <span class="body-card__title">Национальный проект</span>
                     <div class="body-card__item">
                         <div class="body-card__field radio" data-required="true">
@@ -429,8 +414,7 @@
                 <!--Блок национальный проект-->
                 <div class="body-card__block" data-block_name="national_project" data-inactive="true">
                     <!--Название национального проекта-->
-                    <div class="body-card__row field" data-row_name="national_project"
-                         data-required="true">
+                    <div class="body-card__row field" data-row_name="national_project" data-required="true">
                         <span class="body-card__title field-title required">Название национального проекта</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
@@ -459,8 +443,7 @@
                     <!--//Название национального проекта//-->
 
                     <!--Название федерального проекта-->
-                    <div class="body-card__row field" data-row_name="federal_project"
-                         data-required="true">
+                    <div class="body-card__row field" data-row_name="federal_project" data-required="true">
                         <span class="body-card__title field-title required">Название федерального проекта</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
@@ -500,8 +483,7 @@
 
 
                 <!--Куратор-->
-                <div class="body-card__row field" data-row_name="curator"
-                     data-required="true">
+                <div class="body-card__row field" data-row_name="curator" data-required="true">
                     <span class="body-card__title field-title required">Куратор</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
@@ -530,8 +512,7 @@
 
 
                 <!--Загрузчик файла-->
-<!--                <div class="body-card__row" data-required="true" data-multiple="true" data-mapping_level_1="1" data-mapping_level_2="1">-->
-                    <div class="body-card__row field" data-required="false" data-multiple="true" data-mapping_level_1="1" data-mapping_level_2="1">
+                <div class="body-card__row field" data-required="false" data-multiple="true" data-mapping_level_1="1" data-mapping_level_2="1">
                     <span class="body-card__title required">Файл ГРБС</span>
                     <div class="body-card__item">
                         <!--TODO стили-->
@@ -545,7 +526,6 @@
                 <!--//Загрузчик файла//-->
 
                 <!--Загрузчик файла2-->
-<!--                <div class="body-card__row" data-required="true" data-multiple="false" data-mapping_level_1="1" data-mapping_level_2="1">-->
                 <div class="body-card__row field" data-required="false" data-multiple="false" data-mapping_level_1="1" data-mapping_level_2="1">
                     <span class="body-card__title required">Файл ГРБС_2</span>
                     <div class="body-card__item">
@@ -557,8 +537,6 @@
                     </div>
                 </div>
                 <!--//Загрузчик файла2//-->
-
-
             </div>
         </div>
 
@@ -604,16 +582,12 @@
 <div class="modal-overlay"></div>
 <div class="calendar-overlay"></div>
 <div class="file-overlay"></div>
+<div class="save-overlay"></div>
 
 <div class="modal alert-modal">
     <i class="alert-modal__icon fas fa-exclamation"></i>
     <span class="alert-modal__message"></span>
 </div>
-
-<div class="modal save-modal">
-    <i class="modal__close fas fa-times"></i>
-</div>
-
 
 <div class="calendar">
     <div class="calendar__nav">
@@ -664,10 +638,13 @@
 </div>
 
 <div class="modal save-modal">
-    <span class="save-modal__text">Заявление сохранено</span>
+    <div class="save-modal__info">
+        <i class="save-modal__icon fas fa-check"></i>
+        <span class="save-modal__text">Заявление сохранено</span>
+    </div>
     <div class="save-modal__actions">
-        <div class="save-modal__button">Продолжить редактирование</div>
-        <div class="save-modal__button">Выйти в личный кабинет</div>
+        <span class="save-modal__close application-button">Продолжить редактирование</span>
+        <a href="/home/navigation" class="save-modal__link application-button">Выйти в личный кабинет</a>
     </div>
 </div>
 
