@@ -1,38 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
-   let save_button = document.querySelector('#application_save');
-
-   let form = document.querySelector('#application');
-   let request_urn = '/home/application/API_save_form';
-
+   let save_button = document.getElementById('application_save');
 
    save_button.addEventListener('click', () => {
-      FileNeeds.putFilesToFileNeeds();
-
-      console.log(FileNeeds.getFileNeeds());
-
-      XHR('post', request_urn, new FormData(form), null, 'json', null, null)
-         .then(response => {
-
-            switch (response.result) {
-               case 8:
-                  if (FileNeeds.hasFiles()) {
-                     updateFileNeeds();
-                  }
-                  break;
-               default:
-                  console.log(response);
-            }
-
-         })
-         .catch(error => {
-            alert(error.result);
-            alert(error.message);
-            console.error('XHR error: ', error);
-         });
+      console.log('save');
+      saveApplication();
    });
 
 });
 
+function saveApplication() {
+   let application_form = document.getElementById('application');
+   let request_urn = '/home/application/API_save_form';
+
+   FileNeeds.putFilesToFileNeeds();
+
+   XHR('post', request_urn, new FormData(application_form), null, 'json', null, null)
+      .then(response => {
+
+         switch (response.result) {
+            case 8:
+               console.log('result');
+               if (FileNeeds.hasFiles()) {
+                  updateFileNeeds();
+               }
+               showSaveAlert();
+               break;
+            default:
+               console.log(response);
+         }
+
+      })
+      .catch(error => {
+         alert(error.result);
+         alert(error.message);
+         console.error('XHR error: ', error);
+      });
+}
+
+function showSaveAlert() {
+   let notification = document.querySelector('юsave-modal');
+   notification.classList.add('active');
+
+}
 
 function updateFileNeeds() {
    let request_urn = '/home/API_file_needs_setter';

@@ -40,6 +40,12 @@ button {
    background-color: #ffffff;
 }
 
+.stop-scrolling {
+   height: 100%;
+   overflow: hidden;
+   padding: 0px 5px 0px 0px;
+}
+
 .main-container {
    display: flex;
    flex-direction: column;

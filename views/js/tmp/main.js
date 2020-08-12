@@ -14,3 +14,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+
+function noScroll() {
+   window.scrollTo(0, 0);
+}
+
+function disableScroll() {
+   // document.body.style.position = 'fixed';
+   // document.body.style.top = `-${window.scrollY}px`;
+   document.body.classList.add("stop-scrolling");
+}
+
+function enableScroll() {
+   // document.body.style.position = '';
+   // document.body.style.top = '';
+   document.body.classList.remove("stop-scrolling");
+}
+

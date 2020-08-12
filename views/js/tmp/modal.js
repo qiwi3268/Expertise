@@ -29,6 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
             createAlert(modal.alert_message);
             modal.alert_message = '';
          }
+         disableScroll();
+
       });
    });
 });
@@ -72,6 +74,7 @@ function closeModal(modal) {
       modal.classList.remove('active');
       overlay.classList.remove('active');
    }
+   enableScroll();
 }
 
 // Предназначем для отображения оповещения с сообщением
@@ -145,7 +148,7 @@ class Modal {
 
       this.close_button = this.element.querySelector('.modal__close');
       this.close_button.addEventListener('click', () => {
-         this.close();
+         closeModal(this);
       });
 
       //берем готовые страницы или создаем новые, если контент страниц зависит от другого поля

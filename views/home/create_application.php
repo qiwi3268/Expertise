@@ -610,6 +610,11 @@
     <span class="alert-modal__message"></span>
 </div>
 
+<div class="modal save-modal">
+    <i class="modal__close fas fa-times"></i>
+</div>
+
+
 <div class="calendar">
     <div class="calendar__nav">
         <i class="calendar__arrow left fas fa-chevron-left"></i>
@@ -657,6 +662,16 @@
     </form>
 
 </div>
+
+<div class="modal save-modal">
+    <span class="save-modal__text">Заявление сохранено</span>
+    <div class="save-modal__actions">
+        <div class="save-modal__button">Продолжить редактирование</div>
+        <div class="save-modal__button">Выйти в личный кабинет</div>
+    </div>
+</div>
+
+
 
 </body>
 

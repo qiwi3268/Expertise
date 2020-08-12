@@ -128,8 +128,9 @@ class CSP{
 //  This certificate or one of the certificates in the certificate chain is not time valid.
 //    Error: Signature.
 /*
- * добиться вывода ошибки в скрипт
- * /opt/cprocsp/bin/amd64/cryptcp -verify -mca -all -errchain -verall /var/www/internal/истек серт но был годен (1).pdf.sig 2>&1
+[ErrorCode: 0x20000070] - незивестная ошибка
+//  Возможно не существует указанный файл
+
  *
  */
 

@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // select         Element : родительское поле
    function showFileModal(select) {
       clearModalTitle();
+      disableScroll();
       file_modal.classList.add('active');
       overlay.classList.add('active');
       addFieldData(select);
@@ -236,6 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
          overlay.classList.remove('active');
          parent_node = null;
          clearFileModal();
+         enableScroll();
       }
    }
 
