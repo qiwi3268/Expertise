@@ -23,8 +23,8 @@ class Validator{
     // Предназначен для формирования массива с результатами валидации ЭЦП файла
     // Принимает параметры-----------------------------------
     // paths string: перечисление путей к файлам
-    //  В случае Shell = InternalSignature передается 1 параметр - абсолютный путь в ФС сервера к файлу со всетронной подписью
-    //  В случае Shell = ExternalSignature //todo
+    //  В случае Shell = InternalSignature передается 1 параметр - абсолютный путь в ФС сервера к файлу со встроенной подписью
+    //  В случае Shell = ExternalSignature передается 2 параметра - абсолютный путь в ФС сервера к файлу, абсолютный путь в ФС сервера к файлу открепленной подписи
     // Возвращает параметры----------------------------------
     // array : массив формата:
     //      0 : array
@@ -56,22 +56,23 @@ class Validator{
             
             // Результат с проверкой цепочки сертификатов валидный
             // Значит и подпись и её сертификат валидный
-            if($signer['result']){
+            //
+            // или
+            //
+            // Результат с проверкой цепочки сертификатов невалидный и при этом есть ошибки, что подпись невалидная
+            // (если открепленная подпись не соответствует файлу, это сообщение (Error: Invalid Signature.) выйдет первым, даже если сертификат уже просрочен,
+            //  поэтому нет смысла в повторной проверке подписи без проверки цепочки сертификатов)
+            if($signer['result'] ||
+              (!$signer['result'] && ($signer['message'] == 'Error: Invalid Signature.' || $signer['message'] == 'Error: Invalid algorithm specified.'))){
                 
-                // Для валидного результата и подпись и сертификат валидные ------------------------------------
                 $signatureVerify = ['result'       => $signer['result'],
                                     'message'      => $signer['message'],
                                     'user_message' => $this->getSignatureUserMessage($signer['message'])
                 ];
-                $certificateVerify = ['result'       => $signer['result'],
-                                      'message'      => $signer['message'],
-                                      'user_message' => $this->getCertificateUserMessage($signer['message'])
-                ];
                 
             // Результат с проверкой цепочки сертификатов невалидный и при этом нет ошибки, что подпись невалидная
             // Производим повторную проверку подписи без проверки цепочки сертификатов
-            }elseif($signer['message'] != 'Error: Invalid Signature.' &&
-                    $signer['message'] != 'Error: Invalid algorithm specified.'){
+            }else{
     
                 // Получение результатов валидации подписи БЕЗ проверкой цепочки сертификатов
                 $noChain_message = $this->Shell->execNoChain($paths);
@@ -92,33 +93,17 @@ class Validator{
                                     'message'      => $noChain_signer['message'],
                                     'user_message' => $this->getSignatureUserMessage($noChain_signer['message'])
                 ];
-                $certificateVerify = ['result'       => $signer['result'],
-                                      'message'      => $signer['message'],
-                                      'user_message' => $this->getCertificateUserMessage($signer['message'])
-                ];
-    
-    
-            // Результат с проверкой цепочки сертификатов невалидный и при этом есть ошибки, что подпись невалидная
-            // (если открепленная подпись не соответствует файлу, это сообщение (Error: Invalid Signature.) выйдет первым, даже если сертификат уже просрочен,
-            //  поэтому нет смысла в повторной проверке подписи без проверки цепочки сертификатов)
-            }else{
-                
-                // При не соответствующей подписи проверку сертификата не делаем, т.к. она не имеет смысла -----
-                $signatureVerify = ['result'       => $signer['result'],
-                                    'message'      => $signer['message'],
-                                    'user_message' => $this->getSignatureUserMessage($signer['message'])
-                ];
-                $certificateVerify = ['result'       => $signer['result'],
-                                      'message'      => $signer['message'],
-                                      'user_message' => 'Сертификат не проверялся'
-                ];
             }
             
+            $certificateVerify = ['result'       => $signer['result'],
+                                  'message'      => $signer['message'],
+                                  'user_message' => $this->getCertificateUserMessage($signer['message'])
+            ];
             
             // Добавляем нужные поля
             $signer['signature_verify'] = $signatureVerify;
             $signer['certificate_verify'] = $certificateVerify;
-            // Удаляем ненужные поля
+            // Удаляем не нужные поля
             unset($signer['result']);
             unset($signer['message']);
         }
@@ -276,6 +261,10 @@ class Validator{
     
             case "Trust for this certificate or one of the certificates in the certificate chain has been revoked.":
                 return "Один из сертификатов цепочки аннулирован";
+                
+            case "Error: Invalid algorithm specified.":
+            case "Error: Invalid Signature.":
+                return "Сертификат не проверялся";
                 
             default:
                 throw new \CSPValidatorException("Получен неизвестный результат проверки сертификата: '{$verifyMessage}'", 1);

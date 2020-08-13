@@ -656,7 +656,9 @@
         <select class="sign-modal__cert-list" size="4" name="CertListBox" id="CertListBox"></select>
     
         <div class="sign-modal__info">
-            <span class="sign-modal__label">Данные о выбранном сертификате:</span>
+            <div class="sign-modal__row">
+                <span class="sign-modal__label">Данные о выбранном сертификате:</span>
+            </div>
             <div class="sign-modal__row">
                 <span class="sign-modal__label">Владелец: </span>
                 <span class="sign-modal__text" id="SubjectName"></span>

@@ -4,54 +4,36 @@ document.addEventListener('DOMContentLoaded', () => {
    let signature_button = document.getElementById('signature_button');
    signature_button.addEventListener('click', () => {
 
+      if (GeCades.getGlobalCertificatesMap) {
+         console.log('asd');
+         signFile(sign_modal);
+      } else {
+         console.log('zxc');
+      }
 
 
-      GeCades.getSelectedCertificateAlgorithm()
-         .then(algorithm => {
-
-            console.log(algorithm);
-
-            let form_data = new FormData();
-            form_data.append('sign_algorithm', algorithm);
-            form_data.append('id_file', sign_modal.dataset.id_file);
-            form_data.append('mapping_level_1', sign_modal.dataset.mapping_level_1);
-            form_data.append('mapping_level_2', sign_modal.dataset.mapping_level_2);
-
-            console.log(new Map(form_data));
-
-               //Проверяем, что файл может быть скачан
-               XHR('post', '/home/API_file_checker', form_data, null, 'json')
-                  .then(response => {
-
-                     console.log(response);
-
-                     switch (response.result) {
-                        case 9:
-
-                           // location.href = getUnloadFileURN(response);
-                           break;
-                        default:
-                           console.log(response);
-                     }
-
-                  })
-                  .catch(error => {
-                     console.error('XHR error: ', error);
-                  });
-
-         })
-         .catch(ex => {
-
-         });
    });
 
 
 
    let sign_overlay = document.querySelector('.sign-overlay');
    sign_overlay.addEventListener('click', () => {
-      closeSignModal(sign_overlay);
+      closeSignModal();
    });
 });
+
+function signFile(sign_modal) {
+   GeCades.getSelectedCertificateAlgorithm()
+      .then(algorithm => {
+
+         checkFile(sign_modal, algorithm);
+
+
+      })
+      .catch(error => {
+         console.error('XHR error: ', error);
+      });
+}
 
 function showSignModal(file) {
    let sign_modal = document.querySelector('.sign-modal');
@@ -60,73 +42,99 @@ function showSignModal(file) {
    sign_overlay.classList.add('active');
 
    if (sign_modal.dataset.plugin_loaded === 'false') {
-      initializePlugin(sign_modal);
       sign_modal.dataset.plugin_loaded = 'true';
+      BrowserHelper.initializePlugin(sign_modal);
    }
 
-   console.log(file);
+   putDataAboutFile(file, sign_modal);
+   addFileElement(file, sign_modal);
+}
 
+function cancelPluginInitialization() {
+   let sign_modal = document.querySelector('.sign-modal');
+   sign_modal.dataset.plugin_loaded = 'false';
+}
+
+function putDataAboutFile(file, sign_modal) {
    let parent_field = file.closest('[data-mapping_level_1]');
    sign_modal.dataset.id_file = file.dataset.id;
    sign_modal.dataset.mapping_level_1 = parent_field.dataset.mapping_level_1;
    sign_modal.dataset.mapping_level_2 = parent_field.dataset.mapping_level_2;
+}
 
-
+function addFileElement(file, sign_modal) {
    let file_info = file.querySelector('.files__info');
    let sign_file = sign_modal.querySelector('.sign-modal__file');
    sign_file.innerHTML = file_info.innerHTML;
+}
 
+function checkFile(sign_modal, algorithm) {
+   let request_urn = '/home/API_file_checker';
+   let form_data = getFileCheckFormData(sign_modal);
+
+   //Проверяем, что файл может быть скачан
+   XHR('post', request_urn, form_data, null, 'json')
+      .then(response => {
+         console.log(response);
+
+         if (response.result === 9) {
+            calcFileHash(sign_modal, algorithm);
+         }
+
+      })
+      .catch(error => {
+         console.error('XHR error: ', error);
+         return null;
+      });
 
 }
 
-function initializePlugin() {
+function getFileCheckFormData(sign_modal) {
+   let form_data = new FormData();
+   form_data.append('id_application', getIdApplication());
+   form_data.append('id_file', sign_modal.dataset.id_file);
+   form_data.append('mapping_level_1', sign_modal.dataset.mapping_level_1);
+   form_data.append('mapping_level_2', sign_modal.dataset.mapping_level_2);
+   return form_data;
+}
 
-   // Блок проверок на непподерживаемые браузеры
-   if(BrowserPropertiesHelper.isInternetExplorer()){
-      console.log('Браузер не соответствует требованиям АИС (Internet Explorer не поддерживается)');
-      return;
-   } else if(isEdge()) {
-      console.log('Браузер не соответствует требованиям АИС (Edge не поддерживается)');
-      return;
-   } else if(!BrowserPropertiesHelper.canPromise()) {
-      console.log('Браузер не соответствует требованиям АИС (отсутствует поддержка promise)');
-      return;
-   } else {
-      cadesplugin
-         .then(() => {
+function calcFileHash(sign_modal, algorithm) {
+   let request_urn = '/home/API_get_file_hash';
+   let form_data = getFileHashFormData(sign_modal, algorithm);
 
-            let canAsync = !!cadesplugin.CreateObjectAsync;
-            if(canAsync){
+   XHR('post', request_urn, form_data, null, 'json')
+   .then(response => {
 
-               GeCades.CheckForPlugIn_Async('PlugInVersionTxt', 'CSPVersionTxt');
+      console.log(response);
 
-               GeCades.FillCertList_Async('CertListBox');
+      let hash = response.hash;
 
-            }else{
-               console.log('Браузер не соответствует требованиям АИС (отсутствует поддержка async)');
-            }
+      GeCades.SignHash_Async(algorithm, hash)
+         .then(signature => {
+            console.log(signature);
          })
-         .catch(ex => {
-            console.log('Ошибка при инициализации cadesplugin:' + ex);
+         .catch(exception => {
+            console.log(exception);
          });
-   }
+
+   })
+   .catch(error => {
+      console.error('XHR error: ', error);
+   });
 }
 
-// Проверка на браузер IE
-function isIE(){
-   let retVal = (("Microsoft Internet Explorer" == navigator.appName) || // IE < 11
-      navigator.userAgent.match(/Trident\/./i)); // IE 11
-   return retVal;
+function getFileHashFormData(sign_modal, algorithm) {
+   let form_data = new FormData();
+   form_data.append('sign_algorithm', algorithm.toString());
+   form_data.append('id_file', sign_modal.dataset.id_file);
+   form_data.append('mapping_level_1', sign_modal.dataset.mapping_level_1);
+   form_data.append('mapping_level_2', sign_modal.dataset.mapping_level_2);
+   return form_data;
 }
 
-// Проверка на браузер Edge
-function isEdge(){
-   let retVal = navigator.userAgent.match(/Edge\/./i);
-   return retVal;
-}
-
-function closeSignModal(sign_overlay) {
+function closeSignModal() {
    let sign_modal = document.querySelector('.sign-modal');
+   let sign_overlay = document.querySelector('.sign-overlay');
    sign_modal.classList.remove('active');
    sign_overlay.classList.remove('active');
 }

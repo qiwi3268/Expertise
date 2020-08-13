@@ -15,13 +15,13 @@ class FontAwesome5Helper{
             $name = $file['file_name'];
 
             if(mb_strpos($name, '.pdf') !== false){
-                $class = 'fa-file-pdf';
+                $class = 'fa-File-pdf';
             }elseif(mb_strpos($name, '.docx') !== false){
-                $class = 'fa-file-word';
+                $class = 'fa-File-word';
             }elseif(mb_strpos($name, '.xlsx') !== false){
-                $class = 'fa-file-excel';
+                $class = 'fa-File-excel';
             }else{
-                $class = 'fa-file-alt';
+                $class = 'fa-File-alt';
             }
             
             $file['file_icon'] = $class;

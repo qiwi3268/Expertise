@@ -50,6 +50,9 @@ class GeCades{
             }catch(ex){
 
                 console.log('Ошибка. Хранилище сертификатов недоступно ' + cadesplugin.getLastError(ex));
+
+                cancelPluginInitialization();
+                closeSignModal();
                 return;
             }
 
@@ -268,7 +271,7 @@ class GeCades{
     }
 
 
-    static SignHash_Async(oHashedData){
+    static SignHash_Async(hashAlg, sHashValue){
 
         return new Promise((resolve, reject) => {
 
@@ -288,6 +291,16 @@ class GeCades{
                     }catch(ex){
                         throw 'Ошибка при создании объекта CPSigner: ' + ex.number;
                     }
+
+
+                    // Создаем объект CAdESCOM.HashedData
+                    let oHashedData = yield cadesplugin.CreateObjectAsync("CAdESCOM.HashedData");
+
+                    //yield oHashedData.propset_DataEncoding(cadesplugin.CADESCOM_BASE64_TO_BINARY);
+                    let algorithm = GeCades.getAlgorithmByValue(args[1]);
+                    yield oHashedData.propset_Algorithm(algorithm);
+                    yield oHashedData.SetHashValue(args[2]);
+
 
                     // Атрибуты усовершенствованной подписи
                     let oSigningTimeAttr = yield cadesplugin.CreateObjectAsync("CAdESCOM.CPAttribute");
@@ -314,17 +327,17 @@ class GeCades{
                     yield oSigner.propset_Options(cadesplugin.CAPICOM_CERTIFICATE_INCLUDE_WHOLE_CHAIN);
 
                     try{
-                        Signature = yield oSignedData.SignHash(args[1], oSigner, cadesplugin.CADESCOM_CADES_BES);
+                        Signature = yield oSignedData.SignHash(oHashedData, oSigner, cadesplugin.CADESCOM_CADES_BES);
                     }catch(ex){
                         throw 'Ошибка при создании подписи: ' + cadesplugin.getLastError(ex);
                     }
 
                 }catch(ex){
-                    args[3](ex);
+                    args[4](ex);
                     return;
                 }
-                args[2](Signature);
-            }, oCertificate, oHashedData, resolve, reject);
+                args[3](Signature);
+            }, oCertificate, hashAlg, sHashValue, resolve, reject);
         })
     }
 
@@ -588,36 +601,3 @@ class GeCades{
 
 
 
-// Вспомогательный класс для определения поддерживаемые свойств текущего браузера
-//
-class BrowserPropertiesHelper{
-
-    // Проверка браузера на наличие promise
-    static canPromise(){
-        return !!window.Promise;
-    }
-
-    // Проверка браузера на наличие File Api
-    static canFileApi(){
-        if(!!window.FileReader){
-            let fileReader = new FileReader();
-            if(typeof(fileReader.readAsDataURL) == 'function'){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // Проверка на браузер IE
-    static isInternetExplorer(){
-        let retVal = (("Microsoft Internet Explorer" == navigator.appName) || // IE < 11
-            navigator.userAgent.match(/Trident\/./i)); // IE 11
-        return retVal;
-    };
-
-    // Проверка на браузер Edge
-    static isEdge(){
-        let retVal = navigator.userAgent.match(/Edge\/./i);
-        return retVal;
-    }
-}

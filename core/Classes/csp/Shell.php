@@ -7,7 +7,7 @@ namespace csp;
 abstract class Shell{
     
     // Путь в ФС сервера к утилите cryptcp
-    protected const CPROCSP = '/opt/cprocsp/bin/amd64/cryptcp';
+    public const CPROCSP = '/opt/cprocsp/bin/amd64/cryptcp';
     
     
     // Предназначен для исполнения cmd команды по валидации подписи
@@ -18,7 +18,7 @@ abstract class Shell{
     // Выбрасывает исключения--------------------------------
     // CSPShellException : исполняемая команда не произвела вывод или произошла ошибка
     //
-    protected function exec(string $cmd):string {
+    public static function exec(string $cmd):string {
 
         $message = shell_exec($cmd);
         

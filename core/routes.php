@@ -37,6 +37,10 @@ return [
         'API'               => ['file_needs_setter']
     ],
     
+    'home/API_get_file_hash' => [
+        'API'                => ['get_file_hash']
+    ],
+    
     'csp' => [
         '/core/Classes/csp/' => ['Validator', 'MessageParser', 'Shell', 'InternalSignature', 'ExternalSignature'],
         '/core/Classes/'     => ['CSP'],

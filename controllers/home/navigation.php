@@ -144,4 +144,6 @@ $variablesTV->setValue('navigationSorting', $navigationSortingTV);
 $variablesTV->setValue('viewName', $viewName);
 
 // Подключение view
+require_once _ROOT_."/views/home/navigation/view_header.php";
 require_once _ROOT_."/views/home/navigation/{$viewName}.php";
+require_once _ROOT_."/views/home/navigation/view_footer.php";

@@ -89,10 +89,10 @@ try{
     }
     
     $applicationDir = _APPLICATIONS_FILES_."/{$P_id_application}";
-    $pathToFile = "{$applicationDir}/{$fileAssoc['hash']}";
+    $filePath = "{$applicationDir}/{$fileAssoc['hash']}";
 
     // Проверка файла на физическое существование
-    if(!file_exists($pathToFile)){
+    if(!file_exists($filePath)){
         exit(json_encode(['result'        => 8,
                           'error_message' => 'Файл физически отсутствует на сервере'
                          ]));
@@ -100,7 +100,7 @@ try{
 
     // Все проверки прошли успешно
     exit(json_encode(['result'    => 9,
-                      'fs_name'   => $pathToFile,
+                      'fs_name'   => $filePath,
                       'file_name' => $fileAssoc['file_name']
                      ]));
     

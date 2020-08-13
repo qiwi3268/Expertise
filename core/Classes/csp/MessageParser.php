@@ -10,17 +10,19 @@ class MessageParser{
     private array $hashNames;
     
     
-    public function __construct(){
+    public function __construct(bool $needNames){
         
-        $names = \PeopleNameTable::getNames();
-        // Перевод выборки в формат хэш-массива
-        foreach($names as $name) $this->hashNames[$name] = true;
+        if($needNames){
+            $names = \PeopleNameTable::getNames();
+            // Перевод выборки в формат хэш-массива
+            foreach($names as $name) $this->hashNames[$name] = true;
+        }
     }
     
     
     // Предназначен для получения сообщения без технической его части:
     //      CryptCP 4.0 (c) "Crypto-Pro", 2002-2020.
-    //      Command prompt Utility for file signature and encryption.
+    //      Command prompt Utility for File signature and encryption.
     //      Folder '/var/www...'
     //      Signature verifying...
     //      ../../../../CSPbuild/CSP/samples/CPCrypt/DSign.cpp
@@ -38,7 +40,7 @@ class MessageParser{
         foreach($parts as $part){
             
             if(mb_strpos($part, 'CryptCP 4.0 (c) "Crypto-Pro", 2002-2020.') === false &&
-                mb_strpos($part, 'Command prompt Utility for file signature and encryption.') === false &&
+                mb_strpos($part, 'Command prompt Utility for File signature and encryption.') === false &&
                 mb_strpos($part, 'Folder') === false &&
                 mb_strpos($part, 'Signature verifying...') === false &&
                 mb_strpos($part, 'CSPbuild') === false &&

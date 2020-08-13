@@ -109,6 +109,22 @@ function UpdateDatesTimestampToDdMmYyyy(array &$assocArray, string ...$datePrope
 }
 
 
+function contains(string $haystack, string ...$needles):bool {
+    foreach($needles as $needle){
+        if(mb_strpos($haystack, $needle) === false) return false;
+    }
+    return true;
+}
+
+function icontains(string $haystack, string ...$needles):bool {
+    foreach($needles as $needle){
+        if(mb_stripos($haystack, $needle) === false) return false;
+    }
+    return true;
+}
+
+
+
 // Предназначена для вывода var_dump только у тех пользователей, где в
 // get-параметре присутствует debug=1
 //
