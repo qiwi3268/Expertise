@@ -76,6 +76,7 @@ function createUnloadFileFormData(file) {
    return form_data;
 }
 
+// TODO вынести в другое место
 // Предназначен для получения id текущего заявления
 // Возвращает параметры------------------------------
 // id         string : id текущего заявления
@@ -118,7 +119,8 @@ function addFileActions(file) {
 
 function handleSignButton(sign_button, file) {
    sign_button.addEventListener('click', () => {
-      showSignModal(file);
+      SignHandler.openModal(file);
+      // showSignModal(file);
    });
 }
 

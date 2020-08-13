@@ -686,8 +686,9 @@
         <div class="file-modal__button file-modal__upload">Загрузить</div>
         <div id="signature_button" class="sign-modal__button sign-modal__sign">Подписать</div>
         <div  class="sign-modal__button sign-modal__validate">Проверить встроенную подпись</div>
+        
+        <input id="external_sign" type="file" name="download_files[]" hidden/>
     </div>
-    <input type="file" name="detached_sign" hidden/>
 </div>
 
 <div class="modal save-modal">
@@ -700,6 +701,10 @@
         <a href="/home/navigation" class="save-modal__link application-button">Выйти в личный кабинет</a>
     </div>
 </div>
+
+<a href="" id="a">click here to download your file</a>
+<button onclick="SignHandler.download('file text', 'myfilename.txt', 'text/plain')">Create file</button>
+<input id="test_file" type="file" name="download_files[]" hidden/>
 
 
 

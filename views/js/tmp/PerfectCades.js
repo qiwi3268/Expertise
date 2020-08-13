@@ -51,8 +51,7 @@ class GeCades{
 
                 console.log('Ошибка. Хранилище сертификатов недоступно ' + cadesplugin.getLastError(ex));
 
-                cancelPluginInitialization();
-                closeSignModal();
+                SignHandler.cancelPluginInitialization();
                 return;
             }
 

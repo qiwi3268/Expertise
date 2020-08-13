@@ -255,6 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             switch (response.result) {
                case 16:
+
                   putFilesToRow(response.uploaded_files);
                   closeFileModal();
                   break;
