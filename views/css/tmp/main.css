@@ -100,6 +100,7 @@ textarea.application-input {
 
 ::-webkit-scrollbar {
    width: 5px;
+   max-height: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -118,8 +119,7 @@ textarea.application-input {
 }
 
 .modal,
-.alert-modal,
-.save-modal {
+.alert-modal {
    visibility: hidden;
    opacity: 0;
    display: flex;
@@ -136,11 +136,16 @@ textarea.application-input {
    background-color: #ffffff;
    transform: translate(-50%, -50%);
    transition: 0.3s all;
+
+   font-family: 'Roboto Condensed', sans-serif;
+   color: #343a40;
+
 }
 
 .modal-overlay,
 .file-overlay,
-.save-overlay {
+.save-overlay,
+.sign-overlay {
    visibility: hidden;
    opacity: 0;
    position: fixed;
@@ -160,7 +165,10 @@ textarea.application-input {
 .modal__close.active,
 .file-modal.active,
 .save-modal.active,
-.save-overlay.active {
+.save-overlay.active,
+.sign-modal.active,
+.sign-overlay.active
+{
    visibility: visible;
    opacity: 1;
 }

@@ -583,6 +583,7 @@
 <div class="calendar-overlay"></div>
 <div class="file-overlay"></div>
 <div class="save-overlay"></div>
+<div class="sign-overlay"></div>
 
 <div class="modal alert-modal">
     <i class="alert-modal__icon fas fa-exclamation"></i>
@@ -634,7 +635,57 @@
         <input name="mapping_level_2" type="hidden"/>
         <input name="id_structure_node" type="hidden"/>
     </form>
+</div>
 
+<div class="modal sign-modal" data-plugin_loaded="false">
+    
+    <div class="sign-modal__header">
+        <div class="sign-modal__row">
+            <span class="sign-modal__label">Версия плагина: </span>
+            <span class="sign-modal__text" id="PlugInVersionTxt" lang="ru"></span>
+        </div>
+        <div class="sign-modal__row">
+            <span class="sign-modal__label">Версия криптопровайдера: </span>
+            <span class="sign-modal__text" id="CSPVersionTxt" lang="ru"></span>
+        </div>
+    </div>
+    
+    <div class="sign-modal__body">
+        <div class="sign-modal__file"></div>
+    
+        <select class="sign-modal__cert-list" size="4" name="CertListBox" id="CertListBox"></select>
+    
+        <div class="sign-modal__info">
+            <span class="sign-modal__label">Данные о выбранном сертификате:</span>
+            <div class="sign-modal__row">
+                <span class="sign-modal__label">Владелец: </span>
+                <span class="sign-modal__text" id="SubjectName"></span>
+            </div>
+            <div class="sign-modal__row">
+                <span class="sign-modal__label">Издатель: </span>
+                <span class="sign-modal__text" id="IssuerName"></span>
+            </div>
+            <div class="sign-modal__row">
+                <span class="sign-modal__label">Дата выдачи: </span>
+                <span class="sign-modal__text" id="ValidFromDate"></span>
+            </div>
+            <div class="sign-modal__row">
+                <span class="sign-modal__label">Срок действия: </span>
+                <span class="sign-modal__text" id="ValidToDate"></span>
+            </div>
+            <div class="sign-modal__row">
+                <span class="sign-modal__label">Статус: </span>
+                <span class="sign-modal__text" id="CertMessage"></span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="sign-modal__actions">
+        <div class="file-modal__button file-modal__upload">Загрузить</div>
+        <div id="signature_button" class="sign-modal__button sign-modal__sign">Подписать</div>
+        <div  class="sign-modal__button sign-modal__validate">Проверить встроенную подпись</div>
+    </div>
+    <input type="file" name="detached_sign" hidden/>
 </div>
 
 <div class="modal save-modal">

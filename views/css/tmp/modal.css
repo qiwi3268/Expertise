@@ -18,16 +18,6 @@
    cursor: default;
 }
 
-.alert-modal.active,
-.modal.active,
-.modal-overlay.active,
-.file-overlay.active,
-.modal__close.active,
-.modal.file-modal.active
-{
-   visibility: visible;
-   opacity: 1;
-}
 
 .modal__page {
    display: none;

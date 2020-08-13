@@ -100,6 +100,11 @@ function addFileActions(file) {
    file_actions.classList.add('files__actions');
    file.appendChild(file_actions);
 
+   let sign_button = document.createElement('I');
+   sign_button.classList.add('files__sign', 'fas', 'fa-file-signature');
+   file_actions.appendChild(sign_button);
+   handleSignButton(sign_button, file);
+
    let unload_button = document.createElement('I');
    unload_button.classList.add('files__unload', 'fas', 'fa-file-download');
    file_actions.appendChild(unload_button);
@@ -109,6 +114,12 @@ function addFileActions(file) {
    delete_button.classList.add('files__delete', 'fas', 'fa-trash');
    file_actions.appendChild(delete_button);
    handleDeleteButton(delete_button);
+}
+
+function handleSignButton(sign_button, file) {
+   sign_button.addEventListener('click', () => {
+      showSignModal(file);
+   });
 }
 
 // Предназначен для добавления действия удаления файла

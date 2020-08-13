@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Блок проверок на непподерживаемые браузеры
     if(BrowserPropertiesHelper.isInternetExplorer()){
-
         console.log('Браузер не соответствует требованиям АИС (Internet Explorer не поддерживается)');
         return;
     }else if(isEdge()){
@@ -113,198 +112,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             //console.log(fileData);
 
-            GeCades.VerifyInternalSignature_Async(fileData);
+            //GeCades.VerifyInternalSignature_Async(fileData);
         }
     });
 
 
 });
 
-
-
-
-
-/*
-
-
-// Работа над подписанием файла
-function SignCadesBES_Async_File(certListBoxId, dataToSign){
-    cadesplugin.async_spawn(function*(arg){
-
-        let select = document.getElementById(arg[0]);
-        let selectedCertID = select.selectedIndex;
-
-        // TODO - Переместить это условие на клик по кнопке "Подписать"
-        if(selectedCertID == -1){
-            alert("Необходимо выбрать сертификат");
-            return;
-        }
-
-        let thumbprint = select.options[selectedCertID].value;
-        let oSertificate = GlobalCertsMap.get(thumbprint);
-
-
-        let Signature;
-        try{
-
-            let oSigner;
-
-            try{
-
-                oSigner = yield cadesplugin.CreateObjectAsync("CAdESCOM.CPSigner");
-            }catch(ex){
-                throw 'Ошибка при создании объекта CPSigner: ' + ex.number;
-            }
-
-
-            // Атрибуты усовершенствованной подписи
-            let oSigningTimeAttr = yield cadesplugin.CreateObjectAsync("CADESCOM.CPAttribute");
-
-            yield oSigningTimeAttr.propset_Name(cadesplugin.CAPICOM_AUTHENTICATED_ATTRIBUTE_SIGNING_TIME);
-            let oTimeNow = new Date();
-            yield oSigningTimeAttr.propset_Value(oTimeNow);
-            let attr = yield oSigner.AuthenticatedAttributes2;
-            yield attr.Add(oSigningTimeAttr);
-
-
-            let oDocumentNameAttr = yield cadesplugin.CreateObjectAsync("CADESCOM.CPAttribute");
-            yield oDocumentNameAttr.propset_Name(cadesplugin.CADESCOM_AUTHENTICATED_ATTRIBUTE_DOCUMENT_NAME);
-            yield oDocumentNameAttr.propset_Value("Document Name");
-            yield attr.Add(oDocumentNameAttr);
-
-            if(oSigner){
-                yield oSigner.propset_Certificate(oSertificate);
-            }else{
-                throw 'Ошибка при создании объекта CPSigner';
-            }
-
-            let oSignedData = yield cadesplugin.CreateObjectAsync("CAdESCOM.CadesSignedData");
-
-            let dataToSign = arg[1];
-
-            if(dataToSign){
-
-                yield oSignedData.propset_ContentEncoding(cadesplugin.CADESCOM_BASE64_TO_BINARY);
-                yield oSignedData.propset_Content(dataToSign);
-                yield oSigner.propset_Options(cadesplugin.CAPICOM_CERTIFICATE_INCLUDE_WHOLE_CHAIN);
-
-                try{
-                    Signature = yield oSignedData.SignCades(oSigner, cadesplugin.CADESCOM_CADES_BES, true);
-                }catch(ex){
-                    throw "Не удалось создать подпись из-за ошибки: " + cadesplugin.getLastError(ex);
-                }
-            }
-            console.log('all-good');
-            console.log(Signature);
-
-        }catch(ex){
-            console.log(ex);
-        }
-
-
-    }, certListBoxId, dataToSign);
-}
-*/
-
-
-
-
-function GetHashData(sBase64Data){
-    cadesplugin.async_spawn (function*(arg){
-
-        let PublicKey = yield SelectedCetrificate.PublicKey();
-
-        console.log(PublicKey);
-
-        let Algorithm = yield PublicKey.Algorithm;
-        let AlgorithmValue = yield Algorithm.Value;
-
-        // TODO проверку на не null
-        let alg = GetAlgorithmByValue(AlgorithmValue);
-
-        console.log(alg);
-
-        // Создаем объект CAdESCOM.HashedData
-        let oHashedData = yield cadesplugin.CreateObjectAsync("CAdESCOM.HashedData");
-
-        yield oHashedData.propset_DataEncoding(cadesplugin.CADESCOM_BASE64_TO_BINARY);
-        // Алгоритм хэширования нужно указать до того, как будут переданы данные
-        yield oHashedData.propset_Algorithm(alg);
-
-
-        let str = arg[0];
-        let length = str.length;
-        let chunkSize = 100000;
-
-        while(length > chunkSize){
-
-            yield oHashedData.Hash(str.substring(0, chunkSize));
-            str = str.substring(chunkSize, str.length);
-            length -= chunkSize;
-        }
-        yield oHashedData.Hash(str);
-
-
-        //yield oHashedData.Hash(str);
-
-        //let HashValue = yield oHashedData.Value;
-
-
-
-        let oSigner = yield cadesplugin.CreateObjectAsync("CAdESCOM.CPSigner");
-
-        // Атрибуты усовершенствованной подписи
-        let oSigningTimeAttr = yield cadesplugin.CreateObjectAsync("CADESCOM.CPAttribute");
-
-        yield oSigningTimeAttr.propset_Name(cadesplugin.CAPICOM_AUTHENTICATED_ATTRIBUTE_SIGNING_TIME);
-        let oTimeNow = new Date();
-        yield oSigningTimeAttr.propset_Value(oTimeNow);
-        let attr = yield oSigner.AuthenticatedAttributes2;
-        yield attr.Add(oSigningTimeAttr);
-
-
-        let oDocumentNameAttr = yield cadesplugin.CreateObjectAsync("CADESCOM.CPAttribute");
-        yield oDocumentNameAttr.propset_Name(cadesplugin.CADESCOM_AUTHENTICATED_ATTRIBUTE_DOCUMENT_NAME);
-        yield oDocumentNameAttr.propset_Value("Document Name");
-        yield attr.Add(oDocumentNameAttr);
-
-
-        if(oSigner){
-            yield oSigner.propset_Certificate(SelectedCetrificate);
-        }else{
-            throw 'Ошибка при создании объекта CPSigner';
-        }
-
-
-        let oSignedData = yield cadesplugin.CreateObjectAsync("CAdESCOM.CadesSignedData");
-        yield oSignedData.propset_ContentEncoding(cadesplugin.CADESCOM_BASE64_TO_BINARY);
-
-        //yield oSignedData.propset_ContentEncoding(cadesplugin.CADESCOM_BASE64_TO_BINARY);
-        //yield oSignedData.propset_Content(dataToSign);
-
-
-        yield oSigner.propset_Options(cadesplugin.CAPICOM_CERTIFICATE_INCLUDE_WHOLE_CHAIN);
-
-        let sSignedMessage = "";
-
-        // Вычисляем значение подписи
-        try {
-            sSignedMessage = yield oSignedData.SignHash(oHashedData, oSigner, cadesplugin.CADESCOM_CADES_BES);
-        } catch (err) {
-            alert("Failed to create signature. Error: " + cadesplugin.getLastError(err));
-            return;
-        }
-
-
-        console.log(sSignedMessage);
-
-
-
-
-
-
-    }, sBase64Data);
-}
 
 
 

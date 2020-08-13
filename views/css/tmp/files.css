@@ -1,7 +1,5 @@
 .modal.file-modal {
    height: 550px;
-   font-family: 'Roboto Condensed', sans-serif;
-   color: #343a40;
 }
 
 .file-modal__drop-area {
@@ -164,7 +162,8 @@
 }
 
 .files__delete,
-.files__unload {
+.files__unload,
+.files__sign {
    padding: 8px;
    border: 2px solid #ffffff;
    border-radius: 4px;
@@ -180,7 +179,8 @@
    color: #a93d3d;
 }
 
-.files__unload:hover {
+.files__unload:hover,
+.files__sign:hover {
    border-color: #A4D0FF;
    background-color: #A4D0FF;
    color: #287DD8;
