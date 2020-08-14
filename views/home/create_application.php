@@ -651,7 +651,9 @@
     </div>
     
     <div class="sign-modal__body">
-        <div class="sign-modal__file"></div>
+        <div class="sign-modal__file-info">
+            <div class="sign-modal__file"></div>
+        </div>
     
         <select class="sign-modal__cert-list" size="4" name="CertListBox" id="CertListBox"></select>
     
@@ -682,11 +684,10 @@
         </div>
     </div>
     
+    <!--todo стили-->
     <div class="sign-modal__actions">
         <div class="file-modal__button file-modal__upload">Загрузить</div>
         <div id="signature_button" class="sign-modal__button sign-modal__sign">Подписать</div>
-        <div  class="sign-modal__button sign-modal__validate">Проверить встроенную подпись</div>
-        
         <input id="external_sign" type="file" name="download_files[]" hidden/>
     </div>
 </div>
@@ -702,9 +703,6 @@
     </div>
 </div>
 
-<a href="" id="a">click here to download your file</a>
-<button onclick="SignHandler.download('file text', 'myfilename.txt', 'text/plain')">Create file</button>
-<input id="test_file" type="file" name="download_files[]" hidden/>
 
 
 

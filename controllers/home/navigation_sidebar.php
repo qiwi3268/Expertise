@@ -15,7 +15,7 @@ if($isNavigationPage){
 }
 
 // Получение параметров навигационной страницы
-list('b' => $G_block, 'v' => $G_view) = checkParamsGET('b', 'v') ? $_GET : ApplicationHelper::getDefaultNavigationPage();
+list('b' => $G_block, 'v' => $G_view) = checkParamsGET('b', 'v') ? $_GET : PageAddressHelper::getDefaultNavigationPage();
 
 // Формирование навигационного массива для view
 $navigationBlocksTV = [];

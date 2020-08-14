@@ -88,8 +88,7 @@ function updateFileNeeds() {
 
 function getFilesNeedsFormData() {
    let form_data = new FormData();
-   let id_application = getIdApplication();
-   form_data.append('id_application', id_application);
+   form_data.append('id_application', getIdApplication());
    form_data.append('file_needs_json', FileNeeds.getFileNeedsJSON());
    return form_data;
 }

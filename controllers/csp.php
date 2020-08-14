@@ -16,7 +16,7 @@ foreach($files as $File){
     try{
         
         $validateResult = $Validator->validate($path);
-    }catch(CSPShellException $e){
+    }catch(ShellException $e){
         
         // Произошла ошибка при исполнении cmd команды
     }catch(CSPMessageParserException $e){

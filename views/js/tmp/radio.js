@@ -12,15 +12,15 @@ document.addEventListener('DOMContentLoaded', () => {
 // Принимает параметры-------------------------------
 // radio_elem         Element : блок с переключателями
 function initRadioItems(radio_elem) {
-   let parent_row = radio_elem.closest('.field');
+   let parent_field = radio_elem.closest('.field');
    let body = radio_elem.querySelector('.radio__body');
 
-   if (parent_row && body) {
+   if (parent_field && body) {
       // Обязателен ли выбор хотя бы одного элемента
       let required = radio_elem.dataset.required === 'true';
 
       // Скрытый инпут, в который записывается json с выбранными элементами
-      let result_input = parent_row.querySelector('.field-result');
+      let result_input = parent_field.querySelector('.field-result');
       let multiple = radio_elem.dataset.multiple === 'true';
       let items = radio_elem.querySelectorAll('.radio__item');
 

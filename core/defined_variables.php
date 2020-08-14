@@ -3,10 +3,10 @@
 // Блок объявления констант, связанных с путями в ФС сервера
 define('_ROOT_', '/var/www/html');                              // Корневая директория веб-проекта
 define('_APPLICATIONS_FILES_', '/var/www/applications_files');  // Директория файлов заявлений
-define('_TMP_BASE64_FILES_', '/var/www/hash/tmp_base64');       // Директория хранения временных файлов base64
-define('_TMP_HASH_FILES_', '/var/www/hash/tmp_hash');       // Директория хранения временных файлов полученных hash'ей
+define('_TMP_HASH_FILES_', '/var/www/hash/tmp_hash');           // Директория хранения временных файлов полученных hash'ей
 
-define('_NAVIGATION_SETTINGS', '/var/www/html/settings/navigation.xml');
+define('_NAVIGATION_SETTINGS', '/var/www/html/settings/navigation.xml'); //
+
 
 // ---------------------------------------------------------------
 // Блок объявления констант, связанных с бизнес-логикой приложения

@@ -6,7 +6,7 @@
 $variablesTV = VariableTransfer::getInstance();
 
 // Получение параметров навигационной страницы
-list('b' => $G_block, 'v' => $G_view) = checkParamsGET('b', 'v') ? $_GET : ApplicationHelper::getDefaultNavigationPage();
+list('b' => $G_block, 'v' => $G_view) = checkParamsGET('b', 'v') ? $_GET : PageAddressHelper::getDefaultNavigationPage();
 $G_page = checkParamsGET('page') ? clearHtmlArr($_GET)['page'] : 1;
 
 $Navigation = new Navigation(Session::getUserRoles());

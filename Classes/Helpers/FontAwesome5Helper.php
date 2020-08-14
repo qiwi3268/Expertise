@@ -1,6 +1,8 @@
 <?php
 
 
+// Вспомогательный класс. Предназначен для вспомогательной работы с FontAwesome
+//
 class FontAwesome5Helper{
     
     
@@ -14,15 +16,10 @@ class FontAwesome5Helper{
             
             $name = $file['file_name'];
 
-            if(mb_strpos($name, '.pdf') !== false){
-                $class = 'fa-File-pdf';
-            }elseif(mb_strpos($name, '.docx') !== false){
-                $class = 'fa-File-word';
-            }elseif(mb_strpos($name, '.xlsx') !== false){
-                $class = 'fa-File-excel';
-            }else{
-                $class = 'fa-File-alt';
-            }
+            if(contains($name, '.pdf')) $class = 'fa-File-pdf';
+            elseif(contains($name, '.docx')) $class = 'fa-File-word';
+            elseif(contains($name, '.xlsx')) $class = 'fa-File-excel';
+            else $class = 'fa-File-alt';
             
             $file['file_icon'] = $class;
         }

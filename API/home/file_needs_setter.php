@@ -116,8 +116,6 @@ try{
 
             if(!is_null($mappingErrorCode)){
 
-                var_dump($Mapping->getErrorText());
-
                 exit(json_encode(['result'        => 6,
                                   'error_message' => $Mapping->getErrorText()
                 ]));

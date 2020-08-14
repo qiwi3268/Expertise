@@ -4,7 +4,7 @@
 namespace csp;
 
 
-class InternalSignature extends \csp\Shell{
+class InternalSignature implements SignatureValidationShell{
     
     
     // Предназначен для получения результата валидации встроенной подписи С проверкой цепочки сертификатов
@@ -18,8 +18,8 @@ class InternalSignature extends \csp\Shell{
         // -all      : использовать все найденные сертификаты
         // -errchain : завершать выполнение с ошибкой, если хотя бы один сертификат не прошел проверку
         // -verall   : проверять все подписи
-        $cmd = sprintf('%s -verify -mca -all -errchain -verall "%s" 2>&1', parent::CPROCSP, $filePaths[0]);
-        return parent::exec($cmd);
+        $cmd = sprintf('%s -verify -mca -all -errchain -verall "%s" 2>&1', \Shell::CPROCSP, $filePaths[0]);
+        return \Shell::exec($cmd);
     }
     
     // Предназначен для получения результата валидации встроенной подписи БЕЗ проверки цепочки сертификатов
@@ -27,7 +27,7 @@ class InternalSignature extends \csp\Shell{
     public function execNoChain(array $filePaths):string {
         // -nochain : не проверять цепочки найденных сертификатов
         // -verall  : проверять все подписи
-        $cmd = sprintf('%s -verify -nochain -verall "%s" 2>&1', parent::CPROCSP, $filePaths[0]);
-        return parent::exec($cmd);
+        $cmd = sprintf('%s -verify -nochain -verall "%s" 2>&1', \Shell::CPROCSP, $filePaths[0]);
+        return \Shell::exec($cmd);
     }
 }

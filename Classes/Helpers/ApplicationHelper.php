@@ -2,6 +2,9 @@
 
 
 //todo по мере заполнения разбивать текущий класс на меньшие
+
+// Вспомогательный класс. Предназначен для вспомогательной работы с заявлением
+//
 class ApplicationHelper{
 
 
@@ -23,17 +26,6 @@ class ApplicationHelper{
         return "$nowDate-$internalCounter";
     }
     
-    
-    // Предназначен для получения дефолтных GET-параметров для навигационной страницы
-    //
-    static public function getDefaultNavigationPage():array {
-    
-        $roles = Session::getUserRoles();
-        
-        if(in_array(_ROLE['APP'], $roles)) return ['b' => 'block_2', 'v' => 'view_2'];
-    }
-
-
 
     // Предназначен для проверки прав заявителя на сохранение заявления
     // Принимает параметры-----------------------------------

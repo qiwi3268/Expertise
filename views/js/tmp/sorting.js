@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let form_data = new FormData();
       let view_name = document.querySelector('[name="navigation__view-name"]').value;
       form_data.append('view_name', view_name);
-      form_data.append('data_per_page', parseInt(related_button.dataset.per_page));
+      form_data.append('data_per_page', related_button.dataset.per_page);
       return form_data;
    }
 

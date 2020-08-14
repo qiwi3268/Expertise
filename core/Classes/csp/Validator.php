@@ -7,14 +7,14 @@ namespace csp;
 class Validator{
 
     private MessageParser $Parser; // Парсер cmd-сообщения
-    private Shell $Shell;
+    private SignatureValidationShell $Shell;
     
     
     // Принимает параметры-----------------------------------
-    // Parser MessageParser : экземпляр класса парсинга вывода cmd-сообщения
-    // Shell Shell          : экземпляр класса для выполения shell-команд (ExternalSignature / InternalSignature)
+    // Parser MessageParser           : экземпляр класса парсинга вывода cmd-сообщения
+    // Shell SignatureValidationShell : экземпляр класса для выполения shell-команд (ExternalSignature / InternalSignature)
     //
-    public function __construct(MessageParser $Parser, Shell $Shell){
+    public function __construct(MessageParser $Parser, SignatureValidationShell $Shell){
         $this->Parser = $Parser;
         $this->Shell = $Shell;
     }

@@ -38,7 +38,13 @@ return [
     ],
     
     'home/API_get_file_hash' => [
+        '/Classes/'          => ['FilesTableMapping'],
+        '/core/Classes/csp/' => ['Shell', 'FileHash', 'MessageParser'],
         'API'                => ['get_file_hash']
+    ],
+    
+    'home/API_external_signature_verifier' => [
+        '/Classes/'
     ],
     
     'csp' => [

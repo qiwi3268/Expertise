@@ -83,9 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // Element календаря
       element;
 
-      // data-row_name родительского блока
-      name;
-
       // Блок, в который помещается содержимое календаря
       body;
 

@@ -22,13 +22,20 @@ function noScroll() {
 function disableScroll() {
    // document.body.style.position = 'fixed';
    // document.body.style.top = `-${window.scrollY}px`;
-   document.body.classList.add("stop-scrolling");
+   document.body.classList.add('stop-scrolling');
 }
 
 function enableScroll() {
    // document.body.style.position = '';
    // document.body.style.top = '';
-   document.body.classList.remove("stop-scrolling");
+   document.body.classList.remove('stop-scrolling');
+}
+
+// Предназначен для получения id текущего заявления
+// Возвращает параметры------------------------------
+// id         string : id текущего заявления
+function getIdApplication() {
+   return document.querySelector('[name="id_application"]').value;
 }
 
 //---------

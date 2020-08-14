@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
       let items = checkbox.querySelectorAll('.checkbox__item');
 
       items.forEach(item => {
-         let parent_row = item.closest('.body-card__row');
-         let result_input = parent_row.querySelector('.body-card__result');
+         let parent_field = item.closest('.body-card__row');
+         let result_input = parent_field.querySelector('.body-card__result');
 
          item.addEventListener('click', () => {
             let icon = item.querySelector('.checkbox__icon');

@@ -60,7 +60,8 @@
    font-size: 20px;
    margin: 0px 10px 0px 0px;
    cursor: pointer;
-   color: #6e6e6e;
+   /*color: #6e6e6e;*/
+   color: #287ab8;
 }
 
 .file-modal__item:hover {
@@ -190,3 +191,48 @@
    display: flex;
    justify-content: space-between;
 }
+
+
+
+/*tmp========*/
+
+.files__actions > .fas {
+   font-size: 18px;
+   /*color: #287ab8;*/
+
+}
+
+.files__unload {
+   /*color: #287ab8;*/
+}
+
+.files__delete {
+   /*color: #db5151;*/
+}
+
+.files__name {
+   font-size: 16px;
+}
+
+.files__icon {
+   font-size: 20px;
+   color: #254160;
+
+}
+
+
+
+
+/*tmp============*/
+
+
+
+
+
+
+
+
+
+
+
+

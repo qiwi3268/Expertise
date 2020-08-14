@@ -2,17 +2,42 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/js/tmp/FileChecker.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/home/file_needs_setter.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/file_needs_setter.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/home/get_file_hash.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/get_file_hash.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Navigation/block_1_type_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Navigation/block_1_type_2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Exceptions/CSPMessageParserException.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Exceptions/CSPMessageParserException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/FilesTableMapping.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/FilesTableMapping.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Helpers/ApplicationHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Helpers/ApplicationHelper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Helpers/FontAwesome5Helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Helpers/FontAwesome5Helper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Helpers/PageAddressHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Helpers/PageAddressHelper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/csp.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/csp.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/navigation.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/navigation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/navigation_sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/navigation_sidebar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/csp/ExternalSignature.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/csp/ExternalSignature.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/csp/InternalSignature.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/csp/InternalSignature.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/csp/MessageParser.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/csp/MessageParser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/csp/Shell.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/csp/Shell.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/csp/SignatureValidationShell.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/csp/SignatureValidationShell.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/csp/Validator.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/csp/Validator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/defined_variables.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/defined_variables.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/cron/fileCleaner.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/cron/fileCleaner.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/files.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/files.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/sign.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/sign.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/PerfectCades.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/PerfectCades.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/calendar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/cards.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/cards.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/checkbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/checkbox.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/file_actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/file_download.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_download.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/sign.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/radio.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/radio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/save_application.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/save_application.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/sorting.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/sorting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/validation.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +111,7 @@
       <workItem from="1596084344898" duration="24335000" />
       <workItem from="1596168695490" duration="11753000" />
       <workItem from="1597121957786" duration="40918000" />
-      <workItem from="1597289757161" duration="27514000" />
+      <workItem from="1597289757161" duration="44445000" />
     </task>
     <task id="LOCAL-00001" summary="22.07.2020">
       <created>1595389670254</created>
@@ -312,14 +337,20 @@
       <option name="project" value="LOCAL" />
       <updated>1597298889244</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="13.08.2020_2">
+      <created>1597322056027</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1597322056027</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="26.07.2020" />
     <MESSAGE value="27.07.2020" />
     <MESSAGE value="27.07.2020_1" />
     <MESSAGE value="27.07.2020_2" />
@@ -344,13 +375,14 @@
     <MESSAGE value="12.08.2020_1" />
     <MESSAGE value="13.08.2020" />
     <MESSAGE value="13.08.2020_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="13.08.2020_1" />
+    <MESSAGE value="13.08.2020_2" />
+    <option name="LAST_COMMIT_MESSAGE" value="13.08.2020_2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1597298885740">
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1597322053204">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1597298885740" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1597322053204" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596177721879" />
     <state x="184" y="86" key="MergeDialog" timestamp="1597124014338">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -364,10 +396,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="781" y="344" key="SettingsEditor/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596084331421" />
-    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1597320221251">
+    <state x="740" y="322" width="842" height="606" key="find.popup" timestamp="1597402887670">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1597320221251" />
+    <state x="740" y="322" width="842" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1597402887670" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596173151354" />
     <state x="1150" y="591" key="publish.login" timestamp="1596168913639">
       <screen x="0" y="0" width="2560" height="1400" />

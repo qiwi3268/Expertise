@@ -87,6 +87,7 @@ function createAlert(message) {
    modal.classList.add('active');
    overlay.classList.add('active');
 
+   //TODO создавать сразу
    createModalCloseButton(modal);
 }
 

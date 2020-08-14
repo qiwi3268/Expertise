@@ -76,13 +76,7 @@ function createUnloadFileFormData(file) {
    return form_data;
 }
 
-// TODO вынести в другое место
-// Предназначен для получения id текущего заявления
-// Возвращает параметры------------------------------
-// id         string : id текущего заявления
-function getIdApplication() {
-   return document.querySelector('[name="id_application"]').value;
-}
+
 
 // Предназначен для получения ссылки для скачивания файла
 // Принимает параметры-------------------------------

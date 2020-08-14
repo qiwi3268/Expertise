@@ -35,11 +35,16 @@
 
 .sign-modal__header {
     border-bottom: 2px solid #ffd354;
-    padding: 10px;
+    padding: 2px 10px;
 }
 
 .sign-modal__body {
     flex-grow: 1;
+}
+
+.sign-modal__file-info {
+    border-bottom: 2px solid #ffd354;
+
 }
 
 .sign-modal__cert-list {
@@ -88,7 +93,8 @@
 }
 
 .sign-modal__row {
-    padding: 5px;
+    /*padding: 5px;*/
+    padding: 1px;
 }
 
 /*

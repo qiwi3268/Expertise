@@ -4,7 +4,7 @@
 namespace csp;
 
 
-class ExternalSignature extends \csp\Shell{
+class ExternalSignature implements SignatureValidationShell{
     
     
     // Предназначен для получения результата валидации открепленной подписи С проверкой цепочки сертификатов
@@ -20,8 +20,8 @@ class ExternalSignature extends \csp\Shell{
         // -all      : использовать все найденные сертификаты
         // -errchain : завершать выполнение с ошибкой, если хотя бы один сертификат не прошел проверку
         // -verall   : проверять все подписи
-        $cmd = sprintf('%s -verify -mca -all -errchain -verall -detached "%s" "%s" 2>&1', parent::CPROCSP, $filePaths[0], $filePaths[1]);
-        return parent::exec($cmd);
+        $cmd = sprintf('%s -verify -mca -all -errchain -verall -detached "%s" "%s" 2>&1', \Shell::CPROCSP, $filePaths[0], $filePaths[1]);
+        return \Shell::exec($cmd);
     }
     
     // Предназначен для получения результата валидации открепленной подписи БЕЗ проверки цепочки сертификатов
@@ -29,7 +29,7 @@ class ExternalSignature extends \csp\Shell{
     public function execNoChain(array $filePaths):string {
         // -nochain : не проверять цепочки найденных сертификатов
         // -verall  : проверять все подписи
-        $cmd = sprintf('%s -verify -nochain -verall -detached "%s" "%s" 2>&1', parent::CPROCSP, $filePaths[0], $filePaths[1]);
-        return parent::exec($cmd);
+        $cmd = sprintf('%s -verify -nochain -verall -detached "%s" "%s" 2>&1', \Shell::CPROCSP, $filePaths[0], $filePaths[1]);
+        return \Shell::exec($cmd);
     }
 }

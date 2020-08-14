@@ -7,20 +7,23 @@ class SignHandler {
    static overlay;
    static is_plugin_initialized = false;
    static sign_btn;
-   static id_application;
    static id_file;
+   static fs_name_data;
+   static fs_name_sign;
    static file_name;
    static mapping_level_1;
    static mapping_level_2;
-
-
-   static signature;
 
    static init() {
       SignHandler.modal = document.querySelector('.sign-modal');
 
       SignHandler.handleOverlay();
       SignHandler.handleSignButton();
+   }
+
+   static handleOverlay() {
+      SignHandler.overlay = document.querySelector('.sign-overlay');
+      SignHandler.overlay.addEventListener('click', () => SignHandler.closeModal());
    }
 
    static handleSignButton() {
@@ -34,85 +37,125 @@ class SignHandler {
 
 
    static signFile() {
-      let form_data = SignHandler.getFileCheckFormData();
+      let form_data = SignHandler.getFileCheckFormData(SignHandler.id_file);
       let selected_algorithm;
-      let fs_name;
 
       XHR('post', '/home/API_file_checker', form_data, null, 'json')
+         // Проверяем, что файл может быть скачан
          .then(response => {
+
             console.log(response);
             return response;
+
          })
-         //Проверяем, что файл может быть скачан
+         // Получаем алгоритм
          .then(check_response => {
+
             if (check_response.result === 9) {
-               fs_name = check_response.fs_name;
+               SignHandler.fs_name_data = check_response.fs_name;
                SignHandler.file_name = check_response.file_name;
                return GeCades.getSelectedCertificateAlgorithm();
             } else {
                console.log(check_response);
             }
+
          })
-         //Получаем алгоритм
+         // Вычисляем хэш файла
          .then(algorithm => {
+
             console.log(algorithm);
             selected_algorithm = algorithm;
-            form_data = SignHandler.getFileHashFormData(algorithm, fs_name);
+            form_data = SignHandler.getFileHashFormData(algorithm);
             return XHR('post', '/home/API_get_file_hash', form_data, null, 'json');
-         })
-         //Вычисляем хэш файла
-         .then(file_hash => {
-            return GeCades.SignHash_Async(selected_algorithm, file_hash.hash)
-         })
-         //Получаем подпись
-         .then(sign_hash => {
-            form_data = SignHandler.getFileUploadFormData(sign_hash);
-            console.log(new Map(form_data));
 
-            return XHR('post', '/home/API_file_uploader', form_data, null, 'json', null, null)
          })
+         // Получаем хэш подписи
+         .then(file_hash => {
+
+            return GeCades.SignHash_Async(selected_algorithm, file_hash.hash);
+
+         })
+         // Создаем файл подписи и загружаем его
+         .then(sign_hash => {
+
+            form_data = SignHandler.getFileUploadFormData(sign_hash);
+            return XHR('post', '/home/API_file_uploader', form_data, null, 'json', null, null);
+
+         })
+         // Проверяем, что подпись может быть скачана
          .then(upload_response => {
+
             console.log(upload_response);
+            if (upload_response.result === 16) {
+               let id_sign = upload_response.uploaded_files[0].id;
+               form_data = SignHandler.getFileCheckFormData(id_sign);
+               return XHR('post', '/home/API_file_checker', form_data, null, 'json');
+            } else {
+               console.log('upload sign exception');
+            }
+
+         })
+         // Проверяем подпись
+         .then(check_sign_response => {
+
+            if (check_sign_response.result === 9) {
+
+               SignHandler.fs_name_sign = check_sign_response.fs_name;
+               form_data = SignHandler.getSignVerifyFormData();
+               return XHR('post', '/home/API_external_signature_verifier', form_data, null, 'json', null, null)
+
+            } else {
+               console.log(check_sign_response);
+            }
+
+         })
+         .then(verify_response => {
+
+            console.log(verify_response);
+
          })
          .catch(exception => {
             console.log(exception);
          });
    }
 
-   static getFileUploadFormData(sign_hash) {
-      let form_data = new FormData();
-      let sign = getFileFromData(sign_hash, SignHandler.file_name);
-
-      let input = document.getElementById('external_sign');
-      console.log(input);
-      input.files = getFileListFromFile(sign);
-
-
-      // let files = getFileListFromFile(getFileFromData(sign_hash, SignHandler.file_name));
-      form_data.append('id_application', getIdApplication());
-      form_data.append('mapping_level_1', SignHandler.mapping_level_1);
-      form_data.append('mapping_level_2', SignHandler.mapping_level_2);
-      form_data.append('download_files[]', input.files);
-      return form_data;
-   }
-
-   static getFileCheckFormData() {
+   static getFileCheckFormData(id_file) {
       let form_data = new FormData();
       form_data.append('id_application', getIdApplication());
-      form_data.append('id_file', SignHandler.id_file);
+      form_data.append('id_file', id_file);
       form_data.append('mapping_level_1', SignHandler.mapping_level_1);
       form_data.append('mapping_level_2', SignHandler.mapping_level_2);
       return form_data;
    }
 
-   static getFileHashFormData(algorithm, fs_name) {
+   static getFileHashFormData(algorithm) {
       let form_data = new FormData();
       form_data.append('sign_algorithm', algorithm);
-      form_data.append('fs_name', fs_name);
+      form_data.append('fs_name', SignHandler.fs_name_data);
+      return form_data;
+   }
+
+   static getFileUploadFormData(sign_hash) {
+      let form_data = new FormData();
+      form_data.append('id_application', getIdApplication());
+      form_data.append('mapping_level_1', SignHandler.mapping_level_1);
+      form_data.append('mapping_level_2', SignHandler.mapping_level_2);
+      let sign_blob = new Blob([sign_hash], {type: 'text/plain'});
+      form_data.append('download_files[]', sign_blob, SignHandler.file_name + '.sig');
+      return form_data;
+   }
+
+   static getSignVerifyFormData() {
+      let form_data = new FormData();
+      form_data.append('fs_name_data', SignHandler.fs_name_data);
+      form_data.append('fs_name_sign', SignHandler.fs_name_sign);
+      form_data.append('mapping_level_1', SignHandler.mapping_level_1);
+      form_data.append('mapping_level_2', SignHandler.mapping_level_2);
       return form_data;
    }
 
    static openModal(file) {
+      //TODO открывать послен инициализации
       SignHandler.modal.classList.add('active');
       SignHandler.overlay.classList.add('active');
 
@@ -148,9 +191,6 @@ class SignHandler {
       SignHandler.overlay.classList.remove('active');
    }
 
-   static handleOverlay() {
-      SignHandler.overlay = document.querySelector('.sign-overlay');
-      SignHandler.overlay.addEventListener('click', () => SignHandler.closeModal());
-   }
+
 
 }
