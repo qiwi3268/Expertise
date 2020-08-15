@@ -34,8 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
    let submit_button = file_modal.querySelector('.file-modal__submit');
    submit_button.addEventListener('click', () => {
-      if (!is_uploading) {
+      if (!is_uploading && FileChecker.IsReadyToUpload(file_input.files)) {
          sendFiles();
+      } else {
+         console.log('Неправильные файлы');
       }
    });
 
@@ -243,26 +245,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
    // Предназначен для загрузки файлов на сервер
    function sendFiles() {
-      let request_urn = '/home/API_file_uploader';
 
       progress_bar.style.transition = '.15s';
       is_uploading = true;
 
-      XHR('post', request_urn, new FormData(form), null, 'json', null, uploadProgressCallback)
+      XHR('post', '/home/API_file_uploader', new FormData(form), null, 'json', null, uploadProgressCallback)
          .then(response => {
 
-            is_uploading = false;
+            if (response.result === 16) {
 
-            switch (response.result) {
-               case 16:
+               // let uploaded_files = response.uploaded_files;
+               // return handleInternalSigns(uploaded_files);
 
-                  putFilesToRow(response.uploaded_files);
-                  closeFileModal();
-                  break;
-               default:
-                  console.log(response);
+
+               putFilesToRow(response.uploaded_files);
+
+               closeFileModal();
+
+               is_uploading = false;
+
+            } else {
+               console.log(response);
             }
+
          })
+
          .catch(error => {
 
             is_uploading = false;
@@ -280,6 +287,30 @@ document.addEventListener('DOMContentLoaded', () => {
       let download_percent = Math.round(100 * event.loaded / event.total);
       modal_title.innerHTML = `Загрузка ${download_percent}%`;
       progress_bar.style.width = download_percent + '%';
+   }
+
+/*
+   async function handleInternalSigns(files) {
+
+      let internal_signs = files.filter(FileChecker.isInternalSign);
+      internal_signs.forEach(verifyInternalSign);
+
+      files.forEach(file => async function() {
+         if (FileChecker.isInternalSign(file)) {
+
+         }
+      });
+   }
+*/
+
+   function verifyInternalSign(file) {
+      XHR('post', '/home/API_file_checker', new FormData(form), null, 'json', null, null)
+         .then(response => {
+            console.log('verify response');
+         })
+         .catch(error => {
+            console.error(error)
+         });
    }
 
    // Предназначен для добавления файлов в родительское поле
@@ -301,8 +332,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
       files_body.classList.add('filled');
 
-      files.forEach(file => {
-         addFileElement(file, files_body)
+
+      files.forEach(file => function() {
+         addFileElement(file, files_body);
+
+         console.log('asd');
+
+         if (FileChecker.isInternalSign(file)) {
+            //verifyInternalSign(file);
+         }
+
       });
 
       changeParentCardMaxHeight(parent_field);
