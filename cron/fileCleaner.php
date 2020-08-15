@@ -20,7 +20,7 @@ try{
     exit();
 }
 
-$Logger = new Logger(_ROOT_.'/logs/cron', 'fileCleaner.log');
+$Logger = new Logger(_LOGS_.'/cron', 'fileCleaner.log');
 $Logger->write("НАЧИНАЮ работу");
 
 foreach(_FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_2){

@@ -46,11 +46,12 @@ class MessageParser{
         
         foreach($parts as $part){
             
-            if(mb_strpos($part, 'CryptCP 4.0 (c) "Crypto-Pro", 2002-2020.') === false &&
-                mb_strpos($part, 'Command prompt Utility for File signature and encryption.') === false &&
-                mb_strpos($part, 'Folder') === false &&
-                mb_strpos($part, 'Signature verifying...') === false &&
-                mb_strpos($part, 'CSPbuild') === false &&
+            if(!icontains($part, 'CryptCP 4.0 (c) "Crypto-Pro", 2002-2020.') &&
+                !icontains($part, 'CryptCP 5.0 (c) "Crypto-Pro", 2002-2019.') &&
+                !icontains($part, 'Command prompt Utility for file signature and encryption.') &&
+                !icontains($part, 'Folder') &&
+                !icontains($part, 'Signature verifying...') &&
+                !icontains($part, 'CSPbuild') &&
                 $part !== ''){
                 
                 $result[] = trim($part); // Удаляем пробельные символы вначале и вконце строки

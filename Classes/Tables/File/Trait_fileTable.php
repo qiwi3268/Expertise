@@ -60,6 +60,25 @@ trait  Trait_fileTable{
     }
     
     
+    // Предназначен для получения id записи по её hash'у
+    // Принимает параметры-----------------------------------
+    // hash string : hash записи
+    // Возвращает параметры-----------------------------------
+    // int  : в случае, если запись существует
+    // null : в противном случае
+    //
+    static public function getIdByHash(string $hash):?int {
+    
+        $table = self::$tableName;
+    
+        $query = "SELECT `id`
+                  FROM `$table`
+                  where `hash`=?";
+        $result = ParametrizedQuery::getSimpleArray($query, [$hash]);
+        return $result ? $result[0] : null;
+    }
+    
+    
     // Предназначен для проверки существования записи по id
     // Принимает параметры-----------------------------------
     // id  int : id записи

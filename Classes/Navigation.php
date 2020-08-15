@@ -6,7 +6,7 @@
 class Navigation{
     
     // Соответствие Ключ = роль => Значение = перечисление блоков из XML-схемы навигации
-    public const BLOCKS = [_ROLE['APP'] => ['block_1', 'block_2'],
+    public const BLOCKS = [_ROLE['APP'] => ['block_1'],
     
     ];
     

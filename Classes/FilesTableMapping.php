@@ -20,7 +20,7 @@ class FilesTableMapping{
         // Проверка существования маппинга
         if(!isset(_FILE_TABLE_MAPPING[$mappingLevel1][$mappingLevel2])){
             $this->errorCode = 1;
-            $this->errorText = 'Запрашиваемого маппинга не существует';
+            $this->errorText = "Запрашиваемого маппинга mapping_level_1: '{$mappingLevel1}', mapping_level_2: '{$mappingLevel2}'  не существует";
             return;
         }
     
@@ -30,16 +30,17 @@ class FilesTableMapping{
         // Проверка на существование указанного в маппинге класса
         if(!class_exists($Class)){
             $this->errorCode = 2;
-            $this->errorText = 'Указанного в маппинге класса не существует';
+            $this->errorText = "Указанный в маппинге класс: '{$Class}' не существует";
             return;
         }
 
         $interfaces = class_implements($Class);
 
         // Проверка на реализацию интерфейса Interface_fileTable в нужном классе
-        if(!$interfaces || !in_array($this->neededInterface, $interfaces, true)){
+        $neededInterface = $this->neededInterface;
+        if(!$interfaces || !in_array($neededInterface, $interfaces, true)){
             $this->errorCode = 3;
-            $this->errorText = 'Указанный в маппинге класс не реализует требуемый интерфейс';
+            $this->errorText = "Указанный в маппинге класс: '{$Class}' не реализует требуемый интерфейс: '{$neededInterface}'";
             return;
         }
 
@@ -51,7 +52,7 @@ class FilesTableMapping{
     // null  : нет ошибок
     // int   : есть ошибки
     //
-    public function getErrorCode(){
+    public function getErrorCode():?int {
         return $this->errorCode;
     }
 
@@ -59,7 +60,7 @@ class FilesTableMapping{
     // Возвращает параметры-----------------------------------
     // string : текст ошибки
     //
-    public function getErrorText(){
+    public function getErrorText():string {
         return $this->errorText;
     }
 
@@ -67,7 +68,7 @@ class FilesTableMapping{
     // Возвращает параметры-----------------------------------
     // string : имя класса
     //
-    public function getClassName(){
+    public function getClassName():string {
         return $this->Class;
     }
 }

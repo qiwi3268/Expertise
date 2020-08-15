@@ -20,11 +20,7 @@ class Pagination{
     //
     public function __construct(int $dataCount, int $dataPerPage, int $currentPage){
     
-<<<<<<< HEAD
-        $pageCount = (int)ceil($dataCount/$dataPerPage);
-=======
         $pageCount = (int)ceil($dataCount/$dataPerPage); // т.к. ceil возвращает float
->>>>>>> 5b015d9495abdca6a19a460370085b00167fbfbb
         
         // В случае отрицательный страницы - отображаем её модуль
         $currentPage = abs($currentPage);
@@ -61,10 +57,7 @@ class Pagination{
     // Возвращает параметры----------------------------------
     // true  : существует
     // false : не существует
-<<<<<<< HEAD
-=======
     //
->>>>>>> 5b015d9495abdca6a19a460370085b00167fbfbb
     public function checkIssetPreviousPage():bool{
         return ($this->currentPage == 1) ? false : true;
     }
@@ -74,10 +67,7 @@ class Pagination{
     // Возвращает параметры----------------------------------
     // true  : существует
     // false : не существует
-<<<<<<< HEAD
-=======
     //
->>>>>>> 5b015d9495abdca6a19a460370085b00167fbfbb
     public function checkIssetNextPage():bool{
         return ($this->currentPage == $this->pageCount) ? false : true;
     }

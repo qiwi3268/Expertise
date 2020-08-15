@@ -38,14 +38,23 @@ return [
     ],
     
     'home/API_get_file_hash' => [
-        '/Classes/'          => ['FilesTableMapping'],
+        '/Classes/'          => ['Logger', 'FilesTableMapping'],
         '/core/Classes/csp/' => ['Shell', 'FileHash', 'MessageParser'],
         'API'                => ['get_file_hash']
     ],
     
     'home/API_external_signature_verifier' => [
-        '/Classes/'
+        '/Classes/'          => ['Logger', 'FilesTableMapping', 'SignsTableMapping'],
+        '/core/Classes/csp/' => ['MessageParser', 'Shell', 'SignatureValidationShell', 'ExternalSignature', 'Validator'],
+        'API'                => ['external_signature_verifier']
     ],
+    
+    'home/API_internal_signature_verifier' => [
+        '/Classes/'          => ['Logger', 'FilesTableMapping', 'SignsTableMapping'],
+        '/core/Classes/csp/' => ['MessageParser', 'Shell', 'SignatureValidationShell', 'InternalSignature', 'Validator'],
+        'API'                => ['internal_signature_verifier']
+    ],
+    
     
     'csp' => [
         '/core/Classes/csp/' => ['Validator', 'MessageParser', 'Shell', 'InternalSignature', 'ExternalSignature'],

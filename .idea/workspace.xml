@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3052c4db-b17b-45ef-9874-1a02eb86f4cf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/navigation.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/navigation.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/navigation/navigation_sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/navigation/navigation_sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/navigation/view_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/navigation/view_1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/sorting.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/sorting.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/tmp/view_application.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sshConfigs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sshConfigs.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,9 +49,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="G:\PhpStorm 2020.1.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -304,7 +299,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="24.07.2020" />
@@ -343,18 +338,18 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="248" y="121" key="MergeDialog/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596186835322" />
-    <state x="781" y="344" key="SettingsEditor" timestamp="1596084331421">
+    <state x="781" y="344" key="SettingsEditor" timestamp="1597464133669">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="781" y="344" key="SettingsEditor/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596084331421" />
+    <state x="781" y="344" key="SettingsEditor/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597464133669" />
     <state x="987" y="433" width="585" height="624" key="find.popup" timestamp="1596624495531">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596624495531" />
-    <state x="1150" y="591" key="publish.login" timestamp="1596600956102">
+    <state x="1150" y="591" key="publish.login" timestamp="1597464090725">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1150" y="591" key="publish.login/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596600956102" />
+    <state x="1150" y="591" key="publish.login/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597464090725" />
     <state x="936" y="330" key="run.anything.popup" timestamp="1596602547364">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

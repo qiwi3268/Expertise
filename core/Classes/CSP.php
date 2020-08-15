@@ -6,16 +6,12 @@ class CSP{
 
     private const CPROCSP= '/opt/cprocsp/bin/amd64/cryptcp';
     
-<<<<<<< HEAD
-    public function __construct(){
-=======
     private array $hashNames;
     
     public function __construct(){
         
         $names = PeopleNameTable::getNames();
         foreach($names as $name) $this->hashNames[$name] = true;
->>>>>>> 5b015d9495abdca6a19a460370085b00167fbfbb
     }
     
     
@@ -24,20 +20,6 @@ class CSP{
     //
     public function validateInternal(string $path){
         
-<<<<<<< HEAD
-        $cmd = sprintf('%s -verify -mca -all -errchain -verall %s 2>&1', self::CPROCSP, $path);
-        
-        $message = shell_exec($cmd);
-        
-        var_dump($cmd);
-        var_dump($message);
-    }
-    
-    private function getErrorMessage($errorCode){
-    
-    }
-}
-=======
         $cmd = sprintf('%s -verify -mca -all -errchain -verall "%s" 2>&1', self::CPROCSP, $path);
         
         $message = shell_exec($cmd);
@@ -153,4 +135,3 @@ class CSP{
  */
 
 
->>>>>>> 5b015d9495abdca6a19a460370085b00167fbfbb

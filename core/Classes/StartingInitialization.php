@@ -26,13 +26,14 @@ class StartingInitialization{
             if(icontains($className,'exception')) $path = "{$this->rootPath}/Classes/Exceptions/{$className}.php";
             // Файловые таблицы
             elseif(icontains($className,'file', 'table')) $path = "{$this->rootPath}/Classes/Tables/File/{$className}.php";
+            // Таблицы подписей
+            elseif(icontains($className,'sign', 'table')) $path = "{$this->rootPath}/Classes/Tables/Sign/{$className}.php";
             // Таблицы
             elseif(icontains($className,'table')) $path = "{$this->rootPath}/Classes/Tables/{$className}.php";
             // Действия
             elseif(icontains($className,'actions')) $path = "{$this->rootPath}/Classes/Actions/{$className}.php";
             // Вспомогательные классы
             elseif(icontains($className,'helper')) $path = "{$this->rootPath}/Classes/Helpers/{$className}.php";
-            
             
             if(!is_null($path) && file_exists($path)){
                 require_once $path;

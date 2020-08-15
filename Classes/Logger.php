@@ -1,15 +1,18 @@
 <?php
 
+
 // Предназначен для логирования действий
 //
 class Logger{
     
-    // Абсолютный путь на сервере до директории логов. Без символа '/' в конце строки
     private string $logsDir;
-    // Название файла логов от директории логов, включая расширение файла
     private string $logsName;
     
     
+    // Принимает параметры-----------------------------------
+    // logsDir  string : абсолютный путь на сервере до директории логов. Без символа '/' в конце строки
+    // logsName string : название файла логов от директории логов, включая расширение файла
+    //
     function __construct(string $logsDir, string $logsName){
 
         $this->changeLogsDir($logsDir);
@@ -18,9 +21,9 @@ class Logger{
         if(!file_exists("{$logsDir}/{$logsName}")){
             
             if(!file_exists($this->logsDir)){
-                throw new Exception("Указанная директория лог файлов: {$this->logsDir} не существует в файловой системе сервера");
+                throw new Exception("Указанная директория лог файлов: '{$this->logsDir}' не существует в файловой системе сервера");
             }else{
-                throw new Exception("Указанный файл логов {$this->logsName} не существует в директории {$this->logsDir}");
+                throw new Exception("Указанный файл логов: '{$this->logsName}' не существует в директории {$this->logsDir}");
             }
         }
     }
@@ -31,7 +34,7 @@ class Logger{
     // logsDir string: абсолютный путь к директории с файлами логов
     //
     public function changeLogsDir(string $logsDir):void {
-        if(!$this->validateLogsDir($logsDir)) throw new Exception('Передан некорректный параметр logsDir');
+        if(!$this->validateLogsDir($logsDir)) throw new Exception("Передан некорректный параметр logsDir: '{$logsDir}'");
         $this->logsDir = $logsDir;
     }
     
@@ -41,7 +44,7 @@ class Logger{
     // logsName string: имя файла логов
     //
     public function changeLogsName(string $logsName):void {
-        if(!$this->validateLogsName($logsName)) throw new Exception('Передан некорректный параметр logsName');
+        if(!$this->validateLogsName($logsName)) throw new Exception("Передан некорректный параметр logsName: '{$logsName}'");
         $this->logsName = $logsName;
     }
     
@@ -49,13 +52,17 @@ class Logger{
     // Предназначен для записи логов
     // Принимает параметры-----------------------------------
     // message string: логируемое сообщение
+    // Возвращает параметры-----------------------------------
+    // string : временная отметка логируемого сообщения
     //
-    public function write(string $message):void {
-        $message = date('d.m.Y H:i:s')." $message";
-        $message .= PHP_EOL;
+    public function write(string $message):string {
+        
+        $date = date('d.m.Y H:i:s');
+        $message = "{$date} {$message}".PHP_EOL;
         if(file_put_contents("{$this->logsDir}/{$this->logsName}", $message, FILE_APPEND) === false){
-            throw new Exception('Произошла ошибка при попытке записать логируемое сообщение в файл');
+            throw new Exception("Произошла ошибка при попытке записать логируемое сообщение: '{$message}' в файл: '{$this->logsDir}/{$this->logsName}'");
         }
+        return $date;
     }
     
     
@@ -84,9 +91,7 @@ class Logger{
     // false : проверка не пройдена
     //
     private function validateLogsName(string $logsName):bool {
-        if($logsName[0] == '/'){
-            return false;
-        }
-        return true;
+        
+        return $logsName[0] == '/' ? false : true;
     }
 }

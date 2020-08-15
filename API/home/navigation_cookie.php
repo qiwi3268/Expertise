@@ -36,11 +36,7 @@ if(!checkParamsPOST('view_name', 'data_per_page') && !checkParamsPOST('view_name
 extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
 
 
-<<<<<<< HEAD
-if(isset($P_data_per_page) && isset($P_sort_name)){
-=======
 if(isset($P_data_per_page) && (isset($P_sort_name) || isset($P_sort_type))){
->>>>>>> 5b015d9495abdca6a19a460370085b00167fbfbb
     exit(json_encode(['result'        => 2,
                       'error_message' => 'Одновременно переданы данные о сортировке и количестве элементов на странице'
     ]));

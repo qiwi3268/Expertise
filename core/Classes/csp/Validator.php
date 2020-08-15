@@ -5,10 +5,10 @@ namespace csp;
 
 
 class Validator{
-
-    private MessageParser $Parser; // Парсер cmd-сообщения
-    private SignatureValidationShell $Shell;
     
+    
+    private MessageParser $Parser;
+    private SignatureValidationShell $Shell;
     
     // Принимает параметры-----------------------------------
     // Parser MessageParser           : экземпляр класса парсинга вывода cmd-сообщения
@@ -170,7 +170,7 @@ class Validator{
                     $verifyResult = false;
                     $s += 2; // Перескакиваем через сообщение об ошибке и Error: Signature.
                 }else{
-                    throw new \CSPValidatorException("Неизвестный формат частей сообщения, следующий за Signer: next_1_part='{$next_1_part}', next_2_part='{$next_2_part}'", 2);
+                    throw new \CSPValidatorException("Неизвестный формат частей сообщения, следующий за Signer: next_1_part='{$next_1_part}', next_2_part='{$next_2_part}'".$this->getDebugMessageParts($messageParts), 2);
                 }
                 
                 // Временный массив с данными о подписи
@@ -190,24 +190,18 @@ class Validator{
                 continue; // Ошибки пропускаем, т.к. дальше (в следующих итерациях) отловится ее ErrorCode
             }else{
                 // В данную ветку ничего не должно попасть, т.к. блоки Signer и ErrorCode обрабатываются выше
-                throw new \CSPValidatorException("Неизвестная часть сообщения: '{$part}'", 3);
+                throw new \CSPValidatorException("Неизвестная часть сообщения: '{$part}'".$this->getDebugMessageParts($messageParts), 3);
             }
         }
-    
+        
         // Проверки на существование одного и более Signers и единственную часть ErrorCode
         if(empty($signers)){
-            throw new \CSPValidatorException("В частях сообщения отсустсвует(ют) Signer", 4);
+            throw new \CSPValidatorException("В частях сообщения отсустсвует(ют) Signer".$this->getDebugMessageParts($messageParts), 4);
         }
         
         $count_errorCodes = count($errorCodes);
         if($count_errorCodes != 1){
-            $message = "Получено некорректное количество блоков ErrorCode: ({$count_errorCodes})";
-            
-            if($count_errorCodes >= 2){
-                $tmp = implode(', ', $errorCodes);
-                $message .= ". Имеющиеся блоки: '{$tmp}'";
-            }
-            throw new \CSPValidatorException($message, 5);
+            throw new \CSPValidatorException("Получено некорректное количество блоков ErrorCode: ({$count_errorCodes})".$this->getDebugMessageParts($messageParts), 5);
         }
         
         return ['signers'   => $signers,
@@ -269,5 +263,12 @@ class Validator{
             default:
                 throw new \CSPValidatorException("Получен неизвестный результат проверки сертификата: '{$verifyMessage}'", 1);
         }
+    }
+    
+    // Предназначен для получения debug-строки о имеющихся частях сообщения
+    //
+    private function getDebugMessageParts(array $messageParts):string {
+        $tmp = implode(' || ', $messageParts);
+        return ". Части сообщения (messageParts): '{$tmp}'";
     }
 }

@@ -1,25 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-
-$testDir = '/var/www/internal';
-$files = array_diff(scandir($testDir), ['.', '..']);
-
-$CSP = new CSP();
-
-foreach($files as $file){
-    
-    $path = $testDir.'/'.$file;
-    
-    //echo '--------------------------------------------';
-    
-    //var_dump($path);
-    //$CSP->validateInternal($path);
-    
-}
-
-var_dump(shell_exec('lalal 2>&1'));
-=======
 /*
 $testDir = '/var/www/internal';
 $files = array_diff(scandir($testDir), ['.', '..']);
@@ -158,4 +138,3 @@ if($hash_data === false){
 
 
 var_dump($hash_data);
->>>>>>> 5b015d9495abdca6a19a460370085b00167fbfbb

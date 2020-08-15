@@ -20,7 +20,7 @@
 //       {result, error_message : текст ошибки}
 //	7  - Произошла ошибка при чтении созданного hash-файла
 //       {result, error_message : текст ошибки}
-//	8  - Произошла ошибка при удалении созданного hash-файл
+//	8  - Произошла ошибка при удалении созданного hash-файла
 //       {result, error_message : текст ошибки}
 //  9  - Все прошло успешно
 //       {result, error_message : текст ошибки}
@@ -40,13 +40,17 @@ try{
     /** @var string $P_fs_name */
     extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
     
+    $Logger = new Logger(_LOGS_.'/csp/errors', 'API_get_file_hash.log');
+    
     // Проверка заявителя на доступ к заявлению не нужна, т.к. производится на предыдущем этапе - в file_checker
     // Блок проверки маппинга - не нужен, т.к. производится на предыдущем этапе - в file_checker
     
     // Проверка существования указанного алгоритма попдписи
     if(!isset(sign_algorithms[$P_sign_algorithm])){
+        $errorMessage = "Получен неопределенный алгоритм подписи: '{$P_sign_algorithm}'";
+        $Logger->write($errorMessage);
         exit(json_encode(['result'        => 2,
-                          'error_message' => "Получен неопределенный алгоритм подписи: '{$P_sign_algorithm}'"
+                          'error_message' => $errorMessage
         ]));
     }
     
@@ -56,8 +60,10 @@ try{
     }catch(PregMatchException $e){
     
         // Произошла ошибка при парсинге P_fs_name
+        $errorMessage = $e->getMessage();
+        $Logger->write($errorMessage);
         exit(json_encode(['result'        => 3,
-                          'message'       => $e->getMessage(),
+                          'message'       => $errorMessage,
                           'code'	      => $e->getCode()
         ]));
     }
@@ -73,8 +79,10 @@ try{
         unset($FileHash);
     }catch(ShellException $e){
         
+        $errorMessage = $e->getMessage();
+        $Logger->write($errorMessage);
         exit(json_encode(['result'  => 4,
-                          'message' => $e->getMessage(),
+                          'message' => $errorMessage,
                           'code'	=> $e->getCode()
         ]));
     }
@@ -88,16 +96,20 @@ try{
     }catch(PregMatchException $e){
         
         // Произошла ошибка или нет вхождений ErrorCode
+        $errorMessage = $e->getMessage();
+        $Logger->write($errorMessage);
         exit(json_encode(['result'  => 5,
-                          'message' => $e->getMessage(),
+                          'message' => $errorMessage,
                           'code'	=> $e->getCode()
         ]));
     }
     
     // ErrorCode не соответствует
     if($errorCode != $MessageParser::ok_error_code){
+        $errorMessage = "Исполняемая команда по получению hash-файла завершилась с ошибкой. [ErrorCode: {$errorCode}]";
+        $Logger->write($errorMessage);
         exit(json_encode(['result'        => 6,
-                          'error_message' => "Исполняемая команда по получению hash-файла завершилась с ошибкой. [ErrorCode: {$errorCode}]"
+                          'error_message' => $errorMessage
         ]));
     }
     
@@ -107,13 +119,21 @@ try{
     $hash_data = file_get_contents($hash_filePath);
     
     if($hash_data === false){
+        $errorMessage = "Произошла ошибка при чтении созданного hash-файла: '{$hash_filePath}'";
+        $Logger->write($errorMessage);
         exit(json_encode(['result'        => 7,
-                          'error_message' => "Произошла ошибка при чтении созданного hash-файла: '{$hash_filePath}'"
+                          'error_message' => $errorMessage
         ]));
     }
     
     // Удаляем временный hash-файл
-    if(!unlink($hash_filePath)) exit(json_encode(['result'  => 8, 'error_message' => "Произошла ошибка при удалении созданного hash-файла: '{$hash_filePath}'"]));
+    if(!unlink($hash_filePath)){
+        $errorMessage = "Произошла ошибка при удалении созданного hash-файла: '{$hash_filePath}'";
+        $Logger->write($errorMessage);
+        exit(json_encode(['result'        => 8,
+                          'error_message' => $errorMessage
+        ]));
+    }
     
     // Все прошло успешно
     exit(json_encode(['result' => 9,
@@ -121,8 +141,11 @@ try{
     ]));
 }catch(Exception $e){
     
+    $errorMessage = $e->getMessage();
+    $errorCode = $e->getCode();
+    $Logger->write("Произошла непредвиденная ошибка. Message: '{$errorMessage}', Code: '{$errorCode}'");
     exit(json_encode(['result'  => 10,
-                      'message' => $e->getMessage(),
-                      'code'	=> $e->getCode()
+                      'message' => $errorMessage,
+                      'code'	=> $errorCode
     ]));
 }

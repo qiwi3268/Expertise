@@ -12,8 +12,7 @@ class FileChecker {
 
 
    static isInternalSign(file) {
-      return FileChecker.checkExtension(file.name, '.sig') && file.size / 1024 > 20;
-
+      return FileChecker.checkExtension(file.name, '.sig')
    }
 
    checkNames() {
