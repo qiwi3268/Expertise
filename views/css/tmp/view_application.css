@@ -51,6 +51,10 @@
     border-radius: 4px;
 }
 
+.card-form__body.expanded {
+    max-height: none;
+}
+
 
 /*tmp================================*/
 

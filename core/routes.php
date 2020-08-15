@@ -37,9 +37,20 @@ return [
         'API'               => ['file_needs_setter']
     ],
     
+    'home/API_get_file_hash' => [
+        '/Classes/'          => ['FilesTableMapping'],
+        '/core/Classes/csp/' => ['Shell', 'FileHash', 'MessageParser'],
+        'API'                => ['get_file_hash']
+    ],
+    
+    'home/API_external_signature_verifier' => [
+        '/Classes/'
+    ],
+    
     'csp' => [
-        '/core/Classes/' => ['CSP'],
-        'controllers'    => ['csp']
+        '/core/Classes/csp/' => ['Validator', 'MessageParser', 'Shell', 'InternalSignature', 'ExternalSignature'],
+        '/core/Classes/'     => ['CSP'],
+        'controllers'        => ['csp']
     ],
 
     //-------------------------------
@@ -121,8 +132,11 @@ return [
         '/controllers/home/'      => ['main_header'],
         'views'                   => ['main_header'],
         'controllers'             => ['navigation'],
-        '/views/home/navigation/' => ['pagination'],
         '/views/home/%footer'     => ['main_footer'],
+    ],
+    
+    'sign' => [
+        '/views/tmp/'             => ['cades']
     ],
 
 

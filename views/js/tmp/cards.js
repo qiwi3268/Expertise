@@ -1,7 +1,5 @@
-// Массив хранящий зависимости полей
-let dependencies;
+// Массив хранящий зависимости блоков
 let radio_dependency;
-
 let block_dependencies;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,45 +7,33 @@ document.addEventListener('DOMContentLoaded', () => {
    block_dependencies = JSON.parse(document.querySelector('.block-dependencies').value);
 
    handleClearFieldButtons();
-
-
-   // TODO вынести отдельно
-   window.addEventListener('resize', () => {
-      let cards = document.querySelectorAll('.card-form__body');
-
-      cards.forEach(card_body => {
-         if (card_body.style.maxHeight) {
-            changeParentCardMaxHeight(card_body);
-         }
-      });
-
-   });
 });
 
+// Предназначен для обработки кнопок удаления значений полей
 function handleClearFieldButtons() {
    let clear_buttons = document.querySelectorAll('.body-card__icon-clear');
 
    clear_buttons.forEach(button => {
       button.addEventListener('click', () => {
-         let parent_row = button.closest('.field');
+         let parent_field = button.closest('.field');
 
-         let row_result = parent_row.querySelector('.field-result');
+         let field_result = parent_field.querySelector('.field-result');
          // Удаляем зависимые поля
-         handleDependentBlocks(row_result);
+         handleDependentBlocks(field_result);
 
-         let parent_select = parent_row.querySelector('.modal-select');
-         if (row_result.value) {
+         let parent_select = parent_field.querySelector('.modal-select');
+         if (field_result.value) {
 
-            removeRowValue(parent_row);
+            removeRowValue(parent_field);
 
-            let related_modal = parent_row.querySelector('.modal');
+            let related_modal = parent_field.querySelector('.modal');
             if (related_modal) {
                let modal = getModalBySelect(parent_select);
                modal.clearRelatedModals();
                validateModal(modal);
             }
 
-            validateCard(parent_row.closest('.card-form'));
+            validateCard(parent_field.closest('.card-form'));
          }
       });
    });
@@ -90,6 +76,9 @@ function handleDependentBlocks(parent_input) {
    changeParentCardMaxHeight(parent_input);
 }
 
+// Предназначен для очищения полей в блоке
+// Принимает параметры-------------------------------
+// block         Element : очищаемый блок
 function clearBlock(block) {
    let dependent_fields = block.querySelectorAll('.field');
    dependent_fields.forEach(field => {
@@ -105,15 +94,15 @@ function clearBlock(block) {
 // Предназначен для удаления значении в поле
 // Принимает параметры-------------------------------
 // row         Element : элемент поля
-function removeRowValue(row) {
+function removeRowValue(field) {
    // Удаляем записанное значение в зависимом поле
-   row.querySelector('.field-result').value = '';
+   field.querySelector('.field-result').value = '';
 
-   let select = row.querySelector('.field-select');
+   let select = field.querySelector('.field-select');
    if (select) {
       select.classList.remove('filled');
 
-      let value = row.querySelector('.field-value');
+      let value = field.querySelector('.field-value');
       // Если зависимое поле - дата, удаляем отображаемую дату
       if (select.classList.contains('modal-calendar')) {
          value.innerHTML = 'Выберите дату';

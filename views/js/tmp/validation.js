@@ -1,20 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
-   // Блоки, для которых нужна валидация
-   let pattern_rows = document.querySelectorAll('[data-pattern]');
+   // Поля, для которых нужна валидация
+   let pattern_fields = document.querySelectorAll('[data-pattern]');
 
-   pattern_rows.forEach(row => {
-      let input = row.querySelector('.body-card__input');
+   pattern_fields.forEach(field => {
+      let input = field.querySelector('.body-card__input');
 
       if (input) {
-         let pattern = row.dataset.pattern;
-         let is_required = row.dataset.required;
+         let pattern = field.dataset.pattern;
+         let is_required = field.dataset.required;
 
          input.addEventListener('keyup', () => {
-            validateRow(input, pattern);
+            validateField(input, pattern);
          });
 
          input.addEventListener('blur', () => {
-            validateRow(input, pattern);
+            validateField(input, pattern);
 
             if (is_required === 'true') {
                validateCard(input.closest('.card-form'));
@@ -29,24 +29,24 @@ document.addEventListener('DOMContentLoaded', () => {
 // Принимает параметры-------------------------------
 // modal         Modal : объект модального окна
 function validateModal(modal) {
-   let row = modal.element.closest('.field');
-   let row_value = row.querySelector('.modal-select');
-   let error = row.querySelector('.field-error');
+   let parent_field = modal.element.closest('.field');
+   let field_value = parent_field.querySelector('.modal-select');
+   let error = parent_field.querySelector('.field-error');
 
-   if (row.dataset.required === 'true') {
+   if (parent_field.dataset.required === 'true') {
       // Если не выбрано значение
       if (!modal.result_input.value) {
-         row_value.classList.add('invalid');
+         field_value.classList.add('invalid');
          error.classList.add('active');
-         changeParentCardMaxHeight(row);
+         changeParentCardMaxHeight(parent_field);
       } else {
-         row_value.classList.remove('invalid');
+         field_value.classList.remove('invalid');
          error.classList.remove('active');
       }
 
-      let parent_card = row_value.closest('.card-form');
+      let parent_card = field_value.closest('.card-form');
       if (parent_card) {
-         validateCard(row_value.closest('.card-form'));
+         validateCard(field_value.closest('.card-form'));
       }
    }
 }
@@ -55,7 +55,7 @@ function validateModal(modal) {
 // Принимает параметры-------------------------------
 // input         Element : поле для валидации
 // pattern        string : тип поля
-function validateRow(input, pattern) {
+function validateField(input, pattern) {
    let regex;
    let error_message;
    switch (pattern) {
@@ -91,10 +91,10 @@ function validateRow(input, pattern) {
 // message        string : сообщение с ошибкой для отображения
 function validateInput(input, regex, message) {
    let value = input.value;
-   let parent_row = input.closest('.field');
-   let error_element = parent_row.querySelector('.field-error');
+   let parent_field = input.closest('.field');
+   let error_element = parent_field.querySelector('.field-error');
 
-   let is_required = parent_row.dataset.required === 'true';
+   let is_required = parent_field.dataset.required === 'true';
    let is_invalid = !value.match(regex) && (is_required || value);
 
    if (is_invalid) {
@@ -108,7 +108,7 @@ function validateInput(input, regex, message) {
          error_element.innerHTML = 'Поле обязательно для заполнения';
       }
 
-      changeParentCardMaxHeight(parent_row);
+      changeParentCardMaxHeight(parent_field);
    } else {
       input.classList.remove('invalid');
       error_element.classList.remove('active');
@@ -137,16 +137,16 @@ function validateCard(card) {
 // Возвращает параметры------------------------------
 // is_valid     boolean : заполнен ли блок
 function isValidCard(card) {
-   let required_rows = card.querySelectorAll('.field[data-required="true"]');
-   let row_value;
+   let required_fields = card.querySelectorAll('.field[data-required="true"]');
+   let field_value;
    let is_valid = true;
 
    // Для всех обязательных полей, проверяем наличие значений
-   required_rows.forEach(row => {
+   required_fields.forEach(row => {
       if (row.dataset.inactive !== 'true') {
-         row_value = row.querySelector('.field-result');
+         field_value = row.querySelector('.field-result');
 
-         if (!row_value.value) {
+         if (!field_value.value) {
             is_valid = false;
          }
       }

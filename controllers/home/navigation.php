@@ -6,7 +6,7 @@
 $variablesTV = VariableTransfer::getInstance();
 
 // Получение параметров навигационной страницы
-list('b' => $G_block, 'v' => $G_view) = checkParamsGET('b', 'v') ? $_GET : ApplicationHelper::getDefaultNavigationPage();
+list('b' => $G_block, 'v' => $G_view) = checkParamsGET('b', 'v') ? $_GET : PageAddressHelper::getDefaultNavigationPage();
 $G_page = checkParamsGET('page') ? clearHtmlArr($_GET)['page'] : 1;
 
 $Navigation = new Navigation(Session::getUserRoles());
@@ -88,13 +88,13 @@ $issetNextPage = $Pagination->checkIssetNextPage();
 $variablesTV->setExistenceFlag('pagination_PreviousPage', $issetPreviousPage);
 $variablesTV->setExistenceFlag('pagination_NextPage', $issetNextPage);
 
-// Ссылки на предыдущую/следующую страницу
+// Ссылки на предыдущую / следующую страницу
 $currentPage = $Pagination->getCurrentPage();
 
 if($issetPreviousPage)$variablesTV->setValue('pagination_PreviousPageRef', '/'._URN_."?b={$G_block}&v={$G_view}&page=".($currentPage - 1));
-if($issetNextPage) $variablesTV->setValue('pagination_NextPageRef', '/'._URN_."?b={$G_block}&v={$G_view}&page=".($currentPage + 1));
+if($issetNextPage)    $variablesTV->setValue('pagination_NextPageRef', '/'._URN_."?b={$G_block}&v={$G_view}&page=".($currentPage + 1));
 // Надпись текущая страницы / все страницы
-$variablesTV->setValue('pagination_CurrentPage', "{$currentPage} / {$Pagination->getPageCount()}");
+$variablesTV->setValue('pagination_CurrentPage', "{$currentPage} из {$Pagination->getPageCount()}");
 
 
 // Запрос в БД c учётом сортировки и пагинации ---------------------------------------------
@@ -107,9 +107,8 @@ $LIMIT_row_count = $dataPerPage;
 $variablesTV->setValue('navigationData', $className::getAssocByIdUser($userId, $SORT_name, $SORT_type, $LIMIT_offset, $LIMIT_row_count));
 
 
-// Прокидываем во view количество отображаемых элементов и сортировку ----------------------
+// Передаем во view количество отображаемых элементов и сортировку -------------------------
 //
-
 // Количество отображаемых элементов (статические данные)
 $navigationDataPerPageTV = [['description'   => 25,
                              'data_per_page' => 25,
@@ -145,4 +144,6 @@ $variablesTV->setValue('navigationSorting', $navigationSortingTV);
 $variablesTV->setValue('viewName', $viewName);
 
 // Подключение view
+require_once _ROOT_."/views/home/navigation/view_header.php";
 require_once _ROOT_."/views/home/navigation/{$viewName}.php";
+require_once _ROOT_."/views/home/navigation/view_footer.php";

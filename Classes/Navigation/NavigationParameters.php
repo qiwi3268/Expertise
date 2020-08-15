@@ -19,11 +19,23 @@ class NavigationParameters{
     private array $parameters;
     
     
+<<<<<<< HEAD
     public function __construct(string $viewName){
         
         $cookie = Cookie::getNavigationView($viewName);
     
         $this->parameters['sort_name'] = $cookie['sort_name'] ?? _NAVIGATION_SORTING[$viewName][array_key_first(_NAVIGATION_SORTING[$viewName])]['column_name'];
+=======
+    // Принимает параметры-----------------------------------
+    // viewName string : название открытой view
+    //
+    public function __construct(string $viewName){
+        
+        $cookie = Cookie::getNavigationView($viewName);
+        $key = array_key_first(_NAVIGATION_SORTING[$viewName]); // По умолчанию sort_name берется как первый элемент для viewName
+    
+        $this->parameters['sort_name'] = $cookie['sort_name'] ?? _NAVIGATION_SORTING[$viewName][$key]['column_name'];
+>>>>>>> 5b015d9495abdca6a19a460370085b00167fbfbb
         $this->parameters['sort_type'] = $cookie['sort_type'] ?? self::DEFAULT_SORT_TYPE;
         $this->parameters['data_per_page'] = $cookie['data_per_page'] ?? self::DEFAULT_DATA_PER_PAGE;
     }

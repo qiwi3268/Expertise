@@ -1,21 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
-
    let cards = document.querySelectorAll('.card-form');
-   let card_header;
-
    cards.forEach(card => {
-
-      card_header = card.querySelector('.card-form__header');
+      let card_header = card.querySelector('.card-form__header');
 
       card_header.addEventListener('click', () => {
-         // Раскрываем блок
-         //TODO на вью открывать сразу
          expandCard(card);
       });
    });
 
-   let text_areas = document.querySelectorAll('textarea.application-input');
+   handleTextAreasResize();
+});
 
+// Сразу делаем блоки раскрытыми без анимации развертывания
+window.addEventListener('load', () => {
+   let cards_view = document.querySelectorAll('.card-form__body.expanded');
+   cards_view.forEach(card_body => {
+      changeParentCardMaxHeight(card_body);
+      card_body.classList.remove('expanded');
+   });
+});
+
+// Предназначен для обавления событие изменения размера текстового поля для нормального отображения размера блока
+function handleTextAreasResize() {
+   let text_areas = document.querySelectorAll('textarea.application-input');
    text_areas.forEach(text_area => {
       text_area.addEventListener('mousedown', () => {
          // При изменении размера текстового поля для расширения блока
@@ -23,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
          changeParentCardMaxHeight(text_area, '100%');
 
          // При изменении размера текстового поля добавляем разовый обработчик,
-         // который при отпускании мыши ставит максимальную высоту блока в пикселях
+         // который при отпускании мыши ставит высоту блока в пикселях
          document.addEventListener(
             'mouseup',
             expandListener.bind(this, text_area),
@@ -32,14 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
       });
    });
-
-   let cards_view = document.querySelectorAll('.card-form__body.expanded');
-   cards_view.forEach(card_body => {
-      changeParentCardMaxHeight(card_body);
-      card_body.classList.remove('expanded');
-   });
-
-});
+}
 
 // Предназначен для раскрытия или сужения блока анкеты
 // Принимает параметры-------------------------------

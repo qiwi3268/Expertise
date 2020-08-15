@@ -1,0 +1,107 @@
+.sign-modal {
+    height: 500px;
+    font-size: 16px;
+}
+
+.sign-modal__actions {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid #ffd354;
+}
+
+.sign-modal__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    height: 50px;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: .15s;
+}
+
+.sign-modal__button:first-child {
+    border-radius: 0px 0px 0px 3px;
+}
+
+.sign-modal__button:last-child {
+    border-radius: 0px 0px 3px 0px;
+}
+
+.sign-modal__button:hover {
+    background-color: #f2f2f2;
+}
+
+.sign-modal__header {
+    border-bottom: 2px solid #ffd354;
+    padding: 2px 10px;
+}
+
+.sign-modal__body {
+    flex-grow: 1;
+}
+
+.sign-modal__file-info {
+    border-bottom: 2px solid #ffd354;
+
+}
+
+.sign-modal__cert-list {
+    width: 100%;
+    padding: 0px 10px;
+    margin: 5px 0px;
+
+
+    font-size: 16px;
+    color: #343a40;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    font-family: 'Roboto Condensed', sans-serif;
+
+}
+
+.sign-modal__cert {
+    padding: 5px;
+    transition: .1s;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.sign-modal__cert:hover {
+    background-color: #f2f2f2;
+}
+
+/*todo объеденить с file-modal*/
+.sign-modal__file {
+    display: flex;
+    align-items: center;
+    padding: 6px 0px 6px 10px;
+    margin: 5px;
+    cursor: default;
+    transition: .15s;
+    border-radius: 4px;
+}
+
+.sign-modal__file:hover {
+    background-color: #f2f2f2;
+}
+
+.sign-modal__info {
+    padding: 5px 10px;
+}
+
+.sign-modal__row {
+    /*padding: 5px;*/
+    padding: 1px;
+}
+
+/*
+.sign-modal__text.invalid {
+    color: #db5151;
+}
+
+.sign-modal__text.valid {
+    color: #87c596;
+}*/

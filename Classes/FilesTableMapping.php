@@ -6,10 +6,15 @@
 class FilesTableMapping{
 
     private string $neededInterface = 'Interface_fileTable';
-    private ?int $errorCode = null;
-    private string $errorText;
-    private string $Class;
-
+    protected ?int $errorCode = null;
+    protected string $errorText;
+    protected string $Class;
+    
+    
+    // Принимает параметры-----------------------------------
+    // mappingLevel1 string : маппинг 1-го уровня константного массива _FILE_TABLE_MAPPING
+    // mappingLevel2 string : маппинг 2-го уровня константного массива _FILE_TABLE_MAPPING
+    //
     public function __construct(string $mappingLevel1, string $mappingLevel2){
 
         // Проверка существования маппинга
@@ -18,7 +23,8 @@ class FilesTableMapping{
             $this->errorText = 'Запрашиваемого маппинга не существует';
             return;
         }
-
+    
+        // Получение названия класса таблицы файлов
         $Class = _FILE_TABLE_MAPPING[$mappingLevel1][$mappingLevel2];
 
         // Проверка на существование указанного в маппинге класса

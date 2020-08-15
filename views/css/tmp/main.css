@@ -40,6 +40,12 @@ button {
    background-color: #ffffff;
 }
 
+.stop-scrolling {
+   height: 100%;
+   overflow: hidden;
+   padding: 0px 5px 0px 0px;
+}
+
 .main-container {
    display: flex;
    flex-direction: column;
@@ -94,6 +100,7 @@ textarea.application-input {
 
 ::-webkit-scrollbar {
    width: 5px;
+   max-height: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -129,11 +136,16 @@ textarea.application-input {
    background-color: #ffffff;
    transform: translate(-50%, -50%);
    transition: 0.3s all;
+
+   font-family: 'Roboto Condensed', sans-serif;
+   color: #343a40;
+
 }
 
 .modal-overlay,
-.file-overlay
-{
+.file-overlay,
+.save-overlay,
+.sign-overlay {
    visibility: hidden;
    opacity: 0;
    position: fixed;
@@ -151,7 +163,11 @@ textarea.application-input {
 .modal-overlay.active,
 .file-overlay.active,
 .modal__close.active,
-.modal.file-modal.active
+.file-modal.active,
+.save-modal.active,
+.save-overlay.active,
+.sign-modal.active,
+.sign-overlay.active
 {
    visibility: visible;
    opacity: 1;

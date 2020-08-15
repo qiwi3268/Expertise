@@ -1,6 +1,7 @@
 <?php
 
-// Предназначен для вспомогательной работы с адресом страницы
+
+// Вспомогательный класс. Предназначен для вспомогательной работы с адресом страницы
 //
 class PageAddressHelper{
 
@@ -18,4 +19,20 @@ class PageAddressHelper{
 
         return null;
     }
+    
+    
+    // Предназначен для получения дефолтных GET-параметров для навигационной страницы (/home/navigation)
+    // Параметры являются персональными для каждой из роли
+    // Возвращает параметры----------------------------------
+    // array : ассоциативный массив с параметрами b и v
+    //
+    static public function getDefaultNavigationPage():array {
+        
+        $roles = Session::getUserRoles();
+        
+        if(in_array(_ROLE['APP'], $roles)) return ['b' => 'block_2', 'v' => 'view_2'];
+        //elseif...
+    }
+    
+    
 }

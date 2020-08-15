@@ -30,11 +30,11 @@ switch(_URN_){
         $pageName = 'АИС';
         $sourcesFiles = [...GetFontAwesome5Case(),
                          ...CreateSource('css', ROOT_CSS, 'entry.css'),
-                         ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'modal.css', 'radio.css', 'calendar.css', 'files.css', 'documentation.css'),
+                         ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'modal.css', 'radio.css', 'calendar.css', 'files.css', 'documentation.css', 'sign.css'),
                          ...CreateSource('css', TMP_CSS, 'create_application.css'),
-                         ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
-                         ...CreateSource('js', TMP_JS, 'sidebar.js', 'section.js', 'validation.js', 'cards.js',
-                            'modal.js', 'calendar.js', 'radio.js', 'checkbox.js', 'save_application.js', 'file_needs.js', 'file_download.js', 'file_actions.js', 'test.js')
+                         ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js', 'cadesplugin_api.js'),
+                         ...CreateSource('js', TMP_JS, 'main.js', 'sidebar.js', 'section.js', 'validation.js', 'cards.js',
+                            'modal.js', 'calendar.js', 'radio.js', 'checkbox.js', 'save_application.js', 'SignHandler.js', 'PerfectCades.js', 'BrowserHelper.js', 'file_needs.js', 'file_download.js', 'file_actions.js', 'test.js')
                         ];
         break;
 
@@ -80,7 +80,7 @@ switch(_URN_){
     case 'home/navigation' :
         $pageName = 'Навигация';
         $sourcesFiles = [...GetFontAwesome5Case(),
-            ...CreateSource('css', ROOT_CSS, 'entry.css'),
+                         ...CreateSource('css', ROOT_CSS, 'entry.css'),
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css'),
             ...CreateSource('css', TMP_CSS, 'navigation.css'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),

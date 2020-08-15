@@ -42,6 +42,15 @@ $curators = misc_curatorTable::getAllActive();
 
 
 
+<<<<<<< HEAD
+$test = new MiscInitialization();
+
+
+//var_dump($test->getPaginationSingleMisc());
+
+var_dump($test->getPaginationDependentMisc());
+=======
+>>>>>>> 8e8d264d1195883c5becaf209e294f9ff5296ccb
 
 
 // -----------------------------------------------------------------------------------------

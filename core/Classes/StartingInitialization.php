@@ -15,7 +15,7 @@ class StartingInitialization{
     
     // Предназначен для включения автозагрузки классов
     //
-    public function enableClassAutoloading(){
+    public function enableClassAutoloading():void {
     
         // Автозагрузка классов
         spl_autoload_register(function(string $className){
@@ -23,13 +23,16 @@ class StartingInitialization{
             $path = null;
     
             // Исключения
-            if(mb_stripos($className, 'exception') !== false) $path = "{$this->rootPath}/Classes/Exceptions/{$className}.php";
+            if(icontains($className,'exception')) $path = "{$this->rootPath}/Classes/Exceptions/{$className}.php";
+            // Файловые таблицы
+            elseif(icontains($className,'file', 'table')) $path = "{$this->rootPath}/Classes/Tables/File/{$className}.php";
             // Таблицы
-            elseif(mb_stripos($className,'table') !== false) $path = "{$this->rootPath}/Classes/Tables/{$className}.php";
+            elseif(icontains($className,'table')) $path = "{$this->rootPath}/Classes/Tables/{$className}.php";
             // Действия
-            elseif(mb_stripos($className, 'actions') !== false) $path = "{$this->rootPath}/Classes/Actions/{$className}.php";
+            elseif(icontains($className,'actions')) $path = "{$this->rootPath}/Classes/Actions/{$className}.php";
             // Вспомогательные классы
-            elseif(mb_stripos($className, 'helper') !== false) $path = "{$this->rootPath}/Classes/Helpers/{$className}.php";
+            elseif(icontains($className,'helper')) $path = "{$this->rootPath}/Classes/Helpers/{$className}.php";
+            
             
             if(!is_null($path) && file_exists($path)){
                 require_once $path;

@@ -1,38 +1,63 @@
 document.addEventListener('DOMContentLoaded', () => {
-   let save_button = document.querySelector('#application_save');
-
-   let form = document.querySelector('#application');
-   let request_urn = '/home/application/API_save_form';
-
+   let save_button = document.getElementById('application_save');
 
    save_button.addEventListener('click', () => {
-      FileNeeds.putFilesToSave();
-
-      console.log(FileNeeds.getFileNeeds());
-
-      XHR('post', request_urn, new FormData(form), null, 'json', null, null)
-         .then(response => {
-
-            switch (response.result) {
-               case 8:
-                  if (FileNeeds.isHasFiles()) {
-                     updateFileNeeds();
-                  }
-                  break;
-               default:
-                  console.log(response);
-            }
-
-         })
-         .catch(error => {
-            alert(error.result);
-            alert(error.message);
-            console.error('XHR error: ', error);
-         });
+      saveApplication();
    });
 
+
+   let save_overlay = document.querySelector('.save-overlay');
+   save_overlay.addEventListener('click', () => {
+      closeSaveModal(save_overlay);
+   });
+
+   let save_close_button = document.querySelector('.save-modal__close');
+   save_close_button.addEventListener('click', () => {
+      closeSaveModal(save_overlay);
+   });
 });
 
+function closeSaveModal(save_overlay) {
+   let save_modal = document.querySelector('.save-modal');
+   save_modal.classList.remove('active');
+   save_overlay.classList.remove('active');
+}
+
+function saveApplication() {
+   let application_form = document.getElementById('application');
+   let request_urn = '/home/application/API_save_form';
+
+   FileNeeds.putFilesToFileNeeds();
+
+   XHR('post', request_urn, new FormData(application_form), null, 'json', null, null)
+      .then(response => {
+
+         switch (response.result) {
+            case 8:
+               console.log('result');
+               if (FileNeeds.hasFiles()) {
+                  updateFileNeeds();
+               }
+               showSaveModal();
+               break;
+            default:
+               console.log(response);
+         }
+
+      })
+      .catch(error => {
+         alert(error.result);
+         alert(error.message);
+         console.error('XHR error: ', error);
+      });
+}
+
+function showSaveModal() {
+   let save_modal = document.querySelector('.save-modal');
+   let save_overlay = document.querySelector('.save-overlay');
+   save_modal.classList.add('active');
+   save_overlay.classList.add('active');
+}
 
 function updateFileNeeds() {
    let request_urn = '/home/API_file_needs_setter';
@@ -63,8 +88,7 @@ function updateFileNeeds() {
 
 function getFilesNeedsFormData() {
    let form_data = new FormData();
-   let id_application = getIdApplication();
-   form_data.append('id_application', id_application);
+   form_data.append('id_application', getIdApplication());
    form_data.append('file_needs_json', FileNeeds.getFileNeedsJSON());
    return form_data;
 }

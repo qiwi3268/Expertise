@@ -3,23 +3,13 @@
 class GeCades{
 
 
-    static setTest(test){
-
-        console.log(this);
-        this.test = test;
-    }
-
-    static getTest(){
-
-        return this.test;
-    }
-
     // Заполнение инфрормации о версии плагина и криптопровайдера
     // Принимает параметры:
     // pluginSpanId : string id элемента, куда будет вставлена версия плагина
     // cspSpanId    : string id элемента, куда будет вставлена версия криптопровайдера
     //
     static CheckForPlugIn_Async(pluginSpanId, cspSpanId){
+
         cadesplugin.async_spawn(function*(args){
 
             let oAbout;
@@ -60,11 +50,13 @@ class GeCades{
             }catch(ex){
 
                 console.log('Ошибка. Хранилище сертификатов недоступно ' + cadesplugin.getLastError(ex));
+
+                SignHandler.cancelPluginInitialization();
                 return;
             }
 
             // html-контейнер для отображения сертификатов
-            GeCades.setCertificatesList(args[0])
+            GeCades.setCertificatesList(args[0]);
             let select = GeCades.getCertificatesList();
 
             if(!select){
@@ -140,6 +132,8 @@ class GeCades{
                 }
 
                 select.options.add(option);
+                option.classList.add('sign-modal__cert');
+
             }
 
             yield oStore.Close();
@@ -191,20 +185,22 @@ class GeCades{
 
 
             let Now = new Date();
-            let CertStatus;
+            let CertMessage;
+            let CertStatus = false;
 
             if(Now < ValidFromDate){
-                CertStatus = 'Срок действия не наступил';
+                CertMessage = 'Срок действия не наступил';
             }else if(Now > ValidToDate){
-                CertStatus = 'Срок действия истек';
+                CertMessage = 'Срок действия истек';
             }else if(!hasPrivateKey){
-                CertStatus = 'Нет привязки к закрытому ключу';
+                CertMessage = 'Нет привязки к закрытому ключу';
             }else if(IsValid === false){
-                CertStatus = 'Ошибка при проверке цепочки сертификатов';
+                CertMessage = 'Ошибка при проверке цепочки сертификатов';
             }else if(IsValid === undefined){
-                CertStatus = 'Сертификат с неизвестным алгоритмом';
+                CertMessage = 'Сертификат с неизвестным алгоритмом';
             }else{
-                CertStatus = 'Действителен';
+                CertMessage = 'Действителен';
+                CertStatus = true;
             }
 
             // Внесение данных о сертификате
@@ -212,7 +208,10 @@ class GeCades{
             document.getElementById('IssuerName').innerHTML = IssuerName;
             document.getElementById('ValidFromDate').innerHTML = GeCades.fornattedDateTo_ddmmyyy_hhmmss(ValidFromDate);
             document.getElementById('ValidToDate').innerHTML = GeCades.fornattedDateTo_ddmmyyy_hhmmss(ValidToDate);
-            document.getElementById('CertStatus').innerHTML = CertStatus;
+            document.getElementById('CertMessage').innerHTML = CertMessage;
+            document.getElementById('CertMessage').style.color = CertStatus ? '#6cb37e' : '#db5151';
+
+
 
             console.log('fill cert info finished');
         }, oCertificate);
@@ -271,7 +270,7 @@ class GeCades{
     }
 
 
-    static SignHash_Async(oHashedData){
+    static SignHash_Async(hashAlg, sHashValue){
 
         return new Promise((resolve, reject) => {
 
@@ -291,6 +290,16 @@ class GeCades{
                     }catch(ex){
                         throw 'Ошибка при создании объекта CPSigner: ' + ex.number;
                     }
+
+
+                    // Создаем объект CAdESCOM.HashedData
+                    let oHashedData = yield cadesplugin.CreateObjectAsync("CAdESCOM.HashedData");
+
+                    //yield oHashedData.propset_DataEncoding(cadesplugin.CADESCOM_BASE64_TO_BINARY);
+                    let algorithm = GeCades.getAlgorithmByValue(args[1]);
+                    yield oHashedData.propset_Algorithm(algorithm);
+                    yield oHashedData.SetHashValue(args[2]);
+
 
                     // Атрибуты усовершенствованной подписи
                     let oSigningTimeAttr = yield cadesplugin.CreateObjectAsync("CAdESCOM.CPAttribute");
@@ -317,17 +326,17 @@ class GeCades{
                     yield oSigner.propset_Options(cadesplugin.CAPICOM_CERTIFICATE_INCLUDE_WHOLE_CHAIN);
 
                     try{
-                        Signature = yield oSignedData.SignHash(args[1], oSigner, cadesplugin.CADESCOM_CADES_BES);
+                        Signature = yield oSignedData.SignHash(oHashedData, oSigner, cadesplugin.CADESCOM_CADES_BES);
                     }catch(ex){
                         throw 'Ошибка при создании подписи: ' + cadesplugin.getLastError(ex);
                     }
 
                 }catch(ex){
-                    args[3](ex);
+                    args[4](ex);
                     return;
                 }
-                args[2](Signature);
-            }, oCertificate, oHashedData, resolve, reject);
+                args[3](Signature);
+            }, oCertificate, hashAlg, sHashValue, resolve, reject);
         })
     }
 
@@ -401,64 +410,35 @@ class GeCades{
         })
     }
 
+    static getSelectedCertificateAlgorithm(){
 
-    static VerifyInternalSignature_Async(sSignedMessage){
+        return new Promise((resolve, reject) => {
 
-        cadesplugin.async_spawn(function*(args){
+            cadesplugin.async_spawn(function*(args){
 
-            let oSignedData = yield cadesplugin.CreateObjectAsync("CAdESCOM.CadesSignedData");
+                let SelectedCertificate = GeCades.getSelectedCertificateFromGlobalMap();
 
-            try{
-                yield oSignedData.VerifyCades(args[0], cadesplugin.CADESCOM_CADES_BES, false);
-            }catch(ex){
+                let PublicKey;
+                let Algorithm;
+                let AlgorithmValue;
 
-                //todo проверять эксепшн на код просроченности и потом проверять дату подписания, если она находится в периоде годности сертификата, то это не ошибка
+                try {
 
-                alert("Failed to verify signature. Error: " + cadesplugin.getLastError(ex));
-                //return false;
-            }
+                    PublicKey = yield SelectedCertificate.PublicKey();
 
+                    Algorithm = yield PublicKey.Algorithm;
 
-            let oSigners = yield oSignedData.Signers;
-            let oSigner = yield oSigners.Item(1);
+                    AlgorithmValue = yield Algorithm.Value;
 
+                    args[0](AlgorithmValue);
 
+                }catch(ex){
 
-            let oCertificate = yield oSigner.Certificate;
+                    args[1](ex);
+                }
+            }, resolve, reject);
+        })
 
-            //console.log(oSigners);
-            console.log(oSigner);
-
-            let test;
-            test = yield oSigner.CRLs;
-
-            console.log(test);
-            //console.log(oCertificate);
-
-            //GeCades.GetCertificateInfo(oCertificate);
-
-            //todo вынести получение значений о сертификате в отдельный метод
-            let SigningTime;   // Дата подписи
-
-            //console.log(oSigner);
-
-            try{
-
-                SigningTime = yield oSigner.SigningTime;
-
-            }catch(ex){
-
-                alert("Ошибка при получении свойства SubjectName / IssuerName / ValidFromDate / ValidToDate / SigningTime: " + cadesplugin.getLastError(ex));
-                //return;
-            }
-
-            alert(new Date(SigningTime));
-
-
-            console.log('all good');
-
-            return true;
-        }, sSignedMessage);
     }
 
 
@@ -500,9 +480,6 @@ class GeCades{
             }, oCertificate, resolve, reject);
         })
     }
-
-
-
 
 
     //
@@ -623,36 +600,3 @@ class GeCades{
 
 
 
-// Вспомогательный класс для определения поддерживаемые свойств текущего браузера
-//
-class BrowserPropertiesHelper{
-
-    // Проверка браузера на наличие promise
-    static canPromise(){
-        return !!window.Promise;
-    }
-
-    // Проверка браузера на наличие File Api
-    static canFileApi(){
-        if(!!window.FileReader){
-            let fileReader = new FileReader();
-            if(typeof(fileReader.readAsDataURL) == 'function'){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // Проверка на браузер IE
-    static isInternetExplorer(){
-        let retVal = (("Microsoft Internet Explorer" == navigator.appName) || // IE < 11
-            navigator.userAgent.match(/Trident\/./i)); // IE 11
-        return retVal;
-    };
-
-    // Проверка на браузер Edge
-    static isEdge(){
-        let retVal = navigator.userAgent.match(/Edge\/./i);
-        return retVal;
-    }
-}
