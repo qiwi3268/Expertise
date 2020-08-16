@@ -64,8 +64,12 @@ class GeCades{
                 return;
             }
 
+            //TODO вынести в SignHandler
+
             // Заполнение информации при выборе сертификата
             select.onchange = GeCades.FillCertInfo_Async;
+
+
 
             let certs;
             let certsCnt;
@@ -214,6 +218,12 @@ class GeCades{
 
 
             console.log('fill cert info finished');
+
+
+            //TODO вынести отдельно
+            let cert_info = SignHandler.modal.querySelector('.sign-modal__info');
+            cert_info.dataset.inactive = 'false';
+
         }, oCertificate);
     }
 

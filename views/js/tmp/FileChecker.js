@@ -12,14 +12,14 @@ class FileChecker {
       if (!extension) {
 
          for (let ext of FileChecker.extensions) {
-            if (file_name.endsWith(ext)) {
+            if (file_name.includes(ext)) {
                is_valid = true;
                break;
             }
          }
 
       } else {
-         is_valid = file_name.endsWith(extension);
+         is_valid = file_name.includes(extension);
       }
 
       return is_valid;
@@ -38,7 +38,8 @@ class FileChecker {
    }
 
    static isInternalSign(file) {
-      return FileChecker.checkExtension(file.name, '.sig') && file.size / 1024 > 20
+      // return FileChecker.checkExtension(file.name, '.sig') && file.size / 1024 > 20;
+      return FileChecker.checkExtension(file.name, '.sig');
    }
 
 

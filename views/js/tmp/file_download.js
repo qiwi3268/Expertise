@@ -221,9 +221,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       upload_button.addEventListener('click', () => {
          if (!is_uploading) {
-            clearFileModal();
             // Вызываем событие для выбора файла у стандартного инпута
             file_input.click();
+            clearFileModal();
+
          }
       });
 
@@ -254,22 +255,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.result === 16) {
 
-               // let uploaded_files = response.uploaded_files;
-               // return handleInternalSigns(uploaded_files);
+               return putFilesToRow(response.uploaded_files);
 
-
-               putFilesToRow(response.uploaded_files);
-
-               closeFileModal();
-
-               is_uploading = false;
 
             } else {
                console.log(response);
             }
 
          })
+         .then(verify_response => {
 
+            console.log('verify response');
+            console.log(verify_response);
+            is_uploading = false;
+
+            closeFileModal();
+
+         })
          .catch(error => {
 
             is_uploading = false;
@@ -289,34 +291,11 @@ document.addEventListener('DOMContentLoaded', () => {
       progress_bar.style.width = download_percent + '%';
    }
 
-/*
-   async function handleInternalSigns(files) {
-
-      let internal_signs = files.filter(FileChecker.isInternalSign);
-      internal_signs.forEach(verifyInternalSign);
-
-      files.forEach(file => async function() {
-         if (FileChecker.isInternalSign(file)) {
-
-         }
-      });
-   }
-*/
-
-   function verifyInternalSign(file) {
-      XHR('post', '/home/API_file_checker', new FormData(form), null, 'json', null, null)
-         .then(response => {
-            console.log('verify response');
-         })
-         .catch(error => {
-            console.error(error)
-         });
-   }
 
    // Предназначен для добавления файлов в родительское поле
    // Принимает параметры-------------------------------
    // files         Array[Object] : массив с файлами
-   function putFilesToRow(files) {
+   async function putFilesToRow(files) {
       let parent_select = parent_field.querySelector('.field-select');
       if (parent_select) {
          parent_select.classList.add('filled');
@@ -333,26 +312,46 @@ document.addEventListener('DOMContentLoaded', () => {
       files_body.classList.add('filled');
 
 
-      files.forEach(file => function() {
-         addFileElement(file, files_body);
+      for (let file of files) {
 
-         console.log('asd');
+         let file_item = createFileElement(file, files_body);
 
+         // file_item.dataset.sign_state = '';
+
+
+         //TODO нужен size
          if (FileChecker.isInternalSign(file)) {
-            //verifyInternalSign(file);
+
+            await XHR('post', '/home/API_internal_signature_verifier', new FormData(form), null, 'json', null, null)
+               .then(verify_response => {
+
+                  file_item.dataset.sign_state = 'valid';
+
+               })
+               .catch(error => {
+                  console.error(error)
+               });
+         } else {
+            file_item.dataset.sign_state = 'not_signed';
+
          }
 
-      });
+      }
+
 
       changeParentCardMaxHeight(parent_field);
+      return 1;
    }
+
+
+
 
    // Предназначен для создания элемента файла
    // Принимает параметры-------------------------------
    // file             Object : объект, с информацией о файле
    // Возвращает параметры------------------------------
    // files_body       Element : блок, в который добавляется файл
-   function addFileElement(file, files_body) {
+   function createFileElement(file, files_body) {
       let file_item = document.createElement('DIV');
       file_item.classList.add('files__item');
       file_item.dataset.id = file.id;

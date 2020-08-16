@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+   //TODO сделать синглтоном
    SignHandler.init();
 });
 
@@ -6,7 +7,10 @@ class SignHandler {
    static modal;
    static overlay;
    static is_plugin_initialized = false;
+
    static sign_btn;
+   static delete_btn;
+
    static id_file;
    static fs_name_data;
    static fs_name_sign;
@@ -19,6 +23,9 @@ class SignHandler {
 
       SignHandler.handleOverlay();
       SignHandler.handleSignButton();
+      SignHandler.handleDeleteButton();
+      // SignHandler.handle();
+
    }
 
    static handleOverlay() {
@@ -29,12 +36,44 @@ class SignHandler {
    static handleSignButton() {
       SignHandler.sign_btn = document.getElementById('signature_button');
       SignHandler.sign_btn.addEventListener('click', () => {
+
+         if (!SignHandler.is_plugin_initialized) {
+            BrowserHelper.initializePlugin();
+
+            // TODO подождать пока проинициализируется
+            SignHandler.is_plugin_initialized = true;
+
+            let cert_select = SignHandler.modal.querySelector('.sign-modal__select');
+            cert_select.dataset.inactive = 'false';
+
+         /*   let selects = SignHandler.modal.querySelectorAll('.sign-modal__cert');
+            selects.forEach(select => {
+               select.addEventListener('click', () => {
+                  GeCades.FillCertInfo_Async();
+
+                  let cert_info = SignHandler.modal.querySelector('.sign-modal__info');
+                  console.log('asd');
+                  cert_info.dataset.inactive = 'false';
+
+               });
+            });*/
+
+         }
+
          if (GeCades.getGlobalCertificatesMap) {
             SignHandler.signFile();
          }
       });
    }
 
+   static handleDeleteButton() {
+      SignHandler.delete_btn = document.getElementById('signature_delete');
+      SignHandler.delete_btn.addEventListener('click', () => {
+
+         //TODO файл подписи в file_needs
+
+      });
+   }
 
    static signFile() {
       let form_data = SignHandler.getFileCheckFormData(SignHandler.id_file);
@@ -155,14 +194,10 @@ class SignHandler {
    }
 
    static openModal(file) {
-      //TODO открывать послен инициализации
       SignHandler.modal.classList.add('active');
       SignHandler.overlay.classList.add('active');
 
-      if (!SignHandler.is_plugin_initialized) {
-         BrowserHelper.initializePlugin();
-         SignHandler.is_plugin_initialized = true;
-      }
+
 
       SignHandler.putFileData(file);
       SignHandler.addFileElement(file);

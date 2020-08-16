@@ -4,21 +4,25 @@
 }
 
 .sign-modal__actions {
-    width: 500px;
+    /*width: 500px;
     display: flex;
     justify-content: space-between;
-    border-top: 2px solid #ffd354;
+    border-top: 2px solid #ffd354;*/
+
+
 }
 
 .sign-modal__button {
-    display: flex;
+   /* display: flex;
     align-items: center;
     justify-content: center;
     flex-grow: 1;
     height: 50px;
     background-color: #ffffff;
     cursor: pointer;
-    transition: .15s;
+    transition: .15s;*/
+
+
 }
 
 .sign-modal__button:first-child {
@@ -43,7 +47,7 @@
 }
 
 .sign-modal__file-info {
-    border-bottom: 2px solid #ffd354;
+    /*border-bottom: 2px solid #ffd354;*/
 
 }
 
@@ -105,3 +109,31 @@
 .sign-modal__text.valid {
     color: #87c596;
 }*/
+
+/* tmp */
+
+.sign-modal__info {
+    padding: 5px 10px;
+}
+
+.sign-modal__body {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sign-modal__actions > .application-button {
+    min-width: 200px;
+    min-height: 50px;
+    text-align: center;
+    margin: 0px 0px 5px 0px;
+}
+
+.sign-modal__select[data-inactive='true'] {
+    display: none;
+}
+
+.sign-modal__info[data-inactive='true'] {
+    display: none;
+}
+
+/* tmp */

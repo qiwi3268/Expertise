@@ -17,6 +17,9 @@
       <sshConfig authType="PASSWORD" host="192.168.1.251" id="d9a7e3e1-78ea-48a3-8ee8-64cc83b8bf14" port="22" customName="Expertise" nameFormat="CUSTOM" username="root">
         <option name="customName" value="Expertise" />
       </sshConfig>
+      <sshConfig authType="PASSWORD" host="192.168.1.251" id="5108b574-fc74-43ad-9113-39db655c5dca" port="22" customName="Expertise" nameFormat="CUSTOM" username="root">
+        <option name="customName" value="Expertise" />
+      </sshConfig>
     </configs>
   </component>
 </project>
