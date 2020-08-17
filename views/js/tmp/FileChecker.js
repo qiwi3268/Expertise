@@ -37,10 +37,9 @@ class FileChecker {
       return true;
    }
 
-   static isInternalSign(file) {
-      // return FileChecker.checkExtension(file.name, '.sig') && file.size / 1024 > 20;
+  /* static isInternalSign(file) {
       return FileChecker.checkExtension(file.name, '.sig');
-   }
+   }*/
 
 
 }

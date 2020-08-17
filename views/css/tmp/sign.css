@@ -136,4 +136,24 @@
     display: none;
 }
 
+.sign-modal__sign-actions {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid #ffd354;
+}
+
+.sign-modal__sign-actions[data-inactive='true'] {
+    display: none;
+}
+
+.sign-modal__text[data-state='true'] {
+    color: #6cb37e;
+}
+
+.sign-modal__text[data-state='false'] {
+    color: #db5151;
+
+}
+
 /* tmp */

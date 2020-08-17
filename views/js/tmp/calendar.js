@@ -17,9 +17,6 @@ class Calendar {
    // Элемент, в который записывается выбранная дата
    field_value;
 
-   // Родительский Element
-   parent;
-
    // Element календаря
    element;
 
@@ -119,7 +116,7 @@ class Calendar {
       let current_date = new Date(this.current_year, this.current_month);
 
       // добавляем в начало календаря дни из пердыдущего месяца и берем их количество
-      let previous_month_days_count = this.putPreviousMonthDays(current_date);
+      let previous_month_days_count = this.putPreviousMonthDaysAndGetCount(current_date);
 
       for (let i = 0; i < 42 - previous_month_days_count; i++) {
          this.putDay(current_date.getDate(), current_date.getMonth(), current_date.getFullYear());
@@ -132,7 +129,7 @@ class Calendar {
    // current_date         Date : объект даты текущего месяца
    // Возвращает параметры------------------------------------------
    // days_counter         number : количество дней из предыдущего месяца добавленных в текущий месяц
-   putPreviousMonthDays(current_date) {
+   putPreviousMonthDaysAndGetCount(current_date) {
       let days_counter = 0;
 
       // Номер дня недели первого дня текущего месяца

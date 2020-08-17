@@ -202,7 +202,7 @@
 }
 
 .files__item[data-sign_state="warning"] > .files__info {
-   background-color: #e8ffed;
+   background-color: #fefaef;
 }
 
 /*tmp========*/

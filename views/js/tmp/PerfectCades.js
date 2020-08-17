@@ -16,9 +16,11 @@ class GeCades{
 
             try{
                 oAbout = yield cadesplugin.CreateObjectAsync("CAdESCOM.About");
+
             }catch(ex){
                 console.log("Ошибка при создании объекта About: " + cadesplugin.getLastError(ex));
             }
+
 
             let   CurrentPluginVersion = yield oAbout.PluginVersion;  // Версия плагина
             let   CurrentCSPVersion = yield oAbout.CSPVersion("", 80); // Версия криптопровайдера
@@ -40,13 +42,20 @@ class GeCades{
 
             try{
 
+
                 oStore = yield cadesplugin.CreateObjectAsync("CAdESCOM.Store");
+
+                SignHandler.showCertBlock();
+
+
 
                 if(!oStore){
                     console.log('Ошибка при создании хранилища сертификатов');
                     return;
                 }
+
                 yield oStore.Open();
+
             }catch(ex){
 
                 console.log('Ошибка. Хранилище сертификатов недоступно ' + cadesplugin.getLastError(ex));
@@ -59,6 +68,7 @@ class GeCades{
             GeCades.setCertificatesList(args[0]);
             let select = GeCades.getCertificatesList();
 
+
             if(!select){
                 console.log('Ошибка. Отсутствует контейнер хранения сертификатов');
                 return;
@@ -70,7 +80,6 @@ class GeCades{
             select.onchange = GeCades.FillCertInfo_Async;
 
 
-
             let certs;
             let certsCnt;
 
@@ -78,6 +87,8 @@ class GeCades{
 
                 certs = yield oStore.Certificates;
                 certsCnt = yield certs.Count;
+
+
             }catch(ex){
 
                 console.log('Ошибка при получении Certificates или Count: ' + cadesplugin.getLastError(ex));
@@ -89,6 +100,7 @@ class GeCades{
                 console.log('Хранилище сертификатов пусто');
                 return;
             }
+
 
             // Перебор сертификатов
             for(let i = 1; i <= certsCnt; i++){
@@ -103,6 +115,7 @@ class GeCades{
                 }
 
                 let option = document.createElement("option");
+
 
                 let ValidFromDate; // Дата выдачи
                 let ValidToDate;   // Срок действия
@@ -122,26 +135,36 @@ class GeCades{
 
                     let text = GeCades.extractCN(SubjectName) + ' Выдан: ' + GeCades.formattedDateTo_ddmmyyyy(ValidFromDate);
                     option.text = text;
+
                 }else{
                     continue;
                 }
 
                 try{
 
+
                     let Thumbprint = yield cert.Thumbprint; // Отпечаток подписи
                     option.value = Thumbprint;
                     GeCades.setCertificateToGlobalMap(Thumbprint, cert);
+
+
+
                 }catch(ex){
                     console.log("Ошибка при получении свойства Thumbprint: " + cadesplugin.getLastError(ex));
                 }
+
 
                 select.options.add(option);
                 option.classList.add('sign-modal__cert');
 
             }
 
+
             yield oStore.Close();
+
         }, selectId);
+
+
     }
 
 

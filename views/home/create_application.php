@@ -693,7 +693,7 @@
 
 <div class="modal sign-modal" data-plugin_loaded="false">
 
-    <!--<div class="sign-modal__header">
+    <div class="sign-modal__header" data-inactive="true">
         <div class="sign-modal__row">
             <span class="sign-modal__label">Версия плагина: </span>
             <span class="sign-modal__text" id="PlugInVersionTxt" lang="ru"></span>
@@ -702,19 +702,32 @@
             <span class="sign-modal__label">Версия криптопровайдера: </span>
             <span class="sign-modal__text" id="CSPVersionTxt" lang="ru"></span>
         </div>
-    </div>-->
+    </div>
 
 
     <div class="sign-modal__body">
         <div class="sign-modal__file-info">
             <div class="sign-modal__file"></div>
+            <div class="sign-modal__validate" data-inactive="true">
+                <div class="sign-modal__row">
+                    <span class="sign-modal__label">Сертификат: </span>
+                    <span class="sign-modal__text" id="ValidateCertState"></span>
+                </div>
+                <div class="sign-modal__row">
+                    <span class="sign-modal__label">Подпись </span>
+                    <span class="sign-modal__text" id="ValidateSignState"></span>
+                </div>
+                <span class="sign-modal__validate-cert"></span>
+                <span class="sign-modal__validate-sign"></span>
+            </div>
         </div>
-
+        
         <div class="sign-modal__actions">
-            <div id="signature_delete" class="sign-modal__upload application-button">Удалить подпись</div>
-            <div id="signature_upload" class="sign-modal__upload application-button">Загрузить открепленную подпись</div>
-            <div id="signature_button" class="sign-modal__sign application-button">Создать открепленную подпись</div>
+            <div id="signature_delete" class="sign-modal__upload application-button" data-inactive="true">Удалить подпись</div>
+            <div id="sign_upload" class="sign-modal__upload application-button" data-inactive="true">Загрузить открепленную подпись</div>
+            <div id="sign_create" class="sign-modal__sign application-button" data-inactive="true">Создать открепленную подпись</div>
             <input id="external_sign" type="file" name="download_files[]" hidden/>
+            <!--            <input id="external_sign" type="file" name="download_files[]" hidden/>-->
         </div>
     </div>
 
@@ -723,36 +736,42 @@
         <div class="sign-modal__select" data-inactive="true">
             <span class="sign-modal__title">Выберите сертификат:</span>
             <select class="sign-modal__cert-list" size="4" name="CertListBox" id="CertListBox"></select>
+    
+            <div class="sign-modal__info" data-inactive="true">
+                <div class="sign-modal__row">
+                    <span class="sign-modal__label">Данные о выбранном сертификате:</span>
+                </div>
+                <div class="sign-modal__row">
+                    <span class="sign-modal__label">Владелец: </span>
+                    <span class="sign-modal__text" id="SubjectName"></span>
+                </div>
+                <div class="sign-modal__row">
+                    <span class="sign-modal__label">Издатель: </span>
+                    <span class="sign-modal__text" id="IssuerName"></span>
+                </div>
+                <div class="sign-modal__row">
+                    <span class="sign-modal__label">Дата выдачи: </span>
+                    <span class="sign-modal__text" id="ValidFromDate"></span>
+                </div>
+                <div class="sign-modal__row">
+                    <span class="sign-modal__label">Срок действия: </span>
+                    <span class="sign-modal__text" id="ValidToDate"></span>
+                </div>
+                <div class="sign-modal__row">
+                    <span class="sign-modal__label">Статус: </span>
+                    <span class="sign-modal__text" id="CertMessage"></span>
+                </div>
+            </div>
         </div>
 
 
-        <div class="sign-modal__info" data-inactive="true">
-            <div class="sign-modal__row">
-                <span class="sign-modal__label">Данные о выбранном сертификате:</span>
-            </div>
-            <div class="sign-modal__row">
-                <span class="sign-modal__label">Владелец: </span>
-                <span class="sign-modal__text" id="SubjectName"></span>
-            </div>
-            <div class="sign-modal__row">
-                <span class="sign-modal__label">Издатель: </span>
-                <span class="sign-modal__text" id="IssuerName"></span>
-            </div>
-            <div class="sign-modal__row">
-                <span class="sign-modal__label">Дата выдачи: </span>
-                <span class="sign-modal__text" id="ValidFromDate"></span>
-            </div>
-            <div class="sign-modal__row">
-                <span class="sign-modal__label">Срок действия: </span>
-                <span class="sign-modal__text" id="ValidToDate"></span>
-            </div>
-            <div class="sign-modal__row">
-                <span class="sign-modal__label">Статус: </span>
-                <span class="sign-modal__text" id="CertMessage"></span>
-            </div>
-        </div>
+        
     </div>
-
+    
+    <div class="sign-modal__sign-actions" data-inactive="true">
+        <div id="signature_button" class="file-modal__button sign-modal__button">Подписать</div>
+        <div id="sign_cancel" class="file-modal__button sign-modal__button">Отмена</div>
+    </div>
 
 
 </div>

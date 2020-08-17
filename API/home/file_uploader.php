@@ -184,6 +184,8 @@ try{
     // Блок создания записей в указанной таблице
     $createdIds = []; // id успешно созданных записей в таблице файлов
     $filesName = $files->getFilesName($inputName);
+    $filesSize = $files->getFilesSize($inputName);
+    
 
     // Формируем первую (переменную) часть параметров для передачи в метод создания записи.
     // Эти параметры будут распакованы и первыми переданы в сооветствующие методы,
@@ -195,7 +197,7 @@ try{
 
         try{
 
-            $createdIds[] = call_user_func_array([$Class, 'create'], [...$params, $filesName[$s], $hashes[$s]]);
+            $createdIds[] = call_user_func_array([$Class, 'create'], [...$params, $filesName[$s], $filesSize[$s], $hashes[$s]]);
         }catch(DataBaseException $e){
 
             // При добавлении записи файла произошла ошибка, удаляем все предыдущие записи
