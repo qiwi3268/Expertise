@@ -44,6 +44,28 @@ class MessageParser{
         
         $parts = explode(PHP_EOL, $message);
         
+        // Возможны ситуации, когда из-за отсутствия прогресс-бара проверки подписи Signature verifying и ErrorCode
+        // окажутся в одной строке, т.к. символ переноса строк принадлежит прогресс-бару. В таком случае искусственно
+        // добавляем блок ErrorCode к parts
+        $tmp = array_filter($parts, fn($part) => icontains($part, 'Signature verifying...', 'ErrorCode:'));
+        if(!empty($tmp)){
+            
+            $tmp = array_shift($tmp);
+            
+            // любой символ один и более раз
+            // Signature verifying...
+            // любой символ ноль и более раз
+            // 1 группа:
+            //    [ErrorCode:
+            //    пробельный символ ноль и более раз
+            //    любой символ один и более раз
+            //    ]
+            // - регистронезависимые
+            // - использование кодировки utf-8
+            $pattern = "/.+Signature verifying\.\.\..*(\[ErrorCode:\s*.+])/iu";
+            $parts[] = GetHandlePregMatch($pattern, $tmp, false)[1];
+        }
+        
         foreach($parts as $part){
             
             if(!icontains($part, 'CryptCP 4.0 (c) "Crypto-Pro", 2002-2020.') &&
@@ -154,7 +176,7 @@ class MessageParser{
         // 1 группа:
         //    любой символ один и более раз
         // ]
-        // - регистронезависимых
+        // - регистронезависимые
         // - использование кодировки utf-8
         $pattern = '/\[ErrorCode:\s*(.+)]/iu';
         return GetHandlePregMatch($pattern, $message, false)[1]; // Возвращаем результат первой группы

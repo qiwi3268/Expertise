@@ -30,7 +30,10 @@ $requiredMappings = new RequiredMappingsSetter();
 $requiredMappings->setMappingLevel1(1);
 
 $filesInitialization = new FilesInitialization($requiredMappings, $applicationId);
-$needsFiles = $filesInitialization->getNeedsFiles();
+$needsFiles = $filesInitialization->getNeedsFilesWithSigns();
+//$filesInitialization->getFilesSigns($needsFiles);
+
+var_dump($needsFiles);
 
 // Установка файловых иконок
 foreach($needsFiles as &$mapping_level_2){
@@ -45,7 +48,7 @@ unset($mapping_level_2);
 
 $variablesTV->setValue('form_files', $needsFiles);
 
-var_dump($variablesTV->getValue('form_files')[1][1]);
+//var_dump($variablesTV->getValue('form_files')[1][1]);
 
 // Сохранен Вид объекта, показываем документацию
 if($variablesTV->getExistenceFlag('type_of_object')){

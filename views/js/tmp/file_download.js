@@ -323,8 +323,6 @@ document.addEventListener('DOMContentLoaded', () => {
          form_data.append('mapping_level_1', mapping_input_1.value);
          form_data.append('mapping_level_2', mapping_input_2.value);
 
-         console.log(new Map(form_data));
-
 
          await XHR('post', '/home/API_file_checker', form_data, null, 'json')
             .then(check_response => {
@@ -335,8 +333,6 @@ document.addEventListener('DOMContentLoaded', () => {
                form_data.append('fs_name_sign', check_response.fs_name);
                form_data.append('mapping_level_1', mapping_input_1.value);
                form_data.append('mapping_level_2', mapping_input_2.value);
-
-               console.log(new Map(form_data));
 
                return XHR('post', '/home/API_internal_signature_verifier', form_data, null, 'json', null, null)
 
@@ -351,7 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
                      //TODO на удаление
                      break;
                   case 5.1:
-                     file_item.dataset.sign_state = 'not_signed';
+                     // file_item.dataset.sign_state = 'not_signed';
                      break;
                   default:
                      //TODO проверяем результат

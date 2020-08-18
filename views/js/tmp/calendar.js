@@ -475,7 +475,7 @@ class Calendar {
             let calendar_field = mClosest(field, '.field', 1);
             let result_input = mQS(calendar_field, '.field-result', 2);
 
-            let calendar = Calendar.getInstance(field, result_input);
+            let calendar = Calendar.getInstance(field);
             calendar.clear(field, result_input);
             calendar.setPosition();
             calendar.show();
@@ -497,12 +497,10 @@ class Calendar {
    // field      Element : поле для выбора даты
    // Возвращает параметры------------------------------------------
    // calendar   Calendar : объект календаря
-   static getInstance(field, result_input) {
+   static getInstance(field) {
 
       if (!Calendar.instance) {
          Calendar.instance = new Calendar(field);
-      } else {
-         // Calendar.instance.clear(field, result_input);
       }
 
       return Calendar.instance;

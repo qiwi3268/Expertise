@@ -130,8 +130,17 @@ class GeCades{
                     console.log("Ошибка при получении свойства ValidFromDate / ValidToDate / SubjectName: " + cadesplugin.getLastError(ex));
                 }
 
-                // Берем только действительные сертификаты
-                if(new Date() < ValidToDate){
+                let hasPrivateKey; // Привязка сертификата к закрытому ключу
+
+                try{
+                    hasPrivateKey = yield cert.HasPrivateKey();
+                }catch(ex){
+                    console.log("Ошибка при получении свойства HasPrivateKey: " + cadesplugin.getLastError(ex));
+                }
+
+                // Берем только действительные сертификаты и с привязкой к закрытому ключу
+                // if(new Date() < ValidToDate && hasPrivateKey) {
+                if(new Date() < ValidToDate) {
 
                     let text = GeCades.extractCN(SubjectName) + ' Выдан: ' + GeCades.formattedDateTo_ddmmyyyy(ValidFromDate);
                     option.text = text;
@@ -244,8 +253,8 @@ class GeCades{
 
 
             //TODO вынести отдельно
-            let cert_info = SignHandler.modal.querySelector('.sign-modal__info');
-            cert_info.dataset.inactive = 'false';
+            SignHandler.plugin_info = SignHandler.modal.querySelector('.sign-modal__info');
+            SignHandler.plugin_info.dataset.inactive = 'false';
 
         }, oCertificate);
     }

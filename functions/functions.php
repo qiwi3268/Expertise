@@ -153,6 +153,14 @@ function GetHandlePregMatch(string $pattern, string $subject, bool $is_preg_matc
     return $matches;
 }
 
+function GetHashArray(array $array):array {
+    $result = [];
+    foreach($array as $elem){
+        $result[$elem] = true;
+    }
+    return $result;
+}
+
 
 // Предназначена для вывода var_dump только у тех пользователей, где в
 // get-параметре присутствует debug=1

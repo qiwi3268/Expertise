@@ -684,7 +684,7 @@
         </div>
     </div>
 
-    <div class="sign-modal__actions">
+    <div class="sign-modal__buttons">
         <div class="file-modal__button file-modal__upload">Загрузить</div>
         <div id="signature_button" class="sign-modal__button sign-modal__sign">Подписать</div>
         <input id="external_sign" type="file" name="download_files[]" hidden/>
@@ -714,7 +714,7 @@
                     <span class="sign-modal__text" id="ValidateCertState"></span>
                 </div>
                 <div class="sign-modal__row">
-                    <span class="sign-modal__label">Подпись </span>
+                    <span class="sign-modal__label">Подпись: </span>
                     <span class="sign-modal__text" id="ValidateSignState"></span>
                 </div>
                 <span class="sign-modal__validate-cert"></span>
@@ -722,7 +722,7 @@
             </div>
         </div>
         
-        <div class="sign-modal__actions">
+        <div class="sign-modal__buttons">
             <div id="signature_delete" class="sign-modal__upload application-button" data-inactive="true">Удалить подпись</div>
             <div id="sign_upload" class="sign-modal__upload application-button" data-inactive="true">Загрузить открепленную подпись</div>
             <div id="sign_create" class="sign-modal__sign application-button" data-inactive="true">Создать открепленную подпись</div>
@@ -762,13 +762,14 @@
                     <span class="sign-modal__text" id="CertMessage"></span>
                 </div>
             </div>
+            
         </div>
 
 
         
     </div>
     
-    <div class="sign-modal__sign-actions" data-inactive="true">
+    <div class="sign-modal__actions" data-inactive="true">
         <div id="signature_button" class="file-modal__button sign-modal__button">Подписать</div>
         <div id="sign_cancel" class="file-modal__button sign-modal__button">Отмена</div>
     </div>

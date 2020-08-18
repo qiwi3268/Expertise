@@ -6,9 +6,11 @@ namespace csp;
 
 class Validator{
     
-    
     private MessageParser $Parser;
     private SignatureValidationShell $Shell;
+    
+    // Код последней ошибки
+    private ?string $lastErrorCode = null;
     
     // Принимает параметры-----------------------------------
     // Parser MessageParser           : экземпляр класса парсинга вывода cmd-сообщения
@@ -50,6 +52,8 @@ class Validator{
         $errChain_message = $this->Shell->execErrChain($paths);
         $errChain_messageParts = $this->Parser->getMessagePartsWithoutTechnicalPart($errChain_message);
         $errChain_results = $this->getValidateResults($errChain_messageParts);
+        
+        $this->lastErrorCode = $errChain_results['errorCode']; // Запись последнего кода ошибки
         $errChain_signers = $errChain_results['signers'];
     
         foreach($errChain_signers as &$signer){
@@ -78,6 +82,8 @@ class Validator{
                 $noChain_message = $this->Shell->execNoChain($paths);
                 $noChain_messageParts = $this->Parser->getMessagePartsWithoutTechnicalPart($noChain_message);
                 $noChain_results = $this->getValidateResults($noChain_messageParts);
+    
+                $this->lastErrorCode = $noChain_results['errorCode']; // Запись последнего кода ошибки
                 $noChain_signers = $noChain_results['signers'];
                 
                 // Находим текущий итерируемый signer среди signers нового результата валидаци
@@ -153,7 +159,7 @@ class Validator{
             //      ErrorCode: ...
             //      Error: The parameter is incorrect.
             //      Unknown error.
-            if(mb_strpos($part, 'Signer:') !== false){
+            if(icontains($part, 'Signer:')){
             
                 $FIO = $this->Parser->getFIO($part);
                 
@@ -180,12 +186,13 @@ class Validator{
                               'message'     => $next_1_part
                 ];
             
-            }elseif(mb_strpos($part, 'ErrorCode:') !== false){
+            }elseif(icontains($part, 'ErrorCode:')){
             
                 $errorCodes[] = $this->Parser->getErrorCode($part);
             
-            }elseif(mb_strpos($part, 'Error: The parameter is incorrect.') !== false ||
-                    mb_strpos($part, 'Unknown error.') !== false){
+            }elseif(icontains($part, 'Error: Invalid cryptographic message type.') ||
+                    icontains($part, 'Error: The parameter is incorrect.') ||
+                    icontains($part, 'Unknown error.')){
             
                 continue; // Ошибки пропускаем, т.к. дальше (в следующих итерациях) отловится ее ErrorCode
             }else{
@@ -194,14 +201,15 @@ class Validator{
             }
         }
         
-        // Проверки на существование одного и более Signers и единственную часть ErrorCode
-        if(empty($signers)){
-            throw new \CSPValidatorException("В частях сообщения отсустсвует(ют) Signer".$this->getDebugMessageParts($messageParts), 4);
-        }
-        
+        // Проверки на единственную часть ErrorCode и существование одного и более Signers
         $count_errorCodes = count($errorCodes);
         if($count_errorCodes != 1){
             throw new \CSPValidatorException("Получено некорректное количество блоков ErrorCode: ({$count_errorCodes})".$this->getDebugMessageParts($messageParts), 5);
+        }
+        
+        if(empty($signers)){
+            $this->lastErrorCode = $errorCodes[0]; // Запись последнего кода ошибки
+            throw new \CSPValidatorException("В частях сообщения отсустсвует(ют) Signer".$this->getDebugMessageParts($messageParts), 4);
         }
         
         return ['signers'   => $signers,
@@ -265,10 +273,49 @@ class Validator{
         }
     }
     
+    
     // Предназначен для получения debug-строки о имеющихся частях сообщения
     //
     private function getDebugMessageParts(array $messageParts):string {
         $tmp = implode(' || ', $messageParts);
         return ". Части сообщения (messageParts): '{$tmp}'";
+    }
+    
+    
+    // Предназначен для проверки последнего errorCode на тип ошибки, соответствующий
+    // недействительному типу криптографичесого сообщения
+    // Возвращает параметры----------------------------------
+    // true  : последняя ошибка соответствует недействительному типу криптографичесого сообщения
+    // false : в противном случае
+    //
+    public function isInvalidMessageType():bool {
+        $errorCode = $this->lastErrorCode;
+        if(!is_null($errorCode) && $errorCode === '0x80091004'){
+            return true;
+        }
+        return false;
+    }
+    
+    
+    // Передан некорректный параметр
+    // Для встроенной подписи ошибка означает:
+    //    - проверяется файл открепленной подписи
+    public function isIncorrectParameter():bool {
+        $errorCode = $this->lastErrorCode;
+        if(!is_null($errorCode) && $errorCode === '0x00000057'){
+            return true;
+        }
+        return false;
+    }
+    
+    // Проверка подписи не началась
+    // Для открепленной подписи ошибка означает:
+    //    - проверяется файл без подписи и файл без подписи
+    public function isSignatureVerifyingNotStarted():bool {
+        $errorCode = $this->lastErrorCode;
+        if(!is_null($errorCode) && $errorCode === '0xffffffff'){
+            return true;
+        }
+        return false;
     }
 }

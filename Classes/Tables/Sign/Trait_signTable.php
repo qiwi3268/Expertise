@@ -38,8 +38,10 @@ trait  Trait_signTable{
                                   string $certificate_user_message):int {
     
         $table = self::$tableName;
+    
+        $id_file_part = is_null($id_file) ? 'NULL' : '?';
         
-        $query = "INSERT INTO `$table`
+        $query = "INSERT INTO `{$table}`
                     (`id`,
                      `id_sign`,
                      `is_external`,
@@ -53,18 +55,37 @@ trait  Trait_signTable{
                      `certificate_message`,
                      `certificate_user_message`)
                     VALUES
-                      (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-        return ParametrizedQuery::set($query, [$id_sign,
-                                               $is_external,
-                                               $id_file,
-                                               $fio,
-                                               $certificate,
-                                               $signature_result,
-                                               $signature_message,
-                                               $signature_user_message,
-                                               $certificate_result,
-                                               $certificate_message,
-                                               $certificate_user_message]);
+                      (NULL, ?, ?, {$id_file_part}, ?, ?, ?, ?, ?, ?, ?, ?)";
+    
+        // bind-параметры до и после id_file
+        $bindParams_before = [$id_sign,
+                              $is_external];
+        $bindParams_after = [$fio,
+                             $certificate,
+                             $signature_result,
+                             $signature_message,
+                             $signature_user_message,
+                             $certificate_result,
+                             $certificate_message,
+                             $certificate_user_message];
+  
+        $bindParams = is_null($id_file) ? [...$bindParams_before, ...$bindParams_after] : [...$bindParams_before, $id_file, ...$bindParams_after];
+        
+        return ParametrizedQuery::set($query, $bindParams);
+    }
+    
+    static public function getAllAssocByIds(array $ids):?array {
+        
+        $table = self::$tableName;
+        
+        $in = '('.implode(', ', $ids).')';
+        
+        $query = "SELECT *
+                  FROM `$table`
+                  WHERE `id_sign` IN {$in} OR `id_file` IN {$in}";
+        
+        $result = SimpleQuery::getFetchAssoc($query);
+        
+        return $result ? $result : null;
     }
 }

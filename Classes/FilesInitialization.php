@@ -5,28 +5,46 @@
 //
 class FilesInitialization{
     
-    // Массив нужных маппингов
-    private array $requiredMappings;
+    
+    private array $filesRequiredMappings; // Массив нужных маппингов файловых таблиц
+    private array $signsRequiredMappings; // Массив нужных маппингов таблиц подписей
     private int $applicationId;
     
     
     // Принимает параметры-----------------------------------
-    // requiredMappings RequiredMappingsSetter : объект класса с установленными ранее нужными маппингами
+    // filesRequiredMappings RequiredMappingsSetter : объект класса с установленными ранее нужными маппингами
     // applicationId                       int : id заявления
     //
-    function __construct(RequiredMappingsSetter $requiredMappings, int $applicationId){
+    function __construct(RequiredMappingsSetter $filesRequiredMappings, int $applicationId){
+        
+        $signsRequiredMappings = [];
         
         // Проверка классов нужных маппингов
-        foreach($requiredMappings->getRequiredMappings() as $mapping_level_1_code => $mapping_level_2){
+        foreach($filesRequiredMappings->getRequiredMappings() as $mapping_level_1_code => $mapping_level_2){
             
             foreach($mapping_level_2 as $mapping_level_2_code => $className){
                 
-                $Mapping = new FilesTableMapping($mapping_level_1_code, $mapping_level_2_code);
+                $FilesMapping = new FilesTableMapping($mapping_level_1_code, $mapping_level_2_code);
     
-                if(!is_null($Mapping->getErrorCode())){
-                    throw new FileException("Ошибка в маппинг таблице в классе {$className}. {$Mapping->getErrorText()}", $Mapping->getErrorCode());
+                if(!is_null($FilesMapping->getErrorCode())){
+                    throw new FileException("Ошибка в маппинг таблице (файлов) в классе '{$className}'. '{$FilesMapping->getErrorText()}'", $FilesMapping->getErrorCode());
                 }
-                unset($Mapping);
+                unset($FilesMapping);
+                
+                // Формирование маппингов для таблиц подписей, аналогичных по стркутуре с filesRequiredMappings
+                $SignsMapping = new SignsTableMapping($mapping_level_1_code, $mapping_level_2_code);
+                
+                $SignsMappingErrorCode = $SignsMapping->getErrorCode();
+                
+                if(is_null($SignsMappingErrorCode)){
+                    $signsRequiredMappings[$mapping_level_1_code][$mapping_level_2_code] = $SignsMapping->getClassName();
+                }elseif($SignsMappingErrorCode == 1){
+                    // Не существует соответствующего класса таблицы подписей к классу файловой таблицы
+                    $signsRequiredMappings[$mapping_level_1_code][$mapping_level_2_code] = null;
+                }else{
+                    throw new FileException("Ошибка в маппинг таблице (подписей) в классе '{$className}'. '{$SignsMapping->getErrorText()}'", $SignsMappingErrorCode);
+                }
+                unset($SignsMapping);
             }
         }
         
@@ -34,21 +52,23 @@ class FilesInitialization{
             throw new Exception("Заявление с id: {$applicationId} не существует");
         }
         
-        $this->requiredMappings = $requiredMappings->getRequiredMappings();
+        $this->filesRequiredMappings = $filesRequiredMappings->getRequiredMappings();
+        $this->signsRequiredMappings = $signsRequiredMappings;
         $this->applicationId = $applicationId;
     }
     
     
     // Предназначен для полученя нужных (is_needs=1) файлов, находящихся в заявлении applicationId
-    // и в требуемых маппингах requiredMappings
+    // и в требуемых маппингах filesRequiredMappings
     // Возвращает параметры-----------------------------------
-    // array : структура массива аналогична requiredMappings. Вместо названия класса - массив с нужные файлами / null
+    // array : структура массива аналогична filesRequiredMappings. Вместо названия класса - массив с нужные файлами / null
     //
+    //todo метод возвращает не только файлы, а еще и открепленные подписи в этой таблице
     public function getNeedsFiles():array {
     
         $result = [];
         
-        foreach($this->requiredMappings as $mapping_level_1_code => $mapping_level_2){
+        foreach($this->filesRequiredMappings as $mapping_level_1_code => $mapping_level_2){
             
             foreach($mapping_level_2 as $mapping_level_2_code => $className){
                 
@@ -58,6 +78,109 @@ class FilesInitialization{
         }
         return $result;
     }
+    
+    public function getNeedsFilesWithSigns():array {
+    
+        $result = [];
+    
+        foreach($this->filesRequiredMappings as $mapping_level_1_code => $mapping_level_2){
+        
+            foreach($mapping_level_2 as $mapping_level_2_code => $fileClassName){
+            
+                $files = $fileClassName::getNeedsAssocByIdApplication($this->applicationId);
+                
+                $signClassName = $this->signsRequiredMappings[$mapping_level_1_code][$mapping_level_2_code];
+                
+                if(is_null($signClassName)){
+                    foreach($files as &$file) $file['signs'] = null;
+                    unset($file);
+                    continue;
+                }
+                
+                $ids = [];
+                foreach($files as $file){
+                    $ids[] = $file['id'];
+                }
+                $signs = $signClassName::getAllAssocByIds($ids);
+                
+                $idsHash = GetHashArray($ids);
+                
+                var_dump($files);
+                echo '---------------------------------';
+                var_dump($signs);
+                
+                foreach($files as &$file){
+                    
+                    $file['signs']['internal'] = [];
+                    $file['signs']['external'] = [];
+                    
+                    $tmp = null;
+                    $ind = null;
+                    
+                    foreach($signs as $index => $sign){
+                        
+                        // Итерируемый file является встроенной подписью
+                        // Флаг встроенной подписи = 0
+                        // id_file = null, т.к. встроенная подпись
+                        if($file['id'] == $sign['id_sign'] && $sign['is_external'] == 0 && is_null($sign['id_file'])){
+                            
+                            $file['signs']['internal'][] = $sign;
+                            unset($signs[$index]);
+                            break;
+                            
+                        // Итерируемый file является файлом, к которому есть открепленная подпись
+                        // Флаг встроенной подписи = 1
+                        // id_sign (встроенная подпись) присутствует в выборке файлов
+                        }elseif($file['id'] == $sign['id_file'] && $sign['is_external'] == 1 && isset($idsHash[$sign['id_sign']])){
+                            
+                            // Ищем и удаляем file открепленной подписи
+                            $externalSignFile = array_filter($files, fn($tmp) => $tmp['id'] == $sign['id_sign']);
+                            $ind = array_key_first($externalSignFile);
+                            unset($files[$ind]);
+                            
+                            $file['signs']['external'][] = $sign;
+                            unset($signs[$index]);
+                            break;
+                        
+                        // Итерируемый file является открепленной подписью к другому файлу
+                        // Флаг встроенной подписи = 1
+                        // id_file (исходный файл без подписи) присутствует в выборке файлов
+                        }elseif($file['id'] == $sign['id_sign'] && $sign['is_external'] == 1 && isset($idsHash[$sign['id_file']])){
+    
+                            $test = 1;
+                            // Находим файл с данными
+                            $dataFile = array_filter($files, fn($tmp) => $tmp['id'] == $sign['id_file']);
+                            $ind = array_key_first($dataFile);
+                        }
+                    }
+                }
+                unset($file);
+                
+            }
+    
+            $result[$mapping_level_1_code][$mapping_level_2_code] = $files;
+        }
+        return $result;
+    }
+    
+    
+    
+    public function getFilesSigns(array $needsFiles) {
+        foreach($needsFiles as $mapping_level_1_code => $mapping_level_2){
+            foreach($mapping_level_2 as $mapping_level_2_code => $files){
+                
+                $signMapping = $this->signsRequiredMappings[$mapping_level_1_code][$mapping_level_2_code];
+                
+                
+                var_dump($mapping_level_1_code);
+                var_dump($mapping_level_2_code);
+                var_dump($files);
+            }
+        }
+    }
+    
+    
+    
     
     
     // Принимает параметры-----------------------------------
@@ -104,8 +227,9 @@ class FilesInitialization{
 //
 class RequiredMappingsSetter{
 
-    // Массив нужных маппингов
-    private array $requiredMappings;
+    // Массив нужных маппингов файловых таблиц
+    private array $filesRequiredMappings;
+    
     
     
     // Предназначен для установки всех маппингов 2 уровня, находящихся в указанном маппинге 1 уровня
@@ -116,7 +240,7 @@ class RequiredMappingsSetter{
         $this->checkMappingLevel1Exist($mapping_level_1);
         
         foreach(_FILE_TABLE_MAPPING[$mapping_level_1] as $mapping_level_2_code => $className){
-            $this->requiredMappings[$mapping_level_1][$mapping_level_2_code] = $className;
+            $this->filesRequiredMappings[$mapping_level_1][$mapping_level_2_code] = $className;
         }
     }
     
@@ -128,7 +252,7 @@ class RequiredMappingsSetter{
     //
     public function setMappingLevel2(int $mapping_level_1, int $mapping_level_2):void {
         $this->checkMappingLevel2Exist($mapping_level_1, $mapping_level_2);
-        $this->requiredMappings[$mapping_level_1][$mapping_level_2] = _FILE_TABLE_MAPPING[$mapping_level_1][$mapping_level_2];
+        $this->filesRequiredMappings[$mapping_level_1][$mapping_level_2] = _FILE_TABLE_MAPPING[$mapping_level_1][$mapping_level_2];
     }
     
     
@@ -137,7 +261,7 @@ class RequiredMappingsSetter{
     // array : нужные маппинги
     //
     public function getRequiredMappings():array {
-        return $this->requiredMappings;
+        return $this->filesRequiredMappings;
     }
     
     
@@ -147,7 +271,7 @@ class RequiredMappingsSetter{
     //
     private function checkMappingLevel1Exist(int $mapping_level_1):void {
         if(!array_key_exists($mapping_level_1, _FILE_TABLE_MAPPING)){
-            throw new FileException("Запрашиваемый mapping_level_1: {$mapping_level_1} не существует в _FILE_TABLE_MAPPING");
+            throw new FileException("Запрашиваемый mapping_level_1: '{$mapping_level_1}' не существует в _FILE_TABLE_MAPPING");
         }
     }
     
@@ -160,7 +284,7 @@ class RequiredMappingsSetter{
     private function checkMappingLevel2Exist(int $mapping_level_1, int $mapping_level_2):void {
         $this->checkMappingLevel1Exist($mapping_level_1);
         if(!array_key_exists($mapping_level_2, _FILE_TABLE_MAPPING[$mapping_level_1])){
-            throw new FileException("Запрашиваемый mapping_level_2: {$mapping_level_2} не существует mapping_level_1: {$mapping_level_1} в _FILE_TABLE_MAPPING");
+            throw new FileException("Запрашиваемый mapping_level_2: '{$mapping_level_2}' не существует mapping_level_1: '{$mapping_level_1}' в _FILE_TABLE_MAPPING");
         }
     }
 }

@@ -14,18 +14,12 @@ class Logger{
     // logsName string : название файла логов от директории логов, включая расширение файла
     //
     function __construct(string $logsDir, string $logsName){
-
-        $this->changeLogsDir($logsDir);
-        $this->changeLogsName($logsName);
-        
-        if(!file_exists("{$logsDir}/{$logsName}")){
-            
-            if(!file_exists($this->logsDir)){
-                throw new Exception("Указанная директория лог файлов: '{$this->logsDir}' не существует в файловой системе сервера");
-            }else{
-                throw new Exception("Указанный файл логов: '{$this->logsName}' не существует в директории {$this->logsDir}");
-            }
-        }
+    
+        $this->validateLogsDir($logsDir);
+        $this->validateLogsName($logsName);
+        $this->checkExistAndWritable("{$logsDir}/{$logsName}");
+        $this->logsDir = $logsDir;
+        $this->logsName = $logsName;
     }
     
     
@@ -34,7 +28,8 @@ class Logger{
     // logsDir string: абсолютный путь к директории с файлами логов
     //
     public function changeLogsDir(string $logsDir):void {
-        if(!$this->validateLogsDir($logsDir)) throw new Exception("Передан некорректный параметр logsDir: '{$logsDir}'");
+        $this->validateLogsDir($logsDir);
+        $this->checkExistAndWritable("{$logsDir}/{$this->logsName}");
         $this->logsDir = $logsDir;
     }
     
@@ -44,7 +39,8 @@ class Logger{
     // logsName string: имя файла логов
     //
     public function changeLogsName(string $logsName):void {
-        if(!$this->validateLogsName($logsName)) throw new Exception("Передан некорректный параметр logsName: '{$logsName}'");
+        $this->validateLogsName($logsName);
+        $this->checkExistAndWritable("{$this->logsDir}/{$logsName}");
         $this->logsName = $logsName;
     }
     
@@ -60,7 +56,7 @@ class Logger{
         $date = date('d.m.Y H:i:s');
         $message = "{$date} {$message}".PHP_EOL;
         if(file_put_contents("{$this->logsDir}/{$this->logsName}", $message, FILE_APPEND) === false){
-            throw new Exception("Произошла ошибка при попытке записать логируемое сообщение: '{$message}' в файл: '{$this->logsDir}/{$this->logsName}'");
+            throw new LoggerException("Произошла ошибка при попытке записать логируемое сообщение: '{$message}' в файл: '{$this->logsDir}/{$this->logsName}'", 5);
         }
         return $date;
     }
@@ -70,15 +66,13 @@ class Logger{
     // Путь к директории должен начинться с '/' и не должен заканчиваться на '/'
     // Принимает параметры-----------------------------------
     // logsDir string: абсолютный путь к директории с файлами логов
-    // Возвращает параметры-----------------------------------
-    // true  : проверка пройдена
-    // false : проверка не пройдена
+    // Выбрасывает исключения--------------------------------
+    // CSPMessageParserException : передан некорректный параметр logsDir
     //
-    private function validateLogsDir(string $logsDir):bool {
-        if($logsDir[0] !== '/' || $logsDir[mb_strlen($logsDir) - 1] === '/'){
-            return false;
+    private function validateLogsDir(string $logsDir):void {
+        if($logsDir[0] != '/' || $logsDir[mb_strlen($logsDir) - 1] == '/'){
+            throw new LoggerException("Передан некорректный параметр logsDir: '{$logsDir}'. Путь к директории должен начинться с '/' и не должен заканчиваться на '/'", 1);
         }
-        return true;
     }
     
     
@@ -86,12 +80,24 @@ class Logger{
     // Название файла не должно начинаться с '/'
     // Принимает параметры-----------------------------------
     // logsName string: имя файла логов
-    // Возвращает параметры-----------------------------------
-    // true  : проверка пройдена
-    // false : проверка не пройдена
+    // Выбрасывает исключения--------------------------------
+    // CSPMessageParserException : передан некорректный параметр logsName
     //
-    private function validateLogsName(string $logsName):bool {
-        
-        return $logsName[0] == '/' ? false : true;
+    private function validateLogsName(string $logsName):void {
+        if($logsName[0] == '/') throw new LoggerException("Передан некорректный параметр logsName: '{$logsName}'. Название файла не должно начинаться с '/'", 2);
+    }
+    
+    
+    // Предназначен для проверки существования указанного файла логов и на его доступность для записи
+    // Принимает параметры-----------------------------------
+    // path string: абсолютный путь в ФС сервера к файлу логов
+    // Выбрасывает исключения--------------------------------
+    // CSPMessageParserException :
+    //   указанный лог файл не существует в файловой системе сервера
+    //   указанный лог файл не доступен для записи
+    //
+    private function checkExistAndWritable(string $path):void {
+        if(!file_exists($path))     throw new LoggerException("Указанный лог файл: '{$path}' не существует в файловой системе сервера", 3);
+        elseif(!is_writable($path)) throw new LoggerException("Указанный лог файл: '{$path}' не доступен для записи", 4);
     }
 }

@@ -54,6 +54,17 @@ class FilesUpload{
     public function getFilesName(string $inputName):array {
         return $this->FILES[$inputName]['name'];
     }
+    
+    
+    // Предназначен для получения массива размеров файлов из определенного инпута
+    // Принимает параметры------------------------------------
+    // inputName  string : инпут, с которого будут браться файлы
+    // Возвращает параметры-----------------------------------
+    // array : размеры файлов (в байтах)
+    //
+    public function getFilesSize(string $inputName):array {
+        return $this->FILES[$inputName]['size'];
+    }
 
 
     // Предназначен для получения количества файлов из определенного инпута

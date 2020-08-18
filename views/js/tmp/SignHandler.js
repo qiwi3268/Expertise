@@ -11,19 +11,20 @@ class SignHandler {
 
 
    static actions;
-   static sign_create_actions;
 
    static cert_select;
 
-   static sign_btn;
+   static create_sign_btn;
    static upload_sign_btn;
-   static sign_delete_btn;
+   static delete_sign_btn;
+
+   static plugin_info;
 
    static validate_info;
    static cert_state;
    static sign_state;
 
-
+   static file_element;
    static id_file;
    static id_sign;
 
@@ -38,8 +39,8 @@ class SignHandler {
    static init() {
       SignHandler.modal = document.querySelector('.sign-modal');
 
+      // SignHandler.actions = SignHandler.modal.querySelector('.sign-modal__buttons');
       SignHandler.actions = SignHandler.modal.querySelector('.sign-modal__actions');
-      SignHandler.sign_create_actions = SignHandler.modal.querySelector('.sign-modal__sign-actions');
 
       SignHandler.cert_select = SignHandler.modal.querySelector('.sign-modal__select');
 
@@ -68,16 +69,18 @@ class SignHandler {
             SignHandler.signFile();
          }
 
+
+
       });
 
       let cancel_btn = document.getElementById('sign_cancel');
       cancel_btn.addEventListener('click', () => {
 
          SignHandler.upload_sign_btn.dataset.inactive = 'false';
-         SignHandler.sign_btn.dataset.inactive = 'false';
+         SignHandler.create_sign_btn.dataset.inactive = 'false';
 
-         SignHandler.actions.dataset.inactive = 'false';
-         SignHandler.sign_create_actions.dataset.inactive = 'true';
+         // SignHandler.actions.dataset.inactive = 'false';
+         SignHandler.actions.dataset.inactive = 'true';
          SignHandler.cert_select.dataset.inactive = 'true';
 
       });
@@ -90,8 +93,8 @@ class SignHandler {
    }
 
    static handleSignButton() {
-      SignHandler.sign_btn = document.getElementById('sign_create');
-      SignHandler.sign_btn.addEventListener('click', () => {
+      SignHandler.create_sign_btn = document.getElementById('sign_create');
+      SignHandler.create_sign_btn.addEventListener('click', () => {
 
 
 
@@ -99,7 +102,9 @@ class SignHandler {
 
             BrowserHelper.initializePlugin();
 
+
          // }
+
 
 
 
@@ -111,76 +116,98 @@ class SignHandler {
       SignHandler.sign_input = document.getElementById('external_sign');
       SignHandler.sign_input.addEventListener('change', () => {
 
-         let form_data = new FormData();
-         form_data.append('id_application', getIdApplication());
-         form_data.append('mapping_level_1', SignHandler.mapping_level_1);
-         form_data.append('mapping_level_2', SignHandler.mapping_level_2);
-         form_data.append('download_files[]', SignHandler.sign_input.value);
 
-         let files = Array.from(SignHandler.sign_input.files);
-         files.forEach(file => {
-
-            form_data.append('download_files[]', file);
-
-         });
+         if (SignHandler.sign_input.files.length > 0) {
 
 
-         let upload_response;
-         let fs_name_data;
-         let fs_name_sign;
+            let form_data = new FormData();
+            form_data.append('id_application', getIdApplication());
+            form_data.append('mapping_level_1', SignHandler.mapping_level_1);
+            form_data.append('mapping_level_2', SignHandler.mapping_level_2);
+            form_data.append('download_files[]', SignHandler.sign_input.value);
 
+            let files = Array.from(SignHandler.sign_input.files);
+            files.forEach(file => {
 
-         XHR('post', '/home/API_file_uploader', form_data, null, 'json', null, null)
-            .then(response => {
-               let form_data = SignHandler.getFileCheckFormData(SignHandler.id_file);
+               form_data.append('download_files[]', file);
 
-               if (response.result === 16) {
-                  upload_response = response;
-                  return XHR('post', '/home/API_file_checker', form_data, null, 'json');
-               } else {
-                  console.log('upload sign exception');
-               }
-
-            })
-            // Проверяем, что файл может быть скачан
-            .then(file_check_response => {
-               SignHandler.fs_name_data = file_check_response.fs_name;
-
-               SignHandler.id_sign = upload_response.uploaded_files[0].id;
-               form_data = SignHandler.getFileCheckFormData(SignHandler.id_sign);
-               return XHR('post', '/home/API_file_checker', form_data, null, 'json');
-
-            })
-            .then(sign_check_response => {
-               SignHandler.fs_name_sign = sign_check_response.fs_name;
-
-               form_data = SignHandler.getSignVerifyFormData();
-               return XHR('post', '/home/API_external_signature_verifier', form_data, null, 'json', null, null)
-
-            })
-            .then(validate_response => {
-
-               console.log(validate_response);
-
-               let file = document.querySelector(`.files__item[data-id='${SignHandler.id_file}']`);
-               file.dataset.id_sign = SignHandler.id_sign;
-               file.dataset.validate_results = JSON.stringify(validate_response.validate_results);
-
-               let results = JSON.parse(file.dataset.validate_results);
-               results.forEach(result => {
-                  SignHandler.handleValidateResults(result, file);
-               });
-
-               SignHandler.sign_create_actions.dataset.inactive = 'true';
-               SignHandler.sign_delete_btn.dataset.inactive = 'false';
-
-
-
-            })
-            .catch(exc => {
-               console.error(exc);
             });
 
+
+            let upload_response;
+
+
+            XHR('post', '/home/API_file_uploader', form_data, null, 'json', null, null)
+               .then(response => {
+                  let form_data = SignHandler.getFileCheckFormData(SignHandler.id_file);
+
+                  if (response.result === 16) {
+                     upload_response = response;
+                     return XHR('post', '/home/API_file_checker', form_data, null, 'json');
+                  } else {
+                     console.log('upload sign exception');
+                  }
+
+               })
+               // Проверяем, что файл может быть скачан
+               .then(file_check_response => {
+                  SignHandler.fs_name_data = file_check_response.fs_name;
+
+                  SignHandler.id_sign = upload_response.uploaded_files[0].id;
+                  form_data = SignHandler.getFileCheckFormData(SignHandler.id_sign);
+                  return XHR('post', '/home/API_file_checker', form_data, null, 'json');
+
+               })
+               .then(sign_check_response => {
+                  SignHandler.fs_name_sign = sign_check_response.fs_name;
+
+                  form_data = SignHandler.getSignVerifyFormData();
+                  return XHR('post', '/home/API_external_signature_verifier', form_data, null, 'json', null, null)
+
+               })
+               .then(validate_response => {
+
+                  console.log(validate_response);
+
+                  switch (validate_response.result) {
+
+                     case 9:
+                        let file = document.querySelector(`.files__item[data-id='${SignHandler.id_file}']`);
+                        file.dataset.id_sign = SignHandler.id_sign;
+                        file.dataset.validate_results = JSON.stringify(validate_response.validate_results);
+
+                        let results = JSON.parse(file.dataset.validate_results);
+                        results.forEach(result => {
+                           SignHandler.handleValidateResults(result, file);
+                        });
+
+                        SignHandler.file_element.dataset.id_sign = SignHandler.id_sign;
+
+                        SignHandler.create_sign_btn.dataset.inactive = 'true';
+                        SignHandler.upload_sign_btn.dataset.inactive = 'true';
+                        SignHandler.delete_sign_btn.dataset.inactive = 'false';
+
+                        FileNeeds.putSignToSave(
+                           SignHandler.id_sign,
+                           SignHandler.mapping_level_1,
+                           SignHandler.mapping_level_2
+                        );
+
+                        break;
+
+                     case 6.1:
+                        console.log(validate_response.error_message);
+
+                        break;
+
+                  }
+
+               })
+               .catch(exc => {
+                  console.error(exc);
+               });
+
+         }
 
       });
 
@@ -203,22 +230,41 @@ class SignHandler {
       let plugin_info = SignHandler.modal.querySelector('.sign-modal__header');
       plugin_info.dataset.inactive = 'false';
 
-      let sign_create_actions = SignHandler.modal.querySelector('.sign-modal__sign-actions');
-      sign_create_actions.dataset.inactive = 'false';
+      SignHandler.actions.dataset.inactive = 'false';
 
       // SignHandler.actions.dataset.inactive = 'true';
 
       SignHandler.upload_sign_btn.dataset.inactive = 'true';
-      SignHandler.sign_btn.dataset.inactive = 'true';
+      SignHandler.create_sign_btn.dataset.inactive = 'true';
 
    }
 
    static handleDeleteButton() {
-      SignHandler.sign_delete_btn = document.getElementById('signature_delete');
-      SignHandler.sign_delete_btn.addEventListener('click', () => {
+      SignHandler.delete_sign_btn = document.getElementById('signature_delete');
+      SignHandler.delete_sign_btn.addEventListener('click', () => {
 
-         //TODO файл подписи в file_needs
 
+         let id_sign = SignHandler.file_element.dataset.id_sign;
+
+         FileNeeds.putSignToDelete(
+            id_sign,
+            SignHandler.mapping_level_1,
+            SignHandler.mapping_level_2
+         );
+
+
+         SignHandler.file_element.removeAttribute('data-id_sign');
+         SignHandler.file_element.removeAttribute('data-validate_results');
+         SignHandler.sign_input.value = '';
+
+
+         SignHandler.validate_info.dataset.inactive = 'true';
+         SignHandler.cert_select.dataset.inactive = 'true';
+
+
+         SignHandler.delete_sign_btn.dataset.inactive = 'true';
+         SignHandler.create_sign_btn.dataset.inactive = 'false';
+         SignHandler.upload_sign_btn.dataset.inactive = 'false';
 
       });
    }
@@ -300,17 +346,44 @@ class SignHandler {
 
             console.log(validate_response);
 
-            let file = document.querySelector(`.files__item[data-id='${SignHandler.id_file}']`);
-            file.dataset.id_sign = SignHandler.id_sign;
-            file.dataset.validate_results = JSON.stringify(validate_response.validate_results);
+            switch (validate_response.result) {
 
-            let results = JSON.parse(file.dataset.validate_results);
-            results.forEach(result => {
-               SignHandler.handleValidateResults(result, file);
-            });
+               case 9:
+                  let file = document.querySelector(`.files__item[data-id='${SignHandler.id_file}']`);
+                  file.dataset.id_sign = SignHandler.id_sign;
+                  file.dataset.validate_results = JSON.stringify(validate_response.validate_results);
 
-            SignHandler.sign_create_actions.dataset.inactive = 'true';
-            SignHandler.sign_delete_btn.dataset.inactive = 'false';
+                  let results = JSON.parse(file.dataset.validate_results);
+                  results.forEach(result => {
+                     SignHandler.handleValidateResults(result, file);
+                  });
+
+                  SignHandler.file_element.dataset.id_sign = SignHandler.id_sign;
+
+                  SignHandler.cert_select.dataset.inactive = 'true';
+                  SignHandler.delete_sign_btn.dataset.inactive = 'false';
+
+
+                  FileNeeds.putSignToSave(
+                     SignHandler.id_sign,
+                     SignHandler.mapping_level_1,
+                     SignHandler.mapping_level_2
+                  );
+
+
+                  console.log(FileNeeds.file_needs);
+
+                  break;
+
+               case 6.1:
+                  console.log(validate_response.error_message);
+                  //TODO error alert
+                  break;
+
+
+
+
+            }
 
 
 
@@ -326,11 +399,8 @@ class SignHandler {
 
 
       if (validate_result.signature_verify.result && validate_result.certificate_verify.result) {
-
          file.dataset.sign_state = 'valid';
-      } else if (!validate_result.signature_verify.result) {
-         file.dataset.sign_state = 'invalid';
-      } else {
+      } else if (validate_result.signature_verify.result) {
          file.dataset.sign_state = 'warning';
       }
 
@@ -390,12 +460,14 @@ class SignHandler {
 
       if (!file.dataset.validate_results) {
 
-         SignHandler.sign_btn.dataset.inactive = 'false';
+         SignHandler.create_sign_btn.dataset.inactive = 'false';
          SignHandler.upload_sign_btn.dataset.inactive = 'false';
+         SignHandler.validate_info.dataset.inactive = 'true';
 
       } else if (file.dataset.is_internal_sign !== 'true') {
 
-         SignHandler.sign_delete_btn.dataset.inactive = 'false';
+
+         SignHandler.delete_sign_btn.dataset.inactive = 'false';
 
          let results = JSON.parse(file.dataset.validate_results);
          results.forEach(result => {
@@ -403,6 +475,7 @@ class SignHandler {
          });
 
       } else {
+
 
          let results = JSON.parse(file.dataset.validate_results);
          results.forEach(result => {
@@ -418,6 +491,7 @@ class SignHandler {
 
    static putFileData(file) {
       let parent_field = file.closest('[data-mapping_level_1]');
+      SignHandler.file_element = file;
       SignHandler.id_file = file.dataset.id;
       SignHandler.mapping_level_1 = parent_field.dataset.mapping_level_1;
       SignHandler.mapping_level_2 = parent_field.dataset.mapping_level_2;
@@ -439,15 +513,15 @@ class SignHandler {
       SignHandler.overlay.classList.remove('active');
 
 
-      SignHandler.sign_btn.dataset.inactive = 'true';
+      SignHandler.create_sign_btn.dataset.inactive = 'true';
       SignHandler.upload_sign_btn.dataset.inactive = 'true';
-      SignHandler.sign_delete_btn.dataset.inactive = 'true';
+      SignHandler.delete_sign_btn.dataset.inactive = 'true';
 
 
 
       SignHandler.cert_select.dataset.inactive = 'true';
 
-      SignHandler.sign_create_actions.dataset.inactive = 'true';
+      SignHandler.actions.dataset.inactive = 'true';
 
 
       SignHandler.validate_info.dataset.inactive = 'true';

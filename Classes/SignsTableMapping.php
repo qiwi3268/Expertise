@@ -27,6 +27,13 @@ class SignsTableMapping extends FilesTableMapping{
         
         // Получение названия класса таблицы подписей
         $SignClass = _SIGN_TABLE_MAPPING[$FileClass];
+        
+        // Проверка на существование указанного класса таблицы подписей
+        if(!class_exists($SignClass)){
+            $this->errorCode = 2;
+            $this->errorText = "Указанный класс таблицы подписей: '{$SignClass}' не существует";
+            return;
+        }
     
         $interfaces = class_implements($SignClass);
     

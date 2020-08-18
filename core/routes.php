@@ -105,7 +105,7 @@ return [
 
     'home/application/view' => [
         'access'              => [],
-        'ROOTClasses'         => ['VariableTransfer', 'FilesTableMapping', 'NodeStructure', 'FilesInitialization'],
+        'ROOTClasses'         => ['VariableTransfer', 'FilesTableMapping', 'SignsTableMapping', 'NodeStructure', 'FilesInitialization'],
         'ROOTcontrollers'     => ['header'],
         'ABScontrollers'      => ['/controllers/home/main_header.php'],
         'controllers'         => ['action_sidebar',

@@ -11,15 +11,15 @@
 //	2  - Ошибка в указанном маппинге таблицы подписей
 //       {result, error_message : текст ошибки}
 //  3  - Произошла ошибка при парсинге fs_name_data / fs_name_sign
-//       {result, error_message : текст ошибки}
+//       {result, message : текст ошибки, code: код ошибки}
 //  4  - id заявления исходного файла не равен id заявления файла подписи
 //       {result, error_message : текст ошибки}
-//	5  - Произошла внутрення ошибка 'ShellException'
-//       Произошла внутрення ошибка 'PregMatchException'
-//       Произошла внутрення ошибка 'CSPMessageParserException'
-//       Произошла внутрення ошибка 'CSPValidatorException'
+//	5  - Произошла внутренняя ошибка 'ShellException'
+//       Произошла внутренняя ошибка 'PregMatchException'
+//       Произошла внутренняя ошибка 'CSPMessageParserException'
+//       Произошла внутренняя ошибка 'CSPValidatorException'
 //       {result, error_message : текст ошибки}
-//  6.1- Произошла внутрення ошибка (по вине входных данных):
+//  6.1- Произошла внутренняя ошибка (по вине входных данных):
 //       Проверка открепленной подписи не началась (вместо открепленной подписи проверялся файл без подписи)
 //       {result, error_message : текст ошибки}
 //  7  - Произошла непредвиденная ошибка при работе метода '\csp\Validator::validate'
@@ -32,6 +32,7 @@
 //       {result, message : текст ошибки, code: код ошибки}
 //  11 - Непредвиденная ошибка
 //       {result, message : текст ошибки, code: код ошибки}
+
 
 // Проверка наличия обязательных параметров
 if(!checkParamsPOST('fs_name_data', 'fs_name_sign', 'mapping_level_1', 'mapping_level_2')){
@@ -74,7 +75,7 @@ try{
         $Logger->write($errorMessage);
         exit(json_encode(['result'        => 3,
                           'message'       => $errorMessage,
-                          'error_message' => $e->getCode()
+                          'code'          => $e->getCode()
         ]));
     }
     
@@ -90,10 +91,9 @@ try{
     
     $FileClassName = $Mapping->getFileClassName();
     
-    // ***Опускаем проверку на null по причине предшествующего API_file_checker
+    // *** Опускаем проверку на null по причине предшествующего API_file_checker
     $dataFileAssoc = $FileClassName::getAssocByIdApplicationAndHash($application_id, $hash_data);
     $signFileAssoc = $FileClassName::getAssocByIdApplicationAndHash($application_id, $hash_sign);
-    
     
     $Parser = new \csp\MessageParser(true);
     $Shell = new \csp\ExternalSignature();
@@ -108,7 +108,7 @@ try{
         // Исполняемая команда: не произвела вывод или произошла ошибка
         $date = $Logger->write($e->getMessage());
         exit(json_encode(['result'        => 5,
-                          'error_message' => "Произошла внутрення ошибка 'ShellException'. log time: '{$date}'"
+                          'error_message' => "Произошла внутренняя ошибка 'ShellException'. log time: '{$date}'"
         ]));
     }catch(PregMatchException $e){
         
@@ -116,7 +116,7 @@ try{
         // Произошла ошибка или нет вхождений шаблона при работе функции GetHandlePregMatch
         $date = $Logger->write($e->getMessage());
         exit(json_encode(['result'        => 5,
-                          'error_message' => "Произошла внутрення ошибка 'PregMatchException'. log time: '{$date}'"
+                          'error_message' => "Произошла внутренняя ошибка 'PregMatchException'. log time: '{$date}'"
         ]));
     }catch(CSPMessageParserException $e){
         
@@ -127,7 +127,7 @@ try{
         $date = $Logger->write($e->getMessage());
         $code = $e->getCode();
         exit(json_encode(['result'        => 5,
-                          'error_message' => "Произошла внутрення ошибка 'CSPMessageParserException'. code: '{$code}'. log time: '{$date}'"
+                          'error_message' => "Произошла внутренняя ошибка 'CSPMessageParserException'. code: '{$code}'. log time: '{$date}'"
         ]));
     }catch(CSPValidatorException $e){
         
@@ -154,7 +154,7 @@ try{
         }
         
         exit(json_encode(['result'        => 5,
-                          'error_message' => "Произошла внутрення ошибка 'CSPValidatorException'. code: '{$code}'. log time: '{$date}'"
+                          'error_message' => "Произошла внутренняя ошибка 'CSPValidatorException'. code: '{$code}'. log time: '{$date}'"
         ]));
     }catch(Exception $e){
     
@@ -203,6 +203,7 @@ try{
             ]));
         }
         
+        // Удаляем результаты, которые не нужны на клиентской стороне
         unset($result['signature_verify']['message']);
         unset($result['certificate_verify']['message']);
     }

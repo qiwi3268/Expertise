@@ -15,9 +15,13 @@ interface Interface_fileTable{
     //
     static public function getAssocById(int $id):?array;
     
+    // Предназначен для получения ассоциативного массива записи по hash'у
+    //
+    static public function getAssocByIdApplicationAndHash(int $id_application, string $hash):?array;
+    
     // Предназначен для получения id записи по её hash'у
     //
-    static public function getIdByHash(string $hash):?int;
+    static public function getIdByIdApplicationAndHash(int $id_application, string $hash):?int;
     
     // Предназначен для проверки существования записи по id
     //
