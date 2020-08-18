@@ -70,6 +70,7 @@ function updateFileNeeds() {
 
          switch (response.result) {
             case 9:
+               console.log(response);
                console.log('file_clear');
                FileNeeds.clear();
                break;

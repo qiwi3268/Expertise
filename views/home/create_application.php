@@ -696,11 +696,11 @@
     <div class="sign-modal__header" data-inactive="true">
         <div class="sign-modal__row">
             <span class="sign-modal__label">Версия плагина: </span>
-            <span class="sign-modal__text" id="PlugInVersionTxt" lang="ru"></span>
+            <span id="plugin_version" class="sign-modal__text"></span>
         </div>
         <div class="sign-modal__row">
             <span class="sign-modal__label">Версия криптопровайдера: </span>
-            <span class="sign-modal__text" id="CSPVersionTxt" lang="ru"></span>
+            <span id="csp_version" class="sign-modal__text"></span>
         </div>
     </div>
 

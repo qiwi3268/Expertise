@@ -50,13 +50,10 @@ class SignHandler {
 
       SignHandler.handleOverlay();
       SignHandler.handleSignButton();
-
       SignHandler.handleUploadSignButton();
-
       SignHandler.handleDeleteButton();
 
 
-      // SignHandler.handle();
 
       let sign_btn = document.getElementById('signature_button');
       sign_btn.addEventListener('click', () => {
@@ -96,20 +93,20 @@ class SignHandler {
       SignHandler.create_sign_btn = document.getElementById('sign_create');
       SignHandler.create_sign_btn.addEventListener('click', () => {
 
-
-
-         // if (!SignHandler.is_plugin_initialized) {
-
+         if (!SignHandler.is_plugin_initialized) {
             BrowserHelper.initializePlugin();
 
+            // BrowserHelper.getUserCerts();
 
-         // }
-
-
-
+            SignHandler.is_plugin_initialized = true;
+         }
 
       });
+   }
 
+   static putPluginData(plugin_data) {
+      document.getElementById('plugin_version').innerHTML = plugin_data.plugin_version;
+      document.getElementById('csp_version').innerHTML = plugin_data.csp_version;
    }
 
    static handleUploadSignButton() {
@@ -223,7 +220,7 @@ class SignHandler {
 
 
    static showCertBlock() {
-      SignHandler.is_plugin_initialized = true;
+      // SignHandler.is_plugin_initialized = true;
 
       SignHandler.cert_select.dataset.inactive = 'false';
 
@@ -520,12 +517,10 @@ class SignHandler {
 
 
       SignHandler.cert_select.dataset.inactive = 'true';
-
       SignHandler.actions.dataset.inactive = 'true';
-
-
       SignHandler.validate_info.dataset.inactive = 'true';
    }
+
 
 
 

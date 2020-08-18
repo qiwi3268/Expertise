@@ -8,32 +8,81 @@ class GeCades{
     // pluginSpanId : string id элемента, куда будет вставлена версия плагина
     // cspSpanId    : string id элемента, куда будет вставлена версия криптопровайдера
     //
-    static CheckForPlugIn_Async(pluginSpanId, cspSpanId){
+    static getPluginData(){
 
-        cadesplugin.async_spawn(function*(args){
+        return new Promise((resolve, reject) => {
 
-            let oAbout;
+            let canAsync = !!cadesplugin.CreateObjectAsync;
+            if (canAsync) {
 
-            try{
-                oAbout = yield cadesplugin.CreateObjectAsync("CAdESCOM.About");
+                cadesplugin.async_spawn(function*(){
 
-            }catch(ex){
-                console.log("Ошибка при создании объекта About: " + cadesplugin.getLastError(ex));
+                    console.log('asd');
+
+                    let oAbout;
+
+                    try {
+                        oAbout = yield cadesplugin.CreateObjectAsync("CAdESCOM.About");
+                    } catch(exc) {
+                        reject("Ошибка при создании объекта About: " + cadesplugin.getLastError(exc));
+                    }
+
+                    let CurrentPluginVersion = yield oAbout.PluginVersion;  // Версия плагина
+                    let CurrentCSPVersion = yield oAbout.CSPVersion("", 80); // Версия криптопровайдера
+
+                    let CurrentPluginVersion_string = (yield CurrentPluginVersion.toString());
+                    let CurrentCPVersion_string = (yield CurrentCSPVersion.MajorVersion) + "." + (yield CurrentCSPVersion.MinorVersion) + "." + (yield CurrentCSPVersion.BuildVersion);
+
+                    let plugin_data = {
+                        plugin_version: CurrentPluginVersion_string,
+                        csp_version: CurrentCPVersion_string
+                    };
+
+                    resolve(plugin_data);
+                });
+
+            } else {
+                reject('Браузер не соответствует требованиям АИС (отсутствует поддержка async)');
             }
 
-
-            let   CurrentPluginVersion = yield oAbout.PluginVersion;  // Версия плагина
-            let   CurrentCSPVersion = yield oAbout.CSPVersion("", 80); // Версия криптопровайдера
-
-
-            let CurrentPluginVersion_string = (yield CurrentPluginVersion.toString());
-            let CurrentCPVersion_string = (yield CurrentCSPVersion.MajorVersion) + "." + (yield CurrentCSPVersion.MinorVersion) + "." + (yield CurrentCSPVersion.BuildVersion);
-
-            document.getElementById(args[0]).innerHTML = CurrentPluginVersion_string;
-            document.getElementById(args[1]).innerHTML = CurrentCPVersion_string;
-        }, pluginSpanId, cspSpanId);
+        });
     }
 
+
+    static getCertsStore() {
+
+        return new Promise((resolve, reject) => {
+
+            cadesplugin.async_spawn(function*(){
+
+                let oStore; // Хранилище сертификатов
+
+                try {
+
+                    oStore = yield cadesplugin.CreateObjectAsync("CAdESCOM.Store");
+
+                    SignHandler.showCertBlock();
+
+                    if (!oStore) {
+                        reject('Ошибка при создании хранилища сертификатов');
+                    }
+
+                    yield oStore.Open();
+
+                } catch(exc) {
+                    reject('Ошибка. Хранилище сертификатов недоступно ' + cadesplugin.getLastError(exc));
+
+                    // SignHandler.cancelPluginInitialization();
+                }
+
+                yield oStore.Close();
+
+                resolve(oStore);
+            });
+
+        });
+
+    }
 
     static FillCertList_Async(selectId){
         cadesplugin.async_spawn(function*(args){
@@ -42,11 +91,9 @@ class GeCades{
 
             try{
 
-
                 oStore = yield cadesplugin.CreateObjectAsync("CAdESCOM.Store");
 
                 SignHandler.showCertBlock();
-
 
 
                 if(!oStore){
@@ -74,7 +121,6 @@ class GeCades{
                 return;
             }
 
-            //TODO вынести в SignHandler
 
             // Заполнение информации при выборе сертификата
             select.onchange = GeCades.FillCertInfo_Async;
@@ -636,9 +682,6 @@ class GeCades{
     // finish блок форматирования данных для вывода ------------------------------------------------------------
     //
 }
-
-
-
 
 
 

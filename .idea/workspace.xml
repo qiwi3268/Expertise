@@ -1,39 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="18.08.2020">
-      <change afterPath="$PROJECT_DIR$/views/js/tmp/Sign_Handler.js" afterDir="false" />
+    <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/home/external_signature_verifier.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/external_signature_verifier.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/home/internal_signature_verifier.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/internal_signature_verifier.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/FilesInitialization.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/FilesInitialization.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/FilesTableMapping.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/FilesTableMapping.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/FilesUpload.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/FilesUpload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Helpers/ParseHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Helpers/ParseHelper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Logger.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Logger.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/SignsTableMapping.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/SignsTableMapping.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/File/Interface_fileTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/File/Interface_fileTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/File/Interface_fileTableType1.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/File/Interface_fileTableType1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/File/Interface_fileTableType2.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/File/Interface_fileTableType2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/File/Trait_fileTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/File/Trait_fileTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/File/Trait_fileTableType1.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/File/Trait_fileTableType1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/File/Trait_fileTableType2.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/File/Trait_fileTableType2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/Sign/Interface_signTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/Sign/Interface_signTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/Sign/Trait_signTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/Sign/Trait_signTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/view_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Classes/DataBase.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/DataBase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Classes/csp/MessageParser.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/csp/MessageParser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Classes/csp/Validator.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/csp/Validator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/files.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/files.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/sign.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/sign.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/BrowserHelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/BrowserHelper.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/PerfectCades.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/PerfectCades.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/calendar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/file_download.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_download.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/Sign_Handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/Sign_Handler.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/file_needs.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_needs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/save_application.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/save_application.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -352,14 +328,20 @@
       <option name="project" value="LOCAL" />
       <updated>1597667409356</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="18.08.2020">
+      <created>1597740757220</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1597740757220</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="27.07.2020_1" />
     <MESSAGE value="27.07.2020_2" />
     <MESSAGE value="27.07.2020_3" />
     <MESSAGE value="28.07.2020" />
@@ -384,13 +366,14 @@
     <MESSAGE value="15.08.2020" />
     <MESSAGE value="15.08.2020_1" />
     <MESSAGE value="17.08.2020_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="17.08.2020_1" />
+    <MESSAGE value="18.08.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="18.08.2020" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1597740660811">
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1597740753650">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1597740660811" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1597740753650" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597516365472" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="248" y="121" key="MergeDialog" timestamp="1596186835322">

@@ -10,27 +10,39 @@ class BrowserHelper{
          cadesplugin
             .then(() => {
 
-               let canAsync = !!cadesplugin.CreateObjectAsync;
-               if (canAsync) {
+               return GeCades.getPluginData();
 
-                  GeCades.CheckForPlugIn_Async('PlugInVersionTxt', 'CSPVersionTxt');
-
-                  GeCades.FillCertList_Async('CertListBox');
-
-
-               } else {
-                  console.log('Браузер не соответствует требованиям АИС (отсутствует поддержка async)');
-               }
             })
-            .catch(ex => {
-               console.log('Ошибка при инициализации cadesplugin:' + ex);
+            .then(plugin_data => {
+
+
+               SignHandler.putPluginData(plugin_data);
+
+               GeCades.FillCertList_Async('CertListBox');
+
+
+            })
+            .catch(exc => {
+               console.log('Ошибка при инициализации cadesplugin:' + exc);
             });
 
       }
 
-
-
    }
+
+   static getUserCerts() {
+      cadesplugin
+         .then(() => {
+            return GeCades.getCertsStore()
+         })
+         .then()
+         .catch((exc) => {
+            console.log('Ошбика при получении списка сертификатов: ' + exc);
+            SignHandler.cancelPluginInitialization();
+         });
+   }
+
+
 
    static checkBrowser() {
       // Блок проверок на непподерживаемые браузеры

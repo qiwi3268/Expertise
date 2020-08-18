@@ -71,6 +71,8 @@ class FileNeeds {
    static putSignToSave(id_sign, mapping_level_1, mapping_level_2) {
       let file_data = FileNeeds.getFileData(id_sign, mapping_level_1, mapping_level_2);
       FileNeeds.sign_needs.to_save.set(id_sign, file_data);
+
+      console.log(FileNeeds.sign_needs);
    }
 
    // Предназначен для получения объект с данными файла
@@ -129,9 +131,10 @@ class FileNeeds {
       }
    }
 
+   //TODO делать по-другому
    static addSigns() {
-      FileNeeds.file_needs.to_save.concat(FileNeeds.sign_needs.to_save.values());
-      FileNeeds.file_needs.to_delete.concat(FileNeeds.sign_needs.to_delete.values());
+      FileNeeds.file_needs.to_save = FileNeeds.file_needs.to_save.concat(Array.from(FileNeeds.sign_needs.to_save.values()));
+      FileNeeds.file_needs.to_delete = FileNeeds.file_needs.to_delete.concat(Array.from(FileNeeds.sign_needs.to_delete.values()));
    }
 
    // Предназначен для получения объекта с массивами сохранения и удаления файлов
