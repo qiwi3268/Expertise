@@ -24,7 +24,9 @@
 //       {result, error_message : текст ошибки}
 //  9  - Все прошло успешно
 //       {result, error_message : текст ошибки}
-//  10 - Непредвиденная ошибка
+//  10 - Ошибка при работе с Logger
+//       {result, message : текст ошибки, code: код ошибки}
+//  11 - Непредвиденная ошибка
 //       {result, message : текст ошибки, code: код ошибки}
 
 // Проверка наличия обязательных параметров
@@ -139,12 +141,19 @@ try{
     exit(json_encode(['result' => 9,
                       'hash'   => $hash_data
     ]));
+    
+}catch(LoggerException $e){
+    
+    exit(json_encode(['result'  => 10,
+                      'message' => $e->getMessage(),
+                      'code'	=> $e->getCode()
+    ]));
 }catch(Exception $e){
     
     $errorMessage = $e->getMessage();
     $errorCode = $e->getCode();
     $Logger->write("Произошла непредвиденная ошибка. Message: '{$errorMessage}', Code: '{$errorCode}'");
-    exit(json_encode(['result'  => 10,
+    exit(json_encode(['result'  => 11,
                       'message' => $errorMessage,
                       'code'	=> $errorCode
     ]));

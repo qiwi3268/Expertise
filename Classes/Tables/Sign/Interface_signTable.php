@@ -18,4 +18,8 @@ interface Interface_signTable{
                                   string $certificate_message,
                                   string $certificate_user_message):int;
     
+    // Предназначен для получения ассоциативного массива всех подписей по id файлу,
+    // которое может быть в id_sign или id_file
+    //
+    static public function getAllAssocByIds(array $ids):?array;
 }

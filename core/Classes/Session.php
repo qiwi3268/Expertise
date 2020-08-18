@@ -39,9 +39,7 @@ class Session{
     //
     static public function deleteUser():void {
 
-        unset($_SESSION['user_info']);
-        unset($_SESSION['flags']);
-        unset($_SESSION['role_in_application']);
+        unset($_SESSION['user_info'], $_SESSION['flags'], $_SESSION['role_in_application']);
     }
 
 

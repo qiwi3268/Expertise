@@ -5,7 +5,13 @@ class FileNeeds {
       to_delete: []
    };
 
-   // Предназначен для добавления файлов в массивы для сохранения и удаления во всех блоках с файлами
+   static sign_needs = {
+      to_save: new Map(),
+      to_delete: new Map()
+   };
+
+   // Предназначен для добавления файлов в массивы для сохранения и удаления
+   // во всех блоках с файлами
    static putFilesToFileNeeds() {
       let file_blocks = document.querySelectorAll('.files');
       let parent_field;
@@ -26,6 +32,8 @@ class FileNeeds {
             }
          }
       });
+
+      FileNeeds.addSigns();
    }
 
    // Предназначен для добавления файлов в массив для сохранения
@@ -53,10 +61,18 @@ class FileNeeds {
    static putFileToSave(id_file, mapping_level_1, mapping_level_2, file_item) {
       let is_file_saved = file_item.dataset.saved === 'true';
       if (!is_file_saved) {
+         //TODO в метод
          let to_save = FileNeeds.file_needs.to_save;
          let file_data = FileNeeds.getFileData(id_file, mapping_level_1, mapping_level_2);
          to_save.push(file_data);
       }
+   }
+
+   static putSignToSave(id_sign, mapping_level_1, mapping_level_2) {
+      let file_data = FileNeeds.getFileData(id_sign, mapping_level_1, mapping_level_2);
+      FileNeeds.sign_needs.to_save.set(id_sign, file_data);
+
+      console.log(FileNeeds.sign_needs);
    }
 
    // Предназначен для получения объект с данными файла
@@ -106,6 +122,21 @@ class FileNeeds {
       }
    }
 
+   static putSignToDelete(id_sign, mapping_level_1, mapping_level_2) {
+      if (FileNeeds.sign_needs.to_save.has(id_sign)) {
+         FileNeeds.sign_needs.to_save.delete(id_sign);
+      } else {
+         let sign_data = FileNeeds.getFileData(id_sign, mapping_level_1, mapping_level_2);
+         FileNeeds.sign_needs.to_delete.set(id_sign, sign_data);
+      }
+   }
+
+   //TODO делать по-другому
+   static addSigns() {
+      FileNeeds.file_needs.to_save = FileNeeds.file_needs.to_save.concat(Array.from(FileNeeds.sign_needs.to_save.values()));
+      FileNeeds.file_needs.to_delete = FileNeeds.file_needs.to_delete.concat(Array.from(FileNeeds.sign_needs.to_delete.values()));
+   }
+
    // Предназначен для получения объекта с массивами сохранения и удаления файлов
    static getFileNeeds() {
       return FileNeeds.file_needs;
@@ -120,12 +151,17 @@ class FileNeeds {
    static clear() {
       FileNeeds.file_needs.to_save = [];
       FileNeeds.file_needs.to_delete = [];
+      FileNeeds.sign_needs.to_save = new Map();
+      FileNeeds.sign_needs.to_delete = new Map();
    }
 
    // Предназначен для определения наличия файлов для сохранения или удаления
    // Возвращает параметры------------------------------
    // has_files     boolean : есть ли файлы для сохранения или удаления
    static hasFiles() {
-      return FileNeeds.file_needs.to_save.length !== 0 || FileNeeds.file_needs.to_delete.length !== 0;
+      return FileNeeds.file_needs.to_save.length !== 0
+         || FileNeeds.file_needs.to_delete.length !== 0
+         || FileNeeds.sign_needs.to_save.size !== 0
+         || FileNeeds.sign_needs.to_delete.size !== 0;
    }
 }

@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3052c4db-b17b-45ef-9874-1a02eb86f4cf" name="Default Changelist" comment="15.08.2020_1">
-      <change beforePath="$PROJECT_DIR$/.idea/sshConfigs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sshConfigs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/home/internal_signature_verifier.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/internal_signature_verifier.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/files.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/files.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/sign.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/sign.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/FileChecker.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/FileChecker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/PerfectCades.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/PerfectCades.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/file_download.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_download.js" afterDir="false" />
-    </list>
+    <list default="true" id="3052c4db-b17b-45ef-9874-1a02eb86f4cf" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,7 +77,7 @@
       <workItem from="1596600937468" duration="12719000" />
       <workItem from="1597464146061" duration="12424000" />
       <workItem from="1597497356681" duration="6610000" />
-      <workItem from="1597575204380" duration="8076000" />
+      <workItem from="1597575204380" duration="8737000" />
     </task>
     <task id="LOCAL-00001" summary="22.07.2020">
       <created>1595389670254</created>
@@ -321,14 +310,20 @@
       <option name="project" value="LOCAL" />
       <updated>1597516366006</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="16.08.2020">
+      <created>1597586390357</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1597586390357</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="27.07.2020" />
     <MESSAGE value="27.07.2020_1" />
     <MESSAGE value="27.07.2020_2" />
     <MESSAGE value="27.07.2020_3" />
@@ -353,14 +348,15 @@
     <MESSAGE value="05.08.2020" />
     <MESSAGE value="15.08.2020" />
     <MESSAGE value="15.08.2020_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="15.08.2020_1" />
+    <MESSAGE value="16.08.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="16.08.2020" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1597575327230">
+    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1597586389725">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597516365472" />
-    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
+    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597586389725" />
     <state x="248" y="121" key="MergeDialog" timestamp="1596186835322">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -373,6 +369,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.2560.1400@0.0.2560.1400" timestamp="1597580480401" />
+    <state x="872" y="432" key="Vcs.Push.Dialog.v2" timestamp="1597586395594">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="872" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1597586395594" />
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1" timestamp="1597499951448">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

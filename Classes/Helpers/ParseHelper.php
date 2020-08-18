@@ -25,7 +25,7 @@ class ParseHelper{
         $pattern ="/{$applicationDir}\/(\d+)\/(\S+)/iu";
         $matches =  GetHandlePregMatch($pattern, $path, false); // Возвращаем результат первой группы
         
-        return ['application_id' => $matches[1],
+        return ['application_id' => (int)$matches[1],
                 'file_name'      => $matches[2]
         ];
     }

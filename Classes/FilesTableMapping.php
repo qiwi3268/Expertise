@@ -50,7 +50,7 @@ class FilesTableMapping{
     // Предназначен для получения кода ошибки при проверке маппинга
     // Возвращает параметры-----------------------------------
     // null  : нет ошибок
-    // int   : есть ошибки
+    // int   : есть ошибки (код)
     //
     public function getErrorCode():?int {
         return $this->errorCode;

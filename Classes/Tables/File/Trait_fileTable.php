@@ -60,21 +60,43 @@ trait  Trait_fileTable{
     }
     
     
+    // Реализация метода интерфейса
+    // Предназначен для получения ассоциативного массива записи по hash'у
+    // Принимает параметры-----------------------------------
+    // id_application int : id заявления
+    // hash        string : hash файла
+    // Возвращает параметры-----------------------------------
+    // array : в случае, если запись существует
+    // null  : в противном случае
+    //
+    static public function getAssocByIdApplicationAndHash(int $id_application, string $hash):?array {
+    
+        $table = self::$tableName;
+    
+        $query = "SELECT *
+                  FROM `$table`
+                  where `id_application`=? AND `hash`=?";
+        $result = ParametrizedQuery::getFetchAssoc($query, [$id_application, $hash]);
+        return $result ? $result[0] : null;
+    }
+    
+    
     // Предназначен для получения id записи по её hash'у
     // Принимает параметры-----------------------------------
-    // hash string : hash записи
+    // id_application int : id заявления
+    // hash        string : hash записи
     // Возвращает параметры-----------------------------------
     // int  : в случае, если запись существует
     // null : в противном случае
     //
-    static public function getIdByHash(string $hash):?int {
+    static public function getIdByIdApplicationAndHash(int $id_application, string $hash):?int {
     
         $table = self::$tableName;
     
         $query = "SELECT `id`
                   FROM `$table`
-                  where `hash`=?";
-        $result = ParametrizedQuery::getSimpleArray($query, [$hash]);
+                  where `id_application`=? AND `hash`=?";
+        $result = ParametrizedQuery::getSimpleArray($query, [$id_application, $hash]);
         return $result ? $result[0] : null;
     }
     
