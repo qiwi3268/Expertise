@@ -19,6 +19,8 @@ class Sign_Handler {
    create_sign_btn;
    upload_sign_btn;
    delete_sign_btn;
+   sign_btn;
+   cancel_btn;
    actions;
 
    external_sign_input;
@@ -198,16 +200,15 @@ class Sign_Handler {
       this.external_sign_input.addEventListener('change', () => {
 
          if (this.external_sign_input.files.length > 0) {
-            this.sendSigns();
+            let sign_files = Array.from(this.external_sign_input.files);
+            this.sendSigns(sign_files);
          }
 
       });
 
    }
 
-   sendSigns() {
-
-      let sign_files = Array.from(this.external_sign_input.files);
+   sendSigns(sign_files) {
 
       uploadFiles(sign_files, this.mapping_level_1, this.mapping_level_2)
          .then(uploaded_signs => {
@@ -243,7 +244,6 @@ class Sign_Handler {
          });
 
 
-
    }
 
    handleValidateResults(validate_results) {
@@ -257,11 +257,12 @@ class Sign_Handler {
       this.certs.dataset.inactive = 'true';
       this.delete_sign_btn.dataset.inactive = 'false';
 
-      this.putSignsInfo(results_json)
+      this.fillSignsInfo(results_json);
    }
 
-   putSignsInfo(validate_results_json) {
+   fillSignsInfo(validate_results_json) {
       this.validate_info.dataset.inactive = 'false';
+      this.validate_info.innerHTML = '';
 
       let results = JSON.parse(validate_results_json);
       results.forEach(result => {
@@ -324,6 +325,37 @@ class Sign_Handler {
    }
 
    handleSignButton() {
+      this.sign_btn = document.getElementById('signature_button');
+      this.sign_btn.addEventListener('click', () => {
+         this.createSign();
+      });
+
+   }
+
+   createSign() {
+      let selected_algorithm;
+
+      checkFile(this.id_file, this.mapping_level_1, this.mapping_level_2)
+         .then(file_check_response => {
+            this.fs_name_data = file_check_response.fs_name;
+            this.file_name = file_check_response.file_name;
+
+            return GeCades.getSelectedCertificateAlgorithm();
+         })
+         .then(algorithm => {
+            selected_algorithm = algorithm;
+            return getFileHash(algorithm, this.fs_name_data);
+         })
+         .then(file_hash => {
+            return GeCades.SignHash_Async(selected_algorithm, file_hash);
+
+         })
+         .then(sign_hash => {
+            let sign_blob = new Blob([sign_hash], {type: 'text/plain'});
+            let file = new File([sign_blob], `${this.file_name}.sig`);
+
+            this.sendSigns([file]);
+         });
 
    }
 
@@ -333,6 +365,11 @@ class Sign_Handler {
 
       this.putFileData(file);
       this.addFileElement(file);
+
+      if (file.dataset.validate_results) {
+         this.fillSignsInfo(file.dataset.validate_results);
+      }
+
    }
 
    putFileData(file) {

@@ -534,7 +534,7 @@ class GeCades{
     }
 
 
-    static SignHash_Async(hashAlg, sHashValue){
+    static SignHash_Async(hash_alg, s_hash_value){
 
         return new Promise((resolve, reject) => {
 
@@ -560,9 +560,9 @@ class GeCades{
                     let oHashedData = yield cadesplugin.CreateObjectAsync("CAdESCOM.HashedData");
 
                     //yield oHashedData.propset_DataEncoding(cadesplugin.CADESCOM_BASE64_TO_BINARY);
-                    let algorithm = GeCades.getAlgorithmByValue(args[1]);
+                    let algorithm = GeCades.getAlgorithmByValue(hash_alg);
                     yield oHashedData.propset_Algorithm(algorithm);
-                    yield oHashedData.SetHashValue(args[2]);
+                    yield oHashedData.SetHashValue(s_hash_value);
 
 
                     // Атрибуты усовершенствованной подписи
@@ -579,7 +579,7 @@ class GeCades{
                     yield attr.Add(oDocumentNameAttr);
 
                     if(oSigner){
-                        yield oSigner.propset_Certificate(args[0]);
+                        yield oSigner.propset_Certificate(oCertificate);
                     }else{
                         throw 'Ошибка при добавлении атрибутов к объекту CPSigner';
                     }
@@ -596,11 +596,11 @@ class GeCades{
                     }
 
                 }catch(ex){
-                    args[4](ex);
+                    reject(ex);
                     return;
                 }
-                args[3](Signature);
-            }, oCertificate, hashAlg, sHashValue, resolve, reject);
+                resolve(Signature);
+            });
         })
     }
 
