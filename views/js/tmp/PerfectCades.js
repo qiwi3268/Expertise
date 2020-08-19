@@ -3,11 +3,10 @@
 class GeCades{
 
 
-    // Заполнение инфрормации о версии плагина и криптопровайдера
-    // Принимает параметры:
-    // pluginSpanId : string id элемента, куда будет вставлена версия плагина
-    // cspSpanId    : string id элемента, куда будет вставлена версия криптопровайдера
-    //
+    static getCadesPlugin() {
+        return cadesplugin;
+    }
+
     static getPluginData(){
 
         return new Promise((resolve, reject) => {
@@ -17,7 +16,6 @@ class GeCades{
 
                 cadesplugin.async_spawn(function*(){
 
-                    console.log('asd');
 
                     let oAbout;
 
@@ -32,6 +30,7 @@ class GeCades{
 
                     let CurrentPluginVersion_string = (yield CurrentPluginVersion.toString());
                     let CurrentCPVersion_string = (yield CurrentCSPVersion.MajorVersion) + "." + (yield CurrentCSPVersion.MinorVersion) + "." + (yield CurrentCSPVersion.BuildVersion);
+
 
                     let plugin_data = {
                         plugin_version: CurrentPluginVersion_string,
@@ -49,40 +48,142 @@ class GeCades{
     }
 
 
-    static getCertsStore() {
-
+    static getCertStore() {
         return new Promise((resolve, reject) => {
 
-            cadesplugin.async_spawn(function*(){
+            cadesplugin
+               .then(() => {
 
-                let oStore; // Хранилище сертификатов
+                   cadesplugin.async_spawn(function* () {
 
-                try {
+                       try {
 
-                    oStore = yield cadesplugin.CreateObjectAsync("CAdESCOM.Store");
+                           let o_store = yield cadesplugin.CreateObjectAsync("CAdESCOM.Store");
 
-                    SignHandler.showCertBlock();
+                           if (!o_store) {
+                               reject('Ошибка при создании хранилища сертификатов');
+                           }
 
-                    if (!oStore) {
-                        reject('Ошибка при создании хранилища сертификатов');
-                    }
+                           resolve(o_store);
 
-                    yield oStore.Open();
+                       } catch (exc) {
+                           reject('Ошибка. Хранилище сертификатов недоступно ' + cadesplugin.getLastError(exc));
+                       }
+                   });
 
-                } catch(exc) {
-                    reject('Ошибка. Хранилище сертификатов недоступно ' + cadesplugin.getLastError(exc));
-
-                    // SignHandler.cancelPluginInitialization();
-                }
-
-                yield oStore.Close();
-
-                resolve(oStore);
-            });
+               })
+               .catch(exc => {
+                   reject('Ошибка при инициализации cadesplugin:' + exc);
+               });
 
         });
 
     }
+
+    // TODO добавить коды для ошибок
+    static getCerts(oStore) {
+        return new Promise((resolve, reject) => {
+
+            cadesplugin.async_spawn(function*(){
+
+                try {
+                    yield oStore.Open();
+                } catch(exc){
+                    reject('Ошибка. Хранилище сертификатов недоступно ' + cadesplugin.getLastError(exc));
+                }
+
+                let certs;
+                let certs_data = [];
+                let certs_count;
+
+                try {
+
+                    certs = yield oStore.Certificates;
+                    certs_count = yield certs.Count;
+
+
+                } catch(exc) {
+                    reject('Ошибка при получении Certificates или Count: ' + cadesplugin.getLastError(exc));
+                }
+
+                // В хранилище отсутствуют сертификаты
+                if (certs_count === 0) {
+                    //TODO alert
+                    reject('Хранилище сертификатов пусто');
+                }
+
+
+                // Перебор сертификатов
+                for(let i = 1; i <= certs_count; i++){
+
+                    let cert;
+                    let cert_data = {};
+
+                    try{
+                        cert = yield certs.Item(i);
+                    }catch(exc){
+                        reject("Ошибка при перечислении сертификатов: " + cadesplugin.getLastError(exc));
+                    }
+
+                    let valid_from_date; // Дата выдачи
+                    let valid_to_date;   // Срок действия
+                    let subject_name;   // Описание сертификата
+
+                    try{
+
+                        valid_from_date = new Date(yield cert.ValidFromDate);
+                        valid_to_date = new Date(yield cert.ValidToDate);
+                        subject_name = yield cert.SubjectName;
+
+                    }catch(exc){
+                        console.log("Ошибка при получении свойства ValidFromDate / ValidToDate / SubjectName: " + cadesplugin.getLastError(exc));
+                        continue;
+                    }
+
+                    let hasPrivateKey; // Привязка сертификата к закрытому ключу
+
+                    try{
+                        hasPrivateKey = yield cert.HasPrivateKey();
+                    }catch(exc){
+                        console.log("Ошибка при получении свойства HasPrivateKey: " + cadesplugin.getLastError(exc));
+                    }
+
+                    // Берем только действительные сертификаты и с привязкой к закрытому ключу
+                    // if(new Date() < ValidToDate && hasPrivateKey) {
+                    if(new Date() < valid_to_date) {
+
+                        cert_data.text = GeCades.extractCN(subject_name) + ' Выдан: ' + GeCades.formattedDateTo_ddmmyyyy(valid_from_date);
+
+                    }else{
+                        continue;
+                    }
+
+                    try{
+
+                        let thumbprint = yield cert.Thumbprint; // Отпечаток подписи
+                        cert_data.value = thumbprint;
+
+
+                    }catch(exc){
+                        console.log("Ошибка при получении свойства Thumbprint: " + cadesplugin.getLastError(c));
+                    }
+
+
+                    certs_data.push(cert_data);
+
+                }
+
+
+
+                yield oStore.Close();
+                resolve(certs_data);
+
+
+            });
+
+        });
+    }
+
 
     static FillCertList_Async(selectId){
         cadesplugin.async_spawn(function*(args){

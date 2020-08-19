@@ -7,19 +7,10 @@ class BrowserHelper{
 
       if (BrowserHelper.checkBrowser()) {
 
-         cadesplugin
+         return cadesplugin
             .then(() => {
 
                return GeCades.getPluginData();
-
-            })
-            .then(plugin_data => {
-
-
-               SignHandler.putPluginData(plugin_data);
-
-               GeCades.FillCertList_Async('CertListBox');
-
 
             })
             .catch(exc => {
@@ -28,18 +19,6 @@ class BrowserHelper{
 
       }
 
-   }
-
-   static getUserCerts() {
-      cadesplugin
-         .then(() => {
-            return GeCades.getCertsStore()
-         })
-         .then()
-         .catch((exc) => {
-            console.log('Ошбика при получении списка сертификатов: ' + exc);
-            SignHandler.cancelPluginInitialization();
-         });
    }
 
 

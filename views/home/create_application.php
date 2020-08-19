@@ -733,9 +733,9 @@
 
     <div class="sign-modal__cert-body">
 
-        <div class="sign-modal__select" data-inactive="true">
+        <div class="sign-modal__certs" data-inactive="true">
             <span class="sign-modal__title">Выберите сертификат:</span>
-            <select class="sign-modal__cert-list" size="4" name="CertListBox" id="CertListBox"></select>
+            <select class="sign-modal__cert-list" size="4" id="cert_list_select"></select>
     
             <div class="sign-modal__info" data-inactive="true">
                 <div class="sign-modal__row">

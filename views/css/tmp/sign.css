@@ -128,7 +128,7 @@
     margin: 0px 0px 5px 0px;
 }
 
-.sign-modal__select[data-inactive='true'] {
+.sign-modal__certs[data-inactive='true'] {
     display: none;
 }
 

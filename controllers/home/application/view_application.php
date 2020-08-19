@@ -35,6 +35,9 @@ $needsFiles = $filesInitialization->getNeedsFilesWithSigns();
 
 var_dump($needsFiles);
 
+
+
+
 // Установка файловых иконок
 foreach($needsFiles as &$mapping_level_2){
     foreach($mapping_level_2 as &$files){
@@ -54,9 +57,7 @@ $variablesTV->setValue('form_files', $needsFiles);
 if($variablesTV->getExistenceFlag('type_of_object')){
     
     // Удаление переменных, служивших выше
-    unset($requiredMappings);
-    unset($filesInitialization);
-    unset($needsFiles);
+    unset($requiredMappings, $filesInitialization, $needsFiles);
     
     // В зависимости от Вида объекта выбираем нужную таблицу
     switch($variablesTV->getValue('type_of_object')['id']){

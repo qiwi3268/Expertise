@@ -37,7 +37,7 @@ class Sign_Handler {
       this.modal = mQS(document, '.sign-modal', 12);
       this.plugin_info = mQS(this.modal, '.sign-modal__info', 13);
       this.validate_info = mQS(this.modal, '.sign-modal__validate', 14);
-      this.cert_select = mQS(this.modal, '.sign-modal__select', 15);
+      this.cert_select = mQS(this.modal, '.sign-modal__certs', 15);
 
       this.handleOverlay();
       this.handleCreateSignButton();

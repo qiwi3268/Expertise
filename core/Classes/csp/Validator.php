@@ -110,8 +110,7 @@ class Validator{
             $signer['signature_verify'] = $signatureVerify;
             $signer['certificate_verify'] = $certificateVerify;
             // Удаляем не нужные поля
-            unset($signer['result']);
-            unset($signer['message']);
+            unset($signer['result'], $signer['message']);
         }
         unset($signer);
         

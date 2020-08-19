@@ -105,60 +105,62 @@ class FilesInitialization{
                 
                 $idsHash = GetHashArray($ids);
                 
-                var_dump($files);
-                echo '---------------------------------';
-                var_dump($signs);
-                
-                foreach($files as &$file){
+                // Создаем Iterator, поскольку в рамках обхода файлов требуется удалять открепленные подписи
+                $Iterator = new ArrayIterator($files);
+    
+                foreach($Iterator as $file_index => $file){
+    
+                    $Iterator[$file_index]['signs']['internal'] = [];
+                    $Iterator[$file_index]['signs']['external'] = [];
                     
-                    $file['signs']['internal'] = [];
-                    $file['signs']['external'] = [];
+                    unset($tmp, $ind);
                     
-                    $tmp = null;
-                    $ind = null;
-                    
-                    foreach($signs as $index => $sign){
+                    foreach($signs as $sign_index => $sign){
                         
                         // Итерируемый file является встроенной подписью
-                        // Флаг встроенной подписи = 0
-                        // id_file = null, т.к. встроенная подпись
                         if($file['id'] == $sign['id_sign'] && $sign['is_external'] == 0 && is_null($sign['id_file'])){
-                            
-                            $file['signs']['internal'][] = $sign;
-                            unset($signs[$index]);
-                            break;
+    
+                            $Iterator[$file_index]['signs']['internal'][] = $sign;
+    
+                            unset($signs[$sign_index]); // Удаляем итерируемую sign
                             
                         // Итерируемый file является файлом, к которому есть открепленная подпись
-                        // Флаг встроенной подписи = 1
-                        // id_sign (встроенная подпись) присутствует в выборке файлов
-                        }elseif($file['id'] == $sign['id_file'] && $sign['is_external'] == 1 && isset($idsHash[$sign['id_sign']])){
-                            
-                            // Ищем и удаляем file открепленной подписи
-                            $externalSignFile = array_filter($files, fn($tmp) => $tmp['id'] == $sign['id_sign']);
-                            $ind = array_key_first($externalSignFile);
-                            unset($files[$ind]);
-                            
-                            $file['signs']['external'][] = $sign;
-                            unset($signs[$index]);
-                            break;
+                        }elseif($file['id'] == $sign['id_file'] && $sign['is_external'] == 1){
                         
-                        // Итерируемый file является открепленной подписью к другому файлу
-                        // Флаг встроенной подписи = 1
-                        // id_file (исходный файл без подписи) присутствует в выборке файлов
-                        }elseif($file['id'] == $sign['id_sign'] && $sign['is_external'] == 1 && isset($idsHash[$sign['id_file']])){
+                            if(!isset($idsHash[$sign['id_sign']])){
+                                throw new FileException("Для файла id: '{$file['id']}', таблицы '{$fileClassName}' отсутствует файл открепленной подписи id: '{$sign['id_sign']}'");
+                            }
     
-                            $test = 1;
-                            // Находим файл с данными
-                            $dataFile = array_filter($files, fn($tmp) => $tmp['id'] == $sign['id_file']);
+                            // Находим file открепленной подписи
+                            $externalSignFile = array_filter($Iterator->getArrayCopy(), fn($tmp) => $tmp['id'] == $sign['id_sign']);
+                            $ind = array_key_first($externalSignFile);
+                            // Удаляем file открепленной подписи
+                            unset($Iterator[$file_index]);
+                            
+                            $Iterator[$file_index]['signs']['external'][] = $sign;
+                            
+                            unset($signs[$sign_index]); // Удаляем итерируемую sign
+                        
+                        // Итерируемый file является открепленной подписью к другому file
+                        }elseif($file['id'] == $sign['id_sign'] && $sign['is_external'] == 1){
+    
+                            if(!isset($idsHash[$sign['id_file']])){
+                                throw new FileException("Для файла открепленной подписи id: '{$sign['id_sign']}', таблицы '{$fileClassName}' отсутствует файл id: '{$sign['id_file']}'");
+                            }
+                            
+                            // Удаляем итерируемый file (открепленную подпись)
+                            unset($Iterator[$file_index]);
+                            // Находим file с данными
+                            $dataFile = array_filter($Iterator->getArrayCopy(), fn($tmp) => $tmp['id'] == $sign['id_file']);
                             $ind = array_key_first($dataFile);
+                            $Iterator[$ind]['signs']['external'][] = $sign;
+    
+                            unset($signs[$sign_index]); // Удаляем итерируемую sign
                         }
                     }
                 }
-                unset($file);
-                
             }
-    
-            $result[$mapping_level_1_code][$mapping_level_2_code] = $files;
+            $result[$mapping_level_1_code][$mapping_level_2_code] = $Iterator->getArrayCopy();
         }
         return $result;
     }
