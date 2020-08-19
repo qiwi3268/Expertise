@@ -1,8 +1,13 @@
 <?php
 
+// Включения вывода ошибок и предупреждений
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 
 // Крон предназначен для очистки системы от несохраненных файлов
 
+require_once '/var/www/html/functions/functions.php';
 require_once '/var/www/html/core/Classes/StartingInitialization.php';
 
 $initializator = new StartingInitialization('/var/www/html');
@@ -10,8 +15,18 @@ $initializator->requireDefinedVariables();
 $initializator->enableClassAutoloading();
 $initializator->requireDataBasePack();
 
-require_once  _ROOT_.'/Classes/FilesTableMapping.php';
-require_once  _ROOT_.'/Classes/Logger.php';
+require_once _ROOT_.'/Classes/FilesTableMapping.php';
+require_once _ROOT_.'/Classes/Logger.php';
+
+$Logger = new Logger(_LOGS_.'/cron', 'fileCleaner.log');
+$Logger->write("НАЧИНАЮ работу");
+
+function FlushLogger(Logger $Logger){
+    return function($buffer) use ($Logger){
+        if(!empty($buffer)) $Logger->write('СООБЩЕНИЕ ИЗ БУФЕРА ВЫВОДА:'.PHP_EOL.$buffer);
+    };
+}
+ob_start(FlushLogger($Logger));
 
 try{
     DataBase::constructDB('ge');
@@ -19,9 +34,6 @@ try{
     $Logger->write("ОШИБКА. Не удалось подключиться к БД. Текст ошибки: {$e->getMessage()}, код ошибки: {$e->getCode()}");
     exit();
 }
-
-$Logger = new Logger(_LOGS_.'/cron', 'fileCleaner.log');
-$Logger->write("НАЧИНАЮ работу");
 
 foreach(_FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_2){
     

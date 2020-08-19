@@ -657,7 +657,7 @@
 
         <select class="sign-modal__cert-list" size="4" name="CertListBox" id="CertListBox"></select>
 
-        <div class="sign-modal__info">
+        <div class="sign-modal__cert-info">
             <div class="sign-modal__row">
                 <span class="sign-modal__label">Данные о выбранном сертификате:</span>
             </div>
@@ -708,18 +708,10 @@
     <div class="sign-modal__body">
         <div class="sign-modal__file-info">
             <div class="sign-modal__file"></div>
+            
             <div class="sign-modal__validate" data-inactive="true">
-                <div class="sign-modal__row">
-                    <span class="sign-modal__label">Сертификат: </span>
-                    <span class="sign-modal__text" id="ValidateCertState"></span>
-                </div>
-                <div class="sign-modal__row">
-                    <span class="sign-modal__label">Подпись: </span>
-                    <span class="sign-modal__text" id="ValidateSignState"></span>
-                </div>
-                <span class="sign-modal__validate-cert"></span>
-                <span class="sign-modal__validate-sign"></span>
             </div>
+            
         </div>
         
         <div class="sign-modal__buttons">
@@ -727,7 +719,6 @@
             <div id="sign_upload" class="sign-modal__upload application-button" data-inactive="true">Загрузить открепленную подпись</div>
             <div id="sign_create" class="sign-modal__sign application-button" data-inactive="true">Создать открепленную подпись</div>
             <input id="external_sign" type="file" name="download_files[]" hidden/>
-            <!--            <input id="external_sign" type="file" name="download_files[]" hidden/>-->
         </div>
     </div>
 
@@ -737,29 +728,29 @@
             <span class="sign-modal__title">Выберите сертификат:</span>
             <select class="sign-modal__cert-list" size="4" id="cert_list_select"></select>
     
-            <div class="sign-modal__info" data-inactive="true">
+            <div class="sign-modal__cert-info" data-inactive="true">
                 <div class="sign-modal__row">
                     <span class="sign-modal__label">Данные о выбранном сертификате:</span>
                 </div>
                 <div class="sign-modal__row">
                     <span class="sign-modal__label">Владелец: </span>
-                    <span class="sign-modal__text" id="SubjectName"></span>
+                    <span id="subject_name" class="sign-modal__text"></span>
                 </div>
                 <div class="sign-modal__row">
                     <span class="sign-modal__label">Издатель: </span>
-                    <span class="sign-modal__text" id="IssuerName"></span>
+                    <span id="issuer_name" class="sign-modal__text"></span>
                 </div>
                 <div class="sign-modal__row">
                     <span class="sign-modal__label">Дата выдачи: </span>
-                    <span class="sign-modal__text" id="ValidFromDate"></span>
+                    <span id="valid_from_date" class="sign-modal__text"></span>
                 </div>
                 <div class="sign-modal__row">
                     <span class="sign-modal__label">Срок действия: </span>
-                    <span class="sign-modal__text" id="ValidToDate"></span>
+                    <span id="valid_to_date" class="sign-modal__text"></span>
                 </div>
                 <div class="sign-modal__row">
                     <span class="sign-modal__label">Статус: </span>
-                    <span class="sign-modal__text" id="CertMessage"></span>
+                    <span id="cert_message" class="sign-modal__text"></span>
                 </div>
             </div>
             

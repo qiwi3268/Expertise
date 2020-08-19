@@ -17,6 +17,7 @@ function checkParamsPOST(string ...$params):bool {
     }
     return true;
 }
+// Предназначен для проверки наличия требуемых параметров в GET запросе
 function checkParamsGET(string ...$params):bool {
 
     foreach($params as $param){
@@ -26,8 +27,6 @@ function checkParamsGET(string ...$params):bool {
     }
     return true;
 }
-
-
 
 
 // Предназначен для очистки массива от html тегов (на первых двух уровнях вложенности)
@@ -65,31 +64,10 @@ function clearHtmlArr(array $arr):array {
 }
 
 
-
-//----------------------------------
-//Возвращает: Фамилия Имя Отчетство / Фамилия И.О.
-//Принимает:  $userAssoc - ассоциативный массив, в котором необходимо присутствие ключей:
-//                'last_name', 'middle_name', 'first_name'
-//            $fullFio - ключ со значениями:
-//                true - функция вернет полный вариант ФИО
-//                false - функция вернет короткий вариант ФИО
-//----------------------------------
-function GetUserFIO(array $userAssoc, bool $fullFio = true):string {
-
-    if($fullFio){
-
-        return $userAssoc['last_name'].' '.$userAssoc['first_name'].' '.$userAssoc['middle_name'];
-    }else{
-
-        $I = mb_substr($userAssoc['first_name'], 0, 1);
-        $O = mb_substr($userAssoc['middle_name'], 0, 1);
-        return $userAssoc['last_name'].' '.$I.'.'.$O.'.';
-    }
-}
-
 function GetDdMmYyyyDate(int $timestamp):string {
     return date('d.m.Y', $timestamp);
 }
+
 
 // Предназначен для перезаписи дат в ассоциативном массиве из timestamp в 'dd.mm.yyyy'
 // Принимает параметры-----------------------------------
@@ -109,21 +87,29 @@ function UpdateDatesTimestampToDdMmYyyy(array &$assocArray, string ...$datePrope
 }
 
 
+// *** Регистрозависимый поиск
+// Предназначен для поиска вхождения подстроки в строку. Если передано несколько подсрок needles,
+// то true будет в случае вхождения всех подстрок
+// Принимает параметры-----------------------------------
+// haystack string : строка, в которой производится поиск
+// needles  string : перечисление подстрок
+// Возвращает параметры----------------------------------
+// true  : все подстроки присутствуют в строке
+// false : в противном случае
+//
 function contains(string $haystack, string ...$needles):bool {
     foreach($needles as $needle){
         if(mb_strpos($haystack, $needle) === false) return false;
     }
     return true;
 }
-
+// *** РегистроНЕзависимый поиск
 function icontains(string $haystack, string ...$needles):bool {
     foreach($needles as $needle){
         if(mb_stripos($haystack, $needle) === false) return false;
     }
     return true;
 }
-
-
 
 
 // Предназначен для получения массива совпавших значений с учетом обработки результата работы функции
@@ -153,6 +139,14 @@ function GetHandlePregMatch(string $pattern, string $subject, bool $is_preg_matc
     return $matches;
 }
 
+
+// Возвращает хэш-массив на основе входного индексного массива
+// [0 => 'a', 1 => 'b', 2 => 'c'] трансформирует в ['a' => true, 'b' => true, 'c' => true]
+// Принимает параметры-----------------------------------
+// array array : индексный массив
+// Возвращает параметры----------------------------------
+// array : хэш-массив
+//
 function GetHashArray(array $array):array {
     $result = [];
     foreach($array as $elem){

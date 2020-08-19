@@ -92,3 +92,99 @@ function createErrorAlert(error_code) {
 
 }
 
+function getUploadFormData(files, mapping_1, mapping_2) {
+   let form_data = new FormData();
+   form_data.append('id_application', getIdApplication());
+   form_data.append('mapping_level_1', mapping_1);
+   form_data.append('mapping_level_2', mapping_2);
+
+   files.forEach(file => {
+      form_data.append('download_files[]', file);
+   });
+
+   return form_data;
+}
+
+function uploadFiles(files, mapping_1, mapping_2, upload_callback = null) {
+   // return new Promise((resolve, reject) => {
+   let form_data = getUploadFormData(files, mapping_1, mapping_2);
+
+   return XHR('post', '/home/API_file_uploader', form_data, null, 'json', null, upload_callback)
+      .then(response => {
+
+         if (response.result === 16) {
+            return (response.uploaded_files);
+         }
+
+      })
+      .catch(exc => {
+         console.log('file upload exception: ' + exc);
+      });
+
+   // });
+}
+
+function getFileCheckFormData(id_file, mapping_1, mapping_2) {
+   let form_data = new FormData();
+   form_data.append('id_application', getIdApplication());
+   form_data.append('id_file', id_file);
+   form_data.append('mapping_level_1', mapping_1);
+   form_data.append('mapping_level_2', mapping_2);
+   return form_data;
+}
+
+function checkFile(id_file, mapping_1, mapping_2) {
+   let form_data = getFileCheckFormData(id_file, mapping_1, mapping_2);
+
+   return XHR('post', '/home/API_file_checker', form_data, null, 'json')
+      .then(response => {
+
+         if (response.result === 9) {
+            return response;
+         }
+
+      })
+      .catch(exc => {
+         console.log('file check exception: ' + exc);
+      });
+
+}
+
+function getSignVerifyFormData(fs_name_data, fs_name_sign, mapping_1, mapping_2) {
+   let form_data = new FormData();
+   form_data.append('fs_name_data', fs_name_data);
+   form_data.append('fs_name_sign', fs_name_sign);
+   form_data.append('mapping_level_1', mapping_1);
+   form_data.append('mapping_level_2', mapping_2);
+   return form_data;
+}
+
+function externalSignatureVerify(fs_name_data, fs_name_sign, mapping_1, mapping_2) {
+
+   return new Promise((resolve, reject) => {
+      let form_data = getSignVerifyFormData(fs_name_data, fs_name_sign, mapping_1, mapping_2);
+
+      return XHR('post', '/home/API_external_signature_verifier', form_data, null, 'json', null, null)
+         .then(response => {
+
+            switch (response.result) {
+
+               case 9:
+                  resolve(response.validate_results);
+                  break;
+               case 6.1:
+                  alert(response.error_message);
+                  reject('Загружен обычный файл');
+                  break;
+
+            }
+
+         })
+         .catch(exc => {
+            console.log('external verify exception: ' + exc);
+         });
+   });
+
+
+
+}

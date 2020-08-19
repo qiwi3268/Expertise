@@ -2,28 +2,11 @@
 //
 class BrowserHelper{
 
-   static initializePlugin() {
-
-
-      if (BrowserHelper.checkBrowser()) {
-
-         return cadesplugin
-            .then(() => {
-
-               return GeCades.getPluginData();
-
-            })
-            .catch(exc => {
-               console.log('Ошибка при инициализации cadesplugin:' + exc);
-            });
-
-      }
-
-   }
-
 
 
    static checkBrowser() {
+      //TODO alert
+
       // Блок проверок на непподерживаемые браузеры
       if(BrowserHelper.isInternetExplorer()){
          console.log('Браузер не соответствует требованиям АИС (Internet Explorer не поддерживается)');

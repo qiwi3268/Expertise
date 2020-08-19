@@ -66,7 +66,7 @@ return [
 
 
     'test' => [
-        'ROOTcontrollers' => ['test']
+        'controllers' => ['test']
     ],
 
 
@@ -120,7 +120,7 @@ return [
     //todo на эту мусорку не обращать внимание
     'home/application/edit'  => [
         'access'             => [],
-        'ROOTClasses'          => ['VariableTransfer'],
+        'ROOTClasses'        => ['VariableTransfer'],
         'ROOTcontrollers'    => ['header'],
         'ROOTviews'          => ['header'],
         '/Classes/ApplicationForm/'   => ['MiscInitialization', 'MiscInitializationEditForm'],
