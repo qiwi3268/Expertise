@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3052c4db-b17b-45ef-9874-1a02eb86f4cf" name="Default Changelist" comment="" />
+    <list default="true" id="3052c4db-b17b-45ef-9874-1a02eb86f4cf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/sshConfigs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sshConfigs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/FilesInitialization.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/FilesInitialization.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Tables/File/Trait_fileTableType2.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/File/Trait_fileTableType2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/view_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cron/fileCleaner.php" beforeDir="false" afterPath="$PROJECT_DIR$/cron/fileCleaner.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/sign.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/sign.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/BrowserHelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/BrowserHelper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/PerfectCades.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/PerfectCades.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/Sign_Handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/Sign_Handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/file_actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/file_download.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_download.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/ge_PerfectCades.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/ge_PerfectCades.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/main.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,6 +100,8 @@
       <workItem from="1597464146061" duration="12424000" />
       <workItem from="1597497356681" duration="6610000" />
       <workItem from="1597575204380" duration="8737000" />
+      <workItem from="1597768827084" duration="1308000" />
+      <workItem from="1597853272989" duration="3321000" />
     </task>
     <task id="LOCAL-00001" summary="22.07.2020">
       <created>1595389670254</created>
@@ -317,14 +341,20 @@
       <option name="project" value="LOCAL" />
       <updated>1597586390357</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="18.08.2020">
+      <created>1597768975656</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1597768975656</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="27.07.2020_1" />
     <MESSAGE value="27.07.2020_2" />
     <MESSAGE value="27.07.2020_3" />
     <MESSAGE value="28.07.2020" />
@@ -349,14 +379,19 @@
     <MESSAGE value="15.08.2020" />
     <MESSAGE value="15.08.2020_1" />
     <MESSAGE value="16.08.2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="16.08.2020" />
+    <MESSAGE value="18.08.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="18.08.2020" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1597586389725">
+    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1597768974954">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597516365472" />
+    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597768974954" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597586389725" />
+    <state x="248" y="121" key="DiffContextDialog" timestamp="1597768958584">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="248" y="121" key="DiffContextDialog/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597768958584" />
     <state x="248" y="121" key="MergeDialog" timestamp="1596186835322">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -377,15 +412,15 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597499951448" />
-    <state x="987" y="433" width="585" height="624" key="find.popup" timestamp="1597582372437">
+    <state x="1026" y="543" width="585" height="624" key="find.popup" timestamp="1597769501991">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597502668739" />
+    <state x="1026" y="543" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597769501991" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
-    <state x="1150" y="591" key="publish.login" timestamp="1597575229830">
+    <state x="1150" y="591" key="publish.login" timestamp="1597853290551">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1150" y="591" key="publish.login/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597497368371" />
+    <state x="1150" y="591" key="publish.login/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597853290551" />
     <state x="1150" y="591" key="publish.login/0.0.2560.1400@0.0.2560.1400" timestamp="1597575229830" />
     <state x="936" y="330" key="run.anything.popup" timestamp="1596602547364">
       <screen x="0" y="0" width="2560" height="1400" />

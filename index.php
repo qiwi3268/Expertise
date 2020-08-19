@@ -11,11 +11,11 @@ ini_set('display_startup_errors', 1);
 //phpinfo();
 
 require_once 'core/Classes/StartingInitialization.php';
-$initializator = new StartingInitialization('/var/www/html');
-$initializator->requireDefinedVariables();
-$initializator->enableClassAutoloading();
-$initializator->requireDataBasePack();
-$initializator->requireWebPack();
+$ini = new StartingInitialization('/var/www/html');
+$ini->requireDefinedVariables();
+$ini->enableClassAutoloading();
+$ini->requireDataBasePack();
+$ini->requireWebPack();
 
 
 require_once 'functions/functions.php';

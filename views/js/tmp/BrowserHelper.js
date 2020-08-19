@@ -2,49 +2,11 @@
 //
 class BrowserHelper{
 
-   static initializePlugin() {
-
-
-      if (BrowserHelper.checkBrowser()) {
-
-         cadesplugin
-            .then(() => {
-
-               return GeCades.getPluginData();
-
-            })
-            .then(plugin_data => {
-
-
-               SignHandler.putPluginData(plugin_data);
-
-               GeCades.FillCertList_Async('CertListBox');
-
-
-            })
-            .catch(exc => {
-               console.log('Ошибка при инициализации cadesplugin:' + exc);
-            });
-
-      }
-
-   }
-
-   static getUserCerts() {
-      cadesplugin
-         .then(() => {
-            return GeCades.getCertsStore()
-         })
-         .then()
-         .catch((exc) => {
-            console.log('Ошбика при получении списка сертификатов: ' + exc);
-            SignHandler.cancelPluginInitialization();
-         });
-   }
-
 
 
    static checkBrowser() {
+      //TODO alert
+
       // Блок проверок на непподерживаемые браузеры
       if(BrowserHelper.isInternetExplorer()){
          console.log('Браузер не соответствует требованиям АИС (Internet Explorer не поддерживается)');

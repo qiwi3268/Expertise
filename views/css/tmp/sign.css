@@ -92,7 +92,7 @@
     background-color: #f2f2f2;
 }
 
-.sign-modal__info {
+.sign-modal__cert-info {
     padding: 5px 10px;
 }
 
@@ -112,7 +112,7 @@
 
 /* tmp */
 
-.sign-modal__info {
+.sign-modal__cert-info {
     padding: 5px 10px;
 }
 
@@ -128,11 +128,11 @@
     margin: 0px 0px 5px 0px;
 }
 
-.sign-modal__select[data-inactive='true'] {
+.sign-modal__certs[data-inactive='true'] {
     display: none;
 }
 
-.sign-modal__info[data-inactive='true'] {
+.sign-modal__cert-info[data-inactive='true'] {
     display: none;
 }
 
@@ -153,7 +153,10 @@
 
 .sign-modal__text[data-state='false'] {
     color: #db5151;
+}
 
+.sign-modal__sign {
+    border: 1px solid #8e8e8e;
 }
 
 /* tmp */

@@ -200,8 +200,8 @@ class GeCades{
          // Внесение данных о сертификате
          document.getElementById('SubjectName').innerHTML = SubjectName;
          document.getElementById('IssuerName').innerHTML = IssuerName;
-         document.getElementById('ValidFromDate').innerHTML = GeCades.fornattedDateTo_ddmmyyy_hhmmss(ValidFromDate);
-         document.getElementById('ValidToDate').innerHTML = GeCades.fornattedDateTo_ddmmyyy_hhmmss(ValidToDate);
+         document.getElementById('ValidFromDate').innerHTML = GeCades.formattedDateTo_ddmmyyy_hhmmss(ValidFromDate);
+         document.getElementById('ValidToDate').innerHTML = GeCades.formattedDateTo_ddmmyyy_hhmmss(ValidToDate);
          document.getElementById('CertStatus').innerHTML = CertStatus;
 
          console.log('fill cert info finished');
@@ -373,9 +373,9 @@ class GeCades{
 
             SubjectName =  GeCades.extractCN(SubjectName);
             IssuerName = GeCades.extractCN(IssuerName);
-            ValidFromDate = GeCades.fornattedDateTo_ddmmyyy_hhmmss(ValidFromDate);
-            ValidToDate = GeCades.fornattedDateTo_ddmmyyy_hhmmss(ValidToDate);
-            SigningTime = GeCades.fornattedDateTo_ddmmyyy_hhmmss(SigningTime);
+            ValidFromDate = GeCades.formattedDateTo_ddmmyyy_hhmmss(ValidFromDate);
+            ValidToDate = GeCades.formattedDateTo_ddmmyyy_hhmmss(ValidToDate);
+            SigningTime = GeCades.formattedDateTo_ddmmyyy_hhmmss(SigningTime);
 
             console.log(SubjectName);
             console.log(IssuerName);
@@ -527,7 +527,7 @@ class GeCades{
 
    // Возвращает форматированную дату из объекта Date
    // в формате дд.мм.гггг чч:мм:сс
-   static fornattedDateTo_ddmmyyy_hhmmss(date){
+   static formattedDateTo_ddmmyyy_hhmmss(date){
 
       let first = GeCades.formattedDateTo_ddmmyyyy(date);
       let H = GeCades.AddZero(date.getHours());

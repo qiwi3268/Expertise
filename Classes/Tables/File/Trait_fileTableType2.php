@@ -19,7 +19,7 @@ trait Trait_fileTableType2{
     // Возвращает параметры-----------------------------------
     // int : id созданной записи
     //
-    static public function create(int $id_application, int $id_structure_node, string $file_name, string $file_size, string $hash):int {
+    static public function create(int $id_application, int $id_structure_node, string $file_name, int $file_size, string $hash):int {
 
         $table = self::$tableName;
 

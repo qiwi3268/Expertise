@@ -59,12 +59,15 @@ class FilesInitialization{
     
     
     // Предназначен для полученя нужных (is_needs=1) файлов, находящихся в заявлении applicationId
-    // и в требуемых маппингах filesRequiredMappings
+    // и в требуемых маппингах filesRequiredMappings.
+    //
     // Возвращает параметры-----------------------------------
     // array : структура массива аналогична filesRequiredMappings. Вместо названия класса - массив с нужные файлами / null
     //
     //todo метод возвращает не только файлы, а еще и открепленные подписи в этой таблице
     public function getNeedsFiles():array {
+        
+        var_dump('метод возвращает не только файлы, а еще и открепленные подписи в этой таблице');
     
         $result = [];
         
@@ -79,6 +82,18 @@ class FilesInitialization{
         return $result;
     }
     
+    
+    // Предназначен для полученя нужных (is_needs=1) файлов и подписей к ним, находящихся в заявлении applicationId
+    // и в требуемых маппингах filesRequiredMappings
+    // У кажого файла есть свойство 'signs', которое:
+    //    null, если для данного маппинга файловой таблицы не предусмотрены подписи;
+    //    включает в себя массивы подписей встроенных и открепленных: 'internal' = [], 'external' = []
+    // *** Из массива файлов будут автоматически удалены файлы, которые являются открепленными подписями
+    // Возвращает параметры----------------------------------
+    // array : структура массива аналогична filesRequiredMappings. Вместо названия класса - массив с нужные файлами / null
+    // Выбрасывает исключения--------------------------------
+    // FileException : осталась(лись) подпись, которая не подошла ни к одному из файлов
+    //
     public function getNeedsFilesWithSigns():array {
     
         $result = [];
@@ -86,102 +101,104 @@ class FilesInitialization{
         foreach($this->filesRequiredMappings as $mapping_level_1_code => $mapping_level_2){
         
             foreach($mapping_level_2 as $mapping_level_2_code => $fileClassName){
-            
+    
                 $files = $fileClassName::getNeedsAssocByIdApplication($this->applicationId);
                 
-                $signClassName = $this->signsRequiredMappings[$mapping_level_1_code][$mapping_level_2_code];
-                
-                if(is_null($signClassName)){
-                    foreach($files as &$file) $file['signs'] = null;
-                    unset($file);
+                if(is_null($files)){
+                    $result[$mapping_level_1_code][$mapping_level_2_code] = null;
                     continue;
                 }
                 
+                $files = new ArrayIterator($files);
+    
+                // Формирование id файлов для запроса IN
                 $ids = [];
-                foreach($files as $file){
-                    $ids[] = $file['id'];
+                foreach($files as ['id' => $id]){
+                    $ids[] = $id;
                 }
-                $signs = $signClassName::getAllAssocByIds($ids);
                 
+                $signClassName = $this->signsRequiredMappings[$mapping_level_1_code][$mapping_level_2_code];
+                
+                if(is_null($signClassName) || is_null($signs = $signClassName::getAllAssocByIds($ids))){
+                    
+                    foreach($files as $index => $file){
+                        $files[$index]['signs'] = null;
+                    }
+                    $result[$mapping_level_1_code][$mapping_level_2_code] = $files->getArrayCopy();
+                    unset($files);
+                    continue;
+                }
+                
+                $signs = new ArrayIterator($signs);
+                
+                // Хэш-массив id файлов для быстрого поиска
                 $idsHash = GetHashArray($ids);
-                
-                // Создаем Iterator, поскольку в рамках обхода файлов требуется удалять открепленные подписи
-                $Iterator = new ArrayIterator($files);
-    
-                foreach($Iterator as $file_index => $file){
-    
-                    $Iterator[$file_index]['signs']['internal'] = [];
-                    $Iterator[$file_index]['signs']['external'] = [];
+
+                $files->rewind();
+                while($files->valid()){
                     
-                    unset($tmp, $ind);
+                    $fi = $files->key(); $file = $files->current();
+    
+                    // Делаем проверку, чтобы не обнулить данные, если в file была открепленная подпись и file c данными искался из других элементов
+                    if(!isset($files[$fi]['signs']['internal'])) $files[$fi]['signs']['internal'] = [];
+                    if(!isset($files[$fi]['signs']['external'])) $files[$fi]['signs']['external'] = [];
                     
-                    foreach($signs as $sign_index => $sign){
+                    $signs->rewind();
+                    while($signs->valid()){
                         
+                        $si = $signs->key(); $sign = $signs->current();
+
                         // Итерируемый file является встроенной подписью
                         if($file['id'] == $sign['id_sign'] && $sign['is_external'] == 0 && is_null($sign['id_file'])){
     
-                            $Iterator[$file_index]['signs']['internal'][] = $sign;
+                            $files[$fi]['signs']['internal'][] = $sign;
+                            $signs->offsetUnset($si); continue;
     
-                            unset($signs[$sign_index]); // Удаляем итерируемую sign
-                            
                         // Итерируемый file является файлом, к которому есть открепленная подпись
-                        }elseif($file['id'] == $sign['id_file'] && $sign['is_external'] == 1){
-                        
-                            if(!isset($idsHash[$sign['id_sign']])){
-                                throw new FileException("Для файла id: '{$file['id']}', таблицы '{$fileClassName}' отсутствует файл открепленной подписи id: '{$sign['id_sign']}'");
-                            }
+                        }elseif($file['id'] == $sign['id_file'] && $sign['is_external'] == 1 && isset($idsHash[$sign['id_sign']])){
     
-                            // Находим file открепленной подписи
-                            $externalSignFile = array_filter($Iterator->getArrayCopy(), fn($tmp) => $tmp['id'] == $sign['id_sign']);
-                            $ind = array_key_first($externalSignFile);
-                            // Удаляем file открепленной подписи
-                            unset($Iterator[$file_index]);
-                            
-                            $Iterator[$file_index]['signs']['external'][] = $sign;
-                            
-                            unset($signs[$sign_index]); // Удаляем итерируемую sign
-                        
+                            // Находим и удаляем file открепленной подписи
+                            $externalSignFile = array_filter($files->getArrayCopy(), fn($tmp) => $tmp['id'] == $sign['id_sign']);
+                            $files->offsetUnset(array_key_first($externalSignFile));
+                            $files[$fi]['signs']['external'][] = $sign;
+
+                            $signs->offsetUnset($si); continue;
+    
                         // Итерируемый file является открепленной подписью к другому file
-                        }elseif($file['id'] == $sign['id_sign'] && $sign['is_external'] == 1){
-    
-                            if(!isset($idsHash[$sign['id_file']])){
-                                throw new FileException("Для файла открепленной подписи id: '{$sign['id_sign']}', таблицы '{$fileClassName}' отсутствует файл id: '{$sign['id_file']}'");
-                            }
-                            
-                            // Удаляем итерируемый file (открепленную подпись)
-                            unset($Iterator[$file_index]);
+                        }elseif($file['id'] == $sign['id_sign'] && $sign['is_external'] == 1 && isset($idsHash[$sign['id_file']])){
+              
                             // Находим file с данными
-                            $dataFile = array_filter($Iterator->getArrayCopy(), fn($tmp) => $tmp['id'] == $sign['id_file']);
-                            $ind = array_key_first($dataFile);
-                            $Iterator[$ind]['signs']['external'][] = $sign;
-    
-                            unset($signs[$sign_index]); // Удаляем итерируемую sign
+                            unset($ind);
+                            foreach($files->getArrayCopy() as $tmp_index => $tmp_file){
+                                if($tmp_file['id'] == $sign['id_file']){
+                                    $ind = $tmp_index;
+                                    break;
+                                }
+                            }
+                            $files[$ind]['signs']['external'][] = $sign;
+                            
+                            $files->offsetUnset($fi); // Удаляем итерируемый file (открепленную подпись)
+                            $signs->offsetUnset($si);
+                            continue 2;
                         }
+                        $signs->next();
                     }
+                    $files->next();
                 }
+                
+                if($signs->count() > 0){
+                    
+                    $ids = [];
+                    foreach($signs as ['id' => $id]) $ids[] = $sign['id'];
+                    $ids = implode(', ', $ids);
+                    // Вероятнее всего, требуемый файл не попал в выборку getNeedsAssocByIdApplication по причине is_needs=0
+                    throw new FileException("Осталась(лись) подпись с id: '{$ids}' из таблицы подписей: '{$signClassName}', которая не подошла ни к одному из файлов");
+                }
+                $result[$mapping_level_1_code][$mapping_level_2_code] = $files->getArrayCopy();
             }
-            $result[$mapping_level_1_code][$mapping_level_2_code] = $Iterator->getArrayCopy();
         }
         return $result;
     }
-    
-    
-    
-    public function getFilesSigns(array $needsFiles) {
-        foreach($needsFiles as $mapping_level_1_code => $mapping_level_2){
-            foreach($mapping_level_2 as $mapping_level_2_code => $files){
-                
-                $signMapping = $this->signsRequiredMappings[$mapping_level_1_code][$mapping_level_2_code];
-                
-                
-                var_dump($mapping_level_1_code);
-                var_dump($mapping_level_2_code);
-                var_dump($files);
-            }
-        }
-    }
-    
-    
     
     
     

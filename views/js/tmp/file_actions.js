@@ -113,7 +113,9 @@ function addFileActions(file) {
 
 function handleSignButton(sign_button, file) {
    sign_button.addEventListener('click', () => {
-      SignHandler.openModal(file);
+      //SignHandler.openModal(file);
+
+      Sign_Handler.getInstance().open(file);
       // showSignModal(file);
    });
 }

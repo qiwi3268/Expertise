@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
    //TODO сделать синглтоном
-   SignHandler.init();
+
+   //SignHandler.init();
 });
 
 class SignHandler {
@@ -12,7 +13,8 @@ class SignHandler {
 
    static actions;
 
-   static cert_select;
+   static certs;
+   static certs_select;
 
    static create_sign_btn;
    static upload_sign_btn;
@@ -39,10 +41,13 @@ class SignHandler {
    static init() {
       SignHandler.modal = document.querySelector('.sign-modal');
 
+      SignHandler.certs = SignHandler.modal.querySelector('.sign-modal__certs');
+      SignHandler.plugin_info = SignHandler.modal.querySelector('.sign-modal__header');
+
       // SignHandler.actions = SignHandler.modal.querySelector('.sign-modal__buttons');
       SignHandler.actions = SignHandler.modal.querySelector('.sign-modal__actions');
 
-      SignHandler.cert_select = SignHandler.modal.querySelector('.sign-modal__select');
+
 
       SignHandler.validate_info = SignHandler.modal.querySelector('.sign-modal__validate');
 
@@ -58,15 +63,9 @@ class SignHandler {
       let sign_btn = document.getElementById('signature_button');
       sign_btn.addEventListener('click', () => {
 
-
-
-         if (GeCades.getGlobalCertificatesMap) {
-
-
+         // if (GeCades.getGlobalCertificatesMap) {
             SignHandler.signFile();
-         }
-
-
+         // }
 
       });
 
@@ -78,7 +77,8 @@ class SignHandler {
 
          // SignHandler.actions.dataset.inactive = 'false';
          SignHandler.actions.dataset.inactive = 'true';
-         SignHandler.cert_select.dataset.inactive = 'true';
+         SignHandler.certs.dataset.inactive = 'true';
+         SignHandler.plugin_info.inactive = 'true';
 
       });
 
@@ -93,20 +93,112 @@ class SignHandler {
       SignHandler.create_sign_btn = document.getElementById('sign_create');
       SignHandler.create_sign_btn.addEventListener('click', () => {
 
-         if (!SignHandler.is_plugin_initialized) {
-            BrowserHelper.initializePlugin();
-
-            // BrowserHelper.getUserCerts();
-
-            SignHandler.is_plugin_initialized = true;
+         if (!SignHandler.is_plugin_initialized && BrowserHelper.checkBrowser()) {
+            SignHandler.initializePlugin();
+         } else {
+            SignHandler.showCreateSignElements();
          }
 
       });
    }
 
+   static initializePlugin() {
+
+      GeCades.getCadesPlugin()
+         .then(() => {
+
+            return GeCades.getPluginData();
+
+         })
+         .then(plugin_data => {
+
+            SignHandler.putPluginData(plugin_data);
+            return GeCades.getCerts();
+
+         })
+
+         .then(certs => {
+
+            SignHandler.fillCertsSelect(certs);
+            SignHandler.showCreateSignElements();
+            SignHandler.is_plugin_initialized = true;
+
+         })
+         .catch(exc => {
+            console.log('Ошибка инициализации плагина и зполнения списка сертификатов:');
+            console.log(exc);
+            SignHandler.cancelPluginInitialization();
+         });
+
+
+   }
+
    static putPluginData(plugin_data) {
       document.getElementById('plugin_version').innerHTML = plugin_data.plugin_version;
       document.getElementById('csp_version').innerHTML = plugin_data.csp_version;
+   }
+
+   static fillCertsSelect(certs) {
+      SignHandler.certs_select = document.getElementById('cert_list_select');
+
+      certs.forEach(cert => {
+         let option = document.createElement('option');
+         option.text = cert.text;
+         option.value = cert.value;
+         option.classList.add('sign-modal__cert');
+         SignHandler.certs_select.options.add(option);
+      });
+
+
+      GeCades.setCertificatesList(SignHandler.certs_select);
+      SignHandler.certs_select.addEventListener('change', () => {
+
+         GeCades.getCertInfo()
+            .then(cert_info => {
+               SignHandler.fillCertInfo(cert_info);
+            })
+            .catch(exc => {
+               console.log('Ошибка при получении информации о сертификате: ' + exc);
+            });
+      });
+
+
+   }
+
+   static fillCertInfo(cert_info) {
+      // Внесение данных о сертификате
+      document.getElementById('subject_name').innerHTML = cert_info.subject_name;
+      document.getElementById('issuer_name').innerHTML = cert_info.issuer_name;
+      document.getElementById('valid_from_date').innerHTML = GeCades.formattedDateTo_ddmmyyy_hhmmss(cert_info.valid_from_date);
+      document.getElementById('valid_to_date').innerHTML = GeCades.formattedDateTo_ddmmyyy_hhmmss(cert_info.valid_to_date);
+      document.getElementById('cert_message').innerHTML = cert_info.cert_message;
+      document.getElementById('cert_message').style.color = cert_info.cert_status ? '#6cb37e' : '#db5151';
+
+      SignHandler.plugin_info = SignHandler.modal.querySelector('.sign-modal__cert-info');
+      SignHandler.plugin_info.dataset.inactive = 'false';
+   }
+
+   static showCreateSignElements() {
+      SignHandler.certs.dataset.inactive = 'false';
+      SignHandler.plugin_info.dataset.inactive = 'false';
+
+      SignHandler.actions.dataset.inactive = 'false';
+
+      SignHandler.upload_sign_btn.dataset.inactive = 'true';
+      SignHandler.create_sign_btn.dataset.inactive = 'true';
+   }
+
+   //------
+   static showCertBlock() {
+      SignHandler.certs.dataset.inactive = 'false';
+
+      SignHandler.plugin_info = SignHandler.modal.querySelector('.sign-modal__header');
+      SignHandler.plugin_info.dataset.inactive = 'false';
+
+      SignHandler.actions.dataset.inactive = 'false';
+
+      SignHandler.upload_sign_btn.dataset.inactive = 'true';
+      SignHandler.create_sign_btn.dataset.inactive = 'true';
    }
 
    static handleUploadSignButton() {
@@ -219,22 +311,6 @@ class SignHandler {
    }
 
 
-   static showCertBlock() {
-      // SignHandler.is_plugin_initialized = true;
-
-      SignHandler.cert_select.dataset.inactive = 'false';
-
-      let plugin_info = SignHandler.modal.querySelector('.sign-modal__header');
-      plugin_info.dataset.inactive = 'false';
-
-      SignHandler.actions.dataset.inactive = 'false';
-
-      // SignHandler.actions.dataset.inactive = 'true';
-
-      SignHandler.upload_sign_btn.dataset.inactive = 'true';
-      SignHandler.create_sign_btn.dataset.inactive = 'true';
-
-   }
 
    static handleDeleteButton() {
       SignHandler.delete_sign_btn = document.getElementById('signature_delete');
@@ -256,7 +332,7 @@ class SignHandler {
 
 
          SignHandler.validate_info.dataset.inactive = 'true';
-         SignHandler.cert_select.dataset.inactive = 'true';
+         SignHandler.certs.dataset.inactive = 'true';
 
 
          SignHandler.delete_sign_btn.dataset.inactive = 'true';
@@ -357,7 +433,7 @@ class SignHandler {
 
                   SignHandler.file_element.dataset.id_sign = SignHandler.id_sign;
 
-                  SignHandler.cert_select.dataset.inactive = 'true';
+                  SignHandler.certs.dataset.inactive = 'true';
                   SignHandler.delete_sign_btn.dataset.inactive = 'false';
 
 
@@ -376,8 +452,6 @@ class SignHandler {
                   console.log(validate_response.error_message);
                   //TODO error alert
                   break;
-
-
 
 
             }
@@ -516,7 +590,8 @@ class SignHandler {
 
 
 
-      SignHandler.cert_select.dataset.inactive = 'true';
+      SignHandler.certs.dataset.inactive = 'true';
+      SignHandler.plugin_info.dataset.inactive = 'true';
       SignHandler.actions.dataset.inactive = 'true';
       SignHandler.validate_info.dataset.inactive = 'true';
    }
