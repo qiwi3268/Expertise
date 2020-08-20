@@ -257,7 +257,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                return putFilesToRow(response.uploaded_files);
 
-
             } else {
                console.log(response);
             }
@@ -316,60 +315,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
          let file_item = createFileElement(file, files_body);
 
-
-         let form_data = new FormData();
-         form_data.append('id_application', getIdApplication());
-         form_data.append('id_file', file.id);
-         form_data.append('mapping_level_1', mapping_input_1.value);
-         form_data.append('mapping_level_2', mapping_input_2.value);
-
-
-         await XHR('post', '/home/API_file_checker', form_data, null, 'json')
+         await checkFile(file.id, mapping_input_1.value, mapping_input_2.value)
             .then(check_response => {
-
-               console.log(check_response);
-
-               let form_data = new FormData();
-               form_data.append('fs_name_sign', check_response.fs_name);
-               form_data.append('mapping_level_1', mapping_input_1.value);
-               form_data.append('mapping_level_2', mapping_input_2.value);
-
-               return XHR('post', '/home/API_internal_signature_verifier', form_data, null, 'json', null, null)
-
+               return internalSignatureVerify(check_response.fs_name, mapping_input_1.value, mapping_input_2.value)
             })
-            .then(validate_response => {
+            .then(validate_results => {
 
-               console.log(validate_response);
+               if (validate_results) {
 
-               switch (validate_response.result) {
-                  case 5.2:
-                     alert('Открепленная подпись 2');
-                     //TODO на удаление
-                     break;
-                  case 5.1:
-                     // file_item.dataset.sign_state = 'not_signed';
-                     break;
-                  default:
-                     //TODO проверяем результат
-                     file_item.dataset.validate_results = JSON.stringify(validate_response.validate_results);
-                     file_item.dataset.is_internal_sign = 'true';
-
-                     let results = JSON.parse(file_item.dataset.validate_results);
-                     results.forEach(result => {
-                        SignHandler.handleValidateResults(result, file_item);
-                     });
-
-                     break;
-
+                  file_item.dataset.validate_results = JSON.stringify(validate_results);
+                  file_item.dataset.is_internal_sign = 'true';
                }
+
             })
             .catch(exc => {
-               console.error(exc);
+               console.log('Ошибка при валидации встроенной подписи: ' + exc);
             });
-
-
-
-
 
       }
 

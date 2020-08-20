@@ -61,7 +61,6 @@ class Sign_Handler {
 
       this.handleCancelButton();
       this.handleSignButton();
-
    }
 
    handleOverlay() {
@@ -81,6 +80,7 @@ class Sign_Handler {
    }
 
    closeInfoBlocks() {
+      console.log('qwe');
       this.certs.dataset.inactive = 'true';
       this.plugin_info.dataset.inactive = 'true';
       this.actions.dataset.inactive = 'true';
@@ -252,6 +252,12 @@ class Sign_Handler {
       this.file_element.dataset.id_sign = this.id_sign;
       this.file_element.dataset.validate_results = results_json;
 
+      if (validate_results.signature_verify.result && validate_results.certificate_verify.result) {
+         this.file_element.dataset.sign_state = 'valid';
+      } else if (validate_results.signature_verify.result) {
+         this.file_element.dataset.sign_state = 'warning';
+      }
+
       FileNeeds.putSignToSave(this.id_sign, this.mapping_level_1, this.mapping_level_2);
 
       this.certs.dataset.inactive = 'true';
@@ -314,14 +320,47 @@ class Sign_Handler {
 
    handleDeleteSignButton() {
       this.delete_sign_btn = document.getElementById('signature_delete');
+      this.delete_sign_btn.addEventListener('click', () => {
+
+         this.id_sign = this.file_element.dataset.id_sign;
+         this.removeSign();
+
+      });
+
 
    }
 
-   handleCancelButton() {
-      this.upload_sign_btn.dataset.inactive = 'false';
-      this.create_sign_btn.dataset.inactive = 'false';
+   removeSign() {
+      //TODO отправка на api
+      FileNeeds.putSignToDelete(
+         this.id_sign,
+         this.mapping_level_1,
+         this.mapping_level_2
+      );
 
-      this.closeInfoBlocks();
+      this.file_element.removeAttribute('data-id_sign');
+      this.file_element.removeAttribute('data-validate_results');
+      this.external_sign_input.value = '';
+
+      this.validate_info.dataset.inactive = 'true';
+      this.certs.dataset.inactive = 'true';
+
+      this.delete_sign_btn.dataset.inactive = 'true';
+      this.create_sign_btn.dataset.inactive = 'false';
+      this.upload_sign_btn.dataset.inactive = 'false';
+   }
+
+   handleCancelButton() {
+      this.cancel_btn = document.getElementById('sign_cancel');
+
+      this.cancel_btn.addEventListener('click', () => {
+
+         this.upload_sign_btn.dataset.inactive = 'false';
+         this.create_sign_btn.dataset.inactive = 'false';
+
+         this.closeInfoBlocks();
+      });
+
    }
 
    handleSignButton() {
@@ -366,8 +405,20 @@ class Sign_Handler {
       this.putFileData(file);
       this.addFileElement(file);
 
-      if (file.dataset.validate_results) {
+      if (!file.dataset.validate_results) {
+
+         this.create_sign_btn.dataset.inactive = 'false';
+         this.upload_sign_btn.dataset.inactive = 'false';
+
+      } else if (file.dataset.is_internal_sign !== 'true') {
+
+         this.delete_sign_btn.dataset.inactive = 'false';
          this.fillSignsInfo(file.dataset.validate_results);
+
+      } else {
+
+         this.fillSignsInfo(file.dataset.validate_results);
+
       }
 
    }

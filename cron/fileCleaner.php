@@ -1,12 +1,22 @@
 <?php
 
+<<<<<<< HEAD
+$variablesTV = VariableTransfer::getInstance();
+$Logger = $variablesTV->getValue('Logger');
+$ErrorLogger = $variablesTV->getValue('ErrorLogger');
+=======
 // Включения вывода ошибок и предупреждений
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
+>>>>>>> cedcbf52c1dfc0b1c9be88486be3ec9db9d431da
 
-// Крон предназначен для очистки системы от несохраненных файлов
+require_once _ROOT_.'/Classes/FilesTableMapping.php';
 
+<<<<<<< HEAD
+$Logger->write("НАЧИНАЮ работу");
+
+=======
 require_once '/var/www/html/functions/functions.php';
 require_once '/var/www/html/core/Classes/StartingInitialization.php';
 
@@ -35,6 +45,7 @@ try{
     exit();
 }
 
+>>>>>>> cedcbf52c1dfc0b1c9be88486be3ec9db9d431da
 foreach(_FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_2){
     
     foreach($mapping_level_2 as $mapping_level_2_code => $className){
@@ -42,7 +53,7 @@ foreach(_FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_2){
         $Mapping = new FilesTableMapping($mapping_level_1_code, $mapping_level_2_code);
     
         if(!is_null($Mapping->getErrorCode())){
-            $Logger->write("ОШИБКА в маппинг-таблице. Класс {$className}. {$Mapping->getErrorText()}");
+            $ErrorLogger->write("ОШИБКА в маппинг-таблице. Класс {$className}. {$Mapping->getErrorText()}");
             exit();
         }
         unset($Mapping);
@@ -68,7 +79,7 @@ foreach(_FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_2){
             
             // Метка проставлена, но дата null
             if(is_null($file['date_cron_deleted_flag'])){
-                $Logger->write("ОТСУТСТВУЕТ ДАТА date_cron_deleted_flag. $description");
+                $ErrorLogger->write("ОТСУТСТВУЕТ ДАТА date_cron_deleted_flag. $description");
                 continue;
             }
             
@@ -83,7 +94,7 @@ foreach(_FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_2){
                 $pathToFile = "{$applicationDir}/{$file['hash']}";
                 
                 if(!file_exists($pathToFile)){
-                    $Logger->write("ОТСУТСТВУЕТ ФАЙЛ, который необходимо удалить по пути: {$pathToFile}. $description");
+                    $ErrorLogger->write("ОТСУТСТВУЕТ ФАЙЛ, который необходимо удалить по пути: {$pathToFile}. $description");
                     continue;
                 }
     
@@ -91,13 +102,13 @@ foreach(_FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_2){
                 try{
                     $className::deleteById($file['id']);
                 }catch(DataBaseException $e){
-                    $Logger->write("НЕ ПОЛУЧИЛОСЬ УДАЛИТЬ ЗАПИСЬ В ТАБЛИЦЕ. {$description}. Текст ошибки: {$e->getMessage()}, код ошибки: {$e->getCode()}");
+                    $ErrorLogger->write("НЕ ПОЛУЧИЛОСЬ УДАЛИТЬ ЗАПИСЬ В ТАБЛИЦЕ. {$description}. Текст ошибки: {$e->getMessage()}, код ошибки: {$e->getCode()}");
                     continue;
                 }
                 
                 // Удаляем файл
                 if(!unlink($pathToFile)){
-                    $Logger->write("НЕ ПОЛУЧИЛОСЬ УДАЛИТЬ ФАЙЛ. $description");
+                    $ErrorLogger->write("НЕ ПОЛУЧИЛОСЬ УДАЛИТЬ ФАЙЛ. $description");
                     continue;
                 }
     
@@ -106,6 +117,4 @@ foreach(_FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_2){
         }
     }
 }
-
-DataBase::closeDB();
 $Logger->write("ЗАВЕРШАЮ работу");

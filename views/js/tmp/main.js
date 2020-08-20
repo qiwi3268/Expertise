@@ -153,7 +153,7 @@ function getFileCheckFormData(id_file, mapping_1, mapping_2) {
 function externalSignatureVerify(fs_name_data, fs_name_sign, mapping_1, mapping_2) {
 
    return new Promise((resolve, reject) => {
-      let form_data = getSignVerifyFormData(fs_name_data, fs_name_sign, mapping_1, mapping_2);
+      let form_data = getExternalVerifyFormData(fs_name_data, fs_name_sign, mapping_1, mapping_2);
 
       return XHR('post', '/home/API_external_signature_verifier', form_data, null, 'json', null, null)
          .then(response => {
@@ -178,7 +178,7 @@ function externalSignatureVerify(fs_name_data, fs_name_sign, mapping_1, mapping_
 
 }
 
-function getSignVerifyFormData(fs_name_data, fs_name_sign, mapping_1, mapping_2) {
+function getExternalVerifyFormData(fs_name_data, fs_name_sign, mapping_1, mapping_2) {
    let form_data = new FormData();
    form_data.append('fs_name_data', fs_name_data);
    form_data.append('fs_name_sign', fs_name_sign);
@@ -211,3 +211,51 @@ function getFileHashFormData(algorithm, fs_name) {
    form_data.append('fs_name', fs_name);
    return form_data;
 }
+
+function internalSignatureVerify(fs_name, mapping_1, mapping_2) {
+   let form_data = getInternalVerifyFormData(fs_name, mapping_1, mapping_2);
+
+   return new Promise((resolve, reject) => {
+
+      return XHR('post', '/home/API_internal_signature_verifier', form_data, null, 'json', null, null)
+         .then(response => {
+
+            switch (response.result) {
+               case 5.2:
+                  alert('Открепленная подпись 2');
+                  //TODO на удаление
+                  break;
+               case 5.1:
+                  resolve();
+                  // file_item.dataset.sign_state = 'not_signed';
+                  break;
+               case 8:
+                  resolve(response.validate_results);
+                  break;
+
+            }
+
+         })
+         .catch(exc => {
+            reject(exc);
+         });
+
+   });
+}
+
+function getInternalVerifyFormData(fs_name, mapping_1, mapping_2) {
+   let form_data = new FormData();
+   form_data.append('fs_name_sign', fs_name);
+   form_data.append('mapping_level_1', mapping_1);
+   form_data.append('mapping_level_2', mapping_2);
+   return form_data;
+}
+
+
+
+
+
+
+
+
+
