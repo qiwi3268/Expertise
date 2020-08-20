@@ -72,7 +72,7 @@ return [
 
     'home/application/API_save_form' => [
         'access'                     => [],
-        '/Classes/ApplicationForm/'  => ['SaveHandler'],
+        '/Classes/ApplicationForm/'  => ['SaveHandler', 'SingleMiscValidator', 'DataToUpdate'],
         'API'                        => ['save_form']
     ],
 

@@ -119,30 +119,14 @@ try{
     // Объект класса-обработчика
     $formHandler = new SaveHandler($applicationAssoc);
     
+    DataToUpdate::setFlatAssoc($applicationAssoc);
+    
     
     // Проверка Цели обращения -----------------------------------------------------------------
-    //
-    if($P_expertise_purpose !== ''){
-        
-        $expertisePurposeValidateResult = $formHandler->validateSingleMisc($P_expertise_purpose, 'misc_expertisePurposeTable');
-        
-        if($expertisePurposeValidateResult['error']){
-            
-            switch($expertisePurposeValidateResult['error_code']){
-                case 1:
-                    exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение Цели обращения']));
-                case 2:
-                    exit(json_encode(['result' => 5, 'error_message' => 'Запрашиваемый справочник Цели обращения не существует']));
-            }
-        }
-        
-        // int'овое значение из формы
-        $form_expertisePurposeID = $expertisePurposeValidateResult['int_formValue'];
-        
-        define('expertise_purpose_exist', true);
-    }else{
-        
-        define('expertise_purpose_exist', false);
+    try{
+        ($ExpertisePurpose = new SingleMiscValidator($P_expertise_purpose, 'misc_expertisePurposeTable'))->addToUpdate('id_expertise_purpose');
+    }catch(Exception $e){
+        exit(json_encode(['result' => $e->getCode(), 'error_message' => $e->getMessage()]));
     }
     
     
@@ -204,56 +188,21 @@ try{
     }
     
     
-    // Проверка Вида объекта -------------------------------------------------------------------
-    //
-    if($P_type_of_object !== ''){
-        
-        $typeOfObjectValidateResult = $formHandler->validateSingleMisc($P_type_of_object, 'misc_typeOfObjectTable');
-        
-        if($typeOfObjectValidateResult['error']){
-            
-            switch($typeOfObjectValidateResult['error_code']){
-                case 1: // Передано некорректное значение справочника
-                    exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение Вида объекта']));
-                case 2: // Запрашиваемый справочник не существует
-                    exit(json_encode(['result' => 5, 'error_message' => 'Запрашиваемый справочник Вида объекта не существует']));
-            }
-        }
-        
-        // int'овое значение из формы
-        $form_typeOfObjectID = $typeOfObjectValidateResult['int_formValue'];
-        
-        define('type_of_object_exist', true);
-    }else{
-        
-        define('type_of_object_exist', false);
-    }
+
     
-    
-    // Проверка Функционального назначения -----------------------------------------------------
-    //
-    if($P_functional_purpose !== ''){
+    try{
+        // Проверка Вида объекта -------------------------------------------------------------------
+        //
+        ($TypeOfObject = new SingleMiscValidator($P_type_of_object, 'misc_typeOfObjectTable'))->addToUpdate('id_type_of_object');
+        //
+        // Проверка Функционального назначения -----------------------------------------------------
+        ($FunctionalPurpose = new SingleMiscValidator($P_functional_purpose, 'misc_functionalPurposeTable'))->addToUpdate('id_functional_purpose');
         
-        $functionalPurposeValidateResult = $formHandler->validateSingleMisc($P_functional_purpose, 'misc_functionalPurposeTable');
-        
-        if($functionalPurposeValidateResult['error']){
-            
-            switch($functionalPurposeValidateResult['error_code']){
-                case 1: // Передано некорректное значение справочника
-                    exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение Функционального назначения']));
-                case 2: // Запрашиваемый справочник не существует
-                    exit(json_encode(['result' => 5, 'error_message' => 'Запрашиваемый справочник Функционального назначения не существует']));
-            }
-        }
-        
-        // int'овое значение из формы
-        $form_functionalPurposeID = $functionalPurposeValidateResult['int_formValue'];
-        
-        define('functional_purpose_exist', true);
-    }else{
-        
-        define('functional_purpose_exist', false);
+    }catch(Exception $e){
+        exit(json_encode(['result' => $e->getCode(), 'error_message' => $e->getMessage()]));
     }
+  
+    
     
     
     // Проверка Функциональное назначение. Подотрасль ------------------------------------------
@@ -597,18 +546,6 @@ try{
     $formHandler->addValueToUpdate($P_object_name, 'object_name', $dataToUpdate);
     
     
-    // Вид объекта (справочник, нельзя сбросить) -----------------------------------------------
-    if(type_of_object_exist && $form_typeOfObjectID !== $applicationAssoc['id_type_of_object']){
-        $dataToUpdate['id_type_of_object'] = $form_typeOfObjectID;
-    }
-    
-    
-    // Функциональное назначение (справочник, нельзя сбросить) ----------------------------------
-    if(functional_purpose_exist && $form_functionalPurposeID !== $applicationAssoc['id_functional_purpose']){
-        $dataToUpdate['id_functional_purpose'] = $form_functionalPurposeID;
-    }
-    
-    
     // Функциональное назначение. Подотрасль (справочник, можно сбросить) -----------------------
     $tmpFormValue = functional_purpose_subsector_exist ? $form_functionalPurposeSubsectorID : '';
     $formHandler->addValueToUpdate($tmpFormValue, 'id_functional_purpose_subsector', $dataToUpdate);
@@ -626,21 +563,13 @@ try{
     $formHandler->addValueToUpdate(strtotime($P_date_planning_documentation_approval), 'date_planning_documentation_approval', $dataToUpdate);
     
     
-    // Номер ГПЗУ (текстовое поле) -------------------------------------------------------------
-    $formHandler->addValueToUpdate($P_number_GPZU, 'number_GPZU', $dataToUpdate);
-    
-    
-    // Дата ГПЗУ (текстовое поле, календарь) ---------------------------------------------------
-    $formHandler->addValueToUpdate(strtotime($P_date_GPZU), 'date_GPZU', $dataToUpdate);
-    
+    DataToUpdate::add($P_number_GPZU, 'number_GPZU');           //Номер ГПЗУ (текстовое поле)
+    DataToUpdate::add(strtotime($P_date_GPZU), 'number_GPZU');  // Дата ГПЗУ (текстовое поле, календарь)
+    DataToUpdate::add($P_cadastral_number, 'cadastral_number'); // Кадастровый номер земельного участка (текстовое поле)
     
     // Вид работ (справочник, можно сбросить)
     $tmpFormValue = type_of_work_exist ? $form_typeOfWorkID : '';
     $formHandler->addValueToUpdate($tmpFormValue, 'id_type_of_work', $dataToUpdate);
-    
-    
-    // Кадастровый номер земельного участка (текстовое поле) -----------------------------------
-    $formHandler->addValueToUpdate($P_cadastral_number, 'cadastral_number', $dataToUpdate);
     
     
     // Тип объекта культурного наследия (справочник, можно сбросить) ---------------------------

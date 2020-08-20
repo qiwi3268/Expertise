@@ -50,6 +50,7 @@ class Sign_Handler {
       this.actions = mQS(this.modal, '.sign-modal__actions', 16);
 
       this.handleOverlay();
+
       this.handleCreateSignButton();
       this.handleUploadSignButton();
       this.handleDeleteSignButton();
@@ -111,8 +112,7 @@ class Sign_Handler {
             this.is_plugin_initialized = true;
          })
          .catch(exc => {
-            console.log('Ошибка инициализации плагина и заполнения списка сертификатов:');
-            console.log(exc);
+            console.log('Ошибка инициализации плагина и заполнения списка сертификатов:\n' + exc);
             this.cancelPluginInitialization();
          });
    }
@@ -177,8 +177,6 @@ class Sign_Handler {
       this.cert_info.dataset.inactive = 'false';
    }
 
-
-
    handleUploadSignButton() {
       this.upload_sign_btn = document.getElementById('sign_upload');
       this.upload_sign_btn.addEventListener('click', () => {
@@ -217,7 +215,6 @@ class Sign_Handler {
          .then(sign_check_response => {
 
             fs_name_sign = sign_check_response.fs_name;
-
             return externalSignatureVerify(
                fs_name_data,
                fs_name_sign,
@@ -337,8 +334,6 @@ class Sign_Handler {
          this.removeSign();
 
       });
-
-
    }
 
    removeSign() {
@@ -348,6 +343,8 @@ class Sign_Handler {
          this.mapping_level_1,
          this.mapping_level_2
       );
+
+
 
       this.file_element.removeAttribute('data-id_sign');
       this.file_element.removeAttribute('data-validate_results');
@@ -360,6 +357,10 @@ class Sign_Handler {
       this.delete_sign_btn.dataset.inactive = 'true';
       this.create_sign_btn.dataset.inactive = 'false';
       this.upload_sign_btn.dataset.inactive = 'false';
+   }
+
+   static clearFileSign(file) {
+
    }
 
    handleCancelButton() {
