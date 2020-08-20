@@ -13,7 +13,6 @@ class Sign_Handler {
 
    plugin_info;
    validate_info;
-   cert_select;
    certs;
 
    create_sign_btn;
@@ -29,9 +28,6 @@ class Sign_Handler {
    id_file;
    id_sign;
 
-   fs_name_data;
-   fs_name_sign;
-   file_name;
    mapping_level_1;
    mapping_level_2;
 
@@ -44,12 +40,11 @@ class Sign_Handler {
       return Sign_Handler.instance;
    }
 
-
-
    constructor() {
 
       this.modal = mQS(document, '.sign-modal', 12);
-      this.plugin_info = mQS(this.modal, '.sign-modal__cert-info', 13);
+      this.plugin_info = mQS(this.modal, '.sign-modal__header', 13);
+      this.cert_info = mQS(this.modal, '.sign-modal__cert-info', 17);
       this.validate_info = mQS(this.modal, '.sign-modal__validate', 14);
       this.certs = mQS(this.modal, '.sign-modal__certs', 15);
       this.actions = mQS(this.modal, '.sign-modal__actions', 16);
@@ -80,7 +75,6 @@ class Sign_Handler {
    }
 
    closeInfoBlocks() {
-      console.log('qwe');
       this.certs.dataset.inactive = 'true';
       this.plugin_info.dataset.inactive = 'true';
       this.actions.dataset.inactive = 'true';
@@ -93,6 +87,8 @@ class Sign_Handler {
 
          if (!this.is_plugin_initialized && BrowserHelper.checkBrowser()) {
             this.initializePlugin();
+         } else {
+            this.showCreateSignElements();
          }
 
       });
@@ -103,30 +99,22 @@ class Sign_Handler {
 
       GeCades.getCadesPlugin()
          .then(() => {
-
             return GeCades.getPluginData();
-
          })
          .then(plugin_data => {
-
             this.putPluginData(plugin_data);
             return GeCades.getCerts();
-
          })
-
          .then(certs => {
             this.handleCertListSelect(certs);
             this.showCreateSignElements();
             this.is_plugin_initialized = true;
-
          })
          .catch(exc => {
-            console.log('Ошибка инициализации плагина и зполнения списка сертификатов:');
+            console.log('Ошибка инициализации плагина и заполнения списка сертификатов:');
             console.log(exc);
             this.cancelPluginInitialization();
          });
-
-
    }
 
    putPluginData(plugin_data) {
@@ -186,6 +174,7 @@ class Sign_Handler {
       document.getElementById('valid_to_date').innerHTML = GeCades.formattedDateTo_ddmmyyy_hhmmss(cert_info.valid_to_date);
       document.getElementById('cert_message').innerHTML = cert_info.cert_message;
       document.getElementById('cert_message').style.color = cert_info.cert_status ? '#6cb37e' : '#db5151';
+      this.cert_info.dataset.inactive = 'false';
    }
 
 
@@ -209,6 +198,8 @@ class Sign_Handler {
    }
 
    sendSigns(sign_files) {
+      let fs_name_data;
+      let fs_name_sign;
 
       uploadFiles(sign_files, this.mapping_level_1, this.mapping_level_2)
          .then(uploaded_signs => {
@@ -219,16 +210,17 @@ class Sign_Handler {
          })
          .then(file_check_response => {
 
-            this.fs_name_data = file_check_response.fs_name;
+            fs_name_data = file_check_response.fs_name;
             return checkFile(this.id_sign, this.mapping_level_1, this.mapping_level_2);
 
          })
          .then(sign_check_response => {
-            this.fs_name_sign = sign_check_response.fs_name;
+
+            fs_name_sign = sign_check_response.fs_name;
 
             return externalSignatureVerify(
-               this.fs_name_data,
-               this.fs_name_sign,
+               fs_name_data,
+               fs_name_sign,
                this.mapping_level_1,
                this.mapping_level_2
             );
@@ -236,11 +228,17 @@ class Sign_Handler {
          })
          .then(validate_results => {
 
-            this.handleValidateResults(validate_results)
+            this.handleValidateResults(validate_results);
+
+            this.certs.dataset.inactive = 'true';
+            this.actions.dataset.inactive = 'true';
+            this.create_sign_btn.dataset.inactive = 'true';
+            this.upload_sign_btn.dataset.inactive = 'true';
+            this.delete_sign_btn.dataset.inactive = 'false';
 
          })
          .catch(exc => {
-            console.error('Ошибка при загрузке файла открепленной подписи: ' + exc);
+            console.error('Ошибка при загрузке файла открепленной подписи:\n' + exc);
          });
 
 
@@ -252,18 +250,31 @@ class Sign_Handler {
       this.file_element.dataset.id_sign = this.id_sign;
       this.file_element.dataset.validate_results = results_json;
 
-      if (validate_results.signature_verify.result && validate_results.certificate_verify.result) {
-         this.file_element.dataset.sign_state = 'valid';
-      } else if (validate_results.signature_verify.result) {
-         this.file_element.dataset.sign_state = 'warning';
-      }
+      Sign_Handler.validateFileField(this.file_element);
 
       FileNeeds.putSignToSave(this.id_sign, this.mapping_level_1, this.mapping_level_2);
 
-      this.certs.dataset.inactive = 'true';
-      this.delete_sign_btn.dataset.inactive = 'false';
-
       this.fillSignsInfo(results_json);
+   }
+
+   static validateFileField(file) {
+      let results_json = file.dataset.validate_results;
+
+      if (results_json) {
+         let results = JSON.parse(results_json);
+
+         for (let result of results) {
+            if (result.signature_verify.result && result.certificate_verify.result) {
+               file.dataset.sign_state = 'valid';
+            } else if (result.signature_verify.result) {
+               file.dataset.sign_state = 'warning';
+            } else {
+               break;
+            }
+         }
+
+      }
+
    }
 
    fillSignsInfo(validate_results_json) {
@@ -331,7 +342,7 @@ class Sign_Handler {
    }
 
    removeSign() {
-      //TODO отправка на api
+
       FileNeeds.putSignToDelete(
          this.id_sign,
          this.mapping_level_1,
@@ -340,6 +351,7 @@ class Sign_Handler {
 
       this.file_element.removeAttribute('data-id_sign');
       this.file_element.removeAttribute('data-validate_results');
+      this.file_element.removeAttribute('data-sign_state');
       this.external_sign_input.value = '';
 
       this.validate_info.dataset.inactive = 'true';
@@ -373,27 +385,38 @@ class Sign_Handler {
 
    createSign() {
       let selected_algorithm;
+      let file_name;
+      let fs_name_data;
 
       checkFile(this.id_file, this.mapping_level_1, this.mapping_level_2)
          .then(file_check_response => {
-            this.fs_name_data = file_check_response.fs_name;
-            this.file_name = file_check_response.file_name;
 
+            fs_name_data = file_check_response.fs_name;
+            file_name = file_check_response.file_name;
             return GeCades.getSelectedCertificateAlgorithm();
+
          })
          .then(algorithm => {
+
             selected_algorithm = algorithm;
-            return getFileHash(algorithm, this.fs_name_data);
+            return getFileHash(algorithm, fs_name_data);
+
          })
          .then(file_hash => {
+
             return GeCades.SignHash_Async(selected_algorithm, file_hash);
 
          })
          .then(sign_hash => {
+
             let sign_blob = new Blob([sign_hash], {type: 'text/plain'});
-            let file = new File([sign_blob], `${this.file_name}.sig`);
+            let file = new File([sign_blob], `${file_name}.sig`);
 
             this.sendSigns([file]);
+
+         })
+         .catch(exc => {
+            console.error('Произошла ошибка при создании открепленной подписи:\n' + exc);
          });
 
    }
@@ -427,6 +450,7 @@ class Sign_Handler {
       let parent_field = file.closest('[data-mapping_level_1]');
       this.file_element = file;
       this.id_file = file.dataset.id;
+      this.id_sign = file.dataset.id_sign;
       this.mapping_level_1 = parent_field.dataset.mapping_level_1;
       this.mapping_level_2 = parent_field.dataset.mapping_level_2;
    }

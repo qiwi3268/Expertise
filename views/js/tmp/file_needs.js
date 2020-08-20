@@ -71,8 +71,6 @@ class FileNeeds {
    static putSignToSave(id_sign, mapping_level_1, mapping_level_2) {
       let file_data = FileNeeds.getFileData(id_sign, mapping_level_1, mapping_level_2);
       FileNeeds.sign_needs.to_save.set(id_sign, file_data);
-
-      console.log(FileNeeds.sign_needs);
    }
 
    // Предназначен для получения объект с данными файла

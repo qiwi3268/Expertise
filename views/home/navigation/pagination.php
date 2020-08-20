@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php $variablesTV = VariableTransfer::getInstance(); ?>
 
 <?php if ($variablesTV->getExistenceFlag('pagination_PreviousPage')): ?>
@@ -10,6 +10,6 @@
 <?php if ($variablesTV->getExistenceFlag('pagination_NextPage')): ?>
     <a href="<?= $variablesTV->getValue('pagination_NextPageRef') ?>">Вперед</a>
 <?php endif; ?>
-=======
+
 <?php
->>>>>>> 5b015d9495abdca6a19a460370085b00167fbfbb
+

@@ -3,10 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Exceptions/CSPValidatorException.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Exceptions/CSPValidatorException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/initialization_misc_application_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/initialization_misc_application_form.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cron/fileCleaner.php" beforeDir="false" afterPath="$PROJECT_DIR$/cron/fileCleaner.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cron/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/cron/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/navigation/pagination.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/navigation/pagination.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/PerfectCades.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/PerfectCades.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/Sign_Handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/Sign_Handler.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/file_download.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_download.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/file_needs.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_needs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -375,14 +380,20 @@
       <option name="project" value="LOCAL" />
       <updated>1597840206675</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="20.08.2020">
+      <created>1597902381549</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1597902381561</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="29.07.2020" />
     <MESSAGE value="29.07.2020_1" />
     <MESSAGE value="29.07.2020_2" />
     <MESSAGE value="30.07.2020" />
@@ -407,13 +418,14 @@
     <MESSAGE value="19.08.2020" />
     <MESSAGE value="19.08.2020_1" />
     <MESSAGE value="19.08.2020_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="19.08.2020_2" />
+    <MESSAGE value="20.08.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="20.08.2020" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1597840204777">
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1597902376696">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1597840204777" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1597902376696" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597516365472" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="248" y="121" key="MergeDialog" timestamp="1596186835322">
@@ -432,10 +444,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597499951448" />
-    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1597830745066">
+    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1597921366421">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1597830745066" />
+    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1597921366421" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597502668739" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
     <state x="1150" y="591" key="publish.login" timestamp="1597575229830">

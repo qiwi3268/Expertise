@@ -85,12 +85,14 @@ class GeCades{
 
                     if (!o_store) {
                         reject('Ошибка при создании хранилища сертификатов');
+                        return;
                     }
 
                     yield o_store.Open();
 
                 } catch (exc) {
                     reject('Хранилище сертификатов недоступно ' + cadesplugin.getLastError(exc));
+                    return;
                 }
 
 
