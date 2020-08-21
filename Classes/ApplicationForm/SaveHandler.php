@@ -49,7 +49,8 @@ class SaveHandler{
 
             // Явное преобразование к типу int
             $int_element = (int)$element;
-
+            
+            //todo переделать на  if(($int_value = filter_var($form_value, FILTER_VALIDATE_INT)) === false){
             // При преобразовнии обрезались символы
             // Достаточно гибкого сравнения, т.к. сравниваются строки
             if((string)$int_element != $element){
@@ -65,6 +66,8 @@ class SaveHandler{
 
         // Проверка массива на одинаковые значения
         if($checkSame){
+            
+            //https://qna.habr.com/q/655203
 
             foreach($array as $element){
 

@@ -344,11 +344,6 @@ class Sign_Handler {
          this.mapping_level_2
       );
 
-
-
-      this.file_element.removeAttribute('data-id_sign');
-      this.file_element.removeAttribute('data-validate_results');
-      this.file_element.removeAttribute('data-sign_state');
       this.external_sign_input.value = '';
 
       this.validate_info.dataset.inactive = 'true';
@@ -359,8 +354,10 @@ class Sign_Handler {
       this.upload_sign_btn.dataset.inactive = 'false';
    }
 
-   static clearFileSign(file) {
-
+   clearFileSign() {
+      this.file_element.removeAttribute('data-id_sign');
+      this.file_element.removeAttribute('data-validate_results');
+      this.file_element.removeAttribute('data-sign_state');
    }
 
    handleCancelButton() {

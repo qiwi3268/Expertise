@@ -6,22 +6,24 @@
 class SingleMiscValidator{
 
     
-    private bool $exist;     // Флаг наличия введенных данных
-    private ?int $int_value; // int'овое значение из формы
-    private ?string $class;  // Название класса справочника
+    //private bool $exist;      // Флаг наличия введенных данных
+    private string $form_value; // int'овое значение из формы
+    private string $class;      // Название класса справочника
     
-    private const TYPE = ['single'    => ['interface' => 'Interface_singleMiscTableValidate',
-                                          'method'    => 'checkExistById'],
-                          'dependent' => ['interface' => 'Interface_dependentMiscTableValidate',
-                                          'method'    => 'checkExistCORRByIds']
-    ];
-
-    private const INTERFACE = 'Interface_singleMiscTableValidate';
+    private const single_interface = 'Interface_singleMiscTableValidate';
+    private const single_method = 'checkExistById';
+    
+    private const dependent_interface = 'Interface_dependentMiscTableValidate';
+    private const dependent_method = 'checkExistCORRByIds';
+    
     
     
     // form_value string : значение из формы
     // class      string : название класса справочника
-    public function __construct(string $form_value, string $class, bool $isSingle = true, ?int $int_valueMain = null){
+    public function __construct(string $form_value, string $class){
+        
+        $this->form_value = $form_value;
+        $this->class = $class;
         
         if($form_value !== ''){
             
@@ -66,8 +68,16 @@ class SingleMiscValidator{
         }
     }
     
+    public function singleValidate(){
+    
+    }
+    public function dependentValidate(int $int_valueMain){
+    
+    }
+    
+    
     // columnName   string : имя столбца в БД, оно же имя ключа в ассоциативном массиве
-    //
+    //todo убрать
     public function addToUpdate(string $columnName):void {
         
         $val = $this->exist ? $this->int_value : '';
