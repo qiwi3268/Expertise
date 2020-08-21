@@ -1,8 +1,7 @@
-let files;
+// let files;
 
 document.addEventListener('DOMContentLoaded', () => {
-   files = new Map();
-
+   // files = new Map();
 
    let form = document.getElementById('file_uploader');
    let file_input = form.querySelector('[name="download_files[]"]');
@@ -320,16 +319,20 @@ document.addEventListener('DOMContentLoaded', () => {
    }
 
    function putFile(file, file_item) {
-      let ge_file = new GeFile(file_item);
 
-      checkFile(ge_file.id, ge_file.mapping_1, ge_file.mapping_2)
+      checkFile(file_item.dataset.id, mapping_input_1.value, mapping_input_2.value)
          .then(check_response => {
-            return internalSignatureVerify(check_response.fs_name, ge_file.mapping_1, ge_file.mapping_2);
+            return internalSignatureVerify(check_response.fs_name, mapping_input_1.value, mapping_input_2.value);
          })
          .then(validate_results => {
 
             if (validate_results) {
-               ge_file.createSign(validate_results);
+
+               file_item.dataset.validate_results = JSON.stringify(validate_results);
+               file_item.dataset.is_internal = 'true';
+
+               Sign_Handler.validateFileField(file_item);
+
             }
 
          })

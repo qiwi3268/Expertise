@@ -26,14 +26,11 @@ class Sign_Handler {
    external_sign_input;
 
 
-   // file_data;
-
-   // file_element;
-   // id_file;
-   // id_sign;
-
-   // mapping_level_1;
-   // mapping_level_2;
+   file_element;
+   id_file;
+   id_sign;
+   mapping_1;
+   mapping_2;
 
    static getInstance() {
 
@@ -44,16 +41,34 @@ class Sign_Handler {
       return Sign_Handler.instance;
    }
 
+   static validateFileField(file) {
+      let results_json = file.dataset.validate_results;
+
+      if (results_json) {
+
+         let results = JSON.parse(results_json);
+
+         for (let result of results) {
+            if (result.signature_verify.result && result.certificate_verify.result) {
+               file.dataset.sign_state = 'valid';
+            } else if (result.signature_verify.result) {
+               file.dataset.sign_state = 'warning';
+               break;
+            } else {
+               break;
+            }
+         }
+      }
+   }
 
    static clearFileSign(file) {
       file.element.removeAttribute('data-id_sign');
       file.element.removeAttribute('data-validate_results');
       file.element.removeAttribute('data-sign_state');
 
-      file.removeSign();
 
       FileNeeds.putSignToDelete(
-         file.sign.id,
+         file.dataset.id_sign,
          file.mapping_1,
          file.mapping_2
       );
@@ -334,7 +349,7 @@ class Sign_Handler {
       this.delete_sign_btn = document.getElementById('signature_delete');
       this.delete_sign_btn.addEventListener('click', () => {
 
-         //this.file_data.id_sign = this.file_data.element.dataset.id_sign;
+         this.file_data.id_sign = this.file_data.element.dataset.id_sign;
          this.removeSign();
 
       });
@@ -425,24 +440,32 @@ class Sign_Handler {
       this.modal.classList.add('active');
       this.overlay.classList.add('active');
 
-      this.file = new GeFile(file_element);
       this.addFileElement(file_element);
 
-      if (!this.file.sign) {
+      if (!file_element.dataset.validate_results) {
 
          this.create_sign_btn.dataset.inactive = 'false';
          this.upload_sign_btn.dataset.inactive = 'false';
 
       } else {
 
-         this.fillSignsInfo(this.file.sign.validate_results);
+         this.fillSignsInfo(file_element.dataset.validate_results);
 
-         if (!this.file.sign.is_internal) {
+         if (!file_element.dataset.is_internal) {
             this.delete_sign_btn.dataset.inactive = 'false';
          }
 
       }
 
+   }
+
+   putFileData(file_element) {
+      let parent_field = mClosest(file_element, '[data-mapping_level_1]', 20);
+
+      this.file_element = file_element;
+      this.id_file = file_element.dataset.id;
+      this.mapping_1 = parent_field.dataset.mapping_level_1;
+      this.mapping_2 = parent_field.dataset.mapping_level_2;
    }
 
    addFileElement(file_element) {
