@@ -1,7 +1,4 @@
-// let files;
-
 document.addEventListener('DOMContentLoaded', () => {
-   // files = new Map();
 
    let form = document.getElementById('file_uploader');
    let file_input = form.querySelector('[name="download_files[]"]');
@@ -331,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
                file_item.dataset.validate_results = JSON.stringify(validate_results);
                file_item.dataset.is_internal = 'true';
 
-               Sign_Handler.validateFileField(file_item);
+               SignHandler.validateFileField(file_item);
 
             }
 

@@ -21,18 +21,12 @@ class FileChecker {
    static IsReadyToUpload(files) {
       for (let file of files) {
          if (!FileChecker.checkExtension(file.name) || !FileChecker.checkSize(file.size)) {
-            console.log(FileChecker.checkExtension(file.name));
-            console.log(FileChecker.checkSize(file.size));
             return false;
          }
       }
 
       return true;
    }
-
-  /* static isInternalSign(file) {
-      return FileChecker.checkExtension(file.name, '.sig');
-   }*/
 
 
 }
