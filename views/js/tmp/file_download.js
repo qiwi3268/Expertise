@@ -1,4 +1,9 @@
+let files;
+
 document.addEventListener('DOMContentLoaded', () => {
+   files = new Map();
+
+
    let form = document.getElementById('file_uploader');
    let file_input = form.querySelector('[name="download_files[]"]');
    let mapping_input_1 = form.querySelector('[name="mapping_level_1"]');

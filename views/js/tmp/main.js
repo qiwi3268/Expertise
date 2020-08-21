@@ -299,8 +299,71 @@ function getInternalVerifyFormData(fs_name, mapping_1, mapping_2) {
    return form_data;
 }
 
+function getFileData(file) {
+   let data = {};
+   let parent_field = mClosest(file, '[data-mapping_level_1]', 20);
 
+   data.element = file;
+   data.id = file.dataset.id;
+   data.id_sign = file.dataset.id_sign ? file.dataset.id_sign : '';
+   data.mapping_1 = parent_field.dataset.mapping_level_1;
+   data.mapping_2 = parent_field.dataset.mapping_level_2;
 
+   return data;
+}
+
+function getFileById(file_element) {
+   let file;
+   let id = file_element.dataset.id;
+
+   if (files.has(id)) {
+      file = files.get(id);
+   } else {
+      file = new GeFile(file_element);
+   }
+
+   return file;
+}
+
+class GeFile {
+   element;
+   id;
+   // id_sign;
+   mapping_1;
+   mapping_2;
+
+   sign;
+
+   constructor(file_element) {
+      let parent_field = mClosest(file_element, '[data-mapping_level_1]', 20);
+
+      this.element = file_element;
+      this.id = file_element.dataset.id;
+      this.mapping_1 = parent_field.dataset.mapping_level_1;
+      this.mapping_2 = parent_field.dataset.mapping_level_2;
+
+   }
+
+}
+
+class GeSign {
+   id;
+   is_internal;
+   validate_results;
+
+   constructor(validate_results, id = null) {
+
+      this.validate_results = JSON.parse(validate_results);
+
+      if (id) {
+         this.id = id;
+         this.is_internal = false;
+      } else {
+         this.is_internal = true;
+      }
+
+   }
+}
 
 
 
