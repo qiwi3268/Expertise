@@ -310,6 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       for (let file of files) {
          let file_item = createFileElement(file, files_body);
+
          await putFile(file, file_item);
          changeParentCardMaxHeight(parent_field);
 
@@ -319,6 +320,9 @@ document.addEventListener('DOMContentLoaded', () => {
    }
 
    function putFile(file, file_item) {
+      let ge_file = new GeFile(file_item);
+
+      console.log(ge_file);
 
       checkFile(file.id, mapping_input_1.value, mapping_input_2.value)
          .then(check_response => {
@@ -328,6 +332,8 @@ document.addEventListener('DOMContentLoaded', () => {
          .then(validate_results => {
 
             if (validate_results) {
+
+               console.log(validate_results);
 
                file_item.dataset.validate_results = JSON.stringify(validate_results);
                file_item.dataset.is_internal_sign = 'true';
