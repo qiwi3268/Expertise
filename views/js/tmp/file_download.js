@@ -322,24 +322,14 @@ document.addEventListener('DOMContentLoaded', () => {
    function putFile(file, file_item) {
       let ge_file = new GeFile(file_item);
 
-      console.log(ge_file);
-
-      checkFile(file.id, mapping_input_1.value, mapping_input_2.value)
+      checkFile(ge_file.id, ge_file.mapping_1, ge_file.mapping_2)
          .then(check_response => {
-
-            return internalSignatureVerify(check_response.fs_name, mapping_input_1.value, mapping_input_2.value);
+            return internalSignatureVerify(check_response.fs_name, ge_file.mapping_1, ge_file.mapping_2);
          })
          .then(validate_results => {
 
             if (validate_results) {
-
-               console.log(validate_results);
-
-               file_item.dataset.validate_results = JSON.stringify(validate_results);
-               file_item.dataset.is_internal_sign = 'true';
-
-               Sign_Handler.validateFileField(file_item);
-
+               ge_file.createSign(validate_results);
             }
 
          })

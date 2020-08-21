@@ -333,6 +333,9 @@ class GeFile {
    mapping_2;
 
    sign;
+   validate_results;
+   id_sign;
+   is_internal;
 
    constructor(file_element) {
       let parent_field = mClosest(file_element, '[data-mapping_level_1]', 20);
@@ -342,6 +345,32 @@ class GeFile {
       this.mapping_1 = parent_field.dataset.mapping_level_1;
       this.mapping_2 = parent_field.dataset.mapping_level_2;
 
+      files.set(this.id, this);
+
+
+   }
+
+   createSign(validate_results, id = null) {
+      this.sign = new GeSign(validate_results, id);
+      this.setFileState();
+   }
+
+   removeSign() {
+      FileNeeds.putSignToDelete(this.sign.id, this.mapping_1, this.mapping_2);
+      this.sign = null;
+   }
+
+   setFileState() {
+      for (let result of this.sign.validate_results) {
+         if (result.signature_verify.result && result.certificate_verify.result) {
+            this.element.dataset.sign_state = 'valid';
+         } else if (result.signature_verify.result) {
+            this.element.dataset.sign_state = 'warning';
+            break;
+         } else {
+            break;
+         }
+      }
    }
 
 }
@@ -353,7 +382,7 @@ class GeSign {
 
    constructor(validate_results, id = null) {
 
-      this.validate_results = JSON.parse(validate_results);
+      this.validate_results = validate_results;
 
       if (id) {
          this.id = id;

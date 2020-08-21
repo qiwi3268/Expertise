@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/FileChecker.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/FileChecker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/Sign_Handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/Sign_Handler.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/file_download.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_download.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -412,14 +416,20 @@
       <option name="project" value="LOCAL" />
       <updated>1597988889028</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="21.08.2020_2">
+      <created>1597990904370</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1597990904370</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="30.07.2020_2" />
     <MESSAGE value="30.07.2020_3" />
     <MESSAGE value="30.07.2020_4" />
     <MESSAGE value="30.07.2020_5" />
@@ -444,13 +454,14 @@
     <MESSAGE value="20.08.2020_2" />
     <MESSAGE value="21.08.2020" />
     <MESSAGE value="21.08.2020_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="21.08.2020_1" />
+    <MESSAGE value="21.08.2020_2" />
+    <option name="LAST_COMMIT_MESSAGE" value="21.08.2020_2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1597988887488">
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1597990902884">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1597988887488" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1597990902884" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597516365472" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="248" y="121" key="MergeDialog" timestamp="1596186835322">
@@ -469,10 +480,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597499951448" />
-    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1597988192762">
+    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1597992865997">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1597988192762" />
+    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1597992865997" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597502668739" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
     <state x="1150" y="591" key="publish.login" timestamp="1597575229830">
@@ -480,10 +491,10 @@
     </state>
     <state x="1150" y="591" key="publish.login/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597497368371" />
     <state x="1150" y="591" key="publish.login/0.0.2560.1400@0.0.2560.1400" timestamp="1597575229830" />
-    <state x="702" y="245" key="run.anything.popup" timestamp="1597729690033">
+    <state x="702" y="245" key="run.anything.popup" timestamp="1597991930703">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="702" y="245" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1597729690033" />
+    <state x="702" y="245" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1597991930703" />
     <state x="936" y="330" key="run.anything.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596602547364" />
     <state x="943" y="315" width="670" height="58" key="search.everywhere.popup" timestamp="1595572409795">
       <screen x="0" y="0" width="2560" height="1400" />

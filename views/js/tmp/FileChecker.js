@@ -7,17 +7,10 @@ class FileChecker {
    }
 
    static checkExtension(file_name, extension) {
-      let is_valid = false;
+      let is_valid;
 
       if (!extension) {
-
-         for (let ext of FileChecker.extensions) {
-            if (file_name.includes(ext)) {
-               is_valid = true;
-               break;
-            }
-         }
-
+         is_valid = FileChecker.extensions.find(exc => file_name.includes(exc));
       } else {
          is_valid = file_name.includes(extension);
       }

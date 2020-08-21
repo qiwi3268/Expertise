@@ -26,14 +26,14 @@ class Sign_Handler {
    external_sign_input;
 
 
-   file_data;
+   // file_data;
 
-   file_element;
-   id_file;
-   id_sign;
+   // file_element;
+   // id_file;
+   // id_sign;
 
-   mapping_level_1;
-   mapping_level_2;
+   // mapping_level_1;
+   // mapping_level_2;
 
    static getInstance() {
 
@@ -44,34 +44,18 @@ class Sign_Handler {
       return Sign_Handler.instance;
    }
 
-   static validateFileField(file) {
-      let results_json = file.dataset.validate_results;
 
-      if (results_json) {
-         let results = JSON.parse(results_json);
+   static clearFileSign(file) {
+      file.element.removeAttribute('data-id_sign');
+      file.element.removeAttribute('data-validate_results');
+      file.element.removeAttribute('data-sign_state');
 
-         for (let result of results) {
-            if (result.signature_verify.result && result.certificate_verify.result) {
-               file.dataset.sign_state = 'valid';
-            } else if (result.signature_verify.result) {
-               file.dataset.sign_state = 'warning';
-               break;
-            } else {
-               break;
-            }
-         }
-      }
-   }
-
-   static clearFileSign(file_data) {
-      file_data.element.removeAttribute('data-id_sign');
-      file_data.element.removeAttribute('data-validate_results');
-      file_data.element.removeAttribute('data-sign_state');
+      file.removeSign();
 
       FileNeeds.putSignToDelete(
-         file_data.id_sign,
-         file_data.mapping_1,
-         file_data.mapping_2
+         file.sign.id,
+         file.mapping_1,
+         file.mapping_2
       );
    }
 
@@ -235,18 +219,18 @@ class Sign_Handler {
       let fs_name_sign;
       let id_sign;
 
-      uploadFiles(sign_files, this.mapping_1, this.mapping_2)
+      uploadFiles(sign_files, this.file.mapping_1, this.file.mapping_2)
          .then(uploaded_signs => {
 
             id_sign = uploaded_signs[0].id;
-            this.file_data.id_sign = uploaded_signs[0].id;
-            return checkFile(this.file_data.id, this.mapping_1, this.mapping_2);
+
+            return checkFile(this.file.id, this.file.mapping_1, this.file.mapping_2);
 
          })
          .then(file_check_response => {
 
             fs_name_data = file_check_response.fs_name;
-            return checkFile(this.file_data.id_sign, this.mapping_1, this.mapping_2);
+            return checkFile(id_sign, this.file.mapping_1, this.file.mapping_2);
 
          })
          .then(sign_check_response => {
@@ -255,16 +239,18 @@ class Sign_Handler {
             return externalSignatureVerify(
                fs_name_data,
                fs_name_sign,
-               this.mapping_1,
-               this.mapping_2
+               this.file.mapping_1,
+               this.file.mapping_2
             );
 
          })
          .then(validate_results => {
 
+            this.file.createSign(validate_results, id_sign);
+            FileNeeds.putSignToSave(this.file.sign.id, this.file.mapping_1, this.file.mapping_2);
+            this.fillSignsInfo(validate_results);
 
-
-            this.handleValidateResults(validate_results);
+            //this.handleValidateResults(validate_results);
 
             this.certs.dataset.inactive = 'true';
             this.actions.dataset.inactive = 'true';
@@ -281,24 +267,23 @@ class Sign_Handler {
    }
 
    handleValidateResults(validate_results) {
-      let results_json = JSON.stringify(validate_results);
+      // let results_json = JSON.stringify(validate_results);
 
-      this.file_data.element.dataset.id_sign = this.file_data.id_sign;
-      this.file_data.element.dataset.validate_results = results_json;
+      // this.file_data.element.dataset.id_sign = this.file_data.id_sign;
+      // this.file_data.element.dataset.validate_results = results_json;
 
-      Sign_Handler.validateFileField(this.file_data.element);
+      // Sign_Handler.validateFileField(this.file_data.element);
 
-      FileNeeds.putSignToSave(this.file_data.id_sign, this.mapping_1, this.mapping_2);
+      // FileNeeds.putSignToSave(this.file_data.id_sign, this.mapping_1, this.mapping_2);
 
-      this.fillSignsInfo(results_json);
+      // this.fillSignsInfo(results_json);
    }
 
-   fillSignsInfo(validate_results_json) {
+   fillSignsInfo(validate_results) {
       this.validate_info.dataset.inactive = 'false';
       this.validate_info.innerHTML = '';
 
-      let results = JSON.parse(validate_results_json);
-      results.forEach(result => {
+      validate_results.forEach(result => {
          this.validate_info.appendChild(this.createSignInfo(result));
       });
    }
@@ -349,7 +334,7 @@ class Sign_Handler {
       this.delete_sign_btn = document.getElementById('signature_delete');
       this.delete_sign_btn.addEventListener('click', () => {
 
-         this.file_data.id_sign = this.file_data.element.dataset.id_sign;
+         //this.file_data.id_sign = this.file_data.element.dataset.id_sign;
          this.removeSign();
 
       });
@@ -363,7 +348,9 @@ class Sign_Handler {
          this.mapping_2
       );*/
 
-      SignHandler.clearFileSign(this.file_data);
+      this.file.removeSign();
+
+      //SignHandler.clearFileSign(this.file);
 
       this.external_sign_input.value = '';
 
@@ -439,39 +426,27 @@ class Sign_Handler {
       this.overlay.classList.add('active');
 
       this.file = new GeFile(file_element);
-      // this.putFileData(file);
       this.addFileElement(file_element);
 
-      if (!file.dataset.validate_results) {
+      if (!this.file.sign) {
 
          this.create_sign_btn.dataset.inactive = 'false';
          this.upload_sign_btn.dataset.inactive = 'false';
 
-      } else if (file.dataset.is_internal_sign !== 'true') {
-
-         this.delete_sign_btn.dataset.inactive = 'false';
-         this.fillSignsInfo(file.dataset.validate_results);
-
       } else {
 
-         this.fillSignsInfo(file.dataset.validate_results);
+         this.fillSignsInfo(this.file.sign.validate_results);
+
+         if (!this.file.sign.is_internal) {
+            this.delete_sign_btn.dataset.inactive = 'false';
+         }
 
       }
 
    }
 
-   putFileData(file) {
-      // let file_data = getFileData(file);
-      // this.file_data = getFileData(file);
-      // this.file_element = file_data.element;
-      // this.id_file = file_data.id;
-      // this.id_sign = file_data.id_sign;
-      // this.mapping_1 = file_data.mapping_1;
-      // this.mapping_2 = file_data.mapping_2;
-   }
-
-   addFileElement(file) {
-      let file_info = file.querySelector('.files__info');
+   addFileElement(file_element) {
+      let file_info = file_element.querySelector('.files__info');
       let sign_file = this.modal.querySelector('.sign-modal__file');
       sign_file.innerHTML = file_info.innerHTML;
    }
