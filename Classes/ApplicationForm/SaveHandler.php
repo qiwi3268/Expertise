@@ -49,7 +49,8 @@ class SaveHandler{
 
             // Явное преобразование к типу int
             $int_element = (int)$element;
-
+            
+            //todo переделать на  if(($int_value = filter_var($form_value, FILTER_VALIDATE_INT)) === false){
             // При преобразовнии обрезались символы
             // Достаточно гибкого сравнения, т.к. сравниваются строки
             if((string)$int_element != $element){
@@ -65,6 +66,8 @@ class SaveHandler{
 
         // Проверка массива на одинаковые значения
         if($checkSame){
+            
+            //https://qna.habr.com/q/655203
 
             foreach($array as $element){
 
@@ -208,9 +211,9 @@ class SaveHandler{
     // Предназначен для валидации зависимого справочника, который может выбирать только один элемент
     // валидация заключается в проверке существования зависимости главного и зависимого справочника
     // * Справочник должен реализовывать интерфейс Interface_dependentMiscTableValidate
+    // * Предполагается, что главный справочник уже прошел валидацию
     // Принимает параметры-----------------------------------
     // int_formValueMain     int : валидное значение из переданной формы (всегда строка)
-    // * Предполагается, что главный справочник уже прошел валидацию
     // formValueDependent string : значение зависимого справочника из переданной формы (всегда строка)
     // ClassName          string : название класса зависимого справочника
     // Возвращает параметры----------------------------------
@@ -243,7 +246,7 @@ class SaveHandler{
 
         $interfaces = class_implements($ClassName);
 
-        // Проверка на реализацию интерфейса Interface_singleMiscTableValidate в нужном классе
+        // Проверка на реализацию интерфейса Interface_dependentMiscTableValidate в нужном классе
         if(!$interfaces || !in_array('Interface_dependentMiscTableValidate', $interfaces, true)){
             throw new ApplicationFormHandlerException("Класс $ClassName не реализует интерфейс Interface_dependentMiscTableValidate");
         }

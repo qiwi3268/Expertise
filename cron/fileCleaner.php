@@ -1,19 +1,22 @@
 <?php
 
-$variablesTV = VariableTransfer::getInstance();
-$Logger = $variablesTV->getValue('Logger');
-$ErrorLogger = $variablesTV->getValue('ErrorLogger');
+// Крон предназначен для очистки системы от несохраненных файлов
 
-require_once _ROOT_.'/Classes/FilesTableMapping.php';
+$variablesTV = VariableTransfer::getInstance();
+
+$Logger = $variablesTV->getValue('Logger');
+$ErrorLogger =  $variablesTV->getValue('ErrorLogger');
 
 $Logger->write("НАЧИНАЮ работу");
+
+require_once _ROOT_.'/Classes/FilesTableMapping.php';
 
 foreach(_FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_2){
     
     foreach($mapping_level_2 as $mapping_level_2_code => $className){
         
         $Mapping = new FilesTableMapping($mapping_level_1_code, $mapping_level_2_code);
-    
+        
         if(!is_null($Mapping->getErrorCode())){
             $ErrorLogger->write("ОШИБКА в маппинг-таблице. Класс {$className}. {$Mapping->getErrorText()}");
             exit();
@@ -31,7 +34,7 @@ foreach(_FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_2){
         foreach($noNeedsAssoc as $file){
             
             $description = "Таблица класса: {$className}. Запись id: {$file['id']}. Название файла: {$file['file_name']}";
-
+            
             // Ставим метку, если она еще не стоит
             if(!$file['cron_deleted_flag']){
                 $className::setCronDeletedFlagById($file['id']);
@@ -51,7 +54,7 @@ foreach(_FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_2){
             $minimumSeconds = 60 * 60 * 23;
             
             if($now - $file['date_cron_deleted_flag'] > $minimumSeconds){
-    
+                
                 $applicationDir = _APPLICATIONS_FILES_."/{$file['id_application']}";
                 $pathToFile = "{$applicationDir}/{$file['hash']}";
                 
@@ -59,7 +62,7 @@ foreach(_FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_2){
                     $ErrorLogger->write("ОТСУТСТВУЕТ ФАЙЛ, который необходимо удалить по пути: {$pathToFile}. $description");
                     continue;
                 }
-    
+                
                 // Удаляем запись о файле
                 try{
                     $className::deleteById($file['id']);
@@ -73,7 +76,7 @@ foreach(_FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_2){
                     $ErrorLogger->write("НЕ ПОЛУЧИЛОСЬ УДАЛИТЬ ФАЙЛ. $description");
                     continue;
                 }
-    
+                
                 $Logger->write("Файл и его запись успешно удалены. $description");
             }
         }

@@ -637,60 +637,6 @@
     </form>
 </div>
 
-<!--<div class="modal sign-modal" data-plugin_loaded="false">
-
-    <div class="sign-modal__header">
-        <div class="sign-modal__row">
-            <span class="sign-modal__label">Версия плагина: </span>
-            <span class="sign-modal__text" id="PlugInVersionTxt" lang="ru"></span>
-        </div>
-        <div class="sign-modal__row">
-            <span class="sign-modal__label">Версия криптопровайдера: </span>
-            <span class="sign-modal__text" id="CSPVersionTxt" lang="ru"></span>
-        </div>
-    </div>
-
-    <div class="sign-modal__body">
-        <div class="sign-modal__file-info">
-            <div class="sign-modal__file"></div>
-        </div>
-
-        <select class="sign-modal__cert-list" size="4" name="CertListBox" id="CertListBox"></select>
-
-        <div class="sign-modal__cert-info">
-            <div class="sign-modal__row">
-                <span class="sign-modal__label">Данные о выбранном сертификате:</span>
-            </div>
-            <div class="sign-modal__row">
-                <span class="sign-modal__label">Владелец: </span>
-                <span class="sign-modal__text" id="SubjectName"></span>
-            </div>
-            <div class="sign-modal__row">
-                <span class="sign-modal__label">Издатель: </span>
-                <span class="sign-modal__text" id="IssuerName"></span>
-            </div>
-            <div class="sign-modal__row">
-                <span class="sign-modal__label">Дата выдачи: </span>
-                <span class="sign-modal__text" id="ValidFromDate"></span>
-            </div>
-            <div class="sign-modal__row">
-                <span class="sign-modal__label">Срок действия: </span>
-                <span class="sign-modal__text" id="ValidToDate"></span>
-            </div>
-            <div class="sign-modal__row">
-                <span class="sign-modal__label">Статус: </span>
-                <span class="sign-modal__text" id="CertMessage"></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="sign-modal__buttons">
-        <div class="file-modal__button file-modal__upload">Загрузить</div>
-        <div id="signature_button" class="sign-modal__button sign-modal__sign">Подписать</div>
-        <input id="external_sign" type="file" name="download_files[]" hidden/>
-    </div>
-</div>-->
-
 <div class="modal sign-modal" data-plugin_loaded="false">
 
     <div class="sign-modal__header" data-inactive="true">
@@ -704,14 +650,12 @@
         </div>
     </div>
 
-
     <div class="sign-modal__body">
         <div class="sign-modal__file-info">
             <div class="sign-modal__file"></div>
             
             <div class="sign-modal__validate" data-inactive="true">
             </div>
-            
         </div>
         
         <div class="sign-modal__buttons">

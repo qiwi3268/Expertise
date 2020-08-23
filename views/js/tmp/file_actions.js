@@ -115,7 +115,7 @@ function handleSignButton(sign_button, file) {
    sign_button.addEventListener('click', () => {
       //SignHandler.openModal(file);
 
-      Sign_Handler.getInstance().open(file);
+      SignHandler.getInstance().open(file);
       // showSignModal(file);
    });
 }
@@ -138,14 +138,15 @@ function handleDeleteButton(delete_button) {
 // file         Element : блок с удаляемым файлом
 function deleteFile(file) {
    let parent_row = file.closest('[data-mapping_level_1]');
+   let mapping_1 = parent_row.dataset.mapping_level_1;
+   let mapping_2 = parent_row.dataset.mapping_level_1;
    let id_file = file.dataset.id;
 
-   FileNeeds.putFileToDelete(
-      id_file,
-      parent_row.dataset.mapping_level_1,
-      parent_row.dataset.mapping_level_2,
-      file
-   );
+   FileNeeds.putFileToDelete(id_file, mapping_1, mapping_2, file);
+
+   if (file.dataset.id_sign) {
+      SignHandler.removeSign(file);
+   }
 }
 
 // Предназначен для удалений блока с файлом

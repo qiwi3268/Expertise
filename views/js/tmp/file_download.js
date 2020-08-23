@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+
    let form = document.getElementById('file_uploader');
    let file_input = form.querySelector('[name="download_files[]"]');
    let mapping_input_1 = form.querySelector('[name="mapping_level_1"]');
@@ -250,35 +251,27 @@ document.addEventListener('DOMContentLoaded', () => {
       progress_bar.style.transition = '.15s';
       is_uploading = true;
 
-      XHR('post', '/home/API_file_uploader', new FormData(form), null, 'json', null, uploadProgressCallback)
-         .then(response => {
+      let files = Array.from(file_input.files);
 
-            if (response.result === 16) {
+      uploadFiles(files, mapping_input_1.value, mapping_input_2.value, uploadProgressCallback)
+         .then(uploaded_files => {
 
-               return putFilesToRow(response.uploaded_files);
-
-            } else {
-               console.log(response);
-            }
+            return putFilesToRow(uploaded_files);
 
          })
-         .then(verify_response => {
+         .then(() => {
 
-            // console.log('verify response');
-            // console.log(verify_response);
             is_uploading = false;
-
             closeFileModal();
 
          })
-         .catch(error => {
+         .catch(exc => {
 
             is_uploading = false;
+            console.error('Ошибка при загрузке файлов на сервер:\n' + exc);
 
-            // p.s. все сообщения об ошибках везде делаем однотипными
-            console.error('XHR error: ', error);
-            // Ошибка XHR запроса. Обратитесь к администратору
          });
+
    }
 
    // Предназначен для анимации состояния загрузки файлов
@@ -312,34 +305,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
       for (let file of files) {
-
          let file_item = createFileElement(file, files_body);
 
-         await checkFile(file.id, mapping_input_1.value, mapping_input_2.value)
-            .then(check_response => {
-               return internalSignatureVerify(check_response.fs_name, mapping_input_1.value, mapping_input_2.value)
-            })
-            .then(validate_results => {
-
-               if (validate_results) {
-
-                  file_item.dataset.validate_results = JSON.stringify(validate_results);
-                  file_item.dataset.is_internal_sign = 'true';
-               }
-
-            })
-            .catch(exc => {
-               console.log('Ошибка при валидации встроенной подписи: ' + exc);
-            });
+         await putFile(file, file_item);
+         changeParentCardMaxHeight(parent_field);
 
       }
 
-
-      changeParentCardMaxHeight(parent_field);
       return 1;
    }
 
+   function putFile(file, file_item) {
 
+      checkFile(file_item.dataset.id, mapping_input_1.value, mapping_input_2.value)
+         .then(check_response => {
+            return internalSignatureVerify(check_response.fs_name, mapping_input_1.value, mapping_input_2.value);
+         })
+         .then(validate_results => {
+
+            if (validate_results) {
+
+               file_item.dataset.validate_results = JSON.stringify(validate_results);
+               file_item.dataset.is_internal = 'true';
+
+               SignHandler.validateFileField(file_item);
+
+            }
+
+         })
+         .catch(exc => {
+            console.error('Ошибка при проверке подписи файла:\n' + exc);
+         });
+
+   }
 
 
    // Предназначен для создания элемента файла

@@ -28,19 +28,7 @@ foreach($applicationAssoc as $property => $value){
 // Сохраненные файлы анкеты (не включая документацию)
 $requiredMappings = new RequiredMappingsSetter();
 $requiredMappings->setMappingLevel1(1);
-// errno      int : уровень ошибки
-// errstr  string : сообщение об ошибке
-// errfile string : имя файла, в котором произошла ошибка
-// errline    int : номер строки, в которой произошла ошибка
-set_error_handler(function(int $errno, string $errstr, string $errfile, int $errline){
-    
-    var_dump($errno);
-    var_dump($errstr);
-    var_dump($errfile);
-    var_dump($errline);
-    $message = '';
-    
-});
+
 $filesInitialization = new FilesInitialization($requiredMappings, $applicationId);
 $needsFiles = $filesInitialization->getNeedsFilesWithSigns();
 //$filesInitialization->getFilesSigns($needsFiles);

@@ -7,17 +7,10 @@ class FileChecker {
    }
 
    static checkExtension(file_name, extension) {
-      let is_valid = false;
+      let is_valid;
 
       if (!extension) {
-
-         for (let ext of FileChecker.extensions) {
-            if (file_name.includes(ext)) {
-               is_valid = true;
-               break;
-            }
-         }
-
+         is_valid = FileChecker.extensions.find(exc => file_name.includes(exc));
       } else {
          is_valid = file_name.includes(extension);
       }
@@ -28,18 +21,12 @@ class FileChecker {
    static IsReadyToUpload(files) {
       for (let file of files) {
          if (!FileChecker.checkExtension(file.name) || !FileChecker.checkSize(file.size)) {
-            console.log(FileChecker.checkExtension(file.name));
-            console.log(FileChecker.checkSize(file.size));
             return false;
          }
       }
 
       return true;
    }
-
-  /* static isInternalSign(file) {
-      return FileChecker.checkExtension(file.name, '.sig');
-   }*/
 
 
 }

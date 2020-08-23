@@ -1,602 +1,513 @@
-document.addEventListener('DOMContentLoaded', () => {
-   //TODO сделать синглтоном
-
-   //SignHandler.init();
-});
-
 class SignHandler {
-   static modal;
-   static overlay;
-   static is_plugin_initialized = false;
 
+   // Объект модуля подписания
+   static instance;
 
+   // Модальное окно подписания
+   modal;
+   // Фон модального окна
+   overlay;
 
-   static actions;
+   is_plugin_initialized = false;
 
-   static certs;
-   static certs_select;
+   // Блок с информацией о версии плагина
+   plugin_info;
+   // Блок с информацией о проверки подписей
+   validate_info;
+   // Блок с сертификатами
+   certs;
+   // Блок с информацией о выбранном сертификате
+   cert_info;
 
-   static create_sign_btn;
-   static upload_sign_btn;
-   static delete_sign_btn;
+   // Кнопка загрузки файла открепленной подписи
+   upload_sign_btn;
+   // Кнопка создания открепленной подписи
+   create_sign_btn;
+   // Кнопка удаления открепленной подписи
+   delete_sign_btn;
+   // Кнопка "Подписать" для создания открепленной подписи
+   // после выбора сертификата
+   sign_btn;
+   // Кнопка отмены действия создания открепленной подписи
+   cancel_btn;
+   // Блок с кнопками подписания и отмены
+   actions;
 
-   static plugin_info;
+   // Инпут, в который загружается файл открепленной подписи
+   external_sign_input;
 
-   static validate_info;
-   static cert_state;
-   static sign_state;
+   // Данные файла, для которого открыт модуль подписания
+   file_element;
+   id_file;
+   id_sign;
+   mapping_level_1;
+   mapping_level_2;
+   //==================
 
-   static file_element;
-   static id_file;
-   static id_sign;
+   // Предназначен для получения объекта модуля подписания
+   static getInstance() {
 
-   static sign_input;
+      if (!SignHandler.instance) {
+         SignHandler.instance = new SignHandler();
+      }
 
-   static fs_name_data;
-   static fs_name_sign;
-   static file_name;
-   static mapping_level_1;
-   static mapping_level_2;
-
-   static init() {
-      SignHandler.modal = document.querySelector('.sign-modal');
-
-      SignHandler.certs = SignHandler.modal.querySelector('.sign-modal__certs');
-      SignHandler.plugin_info = SignHandler.modal.querySelector('.sign-modal__header');
-
-      // SignHandler.actions = SignHandler.modal.querySelector('.sign-modal__buttons');
-      SignHandler.actions = SignHandler.modal.querySelector('.sign-modal__actions');
-
-
-
-      SignHandler.validate_info = SignHandler.modal.querySelector('.sign-modal__validate');
-
-
-
-      SignHandler.handleOverlay();
-      SignHandler.handleSignButton();
-      SignHandler.handleUploadSignButton();
-      SignHandler.handleDeleteButton();
-
-
-
-      let sign_btn = document.getElementById('signature_button');
-      sign_btn.addEventListener('click', () => {
-
-         // if (GeCades.getGlobalCertificatesMap) {
-            SignHandler.signFile();
-         // }
-
-      });
-
-      let cancel_btn = document.getElementById('sign_cancel');
-      cancel_btn.addEventListener('click', () => {
-
-         SignHandler.upload_sign_btn.dataset.inactive = 'false';
-         SignHandler.create_sign_btn.dataset.inactive = 'false';
-
-         // SignHandler.actions.dataset.inactive = 'false';
-         SignHandler.actions.dataset.inactive = 'true';
-         SignHandler.certs.dataset.inactive = 'true';
-         SignHandler.plugin_info.inactive = 'true';
-
-      });
-
+      return SignHandler.instance;
    }
 
-   static handleOverlay() {
-      SignHandler.overlay = document.querySelector('.sign-overlay');
-      SignHandler.overlay.addEventListener('click', () => SignHandler.closeModal());
+   // Предназначен для отображения состояния проверки подписи в поле с файлом
+   // Принимает параметры-------------------------------
+   // file         Element : проверяемый файл
+   static validateFileField(file) {
+      let results_json = file.dataset.validate_results;
+
+      if (results_json) {
+         let results = JSON.parse(results_json);
+
+         for (let result of results) {
+            if (result.signature_verify.result && result.certificate_verify.result) {
+               file.dataset.sign_state = 'valid';
+            } else if (result.signature_verify.result) {
+               file.dataset.sign_state = 'warning';
+               break;
+            } else {
+               break;
+            }
+         }
+      }
    }
 
-   static handleSignButton() {
-      SignHandler.create_sign_btn = document.getElementById('sign_create');
-      SignHandler.create_sign_btn.addEventListener('click', () => {
+   // Предназначен для удаления подписи файла
+   // Принимает параметры-------------------------------
+   // file         Element : файл, у которого удаляется подпись
+   // mapping_1     string : первый маппинг
+   // mapping_2     string : второй маппинг
+   static removeSign(file, mapping_1, mapping_2) {
 
-         if (!SignHandler.is_plugin_initialized && BrowserHelper.checkBrowser()) {
-            SignHandler.initializePlugin();
+      FileNeeds.putSignToDelete(
+         file.dataset.id_sign,
+         mapping_1,
+         mapping_2
+      );
+
+      file.removeAttribute('data-id_sign');
+      file.removeAttribute('data-validate_results');
+      file.removeAttribute('data-sign_state');
+   }
+
+   // Предназначен для инициализации модуля подписания
+   constructor() {
+
+      this.modal = mQS(document, '.sign-modal', 12);
+      this.plugin_info = mQS(this.modal, '.sign-modal__header', 13);
+      this.cert_info = mQS(this.modal, '.sign-modal__cert-info', 17);
+      this.validate_info = mQS(this.modal, '.sign-modal__validate', 14);
+      this.certs = mQS(this.modal, '.sign-modal__certs', 15);
+      this.actions = mQS(this.modal, '.sign-modal__actions', 16);
+
+      this.handleOverlay();
+
+      this.handleCreateSignButton();
+      this.handleUploadSignButton();
+      this.handleDeleteSignButton();
+
+      this.handleCancelButton();
+      this.handleSignButton();
+   }
+
+   // Предназначен для обработки нажатия на фон модального окна
+   handleOverlay() {
+      this.overlay = mQS(document, '.sign-overlay', 17);
+      this.overlay.addEventListener('click', () => this.closeModal());
+   }
+
+   // Предназначен для закрытия модуля подписания
+   closeModal() {
+      this.modal.classList.remove('active');
+      this.overlay.classList.remove('active');
+
+      this.create_sign_btn.dataset.inactive = 'true';
+      this.upload_sign_btn.dataset.inactive = 'true';
+      this.delete_sign_btn.dataset.inactive = 'true';
+
+      this.closeInfoBlocks();
+   }
+
+   // Предназначен для скрывания блоков с информацией модуля подписания
+   closeInfoBlocks() {
+      this.certs.dataset.inactive = 'true';
+      this.plugin_info.dataset.inactive = 'true';
+      this.actions.dataset.inactive = 'true';
+      this.validate_info.dataset.inactive = 'true';
+   }
+
+   // Предназначен для обработки кнопки создания открепленной подписи
+   handleCreateSignButton() {
+      this.create_sign_btn = document.getElementById('sign_create');
+      this.create_sign_btn.addEventListener('click', () => {
+
+         if (!this.is_plugin_initialized && BrowserHelper.checkBrowser()) {
+            this.initializePlugin();
          } else {
-            SignHandler.showCreateSignElements();
+            this.showCreateSignElements();
          }
 
       });
+
    }
 
-   static initializePlugin() {
+   // Предназначен для инициализации плагина для подписания
+   initializePlugin() {
 
+      // Берем объект плагина
       GeCades.getCadesPlugin()
+         // Получаем информацию о версии плагина
          .then(() => {
-
             return GeCades.getPluginData();
-
          })
+         // Получаем сертификаты пользователя
          .then(plugin_data => {
-
-            SignHandler.putPluginData(plugin_data);
+            this.putPluginData(plugin_data);
             return GeCades.getCerts();
-
          })
-
+         // Добавляем блок с сертификатами
          .then(certs => {
-
-            SignHandler.fillCertsSelect(certs);
-            SignHandler.showCreateSignElements();
-            SignHandler.is_plugin_initialized = true;
-
+            this.handleCertListSelect(certs);
+            this.showCreateSignElements();
+            this.is_plugin_initialized = true;
          })
          .catch(exc => {
-            console.log('Ошибка инициализации плагина и зполнения списка сертификатов:');
-            console.log(exc);
-            SignHandler.cancelPluginInitialization();
+            console.log('Ошибка инициализации плагина и заполнения списка сертификатов:\n' + exc);
+            this.closeModal();
          });
-
-
    }
 
-   static putPluginData(plugin_data) {
+   // Добавляем в модальное окно версии плагина и криптопровайдера
+   // Принимает параметры-------------------------------
+   // plugin_data       Object : объект с версиями
+   putPluginData(plugin_data) {
       document.getElementById('plugin_version').innerHTML = plugin_data.plugin_version;
       document.getElementById('csp_version').innerHTML = plugin_data.csp_version;
    }
 
-   static fillCertsSelect(certs) {
-      SignHandler.certs_select = document.getElementById('cert_list_select');
+   // Предназначен для
+   // Принимает параметры-------------------------------
+   // certs        Array[Object] : массив с данными сертификатов
+   handleCertListSelect(certs) {
+      this.certs_select = document.getElementById('cert_list_select');
 
-      certs.forEach(cert => {
-         let option = document.createElement('option');
-         option.text = cert.text;
-         option.value = cert.value;
-         option.classList.add('sign-modal__cert');
-         SignHandler.certs_select.options.add(option);
-      });
+      // Добавляем сертификаты на страницу
+      this.fillCertListSelect(certs);
 
+      GeCades.setCertificatesList(this.certs_select);
 
-      GeCades.setCertificatesList(SignHandler.certs_select);
-      SignHandler.certs_select.addEventListener('change', () => {
-
+      this.certs_select.addEventListener('change', () => {
+         // При выборе сертификата получаем информацию о нем
          GeCades.getCertInfo()
+            // Добавляем на страницу данные о выбранном сертификате
             .then(cert_info => {
-               SignHandler.fillCertInfo(cert_info);
+               this.fillCertInfo(cert_info);
             })
             .catch(exc => {
                console.log('Ошибка при получении информации о сертификате: ' + exc);
             });
       });
+   }
 
+   // Предназначен для заполнения селекта выбора сертификатов
+   // Принимает параметры-------------------------------
+   // certs       Array[Object] : массив с сертификатами
+   fillCertListSelect(certs) {
+      certs.forEach(cert => {
+         let option = document.createElement('option');
+         option.text = cert.text;
+         option.value = cert.value;
+         option.classList.add('sign-modal__cert');
+         this.certs_select.options.add(option);
+      });
 
    }
 
-   static fillCertInfo(cert_info) {
-      // Внесение данных о сертификате
+   // Предназначен для отображения элементов для создания подписи
+   showCreateSignElements() {
+      this.certs.dataset.inactive = 'false';
+      this.plugin_info.dataset.inactive = 'false';
+
+      this.actions.dataset.inactive = 'false';
+
+      this.upload_sign_btn.dataset.inactive = 'true';
+      this.create_sign_btn.dataset.inactive = 'true';
+   }
+
+   // Предназначен для добавления информации о выбранном сертификате
+   // Принимает параметры-------------------------------
+   // cert_info         Object : объект с информацией о сертификате
+   fillCertInfo(cert_info) {
       document.getElementById('subject_name').innerHTML = cert_info.subject_name;
       document.getElementById('issuer_name').innerHTML = cert_info.issuer_name;
       document.getElementById('valid_from_date').innerHTML = GeCades.formattedDateTo_ddmmyyy_hhmmss(cert_info.valid_from_date);
       document.getElementById('valid_to_date').innerHTML = GeCades.formattedDateTo_ddmmyyy_hhmmss(cert_info.valid_to_date);
       document.getElementById('cert_message').innerHTML = cert_info.cert_message;
       document.getElementById('cert_message').style.color = cert_info.cert_status ? '#6cb37e' : '#db5151';
-
-      SignHandler.plugin_info = SignHandler.modal.querySelector('.sign-modal__cert-info');
-      SignHandler.plugin_info.dataset.inactive = 'false';
+      this.cert_info.dataset.inactive = 'false';
    }
 
-   static showCreateSignElements() {
-      SignHandler.certs.dataset.inactive = 'false';
-      SignHandler.plugin_info.dataset.inactive = 'false';
+   // Предназначен для обработки кнопки загрузки файла открепленной подписи
+   handleUploadSignButton() {
+      this.upload_sign_btn = document.getElementById('sign_upload');
+      this.upload_sign_btn.addEventListener('click', () => {
+         this.external_sign_input.click();
+      });
 
-      SignHandler.actions.dataset.inactive = 'false';
+      this.external_sign_input = document.getElementById('external_sign');
+      this.external_sign_input.addEventListener('change', () => {
 
-      SignHandler.upload_sign_btn.dataset.inactive = 'true';
-      SignHandler.create_sign_btn.dataset.inactive = 'true';
+         if (this.external_sign_input.files.length > 0) {
+            let sign_files = Array.from(this.external_sign_input.files);
+            this.sendSigns(sign_files);
+         }
+
+         // Удаляем загруженные файлы
+         this.external_sign_input.value = '';
+
+      });
+
    }
 
-   //------
-   static showCertBlock() {
-      SignHandler.certs.dataset.inactive = 'false';
+   // Предназначен для загрузки и валидации файла открепленной подписи
+   // Принимает параметры-------------------------------
+   // sign_files       Array[File] : загруженные файлы
+   // (пока что предусмотрена загрузка только одного файла)
+   sendSigns(sign_files) {
+      let fs_name_data;
+      let fs_name_sign;
 
-      SignHandler.plugin_info = SignHandler.modal.querySelector('.sign-modal__header');
-      SignHandler.plugin_info.dataset.inactive = 'false';
+      // Загружаем открепленную подпись на сервер
+      uploadFiles(sign_files, this.mapping_level_1, this.mapping_level_2)
+         // Проверяем подписываемый файл
+         .then(uploaded_signs => {
 
-      SignHandler.actions.dataset.inactive = 'false';
+            this.id_sign = uploaded_signs[0].id;
+            return checkFile(this.id_file, this.mapping_level_1, this.mapping_level_2);
 
-      SignHandler.upload_sign_btn.dataset.inactive = 'true';
-      SignHandler.create_sign_btn.dataset.inactive = 'true';
+         })
+         // Проверяем файл подписи
+         .then(file_check_response => {
+
+            fs_name_data = file_check_response.fs_name;
+            return checkFile(this.id_sign, this.mapping_level_1, this.mapping_level_2);
+
+         })
+         // Валидируем открепленную подпись
+         .then(sign_check_response => {
+
+            fs_name_sign = sign_check_response.fs_name;
+            return externalSignatureVerify(
+               fs_name_data,
+               fs_name_sign,
+               this.mapping_level_1,
+               this.mapping_level_2
+            );
+
+         })
+         // Обрабатываем результаты валидации
+         .then(validate_results => {
+
+            this.handleValidateResults(validate_results);
+
+            this.certs.dataset.inactive = 'true';
+            this.actions.dataset.inactive = 'true';
+            this.create_sign_btn.dataset.inactive = 'true';
+            this.upload_sign_btn.dataset.inactive = 'true';
+            this.delete_sign_btn.dataset.inactive = 'false';
+
+         })
+         .catch(exc => {
+            console.error('Ошибка при загрузке файла открепленной подписи:\n' + exc);
+         });
+
+
    }
 
-   static handleUploadSignButton() {
-      SignHandler.sign_input = document.getElementById('external_sign');
-      SignHandler.sign_input.addEventListener('change', () => {
+   handleValidateResults(validate_results) {
+      let results_json = JSON.stringify(validate_results);
 
+      this.file_element.dataset.id_sign = this.id_sign;
+      this.file_element.dataset.validate_results = results_json;
 
-         if (SignHandler.sign_input.files.length > 0) {
+      SignHandler.validateFileField(this.file_element);
 
+      FileNeeds.putSignToSave(this.id_sign, this.mapping_level_1, this.mapping_level_2);
 
-            let form_data = new FormData();
-            form_data.append('id_application', getIdApplication());
-            form_data.append('mapping_level_1', SignHandler.mapping_level_1);
-            form_data.append('mapping_level_2', SignHandler.mapping_level_2);
-            form_data.append('download_files[]', SignHandler.sign_input.value);
+      this.fillSignsInfo(results_json);
+   }
 
-            let files = Array.from(SignHandler.sign_input.files);
-            files.forEach(file => {
+   fillSignsInfo(validate_results_json) {
+      this.validate_info.dataset.inactive = 'false';
+      this.validate_info.innerHTML = '';
 
-               form_data.append('download_files[]', file);
+      let results = JSON.parse(validate_results_json);
+      results.forEach(result => {
+         this.validate_info.appendChild(this.createSignInfo(result));
+      });
+   }
 
-            });
+   createSignInfo(result) {
+      let sign = document.createElement('DIV');
+      sign.classList.add('sign-modal__sign');
 
+      let cert_state = result.certificate_verify;
+      let cert_row = this.createInfoRow('Сертификат: ', cert_state.user_message, cert_state.result);
 
-            let upload_response;
+      let sign_state = result.signature_verify;
+      let sign_row = this.createInfoRow('Подпись: ', sign_state.user_message, cert_state.result);
 
+      let name_row = this.createInfoRow('Подписант: ', result.fio);
+      let info_row = this.createInfoRow('Информация: ', result.certificate);
 
-            XHR('post', '/home/API_file_uploader', form_data, null, 'json', null, null)
-               .then(response => {
-                  let form_data = SignHandler.getFileCheckFormData(SignHandler.id_file);
+      sign.appendChild(cert_row);
+      sign.appendChild(sign_row);
+      sign.appendChild(name_row);
+      sign.appendChild(info_row);
 
-                  if (response.result === 16) {
-                     upload_response = response;
-                     return XHR('post', '/home/API_file_checker', form_data, null, 'json');
-                  } else {
-                     console.log('upload sign exception');
-                  }
+      return sign;
+   }
 
-               })
-               // Проверяем, что файл может быть скачан
-               .then(file_check_response => {
-                  SignHandler.fs_name_data = file_check_response.fs_name;
+   createInfoRow(label, text, state) {
+      let row = document.createElement('DIV');
+      row.classList.add('sign-modal__row');
 
-                  SignHandler.id_sign = upload_response.uploaded_files[0].id;
-                  form_data = SignHandler.getFileCheckFormData(SignHandler.id_sign);
-                  return XHR('post', '/home/API_file_checker', form_data, null, 'json');
+      let label_span = document.createElement('SPAN');
+      label_span.classList.add('sign-modal__label');
+      label_span.innerHTML = label;
 
-               })
-               .then(sign_check_response => {
-                  SignHandler.fs_name_sign = sign_check_response.fs_name;
+      let text_span = document.createElement('SPAN');
+      text_span.classList.add('sign-modal__text');
+      text_span.innerHTML = text;
+      if (state !== undefined) {
+         text_span.dataset.state = state;
+      }
 
-                  form_data = SignHandler.getSignVerifyFormData();
-                  return XHR('post', '/home/API_external_signature_verifier', form_data, null, 'json', null, null)
+      row.appendChild(label_span);
+      row.appendChild(text_span);
 
-               })
-               .then(validate_response => {
+      return row;
+   }
 
-                  console.log(validate_response);
+   handleDeleteSignButton() {
+      this.delete_sign_btn = document.getElementById('signature_delete');
+      this.delete_sign_btn.addEventListener('click', () => {
 
-                  switch (validate_response.result) {
+         this.id_sign = this.file_element.dataset.id_sign;
 
-                     case 9:
-                        let file = document.querySelector(`.files__item[data-id='${SignHandler.id_file}']`);
-                        file.dataset.id_sign = SignHandler.id_sign;
-                        file.dataset.validate_results = JSON.stringify(validate_response.validate_results);
+         SignHandler.removeSign(this.file_element);
 
-                        let results = JSON.parse(file.dataset.validate_results);
-                        results.forEach(result => {
-                           SignHandler.handleValidateResults(result, file);
-                        });
+         this.validate_info.dataset.inactive = 'true';
+         this.delete_sign_btn.dataset.inactive = 'true';
+         this.create_sign_btn.dataset.inactive = 'false';
+         this.upload_sign_btn.dataset.inactive = 'false';
+      });
+   }
 
-                        SignHandler.file_element.dataset.id_sign = SignHandler.id_sign;
+   handleCancelButton() {
+      this.cancel_btn = document.getElementById('sign_cancel');
 
-                        SignHandler.create_sign_btn.dataset.inactive = 'true';
-                        SignHandler.upload_sign_btn.dataset.inactive = 'true';
-                        SignHandler.delete_sign_btn.dataset.inactive = 'false';
+      this.cancel_btn.addEventListener('click', () => {
 
-                        FileNeeds.putSignToSave(
-                           SignHandler.id_sign,
-                           SignHandler.mapping_level_1,
-                           SignHandler.mapping_level_2
-                        );
+         this.upload_sign_btn.dataset.inactive = 'false';
+         this.create_sign_btn.dataset.inactive = 'false';
 
-                        break;
+         this.closeInfoBlocks();
+      });
 
-                     case 6.1:
-                        console.log(validate_response.error_message);
+   }
 
-                        break;
-
-                  }
-
-               })
-               .catch(exc => {
-                  console.error(exc);
-               });
-
+   handleSignButton() {
+      this.sign_btn = document.getElementById('signature_button');
+      this.sign_btn.addEventListener('click', () => {
+         if (GeCades.getSelectedCertificateFromGlobalMap()) {
+            this.createSign();
+         } else {
+            alert('Выберите сертификат');
          }
 
       });
 
-
-      SignHandler.upload_sign_btn = document.getElementById('sign_upload');
-      SignHandler.upload_sign_btn.addEventListener('click', () => {
-
-         SignHandler.sign_input.click();
-
-      });
-
    }
 
-
-
-   static handleDeleteButton() {
-      SignHandler.delete_sign_btn = document.getElementById('signature_delete');
-      SignHandler.delete_sign_btn.addEventListener('click', () => {
-
-
-         let id_sign = SignHandler.file_element.dataset.id_sign;
-
-         FileNeeds.putSignToDelete(
-            id_sign,
-            SignHandler.mapping_level_1,
-            SignHandler.mapping_level_2
-         );
-
-
-         SignHandler.file_element.removeAttribute('data-id_sign');
-         SignHandler.file_element.removeAttribute('data-validate_results');
-         SignHandler.sign_input.value = '';
-
-
-         SignHandler.validate_info.dataset.inactive = 'true';
-         SignHandler.certs.dataset.inactive = 'true';
-
-
-         SignHandler.delete_sign_btn.dataset.inactive = 'true';
-         SignHandler.create_sign_btn.dataset.inactive = 'false';
-         SignHandler.upload_sign_btn.dataset.inactive = 'false';
-
-      });
-   }
-
-   static signFile() {
-      let form_data = SignHandler.getFileCheckFormData(SignHandler.id_file);
+   createSign() {
       let selected_algorithm;
+      let file_name;
+      let fs_name_data;
 
-      XHR('post', '/home/API_file_checker', form_data, null, 'json')
-         // Проверяем, что файл может быть скачан
-         .then(response => {
+      checkFile(this.id_file, this.mapping_level_1, this.mapping_level_2)
+         .then(file_check_response => {
 
-            console.log(response);
-            return response;
-
-         })
-         // Получаем алгоритм
-         .then(check_response => {
-
-            if (check_response.result === 9) {
-               SignHandler.fs_name_data = check_response.fs_name;
-               SignHandler.file_name = check_response.file_name;
-               return GeCades.getSelectedCertificateAlgorithm();
-            } else {
-               console.log(check_response);
-            }
+            fs_name_data = file_check_response.fs_name;
+            file_name = file_check_response.file_name;
+            return GeCades.getSelectedCertificateAlgorithm();
 
          })
-         // Вычисляем хэш файла
          .then(algorithm => {
 
-            console.log(algorithm);
             selected_algorithm = algorithm;
-            form_data = SignHandler.getFileHashFormData(algorithm);
-            return XHR('post', '/home/API_get_file_hash', form_data, null, 'json');
+            return getFileHash(algorithm, fs_name_data);
 
          })
-         // Получаем хэш подписи
          .then(file_hash => {
 
-            return GeCades.SignHash_Async(selected_algorithm, file_hash.hash);
+            return GeCades.SignHash_Async(selected_algorithm, file_hash);
 
          })
-         // Создаем файл подписи и загружаем его
          .then(sign_hash => {
 
-            form_data = SignHandler.getFileUploadFormData(sign_hash);
-            return XHR('post', '/home/API_file_uploader', form_data, null, 'json', null, null);
+            let sign_blob = new Blob([sign_hash], {type: 'text/plain'});
+            let file = new File([sign_blob], `${file_name}.sig`);
+
+            this.sendSigns([file]);
 
          })
-         // Проверяем, что подпись может быть скачана
-         .then(upload_response => {
-
-            console.log(upload_response);
-            if (upload_response.result === 16) {
-               SignHandler.id_sign = upload_response.uploaded_files[0].id;
-               form_data = SignHandler.getFileCheckFormData(SignHandler.id_sign);
-               return XHR('post', '/home/API_file_checker', form_data, null, 'json');
-            } else {
-               console.log('upload sign exception');
-            }
-
-         })
-         // Проверяем подпись
-         .then(check_sign_response => {
-
-            if (check_sign_response.result === 9) {
-
-               SignHandler.fs_name_sign = check_sign_response.fs_name;
-               form_data = SignHandler.getSignVerifyFormData();
-               return XHR('post', '/home/API_external_signature_verifier', form_data, null, 'json', null, null)
-
-            } else {
-               console.log(check_sign_response);
-            }
-
-         })
-         .then(validate_response => {
-
-            console.log(validate_response);
-
-            switch (validate_response.result) {
-
-               case 9:
-                  let file = document.querySelector(`.files__item[data-id='${SignHandler.id_file}']`);
-                  file.dataset.id_sign = SignHandler.id_sign;
-                  file.dataset.validate_results = JSON.stringify(validate_response.validate_results);
-
-                  let results = JSON.parse(file.dataset.validate_results);
-                  results.forEach(result => {
-                     SignHandler.handleValidateResults(result, file);
-                  });
-
-                  SignHandler.file_element.dataset.id_sign = SignHandler.id_sign;
-
-                  SignHandler.certs.dataset.inactive = 'true';
-                  SignHandler.delete_sign_btn.dataset.inactive = 'false';
-
-
-                  FileNeeds.putSignToSave(
-                     SignHandler.id_sign,
-                     SignHandler.mapping_level_1,
-                     SignHandler.mapping_level_2
-                  );
-
-
-                  console.log(FileNeeds.file_needs);
-
-                  break;
-
-               case 6.1:
-                  console.log(validate_response.error_message);
-                  //TODO error alert
-                  break;
-
-
-            }
-
-
-
-         })
-         .catch(exception => {
-            console.log(exception);
+         .catch(exc => {
+            console.error('Произошла ошибка при создании открепленной подписи:\n' + exc);
          });
-   }
-
-   static handleValidateResults(validate_result, file) {
-
-      //TODO сделать в цикле
-
-
-      if (validate_result.signature_verify.result && validate_result.certificate_verify.result) {
-         file.dataset.sign_state = 'valid';
-      } else if (validate_result.signature_verify.result) {
-         file.dataset.sign_state = 'warning';
-      }
-
-      // if (file.dataset.is_internal_sign !== 'true') {
-
-         SignHandler.validate_info.dataset.inactive = 'false';
-         SignHandler.cert_state = document.getElementById('ValidateCertState');
-         SignHandler.cert_state.innerHTML = validate_result.certificate_verify.user_message;
-         SignHandler.cert_state.dataset.state = validate_result.certificate_verify.result;
-
-         SignHandler.sign_state = document.getElementById('ValidateSignState');
-         SignHandler.sign_state.innerHTML = validate_result.signature_verify.user_message;
-         SignHandler.sign_state.dataset.state = validate_result.signature_verify.result;
-
-      // }
 
    }
 
-   static getFileCheckFormData(id_file) {
-      let form_data = new FormData();
-      form_data.append('id_application', getIdApplication());
-      form_data.append('id_file', id_file);
-      form_data.append('mapping_level_1', SignHandler.mapping_level_1);
-      form_data.append('mapping_level_2', SignHandler.mapping_level_2);
-      return form_data;
-   }
+   open(file) {
+      this.modal.classList.add('active');
+      this.overlay.classList.add('active');
 
-   static getFileHashFormData(algorithm) {
-      let form_data = new FormData();
-      form_data.append('sign_algorithm', algorithm);
-      form_data.append('fs_name', SignHandler.fs_name_data);
-      return form_data;
-   }
-
-   static getFileUploadFormData(sign_hash) {
-      let form_data = new FormData();
-      form_data.append('id_application', getIdApplication());
-      form_data.append('mapping_level_1', SignHandler.mapping_level_1);
-      form_data.append('mapping_level_2', SignHandler.mapping_level_2);
-      let sign_blob = new Blob([sign_hash], {type: 'text/plain'});
-      form_data.append('download_files[]', sign_blob, SignHandler.file_name + '.sig');
-      return form_data;
-   }
-
-   static getSignVerifyFormData() {
-      let form_data = new FormData();
-      form_data.append('fs_name_data', SignHandler.fs_name_data);
-      form_data.append('fs_name_sign', SignHandler.fs_name_sign);
-      form_data.append('mapping_level_1', SignHandler.mapping_level_1);
-      form_data.append('mapping_level_2', SignHandler.mapping_level_2);
-      return form_data;
-   }
-
-   static openModal(file) {
-      SignHandler.modal.classList.add('active');
-      SignHandler.overlay.classList.add('active');
+      this.putFileData(file);
+      this.addFileElement(file);
 
       if (!file.dataset.validate_results) {
 
-         SignHandler.create_sign_btn.dataset.inactive = 'false';
-         SignHandler.upload_sign_btn.dataset.inactive = 'false';
-         SignHandler.validate_info.dataset.inactive = 'true';
-
-      } else if (file.dataset.is_internal_sign !== 'true') {
-
-
-         SignHandler.delete_sign_btn.dataset.inactive = 'false';
-
-         let results = JSON.parse(file.dataset.validate_results);
-         results.forEach(result => {
-            SignHandler.handleValidateResults(result, file);
-         });
+         this.create_sign_btn.dataset.inactive = 'false';
+         this.upload_sign_btn.dataset.inactive = 'false';
 
       } else {
 
+         this.fillSignsInfo(file.dataset.validate_results);
 
-         let results = JSON.parse(file.dataset.validate_results);
-         results.forEach(result => {
-            SignHandler.handleValidateResults(result, file);
-         });
+         if (file.dataset.is_internal !== 'true') {
+            this.delete_sign_btn.dataset.inactive = 'false';
+         }
 
       }
 
-
-      SignHandler.putFileData(file);
-      SignHandler.addFileElement(file);
    }
 
-   static putFileData(file) {
+   putFileData(file) {
       let parent_field = file.closest('[data-mapping_level_1]');
-      SignHandler.file_element = file;
-      SignHandler.id_file = file.dataset.id;
-      SignHandler.mapping_level_1 = parent_field.dataset.mapping_level_1;
-      SignHandler.mapping_level_2 = parent_field.dataset.mapping_level_2;
+      this.file_element = file;
+      this.id_file = file.dataset.id;
+      this.id_sign = file.dataset.id_sign;
+      this.mapping_level_1 = parent_field.dataset.mapping_level_1;
+      this.mapping_level_2 = parent_field.dataset.mapping_level_2;
    }
 
-   static addFileElement(file) {
+   addFileElement(file) {
       let file_info = file.querySelector('.files__info');
-      let sign_file = SignHandler.modal.querySelector('.sign-modal__file');
+      let sign_file = this.modal.querySelector('.sign-modal__file');
       sign_file.innerHTML = file_info.innerHTML;
    }
-
-   static cancelPluginInitialization() {
-      SignHandler.is_plugin_initialized = false;
-      SignHandler.closeModal();
-   }
-
-   static closeModal() {
-      SignHandler.modal.classList.remove('active');
-      SignHandler.overlay.classList.remove('active');
-
-
-      SignHandler.create_sign_btn.dataset.inactive = 'true';
-      SignHandler.upload_sign_btn.dataset.inactive = 'true';
-      SignHandler.delete_sign_btn.dataset.inactive = 'true';
-
-
-
-      SignHandler.certs.dataset.inactive = 'true';
-      SignHandler.plugin_info.dataset.inactive = 'true';
-      SignHandler.actions.dataset.inactive = 'true';
-      SignHandler.validate_info.dataset.inactive = 'true';
-   }
-
-
-
-
 }

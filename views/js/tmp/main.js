@@ -93,22 +93,35 @@ function createErrorAlert(error_code) {
 }
 
 function uploadFiles(files, mapping_1, mapping_2, upload_callback = null) {
-   // return new Promise((resolve, reject) => {
-   let form_data = getUploadFormData(files, mapping_1, mapping_2);
 
-   return XHR('post', '/home/API_file_uploader', form_data, null, 'json', null, upload_callback)
-      .then(response => {
+   return new Promise((resolve, reject) => {
+      let form_data = getUploadFormData(files, mapping_1, mapping_2);
 
-         if (response.result === 16) {
-            return (response.uploaded_files);
-         }
+      XHR('post', '/home/API_file_uploader', form_data, null, 'json', null, upload_callback)
+         .then(response => {
 
-      })
-      .catch(exc => {
-         console.log('file upload exception: ' + exc);
-      });
+            switch (response.result) {
 
-   // });
+               case 16:
+                  resolve(response.uploaded_files);
+                  break;
+
+               case 3:
+                  alert('Отсутствуют загруженные файлы');
+                  reject('Отсутствуют загруженные файлы');
+                  break;
+
+               default:
+                  reject(`Ошибка при загрузке файла на сервер:\n${response.error_message ? response.error_message : response}`);
+
+            }
+
+         })
+         .catch(exc => {
+            reject('Ошибка при загрузке файла на сервер: ' + exc);
+         });
+   });
+
 }
 
 function getUploadFormData(files, mapping_1, mapping_2) {
@@ -117,27 +130,43 @@ function getUploadFormData(files, mapping_1, mapping_2) {
    form_data.append('mapping_level_1', mapping_1);
    form_data.append('mapping_level_2', mapping_2);
 
-   files.forEach(file => {
-      form_data.append('download_files[]', file);
-   });
+   try {
+      files.forEach(file => {
+         form_data.append('download_files[]', file);
+      });
+   } catch (exc) {
+      //TODO код
+      alert('В форму загрузки не передан массив файлов');
+   }
 
    return form_data;
 }
 
 function checkFile(id_file, mapping_1, mapping_2) {
-   let form_data = getFileCheckFormData(id_file, mapping_1, mapping_2);
 
-   return XHR('post', '/home/API_file_checker', form_data, null, 'json')
-      .then(response => {
+   return new Promise((resolve, reject) => {
+      let form_data = getFileCheckFormData(id_file, mapping_1, mapping_2);
 
-         if (response.result === 9) {
-            return response;
-         }
+      XHR('post', '/home/API_file_checker', form_data, null, 'json')
+         .then(response => {
 
-      })
-      .catch(exc => {
-         console.log('file check exception: ' + exc);
-      });
+            switch (response.result) {
+
+               case 9:
+                  resolve(response);
+                  break;
+
+               default:
+                  reject(`Ошибка при проверке файла:\n${response.error_message ? response.error_message : response}`);
+
+            }
+
+         })
+         .catch(exc => {
+            reject('Ошибка при проверке файла: ' + exc);
+         });
+
+   });
 
 }
 
@@ -163,16 +192,20 @@ function externalSignatureVerify(fs_name_data, fs_name_sign, mapping_1, mapping_
                case 9:
                   resolve(response.validate_results);
                   break;
+
                case 6.1:
                   alert(response.error_message);
-                  reject('Загружен обычный файл');
+                  reject('Загружен файл без открепленной подписи');
                   break;
+
+               default:
+                  reject(`Ошибка при проверке открепленной подписи:\n${response.error_message ? response.error_message : response}`);
 
             }
 
          })
          .catch(exc => {
-            console.log('external verify exception: ' + exc);
+            reject('Ошибка при проверке открепленной подписи: ' + exc);
          });
    });
 
@@ -188,20 +221,31 @@ function getExternalVerifyFormData(fs_name_data, fs_name_sign, mapping_1, mappin
 }
 
 function getFileHash(algorithm, fs_name) {
-   let form_data = getFileHashFormData(algorithm, fs_name);
 
-   return XHR('post', '/home/API_get_file_hash', form_data, null, 'json', null, null)
-      .then(response => {
+   return new Promise((resolve, reject) => {
+      let form_data = getFileHashFormData(algorithm, fs_name);
 
-         if (response.result === 9) {
-            return response.hash;
-         }
+      XHR('post', '/home/API_get_file_hash', form_data, null, 'json', null, null)
+         .then(response => {
 
-      })
-      .catch(exc => {
-         console.log('get file hash exception: ' + exc);
+            switch (response.result) {
 
-      });
+               case 9:
+                  resolve(response.hash);
+                  break;
+
+               default:
+                  reject(`Ошибка при получении хэша файла: \n${response.error_message ? response.error_message : response}`);
+
+            }
+
+         })
+         .catch(exc => {
+            reject('Ошибка при получении хэша файла: ' + exc);
+         });
+
+   });
+
 
 }
 
@@ -212,12 +256,12 @@ function getFileHashFormData(algorithm, fs_name) {
    return form_data;
 }
 
-function internalSignatureVerify(fs_name, mapping_1, mapping_2) {
-   let form_data = getInternalVerifyFormData(fs_name, mapping_1, mapping_2);
+function internalSignatureVerify(fs_name, mapping_1, mapping_2, verify_callback = null) {
 
    return new Promise((resolve, reject) => {
+      let form_data = getInternalVerifyFormData(fs_name, mapping_1, mapping_2);
 
-      return XHR('post', '/home/API_internal_signature_verifier', form_data, null, 'json', null, null)
+      XHR('post', '/home/API_internal_signature_verifier', form_data, null, 'json', null, verify_callback)
          .then(response => {
 
             switch (response.result) {
@@ -225,19 +269,23 @@ function internalSignatureVerify(fs_name, mapping_1, mapping_2) {
                   alert('Открепленная подпись 2');
                   //TODO на удаление
                   break;
+
                case 5.1:
                   resolve();
-                  // file_item.dataset.sign_state = 'not_signed';
                   break;
+
                case 8:
                   resolve(response.validate_results);
                   break;
+
+               default:
+                  reject(`Ошибка при проверке встроенной подписи: \n${response.error_message ? response.error_message : response}`);
 
             }
 
          })
          .catch(exc => {
-            reject(exc);
+            reject('Ошибка при проверке встроенной подписи: ' + exc);
          });
 
    });
@@ -251,11 +299,18 @@ function getInternalVerifyFormData(fs_name, mapping_1, mapping_2) {
    return form_data;
 }
 
+function getFileData(file) {
+   let data = {};
+   let parent_field = mClosest(file, '[data-mapping_level_1]', 20);
 
+   data.element = file;
+   data.id = file.dataset.id;
+   data.id_sign = file.dataset.id_sign ? file.dataset.id_sign : '';
+   data.mapping_1 = parent_field.dataset.mapping_level_1;
+   data.mapping_2 = parent_field.dataset.mapping_level_2;
 
-
-
-
+   return data;
+}
 
 
 
