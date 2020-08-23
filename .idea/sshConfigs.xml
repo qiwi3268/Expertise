@@ -2,30 +2,10 @@
 <project version="4">
   <component name="SshConfigs">
     <configs>
-      <sshConfig authType="PASSWORD" host="192.168.1.251" id="b0d09bc5-e59f-4716-8a2a-6243b3530cc9" port="22" customName="Expertise" nameFormat="CUSTOM" username="root">
-        <option name="customName" value="Expertise" />
-      </sshConfig>
-      <sshConfig authType="PASSWORD" host="192.168.1.251" id="c2d02a33-7d88-4fdb-a9d0-101a6e3f20fd" port="22" customName="Expertise" nameFormat="CUSTOM" username="root">
-        <option name="customName" value="Expertise" />
-      </sshConfig>
-      <sshConfig authType="PASSWORD" host="192.168.1.251" id="e89f12c5-916c-4624-9741-9471afd30dae" port="22" customName="Expertise" nameFormat="CUSTOM" username="root">
-        <option name="customName" value="Expertise" />
-      </sshConfig>
-      <sshConfig authType="PASSWORD" host="192.168.1.251" id="36e87388-3e2a-4199-a54d-cda2a3c20f63" port="22" customName="Expertise" nameFormat="CUSTOM" username="root">
-        <option name="customName" value="Expertise" />
-      </sshConfig>
-      <sshConfig authType="PASSWORD" host="192.168.1.251" id="d9a7e3e1-78ea-48a3-8ee8-64cc83b8bf14" port="22" customName="Expertise" nameFormat="CUSTOM" username="root">
-        <option name="customName" value="Expertise" />
-      </sshConfig>
-      <sshConfig authType="PASSWORD" host="192.168.1.251" id="5108b574-fc74-43ad-9113-39db655c5dca" port="22" customName="Expertise" nameFormat="CUSTOM" username="root">
-        <option name="customName" value="Expertise" />
-      </sshConfig>
-      <sshConfig authType="PASSWORD" host="192.168.1.251" id="00953c2b-fb35-492e-8a4d-78c4dfe5e608" port="22" customName="Expertise" nameFormat="CUSTOM" username="root">
-        <option name="customName" value="Expertise" />
-      </sshConfig>
-      <sshConfig authType="PASSWORD" host="192.168.1.251" id="3de76444-9570-486f-a1c8-2045af27d53c" port="22" customName="Expertise" nameFormat="CUSTOM" username="root">
-        <option name="customName" value="Expertise" />
-      </sshConfig>
+      <sshConfig authType="PASSWORD" host="192.168.1.251" id="b0d09bc5-e59f-4716-8a2a-6243b3530cc9" port="22" customName="Expertise" nameFormat="CUSTOM" username="root" />
+      <sshConfig authType="PASSWORD" host="192.168.1.251" id="c2d02a33-7d88-4fdb-a9d0-101a6e3f20fd" port="22" customName="Expertise" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="192.168.1.251" id="131e97ce-31f4-4948-a4c7-2720cf44f0f1" port="22" customName="Expertise" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="192.168.1.251" id="d09d4a92-10a2-403c-9839-f745496cd47d" port="22" customName="Expertise" nameFormat="CUSTOM" />
     </configs>
   </component>
 </project>
