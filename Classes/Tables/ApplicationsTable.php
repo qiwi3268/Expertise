@@ -43,7 +43,7 @@ final class ApplicationsTable{
 
 
     // Предназначен для получения плоского ассоциативного массива заявления по его id
-    // * плоский - не содержащий подмассиве. Результирующий массив содержит данные только из таблицы с заявлениями
+    // * плоский - не содержащий подмассивов. Результирующий массив содержит данные только из таблицы с заявлениями
     // Принимает параметры-----------------------------------
     // id int : id заявления
     // Возвращает параметры----------------------------------
@@ -52,28 +52,7 @@ final class ApplicationsTable{
     //
     static public function getFlatAssocById(int $id):?array {
 
-        $query = "SELECT `applications`.`id`,
-                         `applications`.`is_saved`,
-                         `applications`.`numerical_name`,
-                         `applications`.`id_expertise_purpose`,
-                         `applications`.`additional_information`,
-                         `applications`.`object_name`,
-                         `applications`.`id_type_of_object`,
-                         `applications`.`id_functional_purpose`,
-                         `applications`.`id_functional_purpose_subsector`,
-                         `applications`.`id_functional_purpose_group`,
-                         `applications`.`number_planning_documentation_approval`,
-                         `applications`.`date_planning_documentation_approval`,
-                         `applications`.`number_GPZU`,
-                         `applications`.`date_GPZU`,
-                         `applications`.`id_type_of_work`,
-                         `applications`.`cadastral_number`,
-                         `applications`.`id_cultural_object_type`,
-                         `applications`.`id_national_project`,
-                         `applications`.`id_federal_project`,
-                         `applications`.`date_finish_building`,
-                         `applications`.`id_curator`,
-                         `applications`.`date_creation`
+        $query = "SELECT *
 				  FROM `applications`
                   WHERE `applications`.`id`=?";
 

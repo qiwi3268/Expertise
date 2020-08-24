@@ -236,6 +236,8 @@ class SignHandler {
 
       this.upload_sign_btn.dataset.inactive = 'true';
       this.create_sign_btn.dataset.inactive = 'true';
+
+      // this.modal.querySelector('.sign-modal__buttons').style.display = 'none';
    }
 
    // Предназначен для добавления информации о выбранном сертификате

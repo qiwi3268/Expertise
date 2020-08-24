@@ -262,6 +262,7 @@ class Modal {
 
                // Показывает или скрывает поля, зависящие от выбранного значения
                handleDependentBlocks(this.result_input);
+               DependenciesHandler.handleDependencies(this.result_input);
 
                // Очищаем зависимые поля
                this.clearRelatedModals();

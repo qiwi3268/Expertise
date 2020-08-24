@@ -40,7 +40,8 @@ function initRadioItems(radio_elem) {
             if (is_changed) {
                // Записываем в результат json с id выбранных элементов
                result_input.value = getRadioResult(body, multiple, required);
-               handleDependentBlocks(result_input);
+               // handleDependentBlocks(result_input);
+               DependenciesHandler.handleDependencies(result_input);
 
                if (required) {
                   validateCard(result_input.closest('.card-form'));

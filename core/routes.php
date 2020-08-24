@@ -71,9 +71,11 @@ return [
 
 
     'home/application/API_save_form' => [
-        'access'                     => [],
-        '/Classes/ApplicationForm/'  => ['SaveHandler', 'SingleMiscValidator', 'DataToUpdate'],
-        'API'                        => ['save_form']
+        'access'                              => [],
+        '/Classes/'                           => ['PrimitiveValidator'],
+        '/Classes/MiscValidator/'             => ['MiscValidator', 'SingleMisc', 'DependentMisc'],
+        '/Classes/Home/ApplicationForm/Save/' => ['DataToUpdate', 'SingleMiscValidator', 'DependentMiscValidator'],
+        'API'                                 => ['save_form']
     ],
 
     'home/API_save_files' => [

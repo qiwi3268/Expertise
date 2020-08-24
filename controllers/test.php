@@ -2,12 +2,7 @@
 
 
 
+$id = 10;
 
-
-
-
-$a = [1,2];
-$a[2];
-
-$test = ob_end_flush();
+$test = \Classes\Tables\FinancingSource\Type1::getAssocByIdApplication(2);
 var_dump($test);
