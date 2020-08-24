@@ -116,10 +116,8 @@ function handleDependentBlocks(parent_input) {
                               if (field_value.find(field_value => excludes.includes(field_value))) {
                                  // block.dataset.inactive = !dependencies[dependency];
                                  block.dataset.inactive = 'false';
-
                               } else {
                                  block.dataset.inactive = 'true';
-
                               }
 
                               clearBlock(block);

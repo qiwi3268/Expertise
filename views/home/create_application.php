@@ -324,7 +324,6 @@
     
                 <!--Блок смета-->
                 <div class="body-card__block" data-block_name="estimate" data-inactive="true">
-    
                     <!--Сметная стоимость-->
                     <div class="body-card__row field" data-row_name="estimate_cost" data-pattern="number">
                         <span class="body-card__title">Сведения о сметной или предполагаемой (предельной) стоимости объекта капитального строительства, содержащиеся в решении по объекту или письме. тыс. руб.</span>
@@ -336,7 +335,6 @@
                         </div>
                     </div>
                     <!--//Сметная стоимость//-->
-    
                     <!--Файл ГРБС-->
                     <!--TODO проверка на обязательность-->
                     <div class="body-card__row field" data-row-name='file_grbs' data-required="false" data-multiple="true" data-mapping_level_1="1" data-mapping_level_2="1">
@@ -353,9 +351,6 @@
                     <!--Файл ГРБС-->
                 </div>
                 <!--//Блок смета//-->
-    
-    
-    
     
                 <!--Кадастровый номер земельного участка-->
                 <div class="body-card__row field" data-row_name="cadastral_number" data-pattern="number">
@@ -545,6 +540,16 @@
                 </div>
                 <!--//Куратор//-->
     
+              
+            </div>
+        </div>
+    
+        <div class="application-form__card card-form" data-type="purpose">
+            <div class="card-form__header">
+                <span class="card-form__title">СВЕДЕНИЯ ОБ ИСТОЧНИКАХ ФИНАНСИРОВАНИЯ</span>
+                <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
+            </div>
+            <div class="card-form__body body-card">
                 <!--Источники финансирования-->
                 <div class="body-card__row field" data-row_name="finance_sources" data-required="true">
                     <span class="body-card__title field-title">Источники финансирования</span>
@@ -553,43 +558,35 @@
                             <span class="body-card__add-text">Добавить источник финансирования</span>
                             <i class="body-card__add-icon fas fa-plus-square"></i>
                         </div>
-    
+            
                         <div class="body-card__field radio" data-required="true">
-                            <div class="radio__body inline">
-                                <div class="radio__item inline" data-id="1">
+                            <div class="radio__body">
+                                <div class="radio__item" data-id="1">
                                     <i class="radio__icon inline far fa-square"></i>
                                     <span class="radio__text">Бюджетные средства</span>
                                 </div>
-                                <div class="radio__item inline" data-id="1">
+                                <div class="radio__item" data-id="2">
                                     <i class="radio__icon inline far fa-square"></i>
                                     <span class="radio__text">Средства юридических лиц, указанных в ч. 2 статьи 48.2 ГрК</span>
                                 </div>
-                                <div class="radio__item inline" data-id="1">
+                                <div class="radio__item" data-id="3">
                                     <i class="radio__icon inline far fa-square"></i>
                                     <span class="radio__text">Собственные средства застройщика</span>
                                 </div>
-                                <div class="radio__item inline" data-id="1">
+                                <div class="radio__item" data-id="4">
                                     <i class="radio__icon inline far fa-square"></i>
                                     <span class="radio__text">Средства инвестора</span>
-                                </div>
-                                <div class="radio__item inline" data-id="1">
-                                    <i class="radio__icon inline far fa-square"></i>
-                                    <span class="radio__text">Нет данных</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+        
                     <input class="body-card__result field-result" type="hidden" name="finance_sources">
                 </div>
                 <!--//Источники финансирования//-->
-
-                
-
-              
             </div>
         </div>
-
+        
         <div class="application-form__card card-form" data-type="documentation">
             <div class="card-form__header">
                 <span class="card-form__title">ДОКУМЕНТАЦИЯ</span>
