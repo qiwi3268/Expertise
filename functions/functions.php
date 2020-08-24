@@ -64,6 +64,8 @@ function clearHtmlArr(array $arr):array {
 }
 
 
+
+//todo убрать позор
 function GetDdMmYyyyDate(int $timestamp):string {
     return date('d.m.Y', $timestamp);
 }

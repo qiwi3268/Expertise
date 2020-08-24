@@ -42,7 +42,7 @@
 
 
 <div>
-    <input class="row-dependencies" type="hidden" value='<?= $variablesTV->getValue('displayDependencies') ?>'>
-    <input class="block-dependencies" type="hidden" value='<?= $variablesTV->getValue('blockDependencies') ?>'>
+    <input id="block_dependencies" type="hidden" value='<?= $variablesTV->getValue('blockDependencies') ?>'>
+    <input id="require_dependencies" type="hidden" value='<?= $variablesTV->getValue('requireDependencies') ?>'>
 </div>
 

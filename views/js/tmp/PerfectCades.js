@@ -3,10 +3,13 @@
 class GeCades{
 
     static getCadesPlugin() {
+        console.log(cadesplugin);
+
         return cadesplugin;
     }
 
     static getPluginData(){
+
 
         return new Promise((resolve, reject) => {
 
@@ -18,17 +21,50 @@ class GeCades{
                     let oAbout;
 
                     try {
+
                         oAbout = yield cadesplugin.CreateObjectAsync("CAdESCOM.About");
+
                     } catch(exc) {
                         reject("Ошибка при создании объекта About: " + cadesplugin.getLastError(exc));
                     }
 
                     let CurrentPluginVersion = yield oAbout.PluginVersion;  // Версия плагина
-                    let CurrentCSPVersion = yield oAbout.CSPVersion("", 80); // Версия криптопровайдера
 
-                    let CurrentPluginVersion_string = (yield CurrentPluginVersion.toString());
-                    let CurrentCPVersion_string = (yield CurrentCSPVersion.MajorVersion) + "." + (yield CurrentCSPVersion.MinorVersion) + "." + (yield CurrentCSPVersion.BuildVersion);
 
+                    let CurrentCSPVersion;
+
+                    try {
+
+                        CurrentCSPVersion = yield oAbout.CSPVersion("", 80); // Версия криптопровайдера
+
+                        console.log(CurrentCSPVersion);
+
+                    } catch (exc) {
+                        console.log(exc);
+                    }
+
+                    let CurrentPluginVersion_string
+
+                    try {
+
+
+                    CurrentPluginVersion_string = (yield CurrentPluginVersion.toString());
+
+                    } catch (exc) {
+                        console.log(exc);
+                    }
+
+                    let CurrentCPVersion_string;
+                    try {
+
+
+                        CurrentCPVersion_string = (yield CurrentCSPVersion.MajorVersion) + "." + (yield CurrentCSPVersion.MinorVersion) + "." + (yield CurrentCSPVersion.BuildVersion);
+
+                    } catch (exc) {
+
+
+                        console.log(exc);
+                    }
 
                     let plugin_data = {
                         plugin_version: CurrentPluginVersion_string,

@@ -116,311 +116,132 @@ try{
         }
     }
     
-    // Объект класса-обработчика
-    $formHandler = new SaveHandler($applicationAssoc);
-    
+    $PrimitiveValidator = new PrimitiveValidator();
     DataToUpdate::setFlatAssoc($applicationAssoc);
     
     
-    // Проверка Цели обращения -----------------------------------------------------------------
+    
     try{
-        ($ExpertisePurpose = new SingleMiscValidator($P_expertise_purpose, 'misc_expertisePurposeTable'))->addToUpdate('id_expertise_purpose');
-    }catch(Exception $e){
-        exit(json_encode(['result' => $e->getCode(), 'error_message' => $e->getMessage()]));
-    }
-    
-    
-    // Проверка Предметов экспертизы -----------------------------------------------------------
-    //
-    if($P_expertise_subjects !== ''){
-        
-        // Попытка заполнить Предмет экспертизы без выбранной Цели обращения
-        if(!expertise_purpose_exist){
-            
-            exit(json_encode(['result' => 7, 'error_message' => 'Предмет экспертизы не может быть заполнен при невыбранной Цели обращения']));
-        }
-        
-        $expertiseSubjectsJSONvalidateResult = $formHandler->validateNumericalJson($P_expertise_subjects);
-        
-        if($expertiseSubjectsJSONvalidateResult['error']){
-            
-            $errorMessage = 'Передано некорректное значение Предмета экспертизы.';
-            
-            switch($expertiseSubjectsJSONvalidateResult['error_code']){
-                case 1: // Ошибка при парсинге json'а
-                    $errorMessage .= ' Ошибка при работе с переданным объектом.';
-                    $errorMessage .= ' Message: '.$expertiseSubjectsJSONvalidateResult['exception_message'];
-                    $errorMessage .= ', Code: '.$expertiseSubjectsJSONvalidateResult['exception_code'];
-                    break;
-                case 2: // В массиве присутствуют нечисловые элементы
-                    $errorMessage .= ' В объекте присутствуют нечисловые элементы';
-                    break;
-                case 3: // В массиве присутствуют одинаковые элементы
-                    $errorMessage .= ' В объекте присутствуют одинаковые элементы';
-                    break;
-            }
-            
-            exit(json_encode(['result' => 4, 'error_message' => $errorMessage]));
-        }
-        
-        // int'овый массив из формы
-        $form_expertiseSubjects = $expertiseSubjectsJSONvalidateResult['int_formArray'];
-        
-        foreach($form_expertiseSubjects as $id){
-            
-            // Проверка каждого выбранного Предмета экспертизы на зависимость от выбранной Цели обращения
-            $expertiseSubjectValidateResult = $formHandler->validateDependentMisc($form_expertisePurposeID, $id, 'misc_expertiseSubjectTable');
-            
-            if($expertiseSubjectValidateResult['error']){
-                
-                switch($expertiseSubjectValidateResult['error_code']){
-                    case 1: // Передано некорректное значение зависимого справочника
-                        exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение Предмета экспертизы']));
-                    case 2: // Запрашиваемая в форме зависимость не существует
-                        exit(json_encode(['result' => 5, 'error_message' => 'Запрашиваемый справочник Предмета экспертизы не существует']));
-                }
-            }
-        }
-        
-        define('expertise_subjects_exist', true);
-    }else{
-        define('expertise_subjects_exist', false);
-    }
-    
-    
 
-    
-    try{
-        // Проверка Вида объекта -------------------------------------------------------------------
-        //
-        ($TypeOfObject = new SingleMiscValidator($P_type_of_object, 'misc_typeOfObjectTable'))->addToUpdate('id_type_of_object');
-        //
-        // Проверка Функционального назначения -----------------------------------------------------
-        ($FunctionalPurpose = new SingleMiscValidator($P_functional_purpose, 'misc_functionalPurposeTable'))->addToUpdate('id_functional_purpose');
+        // Проверка Цели обращения (и добавление к массиву обновлений) -----------------------------
+        $ExpertisePurpose = new SingleMiscValidator($P_expertise_purpose, 'misc_expertisePurposeTable', 'id_expertise_purpose');
+        $ExpertisePurpose->validate()->addToUpdate();
         
-    }catch(Exception $e){
+        
+        // Проверка Предметов экспертизы -----------------------------------------------------------
+        if($P_expertise_subjects !== ''){
+            $ExpertiseSubjects = $PrimitiveValidator->getValidatedArrayFromNumericalJson($P_expertise_subjects, true);
+            foreach($ExpertiseSubjects as $id) new DependentMiscValidator($ExpertisePurpose, $id, 'misc_expertiseSubjectTable');
+        }
+        
+    
+        // Проверка Вида объекта (и добавление к массиву обновлений) -------------------------------
+        $TypeOfObject = new SingleMiscValidator($P_type_of_object, 'misc_typeOfObjectTable', 'id_type_of_object');
+        $TypeOfObject->validate()->addToUpdate();
+        
+        
+        // Проверка Функционального назначения (и добавление к массиву обновлений) -----------------
+        $FunctionalPurpose = new SingleMiscValidator($P_functional_purpose, 'misc_functionalPurposeTable', 'id_functional_purpose');
+        $FunctionalPurpose->validate()->addToUpdate();
+        
+    
+        // Проверка Функциональное назначение. Подотрасль (и добавление к массиву обновлений) ------
+        $FunctionalPurposeSubsector = new DependentMiscValidator($FunctionalPurpose, $P_functional_purpose_subsector, 'misc_functionalPurposeSubsectorTable', 'id_functional_purpose_subsector');
+        $FunctionalPurposeSubsector->validate()->addToUpdate();
+        
+        
+        // Проверка Функциональное назначение. Группа (и добавление к массиву обновлений) ----------
+        $FunctionalPurposeGroup = new DependentMiscValidator($FunctionalPurposeSubsector, $P_functional_purpose_group, 'misc_functionalPurposeGroupTable', 'id_functional_purpose_group');
+        $FunctionalPurposeGroup->validate()->addToUpdate();
+        
+    
+        // Проверка Вида работ (и добавление к массиву обновлений) ---------------------------------
+        $TypeOfWork = new DependentMiscValidator($ExpertisePurpose,  $P_type_of_work, 'misc_typeOfWorkTable', 'id_type_of_work');
+        $TypeOfWork->validate()->addToUpdate();
+        
+    
+        // Проверка Типа объекта культурного наследия (и добавление к массиву обновлений) ----------
+        if($P_cultural_object_type !== '' && $P_cultural_object_type_checkbox !== '1'){
+            exit(json_encode(['result' => 7, 'error_message' => 'Тип объекта культурного наследия не может быть заполнен при невыбраном чекбоксе Объект культурного наследия (Да)']));
+        }
+        $CulturalObjectType = new SingleMiscValidator($P_cultural_object_type, 'misc_culturalObjectTypeTable', 'id_cultural_object_type');
+        $CulturalObjectType->validate()->addToUpdate();
+    
+        
+        // Проверка Национального проекта (и добавление к массиву обновлений) ----------------------
+        if($P_national_project !== '' && $P_national_project_checkbox !== '1'){
+            exit(json_encode(['result' => 7, 'error_message' => 'Название национального проекта не может быть заполнен при невыбраном чекбоксе Национальный проект (Да)']));
+        }
+        $NationalProject = new SingleMiscValidator($P_national_project, 'misc_nationalProjectTable', 'id_national_project');
+        $NationalProject->validate()->addToUpdate();
+    
+    
+        // Проверка Федерального проекта (и добавление к массиву обновлений) -----------------------
+        $FederalProject = new DependentMiscValidator($NationalProject, $P_federal_project, 'misc_federalProjectTable', 'id_federal_project');
+        $FederalProject->validate()->addToUpdate();
+    
+    
+        // Проверка Куратора (и добавление к массиву обновлений) -----------------------------------
+        $Curator = new SingleMiscValidator($P_curator, 'misc_curatorTable', 'id_curator');
+        $Curator->validate()->addToUpdate();
+        
+
+        
+        
+    }catch(ApplicationFormMiscValidatorException $e){
+        // result 4 / 5 / 7
         exit(json_encode(['result' => $e->getCode(), 'error_message' => $e->getMessage()]));
-    }
-  
-    
-    
-    
-    // Проверка Функциональное назначение. Подотрасль ------------------------------------------
-    //
-    if($P_functional_purpose_subsector !== ''){
-        
-        if(!functional_purpose_exist){
-            exit(json_encode(['result' => 7, 'error_message' => 'Функциональное назначение. Подотрасль не может быть заполнена при невыбранном Функциональном назначении']));
-        }
-        
-        $functionalPurposeSubsectorValidateResult = $formHandler->validateDependentMisc($form_functionalPurposeID, $P_functional_purpose_subsector, 'misc_functionalPurposeSubsectorTable');
-        
-        if($functionalPurposeSubsectorValidateResult['error']){
-            
-            switch($functionalPurposeSubsectorValidateResult['error_code']){
-                case 1: // Передано некорректное значение зависимого справочника
-                    exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение Функциональное назначение. Подотрасль']));
-                case 2: // Запрашиваемая в форме зависимость не существует
-                    exit(json_encode(['result' => 5, 'error_message' => 'Запрашиваемый справочник Функциональное назначение. Подотрасль не существует']));
-            }
-        }
-        
-        // int'овое значение из формы
-        $form_functionalPurposeSubsectorID = $functionalPurposeSubsectorValidateResult['int_formValueDependent'];
-        
-        define('functional_purpose_subsector_exist', true);
-    }else{
-        
-        define('functional_purpose_subsector_exist', false);
+    }catch(PrimitiveValidatorException $e){
+        // result 4
+        exit(json_encode(['result' => 4, 'error_message' => $e->getMessage()]));
     }
     
     
-    // Проверка Функциональное назначение. Группа ----------------------------------------------
-    //
-    if($P_functional_purpose_group !== ''){
-        
-        if(!functional_purpose_subsector_exist){
-            exit(json_encode(['result' => 7, 'error_message' => 'Функциональное назначение. Группа не может быть заполнена при невыбранной Функциональном назначении. Подотрасль']));
-        }
-        
-        $functionalPurposeGroupValidateResult = $formHandler->validateDependentMisc($form_functionalPurposeSubsectorID, $P_functional_purpose_group, 'misc_functionalPurposeGroupTable');
-        
-        if($functionalPurposeGroupValidateResult['error']){
-            
-            switch($functionalPurposeGroupValidateResult['error_code']){
-                case 1: // Передано некорректное значение зависимого справочника
-                    exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение Функциональное назначение. Группа']));
-                case 2: // Запрашиваемая в форме зависимость не существует
-                    exit(json_encode(['result' => 5, 'error_message' => 'Запрашиваемый справочник Функциональное назначение. Группа не существует']));
-            }
-        }
-        
-        // int'овое значение из формы
-        $form_functionalPurposeGroupID = $functionalPurposeGroupValidateResult['int_formValueDependent'];
-        
-        define('functional_purpose_group_exist', true);
-    }else{
-        
-        define('functional_purpose_group_exist', false);
-    }
+    
+    
+    
     
     
     // Проверка блока Номера и Даты ------------------------------------------------------------
     //
     // Из формы одновременное пришли данные из блока Утверждения документации по планировке территории и ГПЗУ
     if(($P_number_planning_documentation_approval !== '' || $P_date_planning_documentation_approval !== '') && ($P_number_GPZU !== '' || $P_date_GPZU !== '')){
-        
         exit(json_encode(['result' => 6, 'error_message' => 'Одновременно переданы данные из блока Утверждения документации по планировке территории и ГПЗУ']));
     }
     
     if($P_number_planning_documentation_approval !== '' || $P_date_planning_documentation_approval !== ''){
         
         // Заполнены данные при невыбранном Виде объекта или Вид объекта не того типа
-        if(!type_of_object_exist || $form_typeOfObjectID !== 1){
-            
+        if(!$TypeOfObject->isExist() || $TypeOfObject->getIntValue() !== 1){
             exit(json_encode(['result' => 7, 'error_message' => 'Данные из блока Утверждения документации по планировке территории не могут быть заполнены при указанном Виде объекта']));
         }
         
         // Валидация Даты
-        if($P_date_planning_documentation_approval !== '' && !$formHandler->validateDate($P_date_planning_documentation_approval)){
-            
-            exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение даты Утверждения документации по планировке территории']));
+        if($P_date_planning_documentation_approval !== ''){
+            try{
+                $PrimitiveValidator->validateStringDate($P_date_planning_documentation_approval);
+            }catch(PrimitiveValidatorException $e){
+                exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение даты Утверждения документации по планировке территории']));
+            }
         }
         
     }elseif($P_number_GPZU !== '' || $P_date_GPZU !== ''){
         
         // Заполнены данные при невыбранном Виде объекта или Вид объекта не того типа
-        if(!type_of_object_exist || $form_typeOfObjectID !== 2){
-            
+        if(!$TypeOfObject->isExist() || !$TypeOfObject->getIntValue() !== 2){
             exit(json_encode(['result' => 7, 'error_message' => 'Данные из блока ГПЗУ не могут быть заполнены при указанном Виде объекта']));
         }
         
         // Валидация Даты
-        if($P_date_GPZU !== '' && !$formHandler->validateDate($P_date_GPZU)){
-            
-            exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение даты ГПЗУ']));
-        }
-    }
-    
-    
-    // Проверка Вида работ ---------------------------------------------------------------------
-    //
-    if($P_type_of_work !== ''){
-        
-        if(!expertise_purpose_exist){
-            exit(json_encode(['result' => 7, 'error_message' => 'Вид работ не может быть заполнен при невыбранной Цели обращения']));
-        }
-        
-        $typeOfWorkValidateResult = $formHandler->validateDependentMisc($form_expertisePurposeID, $P_type_of_work, 'misc_typeOfWorkTable');
-        
-        if($typeOfWorkValidateResult['error']){
-            
-            switch($typeOfWorkValidateResult['error_code']){
-                case 1: // Передано некорректное значение зависимого справочника
-                    exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение Вида работ']));
-                case 2: // Запрашиваемая в форме зависимость не существует
-                    exit(json_encode(['result' => 5, 'error_message' => 'Запрашиваемый справочник Вида работ не существует']));
+        if($P_date_GPZU !== ''){
+            try{
+                $PrimitiveValidator->validateStringDate($P_date_GPZU);
+            }catch(PrimitiveValidatorException $e){
+                exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение даты ГПЗУ']));
             }
         }
-        
-        // int'овое значение из формы
-        $form_typeOfWorkID = $typeOfWorkValidateResult['int_formValueDependent'];
-        
-        define('type_of_work_exist', true);
-    }else{
-        
-        define('type_of_work_exist', false);
     }
     
-    
-    // Проверка Типа объекта культурного наследия ----------------------------------------------
-    //
-    if($P_cultural_object_type !== ''){
-        
-        if($P_cultural_object_type_checkbox !== '1'){
-            exit(json_encode(['result' => 7, 'error_message' => 'Тип объекта культурного наследия не может быть заполнен при невыбраном чекбоксе Объект культурного наследия (Да)']));
-        }
-        
-        $culturalObjectTypeValidateResult = $formHandler->validateSingleMisc($P_cultural_object_type, 'misc_culturalObjectTypeTable');
-        
-        if($culturalObjectTypeValidateResult['error']){
-            
-            switch($culturalObjectTypeValidateResult['error_code']){
-                case 1: // Передано некорректное значение справочника
-                    exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение Типа объекта культурного наследия']));
-                case 2: // Запрашиваемый справочник не существует
-                    exit(json_encode(['result' => 5, 'error_message' => 'Запрашиваемый справочник Типа объекта культурного наследия не существует']));
-            }
-        }
-        
-        // int'овое значение из формы
-        $form_culturalObjectTypeID = $culturalObjectTypeValidateResult['int_formValue'];
-        
-        define('cultural_object_type_exist', true);
-    }else{
-        
-        define('cultural_object_type_exist', false);
-    }
-    
-    
-    // Проверка Национального проекта ----------------------------------------------------------
-    //
-    if($P_national_project !== ''){
-        
-        if($P_national_project_checkbox !== '1'){
-            exit(json_encode(['result' => 7, 'error_message' => 'Название национального проекта не может быть заполнен при невыбраном чекбоксе Национальный проект (Да)']));
-        }
-        
-        $nationalProjectValidateResult = $formHandler->validateSingleMisc($P_national_project, 'misc_nationalProjectTable');
-        
-        if($nationalProjectValidateResult['error']){
-            
-            switch($nationalProjectValidateResult['error_code']){
-                case 1: // Передано некорректное значение справочника
-                    exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение Национального проекта']));
-                case 2: // Запрашиваемый справочник не существует
-                    exit(json_encode(['result' => 5, 'error_message' => 'Запрашиваемый справочник Национального проекта не существует']));
-            }
-        }
-        
-        // int'овое значение из формы
-        $form_nationalProjectID = $nationalProjectValidateResult['int_formValue'];
-        
-        define('national_project_exist', true);
-    }else{
-        
-        define('national_project_exist', false);
-    }
-    
-    
-    // Проверка Федерального проекта -----------------------------------------------------------
-    //
-    if($P_federal_project !== ''){
-        
-        if(!national_project_exist){
-            exit(json_encode(['result' => 7, 'error_message' => 'Федеральный проект не может быть заполнен при невыбранном Национальном проекте']));
-        }
-        
-        $federalProjectValidateResult = $formHandler->validateDependentMisc($form_nationalProjectID, $P_federal_project, 'misc_federalProjectTable');
-        
-        if($federalProjectValidateResult['error']){
-            
-            switch($federalProjectValidateResult['error_code']){
-                case 1: // Передано некорректное значение зависимого справочника
-                    exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение Федерального проекта']));
-                case 2: // Запрашиваемая в форме зависимость не существует
-                    exit(json_encode(['result' => 5, 'error_message' => 'Запрашиваемый справочник Федерального проекта не существует']));
-            }
-        }
-        
-        // int'овое значение из формы
-        $form_federalProjectID = $federalProjectValidateResult['int_formValueDependent'];
-        
-        define('federal_project_exist', true);
-    }else{
-        
-        define('federal_project_exist', false);
-    }
     
     
     // Проверка Даты окончания строительства -----------------------------------------------------------
@@ -430,37 +251,14 @@ try{
         if($P_national_project_checkbox !== '1'){
             exit(json_encode(['result' => 7, 'error_message' => 'Дата окончания строительства не может быть заполнена при невыбраном чекбоксе Национальный проект (Да)']));
         }
-        
-        if(!$formHandler->validateDate($P_date_finish_building)){
-            
+    
+        try{
+            $PrimitiveValidator->validateStringDate($P_date_finish_building);
+        }catch(PrimitiveValidatorException $e){
             exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение Даты окончания строительства']));
         }
     }
     
-    // Проверка Куратора -------------------------------------------------------------------------------
-    //
-    if($P_curator !== ''){
-        
-        $curatorValidateResult = $formHandler->validateSingleMisc($P_curator, 'misc_curatorTable');
-        
-        if($curatorValidateResult['error']){
-            
-            switch($curatorValidateResult['error_code']){
-                case 1: // Передано некорректное значение справочника
-                    exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение Куратора']));
-                case 2: // Запрашиваемый справочник не существует
-                    exit(json_encode(['result' => 5, 'error_message' => 'Запрашиваемый справочник Куратора не существует']));
-            }
-        }
-        
-        // int'овое значение из формы
-        $form_curatorID = $curatorValidateResult['int_formValue'];
-        
-        define('curator_exist', true);
-    }else{
-        
-        define('curator_exist', false);
-    }
     
     
     // -----------------------------------------------------------------------------------------------------------------
@@ -501,25 +299,21 @@ try{
     $dataToUpdate = [];
     
     
-    // Цель обращения (справочник, нельзя сбросить) --------------------------------------------
-    if(expertise_purpose_exist && $form_expertisePurposeID !== $applicationAssoc['id_expertise_purpose']){
-        $dataToUpdate['id_expertise_purpose'] = $form_expertisePurposeID;
-    }
-    
     
     // Предмет экспертизы (радио, можно сбросить) ----------------------------------------------
     
     // Предметы экспертизы, которые уже есть у заявления
+    /*
     $db_expertiseSubjects = ExpertiseSubjectTable::getIdsByIdApplication($form_applicationID);
     
     $db_expertiseSubjects ??= [];    // Если с БД пришел null, то приравниваем к пустому массиву для array_diff
     $expertiseSubjectsToDelete = []; // Массив с id Предметов экспертизы, которые нужно удалить
     $expertiseSubjectsToCreate = []; // Массив с id Предметов экспертизы, которые нужно создать к заявлению
     
-    if(expertise_subjects_exist){
+    if($ExpertiseSubjects){
         
         // id Предметов, которые есть в БД, но нет в пришедшей форме
-        $expertiseSubjectsToDelete = array_diff($db_expertiseSubjects, $form_expertiseSubjects);
+        $expertiseSubjectsToDelete = array_diff($db_expertiseSubjects, $ExpertiseSubjects);
         
         // id Предметов, которые есть в пришедшей форме, но нет в БД
         $expertiseSubjectsToCreate = array_diff($form_expertiseSubjects, $db_expertiseSubjects);
@@ -530,12 +324,9 @@ try{
     }
     
     // Удаляем и записываем в БД новые записи о Предмете экспертизы
-    foreach($expertiseSubjectsToDelete as $id){
-        ExpertiseSubjectTable::delete($form_applicationID, $id);
-    }
-    foreach($expertiseSubjectsToCreate as $id){
-        ExpertiseSubjectTable::create($form_applicationID, $id);
-    }
+    foreach($expertiseSubjectsToDelete as $id) ExpertiseSubjectTable::delete($form_applicationID, $id);
+    foreach($expertiseSubjectsToCreate as $id) ExpertiseSubjectTable::create($form_applicationID, $id);
+    
     
     
     // Дополнительная информация (текстовое поле) ----------------------------------------------
@@ -544,16 +335,6 @@ try{
     
     // Наименование объекта (текстовое поле) ---------------------------------------------------
     $formHandler->addValueToUpdate($P_object_name, 'object_name', $dataToUpdate);
-    
-    
-    // Функциональное назначение. Подотрасль (справочник, можно сбросить) -----------------------
-    $tmpFormValue = functional_purpose_subsector_exist ? $form_functionalPurposeSubsectorID : '';
-    $formHandler->addValueToUpdate($tmpFormValue, 'id_functional_purpose_subsector', $dataToUpdate);
-    
-    
-    // Функциональное назначение. Группа (справочник, можно сбросить) ---------------------------
-    $tmpFormValue = functional_purpose_group_exist ? $form_functionalPurposeGroupID : '';
-    $formHandler->addValueToUpdate($tmpFormValue, 'id_functional_purpose_group', $dataToUpdate);
     
     // Номер утверждения документации по планировке территории (текстовое поле) -----------------
     $formHandler->addValueToUpdate($P_number_planning_documentation_approval, 'number_planning_documentation_approval', $dataToUpdate);
@@ -567,35 +348,14 @@ try{
     DataToUpdate::add(strtotime($P_date_GPZU), 'number_GPZU');  // Дата ГПЗУ (текстовое поле, календарь)
     DataToUpdate::add($P_cadastral_number, 'cadastral_number'); // Кадастровый номер земельного участка (текстовое поле)
     
-    // Вид работ (справочник, можно сбросить)
-    $tmpFormValue = type_of_work_exist ? $form_typeOfWorkID : '';
-    $formHandler->addValueToUpdate($tmpFormValue, 'id_type_of_work', $dataToUpdate);
+
     
-    
-    // Тип объекта культурного наследия (справочник, можно сбросить) ---------------------------
-    $tmpFormValue = cultural_object_type_exist ? $form_culturalObjectTypeID : '';
-    $formHandler->addValueToUpdate($tmpFormValue, 'id_cultural_object_type', $dataToUpdate);
-    
-    
-    // Национальный проект (справочник, можно сбросить) ----------------------------------------
-    $tmpFormValue = national_project_exist ? $form_nationalProjectID : '';
-    $formHandler->addValueToUpdate($tmpFormValue, 'id_national_project', $dataToUpdate);
-    
-    
-    // Федеральный проект (справочник, можно сбросить) -----------------------------------------
-    $tmpFormValue = federal_project_exist ? $form_federalProjectID : '';
-    $formHandler->addValueToUpdate($tmpFormValue, 'id_federal_project', $dataToUpdate);
     
     
     // Дата окончания строительства (текстовое поле, календарь) --------------------------------
     $formHandler->addValueToUpdate(strtotime($P_date_finish_building), 'date_finish_building', $dataToUpdate);
     
-    
-    // Куратор (справочник, нельзя сбросить) ----------------------------------------------------
-    if(curator_exist && $form_curatorID !== $applicationAssoc['id_curator']){
-        $dataToUpdate['id_curator'] = $form_curatorID;
-    }
-    
+    */
     
     // Сохранение в БД полей заявления ---------------------------------------------------------
     //
@@ -611,6 +371,11 @@ try{
     
     // Успешное сохранение
     exit(json_encode(['result' => 8]));
+    
+// Ошибка валидации справочника
+}catch(MiscValidatorException $e){
+    
+    // Логирование
     
 // Непредвиденная ошибка
 }catch(Exception $e){

@@ -92,10 +92,10 @@ function createErrorAlert(error_code) {
 
 }
 
-function uploadFiles(files, mapping_1, mapping_2, upload_callback = null) {
+function uploadFiles(files, mapping_1, mapping_2, id_structure_node = null, upload_callback = null) {
 
    return new Promise((resolve, reject) => {
-      let form_data = getUploadFormData(files, mapping_1, mapping_2);
+      let form_data = getUploadFormData(files, mapping_1, mapping_2, id_structure_node);
 
       XHR('post', '/home/API_file_uploader', form_data, null, 'json', null, upload_callback)
          .then(response => {
@@ -124,11 +124,16 @@ function uploadFiles(files, mapping_1, mapping_2, upload_callback = null) {
 
 }
 
-function getUploadFormData(files, mapping_1, mapping_2) {
+function getUploadFormData(files, mapping_1, mapping_2, id_structure_node) {
    let form_data = new FormData();
    form_data.append('id_application', getIdApplication());
    form_data.append('mapping_level_1', mapping_1);
    form_data.append('mapping_level_2', mapping_2);
+
+   if (id_structure_node) {
+      form_data.append('id_structure_node', id_structure_node);
+
+   }
 
    try {
       files.forEach(file => {

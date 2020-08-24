@@ -73,8 +73,16 @@ function validateField(input, pattern) {
          error_message = 'Введите корректный адрес электронной почты';
          break;
       case 'kpp' :
-         regex = '^\\d{9}}?$';
+         regex = '^\\d{9}$';
          error_message = 'Значение должно быть числом из 9 символов';
+         break;
+      case 'ogrn' :
+         regex = '^\\d{13}$';
+         error_message = 'Значение должно быть числом из 13 символов';
+         break;
+      case 'inn' :
+         regex = '^\\d{10}$\|^d{12}$';
+         error_message = 'Значение должно быть числом из 10 или 12 символов';
          break;
       default :
          regex = '^\\S+\.*$';
@@ -137,7 +145,8 @@ function validateCard(card) {
 // Возвращает параметры------------------------------
 // is_valid     boolean : заполнен ли блок
 function isValidCard(card) {
-   let required_fields = card.querySelectorAll('.field[data-required="true"]');
+   //TODO проверка файлов
+   let required_fields = card.querySelectorAll('.field[data-required="true"]:not([data-mapping_level_1])');
    let field_value;
    let is_valid = true;
 

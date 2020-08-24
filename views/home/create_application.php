@@ -63,7 +63,7 @@
             <div class="card-form__body body-card">
                 <!--Цель обращения-->
                 <div class="body-card__row field" data-row_name="expertise_purpose" data-required="true">
-                    <span class="body-card__title field-title required">Цель обращения</span>
+                    <span class="body-card__title field-title">Цель обращения</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
                             <div class="body-card__select field-select modal-select">
@@ -91,7 +91,7 @@
 
                 <!--Предмет экспертизы-->
                 <div class="body-card__row field center" data-row_name="expertise_subjects" data-required="true">
-                    <span class="body-card__title required">Предмет экспертизы</span>
+                    <span class="body-card__title">Предмет экспертизы</span>
                     <div class="body-card__item">
                         <div class="body-card__field radio" data-multiple="true" data-required="true">
                             <div class="radio__body">
@@ -127,7 +127,7 @@
             <div class="card-form__body body-card">
                 <!--Наименование объекта-->
                 <div class="body-card__row field" data-row_name="object_name" data-required="true" data-pattern="text">
-                    <span class="body-card__title required">Наименование объекта</span>
+                    <span class="body-card__title">Наименование объекта</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
                             <textarea class="body-card__input body-card__result field-result application-input" name="object_name"></textarea>
@@ -139,7 +139,7 @@
 
                 <!--Вид объекта-->
                 <div class="body-card__row field" data-row_name="type_of_object" data-required="true">
-                    <span class="body-card__title field-title required">Вид объекта</span>
+                    <span class="body-card__title field-title">Вид объекта</span>
 
                     <div class="body-card__item">
                         <div class="body-card__field">
@@ -169,7 +169,7 @@
 
                 <!--Функциональное назначение-->
                 <div class="body-card__row field" data-row_name="functional_purpose" data-required="true">
-                    <span class="body-card__title field-title required">Функциональное назначение</span>
+                    <span class="body-card__title field-title">Функциональное назначение</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
                             <div class="body-card__select field-select modal-select">
@@ -197,7 +197,7 @@
 
                 <!--Функциональное назначение. Подотрасль-->
                 <div class="body-card__row field" data-row_name="functional_purpose_subsector" data-required="true">
-                    <span class="body-card__title field-title required">Функциональное назначение. Подотрасль</span>
+                    <span class="body-card__title field-title">Функциональное назначение. Подотрасль</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
                             <div class="body-card__select field-select modal-select">
@@ -218,7 +218,7 @@
 
                 <!--Функциональное назначение. Группа-->
                 <div class="body-card__row field" data-row_name="functional_purpose_group" data-required="true">
-                    <span class="body-card__title field-title required">Функциональное назначение. Группа</span>
+                    <span class="body-card__title field-title">Функциональное назначение. Группа</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
                             <div class="body-card__select field-select modal-select">
@@ -303,7 +303,7 @@
 
                 <!--Вид работ-->
                 <div class="body-card__row field" data-row_name="type_of_work" data-required="true">
-                    <span class="body-card__title field-title required">Вид работ</span>
+                    <span class="body-card__title field-title">Вид работ</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
                             <div class="body-card__select field-select modal-select">
@@ -321,7 +321,42 @@
                     <input class="body-card__result field-result" type="hidden" name="type_of_work">
                 </div>
                 <!--//Вид работ//-->
-
+    
+                <!--Блок смета-->
+                <div class="body-card__block" data-block_name="estimate" data-inactive="true">
+    
+                    <!--Сметная стоимость-->
+                    <div class="body-card__row field" data-row_name="estimate_cost" data-pattern="number">
+                        <span class="body-card__title">Сведения о сметной или предполагаемой (предельной) стоимости объекта капитального строительства, содержащиеся в решении по объекту или письме. тыс. руб.</span>
+                        <div class="body-card__item">
+                            <div class="body-card__field">
+                                <input class="body-card__input body-card__result field-result application-input" type="text" name="estimate_cost" placeholder="Введите значение">
+                            </div>
+                            <span class="body-card__error field-error"></span>
+                        </div>
+                    </div>
+                    <!--//Сметная стоимость//-->
+    
+                    <!--Файл ГРБС-->
+                    <!--TODO проверка на обязательность-->
+                    <div class="body-card__row field" data-row-name='file_grbs' data-required="false" data-multiple="true" data-mapping_level_1="1" data-mapping_level_2="1">
+                        <span class="body-card__title">Файл ГРБС</span>
+                        <div class="body-card__item">
+                            <div class="body-card__select field-select modal-file">
+                                <span class="body-card__value">Загрузите файлы</span>
+                                <i class="body-card__icon fas fa-file"></i>
+                            </div>
+                            <div class="files"></div>
+                        </div>
+                        <input class="body-card__result field-result" type="hidden" name="file_grbs">
+                    </div>
+                    <!--Файл ГРБС-->
+                </div>
+                <!--//Блок смета//-->
+    
+    
+    
+    
                 <!--Кадастровый номер земельного участка-->
                 <div class="body-card__row field" data-row_name="cadastral_number" data-pattern="number">
                     <span class="body-card__title">Кадастровый номер земельного участка</span>
@@ -359,7 +394,7 @@
                 <div class="body-card__block" data-block_name="cultural_object_type" data-inactive="true">
                     <!--Тип объекта культурного наследия-->
                     <div class="body-card__row field" data-row_name="cultural_object_type" data-required="true">
-                        <span class="body-card__title field-title required">Тип объекта культурного наследия</span>
+                        <span class="body-card__title field-title">Тип объекта культурного наследия</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
                                 <div class="body-card__select field-select modal-select">
@@ -415,7 +450,7 @@
                 <div class="body-card__block" data-block_name="national_project" data-inactive="true">
                     <!--Название национального проекта-->
                     <div class="body-card__row field" data-row_name="national_project" data-required="true">
-                        <span class="body-card__title field-title required">Название национального проекта</span>
+                        <span class="body-card__title field-title">Название национального проекта</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
                                 <div class="body-card__select field-select modal-select">
@@ -444,7 +479,7 @@
 
                     <!--Название федерального проекта-->
                     <div class="body-card__row field" data-row_name="federal_project" data-required="true">
-                        <span class="body-card__title field-title required">Название федерального проекта</span>
+                        <span class="body-card__title field-title">Название федерального проекта</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
                                 <div class="body-card__select field-select modal-select">
@@ -484,7 +519,7 @@
 
                 <!--Куратор-->
                 <div class="body-card__row field" data-row_name="curator" data-required="true">
-                    <span class="body-card__title field-title required">Куратор</span>
+                    <span class="body-card__title field-title">Куратор</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
                             <div class="body-card__select field-select modal-select">
@@ -509,34 +544,49 @@
                     <input class="body-card__result field-result" type="hidden" name="curator">
                 </div>
                 <!--//Куратор//-->
-
-
-                <!--Загрузчик файла-->
-                <div class="body-card__row field" data-required="false" data-multiple="true" data-mapping_level_1="1" data-mapping_level_2="1">
-                    <span class="body-card__title required">Файл ГРБС</span>
+    
+                <!--Источники финансирования-->
+                <div class="body-card__row field" data-row_name="finance_sources" data-required="true">
+                    <span class="body-card__title field-title">Источники финансирования</span>
                     <div class="body-card__item">
-                        <!--TODO стили-->
-                        <div class="body-card__select field-select modal-file">
-                            <span class="body-card__value">Загрузите файлы</span>
-                            <i class="body-card__icon fas fa-file"></i>
+                        <div class="body-card__add-button field-add">
+                            <span class="body-card__add-text">Добавить источник финансирования</span>
+                            <i class="body-card__add-icon fas fa-plus-square"></i>
                         </div>
-                        <div class="files"></div>
+    
+                        <div class="body-card__field radio" data-required="true">
+                            <div class="radio__body inline">
+                                <div class="radio__item inline" data-id="1">
+                                    <i class="radio__icon inline far fa-square"></i>
+                                    <span class="radio__text">Бюджетные средства</span>
+                                </div>
+                                <div class="radio__item inline" data-id="1">
+                                    <i class="radio__icon inline far fa-square"></i>
+                                    <span class="radio__text">Средства юридических лиц, указанных в ч. 2 статьи 48.2 ГрК</span>
+                                </div>
+                                <div class="radio__item inline" data-id="1">
+                                    <i class="radio__icon inline far fa-square"></i>
+                                    <span class="radio__text">Собственные средства застройщика</span>
+                                </div>
+                                <div class="radio__item inline" data-id="1">
+                                    <i class="radio__icon inline far fa-square"></i>
+                                    <span class="radio__text">Средства инвестора</span>
+                                </div>
+                                <div class="radio__item inline" data-id="1">
+                                    <i class="radio__icon inline far fa-square"></i>
+                                    <span class="radio__text">Нет данных</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    
+                    <input class="body-card__result field-result" type="hidden" name="finance_sources">
                 </div>
-                <!--//Загрузчик файла//-->
+                <!--//Источники финансирования//-->
 
-                <!--Загрузчик файла2-->
-                <div class="body-card__row field" data-required="false" data-multiple="false" data-mapping_level_1="1" data-mapping_level_2="1">
-                    <span class="body-card__title required">Файл ГРБС_2</span>
-                    <div class="body-card__item">
-                        <div class="body-card__select field-select modal-file">
-                            <span class="body-card__value">Загрузите файлы</span>
-                            <i class="body-card__icon fas fa-file"></i>
-                        </div>
-                        <div class="files"></div>
-                    </div>
-                </div>
-                <!--//Загрузчик файла2//-->
+                
+
+              
             </div>
         </div>
 
@@ -653,15 +703,24 @@
     <div class="sign-modal__body">
         <div class="sign-modal__file-info">
             <div class="sign-modal__file"></div>
-            
+
             <div class="sign-modal__validate" data-inactive="true">
             </div>
         </div>
-        
+
         <div class="sign-modal__buttons">
-            <div id="signature_delete" class="sign-modal__upload application-button" data-inactive="true">Удалить подпись</div>
-            <div id="sign_upload" class="sign-modal__upload application-button" data-inactive="true">Загрузить открепленную подпись</div>
-            <div id="sign_create" class="sign-modal__sign application-button" data-inactive="true">Создать открепленную подпись</div>
+            <div id="signature_delete" class="sign-modal__btn sign-modal__upload" data-inactive="true">
+                <span class="sign-modal__name-button">Удалить подпись</span>
+                <i class="sign-modal__icon-button fas fa-eraser"></i>
+            </div>
+            <div id="sign_upload" class="sign-modal__btn sign-modal__upload" data-inactive="true">
+                <span class="sign-modal__name-button">Загрузить открепленную подпись</span>
+                <i class="sign-modal__icon-button fas fa-file-upload"></i>
+            </div>
+            <div id="sign_create" class="sign-modal__btn sign-modal__sign" data-inactive="true">
+                <span class="sign-modal__name-button">Создать открепленную подпись</span>
+                <i class="sign-modal__icon-button fas fa-pen-alt"></i>
+            </div>
             <input id="external_sign" type="file" name="download_files[]" hidden/>
         </div>
     </div>
@@ -671,7 +730,7 @@
         <div class="sign-modal__certs" data-inactive="true">
             <span class="sign-modal__title">Выберите сертификат:</span>
             <select class="sign-modal__cert-list" size="4" id="cert_list_select"></select>
-    
+
             <div class="sign-modal__cert-info" data-inactive="true">
                 <div class="sign-modal__row">
                     <span class="sign-modal__label">Данные о выбранном сертификате:</span>
@@ -697,13 +756,13 @@
                     <span id="cert_message" class="sign-modal__text"></span>
                 </div>
             </div>
-            
+
         </div>
 
 
-        
+
     </div>
-    
+
     <div class="sign-modal__actions" data-inactive="true">
         <div id="signature_button" class="file-modal__button sign-modal__button">Подписать</div>
         <div id="sign_cancel" class="file-modal__button sign-modal__button">Отмена</div>

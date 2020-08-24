@@ -6,8 +6,14 @@
 
 
 
-$a = [1,2];
-$a[2];
+$validator = new PrimitiveValidator();
+$arr = ["1", "2", "5", "3"];
 
-$test = ob_end_flush();
-var_dump($test);
+$json = json_encode($arr);
+
+
+$arr = $validator->getValidatedArrayFromNumericalJson($json, true);
+var_dump($arr);
+
+$date = '31.06.2020';
+$validator->validateStringDate($date);

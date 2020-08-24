@@ -33,6 +33,8 @@ if(!checkParamsPOST('id_application', 'id_file', 'mapping_level_1', 'mapping_lev
 }
 
 try{
+    
+    $_POST['id_application'];
 
 
     /** @var string $P_id_application  */

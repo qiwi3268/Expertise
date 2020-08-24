@@ -8,54 +8,13 @@ $variablesTV = VariableTransfer::getInstance();
 // Установка зависимостей отображения
 // -----------------------------------------------------------------------------------------
 
-// Ключ массива - аттрирут "data-row_name" в элементе "body-card__row" - это
-// главный элемент, при изменении input hidden'а которого, будет или не будет
-// отображаться зависимая строчка
-//
-// В массиве находятся карты, где:
-// ключ - значение input hidden'а главного элемента
-// массив, в ключах которых data-row_name строки, которая будет отображаться (true) или скрываться (false)
-//
-
-$displayDependencies = [
-
-    // Зависимость от выбранного "Вида объекта"
-    'type_of_object' => [
-        1 => ['number_planning_documentation_approval' => true,
-              'date_planning_documentation_approval'   => true,
-              'number_GPZU'                            => false,
-              'date_GPZU'                              => false
-        ],
-
-        2 => ['number_planning_documentation_approval' => false,
-              'date_planning_documentation_approval'   => false,
-              'number_GPZU'                            => true,
-              'date_GPZU'                              => true
-        ]
-    ],
-
-    // Зависимость от ЧЕКБОКСА "Объект культурного наследия"
-    'cultural_object_type_checkbox' => [
-        0 => ['cultural_object_type' => false],
-        1 => ['cultural_object_type' => true]
-    ],
-
-    // Зависимость от ЧЕКБОКСА "Национальный проект"
-    'national_project_checkbox' => [
-        0 => ['national_project'     => false,
-              'federal_project'      => false,
-              'date_finish_building' => false
-        ],
-        1 => ['national_project'      => true,
-              'federal_project'       => true,
-              'date_finish_building'  => true
-        ],
-    ],
-];
-
-$variablesTV->setValue('displayDependencies', json_encode($displayDependencies));
-
 $blockDependencies = [
+    
+    // Зависимость от выбранного "Предмета экспертизы"
+    'expertise_subjects' => [
+        'JSON_includes:2#3' => ['estimate' => true],
+        'JSON_excludes:2#3' => ['estimate' => false]
+    ],
 
     // Зависимость от выбранного "Вида объекта"
     'type_of_object' => [
@@ -92,3 +51,21 @@ $blockDependencies = [
 ];
 
 $variablesTV->setValue('blockDependencies', json_encode($blockDependencies));
+
+$requireDependencies = [
+    
+    // Зависимость от выбранного "Вида работ"
+    'type_of_work' => [
+        1 => ['file_grbs' => false],
+        2 => ['file_grbs' => true],
+        3 => ['file_grbs' => false],
+        4 => ['file_grbs' => false],
+        5 => ['file_grbs' => false],
+        6 => ['file_grbs' => false],
+        7 => ['file_grbs' => false],
+    ],
+    
+
+];
+
+$variablesTV->setValue('requireDependencies', json_encode($requireDependencies));
