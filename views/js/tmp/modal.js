@@ -261,7 +261,7 @@ class Modal {
                this.select.querySelector('.field-value').innerHTML = item.innerHTML;
 
                // Показывает или скрывает поля, зависящие от выбранного значения
-               handleDependentBlocks(this.result_input);
+               // handleDependentBlocks(this.result_input);
                DependenciesHandler.handleDependencies(this.result_input);
 
                // Очищаем зависимые поля

@@ -5,10 +5,8 @@ namespace Classes\Tables\FinancingSource;
 
 
 // Источники финансирования
-// Бюджетные средства
-class Type1{
-    
-    //static private string $tableName = 'financing_source_type_1';
+// Собственные средства застройщика
+class Type3{
     
     
     // Предназначен для получения ассоциативного массива источников финансирования по id заявления
@@ -20,14 +18,9 @@ class Type1{
     //
     static public function getAssocByIdApplication(int $id_application):?array {
         
-        $query = "SELECT `financing_source_type_1`.`id`,
-                         `misc_budget_level`.`name` AS `name_budget_level`,
-                         `financing_source_type_1`.`no_data`,
-                         `financing_source_type_1`.`percent`
-                  FROM (SELECT * FROM `financing_source_type_1`
-                        WHERE `financing_source_type_1`.`id_application`=?) AS `financing_source_type_1`
-                  LEFT JOIN (`misc_budget_level`)
-                        ON (`financing_source_type_1`.`id_budget_level`=`misc_budget_level`.`id`)";
+        $query = "SELECT *
+                  FROM `financing_source_type_3`
+                  WHERE `id_application`=?";
         
         $result = \ParametrizedQuery::getFetchAssoc($query, [$id_application]);
         
@@ -37,18 +30,19 @@ class Type1{
     
     // Предназначен для создания записи инсточника финансирования
     // Принимает параметры-----------------------------------
-    // * согласно таблице financing_source_type_1
+    // * согласно таблице financing_source_type_3
     // Возвращает параметры----------------------------------
     // id int : id созданной записи
     //
-    static public function create(int $id_application, int $id_budget_level, int $no_data, ?int $percent):int {
+    static public function create(int $id_application, int $no_data, ?int $percent):int {
         
-        $bindParams = [$id_application, $id_budget_level, $no_data, $percent];
+        $bindParams = [$id_application, $no_data, $percent];
         $values = \TableUtils::getValuesWithoutNull($bindParams);
         
-        $query = "INSERT INTO `financing_source_type_1`
-                    (`id_application`, `id_budget_level`, `no_data`, `percent`)
+        $query = "INSERT INTO `financing_source_type_3`
+                    (`id_application`, `no_data`, `percent`)
                   VALUES {$values}";
+        
         return \ParametrizedQuery::set($query, $bindParams);
     }
 }
