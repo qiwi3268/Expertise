@@ -1,12 +1,12 @@
 <?php
 
 
-class DependentMiscValidator extends \MiscValidator\DependentMisc{
+class DependentMiscValidator extends \Classes\Miscs\Validator\DependentMisc{
     
     private ?string $columnName; // Имя столбца справочника в БД
     
     
-   public function __construct(\MiscValidator\Validator $MainValidator, string $form_value, string $class, ?string $columnName = null){
+   public function __construct(\Classes\Miscs\Validator\Validator $MainValidator, string $form_value, string $class, ?string $columnName = null){
        
        parent::__construct($MainValidator, $form_value, $class);
        

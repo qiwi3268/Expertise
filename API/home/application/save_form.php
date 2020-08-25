@@ -39,6 +39,7 @@ if(!checkParamsPOST('id_application',
                    'number_GPZU',
                    'date_GPZU',
                    'type_of_work',
+                   'estimate_cost',
                    'cadastral_number',
                    'cultural_object_type_checkbox',
                    'cultural_object_type',
@@ -70,6 +71,7 @@ try{
     /** @var string $P_number_GPZU Номер ГПЗУ */
     /** @var string $P_date_GPZU Дата ГПЗУ */
     /** @var string $P_type_of_work Вид работ */
+    /** @var string $P_estimate_cost Сведения о сметной или предполагаемой (предельной) стоимости объекта */
     /** @var string $P_cadastral_number Кадастровый номер земельного участка */
     /** @var string $P_cultural_object_type_checkbox Тип объекта культурного наследия (ЧЕКБОКС) */
     /** @var string $P_cultural_object_type Тип объекта культурного наследия */
@@ -238,6 +240,22 @@ try{
         }
     }
     
+    // Проверка Сведений о сметной или предполагаемой (предельной) стоимости объекта -------------------
+    if($P_estimate_cost !== ''){
+        
+        // Предмет экспертизы должен включать в себя: Проверка достоверности определения сметной стоимости...
+        if($P_expertise_subjects === '' || !in_array(3, $ExpertiseSubjects, true)){
+            exit(json_encode(['result' => 7, 'error_message' => 'Сведения о сметной или предполагаемой (предельной) стоимости объекта не могут быть заполнены при невыбранном предмете экспертизы: "Проверка достоверности определения сметной стоимости..."']));
+        }
+    
+        try{
+            $PrimitiveValidator->validateInt($P_estimate_cost);
+        }catch(PrimitiveValidatorException $e){
+            exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение сведений о сметной или предполагаемой (предельной) стоимости объекта']));
+        }
+    }
+    
+    
     
     
     // Проверка Даты окончания строительства -----------------------------------------------------------
@@ -307,6 +325,9 @@ try{
     
     // Дата ГПЗУ (текстовое поле, календарь) ---------------------------------------------------
     DataToUpdate::addInt(strtotime($P_date_GPZU), 'date_GPZU');
+    
+    // Сведения о сметной или предполагаемой (предельной) стоимости объекта --------------------
+    DataToUpdate::addInt($P_estimate_cost, 'estimate_cost');
     
     // Кадастровый номер земельного участка (текстовое поле) -----------------------------------
     DataToUpdate::addString($P_cadastral_number, 'cadastral_number');

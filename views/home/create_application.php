@@ -563,11 +563,10 @@
                         
                         <span class="body-card__title field-title">Вид финансирования</span>
                         <div class="body-card__item">
-                            
                 
                             <div class="body-card__field radio" data-required="true">
                                 <div class="radio__body">
-                                    <div class="radio__item" data-id="1">
+                                    <div class="radio__item" data-dependent_blocks="budget" data-id="1">
                                         <i class="radio__icon inline far fa-square"></i>
                                         <span class="radio__text">Бюджетные средства</span>
                                     </div>
@@ -586,7 +585,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input class="body-card__result field-result" type="hidden" name="finance_sources">
+                        <input class="body-card__result field-result" type="hidden" name="finance_type">
                     </div>
                 </div>
                 <!--//Источники финансирования//-->
@@ -595,7 +594,7 @@
                 
                 
                 <!--Шаблон "Бюджетные средства"-->
-                <div class="body-card__block" data-block_name="budget_template" data-inactive="false">
+                <div class="body-card__block" data-block_name="budget" data-inactive="false">
                     <div class="body-card__row field" data-row_name="budget_level" data-required="true">
                         <span class="body-card__title field-title">Уровень бюджета</span>
                         <div class="body-card__item">
@@ -624,12 +623,8 @@
                     <div class="body-card__row field center" data-row_name="budget_size" data-required="true">
                         <span class="body-card__title">Размер финансирования</span>
                         <div class="body-card__item">
-                            <div class="body-card__field radio" data-required="true">
+                            <div class="body-card__field radio">
                                 <div class="radio__body">
-                                    <div class="radio__item" data-id="1">
-                                        <i class="radio__icon inline far fa-square"></i>
-                                        <span class="radio__text">Процент</span>
-                                    </div>
                                     <div class="radio__item" data-id="0">
                                         <i class="radio__icon inline far fa-square"></i>
                                         <span class="radio__text">Нет данных</span>
@@ -641,7 +636,7 @@
                     </div>
                     <div class="body-card__block" data-block_name="budget_percent" data-inactive="false">
                         <div class="body-card__row field" data-required="true" data-row_name="budget_percent" data-pattern="number">
-                            <span class="body-card__title">%</span>
+                            <span class="body-card__title">Процент финансирования</span>
                             <div class="body-card__item">
                                 <div class="body-card__field">
                                     <input class="body-card__input body-card__result field-result application-input" type="text" name="budget_percent" placeholder="Введите процент">
@@ -730,12 +725,8 @@
                     <div class="body-card__row field center" data-row_name="organization_size" data-required="true">
                         <span class="body-card__title">Размер финансирования</span>
                         <div class="body-card__item">
-                            <div class="body-card__field radio" data-required="true">
+                            <div class="body-card__field radio">
                                 <div class="radio__body">
-                                    <div class="radio__item" data-id="1">
-                                        <i class="radio__icon inline far fa-square"></i>
-                                        <span class="radio__text">Процент</span>
-                                    </div>
                                     <div class="radio__item" data-id="0">
                                         <i class="radio__icon inline far fa-square"></i>
                                         <span class="radio__text">Нет данных</span>
@@ -747,7 +738,7 @@
                     </div>
                     <div class="body-card__block" data-block_name="organization_percent" data-inactive="false">
                         <div class="body-card__row field" data-required="true" data-row_name="budget_percent" data-pattern="number">
-                            <span class="body-card__title">%</span>
+                            <span class="body-card__title">Процент финансирования</span>
                             <div class="body-card__item">
                                 <div class="body-card__field">
                                     <input class="body-card__input body-card__result field-result application-input" type="text" name="organization_percent" placeholder="Введите процент">
@@ -760,16 +751,12 @@
                 <!--//Шаблон "Средства юридических лиц"//-->
     
                 <!--Шаблон "Собственные средства застройщика"-->
-                <div class="body-card__block" data-block_name="builder_source_template" data-inactive="false">
+                <div class="body-card__block" data-block_name="builder_source" data-inactive="false">
                     <div class="body-card__row field center" data-row_name="builder_source_size" data-required="true">
                         <span class="body-card__title">Размер финансирования</span>
                         <div class="body-card__item">
-                            <div class="body-card__field radio" data-required="true">
+                            <div class="body-card__field radio">
                                 <div class="radio__body">
-                                    <div class="radio__item" data-id="1">
-                                        <i class="radio__icon inline far fa-square"></i>
-                                        <span class="radio__text">Процент</span>
-                                    </div>
                                     <div class="radio__item" data-id="0">
                                         <i class="radio__icon inline far fa-square"></i>
                                         <span class="radio__text">Нет данных</span>
@@ -781,7 +768,7 @@
                     </div>
                     <div class="body-card__block" data-block_name="builder_source_percent" data-inactive="false">
                         <div class="body-card__row field" data-required="true" data-row_name="budget_percent" data-pattern="number">
-                            <span class="body-card__title">%</span>
+                            <span class="body-card__title">Процент финансирования</span>
                             <div class="body-card__item">
                                 <div class="body-card__field">
                                     <input class="body-card__input body-card__result field-result application-input" type="text" name="builder_source_percent" placeholder="Введите процент">
@@ -792,18 +779,14 @@
                     </div>
                 </div>
                 <!--//Шаблон "Собственные средства застройщика"//-->
-    
+                
                 <!--Шаблон "Средства застройщика"-->
-                <div class="body-card__block" data-block_name="investor_template" data-inactive="false">
+                <div class="body-card__block" data-block_name="investor" data-inactive="false">
                     <div class="body-card__row field center" data-row_name="investor_size" data-required="true">
                         <span class="body-card__title">Размер финансирования</span>
                         <div class="body-card__item">
-                            <div class="body-card__field radio" data-required="true">
+                            <div class="body-card__field radio">
                                 <div class="radio__body">
-                                    <div class="radio__item" data-id="1">
-                                        <i class="radio__icon inline far fa-square"></i>
-                                        <span class="radio__text">Процент</span>
-                                    </div>
                                     <div class="radio__item" data-id="0">
                                         <i class="radio__icon inline far fa-square"></i>
                                         <span class="radio__text">Нет данных</span>
@@ -815,7 +798,7 @@
                     </div>
                     <div class="body-card__block" data-block_name="investor_percent" data-inactive="false">
                         <div class="body-card__row field" data-required="true" data-row_name="budget_percent" data-pattern="number">
-                            <span class="body-card__title">%</span>
+                            <span class="body-card__title">Процент финансирования</span>
                             <div class="body-card__item">
                                 <div class="body-card__field">
                                     <input class="body-card__input body-card__result field-result application-input" type="text" name="investor_percent" placeholder="Введите процент">

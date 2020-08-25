@@ -73,7 +73,6 @@ return [
     'home/application/API_save_form' => [
         'access'                              => [],
         '/Classes/'                           => ['PrimitiveValidator'],
-        '/Classes/MiscValidator/'             => ['MiscValidator', 'SingleMisc', 'DependentMisc'],
         '/Classes/Home/ApplicationForm/Save/' => ['DataToUpdate', 'SingleMiscValidator', 'DependentMiscValidator'],
         'API'                                 => ['save_form']
     ],
@@ -93,15 +92,15 @@ return [
     //todo перенести view create_application в ветку /home/application/
     //todo привести display_dependencies_application_form и create_application_dependencies к единообразному названию
     'home/application/create' => [
-        'access'                    => [],
-        'ROOTClasses'               => ['VariableTransfer', 'NodeStructure'],
-        'ROOTcontrollers'           => ['header'],
-        'ROOTviews'                 => ['header'],
-        '/Classes/ApplicationForm/' => ['MiscInitialization'],
-        'controllers'               => ['create_application',
-                                        'display_dependencies_application_form'],
-        '/controllers/home/'        => ['main_header'],
-        '/views/home/'              => ['create_application_dependencies', 'main_header', 'create_application', 'main_footer'],
+        'access'                                => [],
+        'ROOTClasses'                           => ['VariableTransfer', 'NodeStructure'],
+        'ROOTcontrollers'                       => ['header'],
+        'ROOTviews'                             => ['header'],
+        '/Classes/Home/ApplicationForm/Create/' => ['MiscInitializator'],
+        'controllers'                           => ['create_application',
+                                                    'display_dependencies_application_form'],
+        '/controllers/home/'                    => ['main_header'],
+        '/views/home/'                          => ['create_application_dependencies', 'main_header', 'create_application', 'main_footer'],
     ],
 
 
@@ -125,7 +124,7 @@ return [
         'ROOTClasses'        => ['VariableTransfer'],
         'ROOTcontrollers'    => ['header'],
         'ROOTviews'          => ['header'],
-        '/Classes/ApplicationForm/'   => ['MiscInitialization', 'MiscInitializationEditForm'],
+        //'/Classes/ApplicationForm/'   => ['MiscInitialization', 'MiscInitializationEditForm'],
         'controllers'        => [
                                  'edit_application',
                                  'validation_block_application_form',

@@ -184,4 +184,18 @@ class PrimitiveValidator{
             throw new PrimitiveValidatorException("Введенный процент: '{$percent}' является некорректным", 11);
         }
     }
+    
+    
+    // Предназначен для валидации целочисленного значения
+    // Принимает параметры-----------------------------------
+    // int string : предполагаемое целочисленное значение
+    // Выбрасывает исключения--------------------------------
+    // PrimitiveValidatorException :
+    // code:
+    // 12 - введеное значение не является целочисленным
+    public function validateInt(string $int):void {
+        if(filter_var($int, FILTER_VALIDATE_INT) === false){
+            throw new PrimitiveValidatorException("Введеное значение: '{$int}' не является целочисленным", 12);
+        }
+    }
 }

@@ -33,14 +33,15 @@ Session::addAuthorRoleApplicationId($applicationId);
 $variablesTV->setValue('numerical_name', $appNumName);
 $variablesTV->setValue('id_application', $applicationId);
 
-// Справочники
-$miscInitialization = new MiscInitialization();
 
-foreach($miscInitialization->getPaginationSingleMiscs() as $miscName => $misc){
+// Справочники
+$miscInitializator = new MiscInitializator();
+
+foreach($miscInitializator->getPaginationSingleMiscs() as $miscName => $misc){
     $variablesTV->setValue($miscName, $misc);
 }
 
-foreach($miscInitialization->getPaginationDependentMiscs() as $miscName => $mainMiscIds){
+foreach($miscInitializator->getPaginationDependentMiscs() as $miscName => $mainMiscIds){
     $variablesTV->setValue($miscName, json_encode($mainMiscIds));
 }
 

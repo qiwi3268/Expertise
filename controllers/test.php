@@ -4,5 +4,5 @@
 
 $id = 10;
 
-$test = \Classes\Tables\FinancingSource\Type1::create(2, 1, 0, null);
+$test = \Classes\Tables\FinancingSource\Type3::create(2, "0", 56);
 var_dump($test);
