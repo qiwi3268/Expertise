@@ -2,18 +2,7 @@
 
 
 
+$id = 10;
 
-
-
-
-$validator = new PrimitiveValidator();
-$arr = ["1", "2", "5", "3"];
-
-$json = json_encode($arr);
-
-
-$arr = $validator->getValidatedArrayFromNumericalJson($json, true);
-var_dump($arr);
-
-$date = '31.06.2020';
-$validator->validateStringDate($date);
+$test = \Classes\Tables\FinancingSource\Type1::create(2, 1, 0, null);
+var_dump($test);

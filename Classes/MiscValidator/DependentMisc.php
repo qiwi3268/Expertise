@@ -28,20 +28,24 @@ class DependentMisc extends Validator{
     
     
     // Предназначен для комплексной проверки справочника
+    // Выбрасывает исключения--------------------------------
+    // MiscValidatorException :
+    // code:
+    //  5 - при наличии значения зависимого справочника, флаг наличия проверенных данных главного справочника отрицательный
     //
     public function validate(){
         
         if($this->form_value !== ''){
             
-            if(!$this->MainValidator->isExist){
+            if(!$this->MainValidator->isExist()){
                 throw new \MiscValidatorException("При наличии значения зависимого справочника: '{$this->class}', флаг наличия проверенных данных главного справочника отрицательный", 5);
             }
             
-            $this->int_value = $this->getValidatedInt($this->form_value);
+            $int = $this->int_value = $this->getValidatedInt($this->form_value);
     
             $this->checkClass($this->class, self::INTERFACE);
     
-            $this->checkMiscExist($this->class, self::METHOD, [$this->MainValidator->int_value, $this->int_value]);
+            $this->checkMiscExist($this->class, self::METHOD, [$this->MainValidator->getIntValue(), $int]);
     
             $this->isExist = true;
         }else{

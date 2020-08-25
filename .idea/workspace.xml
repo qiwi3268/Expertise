@@ -3,8 +3,26 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/home/application/save_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/application/save_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Exceptions/ApplicationFormMiscValidatorException.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Exceptions/ApplicationFormMiscValidatorException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Exceptions/PrimitiveValidatorException.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Exceptions/PrimitiveValidatorException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Home/ApplicationForm/Save/DataToUpdate.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Home/ApplicationForm/Save/DataToUpdate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Home/ApplicationForm/Save/DependentMiscValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Home/ApplicationForm/Save/DependentMiscValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Home/ApplicationForm/Save/SingleMiscValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Home/ApplicationForm/Save/SingleMiscValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/MiscValidator/DependentMisc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/MiscValidator/DependentMisc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/MiscValidator/MiscValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/MiscValidator/MiscValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/MiscValidator/SingleMisc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/MiscValidator/SingleMisc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/PrimitiveValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/PrimitiveValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Tables/ApplicationsTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/ApplicationsTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Tables/TableUtils.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/TableUtils.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/DataBase.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/DataBase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/StartingInitialization.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/StartingInitialization.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions/functions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/cards.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/cards.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/radio.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/radio.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +100,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3052c4db-b17b-45ef-9874-1a02eb86f4cf" name="Default Changelist" comment="" />
+      <changelist id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="" />
       <created>1595389008613</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -104,6 +122,7 @@
       <workItem from="1597464146061" duration="12424000" />
       <workItem from="1597497356681" duration="6610000" />
       <workItem from="1597575204380" duration="8076000" />
+      <workItem from="1598327166376" duration="356000" />
     </task>
     <task id="LOCAL-00001" summary="22.07.2020">
       <created>1595389670254</created>
@@ -452,7 +471,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="31.07.2020_2" />
@@ -483,10 +502,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="24.08.2020" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1598264698416">
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1598272039918">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1598264698416" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1598272039918" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597516365472" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="248" y="121" key="MergeDialog" timestamp="1596186835322">

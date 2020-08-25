@@ -3,14 +3,15 @@
 
 namespace MiscValidator;
 
-
+// Абстрактный класс, предназначенный для валидации справочников. Предоставляет потомкам (SingleMisc и DependentMisc)
+// инкапсулированные свойства и интерфейс (методы) для валидации
 abstract class Validator{
     
-    protected string $form_value;  // Значение из формы
-    protected string $class;       // Название класса справочника
+    protected string $form_value;     // Значение из формы
+    protected string $class;          // Название класса справочника
     
-    protected int $int_value;      // Полученное методом getValidatedInt int'овое значение справочника
-    protected bool $isExist;       // Флаг наличия проверенных введенных данных справочника
+    protected ?int $int_value = null; // Полученное методом getValidatedInt int'овое значение справочника
+    protected ?bool $isExist = null;  // Флаг наличия проверенных введенных данных справочника
     
     
     
@@ -80,12 +81,27 @@ abstract class Validator{
     // Предназначен для получения флага наличия проверенных введенных данных справочника
     // Возвращает параметры----------------------------------
     // bool : флаг наличия проверенных введенных данных справочника
+    // Выбрасывает исключения--------------------------------
+    // LogicException : попытка вызвать метод перед валидацией спраовчника
     //
     public function isExist():bool {
-        return $this->isExist();
+        if(is_null($this->isExist)){
+            throw new \LogicException("Попытка вызвать метод \MiscValidator\Validator::isExist при значении свойства isExist = null. Название класса справочника: '{$this->class}'");
+        }
+        return $this->isExist;
     }
     
+    
+    // Предназначен для получения int'ового значения справочника
+    // Возвращает параметры----------------------------------
+    // int : флаг наличия проверенных введенных данных справочника
+    // Выбрасывает исключения--------------------------------
+    // LogicException : попытка вызвать метод перед валидацией спраовчника
+    //
     public function getIntValue():int {
+        if(is_null($this->int_value)){
+            throw new \LogicException("Попытка вызвать метод \MiscValidator\Validator::getIntValue при значении свойства int_value = null. Название класса справочника: '{$this->class}'");
+        }
         return $this->int_value;
     }
     

@@ -131,7 +131,7 @@ try{
         // Проверка Предметов экспертизы -----------------------------------------------------------
         if($P_expertise_subjects !== ''){
             $ExpertiseSubjects = $PrimitiveValidator->getValidatedArrayFromNumericalJson($P_expertise_subjects, true);
-            foreach($ExpertiseSubjects as $id) new DependentMiscValidator($ExpertisePurpose, $id, 'misc_expertiseSubjectTable');
+            foreach($ExpertiseSubjects as $id) (new DependentMiscValidator($ExpertisePurpose, $id, 'misc_expertiseSubjectTable'))->validate();
         }
         
     
@@ -170,7 +170,7 @@ try{
         
         // Проверка Национального проекта (и добавление к массиву обновлений) ----------------------
         if($P_national_project !== '' && $P_national_project_checkbox !== '1'){
-            exit(json_encode(['result' => 7, 'error_message' => 'Название национального проекта не может быть заполнен при невыбраном чекбоксе Национальный проект (Да)']));
+            exit(json_encode(['result' => 7, 'error_message' => 'Название национального проекта не может быть заполнено при невыбраном чекбоксе Национальный проект (Да)']));
         }
         $NationalProject = new SingleMiscValidator($P_national_project, 'misc_nationalProjectTable', 'id_national_project');
         $NationalProject->validate()->addToUpdate();
@@ -217,12 +217,10 @@ try{
         }
         
         // Валидация Даты
-        if($P_date_planning_documentation_approval !== ''){
-            try{
-                $PrimitiveValidator->validateStringDate($P_date_planning_documentation_approval);
-            }catch(PrimitiveValidatorException $e){
-                exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение даты Утверждения документации по планировке территории']));
-            }
+        try{
+            if($P_date_planning_documentation_approval !== '') $PrimitiveValidator->validateStringDate($P_date_planning_documentation_approval);
+        }catch(PrimitiveValidatorException $e){
+            exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение даты Утверждения документации по планировке территории']));
         }
         
     }elseif($P_number_GPZU !== '' || $P_date_GPZU !== ''){
@@ -233,12 +231,10 @@ try{
         }
         
         // Валидация Даты
-        if($P_date_GPZU !== ''){
-            try{
-                $PrimitiveValidator->validateStringDate($P_date_GPZU);
-            }catch(PrimitiveValidatorException $e){
-                exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение даты ГПЗУ']));
-            }
+        try{
+            if($P_date_GPZU !== '') $PrimitiveValidator->validateStringDate($P_date_GPZU);
+        }catch(PrimitiveValidatorException $e){
+            exit(json_encode(['result' => 4, 'error_message' => 'Передано некорректное значение даты ГПЗУ']));
         }
     }
     
@@ -265,60 +261,26 @@ try{
     // Зона сохранения заявления в БД
     // -----------------------------------------------------------------------------------------------------------------
     //
-    // Имеет bool константы:
-    //  1 - expertise_purpose_exist            : передана Цель обращения
-    //  2 - expertise_subjects_exist           : передан(ы) Предметы экспертизы
-    //  3 - type_of_object_exist               : передан Вид объекта
-    //  4 - functional_purpose_exist           : передано Функциональное назначение
-    //  5 - functional_purpose_subsector_exist : передано Функциональное назначение. Подотрасль
-    //  6 - functional_purpose_group_exist     : передано Функциональное назначение. Группа
-    //  7 - type_of_work_exist                 : передан Вид работ
-    //  8 - cultural_object_type_exist         : передан Тип объекта культурного наследия
-    //  9 - national_project_exist             : передан Национальный проект
-    // 10 - federal_project_exist              : передан Федеральный проект
-    // 11 - curator_exist                      : передан Куратор
-    //
-    // Если константы true, то определены:
-    //  1 - form_expertisePurposeID           int : id выбранной Цели обращения
-    //  2 - form_expertiseSubjects  array[int...] : массив с выбранными предметами (int) экспертизы
-    //  3 - form_typeOfObjectID               int : id выбранного Вида объекта
-    //  4 - form_functionalPurposeID          int : id выбранного Функционального назначение
-    //  5 - form_functionalPurposeSubsectorID int : id выбранного Функциональное назначение. Подотрасль
-    //  6 - form_functionalPurposeGroupID     int : id выбранного Функциональное назначение. Группа
-    //  7 - form_typeOfWorkID                 int : id выбранного Вида работ
-    //  8 - form_culturalObjectTypeID         int : id выбранного Типа объекта культурного наследия
-    //  9 - form_nationalProjectID            int : id выбранного Национального проекта
-    // 10 - form_federalProjectID             int : id выбранного Федерального проекта
-    // 11 - form_curatorID                    int : id выбранного Куратора
-    //
-    // -----------------------------------------------------------------------------------------------------------------
-    
-    // Формируем ассоциативный массив данных, которые необходимо обновить в БД
-    // ключ     - название столюца в БС
-    // значение - новое значение, которое будет установлено
-    $dataToUpdate = [];
-    
-    
     
     // Предмет экспертизы (радио, можно сбросить) ----------------------------------------------
     
     // Предметы экспертизы, которые уже есть у заявления
-    /*
+
     $db_expertiseSubjects = ExpertiseSubjectTable::getIdsByIdApplication($form_applicationID);
     
     $db_expertiseSubjects ??= [];    // Если с БД пришел null, то приравниваем к пустому массиву для array_diff
     $expertiseSubjectsToDelete = []; // Массив с id Предметов экспертизы, которые нужно удалить
     $expertiseSubjectsToCreate = []; // Массив с id Предметов экспертизы, которые нужно создать к заявлению
     
-    if($ExpertiseSubjects){
+    if($P_expertise_subjects !== ''){
         
         // id Предметов, которые есть в БД, но нет в пришедшей форме
         $expertiseSubjectsToDelete = array_diff($db_expertiseSubjects, $ExpertiseSubjects);
         
         // id Предметов, которые есть в пришедшей форме, но нет в БД
-        $expertiseSubjectsToCreate = array_diff($form_expertiseSubjects, $db_expertiseSubjects);
+        $expertiseSubjectsToCreate = array_diff($ExpertiseSubjects, $db_expertiseSubjects);
         
-        // Из формы пришло пустое значение, удаляем все Предметы экспертизы
+    // Из формы пришло пустое значение, удаляем все Предметы экспертизы
     }else{
         $expertiseSubjectsToDelete = $db_expertiseSubjects;
     }
@@ -327,46 +289,44 @@ try{
     foreach($expertiseSubjectsToDelete as $id) ExpertiseSubjectTable::delete($form_applicationID, $id);
     foreach($expertiseSubjectsToCreate as $id) ExpertiseSubjectTable::create($form_applicationID, $id);
     
-    
-    
+
     // Дополнительная информация (текстовое поле) ----------------------------------------------
-    $formHandler->addValueToUpdate($P_additional_information, 'additional_information', $dataToUpdate);
-    
+    DataToUpdate::addString($P_additional_information, 'additional_information');
     
     // Наименование объекта (текстовое поле) ---------------------------------------------------
-    $formHandler->addValueToUpdate($P_object_name, 'object_name', $dataToUpdate);
+    DataToUpdate::addString($P_object_name,'object_name');
     
-    // Номер утверждения документации по планировке территории (текстовое поле) -----------------
-    $formHandler->addValueToUpdate($P_number_planning_documentation_approval, 'number_planning_documentation_approval', $dataToUpdate);
+    // Номер утверждения документации по планировке территории (текстовое поле) ----------------
+    DataToUpdate::addString($P_number_planning_documentation_approval, 'number_planning_documentation_approval');
     
+    // Дата утверждения документации по планировке территории (текстовое поле, календарь) ------
+    DataToUpdate::addInt(strtotime($P_date_planning_documentation_approval), 'date_planning_documentation_approval');
     
-    // Дата утверждения документации по планировке территории (текстовое поле, календарь) -------
-    $formHandler->addValueToUpdate(strtotime($P_date_planning_documentation_approval), 'date_planning_documentation_approval', $dataToUpdate);
+    // Номер ГПЗУ (текстовое поле) -------------------------------------------------------------
+    DataToUpdate::addString($P_number_GPZU, 'number_GPZU');
     
+    // Дата ГПЗУ (текстовое поле, календарь) ---------------------------------------------------
+    DataToUpdate::addInt(strtotime($P_date_GPZU), 'date_GPZU');
     
-    DataToUpdate::add($P_number_GPZU, 'number_GPZU');           //Номер ГПЗУ (текстовое поле)
-    DataToUpdate::add(strtotime($P_date_GPZU), 'number_GPZU');  // Дата ГПЗУ (текстовое поле, календарь)
-    DataToUpdate::add($P_cadastral_number, 'cadastral_number'); // Кадастровый номер земельного участка (текстовое поле)
-    
-
-    
-    
+    // Кадастровый номер земельного участка (текстовое поле) -----------------------------------
+    DataToUpdate::addString($P_cadastral_number, 'cadastral_number');
     
     // Дата окончания строительства (текстовое поле, календарь) --------------------------------
-    $formHandler->addValueToUpdate(strtotime($P_date_finish_building), 'date_finish_building', $dataToUpdate);
+    DataToUpdate::addInt(strtotime($P_date_finish_building), 'date_finish_building');
     
-    */
+    
     
     // Сохранение в БД полей заявления ---------------------------------------------------------
     //
     // Вызываем умное сохранение, если данные в заявлении поменялись
-    if(!empty($dataToUpdate)){
+    if(!DataToUpdate::isEmpty()){
+        
+        $test = DataToUpdate::get();
         
         // Обновляем флаг сохраненности заявления для новых заявлений
-        if(!$applicationAssoc['is_saved']){
-            $dataToUpdate['is_saved'] = 1;
-        }
-        ApplicationsTable::smartUpdateById($dataToUpdate, $form_applicationID);
+        DataToUpdate::addInt(1, 'is_saved');
+
+        ApplicationsTable::smartUpdateById(DataToUpdate::get(), $form_applicationID);
     }
     
     // Успешное сохранение
@@ -376,6 +336,10 @@ try{
 }catch(MiscValidatorException $e){
     
     // Логирование
+    exit(json_encode(['result'  => 'todo',
+                      'message' => $e->getMessage(),
+                      'code'	=> $e->getCode()
+    ]));
     
 // Непредвиденная ошибка
 }catch(Exception $e){

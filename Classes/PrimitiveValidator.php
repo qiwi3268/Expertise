@@ -81,9 +81,107 @@ class PrimitiveValidator{
         try{
             list(1 => $date, 2 => $month, 3 => $year) =  GetHandlePregMatch($pattern, $fullDate, false);
         }catch(PregMatchException $e){
-            throw new PrimitiveValidatorException("Строковая дата: '{$fullDate}' является некорректной", 4);
+            throw new PrimitiveValidatorException("Строковая дата: '{$fullDate}' является некорректной", 5);
         }
         
-        if(!checkdate($month, $date, $year)) throw new PrimitiveValidatorException("Дата: '{$fullDate}' не существует по григорианскому календарю", 5);
+        if(!checkdate($month, $date, $year)) throw new PrimitiveValidatorException("Дата: '{$fullDate}' не существует по григорианскому календарю", 6);
+    }
+    
+    
+    // Предназначен для валидации ИНН
+    // Принимает параметры-----------------------------------
+    // INN string : ИНН (12 цифр для физ.лиц и 10 цифр для юр.лиц)
+    // Выбрасывает исключения--------------------------------
+    // PrimitiveValidatorException :
+    // code:
+    //  7 - введенный ИНН является некорректным
+    public function validateINN(string $INN):void {
+        
+        // начало текста
+        // любая цифра 10 раз
+        // конец текста
+        // ИЛИ
+        // начало текста
+        // любая цифра 12 раз
+        // конец текста
+        $pattern = "/\A\d{10}\z|\A\d{12}\z/";
+        try{
+            GetHandlePregMatch($pattern, $INN, false);
+        }catch(PregMatchException $e){
+            throw new PrimitiveValidatorException("Введенный ИНН: '{$INN}' является некорректным", 7);
+        }
+    }
+    
+    
+    // Предназначен для валидации КПП
+    // Принимает параметры-----------------------------------
+    // KPP string : КПП (9 цифр)
+    // Выбрасывает исключения--------------------------------
+    // PrimitiveValidatorException :
+    // code:
+    //  8 - введенный КПП является некорректным
+    public function validateKPP(string $KPP):void {
+    
+        // начало текста
+        // любая цифра 9 раз
+        // конец текста
+        $pattern = "/\A\d{9}\z/";
+        try{
+            GetHandlePregMatch($pattern, $KPP, false);
+        }catch(PregMatchException $e){
+            throw new PrimitiveValidatorException("Введенный КПП: '{$KPP}' является некорректным", 8);
+        }
+    }
+    
+    
+    // Предназначен для валидации ОГРН
+    // Принимает параметры-----------------------------------
+    // OGRN string : ОГРН (13 цифр)
+    // Выбрасывает исключения--------------------------------
+    // PrimitiveValidatorException :
+    // code:
+    //  9 - введенный ОГРН является некорректным
+    public function validateOGRN(string $OGRN):void {
+    
+        // начало текста
+        // любая цифра 13 раз
+        // конец текста
+        $pattern = "/\A\d{13}\z/";
+        try{
+            GetHandlePregMatch($pattern, $OGRN, false);
+        }catch(PregMatchException $e){
+            throw new PrimitiveValidatorException("Введенный ОГРН: '{$OGRN}' является некорректным", 9);
+        }
+    }
+    
+    
+    // Предназначен для валидации email
+    // Принимает параметры-----------------------------------
+    // email string : email
+    // Выбрасывает исключения--------------------------------
+    // PrimitiveValidatorException :
+    // code:
+    // 10 - введенный email является некорректным
+    public function validateEmail(string $email):void {
+        if((filter_var($email, FILTER_VALIDATE_EMAIL)) === false){
+            throw new PrimitiveValidatorException("Введенный email: '{$email}' является некорректным", 10);
+        }
+    }
+    
+    
+    // Предназначен для валидации процента
+    // Принимает параметры-----------------------------------
+    // percent string : процент [0:100]
+    // Выбрасывает исключения--------------------------------
+    // PrimitiveValidatorException :
+    // code:
+    // 11 - введенный процент является некорректным
+    public function validatePercent(string $percent):void {
+        $options = ['options' => ['min_range' => 0,
+                                  'max_range' => 100]
+        ];
+        if((filter_var($percent, FILTER_VALIDATE_INT, $options)) === false){
+            throw new PrimitiveValidatorException("Введенный процент: '{$percent}' является некорректным", 11);
+        }
     }
 }

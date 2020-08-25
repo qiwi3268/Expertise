@@ -54,6 +54,11 @@ class TableUtils{
 
       return $arr;
    }
+   
+   
+   static public function getValuesWithoutNullValues(&$bindParams):string {
+   
+   }
 
 
 

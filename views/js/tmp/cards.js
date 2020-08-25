@@ -174,15 +174,10 @@ function handleDependentBlocks(parent_input) {
 // Принимает параметры-------------------------------
 // block         Element : очищаемый блок
 function clearBlock(block) {
-   // let parent_input = block.querySelector('.field-result');
-   // handleDependentBlocks(parent_input);
-
-
    let dependent_fields = block.querySelectorAll('.field');
    dependent_fields.forEach(field => {
       removeRowValue(field);
    });
-
 
 
    let parent_card_body = block.closest('.card-form__body');
@@ -236,7 +231,7 @@ function handleDependentRadios(parent_input) {
 
 
          result_input.value = '';
-         handleDependentBlocks(result_input);
+         // handleDependentBlocks(result_input);
 
          radio_body.innerHTML = '';
 

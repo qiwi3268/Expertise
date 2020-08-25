@@ -13,6 +13,7 @@ class SingleMiscValidator extends \MiscValidator\SingleMisc{
         $this->columnName = $columnName;
     }
     
+    
     public function validate():self {
         
         try{
@@ -23,7 +24,7 @@ class SingleMiscValidator extends \MiscValidator\SingleMisc{
             $msg = $e->getMessage();
             $code = $e->getCode();
             // Конвертируем значения MiscValidatorException к значениям API_save_form result
-            switch($code) {
+            switch($code){
                 case 1: throw new ApplicationFormMiscValidatorException($msg, 4);
                 case 4: throw new ApplicationFormMiscValidatorException($msg, 5);
                 case 2:
@@ -39,10 +40,9 @@ class SingleMiscValidator extends \MiscValidator\SingleMisc{
     public function addToUpdate():void {
         
         if(is_null($this->columnName)){
-            throw new Exception("Попытка вызвать метод SingleMiscValidator::addToUpdate при неуказанном в конструкторе columnName. Название класса справочника: '{$this->class}'");
+            throw new LogicException("Попытка вызвать метод SingleMiscValidator::addToUpdate при неуказанном в конструкторе columnName. Название класса справочника: '{$this->class}'");
         }
         
-        $val = $this->isExist ? $this->int_value : '';
-        DataToUpdate::add($val, $this->columnName);
+        DataToUpdate::addInt($this->form_value, $this->columnName);
     }
 }

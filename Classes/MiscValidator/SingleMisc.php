@@ -27,11 +27,11 @@ class SingleMisc extends Validator{
     
         if($this->form_value !== ''){
             
-            $this->int_value = $this->getValidatedInt($this->form_value);
+            $int = $this->int_value = $this->getValidatedInt($this->form_value);
     
             $this->checkClass($this->class, self::INTERFACE);
     
-            $this->checkMiscExist($this->class, self::METHOD, [$this->int_value]);
+            $this->checkMiscExist($this->class, self::METHOD, [$int]);
     
             $this->isExist = true;
         }else{
