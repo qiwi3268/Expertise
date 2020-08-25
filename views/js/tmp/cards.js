@@ -21,7 +21,8 @@ function handleClearFieldButtons() {
 
          let field_result = parent_field.querySelector('.field-result');
          // Удаляем зависимые поля
-         handleDependentBlocks(field_result);
+         DependenciesHandler.handleDependencies(field_result);
+         // handleDependentBlocks(field_result);
 
          let parent_select = parent_field.querySelector('.modal-select');
          if (field_result.value) {
@@ -40,134 +41,6 @@ function handleClearFieldButtons() {
       });
    });
 }
-
-// Предназначен для добавления или удаления блоков, зависящих от значения поля на входе
-// Принимает параметры-------------------------------------------
-// parent_input  Element : скрытый инпут со значением родительского поля
-function handleDependentBlocks(parent_input) {
-   // Получаем массив с зависимостями всех значений родительского поля
-   let values = block_dependencies[parent_input.name];
-
-
-
-   if (values) {
-
-      let dependencies = block_dependencies[parent_input.name];
-
-
-         let field_value = parent_input.value ? JSON.parse(parent_input.value) : '';
-
-         let dependent_block_names;
-
-         if (typeof field_value === 'number') {
-
-            dependent_block_names = block_dependencies[parent_input.name][field_value];
-
-            if (dependent_block_names) {
-
-               Object.keys(dependent_block_names).forEach(block_name => {
-
-                  let dependent_blocks = document.querySelectorAll(`[data-block_name="${block_name}"]`);
-                  dependent_blocks.forEach(block => {
-
-                     block.dataset.inactive = !dependent_block_names[block_name];
-                     clearBlock(block);
-
-                  });
-
-               });
-            }
-
-         } else {
-
-
-            for (let dependency in dependencies) {
-
-               let dependent_block_names = block_dependencies[parent_input.name][dependency];
-
-               if (dependent_block_names) {
-
-                  Object.keys(dependent_block_names).forEach(block_name => {
-
-                     let dependent_blocks = document.querySelectorAll(`[data-block_name="${block_name}"]`);
-                     dependent_blocks.forEach(block => {
-
-                        if (field_value) {
-                           if (dependency.includes('JSON_includes')) {
-
-
-                              let includes = dependency.replace('JSON_includes:', '').split('#');
-
-                              if (field_value.find(field_value => includes.includes(field_value))) {
-                                 // block.dataset.inactive = !dependencies[dependency];
-                                 block.dataset.inactive = 'false';
-                              } else {
-                                 block.dataset.inactive = 'true';
-
-                              }
-
-                              clearBlock(block);
-
-
-                           } else if (dependency.includes('JSON_excludes')) {
-
-                              let excludes = dependency.replace('JSON_excludes:', '').split('#');
-
-                              if (field_value.find(field_value => excludes.includes(field_value))) {
-                                 // block.dataset.inactive = !dependencies[dependency];
-                                 block.dataset.inactive = 'false';
-                              } else {
-                                 block.dataset.inactive = 'true';
-                              }
-
-                              clearBlock(block);
-
-                           }
-                        } else {
-                           block.dataset.inactive = 'true';
-
-                           clearBlock(block);
-                        }
-
-
-
-
-                     });
-                  });
-               }
-
-            }
-
-         }
-
-
-
-   }
-
-   //TODO вынести
-   let require_values = require_dependencies[parent_input.name];
-
-   if (require_values) {
-      let dependent_row_names = require_dependencies[parent_input.name][parent_input.value];
-
-      if (dependent_row_names) {
-         Object.keys(dependent_row_names).forEach(row_name => {
-            let dependent_rows = document.querySelectorAll(`[data-row-name="${row_name}"]`);
-
-            dependent_rows.forEach(row => {
-
-               row.dataset.required = dependent_row_names[row_name];
-
-            });
-         });
-      }
-
-   }
-
-   handleDependentRadios(parent_input);
-   changeParentCardMaxHeight(parent_input);
-}
-
 
 
 // Предназначен для очищения полей в блоке
