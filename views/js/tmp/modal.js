@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
    modals = new Map();
 
    // Поля для заполнения
-   let modal_selects = document.querySelectorAll('.modal-select');
+   // let modal_selects = document.querySelectorAll('.modal-select');
 
    // Фон модального окна
    overlay = document.querySelector('.modal-overlay');
@@ -18,6 +18,27 @@ document.addEventListener('DOMContentLoaded', () => {
    overlay.addEventListener('click', () => {
       closeModal(modal);
    });
+
+   initializeModalSelects(document);
+
+/*   modal_selects.forEach(select => {
+      select.addEventListener('click', () => {
+         modal = getModalBySelect(select);
+
+         if (!modal.is_empty) {
+            modal.show();
+         } else {
+            createAlert(modal.alert_message);
+            modal.alert_message = '';
+         }
+         disableScroll();
+
+      });
+   });*/
+});
+
+function initializeModalSelects(block) {
+   let modal_selects = block.querySelectorAll('.modal-select');
 
    modal_selects.forEach(select => {
       select.addEventListener('click', () => {
@@ -33,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       });
    });
-});
+}
 
 // Предназначен для получения объекта модального окна по родительскому полю
 // Принимает параметры-------------------------------------------
@@ -48,8 +69,10 @@ function getModalBySelect(select) {
 
    modal_name = parent_row.dataset.row_name;
 
+   //TODO одинаковые модалки в разных блоках
    if (modals.has(modal_name)) {
-      modal = modals.get(modal_name);
+      modal = new Modal(select);
+      // modal = modals.get(modal_name);
    } else {
       modal = new Modal(select);
       modals.set(modal.name, modal);

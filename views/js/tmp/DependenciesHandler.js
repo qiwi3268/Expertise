@@ -11,7 +11,21 @@ class DependenciesHandler {
    static block_dependencies;
    static require_dependencies;
 
+   static is_multiple_block;
+   static blocks_container;
+
+
    static handleDependencies(result_field) {
+      //TODO вынести в отдельный listener
+      let parent_block = result_field.closest('.block');
+      if (parent_block && parent_block.dataset.type === 'part') {
+         this.blocks_container = parent_block;
+         this.is_multiple_block = true;
+      } else {
+         this.blocks_container = document;
+         this.is_multiple_block = false;
+      }
+
       let field_name = result_field.name;
 
       let block_dependencies = this.block_dependencies[field_name];
@@ -33,9 +47,17 @@ class DependenciesHandler {
 
       let dependent_values = new Map();
 
-      Object.keys(dependencies).forEach(key => {
+      if (!isNaN(parseInt(result_field.value))) {
+         dependent_values.set(result_field.value, block_dependencies[result_field.name][result_field.value]);
+      } else {
+         Object.keys(dependencies).forEach(key => {
+            dependent_values.set(key, block_dependencies[result_field.name][key]);
+         });
+      }
+
+/*      Object.keys(dependencies).forEach(key => {
          dependent_values.set(key, block_dependencies[result_field.name][key]);
-      });
+      });*/
 
       let setBlockState;
 
@@ -43,16 +65,14 @@ class DependenciesHandler {
       dependent_values.forEach((block_states, dependency_key) => {
 
          if (!result_field.value) {
-
             setBlockState = function () {
                return 'true';
             };
 
          } else if (!isNaN(parseInt(dependency_key))) {
 
-
             setBlockState = function(block_state) {
-               return !block_state;
+               return block_state;
             };
 
          } else if (dependency_key.includes('JSON_TRUE_OR')) {
@@ -75,28 +95,76 @@ class DependenciesHandler {
 
             setBlockState = function(block_state) {
 
-
                if (!field_value.find(field_value => excludes.includes(field_value))) {
                   return !block_state;
                }
 
             };
-
          }
+
+
+         // console.log(block_states);
+
 
          Object.keys(block_states).forEach(block_name => {
 
-            let dependent_blocks = document.querySelectorAll(`[data-block_name="${block_name}"]`);
+            console.log(this.blocks_container);
+
+            let dependent_blocks = this.blocks_container.querySelectorAll(`[data-block_name="${block_name}"]`);
             dependent_blocks.forEach(block => {
 
 
                let inactive = setBlockState(block_states[block_name]);
 
-               block.dataset.inactive = inactive;
+               // console.log(block_states);
+               // console.log(block_name);
+               // console.log(block_states[block_name]);
+               // console.log(inactive);
 
-               if (inactive) {
-                  clearBlock(block);
+               if (this.is_multiple_block) {
+
+                  // console.log('qwe');
+                  // console.log(!inactive);
+
+                  if (!inactive) {
+                     // console.log('create');
+                     // console.log(block);
+
+                     let block_to_show = this.blocks_container.querySelector(`[data-block_name='${block_name}']`);
+                     if (block_to_show) {
+                        block = block_to_show;
+                     } else {
+                        block = MultipleBlock.createBlock(this.blocks_container, block_name);
+                     }
+
+                  } else {
+
+                   /*  let block_to_remove = this.blocks_container.querySelector(`[data-block_name='${block_name}']`);
+
+                     if (block_to_remove) {
+                        // block_to_remove.remove();
+                     }
+                     // console.log('remove');
+                     // console.log(block);
+                     // block.remove();
+                     */
+
+                  }
+
+                  block.dataset.inactive = inactive;
+
+                  // let block_copy = block.cloneNode(true);
+                  // this.blocks_container.appendChild(block_copy);
+                  // block = block_copy;
+               } else {
+                  block.dataset.inactive = inactive;
+
+                  if (inactive) {
+                     clearBlock(block);
+                  }
                }
+
+
 
             });
 
@@ -120,7 +188,7 @@ class DependenciesHandler {
          // Берем нужные значения, по значению родительского поля
          let radio_values = values[result_field.value][0];
 
-         let dependent_row = document.querySelector(`[data-row_name=${input.dataset.target_change}]`);
+         let dependent_row = this.blocks_container.querySelector(`[data-row_name=${input.dataset.target_change}]`);
          let dependent_radio = dependent_row.querySelector('.radio');
 
          if (dependent_radio) {
@@ -150,7 +218,7 @@ class DependenciesHandler {
 
       if (dependent_row_names) {
          Object.keys(dependent_row_names).forEach(row_name => {
-            let dependent_rows = document.querySelectorAll(`[data-row-name="${row_name}"]`);
+            let dependent_rows = this.blocks_container.querySelectorAll(`[data-row-name="${row_name}"]`);
 
             dependent_rows.forEach(row => {
 

@@ -1,12 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
-   let radio_blocks = document.querySelectorAll('.radio');
+  /* let radio_blocks = document.querySelectorAll('.radio');
+
+   // Добавляем обработку переключателей для каждого блока с переключателями
+   radio_blocks.forEach(radio_elem => {
+      initRadioItems(radio_elem);
+   });*/
+
+   initializeRadio(document);
+
+});
+
+function initializeRadio(block) {
+   let radio_blocks = block.querySelectorAll('.radio');
 
    // Добавляем обработку переключателей для каждого блока с переключателями
    radio_blocks.forEach(radio_elem => {
       initRadioItems(radio_elem);
    });
-
-});
+}
 
 // Предназначен для добавления обработчиков для переключателей
 // Принимает параметры-------------------------------

@@ -52,5 +52,4 @@ class MiscInitializator extends \Classes\Miscs\Initializator\Initializator{
         $this->setSingleMisc('budget_level', misc_budgetLevelTable::getAllActive());
         
     }
-    
 }
