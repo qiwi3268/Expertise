@@ -151,5 +151,9 @@ function getRadioResult(radio_body, multiple) {
       result.push(item.dataset.id)
    });
 
-   return multiple ? JSON.stringify(result) : result[0];
+   if (result.length > 0) {
+      return multiple ? JSON.stringify(result) : result[0];
+   } else {
+      return '';
+   }
 }

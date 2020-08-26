@@ -29,6 +29,8 @@ function saveApplication() {
 
    FileNeeds.putFilesToFileNeeds();
 
+   saveMultipleBlocks();
+
    XHR('post', request_urn, new FormData(application_form), null, 'json', null, null)
       .then(response => {
 
@@ -50,6 +52,21 @@ function saveApplication() {
          alert(error.message);
          console.error('XHR error: ', error);
       });
+}
+
+function saveMultipleBlocks() {
+
+   let multiple_blocks = document.querySelectorAll('.block[data-type="multiple"]');
+   multiple_blocks.forEach(block => {
+      let parts = block.querySelectorAll('.block[data-block_name="part"][data-inactive="false"]');
+
+      parts.forEach(part => {
+         console.log(part);
+         let result_input = part.querySelector('.field-result[name="part"]');
+         console.log(result_input.value);
+      });
+
+   });
 }
 
 function showSaveModal() {

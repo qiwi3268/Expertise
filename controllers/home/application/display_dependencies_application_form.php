@@ -56,30 +56,34 @@ $blockDependencies = [
               'organization'     => true,
               'builder_source'   => true,
               'investor'         => true,
+              'percent'          => false
         ],
 
         2 => ['budget'           => true,
               'organization'     => false,
               'builder_source'   => true,
               'investor'         => true,
+              'percent'          => false
         ],
 
         3 => ['budget'           => true,
               'organization'     => true,
               'builder_source'   => false,
               'investor'         => true,
+              'percent'          => false
         ],
 
         4 => ['budget'           => true,
               'organization'     => true,
               'builder_source'   => true,
               'investor'         => false,
+              'percent'          => false
         ],
     ],
 
-    'size' => [
-        '' => ['percent' => false],
-        0  => ['percent' => true]
+    'no_data' => [
+        0  => ['percent' => true],
+        1 => ['percent' => false],
     ]
 
     // ----------------------------------------------------------

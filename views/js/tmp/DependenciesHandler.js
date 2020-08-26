@@ -59,7 +59,9 @@ class DependenciesHandler {
 
       dependent_values.forEach((block_states, dependency_key) => {
 
-         if (!result_field.value) {
+
+
+         if (result_field.value === undefined) {
 
             setBlockState = function () {
                return 'true';
@@ -106,7 +108,7 @@ class DependenciesHandler {
             if (this.is_multiple_block) {
 
                let dependent_blocks = this.blocks_container.querySelectorAll(`[data-block_name="${block_name}"]`);
-               if (dependent_blocks.length === 0) {
+               if (dependent_blocks.length === 0 && !inactive) {
                   let new_block = MultipleBlock.createBlock(this.blocks_container, block_name);
                   new_block.dataset.inactive = inactive;
                } else {

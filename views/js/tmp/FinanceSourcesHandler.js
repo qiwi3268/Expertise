@@ -50,42 +50,54 @@ class MultipleBlock {
    parts;
    add_btn;
 
+   part;
+   save_btn;
+   cancel_btn;
+
    static templates_container;
-   static part;
 
    constructor(main_block) {
-      this.parts = new Map();
       this.main_block = main_block;
-
 
       this.add_btn = this.main_block.querySelector('.field-add');
       this.add_btn.addEventListener('click', () => {
-         MultipleBlock.part = MultipleBlock.createBlock(this.main_block, 'template');
 
+         let part = MultipleBlock.createBlock(this.main_block, 'part');
+         MultipleBlock.createBlock(part, 'type');
+         let actions = MultipleBlock.createBlock(part, 'actions');
+
+         let save_btn = actions.querySelector('.save');
+         save_btn.addEventListener('click', () => {
+
+
+
+
+            let part_data = new Part(part);
+
+            if (part_data.is_changed) {
+
+               let part_result = part.querySelector('.field-result');
+               part_result.value = JSON.stringify(new Part(part));
+
+            } else {
+               //todo alert
+            }
+
+
+         });
       });
 
 
    }
 
    static createBlock(main_block, dependent_block_name) {
-      // console.log(main_block);
-      // console.log(dependent_block_name);
 
       let template = MultipleBlock.templates_container.querySelector(`[data-block_name='${dependent_block_name}']`);
-
-    /*  if (!template) {
-         let parent = document.querySelector('.block[data-type="multiple"]');
-         template = parent.querySelector(`[data-block_name='${dependent_block_name}']`);
-      }
-*/
-
       let new_block = template.cloneNode(true);
-
       main_block.appendChild(new_block);
       new_block.dataset.inactive = 'false';
 
       this.addEventListeners(new_block);
-
 
       changeParentCardMaxHeight(main_block);
 
@@ -95,18 +107,26 @@ class MultipleBlock {
    static addEventListeners(new_block) {
       initializeModalSelects(new_block);
       initializeRadio(new_block);
-
    }
+
+
 
 }
 
+function Part(part) {
 
+   let dependent_blocks = part.querySelectorAll('.block[data-type="part"][data-inactive="false"]');
 
+   dependent_blocks.forEach(block => {
+      block.querySelectorAll('.field-result[data-field]').forEach(input => {
 
-class FinanceSource {
+         this[input.dataset.field] = input.value ? input.value : null;
 
-   constructor() {
+      });
+
+   });
+
+   if (this.type) {
+      this.is_changed = true;
    }
-
-
 }
