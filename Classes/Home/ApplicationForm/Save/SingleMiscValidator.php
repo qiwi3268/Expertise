@@ -1,7 +1,7 @@
 <?php
 
 
-class SingleMiscValidator extends \Classes\Miscs\Validator\SingleMisc{
+class SingleMiscValidator extends \Classes\Miscs\Validation\SingleMisc{
     
     private ?string $columnName; // Имя столбца справочника в БД
     

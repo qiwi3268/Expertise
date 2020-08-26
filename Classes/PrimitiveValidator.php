@@ -198,4 +198,50 @@ class PrimitiveValidator{
             throw new PrimitiveValidatorException("Введеное значение: '{$int}' не является целочисленным", 12);
         }
     }
+    
+    
+    // Предназначен для проверки обязательных элементов в ассоциативном массиве. Метод проверяет их существование и проверяет принятыми callback'ами
+    // Принимает параметры-----------------------------------
+    // array    array : проверяемый массив
+    // settings array : ключ - элемент (ключ из array), который обязательно должен присутствовать в массиве. Значение - массив с callback'ами для проверки
+    // Если callback строка - функция для проверки
+    //               массив - [0 => экземпляр объекта или имя класса, 1 => имя метода]
+    // Выбрасывает исключения--------------------------------
+    // PrimitiveValidatorException :
+    // code:
+    // 13 - во входном массиве отсутствует обязательное поле
+    // 14 - значение входного массива по ключу не прошло проверку
+    function validateAssociativeArray(array $array, array $settings):void {
+        
+        foreach($settings as $key => $callbacks){
+            
+            if(!array_key_exists($key, $array)){
+                throw new PrimitiveValidatorException("Во входном массиве отсутствует обязательное поле: '{$key}'", 13);
+            }
+            
+            $result = false;
+            
+            // Хотя бы один callback должен вернуть true
+            foreach($callbacks as $callback){
+                
+                // Проверка на существование принятого callback'а
+                if(is_array($callback)){
+                    
+                    if(!method_exists($callback[0], $callback[1])) throw new BadMethodCallException("Переданный метод: '{$callback[1]} не существует'");
+                    
+                }elseif(!function_exists($callback)) throw new BadFunctionCallException("Переданная функция: '{$callback}' не существует");
+                
+                $res = call_user_func($callback, $array[$key]);
+                // Строгое равенство, т.к. callback может ничего не возвращать (null)
+                if($res === true || is_null($res)){
+                    $result = true;
+                    break 1;
+                }
+            }
+            
+            if(!$result){
+                throw new PrimitiveValidatorException("Значение входного массива по ключу: '{$key}' не прошло проверку", 14);
+            }
+        }
+    }
 }

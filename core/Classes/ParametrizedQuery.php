@@ -15,7 +15,7 @@ final class ParametrizedQuery extends DataBase{
     // array : ассоциативный массив
     //
     static public function getFetchAssoc(string $query, array $bindParams):array {
-
+      
         $result = parent::executeParametrizedQuery($query, $bindParams);
         $arr = [];
         while($row = $result->fetch_assoc()){
@@ -32,7 +32,7 @@ final class ParametrizedQuery extends DataBase{
     // array : индексный массив (без подмассивов)
     //
     static public function getSimpleArray(string $query, array $bindParams):array {
-
+      
         $result = parent::executeParametrizedQuery($query, $bindParams);
         $arr = [];
         while($row = $result->fetch_row()){

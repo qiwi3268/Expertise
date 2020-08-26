@@ -274,6 +274,44 @@ try{
     }
     
     
+    // Проверка Источников финансирования --------------------------------------------------------------
+    //
+    
+    // Валидация json'a
+    
+       $FinancingSources = [['type'         => 1,
+                             'is_changed'   => 0,
+                             'id'           => 1,
+                             'budget_level' => 1,
+                             'no_data'      => 0,
+                             'percent'      => 50],
+        
+                             ['type'         => 1,
+                              'is_changed'   => 1,
+                              'budget_level' => 2,
+                              'no_data'      => 1],
+        
+                             ['type'         => 3,
+                              'is_changed'   => 1,
+                              'no_data'      => 0,
+                              'percent'      => 20],
+    
+                              ['type'       => 4,
+                               'is_changed' => 1,
+                               'no_data'    => 0,
+                               'percent'    => 20]
+           
+    ];
+    
+    
+    if($FinancingSources){
+        
+        // 1 шаг - найти неизмененный источник и проверить его существование
+        $noChanged = array_filter($FinancingSources, fn($source) => ($source['is_changed'] === 0));
+        
+        $test = $noChanged;
+    }
+    
     
     // -----------------------------------------------------------------------------------------------------------------
     // Зона сохранения заявления в БД

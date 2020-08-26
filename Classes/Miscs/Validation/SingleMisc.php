@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Classes\Miscs\Validator;
+namespace Classes\Miscs\Validation;
 
 
 // Предназначен для валидации одиночных справочников

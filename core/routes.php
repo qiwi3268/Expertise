@@ -66,6 +66,7 @@ return [
 
 
     'test' => [
+        '/Classes/'         => ['PrimitiveValidator'],
         'controllers' => ['test']
     ],
 

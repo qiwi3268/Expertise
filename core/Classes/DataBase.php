@@ -109,6 +109,7 @@ class DataBase{
     // Предназначен для выполнения простого запроса
     // Принимает параметры-----------------------------------
     // query string : простой запрос к БД
+    //
     static protected function executeSimpleQuery(string $query){
 
         $result = self::$mysqli->query($query);
@@ -119,5 +120,33 @@ class DataBase{
         }
 
         return $result;
+    }
+    
+    
+    // Предназначен для выполнения транзакции
+    // Принимает параметры-----------------------------------
+    // Transaction Transaction : экземпляр класса, содержащий в себе запросы,
+    // которые необходимо выполнить в рамках транзакции
+    //
+    static protected function executeTransaction(\core\Classes\Transaction $Transaction):void {
+        
+        if(!self::$mysqli->begin_transaction()) throw new DataBaseException(self::$mysqli->error, self::$mysqli->errno);
+        
+        try{
+            
+            $Transaction->executeQueries();
+            
+        }catch(DataBaseException $e){
+    
+            if(!self::$mysqli->rollback()) throw new DataBaseException(self::$mysqli->error, self::$mysqli->errno);
+            throw new DataBaseException($e->getMessage(), $e->getCode());
+            
+        }catch(Exception $e){
+    
+            if(!self::$mysqli->rollback()) throw new DataBaseException(self::$mysqli->error, self::$mysqli->errno);
+            throw new Exception($e->getMessage(), $e->getCode());
+        }
+        
+        if(!self::$mysqli->commit()) throw new DataBaseException(self::$mysqli->error, self::$mysqli->errno);
     }
 }

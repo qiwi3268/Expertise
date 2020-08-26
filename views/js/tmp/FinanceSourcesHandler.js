@@ -63,26 +63,24 @@ class MultipleBlock {
       this.add_btn.addEventListener('click', () => {
 
          let part = MultipleBlock.createBlock(this.main_block, 'part');
-         MultipleBlock.createBlock(part, 'type');
+         let part_info = MultipleBlock.createBlock(part, 'type');
          let actions = MultipleBlock.createBlock(part, 'actions');
-
+         
          let save_btn = actions.querySelector('.save');
          save_btn.addEventListener('click', () => {
 
-
-
-
             let part_data = new Part(part);
 
-            if (part_data.is_changed) {
+            if (part_data.type) {
 
                let part_result = part.querySelector('.field-result');
                part_result.value = JSON.stringify(new Part(part));
 
+               actions.dataset.inactive = 'true';
+               part_info.dataset.inactive = 'true';
             } else {
                //todo alert
             }
-
 
          });
       });
@@ -126,7 +124,8 @@ function Part(part) {
 
    });
 
-   if (this.type) {
+   /*if (this.type) {
       this.is_changed = true;
-   }
+   }*/
+
 }

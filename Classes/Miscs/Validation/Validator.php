@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Classes\Miscs\Validator;
+namespace Classes\Miscs\Validation;
 
 
 // Абстрактный класс, предназначенный для валидации справочников. Предоставляет потомкам (SingleMisc и DependentMisc)

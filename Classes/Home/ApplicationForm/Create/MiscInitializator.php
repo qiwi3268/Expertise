@@ -3,7 +3,7 @@
 
 // Предназначен для инициализации справочников в форме анкеты
 //
-class MiscInitializator extends \Classes\Miscs\Initializator\Initializator{
+class MiscInitializator extends \Classes\Miscs\Initialization\Initializator{
     
     
     // Количество справочных элементов на странице при пагинации
