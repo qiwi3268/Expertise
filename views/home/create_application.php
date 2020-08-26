@@ -552,19 +552,17 @@
             <div class="card-form__body body-card">
 
                 <!--Источники финансирования-->
-                <div class="body-card__block block" data-type="multiple" data-block_name="finance_sources" data-block_counter="0" data-inactive="false">
+                <div class="body-card__block block" data-type="multiple" data-block_name="finance_sources">
 
-                    <div class="body-card__add-button field-add" data-dependent_block="finance_type">
+                    <div class="body-card__add-button field-add">
                         <span class="body-card__add-text">Добавить источник финансирования</span>
                         <i class="body-card__add-icon fas fa-plus-square"></i>
                     </div>
 
 
                     <!--Шаблоны источников финансирования-->
-    
                     <div class="body-card__block block" data-block_name="templates_container">
-                        
-                        <!--Главный шаблон "Вид финансирования"-->
+                        <!--Шаблон "Вид финансирования"-->
                         <div class="body-card__block block" data-type="part" data-block_name="template" data-inactive="true">
                             <div class="body-card__row field" data-row_name="finance_type" data-required="true">
                                 <span class="body-card__title field-title">Вид финансирования</span>
@@ -591,13 +589,12 @@
                                     </div>
                                 </div>
                                 <input class="body-card__result field-result" type="hidden" name="finance_type">
-            
                             </div>
                         </div>
-                        <!--//Главный шаблон "Вид финансирования"//-->
+                        <!--//Шаблон "Вид финансирования"//-->
                         <!--Шаблон "Бюджетные средства"-->
                         <div class="body-card__block" data-type="part" data-block_name="budget" data-inactive="true">
-                            <div class="body-card__row field" data-row_name="budget_level" data-required="true">
+                            <div class="body-card__row field" data-row_name="level" data-required="true">
                                 <span class="body-card__title field-title">Уровень бюджета</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field">
@@ -620,9 +617,40 @@
                                         <?php endforeach; ?>
                                     </div>
                                 </div>
-                                <input class="body-card__result field-result" type="hidden" name="budget_level">
+                                <input class="body-card__result field-result" type="hidden" name="level">
                             </div>
-                            <div class="body-card__row field center" data-row_name="budget_size">
+                            <div class="body-card__block" data-type="part" data-block_name="size" data-inactive="false">
+                                <div class="body-card__row field center" data-row_name="size">
+                                    <span class="body-card__title">Размер финансирования</span>
+                                    <div class="body-card__item">
+                                        <div class="body-card__field radio">
+                                            <div class="radio__body">
+                                                <div class="radio__item" data-id="0">
+                                                    <i class="radio__icon inline far fa-square"></i>
+                                                    <span class="radio__text">Нет данных</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input class="body-card__result field-result" type="hidden" name="size">
+                                </div>
+                                <div class="body-card__block" data-type="part" data-block_name="percent" data-inactive="false">
+                                    <div class="body-card__row field" data-required="true" data-row_name="budget_percent" data-pattern="number">
+                                        <span class="body-card__title">Процент финансирования</span>
+                                        <div class="body-card__item">
+                                            <div class="body-card__field">
+                                                <input class="body-card__input body-card__result field-result application-input" type="text" name="percent" placeholder="Введите процент">
+                                            </div>
+                                            <span class="body-card__error field-error"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--//Шаблон "Бюджетные средства"//-->
+                        <!--Шаблон "Размер финансирования"-->
+                        <div class="body-card__block" data-type="part" data-block_name="size" data-inactive="true">
+                            <div class="body-card__row field center" data-row_name="size">
                                 <span class="body-card__title">Размер финансирования</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field radio">
@@ -634,21 +662,23 @@
                                         </div>
                                     </div>
                                 </div>
-                                <input class="body-card__result field-result" type="hidden" name="budget_size">
+                                <input class="body-card__result field-result" type="hidden" name="size">
                             </div>
-                            <div class="body-card__block" data-block_name="budget_percent" data-inactive="false">
-                                <div class="body-card__row field" data-required="true" data-row_name="budget_percent" data-pattern="number">
-                                    <span class="body-card__title">Процент финансирования</span>
-                                    <div class="body-card__item">
-                                        <div class="body-card__field">
-                                            <input class="body-card__input body-card__result field-result application-input" type="text" name="budget_percent" placeholder="Введите процент">
-                                        </div>
-                                        <span class="body-card__error field-error"></span>
+                        </div>
+                        <!--//Шаблон "Размер финансирования"//-->
+                        <!--Шаблон "Процент финансирования"-->
+                        <div class="body-card__block" data-type="part" data-block_name="percent" data-inactive="true">
+                            <div class="body-card__row field" data-required="true" data-row_name="budget_percent" data-pattern="number">
+                                <span class="body-card__title">Процент финансирования</span>
+                                <div class="body-card__item">
+                                    <div class="body-card__field">
+                                        <input class="body-card__input body-card__result field-result application-input" type="text" name="percent" placeholder="Введите процент">
                                     </div>
+                                    <span class="body-card__error field-error"></span>
                                 </div>
                             </div>
                         </div>
-                        <!--//Шаблон "Бюджетные средства"//-->
+                        <!--//Шаблон "Процент финансирования"//-->
     
                         <!--Шаблон "Средства юридических лиц"-->
                         <div class="body-card__block" data-block_name="organization" data-inactive="true">
@@ -661,91 +691,93 @@
                                     <span class="body-card__error field-error"></span>
                                 </div>
                             </div>
-                            <div class="body-card__row field" data-required="true" data-row_name="organization_inn" data-pattern="inn">
+                            <div class="body-card__row field" data-required="true" data-row_name="inn" data-pattern="inn">
                                 <span class="body-card__title">ИНН</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field">
-                                        <input class="body-card__input body-card__result field-result application-input" type="text" name="organization_inn" placeholder="Введите значение">
+                                        <input class="body-card__input body-card__result field-result application-input" type="text" name="inn" placeholder="Введите значение">
                                     </div>
                                     <span class="body-card__error field-error"></span>
                                 </div>
                             </div>
-                            <div class="body-card__row field" data-required="true" data-row_name="organization_kpp">
+                            <div class="body-card__row field" data-required="true" data-row_name="kpp">
                                 <span class="body-card__title">КПП</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field">
-                                        <input class="body-card__input body-card__result field-result application-input" type="text" name="organization_kpp" placeholder="Введите значение">
+                                        <input class="body-card__input body-card__result field-result application-input" type="text" name="kpp" placeholder="Введите значение">
                                     </div>
                                     <span class="body-card__error field-error"></span>
                                 </div>
                             </div>
-                            <div class="body-card__row field" data-required="true" data-row_name="organization_ogrn">
+                            <div class="body-card__row field" data-required="true" data-row_name="ogrn">
                                 <span class="body-card__title">ОГРН</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field">
-                                        <input class="body-card__input body-card__result field-result application-input" type="text" name="organization_ogrn" placeholder="Введите значение">
+                                        <input class="body-card__input body-card__result field-result application-input" type="text" name="ogrn" placeholder="Введите значение">
                                     </div>
                                     <span class="body-card__error field-error"></span>
                                 </div>
                             </div>
-                            <div class="body-card__row field" data-required="true" data-row_name="organization_address">
+                            <div class="body-card__row field" data-required="true" data-row_name="address">
                                 <span class="body-card__title">Адрес</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field">
-                                        <input class="body-card__input body-card__result field-result application-input" type="text" name="organization_address" placeholder="Введите значение">
+                                        <input class="body-card__input body-card__result field-result application-input" type="text" name="address" placeholder="Введите значение">
                                     </div>
                                     <span class="body-card__error field-error"></span>
                                 </div>
                             </div>
-                            <div class="body-card__row field" data-required="true" data-row_name="organization_location">
+                            <div class="body-card__row field" data-required="true" data-row_name="location">
                                 <span class="body-card__title">Место нахождения</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field">
-                                        <input class="body-card__input body-card__result field-result application-input" type="text" name="organization_location" placeholder="Введите значение">
+                                        <input class="body-card__input body-card__result field-result application-input" type="text" name="location" placeholder="Введите значение">
                                     </div>
                                     <span class="body-card__error field-error"></span>
                                 </div>
                             </div>
-                            <div class="body-card__row field" data-required="true" data-row_name="organization_phone">
+                            <div class="body-card__row field" data-required="true" data-row_name="phone">
                                 <span class="body-card__title">Телефон</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field">
-                                        <input class="body-card__input body-card__result field-result application-input" type="text" name="organization_phone" placeholder="Введите значение">
+                                        <input class="body-card__input body-card__result field-result application-input" type="text" name="phone" placeholder="Введите значение">
                                     </div>
                                     <span class="body-card__error field-error"></span>
                                 </div>
                             </div>
-                            <div class="body-card__row field" data-required="true" data-row_name="organization_email">
+                            <div class="body-card__row field" data-required="true" data-row_name="email">
                                 <span class="body-card__title">Адрес электронной почты</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field">
-                                        <input class="body-card__input body-card__result field-result application-input" type="text" name="organization_email" placeholder="Введите значение">
+                                        <input class="body-card__input body-card__result field-result application-input" type="text" name="email" placeholder="Введите значение">
                                     </div>
                                     <span class="body-card__error field-error"></span>
                                 </div>
                             </div>
-                            <div class="body-card__row field center" data-row_name="organization_size" data-required="true">
-                                <span class="body-card__title">Размер финансирования</span>
-                                <div class="body-card__item">
-                                    <div class="body-card__field radio">
-                                        <div class="radio__body">
-                                            <div class="radio__item" data-id="0">
-                                                <i class="radio__icon inline far fa-square"></i>
-                                                <span class="radio__text">Нет данных</span>
+                            <div class="body-card__block" data-type="part" data-block_name="size" data-inactive="false">
+                                <div class="body-card__row field center" data-row_name="size">
+                                    <span class="body-card__title">Размер финансирования</span>
+                                    <div class="body-card__item">
+                                        <div class="body-card__field radio">
+                                            <div class="radio__body">
+                                                <div class="radio__item" data-id="0">
+                                                    <i class="radio__icon inline far fa-square"></i>
+                                                    <span class="radio__text">Нет данных</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <input class="body-card__result field-result" type="hidden" name="size">
                                 </div>
-                                <input class="body-card__result field-result" type="hidden" name="organization_size">
-                            </div>
-                            <div class="body-card__block" data-block_name="organization_percent" data-inactive="false">
-                                <div class="body-card__row field" data-required="true" data-row_name="budget_percent" data-pattern="number">
-                                    <span class="body-card__title">Процент финансирования</span>
-                                    <div class="body-card__item">
-                                        <div class="body-card__field">
-                                            <input class="body-card__input body-card__result field-result application-input" type="text" name="organization_percent" placeholder="Введите процент">
+                                <div class="body-card__block" data-type="part" data-block_name="percent" data-inactive="false">
+                                    <div class="body-card__row field" data-required="true" data-row_name="budget_percent" data-pattern="number">
+                                        <span class="body-card__title">Процент финансирования</span>
+                                        <div class="body-card__item">
+                                            <div class="body-card__field">
+                                                <input class="body-card__input body-card__result field-result application-input" type="text" name="percent" placeholder="Введите процент">
+                                            </div>
+                                            <span class="body-card__error field-error"></span>
                                         </div>
-                                        <span class="body-card__error field-error"></span>
                                     </div>
                                 </div>
                             </div>
@@ -754,28 +786,30 @@
     
                         <!--Шаблон "Собственные средства застройщика"-->
                         <div class="body-card__block" data-block_name="builder_source" data-inactive="true">
-                            <div class="body-card__row field center" data-row_name="builder_source_size" data-required="true">
-                                <span class="body-card__title">Размер финансирования</span>
-                                <div class="body-card__item">
-                                    <div class="body-card__field radio">
-                                        <div class="radio__body">
-                                            <div class="radio__item" data-id="0">
-                                                <i class="radio__icon inline far fa-square"></i>
-                                                <span class="radio__text">Нет данных</span>
+                            <div class="body-card__block" data-type="part" data-block_name="size" data-inactive="false">
+                                <div class="body-card__row field center" data-row_name="size">
+                                    <span class="body-card__title">Размер финансирования</span>
+                                    <div class="body-card__item">
+                                        <div class="body-card__field radio">
+                                            <div class="radio__body">
+                                                <div class="radio__item" data-id="0">
+                                                    <i class="radio__icon inline far fa-square"></i>
+                                                    <span class="radio__text">Нет данных</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <input class="body-card__result field-result" type="hidden" name="size">
                                 </div>
-                                <input class="body-card__result field-result" type="hidden" name="builder_source_size">
-                            </div>
-                            <div class="body-card__block" data-block_name="builder_source_percent" data-inactive="false">
-                                <div class="body-card__row field" data-required="true" data-row_name="budget_percent" data-pattern="number">
-                                    <span class="body-card__title">Процент финансирования</span>
-                                    <div class="body-card__item">
-                                        <div class="body-card__field">
-                                            <input class="body-card__input body-card__result field-result application-input" type="text" name="builder_source_percent" placeholder="Введите процент">
+                                <div class="body-card__block" data-type="part" data-block_name="percent" data-inactive="false">
+                                    <div class="body-card__row field" data-required="true" data-row_name="budget_percent" data-pattern="number">
+                                        <span class="body-card__title">Процент финансирования</span>
+                                        <div class="body-card__item">
+                                            <div class="body-card__field">
+                                                <input class="body-card__input body-card__result field-result application-input" type="text" name="percent" placeholder="Введите процент">
+                                            </div>
+                                            <span class="body-card__error field-error"></span>
                                         </div>
-                                        <span class="body-card__error field-error"></span>
                                     </div>
                                 </div>
                             </div>
@@ -784,33 +818,34 @@
     
                         <!--Шаблон "Средства застройщика"-->
                         <div class="body-card__block" data-block_name="investor" data-inactive="true">
-                            <div class="body-card__row field center" data-row_name="investor_size" data-required="true">
-                                <span class="body-card__title">Размер финансирования</span>
-                                <div class="body-card__item">
-                                    <div class="body-card__field radio">
-                                        <div class="radio__body">
-                                            <div class="radio__item" data-id="0">
-                                                <i class="radio__icon inline far fa-square"></i>
-                                                <span class="radio__text">Нет данных</span>
+                            <div class="body-card__block" data-type="part" data-block_name="size" data-inactive="false">
+                                <div class="body-card__row field center" data-row_name="size">
+                                    <span class="body-card__title">Размер финансирования</span>
+                                    <div class="body-card__item">
+                                        <div class="body-card__field radio">
+                                            <div class="radio__body">
+                                                <div class="radio__item" data-id="0">
+                                                    <i class="radio__icon inline far fa-square"></i>
+                                                    <span class="radio__text">Нет данных</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <input class="body-card__result field-result" type="hidden" name="size">
                                 </div>
-                                <input class="body-card__result field-result" type="hidden" name="investor_size">
-                            </div>
-                            <div class="body-card__block" data-block_name="investor_percent" data-inactive="false">
-                                <div class="body-card__row field" data-required="true" data-row_name="budget_percent" data-pattern="number">
-                                    <span class="body-card__title">Процент финансирования</span>
-                                    <div class="body-card__item">
-                                        <div class="body-card__field">
-                                            <input class="body-card__input body-card__result field-result application-input" type="text" name="investor_percent" placeholder="Введите процент">
+                                <div class="body-card__block" data-type="part" data-block_name="percent" data-inactive="false">
+                                    <div class="body-card__row field" data-required="true" data-row_name="budget_percent" data-pattern="number">
+                                        <span class="body-card__title">Процент финансирования</span>
+                                        <div class="body-card__item">
+                                            <div class="body-card__field">
+                                                <input class="body-card__input body-card__result field-result application-input" type="text" name="percent" placeholder="Введите процент">
+                                            </div>
+                                            <span class="body-card__error field-error"></span>
                                         </div>
-                                        <span class="body-card__error field-error"></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-    
                         <!--//Шаблон "Средства застройщика"//-->
 
                     </div>

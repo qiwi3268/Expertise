@@ -75,9 +75,12 @@ $blockDependencies = [
               'builder_source'   => true,
               'investor'         => false,
         ],
-
     ],
 
+    'size' => [
+        '' => ['percent' => false],
+        0  => ['percent' => true]
+    ]
 
     // ----------------------------------------------------------
     // Зависимости множественных блоков

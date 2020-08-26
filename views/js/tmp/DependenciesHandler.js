@@ -55,16 +55,12 @@ class DependenciesHandler {
          });
       }
 
-/*      Object.keys(dependencies).forEach(key => {
-         dependent_values.set(key, block_dependencies[result_field.name][key]);
-      });*/
-
       let setBlockState;
-
 
       dependent_values.forEach((block_states, dependency_key) => {
 
          if (!result_field.value) {
+
             setBlockState = function () {
                return 'true';
             };
@@ -103,70 +99,36 @@ class DependenciesHandler {
          }
 
 
-         // console.log(block_states);
-
-
          Object.keys(block_states).forEach(block_name => {
 
-            console.log(this.blocks_container);
+            let inactive = setBlockState(block_states[block_name]);
 
-            let dependent_blocks = this.blocks_container.querySelectorAll(`[data-block_name="${block_name}"]`);
-            dependent_blocks.forEach(block => {
+            if (this.is_multiple_block) {
 
-
-               let inactive = setBlockState(block_states[block_name]);
-
-               // console.log(block_states);
-               // console.log(block_name);
-               // console.log(block_states[block_name]);
-               // console.log(inactive);
-
-               if (this.is_multiple_block) {
-
-                  // console.log('qwe');
-                  // console.log(!inactive);
-
-                  if (!inactive) {
-                     // console.log('create');
-                     // console.log(block);
-
-                     let block_to_show = this.blocks_container.querySelector(`[data-block_name='${block_name}']`);
-                     if (block_to_show) {
-                        block = block_to_show;
-                     } else {
-                        block = MultipleBlock.createBlock(this.blocks_container, block_name);
-                     }
-
-                  } else {
-
-                   /*  let block_to_remove = this.blocks_container.querySelector(`[data-block_name='${block_name}']`);
-
-                     if (block_to_remove) {
-                        // block_to_remove.remove();
-                     }
-                     // console.log('remove');
-                     // console.log(block);
-                     // block.remove();
-                     */
-
-                  }
-
-                  block.dataset.inactive = inactive;
-
-                  // let block_copy = block.cloneNode(true);
-                  // this.blocks_container.appendChild(block_copy);
-                  // block = block_copy;
+               let dependent_blocks = this.blocks_container.querySelectorAll(`[data-block_name="${block_name}"]`);
+               if (dependent_blocks.length === 0) {
+                  let new_block = MultipleBlock.createBlock(this.blocks_container, block_name);
+                  new_block.dataset.inactive = inactive;
                } else {
+                  dependent_blocks.forEach(block => block.dataset.inactive = inactive);
+               }
+
+            } else {
+
+               let dependent_blocks = document.querySelectorAll(`[data-block_name="${block_name}"]`);
+               dependent_blocks.forEach(block => {
+
+                  let inactive = setBlockState(block_states[block_name]);
+
                   block.dataset.inactive = inactive;
 
                   if (inactive) {
                      clearBlock(block);
                   }
-               }
 
+               });
+            }
 
-
-            });
 
          });
 
