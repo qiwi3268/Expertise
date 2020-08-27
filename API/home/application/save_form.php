@@ -47,7 +47,9 @@ if(!checkParamsPOST('id_application',
                    'national_project',
                    'federal_project',
                    'date_finish_building',
-                   'curator'
+                   'curator',
+                 
+                   'finance_sources'
 )){
     exit(json_encode(['result'        => 1,
                       'error_message' => 'Нет обязательных параметров POST запроса'
@@ -59,7 +61,7 @@ try{
     
     /** @var string $P_id_application id-заявления */
     /** @var string $P_expertise_purpose Цель обращения */
-    /** @var string $P_expertise_subjects Предмет(ы) экспертизы */
+    /** @var string $P_expertise_subjects Предмет(ы) экспертизы JSON */
     /** @var string $P_additional_information Доплнительная информация */
     /** @var string $P_object_name Наименование объекта */
     /** @var string $P_type_of_object Вид объекта */
@@ -80,6 +82,8 @@ try{
     /** @var string $P_federal_project Федеральный проект */
     /** @var string $P_date_finish_building Дата окончания строительства */
     /** @var string $P_curator Куратор */
+    /** @var string $P_finance_sources Истичник(и) финансирования JSON */
+    
     
     extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
     
@@ -118,6 +122,7 @@ try{
         }
     }
     
+    $Transaction = new \core\Classes\Transaction();
     $PrimitiveValidator = new PrimitiveValidator();
     DataToUpdate::setFlatAssoc($applicationAssoc);
     
@@ -276,78 +281,110 @@ try{
     
     // Проверка Источников финансирования --------------------------------------------------------------
     //
-    
-    // Валидация json'a
-    
-       $FinancingSources = [['type'         => 1,
-                             'budget_level' => 1,
-                             'no_data'      => 0,
-                             'percent'      => 50],
-        
-                             ['type'         => 1,
-                              'budget_level' => 2,
-                              'no_data'      => 1],
-        
-                             ['type'         => 3,
-                              'no_data'      => 0,
-                              'percent'      => 20],
-    
-                              ['type'       => 4,
-                               'no_data'    => 0,
-                               'percent'    => 20]
-           
-    ];
-    
-    // Если изменились
+    // В источники финансирования было внесено изменение
     if(true){
-        
-        // Получаем массив из входного json'а
-        // FinancingSources
-        
-        // Проверяем структуру массива
-        foreach($FinancingSources as $source){
+    
+        try{
             
-            if(!in_array($source['type'], ['1', '2', '3', '4'], true)){
-                // Ошибка
-            }
-        }
+            // Получаем массив из входного json'а
+            $FinancingSources = $PrimitiveValidator->getAssocArrayFromJson($P_finance_sources);
+    
+            // Проверяем структуру массива и валидируем его
+            foreach($FinancingSources as $source){
         
-        switch($source['type']){
-            case '1' :
+                $PrimitiveValidator->validateSomeInclusions($source['type'], '1', '2', '3', '4');
+        
+                switch($source['type']){
+                    case '1' :
                 
-                $BudgetLevel =  new SingleMiscValidator((is_null($source['budget_level']) ? '' : $source['budget_level']) , 'misc_budgetLevelTable');
+                        $BudgetLevel = new SingleMiscValidator((is_null($source['budget_level']) ? '' : $source['budget_level']), 'misc_budgetLevelTable');
                 
-                $settings = ['budget_level' => ['is_null', [$BudgetLevel, 'validate']],
-                             'no_data'      => [],
-                             'percent'      => ['is_null', [$PrimitiveValidator, 'validatePercent']]
-                ];
+                        $settings = ['budget_level' => ['is_null', [$BudgetLevel, 'validate']],
+                                     'no_data'      => [[$PrimitiveValidator, 'validateSomeInclusions', null, '1']],
+                                     'percent'      => ['is_null', [$PrimitiveValidator, 'validatePercent']]
+                        ];
+                        break;
+            
+                    case '2' :
                 
+                        $settings = ['full_name' => ['is_null', 'is_string'],
+                                     'INN'       => ['is_null', [$PrimitiveValidator, 'validateINN']],
+                                     'KPP'       => ['is_null', [$PrimitiveValidator, 'validateKPP']],
+                                     'OGRN'      => ['is_null', [$PrimitiveValidator, 'validateOGRN']],
+                                     'address'   => ['is_null', 'is_string'],
+                                     'location'  => ['is_null', 'is_string'],
+                                     'telephone' => ['is_null', 'is_string'],
+                                     'email'     => ['is_null', [$PrimitiveValidator, 'validateEmail']],
+                                     'no_data'   => [[$PrimitiveValidator, 'validateSomeInclusions', null, '1']],
+                                     'percent'   => ['is_null', [$PrimitiveValidator, 'validatePercent']]
+                        ];
+                        break;
+            
+                    case '3' :
+                    case '4' :
+                
+                        $settings = ['no_data' => [[$PrimitiveValidator, 'validateSomeInclusions', null, '1']],
+                                     'percent' => ['is_null', [$PrimitiveValidator, 'validatePercent']]
+                        ];
+                        break;
+                }
+        
                 $PrimitiveValidator->validateAssociativeArray($source, $settings);
-                break;
-                
-                
-                
-            case '2' :
-                break;
-            case '3' :
-                break;
-            case '4' :
-                break;
+            }
+        }catch(PrimitiveValidatorException $e){
+        
+        
+        }catch(ApplicationFormMiscValidatorException $e){
+        
+            // result 4 / 5
+            exit(json_encode(['result' => $e->getCode(), 'error_message' => $e->getMessage()]));
         }
-        
-        
-     
-        
-        
-        
-        $PrimitiveValidator->validateAssociativeArray();
         
         
         // Удаляем все источники финансирования, относящиеся к этому заявлению
-        //todo
+        \Classes\Tables\FinancingSource\Type1::deleteAllByIdApplication($form_applicationID);
+        \Classes\Tables\FinancingSource\Type2::deleteAllByIdApplication($form_applicationID);
+        \Classes\Tables\FinancingSource\Type3::deleteAllByIdApplication($form_applicationID);
+        \Classes\Tables\FinancingSource\Type4::deleteAllByIdApplication($form_applicationID);
+    
+        foreach($FinancingSources as $source){
+            
+            $no_data = is_null($source['no_data']) ? 0 : 1;
+            
+            switch($source['type']){
+                case '1' :
+                    
+                    \Classes\Tables\FinancingSource\Type1::create($form_applicationID, $source['budget_level'], $no_data, $source['percent']);
+                    break;
+            
+                case '2' :
+    
+                    \Classes\Tables\FinancingSource\Type2::create($form_applicationID, $source['full_name'],
+                                                                                       $source['INN'],
+                                                                                       $source['KPP'],
+                                                                                       $source['OGRN'],
+                                                                                       $source['address'],
+                                                                                       $source['location'],
+                                                                                       $source['telephone'],
+                                                                                       $source['email'],
+                                                                                       $no_data,
+                                                                                       $source['percent']);
+                    break;
+            
+                case '3' :
+    
+                    break;
+                case '4' :
+                
+                    $settings = ['no_data' => [[$PrimitiveValidator, 'validateSomeInclusions', null, '1']],
+                        'percent' => ['is_null', [$PrimitiveValidator, 'validatePercent']]
+                    ];
+                    break;
+            }
+        }
         
         
-       //
+        
     }
     
     

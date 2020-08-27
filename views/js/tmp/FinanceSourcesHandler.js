@@ -1,19 +1,25 @@
-document.addEventListener('DOMContentLoaded', () => {
-   // FinanceSourcesHandler.sources = new Map();
+let multiple_blocks;
 
-   // new FinanceSourcesHandler();
+document.addEventListener('DOMContentLoaded', () => {
+
+   multiple_blocks = new Map();
+
+   let blocks = document.querySelectorAll('.block[data-type="multiple"]');
+   blocks.forEach(block => {
+      multiple_blocks.set(block.dataset.block_name, new MultipleBlock(block));
+   });
 
    //TODO поиск внутри multiple блока
    MultipleBlock.templates_container = document.querySelector('[data-block_name="templates_container"]');
 
 
-   let multiple_blocks_values = new Map();
+   // let multiple_blocks_values = new Map();
 
 
-   let blocks = document.querySelectorAll('.block[data-type="multiple"]');
+ /*  let blocks = document.querySelectorAll('.block[data-type="multiple"]');
    blocks.forEach(block => {
       multiple_blocks_values.set(block.dataset.block_name, new MultipleBlock(block));
-   });
+   });*/
 
 
 
@@ -63,9 +69,10 @@ class MultipleBlock {
       this.add_btn.addEventListener('click', () => {
 
          let part = MultipleBlock.createBlock(this.main_block, 'part');
-         let part_info = MultipleBlock.createBlock(part, 'type');
+         let part_content = MultipleBlock.createBlock(part, 'type');
          let actions = MultipleBlock.createBlock(part, 'actions');
-         
+
+
          let save_btn = actions.querySelector('.save');
          save_btn.addEventListener('click', () => {
 
@@ -77,16 +84,54 @@ class MultipleBlock {
                part_result.value = JSON.stringify(new Part(part));
 
                actions.dataset.inactive = 'true';
-               part_info.dataset.inactive = 'true';
+               part_content.dataset.inactive = 'true';
+               part.dataset.is_saved = 'true';
+
+               let short_part = MultipleBlock.createBlock(part, 'part_short');
+
+               let remove_btn = part.querySelector('.body-card__part-delete');
+               remove_btn.addEventListener('click', () => part.remove());
+
+               short_part.querySelector('.body-card__part-short').addEventListener('click', () => {
+                  actions.dataset.inactive = 'false';
+                  part_content.dataset.inactive = 'false';
+                  short_part.dataset.inactive = 'true';
+                  changeParentCardMaxHeight(this.main_block);
+
+               });
+
+               let part_info = short_part.querySelector('.part-info');
+               let part_title = part.querySelector(`[data-part_title='${part_data.type}']`);
+               part_info.innerHTML = part_title.innerHTML;
+
+               changeParentCardMaxHeight(this.main_block);
+
             } else {
-               //todo alert
+               //todo validate block
             }
 
          });
+
+         let cancel_btn = actions.querySelector('.cancel');
+         cancel_btn.addEventListener('click', () => {
+            if (part.dataset.is_saved !== 'true') {
+               part.remove();
+            } else {
+               actions.dataset.inactive = 'true';
+               part_content.dataset.inactive = 'true';
+               let short_part = part.querySelector('[data-block_name="part_short"]');
+               short_part.dataset.inactive = 'false';
+            }
+         });
+
+
+
       });
 
 
+
    }
+
 
    static createBlock(main_block, dependent_block_name) {
 

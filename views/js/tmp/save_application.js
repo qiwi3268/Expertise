@@ -31,6 +31,8 @@ function saveApplication() {
 
    saveMultipleBlocks();
 
+   console.log(new Map(new FormData(application_form)));
+
    XHR('post', request_urn, new FormData(application_form), null, 'json', null, null)
       .then(response => {
 
@@ -56,15 +58,21 @@ function saveApplication() {
 
 function saveMultipleBlocks() {
 
+
    let multiple_blocks = document.querySelectorAll('.block[data-type="multiple"]');
    multiple_blocks.forEach(block => {
+      let block_result = block.querySelector(`.field-result[name='${block.dataset.block_name}']`);
+      let parts_array = [];
       let parts = block.querySelectorAll('.block[data-block_name="part"][data-inactive="false"]');
 
       parts.forEach(part => {
-         console.log(part);
          let result_input = part.querySelector('.field-result[name="part"]');
-         console.log(result_input.value);
+         parts_array.push(JSON.parse(result_input.value));
+
+
       });
+
+      block_result.value = JSON.stringify(parts_array);
 
    });
 }
