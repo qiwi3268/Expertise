@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/FinanceSourcesHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/FinanceSourcesHandler.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,14 +102,7 @@
       <workItem from="1597464146061" duration="12424000" />
       <workItem from="1597497356681" duration="6610000" />
       <workItem from="1597575204380" duration="8076000" />
-      <workItem from="1598327166376" duration="46987000" />
-    </task>
-    <task id="LOCAL-00007" summary="26.07.2020">
-      <created>1595751373849</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1595751373849</updated>
+      <workItem from="1598327166376" duration="47251000" />
     </task>
     <task id="LOCAL-00008" summary="26.07.2020">
       <created>1595751406774</created>
@@ -448,14 +440,20 @@
       <option name="project" value="LOCAL" />
       <updated>1598444137875</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="26.08.2020_3">
+      <created>1598444947930</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1598444947930</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="05.08.2020" />
     <MESSAGE value="15.08.2020" />
     <MESSAGE value="15.08.2020_1" />
     <MESSAGE value="17.08.2020_1" />
@@ -480,13 +478,14 @@
     <MESSAGE value="26.08.2020" />
     <MESSAGE value="26.08.2020_1" />
     <MESSAGE value="26.08.2020_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="26.08.2020_2" />
+    <MESSAGE value="26.08.2020_3" />
+    <option name="LAST_COMMIT_MESSAGE" value="26.08.2020_3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1598444135223">
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1598444941890">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1598444135223" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1598444941890" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597516365472" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="278" y="171" key="DiffContextDialog" timestamp="1598358776600">

@@ -280,36 +280,74 @@ try{
     // Валидация json'a
     
        $FinancingSources = [['type'         => 1,
-                             'is_changed'   => 0,
-                             'id'           => 1,
                              'budget_level' => 1,
                              'no_data'      => 0,
                              'percent'      => 50],
         
                              ['type'         => 1,
-                              'is_changed'   => 1,
                               'budget_level' => 2,
                               'no_data'      => 1],
         
                              ['type'         => 3,
-                              'is_changed'   => 1,
                               'no_data'      => 0,
                               'percent'      => 20],
     
                               ['type'       => 4,
-                               'is_changed' => 1,
                                'no_data'    => 0,
                                'percent'    => 20]
            
     ];
     
-    
-    if($FinancingSources){
+    // Если изменились
+    if(true){
         
-        // 1 шаг - найти неизмененный источник и проверить его существование
-        $noChanged = array_filter($FinancingSources, fn($source) => ($source['is_changed'] === 0));
+        // Получаем массив из входного json'а
+        // FinancingSources
         
-        $test = $noChanged;
+        // Проверяем структуру массива
+        foreach($FinancingSources as $source){
+            
+            if(!in_array($source['type'], ['1', '2', '3', '4'], true)){
+                // Ошибка
+            }
+        }
+        
+        switch($source['type']){
+            case '1' :
+                
+                $BudgetLevel =  new SingleMiscValidator((is_null($source['budget_level']) ? '' : $source['budget_level']) , 'misc_budgetLevelTable');
+                
+                $settings = ['budget_level' => ['is_null', [$BudgetLevel, 'validate']],
+                             'no_data'      => [],
+                             'percent'      => ['is_null', [$PrimitiveValidator, 'validatePercent']]
+                ];
+                
+                $PrimitiveValidator->validateAssociativeArray($source, $settings);
+                break;
+                
+                
+                
+            case '2' :
+                break;
+            case '3' :
+                break;
+            case '4' :
+                break;
+        }
+        
+        
+     
+        
+        
+        
+        $PrimitiveValidator->validateAssociativeArray();
+        
+        
+        // Удаляем все источники финансирования, относящиеся к этому заявлению
+        //todo
+        
+        
+       //
     }
     
     

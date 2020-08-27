@@ -233,6 +233,7 @@ class PrimitiveValidator{
                 
                 $res = call_user_func($callback, $array[$key]);
                 // Строгое равенство, т.к. callback может ничего не возвращать (null)
+                // todo либо вернула объект себя
                 if($res === true || is_null($res)){
                     $result = true;
                     break 1;
