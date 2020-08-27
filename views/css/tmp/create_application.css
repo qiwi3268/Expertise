@@ -487,6 +487,10 @@
    color: #a93d3d;
 }
 
+.body-card__block[data-block_name='part']:not(:last-child) {
+   border-bottom: 2px solid #93b0d1;
+}
+
 /**/
 
 /* tmp ========================================================================= */

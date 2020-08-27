@@ -57,7 +57,7 @@ $blockDependencies = [
               'builder_source'   => true,
               'investor'         => true,
               'no_data'          => false,
-              'percent'          => false,
+//              'percent'          => false,
         ],
 
         2 => ['budget'           => true,
@@ -65,7 +65,7 @@ $blockDependencies = [
               'builder_source'   => true,
               'investor'         => true,
               'no_data'          => false,
-              'percent'          => false,
+//              'percent'          => false,
         ],
 
         3 => ['budget'           => true,
@@ -73,7 +73,7 @@ $blockDependencies = [
               'builder_source'   => false,
               'investor'         => true,
               'no_data'          => false,
-              'percent'          => false,
+//              'percent'          => false,
         ],
 
         4 => ['budget'           => true,
@@ -81,12 +81,13 @@ $blockDependencies = [
               'builder_source'   => true,
               'investor'         => false,
               'no_data'          => false,
-              'percent'          => false,
+//              'percent'          => false,
         ],
     ],
 
     'no_data' => [
         null  => ['percent' => false],
+        ''    => ['percent' => false],
         1     => ['percent' => true],
     ]
 

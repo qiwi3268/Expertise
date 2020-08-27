@@ -61,18 +61,26 @@ function saveMultipleBlocks() {
 
    let multiple_blocks = document.querySelectorAll('.block[data-type="multiple"]');
    multiple_blocks.forEach(block => {
-      let block_result = block.querySelector(`.field-result[name='${block.dataset.block_name}']`);
-      let parts_array = [];
-      let parts = block.querySelectorAll('.block[data-block_name="part"][data-inactive="false"]');
 
-      parts.forEach(part => {
-         let result_input = part.querySelector('.field-result[name="part"]');
-         parts_array.push(JSON.parse(result_input.value));
+      // let multiple_block_obj = multiple_blocks.get(block.dataset.block_name);
+      // if (multiple_block_obj.is_changed) {
+
+         console.log('123');
+         let block_result = block.querySelector(`.field-result[name='${block.dataset.block_name}']`);
+         let parts_array = [];
+         let parts = block.querySelectorAll('.block[data-block_name="part"][data-inactive="false"]');
+
+         parts.forEach(part => {
+            let result_input = part.querySelector('.field-result[name="part"]');
+            parts_array.push(JSON.parse(result_input.value));
 
 
-      });
+         });
 
-      block_result.value = JSON.stringify(parts_array);
+         block_result.value = JSON.stringify(parts_array);
+      // }
+
+
 
    });
 }

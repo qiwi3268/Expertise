@@ -13,7 +13,7 @@ class DependenciesHandler {
 
    static is_multiple_block;
    static blocks_container;
-
+   static multiple_block;
 
    static handleDependencies(result_field) {
       //TODO вынести в отдельный listener
@@ -21,6 +21,8 @@ class DependenciesHandler {
       if (parent_block && parent_block.dataset.type === 'part') {
          this.blocks_container = parent_block;
          this.is_multiple_block = true;
+         let multiple_block_name = parent_block.closest('.block[data-type="multiple"]').dataset.block_name;
+         this.multiple_block = multiple_blocks.get(multiple_block_name);
       } else {
          this.blocks_container = document;
          this.is_multiple_block = false;
@@ -58,8 +60,6 @@ class DependenciesHandler {
       let setBlockState;
 
       dependent_values.forEach((block_states, dependency_key) => {
-
-
 
          if (result_field.value === undefined) {
 
@@ -109,7 +109,7 @@ class DependenciesHandler {
 
                let dependent_blocks = this.blocks_container.querySelectorAll(`[data-block_name="${block_name}"]`);
                if (dependent_blocks.length === 0 && !inactive) {
-                  let new_block = MultipleBlock.createBlock(this.blocks_container, block_name);
+                  let new_block = this.multiple_block.createBlock(this.blocks_container, block_name);
                   new_block.dataset.inactive = inactive;
                } else {
                   dependent_blocks.forEach(block => block.dataset.inactive = inactive);
