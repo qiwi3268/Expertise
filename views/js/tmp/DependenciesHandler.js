@@ -22,7 +22,7 @@ class DependenciesHandler {
          this.blocks_container = parent_block;
          this.is_multiple_block = true;
          let multiple_block_name = parent_block.closest('.block[data-type="multiple"]').dataset.block_name;
-         this.multiple_block = multiple_blocks.get(multiple_block_name);
+         this.multiple_block = MultipleBlock.getBlockByName(multiple_block_name);
       } else {
          this.blocks_container = document;
          this.is_multiple_block = false;

@@ -56,6 +56,29 @@ class PrimitiveValidator{
     }
     
     
+    // Предназначен для получения ассоциативного массива, полученного декодированием входной json-строки
+    // Принимает параметры-----------------------------------
+    // json string : входной json
+    // Возвращает параметры----------------------------------
+    // array : декодированный массив из json-строки
+    // Выбрасывает исключения--------------------------------
+    // PrimitiveValidatorException :
+    // code:
+    //  1 - ошибка при декодировании json-строки
+    //
+    public function getAssocArrayFromJson(string $json):array {
+        
+        try{
+            
+            return json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+        }catch(jsonException $e){
+            
+            $msg = "jsonException message: '{$e->getMessage()}', code: '{$e->getCode()}'";
+            throw new PrimitiveValidatorException($msg, 1);
+        }
+    }
+    
+    
     // Предназначен для валидации строковой даты формата "дд.мм.гггг"
     // Принимает параметры-----------------------------------
     // fullDate string : дата формата "дд.мм.гггг"
@@ -205,7 +228,9 @@ class PrimitiveValidator{
     // array    array : проверяемый массив
     // settings array : ключ - элемент (ключ из array), который обязательно должен присутствовать в массиве. Значение - массив с callback'ами для проверки
     // Если callback строка - функция для проверки
-    //               массив - [0 => экземпляр объекта или имя класса, 1 => имя метода]
+    //               массив - [0 => экземпляр объекта или имя класса, 1 => имя метода, 2 => ..., 3 => ..., 4 => ...]
+    //               Происходит вызов метода класса, в который первым аргументом передается значение проверяемого массива, а остальные параметры - все, которые
+    //               следуют за именем метода, т.е. 2, 3, 4 и т.д. элементы массива
     // Выбрасывает исключения--------------------------------
     // PrimitiveValidatorException :
     // code:
@@ -225,16 +250,33 @@ class PrimitiveValidator{
             foreach($callbacks as $callback){
                 
                 // Проверка на существование принятого callback'а
-                if(is_array($callback)){
+                $is_array = is_array($callback);
+                
+                if($is_array){
                     
                     if(!method_exists($callback[0], $callback[1])) throw new BadMethodCallException("Переданный метод: '{$callback[1]} не существует'");
+    
+                    // Первый параметр - значение проверяемого массива
+                    $params = [$array[$key]];
+                    // Остальные параметры - все, что после названия класса и метода
+                    for($l = 2; $l < count($callback); $l++){
+                        $params[] = $callback[$l];
+                    }
                     
-                }elseif(!function_exists($callback)) throw new BadFunctionCallException("Переданная функция: '{$callback}' не существует");
+                    $res = call_user_func_array([$callback[0], $callback[1]], $params);
+                    
+                }else{
+                    
+                    if(!function_exists($callback)) throw new BadFunctionCallException("Переданная функция: '{$callback}' не существует");
+                    
+                    $res = call_user_func($callback, $array[$key]);
+                }
                 
-                $res = call_user_func($callback, $array[$key]);
-                // Строгое равенство, т.к. callback может ничего не возвращать (null)
-                // todo либо вернула объект себя
-                if($res === true || is_null($res)){
+                // Положительным результатом проверки является:
+                // true
+                // null, т.к. многие методы не возвращают bool, а выбрасывают исключения
+                // self для построения дальнейшей цепочки вызовов
+                if($res === true || is_null($res) || ($is_array && is_object($res) && $res instanceof $callback[0])){
                     $result = true;
                     break 1;
                 }
@@ -244,5 +286,29 @@ class PrimitiveValidator{
                 throw new PrimitiveValidatorException("Значение входного массива по ключу: '{$key}' не прошло проверку", 14);
             }
         }
+    }
+    
+    
+    // Предназначен для проверки строгово равенства проверяемого значения value на один из необходимых параметров inclusions
+    // Принимает параметры-----------------------------------
+    // value      : проверяемое значение
+    // inclusions : перечисление необходимых параметров
+    // Выбрасывает исключения--------------------------------
+    // PrimitiveValidatorException :
+    // code:
+    // 15 - значение не подходит ни под одно из перечисленных
+    public function validateSomeInclusions($value, ...$inclusions):void {
+        
+        if(!in_array($value, $inclusions, true)){
+            
+            // Формирование сообщения об ошибке
+            $value .= ' ('.gettype($value).')';
+            
+            foreach($inclusions as $l_key => $l_value) $inclusions[$l_key] .= ' ('.gettype($l_value).')';
+            $msg = implode(' или ', $inclusions);
+            
+            throw new PrimitiveValidatorException("Значение: '{$value}' не подходит ни под одно из перечисленных: '{$msg}'", 15);
+        }
+        
     }
 }

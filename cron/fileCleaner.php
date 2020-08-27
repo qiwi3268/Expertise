@@ -9,13 +9,13 @@ $ErrorLogger =  $variablesTV->getValue('ErrorLogger');
 
 $Logger->write("НАЧИНАЮ работу");
 
-require_once _ROOT_.'/Classes/FilesTableMapping.php';
+require_once _ROOT_.'/Lib/Files/Mappings/FilesTableMapping.php';
 
 foreach(_FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_2){
     
     foreach($mapping_level_2 as $mapping_level_2_code => $className){
         
-        $Mapping = new FilesTableMapping($mapping_level_1_code, $mapping_level_2_code);
+        $Mapping = new \Lib\Files\Mappings\FilesTableMapping($mapping_level_1_code, $mapping_level_2_code);
         
         if(!is_null($Mapping->getErrorCode())){
             $ErrorLogger->write("ОШИБКА в маппинг-таблице. Класс {$className}. {$Mapping->getErrorText()}");

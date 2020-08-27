@@ -140,7 +140,7 @@ try{
     }
 
     // Блок проверки маппинга
-    $Mapping = new FilesTableMapping($P_mapping_level_1, $P_mapping_level_2);
+    $Mapping = new \Lib\Files\Mappings\FilesTableMapping($P_mapping_level_1, $P_mapping_level_2);
     $mappingErrorCode = $Mapping->getErrorCode();
 
     if(!is_null($mappingErrorCode)){

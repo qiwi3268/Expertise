@@ -55,12 +55,12 @@ class TableUtils{
     }
    
    
-    // Предназначен для получения строки values формата (?, ?, ?, NULL) в зависимости от количества переданных элементов массива.
+    // Предназначен для получения строки values формата "?, ?, ?, NULL" в зависимости от количества переданных элементов массива.
     // Если элемент null, то он удаляется из массива и в values записывается NULL
     // Принимает параметры-----------------------------------
     // &bindParams array : ссылка на массив параметров
     // Возвращает параметры----------------------------------
-    // string : строка values формата (?, ?, ?, NULL)
+    // string : строка values формата "?, ?, ?, NULL"
     //
     static public function getValuesWithoutNull(array &$bindParams):string {
     
@@ -78,9 +78,10 @@ class TableUtils{
             }
         }
         
+        // Сбрасываем индексы массива, чтобы избавиться от "дырок" удаленных элементов
+        $bindParams = array_values($bindParams);
         
-        $result = implode(', ', $result);
-        return "({$result})";
+        return implode(', ', $result);
     }
 
 

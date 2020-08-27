@@ -8,6 +8,11 @@ namespace Classes\Tables\FinancingSource;
 // Собственные средства застройщика
 class Type3{
     
+    static private string $tableName = 'financing_source_type_3';
+    
+    use Deleter;
+    // deleteAllByIdApplication(int $id_application):void
+    
     
     // Предназначен для получения ассоциативного массива источников финансирования по id заявления
     // Принимает параметры-----------------------------------
@@ -40,8 +45,8 @@ class Type3{
         $values = \TableUtils::getValuesWithoutNull($bindParams);
         
         $query = "INSERT INTO `financing_source_type_3`
-                    (`id_application`, `no_data`, `percent`)
-                  VALUES {$values}";
+                    (`id_application`, `no_data`, `percent`, `date_creation`)
+                  VALUES ({$values}, UNIX_TIMESTAMP())";
         
         return \ParametrizedQuery::set($query, $bindParams);
     }

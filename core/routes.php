@@ -25,32 +25,30 @@ return [
         'controllers'     => ['file_unloader']
     ],
     'home/API_file_uploader' => [
-        '/Classes/'         => ['FilesUpload', 'FilesTableMapping'],
+        '/Classes/'         => ['FilesUpload'],
         'API'               => ['file_uploader']
     ],
     'home/API_file_checker' => [
-        '/Classes/'         => ['FilesTableMapping'],
         'API'               => ['file_checker']
     ],
     'home/API_file_needs_setter' => [
-        '/Classes/'         => ['FilesTableMapping'],
         'API'               => ['file_needs_setter']
     ],
     
     'home/API_get_file_hash' => [
-        '/Classes/'          => ['Logger', 'FilesTableMapping'],
+        '/Classes/'          => ['Logger'],
         '/core/Classes/csp/' => ['Shell', 'FileHash', 'MessageParser'],
         'API'                => ['get_file_hash']
     ],
     
     'home/API_external_signature_verifier' => [
-        '/Classes/'          => ['Logger', 'FilesTableMapping', 'SignsTableMapping'],
+        '/Classes/'          => ['Logger', 'SignsTableMapping'],
         '/core/Classes/csp/' => ['MessageParser', 'Shell', 'SignatureValidationShell', 'ExternalSignature', 'Validator'],
         'API'                => ['external_signature_verifier']
     ],
     
     'home/API_internal_signature_verifier' => [
-        '/Classes/'          => ['Logger', 'FilesTableMapping', 'SignsTableMapping'],
+        '/Classes/'          => ['Logger', 'SignsTableMapping'],
         '/core/Classes/csp/' => ['MessageParser', 'Shell', 'SignatureValidationShell', 'InternalSignature', 'Validator'],
         'API'                => ['internal_signature_verifier']
     ],
@@ -107,7 +105,7 @@ return [
 
     'home/application/view' => [
         'access'              => [],
-        'ROOTClasses'         => ['VariableTransfer', 'FilesTableMapping', 'SignsTableMapping', 'NodeStructure', 'FilesInitialization'],
+        'ROOTClasses'         => ['VariableTransfer', 'SignsTableMapping', 'NodeStructure', 'FilesInitialization'],
         'ROOTcontrollers'     => ['header'],
         'ABScontrollers'      => ['/controllers/home/main_header.php'],
         'controllers'         => ['action_sidebar',

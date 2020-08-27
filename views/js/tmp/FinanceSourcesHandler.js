@@ -1,17 +1,17 @@
-let multiple_blocks;
-
 document.addEventListener('DOMContentLoaded', () => {
 
-   multiple_blocks = new Map();
+   MultipleBlock.multiple_blocks = new Map();
 
    let blocks = document.querySelectorAll('.block[data-type="multiple"]');
    blocks.forEach(block => {
-      multiple_blocks.set(block.dataset.block_name, new MultipleBlock(block));
+      new MultipleBlock(block);
    });
 
 });
 
 class MultipleBlock {
+   static multiple_blocks;
+
    element;
 
    //todo добавить перебор результатов
@@ -21,10 +21,11 @@ class MultipleBlock {
    is_changed = false;
 
    constructor(main_block) {
+
       this.element = main_block;
+      MultipleBlock.multiple_blocks.set(this.element.dataset.block_name, this);
+
       this.templates_container = this.element.querySelector('[data-block_name="templates_container"]');
-
-
 
       this.add_btn = this.element.querySelector('.field-add');
       this.add_btn.addEventListener('click', () => {
@@ -32,7 +33,6 @@ class MultipleBlock {
       });
 
    }
-
 
    createBlock(main_block, dependent_block_name) {
 
@@ -53,6 +53,9 @@ class MultipleBlock {
       initializeRadio(new_block);
    }
 
+   static getBlockByName(name) {
+      return MultipleBlock.multiple_blocks.get(name);
+   }
 
 }
 
@@ -90,7 +93,6 @@ class Part {
          if (part_data.type) {
             this.parent.is_changed = 'true';
             this.data = part_data;
-            // this.copy = this.element.cloneNode(true);
 
             let result_input = this.element.querySelector('.field-result');
             result_input.value = JSON.stringify(this.data);
@@ -119,10 +121,6 @@ class Part {
          if (this.is_saved !== 'true') {
             this.element.remove();
          } else {
-            // this.parent.element.replaceChild(this.copy, this.element);
-            // this.element = this.copy;
-            // this.element.remove();
-
             this.actions.dataset.inactive = 'true';
             this.body.dataset.inactive = 'true';
             this.short_block.dataset.inactive = 'false';
@@ -149,19 +147,6 @@ class Part {
       part_info.innerHTML = part_title.innerHTML;
 
       changeParentCardMaxHeight(this.parent.element);
-   }
-
-   PartData(part_block) {
-      let dependent_blocks = part_block.querySelectorAll('.block[data-type="part"][data-inactive="false"]');
-
-      dependent_blocks.forEach(block => {
-         block.querySelectorAll('.field-result[data-field]').forEach(input => {
-
-            this[input.dataset.field] = input.value ? input.value : null;
-
-         });
-
-      });
    }
 
 }

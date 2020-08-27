@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection SqlInsertValues */
 
 
 namespace Classes\Tables\FinancingSource;
@@ -7,6 +7,11 @@ namespace Classes\Tables\FinancingSource;
 // Источники финансирования
 // Средства юридических лиц, указанных в ч. 2 статьи 48.2 ГрК
 class Type2{
+    
+    static private string $tableName = 'financing_source_type_2';
+    
+    use Deleter;
+    // deleteAllByIdApplication(int $id_application):void
     
     
     // Предназначен для получения ассоциативного массива источников финансирования по id заявления
@@ -35,14 +40,14 @@ class Type2{
     // id int : id созданной записи
     //
     static public function create(int $id_application,
-                                  string $full_name,
-                                  string $INN,
-                                  string $KPP,
-                                  string $OGRN,
-                                  string $address,
-                                  string $location,
-                                  string $telephone,
-                                  string $email,
+                                  ?string $full_name,
+                                  ?string $INN,
+                                  ?string $KPP,
+                                  ?string $OGRN,
+                                  ?string $address,
+                                  ?string $location,
+                                  ?string $telephone,
+                                  ?string $email,
                                   int $no_data,
                                   ?int $percent):int {
     
@@ -50,8 +55,8 @@ class Type2{
         $values = \TableUtils::getValuesWithoutNull($bindParams);
         
         $query = "INSERT INTO `financing_source_type_2`
-                    (`id_application`, `full_name`, `INN`, `KPP`, `OGRN`, `address`, `location`, `telephone`, `email`, `no_data`, `percent`)
-                  VALUES {$values}";
+                    (`id_application`, `full_name`, `INN`, `KPP`, `OGRN`, `address`, `location`, `telephone`, `email`, `no_data`, `percent`, `date_creation`)
+                 VALUES ({$values}, UNIX_TIMESTAMP())";
     
         return \ParametrizedQuery::set($query, $bindParams);
     }
