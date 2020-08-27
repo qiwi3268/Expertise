@@ -15,7 +15,7 @@ class MultipleBlock {
    element;
 
    //todo добавить перебор результатов
-   parts;
+   parts = [];
 
    templates_container;
    is_changed = false;
@@ -29,7 +29,7 @@ class MultipleBlock {
 
       this.add_btn = this.element.querySelector('.field-add');
       this.add_btn.addEventListener('click', () => {
-         let part = new Part(this);
+         this.parts.push(new Part(this));
       });
 
    }
@@ -53,9 +53,16 @@ class MultipleBlock {
       initializeRadio(new_block);
    }
 
+   getPartsDataString() {
+      let result = [];
+      this.parts.forEach(part => result.push(part.data));
+      return result;
+   }
+
    static getBlockByName(name) {
       return MultipleBlock.multiple_blocks.get(name);
    }
+
 
 }
 
@@ -71,8 +78,6 @@ class Part {
    short_block;
 
    data;
-
-   copy;
 
    constructor(multiple_block) {
       this.parent = multiple_block;
@@ -132,7 +137,10 @@ class Part {
       this.short_block = this.parent.createBlock(this.element, 'part_short');
 
       let delete_btn = this.short_block.querySelector('.body-card__part-delete');
-      delete_btn.addEventListener('click', () => this.element.remove());
+      delete_btn.addEventListener('click', () => {
+         this.parent.is_changed = true;
+         this.element.remove()
+      });
 
       let expand_btn = this.short_block.querySelector('.body-card__part-short');
       expand_btn.addEventListener('click', () => {

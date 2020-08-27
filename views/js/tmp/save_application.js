@@ -62,10 +62,13 @@ function saveMultipleBlocks() {
    let multiple_blocks = document.querySelectorAll('.block[data-type="multiple"]');
    multiple_blocks.forEach(block => {
 
-      // let multiple_block_obj = multiple_blocks.get(block.dataset.block_name);
-      // if (multiple_block_obj.is_changed) {
+      let multiple_block = MultipleBlock.getBlockByName(block.dataset.block_name);
+      if (multiple_block.is_changed) {
 
-         console.log('123');
+         multiple_block.is_changed = false;
+
+         console.log(multiple_block.getPartsDataString());
+
          let block_result = block.querySelector(`.field-result[name='${block.dataset.block_name}']`);
          let parts_array = [];
          let parts = block.querySelectorAll('.block[data-block_name="part"][data-inactive="false"]');
@@ -73,14 +76,10 @@ function saveMultipleBlocks() {
          parts.forEach(part => {
             let result_input = part.querySelector('.field-result[name="part"]');
             parts_array.push(JSON.parse(result_input.value));
-
-
          });
 
          block_result.value = JSON.stringify(parts_array);
-      // }
-
-
+      }
 
    });
 }
