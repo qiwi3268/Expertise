@@ -16,7 +16,9 @@ class DependenciesHandler {
    static blocks_container;
    static multiple_block;
 
-   static init(result_input) {
+   static initialize(result_input) {
+      // console.log(result_input);
+      // console.log('asd');
       this.result_input = result_input;
 
       let parent_block = this.result_input.closest('.block');
@@ -33,7 +35,7 @@ class DependenciesHandler {
    }
 
    static handleDependencies(result_input) {
-      this.init(result_input);
+      this.initialize(result_input);
 
       let field_name = this.result_input.name;
 
@@ -57,38 +59,44 @@ class DependenciesHandler {
       let field_value = this.result_input.value;
       let dependent_values = new Map();
 
-      if (!isNaN(parseInt(field_value))) {
-         dependent_values.set(field_value, block_dependencies[field_name][field_value]);
+      if (this.block_dependencies[field_name].hasOwnProperty(field_value)) {
+         dependent_values.set(field_value, this.block_dependencies[field_name][field_value]);
       } else {
          Object.keys(dependencies).forEach(key => {
-            dependent_values.set(key, block_dependencies[field_name][key]);
+            dependent_values.set(key, this.block_dependencies[field_name][key]);
          });
       }
-
 
       dependent_values.forEach((block_states, dependency_key) => {
 
          let setBlockState = this.getBlockStateSetter(dependency_key);
 
          Object.keys(block_states).forEach(block_name => {
-            let inactive = setBlockState(block_states[block_name]);
+            let is_active = setBlockState(block_states[block_name]);
 
             if (this.is_multiple_block) {
 
                let dependent_blocks = this.blocks_container.querySelectorAll(`[data-block_name="${block_name}"]`);
-               if (dependent_blocks.length === 0 && !inactive) {
+               if (dependent_blocks.length === 0 && is_active) {
 
                   let new_block = this.multiple_block.createBlock(this.blocks_container, block_name);
-                  new_block.dataset.inactive = inactive;
+                  new_block.dataset.active = is_active;
+                  changeParentCardMaxHeight(new_block);
 
                } else {
-                  dependent_blocks.forEach(block => block.dataset.inactive = inactive);
+                  dependent_blocks.forEach(block => {
+                     block.dataset.active = is_active;
+                     changeParentCardMaxHeight(block);
+                  });
                }
 
             } else {
 
                let dependent_blocks = document.querySelectorAll(`[data-block_name="${block_name}"]`);
-               dependent_blocks.forEach(block => block.dataset.inactive = inactive);
+               dependent_blocks.forEach(block => {
+                  block.dataset.active = is_active;
+                  changeParentCardMaxHeight(block);
+               });
 
             }
 
@@ -102,13 +110,7 @@ class DependenciesHandler {
    static getBlockStateSetter(dependency_key) {
       let setBlockState;
 
-      if (this.result_input.value === undefined) {
-
-         setBlockState = function () {
-            return 'true';
-         };
-
-      } else if (!isNaN(parseInt(dependency_key))) {
+      if (!isNaN(parseInt(dependency_key)) || dependency_key === '') {
 
          setBlockState = function(block_state) {
             return block_state;
@@ -122,9 +124,9 @@ class DependenciesHandler {
          setBlockState = function(block_state) {
 
             if (field_value.find(field_value => includes.includes(field_value))) {
-               return !block_state;
+               return block_state;
             } else {
-               return true;
+               return false;
             }
 
          };
@@ -137,7 +139,7 @@ class DependenciesHandler {
          setBlockState = function(block_state) {
 
             if (!field_value.find(field_value => excludes.includes(field_value))) {
-               return !block_state;
+               return block_state;
             }
 
          };
@@ -149,7 +151,9 @@ class DependenciesHandler {
    static handleRadioDependencies() {
       let dependency_inputs = radio_dependency.querySelectorAll(`input[data-when_change=${this.result_input.name}]`);
 
+
       dependency_inputs.forEach(input => {
+
          // Все возможные значения для блока с переключателями
          let values = JSON.parse(input.value);
 

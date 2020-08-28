@@ -55,6 +55,10 @@ button {
    margin: 0 auto;
 }
 
+[data-active='false'] {
+   display: none;
+}
+
 .application-input {
    padding: 10px 12px;
    font-family: 'Roboto Condensed', sans-serif;

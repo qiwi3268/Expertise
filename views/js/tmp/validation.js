@@ -152,7 +152,7 @@ function isValidCard(card) {
 
    // Для всех обязательных полей, проверяем наличие значений
    required_fields.forEach(row => {
-      if (row.dataset.inactive !== 'true') {
+      if (row.dataset.active !== 'false') {
          field_value = row.querySelector('.field-result');
 
          if (!field_value.value) {

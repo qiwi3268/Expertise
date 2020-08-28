@@ -42,7 +42,7 @@ class MultipleBlock {
       let template = this.templates_container.querySelector(`[data-block_name='${dependent_block_name}']`);
       let new_block = template.cloneNode(true);
       main_block.appendChild(new_block);
-      new_block.dataset.inactive = 'false';
+      new_block.dataset.active = 'true';
 
       this.addEventListeners(new_block);
 
@@ -104,11 +104,11 @@ class Part {
       this.data = part_data;
 
       this.cancel_btn.remove();
-      this.actions.dataset.inactive = 'true';
-      this.body.dataset.inactive = 'true';
+      this.actions.dataset.active = 'false';
+      this.body.dataset.active = 'false';
 
       if (this.short_block) {
-         this.short_block.dataset.inactive = 'false';
+         this.short_block.dataset.active = 'true';
       } else {
          this.createShortElement();
       }
@@ -126,9 +126,9 @@ class Part {
 
       let expand_btn = this.short_block.querySelector('.body-card__part-short');
       expand_btn.addEventListener('click', () => {
-         this.actions.dataset.inactive = 'false';
-         this.body.dataset.inactive = 'false';
-         this.short_block.dataset.inactive = 'true';
+         this.actions.dataset.active = 'true';
+         this.body.dataset.active = 'true';
+         this.short_block.dataset.active = 'false';
          changeParentCardMaxHeight(this.parent.element);
       });
 
@@ -147,7 +147,7 @@ class Part {
 }
 
 function PartData(part_block) {
-   let dependent_blocks = part_block.querySelectorAll('.block[data-inactive="false"]');
+   let dependent_blocks = part_block.querySelectorAll('.block[data-active="true"]');
 
    dependent_blocks.forEach(block => {
       let field_inputs = block.querySelectorAll('.field-result[data-field]');
