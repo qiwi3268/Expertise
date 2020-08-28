@@ -28,7 +28,16 @@ class MultipleBlock {
 
       this.add_btn = this.element.querySelector('.field-add');
       this.add_btn.addEventListener('click', () => {
-         this.parts.push(new Part(this));
+
+
+         let part = new Part(this);
+
+         this.parts.push(part);
+
+         this.element.appendChild(part.element);
+         console.log(this.element);
+
+
       });
 
    }
@@ -41,8 +50,15 @@ class MultipleBlock {
 
       let template = this.templates_container.querySelector(`[data-block_name='${dependent_block_name}']`);
       let new_block = template.cloneNode(true);
+
+
       main_block.appendChild(new_block);
+
+
       new_block.dataset.active = 'true';
+
+
+
 
       this.addEventListeners(new_block);
 
@@ -80,6 +96,7 @@ class Part {
       this.element = this.parent.createBlock(this.parent.element, 'part');
       this.body = this.parent.createBlock(this.element, 'type');
       this.actions = this.parent.createBlock(this.element, 'actions');
+
 
       this.handleSaveButton();
       this.handleCancelButton();

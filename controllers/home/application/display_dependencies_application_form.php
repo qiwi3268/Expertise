@@ -14,7 +14,7 @@ $blockDependencies = [
 
     // Зависимость от выбранного "Предмета экспертизы"
     'expertise_subjects' => [
-        '' => ['estimate' => false],
+        ''                   => ['estimate' => false],
         'JSON_TRUE_OR:2#3'   => ['estimate' => true],
         'JSON_FALSE_AND:2#3' => ['estimate' => false],
     ],
@@ -26,7 +26,6 @@ $blockDependencies = [
               'structureDocumentation1'         => false,
               'structureDocumentation2'         => true,
               'empty_documentation'             => false
-
         ],
 
         2 => ['planning_documentation_approval' => true,
