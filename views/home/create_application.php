@@ -561,7 +561,6 @@
                     <div class="body-card__block block" data-block_name="templates_container">
                         <!--Шаблон элемента множественного блока-->
                         <div class="body-card__block block" data-block_name="part" data-inactive="true">
-                            <input class="body-card__result field-result" type="hidden" name="part" value="">
                         </div>
                         <!--Шаблон элемента множественного блока-->
                         <!--Шаблон "Вид финансирования"-->

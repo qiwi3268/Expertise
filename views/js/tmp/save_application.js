@@ -67,18 +67,8 @@ function saveMultipleBlocks() {
 
          multiple_block.is_changed = false;
 
-         console.log(multiple_block.getPartsDataString());
-
          let block_result = block.querySelector(`.field-result[name='${block.dataset.block_name}']`);
-         let parts_array = [];
-         let parts = block.querySelectorAll('.block[data-block_name="part"][data-inactive="false"]');
-
-         parts.forEach(part => {
-            let result_input = part.querySelector('.field-result[name="part"]');
-            parts_array.push(JSON.parse(result_input.value));
-         });
-
-         block_result.value = JSON.stringify(parts_array);
+         block_result.value = multiple_block.getPartsDataJSON();
       }
 
    });

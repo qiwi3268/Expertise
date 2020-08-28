@@ -14,7 +14,6 @@ class MultipleBlock {
 
    element;
 
-   //todo добавить перебор результатов
    parts = [];
 
    templates_container;
@@ -32,6 +31,10 @@ class MultipleBlock {
          this.parts.push(new Part(this));
       });
 
+   }
+
+   static getBlockByName(name) {
+      return MultipleBlock.multiple_blocks.get(name);
    }
 
    createBlock(main_block, dependent_block_name) {
@@ -53,16 +56,9 @@ class MultipleBlock {
       initializeRadio(new_block);
    }
 
-   getPartsDataString() {
-      let result = [];
-      this.parts.forEach(part => result.push(part.data));
-      return result;
+   getPartsDataJSON() {
+      return JSON.stringify(this.parts.map(part => part.data));
    }
-
-   static getBlockByName(name) {
-      return MultipleBlock.multiple_blocks.get(name);
-   }
-
 
 }
 
@@ -72,8 +68,7 @@ class Part {
    element;
    body;
    actions;
-
-   is_saved;
+   cancel_btn;
 
    short_block;
 
@@ -96,23 +91,7 @@ class Part {
          let part_data = new PartData(this.element);
 
          if (part_data.type) {
-            this.parent.is_changed = 'true';
-            this.data = part_data;
-
-            let result_input = this.element.querySelector('.field-result');
-            result_input.value = JSON.stringify(this.data);
-
-            this.actions.dataset.inactive = 'true';
-            this.body.dataset.inactive = 'true';
-
-            this.is_saved = 'true';
-
-            if (this.short_block) {
-               this.short_block.dataset.inactive = 'false';
-            } else {
-               this.createShortElement();
-            }
-
+            this.savePart(part_data);
          } else {
             //todo validate block
          }
@@ -120,17 +99,20 @@ class Part {
       });
    }
 
-   handleCancelButton() {
-      let cancel_btn = this.actions.querySelector('.cancel');
-      cancel_btn.addEventListener('click', () => {
-         if (this.is_saved !== 'true') {
-            this.element.remove();
-         } else {
-            this.actions.dataset.inactive = 'true';
-            this.body.dataset.inactive = 'true';
-            this.short_block.dataset.inactive = 'false';
-         }
-      });
+   savePart(part_data) {
+      this.parent.is_changed = 'true';
+      this.data = part_data;
+
+      this.cancel_btn.remove();
+      this.actions.dataset.inactive = 'true';
+      this.body.dataset.inactive = 'true';
+
+      if (this.short_block) {
+         this.short_block.dataset.inactive = 'false';
+      } else {
+         this.createShortElement();
+      }
+
    }
 
    createShortElement() {
@@ -139,7 +121,7 @@ class Part {
       let delete_btn = this.short_block.querySelector('.body-card__part-delete');
       delete_btn.addEventListener('click', () => {
          this.parent.is_changed = true;
-         this.element.remove()
+         this.element.remove();
       });
 
       let expand_btn = this.short_block.querySelector('.body-card__part-short');
@@ -157,17 +139,18 @@ class Part {
       changeParentCardMaxHeight(this.parent.element);
    }
 
+   handleCancelButton() {
+      this.cancel_btn = this.actions.querySelector('.cancel');
+      this.cancel_btn.addEventListener('click', this.element.remove());
+   }
+
 }
 
 function PartData(part_block) {
-   let dependent_blocks = part_block.querySelectorAll('.block[data-type="part"][data-inactive="false"]');
+   let dependent_blocks = part_block.querySelectorAll('.block[data-inactive="false"]');
 
    dependent_blocks.forEach(block => {
-      block.querySelectorAll('.field-result[data-field]').forEach(input => {
-
-         this[input.dataset.field] = input.value ? input.value : null;
-
-      });
-
+      let field_inputs = block.querySelectorAll('.field-result[data-field]');
+      field_inputs.forEach(input => this[input.dataset.field] = input.value ? input.value : null);
    });
 }
