@@ -1,4 +1,4 @@
-<?php $variablesTV = VariableTransfer::getInstance(); ?>
+<?php $variablesTV = \Classes\VariableTransfer::getInstance(); ?>
 
 <!DOCTYPE html>
 <html lang="ru">

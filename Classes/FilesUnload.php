@@ -12,7 +12,7 @@ class FilesUnload{
     // unloadName string : имя файла для выгрузки
     //
     static public function unload(string $fsName, string $unloadName){
-
+        
         // Сбрасываем буфер вывода PHP, чтобы избежать переполнения памяти выделенной под скрипт
         if(ob_get_level()){
             ob_end_clean();

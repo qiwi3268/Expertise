@@ -1,7 +1,7 @@
 <?php
 
 
-// Трейт, реализующий интерфейс Interface_signTable
+// Трейт, реализующий интерфейс \Lib\Files\Interfaces\SignTable
 // Для использования трейта необходимо, чтобы перед его включением было объявлено
 // статическое свойство tableName с соответствующим именем таблицы
 //
@@ -38,8 +38,19 @@ trait  Trait_signTable{
                                   string $certificate_user_message):int {
     
         $table = self::$tableName;
-    
-        $id_file_part = is_null($id_file) ? 'NULL' : '?';
+        
+        $bindParams = [$id_sign,
+                       $is_external,
+                       $id_file,
+                       $fio,
+                       $certificate,
+                       $signature_result,
+                       $signature_message,
+                       $signature_user_message,
+                       $certificate_result,
+                       $certificate_message,
+                       $certificate_user_message];
+        $values = TableUtils::getValuesWithoutNull($bindParams);
         
         $query = "INSERT INTO `{$table}`
                     (`id`,
@@ -54,26 +65,21 @@ trait  Trait_signTable{
                      `certificate_result`,
                      `certificate_message`,
                      `certificate_user_message`)
-                    VALUES
-                      (NULL, ?, ?, {$id_file_part}, ?, ?, ?, ?, ?, ?, ?, ?)";
-    
-        // bind-параметры до и после id_file
-        $bindParams_before = [$id_sign,
-                              $is_external];
-        $bindParams_after = [$fio,
-                             $certificate,
-                             $signature_result,
-                             $signature_message,
-                             $signature_user_message,
-                             $certificate_result,
-                             $certificate_message,
-                             $certificate_user_message];
-  
-        $bindParams = is_null($id_file) ? [...$bindParams_before, ...$bindParams_after] : [...$bindParams_before, $id_file, ...$bindParams_after];
+                    VALUES ({$values}))";
         
         return ParametrizedQuery::set($query, $bindParams);
     }
     
+    
+    
+    // Предназначен для получения ассоциативного массива всех подписей по id файлов,
+    // которые могут быть в id_sign или id_file
+    // Принимает параметры-----------------------------------
+    // ids array : индексный массив с id файлов, к которым будут искаться записи в таблице подписей
+    // Возвращает параметры-----------------------------------
+    // array : ассоциативный массив, если подписи существуют
+    // null  : в противном случае
+    //
     static public function getAllAssocByIds(array $ids):?array {
         
         $table = self::$tableName;
@@ -81,7 +87,7 @@ trait  Trait_signTable{
         $in = '('.implode(', ', $ids).')';
         
         $query = "SELECT *
-                  FROM `$table`
+                  FROM `{$table}`
                   WHERE `id_sign` IN {$in} OR `id_file` IN {$in}";
         
         $result = SimpleQuery::getFetchAssoc($query);
