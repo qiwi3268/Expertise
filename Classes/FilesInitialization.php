@@ -32,7 +32,7 @@ class FilesInitialization{
                 unset($FilesMapping);
                 
                 // Формирование маппингов для таблиц подписей, аналогичных по стркутуре с filesRequiredMappings
-                $SignsMapping = new SignsTableMapping($mapping_level_1_code, $mapping_level_2_code);
+                $SignsMapping = new \Lib\Files\Mappings\SignsTableMapping($mapping_level_1_code, $mapping_level_2_code);
                 
                 $SignsMappingErrorCode = $SignsMapping->getErrorCode();
                 

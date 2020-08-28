@@ -42,13 +42,13 @@ return [
     ],
     
     'home/API_external_signature_verifier' => [
-        '/Classes/'          => ['Logger', 'SignsTableMapping'],
+        '/Classes/'          => ['Logger'],
         '/core/Classes/csp/' => ['MessageParser', 'Shell', 'SignatureValidationShell', 'ExternalSignature', 'Validator'],
         'API'                => ['external_signature_verifier']
     ],
     
     'home/API_internal_signature_verifier' => [
-        '/Classes/'          => ['Logger', 'SignsTableMapping'],
+        '/Classes/'          => ['Logger'],
         '/core/Classes/csp/' => ['MessageParser', 'Shell', 'SignatureValidationShell', 'InternalSignature', 'Validator'],
         'API'                => ['internal_signature_verifier']
     ],
@@ -105,7 +105,7 @@ return [
 
     'home/application/view' => [
         'access'              => [],
-        'ROOTClasses'         => ['VariableTransfer', 'SignsTableMapping', 'NodeStructure', 'FilesInitialization'],
+        'ROOTClasses'         => ['VariableTransfer', 'NodeStructure', 'FilesInitialization'],
         'ROOTcontrollers'     => ['header'],
         'ABScontrollers'      => ['/controllers/home/main_header.php'],
         'controllers'         => ['action_sidebar',
