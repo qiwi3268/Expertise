@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let files = Array.from(file_input.files);
 
 
-      uploadFiles(files, mapping_input_1.value, mapping_input_2.value, id_structure_node_input.value, uploadProgressCallback)
+      API.uploadFiles(files, mapping_input_1.value, mapping_input_2.value, id_structure_node_input.value, uploadProgressCallback)
          .then(uploaded_files => {
 
             return putFilesToRow(uploaded_files);
@@ -319,9 +319,9 @@ document.addEventListener('DOMContentLoaded', () => {
    function putFile(file, file_item) {
 
 
-      checkFile(file_item.dataset.id, mapping_input_1.value, mapping_input_2.value)
+      API.checkFile(file_item.dataset.id, mapping_input_1.value, mapping_input_2.value)
          .then(check_response => {
-            return internalSignatureVerify(check_response.fs_name, mapping_input_1.value, mapping_input_2.value);
+            return API.internalSignatureVerify(check_response.fs_name, mapping_input_1.value, mapping_input_2.value);
          })
          .then(validate_results => {
 

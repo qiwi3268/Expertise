@@ -284,26 +284,26 @@ class SignHandler {
       let fs_name_sign;
 
       // Загружаем открепленную подпись на сервер
-      uploadFiles(sign_files, this.mapping_level_1, this.mapping_level_2)
+      API.uploadFiles(sign_files, this.mapping_level_1, this.mapping_level_2)
          // Проверяем подписываемый файл
          .then(uploaded_signs => {
 
             this.id_sign = uploaded_signs[0].id;
-            return checkFile(this.id_file, this.mapping_level_1, this.mapping_level_2);
+            return API.checkFile(this.id_file, this.mapping_level_1, this.mapping_level_2);
 
          })
          // Проверяем файл подписи
          .then(file_check_response => {
 
             fs_name_data = file_check_response.fs_name;
-            return checkFile(this.id_sign, this.mapping_level_1, this.mapping_level_2);
+            return API.checkFile(this.id_sign, this.mapping_level_1, this.mapping_level_2);
 
          })
          // Валидируем открепленную подпись
          .then(sign_check_response => {
 
             fs_name_sign = sign_check_response.fs_name;
-            return externalSignatureVerify(
+            return API.externalSignatureVerify(
                fs_name_data,
                fs_name_sign,
                this.mapping_level_1,
@@ -441,7 +441,7 @@ class SignHandler {
       let file_name;
       let fs_name_data;
 
-      checkFile(this.id_file, this.mapping_level_1, this.mapping_level_2)
+      API.checkFile(this.id_file, this.mapping_level_1, this.mapping_level_2)
          .then(file_check_response => {
 
             fs_name_data = file_check_response.fs_name;
@@ -452,7 +452,7 @@ class SignHandler {
          .then(algorithm => {
 
             selected_algorithm = algorithm;
-            return getFileHash(algorithm, fs_name_data);
+            return API.getFileHash(algorithm, fs_name_data);
 
          })
          .then(file_hash => {

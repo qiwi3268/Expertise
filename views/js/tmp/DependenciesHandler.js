@@ -17,8 +17,6 @@ class DependenciesHandler {
    static multiple_block;
 
    static initialize(result_input) {
-      // console.log(result_input);
-      // console.log('asd');
       this.result_input = result_input;
 
       let parent_block = this.result_input.closest('.block');

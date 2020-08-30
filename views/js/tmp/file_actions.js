@@ -38,7 +38,11 @@ function handleActionButtons(actions) {
 function handleUnloadButton(unload_button) {
    let file = unload_button.closest('.files__item');
 
+
    unload_button.addEventListener('click', () => {
+      let parent_field = file.closest('[data-mapping_level_1]');
+      // API.checkFile(file.dataset.id, )
+
       let form_data = createUnloadFileFormData(file);
 
       //Проверяем, что файл может быть скачан
@@ -78,14 +82,14 @@ function createUnloadFileFormData(file) {
 
 
 
-// Предназначен для получения ссылки для скачивания файла
+/*// Предназначен для получения ссылки для скачивания файла
 // Принимает параметры-------------------------------
 // check_result     Object : объект, содержащий данные о расположении файла
 // Возвращает параметры------------------------------
 // url              string : относительный путь для скачивания файла
 function getUnloadFileURN(check_result) {
    return `/home/file_unloader?fs_name=${check_result.fs_name}&file_name=${check_result.file_name}`;
-}
+}*/
 
 // Предназначен для добавления блока с действиями к файлу
 // Принимает параметры-------------------------------
@@ -113,10 +117,7 @@ function addFileActions(file) {
 
 function handleSignButton(sign_button, file) {
    sign_button.addEventListener('click', () => {
-      //SignHandler.openModal(file);
-
       SignHandler.getInstance().open(file);
-      // showSignModal(file);
    });
 }
 

@@ -81,45 +81,6 @@ function removeRowValue(field) {
 }
 
 
-// Предназначен для формирования блока с переключателями в зависимости от значения другого поля
-// Принимает параметры---------------------------------------------------------
-// parent_input       Element : скрытый инпут со значением родительского поля
-function handleDependentRadios(parent_input) {
-   let dependency_inputs = radio_dependency.querySelectorAll(`input[data-when_change=${parent_input.name}]`);
-
-
-   dependency_inputs.forEach(input => {
-      // Все возможные значения для блока с переключателями
-      let values = JSON.parse(input.value);
-
-      // Берем нужные значения, по значению родительского поля
-      let radio_values = values[parent_input.value][0];
-
-      let dependent_row = document.querySelector(`[data-row_name=${input.dataset.target_change}]`);
-      let dependent_radio = dependent_row.querySelector('.radio');
-
-      if (dependent_radio) {
-         let radio_body = dependent_radio.querySelector('.radio__body');
-         let result_input = dependent_row.querySelector('.field-result');
-
-
-         result_input.value = '';
-         // handleDependentBlocks(result_input);
-
-         radio_body.innerHTML = '';
-
-         // Для каждого значения создаем элемент переключателя
-         radio_values.forEach(value => {
-            let radio_item = createRadioItem(value);
-            radio_body.appendChild(radio_item);
-         });
-
-         // Добавляем обработчики для переключателей
-         initRadioItems(dependent_radio);
-      }
-
-   });
-}
 
 
 

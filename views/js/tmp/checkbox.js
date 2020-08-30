@@ -1,3 +1,4 @@
+/*
 document.addEventListener('DOMContentLoaded', () => {
    let checkbox_blocks = document.querySelectorAll('.checkbox');
 
@@ -5,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let items = checkbox.querySelectorAll('.checkbox__item');
 
       items.forEach(item => {
-         let parent_field = item.closest('.body-card__row');
+         let parent_field = item.closest('.field');
          let result_input = parent_field.querySelector('.body-card__result');
 
          item.addEventListener('click', () => {
@@ -21,4 +22,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
    });
 
-});
+});*/
