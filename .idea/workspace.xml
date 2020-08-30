@@ -3,20 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/FilesUnload.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/FilesUnload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/PHPMailerAddon.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/PHPMailerAddon.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Pagination.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Pagination.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/PrimitiveValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/PrimitiveValidator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/File/Trait_fileTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/File/Trait_fileTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/File/Trait_fileTableType1.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/File/Trait_fileTableType1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/File/Trait_fileTableType2.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/File/Trait_fileTableType2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/File/file_documentation1Table.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/File/file_documentation1Table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/File/file_documentation2Table.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/File/file_documentation2Table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/File/file_grbsTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/File/file_grbsTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/Sign/Trait_signTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/Sign/Trait_signTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Tables/Sign/sign_grbsTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Tables/Sign/sign_grbsTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/VariableTransfer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/VariableTransfer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/DependenciesHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/DependenciesHandler.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,9 +12,7 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -42,12 +27,6 @@
     </option>
     <expand />
     <select />
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="Expertise_project">
-      <favorite_root url="file://$PROJECT_DIR$/views/home/create_application.php" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-      <favorite_root url="file://$PROJECT_DIR$/views/js/tmp/main.js" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-    </favorites_list>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -88,7 +67,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="G:\PhpStorm 2020.1.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -117,6 +96,7 @@
       <workItem from="1597497356681" duration="6610000" />
       <workItem from="1597575204380" duration="8076000" />
       <workItem from="1598327166376" duration="87205000" />
+      <workItem from="1598767236475" duration="452000" />
     </task>
     <task id="LOCAL-00017" summary="29.07.2020_2">
       <created>1596028603321</created>
@@ -465,7 +445,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="20.08.2020" />
@@ -510,14 +490,18 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="248" y="121" key="MergeDialog/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596186835322" />
-    <state x="781" y="344" key="SettingsEditor" timestamp="1597464133669">
+    <state x="781" y="344" key="SettingsEditor" timestamp="1598767293313">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="781" y="344" key="SettingsEditor/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597464133669" />
+    <state x="781" y="344" key="SettingsEditor/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598767293313" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1597580480401">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.2560.1400@0.0.2560.1400" timestamp="1597580480401" />
+    <state x="1097" y="613" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1598767446265">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1097" y="613" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598767446265" />
     <state x="302" y="56" width="614" height="1035" key="dock-window-1" timestamp="1598502743003">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -529,10 +513,10 @@
     <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598601670339" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597502668739" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
-    <state x="1150" y="591" key="publish.login" timestamp="1597575229830">
+    <state x="1150" y="591" key="publish.login" timestamp="1598767415653">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1150" y="591" key="publish.login/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597497368371" />
+    <state x="1150" y="591" key="publish.login/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598767415653" />
     <state x="1150" y="591" key="publish.login/0.0.2560.1400@0.0.2560.1400" timestamp="1597575229830" />
     <state x="702" y="245" key="run.anything.popup" timestamp="1598439449074">
       <screen x="0" y="0" width="1920" height="1040" />
