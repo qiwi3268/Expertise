@@ -2,18 +2,16 @@ document.addEventListener('DOMContentLoaded', () => {
    let file_blocks = document.querySelectorAll('.files');
 
    file_blocks.forEach(block => {
-      new FileBlock(block);
+      let file_block = new FileBlock(block);
+      file_block.initFiles();
    });
 
-
 });
+
 
 class FileBlock {
    element;
    actions;
-
-   file;
-   unload_button;
 
    document_id;
    mapping_1;
@@ -23,13 +21,7 @@ class FileBlock {
    constructor(block) {
 
       this.element = block;
-
-      if (this.element.querySelector('.files__item')) {
-         this.actions = this.element.querySelector('.files__actions');
-         this.element.classList.add('filled');
-         this.initFieldData();
-         this.handleActionButtons();
-      }
+      this.initFieldData();
 
    }
 
@@ -48,62 +40,22 @@ class FileBlock {
 
    }
 
-   // Предназначен для добавления обработчиков кнопок действий с файлами
 
-   handleActionButtons() {
-      this.file = this.actions.closest('.files__item');
+   initFiles() {
+      let files = this.element.querySelectorAll('.files__item');
 
-      this.unload_button = this.actions.querySelector('.files__unload');
-      if (this.unload_button) {
-         this.handleUnloadButton();
+      if (files.length > 0) {
+         this.element.classList.add('filled');
       }
 
-      let delete_button = this.actions.querySelector('.files__delete');
-      if (delete_button) {
-         handleDeleteButton(delete_button);
-      }
-   }
-
-
-   // Предназначен для добавления действия для скачивания файла
-   // Принимает параметры-------------------------------
-   // unload_button         Element : кнопка для скачивания файла
-   handleUnloadButton() {
-
-      this.unload_button.addEventListener('click', () => {
-
-         API.checkFile(this.file.dataset.id, this.mapping_1, this.mapping_2, this.id_structure_node)
-            .then(check_result => {
-               location.href = API.getUnloadFileURN(check_result);
-            })
-            .catch(exc => {
-               console.error('Ошибка при проверке файла во время скачивания: ' + exc);
-            });
-
+      files.forEach(file_element => {
+         new GeFile(file_element);
       });
 
-   }
-
-   // Предназначен для добавления действия удаления файла
-   // Принимает параметры-------------------------------
-   // delete_button         Element : кнопка для удаления
-   static handleDeleteButton(delete_button) {
-      let file = delete_button.closest('.files__item');
-      let files = file.closest('.files');
-
-      delete_button.addEventListener('click', () => {
-         deleteFile(file);
-         removeFileElement(file, files);
-      });
    }
 
 
 }
-
-
-
-
-
 
 
 

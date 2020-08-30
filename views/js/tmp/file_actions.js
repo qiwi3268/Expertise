@@ -1,8 +1,10 @@
+/*
 document.addEventListener('DOMContentLoaded', () => {
    initializeFileBlocks();
 });
+*/
 
-// Предназначен для добавления действий для блока с файлами
+/*// Предназначен для добавления действий для блока с файлами
 function initializeFileBlocks() {
    let file_blocks = document.querySelectorAll('.files');
    let actions;
@@ -15,9 +17,9 @@ function initializeFileBlocks() {
       }
    });
 
-}
+}*/
 
-// Предназначен для добавления обработчиков кнопок действий с файлами
+/*// Предназначен для добавления обработчиков кнопок действий с файлами
 // Принимает параметры-------------------------------
 // actions         Element : блок с действиями
 function handleActionButtons(actions) {
@@ -30,9 +32,9 @@ function handleActionButtons(actions) {
    if (delete_button) {
       handleDeleteButton(delete_button);
    }
-}
+}*/
 
-// Предназначен для добавления действия для скачивания файла
+/*// Предназначен для добавления действия для скачивания файла
 // Принимает параметры-------------------------------
 // unload_button         Element : кнопка для скачивания файла
 function handleUnloadButton(unload_button) {
@@ -63,8 +65,9 @@ function handleUnloadButton(unload_button) {
          });
    });
 
-}
+}*/
 
+/*
 // Предназначен для создания объекта FormData для проверки файла
 // Принимает параметры-------------------------------
 // file          Element : блок с файлом
@@ -81,6 +84,7 @@ function createUnloadFileFormData(file) {
 }
 
 
+*/
 
 /*// Предназначен для получения ссылки для скачивания файла
 // Принимает параметры-------------------------------
@@ -115,12 +119,15 @@ function addFileActions(file) {
    handleDeleteButton(delete_button);
 }
 
+/*
 function handleSignButton(sign_button, file) {
    sign_button.addEventListener('click', () => {
       SignHandler.getInstance().open(file);
    });
 }
+*/
 
+/*
 // Предназначен для добавления действия удаления файла
 // Принимает параметры-------------------------------
 // delete_button         Element : кнопка для удаления
@@ -167,6 +174,7 @@ function removeFileElement(file, files) {
    }
 }
 
+*/
 
 
 
