@@ -125,13 +125,6 @@
     margin: 0px 0px 5px 0px;
 }
 
-.sign-modal__certs[data-inactive='true'] {
-    display: none;
-}
-
-.sign-modal__cert-info[data-inactive='true'] {
-    display: none;
-}
 
 .sign-modal__actions {
     width: 800px;
@@ -140,9 +133,7 @@
     border-top: 2px solid #ffd354;
 }
 
-.sign-modal__actions[data-inactive='true'] {
-    display: none;
-}
+
 
 .sign-modal__text[data-state='true'] {
     color: #6cb37e;

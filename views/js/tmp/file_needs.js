@@ -21,7 +21,7 @@ class FileNeeds {
       file_blocks.forEach(file_block => {
          if (file_block.innerHTML) {
             parent_field = file_block.closest('[data-mapping_level_1]');
-            is_active = parent_field.dataset.inactive !== 'true';
+            is_active = parent_field.dataset.active !== 'false';
 
             files = parent_field.querySelectorAll('.files__item');
             // Если блок не скрыт, сохраняем все файлы в нем, иначе - удаляем

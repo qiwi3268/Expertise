@@ -1,7 +1,7 @@
 <?php
 
 
-class sign_grbsTable implements Interface_signTable{
+class sign_grbsTable implements \Lib\Files\Interfaces\SignTable{
     
     static private string $tableName = 'sign_grbs';
     

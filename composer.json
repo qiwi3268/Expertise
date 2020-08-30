@@ -5,6 +5,7 @@
         "ext-mbstring": "*",
         "ext-gd": "*",
         "phpoffice/phpspreadsheet": "^1.12",
-      "ext-simplexml": "*"
+      "ext-simplexml": "*",
+      "ext-mysqli": "*"
     }
 }

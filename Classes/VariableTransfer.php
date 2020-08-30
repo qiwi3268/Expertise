@@ -1,6 +1,9 @@
 <?php
 
 
+namespace Classes;
+
+
 // Singleton-класс предназначеный для передачи переменных между блоками
 //
 class VariableTransfer{
@@ -20,6 +23,7 @@ class VariableTransfer{
     private array $values = [];
 
     private function __construct(){
+        
         $this->isHardMode = true;
     }
 
@@ -62,10 +66,10 @@ class VariableTransfer{
     
         $isHardMode = $this->isHardMode;
         
-        if(mb_strpos($key, '%S') !== false){
+        if(contains($key, '%S')){
             $isHardMode = false;
             $key = str_replace('%S', '', $key);
-        }elseif(mb_strpos($key, '%H') !== false){
+        }elseif(contains($key, '%H')){
             $isHardMode = true;
             $key = str_replace('%H', '', $key);
         }

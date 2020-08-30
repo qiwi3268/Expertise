@@ -14,24 +14,24 @@ $blockDependencies = [
 
     // Зависимость от выбранного "Предмета экспертизы"
     'expertise_subjects' => [
+        ''                   => ['estimate' => false],
         'JSON_TRUE_OR:2#3'   => ['estimate' => true],
-        'JSON_FALSE_AND:2#3' => ['estimate' => false]
+        'JSON_FALSE_AND:2#3' => ['estimate' => false],
     ],
 
     // Зависимость от выбранного "Вида объекта"
     'type_of_object' => [
-        1 => ['planning_documentation_approval' => true,
-              'GPZU'                            => false,
-              'structureDocumentation1'         => true,
-              'structureDocumentation2'         => false,
-              'empty_documentation'             => false
-
-        ],
-
-        2 => ['planning_documentation_approval' => false,
+        1 => ['planning_documentation_approval' => false,
               'GPZU'                            => true,
               'structureDocumentation1'         => false,
               'structureDocumentation2'         => true,
+              'empty_documentation'             => false
+        ],
+
+        2 => ['planning_documentation_approval' => true,
+              'GPZU'                            => false,
+              'structureDocumentation1'         => true,
+              'structureDocumentation2'         => false,
               'empty_documentation'             => false
         ]
     ],
@@ -45,39 +45,48 @@ $blockDependencies = [
     // Зависимость от ЧЕКБОКСА "Национальный проект"
     'national_project_checkbox' => [
         0 => ['national_project'     => false],
-        1 => ['national_project'     => true],
+        1 => ['national_project'     => true]
     ],
 
+    
+    
     // Зависимости множественных блоков
     // ----------------------------------------------------------
 
     'finance_type' => [
-        1 => ['budget'           => false,
-              'organization'     => true,
-              'builder_source'   => true,
-              'investor'         => true,
-        ],
-
-        2 => ['budget'           => true,
+        1 => ['budget'           => true,
               'organization'     => false,
-              'builder_source'   => true,
-              'investor'         => true,
+              'builder_source'   => false,
+              'investor'         => false,
+              'no_data'          => true,
         ],
 
-        3 => ['budget'           => true,
+        2 => ['budget'           => false,
               'organization'     => true,
               'builder_source'   => false,
-              'investor'         => true,
+              'investor'         => false,
+              'no_data'          => true,
         ],
 
-        4 => ['budget'           => true,
-              'organization'     => true,
+        3 => ['budget'           => false,
+              'organization'     => false,
               'builder_source'   => true,
               'investor'         => false,
+              'no_data'          => true,
         ],
 
+        4 => ['budget'           => false,
+              'organization'     => false,
+              'builder_source'   => false,
+              'investor'         => true,
+              'no_data'          => true,
+        ],
     ],
 
+    'no_data' => [
+        ''    => ['percent' => true],
+        1     => ['percent' => false],
+    ]
 
     // ----------------------------------------------------------
     // Зависимости множественных блоков

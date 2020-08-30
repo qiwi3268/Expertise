@@ -52,7 +52,7 @@ try{
     $Logger = new Logger(_LOGS_.'/csp/errors', 'API_internal_signature_verifier.log');
     
     // Блок проверки маппинга
-    $Mapping = new SignsTableMapping($P_mapping_level_1, $P_mapping_level_2);
+    $Mapping = new \Lib\Files\Mappings\SignsTableMapping($P_mapping_level_1, $P_mapping_level_2);
     
     if(!is_null($Mapping->getErrorCode())){
         

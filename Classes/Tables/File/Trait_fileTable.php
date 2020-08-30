@@ -1,14 +1,13 @@
 <?php
 
 
-// Трейт, реализующий интерфейс Interface_fileTable
+// Трейт, реализующий интерфейс \Lib\Files\Interfaces\FileTable
 // Для использования трейта необходимо, чтобы перед его включением было объявлено
 // статическое свойство tableName с соответствующим именем таблицы
 //
 trait  Trait_fileTable{
     
     
-    // Реализация метода интерфейса
     // Предназначен для удаления записи из файловой таблицы
     // Принимает параметры-----------------------------------
     // id int : id записи
@@ -24,7 +23,6 @@ trait  Trait_fileTable{
     }
     
     
-    // Реализация метода интерфейса
     // Предназначен для установки флага загрузки файла на сервер
     // Принимает параметры-----------------------------------
     // id int : id записи
@@ -40,7 +38,6 @@ trait  Trait_fileTable{
     }
     
     
-    // Реализация метода интерфейса
     // Предназначен для получения ассоциативного массива записи по id
     // Принимает параметры-----------------------------------
     // id int : id записи
@@ -60,43 +57,42 @@ trait  Trait_fileTable{
     }
     
     
-    // Реализация метода интерфейса
-    // Предназначен для получения ассоциативного массива записи по hash'у
+    // Предназначен для получения ассоциативного массива записи по по id главного документа и её hash'у
     // Принимает параметры-----------------------------------
-    // id_application int : id заявления
-    // hash        string : hash файла
+    // id_main_document int : id главного документа
+    // hash          string : hash файла
     // Возвращает параметры-----------------------------------
     // array : в случае, если запись существует
     // null  : в противном случае
     //
-    static public function getAssocByIdApplicationAndHash(int $id_application, string $hash):?array {
+    static public function getAssocByIdMainDocumentAndHash(int $id_main_document, string $hash):?array {
     
         $table = self::$tableName;
     
         $query = "SELECT *
                   FROM `$table`
-                  where `id_application`=? AND `hash`=?";
-        $result = ParametrizedQuery::getFetchAssoc($query, [$id_application, $hash]);
+                  where `id_main_document`=? AND `hash`=?";
+        $result = ParametrizedQuery::getFetchAssoc($query, [$id_main_document, $hash]);
         return $result ? $result[0] : null;
     }
     
     
-    // Предназначен для получения id записи по её hash'у
+    // Предназначен для получения id записи по id главного документа и её hash'у
     // Принимает параметры-----------------------------------
-    // id_application int : id заявления
-    // hash        string : hash записи
+    // id_main_document int : id главного документа
+    // hash          string : hash записи
     // Возвращает параметры-----------------------------------
     // int  : в случае, если запись существует
     // null : в противном случае
     //
-    static public function getIdByIdApplicationAndHash(int $id_application, string $hash):?int {
+    static public function getIdByIdMainDocumentAndHash(int $id_main_document, string $hash):?int {
     
         $table = self::$tableName;
     
         $query = "SELECT `id`
                   FROM `$table`
-                  where `id_application`=? AND `hash`=?";
-        $result = ParametrizedQuery::getSimpleArray($query, [$id_application, $hash]);
+                  where `id_main_document`=? AND `hash`=?";
+        $result = ParametrizedQuery::getSimpleArray($query, [$id_main_document, $hash]);
         return $result ? $result[0] : null;
     }
     
@@ -120,26 +116,26 @@ trait  Trait_fileTable{
         return ParametrizedQuery::getSimpleArray($query, [$id])[0];
     }
     
-    // Предназначен для получения ассоциативного массива нужных файлов к заявлению по его id
+    
+    // Предназначен для получения ассоциативного массива нужных файлов к главному документу по его id
     // Принимает параметры-----------------------------------
-    // id_application  int : id заявления
+    // id_main_document int : id главного документа
     // Возвращает параметры----------------------------------
     // array : в случае, если запись сущестует(ют)
     // null  : в противном случае
     //
-    static public function getNeedsAssocByIdApplication(int $id_application):?array{
+    static public function getNeedsAssocByIdMainDocument(int $id_main_document):?array{
     
         $table = self::$tableName;
         
         $query = "SELECT *
                   FROM `$table`
-                  WHERE `id_application`=? AND `is_needs`='1'";
-        $result = ParametrizedQuery::getFetchAssoc($query, [$id_application]);
+                  WHERE `id_main_document`=? AND `is_needs`='1'";
+        $result = ParametrizedQuery::getFetchAssoc($query, [$id_main_document]);
         return $result ? $result : null;
     }
     
     
-    // Реализация метода интерфейса
     // Предназнчен для получения ассоциативного массива ненужных файлов
     // Возвращает параметры-----------------------------------
     // array : в случае, если записи существуют
@@ -188,7 +184,6 @@ trait  Trait_fileTable{
     }
     
     
-    // Реализация метода интерфейса
     // Предназначен для установки флага удаления крона по id
     // Принимает параметры-----------------------------------
     // id int : id записи

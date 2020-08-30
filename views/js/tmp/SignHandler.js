@@ -125,19 +125,19 @@ class SignHandler {
       this.modal.classList.remove('active');
       this.overlay.classList.remove('active');
 
-      this.create_sign_btn.dataset.inactive = 'true';
-      this.upload_sign_btn.dataset.inactive = 'true';
-      this.delete_sign_btn.dataset.inactive = 'true';
+      this.create_sign_btn.dataset.active = 'false';
+      this.upload_sign_btn.dataset.active = 'false';
+      this.delete_sign_btn.dataset.active = 'false';
 
       this.closeInfoBlocks();
    }
 
    // Предназначен для скрывания блоков с информацией модуля подписания
    closeInfoBlocks() {
-      this.certs.dataset.inactive = 'true';
-      this.plugin_info.dataset.inactive = 'true';
-      this.actions.dataset.inactive = 'true';
-      this.validate_info.dataset.inactive = 'true';
+      this.certs.dataset.active = 'false';
+      this.plugin_info.dataset.active = 'false';
+      this.actions.dataset.active = 'false';
+      this.validate_info.dataset.active = 'false';
    }
 
    // Предназначен для обработки кнопки создания открепленной подписи
@@ -229,13 +229,13 @@ class SignHandler {
 
    // Предназначен для отображения элементов для создания подписи
    showCreateSignElements() {
-      this.certs.dataset.inactive = 'false';
-      this.plugin_info.dataset.inactive = 'false';
+      this.certs.dataset.active = 'true';
+      this.plugin_info.dataset.active = 'true';
 
-      this.actions.dataset.inactive = 'false';
+      this.actions.dataset.active = 'true';
 
-      this.upload_sign_btn.dataset.inactive = 'true';
-      this.create_sign_btn.dataset.inactive = 'true';
+      this.upload_sign_btn.dataset.active = 'false';
+      this.create_sign_btn.dataset.active = 'false';
 
       // this.modal.querySelector('.sign-modal__buttons').style.display = 'none';
    }
@@ -250,7 +250,7 @@ class SignHandler {
       document.getElementById('valid_to_date').innerHTML = GeCades.formattedDateTo_ddmmyyy_hhmmss(cert_info.valid_to_date);
       document.getElementById('cert_message').innerHTML = cert_info.cert_message;
       document.getElementById('cert_message').style.color = cert_info.cert_status ? '#6cb37e' : '#db5151';
-      this.cert_info.dataset.inactive = 'false';
+      this.cert_info.dataset.active = 'true';
    }
 
    // Предназначен для обработки кнопки загрузки файла открепленной подписи
@@ -316,11 +316,11 @@ class SignHandler {
 
             this.handleValidateResults(validate_results);
 
-            this.certs.dataset.inactive = 'true';
-            this.actions.dataset.inactive = 'true';
-            this.create_sign_btn.dataset.inactive = 'true';
-            this.upload_sign_btn.dataset.inactive = 'true';
-            this.delete_sign_btn.dataset.inactive = 'false';
+            this.certs.dataset.active = 'false';
+            this.actions.dataset.active = 'false';
+            this.create_sign_btn.dataset.active = 'false';
+            this.upload_sign_btn.dataset.active = 'false';
+            this.delete_sign_btn.dataset.active = 'true';
 
          })
          .catch(exc => {
@@ -344,7 +344,7 @@ class SignHandler {
    }
 
    fillSignsInfo(validate_results_json) {
-      this.validate_info.dataset.inactive = 'false';
+      this.validate_info.dataset.active = 'true';
       this.validate_info.innerHTML = '';
 
       let results = JSON.parse(validate_results_json);
@@ -403,10 +403,10 @@ class SignHandler {
 
          SignHandler.removeSign(this.file_element);
 
-         this.validate_info.dataset.inactive = 'true';
-         this.delete_sign_btn.dataset.inactive = 'true';
-         this.create_sign_btn.dataset.inactive = 'false';
-         this.upload_sign_btn.dataset.inactive = 'false';
+         this.validate_info.dataset.active = 'false';
+         this.delete_sign_btn.dataset.active = 'false';
+         this.create_sign_btn.dataset.active = 'true';
+         this.upload_sign_btn.dataset.active = 'true';
       });
    }
 
@@ -415,8 +415,8 @@ class SignHandler {
 
       this.cancel_btn.addEventListener('click', () => {
 
-         this.upload_sign_btn.dataset.inactive = 'false';
-         this.create_sign_btn.dataset.inactive = 'false';
+         this.upload_sign_btn.dataset.active = 'true';
+         this.create_sign_btn.dataset.active = 'true';
 
          this.closeInfoBlocks();
       });
@@ -483,15 +483,15 @@ class SignHandler {
 
       if (!file.dataset.validate_results) {
 
-         this.create_sign_btn.dataset.inactive = 'false';
-         this.upload_sign_btn.dataset.inactive = 'false';
+         this.create_sign_btn.dataset.active = 'true';
+         this.upload_sign_btn.dataset.active = 'true';
 
       } else {
 
          this.fillSignsInfo(file.dataset.validate_results);
 
          if (file.dataset.is_internal !== 'true') {
-            this.delete_sign_btn.dataset.inactive = 'false';
+            this.delete_sign_btn.dataset.active = 'true';
          }
 
       }

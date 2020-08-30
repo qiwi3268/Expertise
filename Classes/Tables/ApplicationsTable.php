@@ -270,6 +270,10 @@ final class ApplicationsTable{
 
         ParametrizedQuery::set($query, [...$bindParams, $id]);
     }
+    
+    static public function test(int $id, int $id2, int $id3=3, int $id4=4){
+    
+    }
 
 
 

@@ -1,12 +1,20 @@
 <?php
 
 
+<<<<<<< HEAD
 class DependentMiscValidator extends \Classes\Miscs\Validator\DependentMisc{
+=======
+class DependentMiscValidator extends \Classes\Miscs\Validation\DependentMisc{
+>>>>>>> 346c3228d8d85e51138fbddaff8753f22b7e3ce0
     
     private ?string $columnName; // Имя столбца справочника в БД
     
     
+<<<<<<< HEAD
    public function __construct(\Classes\Miscs\Validator\Validator $MainValidator, string $form_value, string $class, ?string $columnName = null){
+=======
+   public function __construct(\Classes\Miscs\Validation\Validator $MainValidator, string $form_value, string $class, ?string $columnName = null){
+>>>>>>> 346c3228d8d85e51138fbddaff8753f22b7e3ce0
        
        parent::__construct($MainValidator, $form_value, $class);
        

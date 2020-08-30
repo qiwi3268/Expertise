@@ -8,6 +8,14 @@ namespace Classes\Tables\FinancingSource;
 // Средства инвестора
 class Type4{
     
+<<<<<<< HEAD
+=======
+    static private string $tableName = 'financing_source_type_4';
+    
+    use Deleter;
+    // deleteAllByIdApplication(int $id_application):void
+    
+>>>>>>> 346c3228d8d85e51138fbddaff8753f22b7e3ce0
     
     // Предназначен для получения ассоциативного массива источников финансирования по id заявления
     // Принимает параметры-----------------------------------
@@ -40,8 +48,13 @@ class Type4{
         $values = \TableUtils::getValuesWithoutNull($bindParams);
         
         $query = "INSERT INTO `financing_source_type_4`
+<<<<<<< HEAD
                     (`id_application`, `no_data`, `percent`)
                   VALUES {$values}";
+=======
+                    (`id_application`, `no_data`, `percent`, `date_creation`)
+                  VALUES ({$values}, UNIX_TIMESTAMP())";
+>>>>>>> 346c3228d8d85e51138fbddaff8753f22b7e3ce0
         
         return \ParametrizedQuery::set($query, $bindParams);
     }

@@ -12,10 +12,6 @@
    color: #343a40;
 }
 
-.documentation__node[data-inactive="true"] {
-   display: none;
-}
-
 .documentation__node.filled {
    border-left: 3px solid #ffd354;
    border-bottom: 3px solid #ffd354;
@@ -49,8 +45,6 @@
    color: #343a40;
    border-top: 1px solid #e0e0e0;
 }
-
-
 
 
 

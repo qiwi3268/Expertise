@@ -110,7 +110,7 @@ try{
 
         foreach($type as &$file){
 
-            $Mapping = new FilesTableMapping($file['mapping_level_1'], $file['mapping_level_2']);
+            $Mapping = new \Lib\Files\Mappings\FilesTableMapping($file['mapping_level_1'], $file['mapping_level_2']);
 
             $mappingErrorCode = $Mapping->getErrorCode();
 

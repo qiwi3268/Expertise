@@ -2,7 +2,7 @@
 
 
 
-$id = 10;
+$requiredMappings = new \Lib\Files\Mappings\RequiredMappingsSetter();
+$requiredMappings->setMappingLevel1(1);
 
-$test = \Classes\Tables\FinancingSource\Type3::create(2, "0", 56);
-var_dump($test);
+

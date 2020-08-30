@@ -24,6 +24,14 @@
 //       {result}
 //  9 -  Непредвиденная ошибка
 //       {result, message : текст ошибки, code: код ошибки}
+//---------------------------------------------
+// finance_sources_1 - Технические ошибки при валидации источников финансирования (со сторны клиенского js)
+//                     {result, message : текст ошибки, code: код ошибки}
+// finance_sources_2 - Ошибки со стороны пользователя (введены некорректные данные)
+//                     {result, message : текст ошибки, code: код ошибки}
+
+
+
 
 if(!checkParamsPOST('id_application',
                    'expertise_purpose',
@@ -47,7 +55,9 @@ if(!checkParamsPOST('id_application',
                    'national_project',
                    'federal_project',
                    'date_finish_building',
-                   'curator'
+                   'curator',
+                 
+                   'finance_sources'
 )){
     exit(json_encode(['result'        => 1,
                       'error_message' => 'Нет обязательных параметров POST запроса'
@@ -59,7 +69,7 @@ try{
     
     /** @var string $P_id_application id-заявления */
     /** @var string $P_expertise_purpose Цель обращения */
-    /** @var string $P_expertise_subjects Предмет(ы) экспертизы */
+    /** @var string $P_expertise_subjects Предмет(ы) экспертизы JSON */
     /** @var string $P_additional_information Доплнительная информация */
     /** @var string $P_object_name Наименование объекта */
     /** @var string $P_type_of_object Вид объекта */
@@ -80,6 +90,8 @@ try{
     /** @var string $P_federal_project Федеральный проект */
     /** @var string $P_date_finish_building Дата окончания строительства */
     /** @var string $P_curator Куратор */
+    /** @var string $P_finance_sources Истичник(и) финансирования JSON */
+    
     
     extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
     
@@ -118,6 +130,7 @@ try{
         }
     }
     
+    $Transaction = new \core\Classes\Transaction();
     $PrimitiveValidator = new PrimitiveValidator();
     DataToUpdate::setFlatAssoc($applicationAssoc);
     
@@ -187,13 +200,16 @@ try{
         $Curator = new SingleMiscValidator($P_curator, 'misc_curatorTable', 'id_curator');
         $Curator->validate()->addToUpdate();
         
-
+    
         
         
     }catch(ApplicationFormMiscValidatorException $e){
-        // result 4 / 5 / 7
+        //  4 - передано некорректное значение справочника
+        //  5 - запрашиваемое значение справочника не существует
+        //  7 - при наличии значения зависимого справочника, флаг наличия проверенных данных главного справочника отрицательный
         exit(json_encode(['result' => $e->getCode(), 'error_message' => $e->getMessage()]));
     }catch(PrimitiveValidatorException $e){
+        // (валидация предметов экспертизы)
         // result 4
         exit(json_encode(['result' => 4, 'error_message' => $e->getMessage()]));
     }
@@ -273,6 +289,145 @@ try{
         }
     }
     
+    
+    // Проверка Источников финансирования --------------------------------------------------------------
+    //
+    // В источники финансирования было внесено изменение
+    if(true){
+    
+        try{
+            
+            // Получаем массив из входного json'а
+            $FinancingSources = $PrimitiveValidator->getAssocArrayFromJson($P_finance_sources);
+    
+            // Проверяем структуру массива и валидируем его
+            foreach($FinancingSources as $source){
+        
+                $PrimitiveValidator->validateSomeInclusions($source['type'], '1', '2', '3', '4');
+        
+                switch($source['type']){
+                    case '1' :
+                
+                        $BudgetLevel = new SingleMiscValidator((is_null($source['budget_level']) ? '' : $source['budget_level']), 'misc_budgetLevelTable');
+                
+                        $settings = ['budget_level' => ['is_null', [$BudgetLevel, 'validate']],
+                                     'no_data'      => [[$PrimitiveValidator, 'validateSomeInclusions', null, '1']],
+                                     'percent'      => ['is_null', [$PrimitiveValidator, 'validatePercent']]
+                        ];
+                        break;
+            
+                    case '2' :
+                
+                        $settings = ['full_name' => ['is_null', 'is_string'],
+                                     'INN'       => ['is_null', [$PrimitiveValidator, 'validateINN']],
+                                     'KPP'       => ['is_null', [$PrimitiveValidator, 'validateKPP']],
+                                     'OGRN'      => ['is_null', [$PrimitiveValidator, 'validateOGRN']],
+                                     'address'   => ['is_null', 'is_string'],
+                                     'location'  => ['is_null', 'is_string'],
+                                     'telephone' => ['is_null', 'is_string'],
+                                     'email'     => ['is_null', [$PrimitiveValidator, 'validateEmail']],
+                                     'no_data'   => [[$PrimitiveValidator, 'validateSomeInclusions', null, '1']],
+                                     'percent'   => ['is_null', [$PrimitiveValidator, 'validatePercent']]
+                        ];
+                        break;
+            
+                    case '3' :
+                    case '4' :
+                
+                        $settings = ['no_data' => [[$PrimitiveValidator, 'validateSomeInclusions', null, '1']],
+                                     'percent' => ['is_null', [$PrimitiveValidator, 'validatePercent']]
+                        ];
+                        break;
+                }
+        
+                $PrimitiveValidator->validateAssociativeArray($source, $settings);
+            }
+        }catch(PrimitiveValidatorException $e){
+            
+            $message = $e->getMessage();
+            $code = $e->getCode();
+            
+            switch($code){
+                // Технические ошибки (со сторны клиенского js)
+                case 1:  // ошибка при декодировании json-строки
+                case 13: // во входном массиве отсутствует обязательное поле
+                case 14: // значение входного массива по ключу не прошло проверку
+                case 15: // значение не подходит ни под одно из перечисленных
+                    exit(json_encode(['result'  => 'finance_sources_1',
+                                      'message' => $message,
+                                      'code'	=> $code
+                    ]));
+                    
+                // Ошибки со стороны пользователя (введены некорректные данные)
+                case 7:  // введенный ИНН является некорректным
+                case 8:  // введенный КПП является некорректным
+                case 9:  // введенный ОГРН является некорректным
+                case 10: // введенный email является некорректным
+                case 11: // введенный процент является некорректным
+                    exit(json_encode(['result'  => 'finance_sources_2',
+                                      'message' => $message,
+                                      'code'	=> $code
+                    ]));
+                    
+                default: throw new PrimitiveValidatorException($message, $code);
+            }
+        
+        }catch(ApplicationFormMiscValidatorException $e){
+    
+            //  4 - передано некорректное значение справочника
+            //  5 - запрашиваемое значение справочника не существует
+            exit(json_encode(['result' => $e->getCode(), 'error_message' => $e->getMessage()]));
+        }
+        
+        // Удаляем все источники финансирования, относящиеся к этому заявлению
+        $Transaction->add('\Classes\Tables\FinancingSource\Type1', 'deleteAllByIdApplication', [$form_applicationID]);
+        $Transaction->add('\Classes\Tables\FinancingSource\Type2', 'deleteAllByIdApplication', [$form_applicationID]);
+        $Transaction->add('\Classes\Tables\FinancingSource\Type3', 'deleteAllByIdApplication', [$form_applicationID]);
+        $Transaction->add('\Classes\Tables\FinancingSource\Type4', 'deleteAllByIdApplication', [$form_applicationID]);
+    
+        foreach($FinancingSources as $source){
+            
+            $no_data = is_null($source['no_data']) ? 0 : 1;
+            
+            switch($source['type']){
+                
+                case '1' :
+                    $Transaction->add('\Classes\Tables\FinancingSource\Type1', 'create', [$form_applicationID,
+                                                                                                        $source['budget_level'],
+                                                                                                        $no_data,
+                                                                                                        $source['percent']]);
+                    break;
+            
+                case '2' :
+                    $Transaction->add('\Classes\Tables\FinancingSource\Type2', 'create', [$form_applicationID,
+                                                                                                        $source['full_name'],
+                                                                                                        $source['INN'],
+                                                                                                        $source['KPP'],
+                                                                                                        $source['OGRN'],
+                                                                                                        $source['address'],
+                                                                                                        $source['location'],
+                                                                                                        $source['telephone'],
+                                                                                                        $source['email'],
+                                                                                                        $no_data,
+                                                                                                        $source['percent']]);
+                    break;
+            
+                case '3' :
+                    $Transaction->add('\Classes\Tables\FinancingSource\Type3', 'create', [$form_applicationID,
+                                                                                                        $no_data,
+                                                                                                        $source['percent']]);
+                    break;
+                    
+                case '4' :
+                    $Transaction->add('\Classes\Tables\FinancingSource\Type4', 'create', [$form_applicationID,
+                                                                                                        $no_data,
+                                                                                                        $source['percent']]);
+                    break;
+            }
+        }
+        //todo убрать вконец файла
+        $Transaction->start();
+    }
     
     
     // -----------------------------------------------------------------------------------------------------------------

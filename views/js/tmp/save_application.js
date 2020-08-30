@@ -29,6 +29,10 @@ function saveApplication() {
 
    FileNeeds.putFilesToFileNeeds();
 
+   saveMultipleBlocks();
+
+   console.log(new Map(new FormData(application_form)));
+
    XHR('post', request_urn, new FormData(application_form), null, 'json', null, null)
       .then(response => {
 
@@ -50,6 +54,24 @@ function saveApplication() {
          alert(error.message);
          console.error('XHR error: ', error);
       });
+}
+
+function saveMultipleBlocks() {
+
+
+   let multiple_blocks = document.querySelectorAll('.block[data-type="multiple"]');
+   multiple_blocks.forEach(block => {
+
+      let multiple_block = MultipleBlock.getBlockByName(block.dataset.block_name);
+      if (multiple_block.is_changed) {
+
+         multiple_block.is_changed = false;
+
+         let block_result = block.querySelector(`.field-result[name='${block.dataset.block_name}']`);
+         block_result.value = multiple_block.getPartsDataJSON();
+      }
+
+   });
 }
 
 function showSaveModal() {
