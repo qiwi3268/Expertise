@@ -47,11 +47,11 @@ class SignHandler {
    // Предназначен для получения объекта модуля подписания
    static getInstance() {
 
-      if (!SignHandler.instance) {
-         SignHandler.instance = new SignHandler();
+      if (!this.instance) {
+         this.instance = new SignHandler();
       }
 
-      return SignHandler.instance;
+      return this.instance;
    }
 
    // Предназначен для отображения состояния проверки подписи в поле с файлом
