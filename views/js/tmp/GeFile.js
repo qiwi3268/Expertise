@@ -101,11 +101,18 @@ class GeFile {
       files_block.appendChild(file_item);
 
       let file = new GeFile(file_item, files_block);
+
       file.addInfo(file_data);
-      file.addActions(file)
+      file.addActions(file, actions);
+
+      return file_item;
    }
 
    addActions (file, actions) {
+      this.actions = document.createElement('DIV');
+      this.actions.classList.add('files__actions');
+      file.element.appendChild(this.actions);
+
       actions.forEach(action => action(file));
       file.handleActionButtons();
    }
@@ -119,13 +126,13 @@ class GeFile {
    static unload (file) {
       let unload_button = document.createElement('I');
       unload_button.classList.add('files__unload', 'fas', 'fa-file-download');
-      file.element.appendChild(unload_button);
+      file.actions.appendChild(unload_button);
    }
 
    static delete (file) {
       let delete_button = document.createElement('I');
       delete_button.classList.add('files__delete', 'fas', 'fa-trash');
-      file.element.appendChild(delete_button);
+      file.actions.appendChild(delete_button);
    }
 
    // Предназначен для добавления информации о файле в его блок

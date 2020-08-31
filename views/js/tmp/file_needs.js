@@ -101,7 +101,9 @@ class FileNeeds {
             parent_field.dataset.mapping_level_2,
             file
          );
-         removeFileElement(file, file_block);
+         let ge_file = new GeFile(file, file_block);
+         ge_file.removeElement();
+
       });
    }
 

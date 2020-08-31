@@ -1,3 +1,4 @@
+/*
 document.addEventListener('DOMContentLoaded', () => {
 
    let form = document.getElementById('file_uploader');
@@ -107,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
    }
 
-   /*   // Предназначен для добавления событий переноса файлов в окно загрузки
+   /!*   // Предназначен для добавления событий переноса файлов в окно загрузки
       function handleDropArea() {
          ;['dragenter', 'dragover'].forEach(eventName => {
             drop_area.addEventListener(eventName, () => {
@@ -133,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
                //TODO error
             }
          });
-      }*/
+      }*!/
 
    // Предназначен для удаления файлов из она загрузки
    function clearFileModal () {
@@ -393,3 +394,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+*/

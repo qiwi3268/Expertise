@@ -235,8 +235,7 @@
    align-items: center;
 }
 
-.body-card__select,
-.body-card__add-button {
+.body-card__select {
    box-sizing: border-box;
    display: flex;
    align-items: center;
@@ -388,33 +387,30 @@
 }
 
 
-.body-card__add-button {
-   margin: 10px;
 
-   max-width: 265px;
-   justify-content: space-between;
 
-}
 
-.body-card__add-text {
+
+
+.multiple-block__text {
    /*margin: 0px 10px 0px 0px;*/
 
 }
 
-.body-card__add-icon {
+.multiple-block__icon {
    font-size: 18px;
 }
 
-.body-card__multiple_actions {
+.multiple-block__actions {
    display: flex;
    justify-content: center;
 
 }
 
-.body-card__multiple-button {
+.multiple-block__add,
+.multiple-block__button {
    max-width: 300px;
-   margin-bottom: 10px;
-   margin-right: 10px;
+   margin: 10px;
    justify-content: space-between;
 
    box-sizing: border-box;
@@ -430,22 +426,22 @@
    transition: box-shadow .10s;
 }
 
-.body-card__multiple-icon {
-   font-size: 18px;
-}
 
-.body-card__multiple-button:hover {
+
+.multiple-block__add:hover,
+.multiple-block__button:hover {
    box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
    border-color: #80bdff;
 }
 
-.body-card__part-short {
+.multiple-block__short {
    margin: 10px;
    display: flex;
    align-items: center;
 }
 
-.body-card__part-info {
+
+.multiple-block__info {
 
    box-sizing: border-box;
    display: flex;
@@ -461,12 +457,12 @@
 
 }
 
-.body-card__part-info:hover {
+.multiple-block__info:hover {
    box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
    border-color: #80bdff;
 }
 
-.body-card__part-delete {
+.multiple-block__delete {
    margin: 0px 0px 0px 2px;
    padding: 10px;
    border: #ffffff solid 2px;
@@ -477,13 +473,13 @@
 }
 
 
-.body-card__part-delete:hover {
+.multiple-block__delete:hover {
    border-color: #ffb0b0;
    background-color: #ffb0b0;
    color: #a93d3d;
 }
 
-.body-card__block[data-block_name='part']:not(:last-child) {
+.body-card__block[data-name='part']:not(:last-child) {
    border-bottom: 2px solid #93b0d1;
 }
 

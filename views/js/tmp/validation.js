@@ -135,7 +135,9 @@ function validateCard (card) {
    let sidebar_item = document.querySelector(`.sidebar-form__row[data-card=${card_name}]`);
 
    // Отображаем состояние проверки в связанном элементе сайдбара
-   setSidebarItemState(sidebar_item, is_valid);
+   if (sidebar_item) {
+      setSidebarItemState(sidebar_item, is_valid);
+   }
 }
 
 

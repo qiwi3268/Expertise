@@ -69,7 +69,7 @@ function enableScroll () {
 // Предназначен для получения id текущего заявления
 // Возвращает параметры------------------------------
 // id         string : id текущего заявления
-function getIdApplication () {
+function getIdDocument () {
    return document.querySelector('[name="id_application"]').value;
 }
 

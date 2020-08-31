@@ -3,13 +3,16 @@
 
 use core\Classes\Session;
 
+use Lib\Singles\Helpers\PageAddress as PageAddressHelper;
+
+
 
 // Данная страница представляет собой мини-движок по формированию навигационных страниц
 // Подключение sidebar'а и view происходит напрямую, поскольку заранее неизвестно, какая view нужна
 $variablesTV = \Lib\Singles\VariableTransfer::getInstance();
 
 // Получение параметров навигационной страницы
-list('b' => $G_block, 'v' => $G_view) = checkParamsGET('b', 'v') ? $_GET : \Lib\Singles\Helpers\PageAddress::getDefaultNavigationPage();
+list('b' => $G_block, 'v' => $G_view) = checkParamsGET('b', 'v') ? $_GET : PageAddressHelper::getDefaultNavigationPage();
 $G_page = checkParamsGET('page') ? clearHtmlArr($_GET)['page'] : 1;
 
 $Navigation = new Navigation(Session::getUserRoles());

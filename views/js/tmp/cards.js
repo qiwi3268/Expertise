@@ -1,3 +1,4 @@
+/*
 // Массив хранящий зависимости блоков
 let radio_dependency;
 let block_dependencies;
@@ -85,3 +86,4 @@ function removeRowValue (field) {
 
 
 
+*/

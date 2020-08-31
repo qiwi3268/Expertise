@@ -20,11 +20,9 @@ return [
 
 
     'home/file_unloader' => [
-        'ROOTClasses'     => ['FilesUnload'],
         'controllers'     => ['file_unloader']
     ],
     'home/API_file_uploader' => [
-        '/Classes/'         => ['FilesUpload'],
         'API'               => ['file_uploader']
     ],
     'home/API_file_checker' => [
@@ -35,52 +33,35 @@ return [
     ],
     
     'home/API_get_file_hash' => [
-        '/Classes/'          => ['Logger'],
-        '/core/Classes/csp/' => ['Shell', 'FileHash', 'MessageParser'],
         'API'                => ['get_file_hash']
     ],
     
     'home/API_external_signature_verifier' => [
-        '/Classes/'          => ['Logger'],
-        '/core/Classes/csp/' => ['MessageParser', 'Shell', 'ExternalSignature', 'Validator'],
         'API'                => ['external_signature_verifier']
     ],
     
     'home/API_internal_signature_verifier' => [
-        '/Classes/'          => ['Logger'],
-        '/core/Classes/csp/' => ['MessageParser', 'Shell', 'InternalSignature', 'Validator'],
         'API'                => ['internal_signature_verifier']
     ],
-    
-    
-    'csp' => [
-        '/core/Classes/csp/' => ['Validator', 'MessageParser', 'Shell', 'InternalSignature', 'ExternalSignature'],
-        '/core/Classes/'     => ['CSP'],
-        'controllers'        => ['csp']
-    ],
+
 
     //-------------------------------
 
 
     'test' => [
-        '/Classes/'         => ['PrimitiveValidator'],
         'controllers' => ['test']
     ],
 
 
     'home/application/API_save_form' => [
-        'access'                              => [],
-        '/Classes/'                           => ['PrimitiveValidator'],
         'API'                                 => ['save_form']
     ],
 
     'home/API_save_files' => [
-        'access'                      => [],
         'API'                         => ['save_files']
     ],
 
     'home/API_navigation_cookie' => [
-        'access'                      => [],
         'API'                         => ['navigation_cookie']
     ],
 
@@ -101,7 +82,6 @@ return [
 
     'home/application/view' => [
         'access'              => [],
-        'ROOTClasses'         => ['FilesInitialization'],
         'ROOTcontrollers'     => ['header'],
         'ABScontrollers'      => ['/controllers/home/main_header.php'],
         'controllers'         => ['action_sidebar',
@@ -130,8 +110,6 @@ return [
 
 
     'home/navigation' => [
-        'ROOTClasses'             => ['Pagination'],
-        '/Classes/Navigation/'    => ['Navigation', 'NavigationParameters'],
         'ROOTcontrollers'         => ['header'],
         'ROOTviews'               => ['header'],
         '/controllers/home/'      => ['main_header'],

@@ -76,7 +76,7 @@ function handleUnloadButton(unload_button) {
 function createUnloadFileFormData(file) {
    let parent_row = file.closest('[data-mapping_level_1]');
    let form_data = new FormData();
-   form_data.append('id_application', getIdApplication());
+   form_data.append('id_application', getIdDocument());
    form_data.append('id_file', file.dataset.id);
    form_data.append('mapping_level_1', parent_row.dataset.mapping_level_1);
    form_data.append('mapping_level_2', parent_row.dataset.mapping_level_2);
