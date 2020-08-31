@@ -49,7 +49,7 @@ class Calendar {
    // Скрытый инпут, в который записывается выбранная дата
    result_input;
 
-   constructor(select) {
+   constructor (select) {
       this.select = select;
 
       this.field_value = mQS(this.select, '.field-value', 4);
@@ -68,7 +68,7 @@ class Calendar {
    }
 
    // Предназначен для инициализации календаря
-   init() {
+   init () {
       this.selected_day = this.current_date.getDate();
       this.selected_month = this.current_date.getMonth();
       this.current_month = this.current_date.getMonth();
@@ -80,7 +80,7 @@ class Calendar {
    }
 
    // Предназначен для добавления и отображения элементов в календарь
-   putItems() {
+   putItems () {
       this.body.innerHTML = '';
       this.createRow();
 
@@ -105,14 +105,14 @@ class Calendar {
    }
 
    // Предназначен для создания строки для элементов календаря
-   createRow() {
+   createRow () {
       this.current_row = document.createElement('DIV');
       this.current_row.classList.add('calendar__row');
       this.body.appendChild(this.current_row);
    }
 
    // Предназначен для добавления и отображения дней в календаре
-   putDays() {
+   putDays () {
       let current_date = new Date(this.current_year, this.current_month);
 
       // добавляем в начало календаря дни из пердыдущего месяца и берем их количество
@@ -129,7 +129,7 @@ class Calendar {
    // current_date         Date : объект даты текущего месяца
    // Возвращает параметры------------------------------------------
    // days_counter         number : количество дней из предыдущего месяца добавленных в текущий месяц
-   putPreviousMonthDaysAndGetCount(current_date) {
+   putPreviousMonthDaysAndGetCount (current_date) {
       let days_counter = 0;
 
       // Номер дня недели первого дня текущего месяца
@@ -156,7 +156,7 @@ class Calendar {
    // current_day         number : текущий день
    // current_month       number : текущий месяц
    // current_year        number : текущий год
-   putDay(current_day, current_month, current_year) {
+   putDay (current_day, current_month, current_year) {
       let day_element = this.createDay(current_day, current_month, current_year);
 
       day_element.addEventListener('click', () => {
@@ -183,8 +183,8 @@ class Calendar {
    // current_year        number : текущий год
    // Возвращает параметры------------------------------
    // day_element        Element : созданный элемент дня
-   createDay(current_day, current_month, current_year) {
-      let day_element = this.createItem('day',7);
+   createDay (current_day, current_month, current_year) {
+      let day_element = this.createItem('day', 7);
 
       // записывает месяц и год, к которому относится день
       day_element.dataset.year = current_year;
@@ -211,7 +211,7 @@ class Calendar {
    }
 
    // Предназначен для добавления и отображения месяцев в календаре
-   putMonths() {
+   putMonths () {
       for (let i = 0; i < 12; i++) {
          this.putMonth(i);
       }
@@ -220,7 +220,7 @@ class Calendar {
    // Предназначен для создания и добавления месяца в календарь
    // Принимает параметры-------------------------------
    // month_num         number : номер месяца
-   putMonth(month_num) {
+   putMonth (month_num) {
       let month_element = this.createMonth(month_num, this.current_year);
 
       month_element.addEventListener('click', () => {
@@ -236,7 +236,7 @@ class Calendar {
    // year            number : год
    // Возвращает параметры------------------------------
    // month_element  Element : созданный элемент месяца
-   createMonth(month, year) {
+   createMonth (month, year) {
       let month_element = this.createItem('month', 4);
       month_element.innerHTML = this.getMonthString(month);
       month_element.dataset.year = year;
@@ -251,7 +251,7 @@ class Calendar {
    }
 
    // Предназначен для создания и добавления годов в календарь
-   putYears() {
+   putYears () {
       let year_shift = 5;
 
       for (let i = 0; i < 12; i++) {
@@ -262,7 +262,7 @@ class Calendar {
    // Предназначен для создания и добавления года в календарь
    // Принимает параметры-------------------------------
    // year         number : год
-   putYear(year) {
+   putYear (year) {
       let year_element = this.createItem('year', 4);
       year_element.innerHTML = year;
 
@@ -280,7 +280,7 @@ class Calendar {
    // Предназначен для предназначен для смены выбранной даты
    // Принимает параметры-------------------------------
    // day         number : номер дня
-   setSelectedDate(day_element) {
+   setSelectedDate (day_element) {
       this.current_date.setDate(+day_element.innerHTML);
       this.selected_day = this.current_date.getDate();
 
@@ -297,7 +297,7 @@ class Calendar {
    }
 
    // Предназначен для получения форматированной строки с выбранной датой
-   getDateString() {
+   getDateString () {
       let date_string;
       let day = this.selected_day < 10 ? `0${this.selected_day}` : this.selected_day;
 
@@ -310,7 +310,7 @@ class Calendar {
    }
 
    // Предназначен для удаления выбранной даты
-   removeSelectedItem() {
+   removeSelectedItem () {
       let selected_item = this.body.querySelector('.calendar__item.selected');
       if (selected_item) {
          selected_item.classList.remove('selected');
@@ -318,7 +318,7 @@ class Calendar {
    }
 
    // Предназначен для смены выбранного элемента дня
-   changeSelectedDay() {
+   changeSelectedDay () {
       let days = Array.from(this.body.querySelectorAll('.calendar__item'));
 
       let selected_day = days.find(day => {
@@ -331,7 +331,7 @@ class Calendar {
    }
 
    // Предназначен для добавления обработчика для заголовка с выбранной датой
-   handleDateLabel() {
+   handleDateLabel () {
       this.selected_date_label.addEventListener('click', () => {
          if (this.level > 1) {
             this.level--;
@@ -341,7 +341,7 @@ class Calendar {
    }
 
    // Предназначен для добавления обработчика стрелок для смены страниц в каледаре
-   handleArrows() {
+   handleArrows () {
       let arrow_left = mQS(this.element, '.calendar__arrow.left');
       let arrow_right = mQS(this.element, '.calendar__arrow.right');
 
@@ -353,7 +353,7 @@ class Calendar {
    // Принимает параметры-------------------------------
    // offset         number : 1 - следующая страница
    //                        -1 - предыдущая страница
-   arrowClickListener(offset) {
+   arrowClickListener (offset) {
       switch (this.level) {
          case 3 :
             this.changeCurrentMonth(this.current_month + 1 * offset);
@@ -372,10 +372,11 @@ class Calendar {
    // Принимает параметры-------------------------------
    // select         Element : родительское поле
    // result_input   Element : поле с выбранной датой
-   clear(select, result_input) {
+   clear (select, result_input) {
       let field_value = mQS(select, '.field-value', 11);
 
       Calendar.instance.current_date = result_input.value ? getDateFromString(result_input.value) : new Date();
+
       Calendar.instance.select = select;
       Calendar.instance.result_input = result_input;
       Calendar.instance.field_value = field_value;
@@ -389,7 +390,7 @@ class Calendar {
    // row_size      number : количество элементов в строке календаря
    // Возвращает параметры------------------------------
    // item         Element : созданный элемент календаря
-   createItem(type, row_size) {
+   createItem (type, row_size) {
       if (this.current_row.childElementCount === row_size) {
          this.createRow();
       }
@@ -406,7 +407,7 @@ class Calendar {
    // Предназначен для смены отображаемого месяца и добавления новых элементов
    // Принимает параметры------------------------------
    // month_num         number : номер нового месяца
-   changeCurrentMonth(month_num) {
+   changeCurrentMonth (month_num) {
       this.current_date.setMonth(month_num);
       this.current_date.setDate(this.selected_day);
 
@@ -417,7 +418,7 @@ class Calendar {
    // Предназначен для смены отображаемого года и добавления новых элементов
    // Принимает параметры-------------------------------
    // year_num         number : новый год
-   changeCurrentYear(year_num) {
+   changeCurrentYear (year_num) {
       this.current_date.setFullYear(year_num);
       this.current_year = this.current_date.getFullYear();
 
@@ -429,7 +430,7 @@ class Calendar {
    // month_num           number : номер месяца
    // Возвращает параметры------------------------------
    // months[month_num]   string : короткое название месяца
-   getMonthString(month_num) {
+   getMonthString (month_num) {
       let months = ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];
       return months[month_num];
    }
@@ -437,20 +438,20 @@ class Calendar {
    // Предназначен для получния полного названия отображаемого месяца
    // Возвращает параметры------------------------------
    // months[this.current_month]      string : полное название отображаемого месяца
-   getFullMonthString() {
+   getFullMonthString () {
       let months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль',
          'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
       return months[this.current_month];
    }
 
    // Предназначен для отображения модального окна календаря
-   show() {
+   show () {
       this.element.classList.add('active');
       Calendar.overlay.classList.add('active');
    }
 
    // Предназначен для позиционирования календаря возле родительского поля
-   setPosition() {
+   setPosition () {
       let coordinates = this.select.getBoundingClientRect();
       let coordinates_with_offset = Calendar.getCoords(this.select);
       this.element.style.top = coordinates_with_offset.top - this.element.offsetHeight + 'px';
@@ -458,7 +459,7 @@ class Calendar {
    }
 
    // Предназначен для закрытия модального окна календаря
-   close() {
+   close () {
       this.element.classList.remove('active');
       Calendar.overlay.classList.remove('active');
    }
@@ -466,7 +467,7 @@ class Calendar {
    //========================================= Static methods
 
    // Предназначен для добавления обработки клика по полям, в которые записывается дата
-   static handleFields() {
+   static handleFields () {
       // Поля, в которые записываются даты
       let calendar_fields = document.querySelectorAll('.modal-calendar');
 
@@ -484,7 +485,7 @@ class Calendar {
    }
 
    // Предназначен для добавления события клика по фону календаря
-   static handleOverlay() {
+   static handleOverlay () {
       // Фон модального окна
       Calendar.overlay = mQS(document, '.calendar-overlay', 3);
       Calendar.overlay.addEventListener('click', () => {
@@ -497,7 +498,7 @@ class Calendar {
    // field      Element : поле для выбора даты
    // Возвращает параметры------------------------------------------
    // calendar   Calendar : объект календаря
-   static getInstance(field) {
+   static getInstance (field) {
 
       if (!Calendar.instance) {
          Calendar.instance = new Calendar(field);
@@ -511,7 +512,7 @@ class Calendar {
    // elem           Element : элемент, для которого нужно получить координаты
    // Возвращает параметры------------------------------
    // coordinates     Object : координаты элемента
-   static getCoords(elem) {
+   static getCoords (elem) {
       let box = elem.getBoundingClientRect();
 
       return {

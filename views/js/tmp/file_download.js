@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // functions========================================
 
    // Предназначен для удаления стандартных событий перетаскивания
-   function clearDefaultDropEvents() {
+   function clearDefaultDropEvents () {
       let events = ['dragenter', 'dragover', 'dragleave', 'drop'];
       events.forEach(event_name => {
          document.addEventListener(event_name, event => {
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // Предназначен для отображения модального окна для загрузки файлов
    // Принимает параметры-------------------------------
    // select         Element : родительское поле
-   function showFileModal(select) {
+   function showFileModal (select) {
       clearModalTitle();
       disableScroll();
       file_modal.classList.add('active');
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
    }
 
    // Предназначен для очистки окна загрузки
-   function clearModalTitle() {
+   function clearModalTitle () {
       progress_bar.style.transition = '0s';
       modal_title.innerHTML = 'Выберите или перетащите файлы';
       progress_bar.style.width = '0';
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // Предназначен для получения данных о родительском поле
    // Принимает параметры-------------------------------
    // select         Element : родительское поле
-   function addFieldData(select) {
+   function addFieldData (select) {
       parent_node = select.closest('[data-id_structure_node]');
       parent_field = select.closest('[data-mapping_level_1]');
 
@@ -107,36 +107,36 @@ document.addEventListener('DOMContentLoaded', () => {
       }
    }
 
-/*   // Предназначен для добавления событий переноса файлов в окно загрузки
-   function handleDropArea() {
-      ;['dragenter', 'dragover'].forEach(eventName => {
-         drop_area.addEventListener(eventName, () => {
-            drop_area.classList.add('active');
+   /*   // Предназначен для добавления событий переноса файлов в окно загрузки
+      function handleDropArea() {
+         ;['dragenter', 'dragover'].forEach(eventName => {
+            drop_area.addEventListener(eventName, () => {
+               drop_area.classList.add('active');
+            });
+         })
+
+         ;['dragleave', 'drop'].forEach(eventName => {
+            drop_area.addEventListener(eventName, () => {
+               drop_area.classList.remove('active');
+            });
          });
-      })
 
-      ;['dragleave', 'drop'].forEach(eventName => {
-         drop_area.addEventListener(eventName, () => {
-            drop_area.classList.remove('active');
+         drop_area.addEventListener('drop', event => {
+            let files;
+
+            if (file_input.hasAttribute('multiple') || event.dataTransfer.files.length === 1) {
+               clearFileModal();
+               files = event.dataTransfer.files;
+               file_input.files = files;
+               addFilesToModal(files);
+            } else { // Попытка загрузить несколько файлов, где разрешен только 1
+               //TODO error
+            }
          });
-      });
-
-      drop_area.addEventListener('drop', event => {
-         let files;
-
-         if (file_input.hasAttribute('multiple') || event.dataTransfer.files.length === 1) {
-            clearFileModal();
-            files = event.dataTransfer.files;
-            file_input.files = files;
-            addFilesToModal(files);
-         } else { // Попытка загрузить несколько файлов, где разрешен только 1
-            //TODO error
-         }
-      });
-   }*/
+      }*/
 
    // Предназначен для удаления файлов из она загрузки
-   function clearFileModal() {
+   function clearFileModal () {
       modal_body.innerHTML = '';
       file_input.value = '';
    }
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // Предназначен для добавления файлов в окно загрузки
    // Принимает параметры-------------------------------
    // files       FileList : файлы для добавления
-   function addFilesToModal(files) {
+   function addFilesToModal (files) {
       Array.from(files).forEach(file => {
          modal_body.appendChild(createFileModalItem(file));
       });
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // Предназначен для создания элемента файла в окне загрузки
    // Принимает параметры-------------------------------
    // file        File : загруженный файл
-   function createFileModalItem(file) {
+   function createFileModalItem (file) {
       let file_item = document.createElement('DIV');
       file_item.classList.add('file-modal__item');
 
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // file         File : загруженный файл
    // Возвращает параметры------------------------------
    // size       string : размер файла с единицами измерения
-   function getFileSizeString(file) {
+   function getFileSizeString (file) {
       let size;
       let kb = file.size / 1024;
 
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // file_name         string : имя файла
    // Возвращает параметры------------------------------
    // icon_class        string : класс иконки
-   function getFileIconClass(file_name) {
+   function getFileIconClass (file_name) {
       let icon_class = 'fa-file-alt';
 
       if (file_name.includes('.pdf')) {
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
    }
 
    // Предназначен для обработки кнопки для загрузки файлов
-   function handleFileUploadButton() {
+   function handleFileUploadButton () {
       let upload_button = file_modal.querySelector('.file-modal__upload');
 
       upload_button.addEventListener('click', () => {
@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
    }
 
    // Предназначен для закрытия окна для загрузки файлов
-   function closeFileModal() {
+   function closeFileModal () {
       if (!is_uploading) {
          file_modal.classList.remove('active');
          overlay.classList.remove('active');
@@ -246,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
    }
 
    // Предназначен для загрузки файлов на сервер
-   function sendFiles() {
+   function sendFiles () {
 
       progress_bar.style.transition = '.15s';
       is_uploading = true;
@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // Предназначен для анимации состояния загрузки файлов
    // Принимает параметры-------------------------------
    // event      ProgressEvent : объект, содержащий информацию о состоянии загрузки
-   function uploadProgressCallback(event){
+   function uploadProgressCallback (event) {
       let download_percent = Math.round(100 * event.loaded / event.total);
       modal_title.innerHTML = `Загрузка ${download_percent}%`;
       progress_bar.style.width = download_percent + '%';
@@ -288,7 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // Предназначен для добавления файлов в родительское поле
    // Принимает параметры-------------------------------
    // files         Array[Object] : массив с файлами
-   async function putFilesToRow(files) {
+   async function putFilesToRow (files) {
       let parent_select = parent_field.querySelector('.field-select');
       if (parent_select) {
          parent_select.classList.add('filled');
@@ -316,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return 1;
    }
 
-   function putFile(file, file_item) {
+   function putFile (file, file_item) {
 
       API.checkFile(file_item.dataset.id, mapping_input_1.value, mapping_input_2.value)
          .then(check_response => {
@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // file             Object : объект, с информацией о файле
    // Возвращает параметры------------------------------
    // files_body       Element : блок, в который добавляется файл
-   function createFileElement(file, files_body) {
+   function createFileElement (file, files_body) {
       let file_item = document.createElement('DIV');
       file_item.classList.add('files__item');
       file_item.dataset.id = file.id;
@@ -364,7 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // Принимает параметры-------------------------------
    // file_item     Element : блок с файлом
    // file           Object : объект, с информацией о файле
-   function addFileInfo(file_item, file) {
+   function addFileInfo (file_item, file) {
       let file_info = document.createElement('DIV');
       file_info.classList.add('files__info');
       file_item.appendChild(file_info);

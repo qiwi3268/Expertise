@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Принимает параметры-------------------------------
 // sidebar_item      Element : элемент сайдбара
 // is_valid          boolean : заполнен ли блок анкеты
-function setSidebarItemState(sidebar_item, is_valid) {
+function setSidebarItemState (sidebar_item, is_valid) {
    let sidebar_icon = sidebar_item.querySelector('.sidebar-form__icon');
 
    if (is_valid) {

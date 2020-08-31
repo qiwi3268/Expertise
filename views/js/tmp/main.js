@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-function mQS(element, selector, error_code) {
+function mQS (element, selector, error_code) {
    let result = element.querySelector(selector);
 
    if (result) {
@@ -25,7 +25,7 @@ function mQS(element, selector, error_code) {
    }
 }
 
-function mClosest(element, selector, error_code) {
+function mClosest (element, selector, error_code) {
    let result = element.closest(selector);
 
    if (result) {
@@ -41,7 +41,7 @@ function mClosest(element, selector, error_code) {
 // date_string     string : строка с датой
 // Возвращает параметры------------------------------
 // date            Date : объект даты из строки
-function getDateFromString(date_string) {
+function getDateFromString (date_string) {
    let date_parts = date_string.split('.');
    return new Date(
       parseInt(date_parts[2]),
@@ -50,17 +50,17 @@ function getDateFromString(date_string) {
    );
 }
 
-function noScroll() {
+function noScroll () {
    // window.scrollTo(0, 0);
 }
 
-function disableScroll() {
+function disableScroll () {
    // document.body.style.position = 'fixed';
    // document.body.style.top = `-${window.scrollY}px`;
    // document.body.classList.add('stop-scrolling');
 }
 
-function enableScroll() {
+function enableScroll () {
    // document.body.style.position = '';
    // document.body.style.top = '';
    // document.body.classList.remove('stop-scrolling');
@@ -69,26 +69,25 @@ function enableScroll() {
 // Предназначен для получения id текущего заявления
 // Возвращает параметры------------------------------
 // id         string : id текущего заявления
-function getIdApplication() {
+function getIdApplication () {
    return document.querySelector('[name="id_application"]').value;
 }
 
 //---------
 
-function getFileListFromFile(file) {
+function getFileListFromFile (file) {
    let data_transfer = new DataTransfer();
    data_transfer.items.add(file);
    return data_transfer.files;
 }
 
-function getFileFromData(data, name) {
+function getFileFromData (data, name) {
    let blob = new Blob([data], {type: 'text/plain'});
    return new File([blob], name, {lastModified: Date.now()});
 }
 
 
-
-function createErrorAlert(error_code) {
+function createErrorAlert (error_code) {
 
 }
 

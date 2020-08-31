@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Предназначен для обработки кнопок удаления значений полей
-function handleClearFieldButtons() {
+function handleClearFieldButtons () {
    let clear_buttons = document.querySelectorAll('.body-card__icon-clear');
 
    clear_buttons.forEach(button => {
@@ -46,7 +46,7 @@ function handleClearFieldButtons() {
 // Предназначен для очищения полей в блоке
 // Принимает параметры-------------------------------
 // block         Element : очищаемый блок
-function clearBlock(block) {
+function clearBlock (block) {
    let dependent_fields = block.querySelectorAll('.field');
    dependent_fields.forEach(field => {
       removeRowValue(field);
@@ -62,7 +62,7 @@ function clearBlock(block) {
 // Предназначен для удаления значении в поле
 // Принимает параметры-------------------------------
 // row         Element : элемент поля
-function removeRowValue(field) {
+function removeRowValue (field) {
    // Удаляем записанное значение в зависимом поле
    field.querySelector('.field-result').value = '';
 

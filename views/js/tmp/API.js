@@ -1,11 +1,19 @@
 class API {
 
-   static uploadFiles(files, mapping_1, mapping_2, id_structure_node = null, upload_callback = null) {
+   static uploadFiles (files, mapping_1, mapping_2, id_structure_node = null, upload_callback = null) {
 
       return new Promise((resolve, reject) => {
          let form_data = this.getUploadFormData(files, mapping_1, mapping_2, id_structure_node);
 
-         XHR('post', '/home/API_file_uploader', form_data, null, 'json', null, upload_callback)
+         XHR(
+            'post',
+            '/home/API_file_uploader',
+            form_data,
+            null,
+            'json',
+            null,
+            upload_callback
+         )
             .then(response => {
 
                switch (response.result) {
@@ -20,7 +28,7 @@ class API {
                      break;
 
                   default:
-                     reject(`Ошибка при загрузке файла на сервер:\n${response.error_message ? response.error_message : response}`);
+                     reject(`Ошибка при загрузке файла на сервер:\n${response.error_message || response}`);
 
                }
 
@@ -32,7 +40,7 @@ class API {
 
    }
 
-   static getUploadFormData(files, mapping_1, mapping_2, id_structure_node) {
+   static getUploadFormData (files, mapping_1, mapping_2, id_structure_node) {
       let form_data = new FormData();
       form_data.append('id_application', getIdApplication());
       form_data.append('mapping_level_1', mapping_1);
@@ -54,12 +62,18 @@ class API {
       return form_data;
    }
 
-   static checkFile(id_file, mapping_1, mapping_2) {
+   static checkFile (id_file, mapping_1, mapping_2) {
 
       return new Promise((resolve, reject) => {
          let form_data = this.getFileCheckFormData(id_file, mapping_1, mapping_2);
 
-         XHR('post', '/home/API_file_checker', form_data, null, 'json')
+         XHR(
+            'post',
+            '/home/API_file_checker',
+            form_data,
+            null,
+            'json'
+         )
             .then(response => {
 
                switch (response.result) {
@@ -69,7 +83,7 @@ class API {
                      break;
 
                   default:
-                     reject(`Ошибка при проверке файла:\n${response.error_message ? response.error_message : response}`);
+                     reject(`Ошибка при проверке файла:\n${response.error_message || response}`);
 
                }
 
@@ -82,7 +96,7 @@ class API {
 
    }
 
-   static getFileCheckFormData(id_file, mapping_1, mapping_2) {
+   static getFileCheckFormData (id_file, mapping_1, mapping_2) {
       let form_data = new FormData();
       form_data.append('id_application', getIdApplication());
       form_data.append('id_file', id_file);
@@ -96,16 +110,24 @@ class API {
    // check_result     Object : объект, содержащий данные о расположении файла
    // Возвращает параметры------------------------------
    // url              string : относительный путь для скачивания файла
-   static getUnloadFileURN(check_result) {
+   static getUnloadFileURN (check_result) {
       return `/home/file_unloader?fs_name=${check_result.fs_name}&file_name=${check_result.file_name}`;
    }
 
-   static externalSignatureVerify(fs_name_data, fs_name_sign, mapping_1, mapping_2) {
+   static externalSignatureVerify (fs_name_data, fs_name_sign, mapping_1, mapping_2) {
 
       return new Promise((resolve, reject) => {
          let form_data = this.getExternalVerifyFormData(fs_name_data, fs_name_sign, mapping_1, mapping_2);
 
-         return XHR('post', '/home/API_external_signature_verifier', form_data, null, 'json', null, null)
+         return XHR(
+            'post',
+            '/home/API_external_signature_verifier',
+            form_data,
+            null,
+            'json',
+            null,
+            null
+         )
             .then(response => {
 
                switch (response.result) {
@@ -120,7 +142,7 @@ class API {
                      break;
 
                   default:
-                     reject(`Ошибка при проверке открепленной подписи:\n${response.error_message ? response.error_message : response}`);
+                     reject(`Ошибка при проверке открепленной подписи:\n${response.error_message || response}`);
 
                }
 
@@ -132,7 +154,7 @@ class API {
 
    }
 
-   static getExternalVerifyFormData(fs_name_data, fs_name_sign, mapping_1, mapping_2) {
+   static getExternalVerifyFormData (fs_name_data, fs_name_sign, mapping_1, mapping_2) {
       let form_data = new FormData();
       form_data.append('fs_name_data', fs_name_data);
       form_data.append('fs_name_sign', fs_name_sign);
@@ -141,12 +163,20 @@ class API {
       return form_data;
    }
 
-   static getFileHash(algorithm, fs_name) {
+   static getFileHash (algorithm, fs_name) {
 
       return new Promise((resolve, reject) => {
          let form_data = this.getFileHashFormData(algorithm, fs_name);
 
-         XHR('post', '/home/API_get_file_hash', form_data, null, 'json', null, null)
+         XHR(
+            'post',
+            '/home/API_get_file_hash',
+            form_data,
+            null,
+            'json',
+            null,
+            null
+         )
             .then(response => {
 
                switch (response.result) {
@@ -156,7 +186,7 @@ class API {
                      break;
 
                   default:
-                     reject(`Ошибка при получении хэша файла: \n${response.error_message ? response.error_message : response}`);
+                     reject(`Ошибка при получении хэша файла: \n${response.error_message || response}`);
 
                }
 
@@ -170,19 +200,27 @@ class API {
 
    }
 
-   static getFileHashFormData(algorithm, fs_name) {
+   static getFileHashFormData (algorithm, fs_name) {
       let form_data = new FormData();
       form_data.append('sign_algorithm', algorithm);
       form_data.append('fs_name', fs_name);
       return form_data;
    }
 
-   static internalSignatureVerify(fs_name, mapping_1, mapping_2, verify_callback = null) {
+   static internalSignatureVerify (fs_name, mapping_1, mapping_2, verify_callback = null) {
 
       return new Promise((resolve, reject) => {
          let form_data = this.getInternalVerifyFormData(fs_name, mapping_1, mapping_2);
 
-         XHR('post', '/home/API_internal_signature_verifier', form_data, null, 'json', null, verify_callback)
+         XHR(
+            'post',
+            '/home/API_internal_signature_verifier',
+            form_data,
+            null,
+            'json',
+            null,
+            verify_callback
+         )
             .then(response => {
 
                switch (response.result) {
@@ -200,7 +238,7 @@ class API {
                      break;
 
                   default:
-                     reject(`Ошибка при проверке встроенной подписи: \n${response.error_message ? response.error_message : response}`);
+                     reject(`Ошибка при проверке встроенной подписи: \n${response.error_message || response}`);
 
                }
 
@@ -212,7 +250,7 @@ class API {
       });
    }
 
-   static getInternalVerifyFormData(fs_name, mapping_1, mapping_2) {
+   static getInternalVerifyFormData (fs_name, mapping_1, mapping_2) {
       let form_data = new FormData();
       form_data.append('fs_name_sign', fs_name);
       form_data.append('mapping_level_1', mapping_1);

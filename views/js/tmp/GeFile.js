@@ -7,13 +7,13 @@ class GeFile {
    delete_button;
    sign_button;
 
-   constructor(file_element, files_block) {
+   constructor (file_element, files_block) {
       this.element = file_element;
       this.container = files_block;
    }
 
    // Предназначен для добавления обработчиков кнопок действий с файлами
-   handleActionButtons() {
+   handleActionButtons () {
       this.actions = this.element.querySelector('.files__actions');
 
       this.unload_button = this.actions.querySelector('.files__unload');
@@ -34,7 +34,7 @@ class GeFile {
    }
 
    // Предназначен для добавления действия для скачивания файла
-   handleUnloadButton() {
+   handleUnloadButton () {
 
       this.unload_button.addEventListener('click', () => {
 
@@ -56,7 +56,7 @@ class GeFile {
    }
 
    // Предназначен для добавления действия удаления файла
-   handleDeleteButton() {
+   handleDeleteButton () {
       this.delete_button.addEventListener('click', () => {
 
          FileNeeds.putFileToDelete(
@@ -75,7 +75,7 @@ class GeFile {
    }
 
    // Предназначен для удалений блока с файлом
-   removeElement() {
+   removeElement () {
       this.element.remove();
 
       if (!this.container.querySelector('.files__item')) {
@@ -88,13 +88,13 @@ class GeFile {
       }
    }
 
-   handleSignButton() {
+   handleSignButton () {
       this.sign_button.addEventListener('click', () => {
          SignHandler.getInstance().open(this.element);
       });
    }
 
-   static createElement(file_data, files_block, actions) {
+   static createElement (file_data, files_block, actions) {
       let file_item = document.createElement('DIV');
       file_item.classList.add('files__item');
       file_item.dataset.id = file_data.id;
@@ -105,24 +105,24 @@ class GeFile {
       file.addActions(file)
    }
 
-   addActions(file, actions) {
+   addActions (file, actions) {
       actions.forEach(action => action(file));
       file.handleActionButtons();
    }
 
-   static sign(file) {
+   static sign (file) {
       let sign_button = document.createElement('I');
       sign_button.classList.add('files__sign', 'fas', 'fa-file-signature');
       file.actions.appendChild(sign_button);
    }
 
-   static unload(file) {
+   static unload (file) {
       let unload_button = document.createElement('I');
       unload_button.classList.add('files__unload', 'fas', 'fa-file-download');
       file.element.appendChild(unload_button);
    }
 
-   static delete(file) {
+   static delete (file) {
       let delete_button = document.createElement('I');
       delete_button.classList.add('files__delete', 'fas', 'fa-trash');
       file.element.appendChild(delete_button);
@@ -132,7 +132,7 @@ class GeFile {
    // Принимает параметры-------------------------------
    // file_item     Element : блок с файлом
    // file           Object : объект, с информацией о файле
-   addInfo(file_data) {
+   addInfo (file_data) {
       let file_info = document.createElement('DIV');
       file_info.classList.add('files__info');
       this.element.appendChild(file_info);
@@ -147,7 +147,7 @@ class GeFile {
       file_info.appendChild(file_name);
    }
 
-   static getFileSizeString(file_data) {
+   static getFileSizeString (file_data) {
       let size;
       let kb = file_data.size / 1024;
 
@@ -160,7 +160,7 @@ class GeFile {
       return size;
    }
 
-   static getFileIconClass(file_name) {
+   static getFileIconClass (file_name) {
       let icon_class = 'fa-file-alt';
 
       if (file_name.includes('.pdf')) {

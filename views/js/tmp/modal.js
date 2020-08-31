@@ -21,23 +21,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
    initializeModalSelects(document);
 
-/*   modal_selects.forEach(select => {
-      select.addEventListener('click', () => {
-         modal = getModalBySelect(select);
+   /*   modal_selects.forEach(select => {
+         select.addEventListener('click', () => {
+            modal = getModalBySelect(select);
 
-         if (!modal.is_empty) {
-            modal.show();
-         } else {
-            createAlert(modal.alert_message);
-            modal.alert_message = '';
-         }
-         disableScroll();
+            if (!modal.is_empty) {
+               modal.show();
+            } else {
+               createAlert(modal.alert_message);
+               modal.alert_message = '';
+            }
+            disableScroll();
 
-      });
-   });*/
+         });
+      });*/
 });
 
-function initializeModalSelects(block) {
+function initializeModalSelects (block) {
    let modal_selects = block.querySelectorAll('.modal-select');
 
    modal_selects.forEach(select => {
@@ -62,7 +62,7 @@ function initializeModalSelects(block) {
 // Возвращает параметры------------------------------------------
 // modal      Modal : объект модального окна
 //
-function getModalBySelect(select) {
+function getModalBySelect (select) {
    let modal;
    let modal_name;
    let parent_row = select.closest('.field');
@@ -90,7 +90,7 @@ function getModalBySelect(select) {
 // Принимает параметры-------------------------------------------
 // modal      (Element, Modal) : модальное окно, которое должно быть закрыто
 //
-function closeModal(modal) {
+function closeModal (modal) {
    if (modal instanceof Modal) {
       modal.close();
    } else {
@@ -104,7 +104,7 @@ function closeModal(modal) {
 // Принимает параметры-------------------------------------------
 // message    string : отображаемое сообщение
 //
-function createAlert(message) {
+function createAlert (message) {
    modal = document.querySelector('.alert-modal');
    modal.querySelector('.alert-modal__message').innerHTML = message;
    modal.classList.add('active');
@@ -118,7 +118,7 @@ function createAlert(message) {
 // Принимает параметры-------------------------------------------
 // modal      Element : модальное окно, в которое добавляется кнопка
 //
-function createModalCloseButton(modal) {
+function createModalCloseButton (modal) {
    let close_button = document.createElement('I');
    close_button.classList.add('modal__close', 'fas', 'fa-times');
    close_button.addEventListener('click', () => {
@@ -160,7 +160,7 @@ class Modal {
    // Предназначен для создания объекта модального окна
    // Принимает параметры-------------------------------------------
    // select     Element : поле, для которого вызывается модальное окно
-   constructor(select) {
+   constructor (select) {
       this.select = select;
 
       this.parent_row = this.select.closest('.field');
@@ -185,7 +185,7 @@ class Modal {
 
    // Предназначен для инициализации страниц с элементами из справочника модального окна
    //
-   initPages() {
+   initPages () {
       this.pages = this.content.querySelectorAll('.modal__page');
 
       if (this.pages.length === 0) {
@@ -199,7 +199,7 @@ class Modal {
    // is_empty   boolean : false - было создано непустое модальное окно
    //                      true - нет элементов для добавления, создано сообщение для оповещения
    //
-   createNewPages() {
+   createNewPages () {
       // Инпут, в котором хранятся все элементы для текущего модального окна
       let related_input = document.querySelector(`[data-target_change="${this.name}"]`);
       let related_modal_input;
@@ -225,9 +225,9 @@ class Modal {
                is_empty = true;
 
                // if (related_modal_input.closest) {
-                  let related_modal_card = related_modal_input.closest('.field');
-                  let related_modal_title = related_modal_card.querySelector('.field-title').innerHTML;
-                  this.alert_message = `Выберите ${related_modal_title.toLowerCase()}`;
+               let related_modal_card = related_modal_input.closest('.field');
+               let related_modal_title = related_modal_card.querySelector('.field-title').innerHTML;
+               this.alert_message = `Выберите ${related_modal_title.toLowerCase()}`;
                // }
             }
          }
@@ -244,7 +244,7 @@ class Modal {
    // Принимает параметры-------------------------------------------
    // new_pages  Array : массив страниц для добавления
    //
-   putItemsToModal(new_pages) {
+   putItemsToModal (new_pages) {
       let modal_page;
       let modal_item;
 
@@ -269,7 +269,7 @@ class Modal {
 
    // Предназначен для добавления события каждому элементу страниц
    //
-   initItems() {
+   initItems () {
       let items;
 
       this.pages.forEach(page => {
@@ -299,7 +299,7 @@ class Modal {
 
    // Предназначен для удаления элементов и выбранных значений зависимых модальных окон
    //
-   clearRelatedModals() {
+   clearRelatedModals () {
       // Берем объекты модальных окон всех зависимых полей
       let dependent_modals = this.getDependentModals();
 
@@ -316,7 +316,7 @@ class Modal {
    // Предназначен для удаления выбранного значения из родительского поля
    // Принимает параметры-------------------------------
    // modal         Modal : объект модального окна
-   clearModal(modal) {
+   clearModal (modal) {
       modal.content.innerHTML = '';
       modal.result_input.value = '';
       modal.select.classList.remove('filled', 'invalid');
@@ -334,7 +334,7 @@ class Modal {
    // Возвращает параметры------------------------------------------
    // dependent_modals  Array[Modal] : массив с объектами зависимых модальных окон
    //
-   getDependentModals() {
+   getDependentModals () {
       let dependent_modals = [];
       let dependent_inputs = document.querySelectorAll(`[data-when_change="${this.name}"]`);
       let dependent_modal;
@@ -352,7 +352,7 @@ class Modal {
 
    // Предназначен для закрытия объекта модального окна
    //
-   close() {
+   close () {
       if (this.active_page) {
          this.active_page.classList.remove('active');
       }
@@ -372,7 +372,7 @@ class Modal {
 
    // Предназначен для отображения на странице модального окна
    //
-   show() {
+   show () {
       this.element.classList.add('active');
       this.active_page = this.pages[0];
       this.active_page.classList.add('active');
@@ -384,7 +384,7 @@ class Modal {
    // Принимает параметры-------------------------------------------
    // new_page_num  number : номер новой страницы
    //
-   changeActivePage(new_page_num) {
+   changeActivePage (new_page_num) {
       this.active_page.classList.remove('active');
       this.active_page = this.content.querySelector(`.modal__page[data-page="${new_page_num}"]`);
       this.active_page.classList.add('active');
@@ -392,7 +392,7 @@ class Modal {
 
    // Предназначени для добавления в модальное окно блока с пагинацией
    //
-   handlePagination() {
+   handlePagination () {
       if (!this.pagination) {
          this.pagination = new Pagination(this);
       }
@@ -403,6 +403,7 @@ class Modal {
       this.pagination.element.style.display = 'flex';
    }
 }
+
 //Modal--------------------------------------------------------------------------------------------
 
 //Pagination----------------------------------------------------------------------------------------
@@ -419,7 +420,7 @@ class Pagination {
    // Номер текущей страницы
    page_label;
 
-   constructor(modal) {
+   constructor (modal) {
       this.element = document.createElement('DIV');
       this.element.classList.add('modal__pagination', 'pagination');
       this.modal = modal;
@@ -438,7 +439,7 @@ class Pagination {
 
    // Предназначен для создания стрелок переключения страниц и добавления им событий
    //
-   initArrows() {
+   initArrows () {
       this.arrow_left = Pagination.createPaginationArrow('left');
       this.arrow_right = Pagination.createPaginationArrow('right');
 
@@ -481,7 +482,7 @@ class Pagination {
    // Принимает параметры-------------------------------------------
    // class_name    string : направление стрелки
    //
-   static createPaginationArrow(class_name) {
+   static createPaginationArrow (class_name) {
       let arrow = document.createElement('I');
       arrow.classList.add(
          'pagination__item',
@@ -493,4 +494,5 @@ class Pagination {
       return arrow;
    }
 }
+
 //Pagination----------------------------------------------------------------------------------------

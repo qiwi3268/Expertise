@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
    handleChangeSortTypeButtons();
 
    // Предназначен для обработок кнопок изменения количества строк на странице в таблице навигации
-   function handleChangeTableSizeButtons() {
+   function handleChangeTableSizeButtons () {
       let size_header = document.querySelector('.navigation-table__size-header');
 
       let size_buttons = size_header.querySelectorAll('.navigation-table__amount');
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // Принимает параметры-------------------------------
    // button         Element : кнопка с выбранным количеством строк
    // size_header    Element : родительский блок с кнопками
-   function changeTableSize(button, size_header) {
+   function changeTableSize (button, size_header) {
       let form_data = getNavigationTableSizeFormData(button);
 
       XHR('post', request_urn, form_data, null, 'json', null, null)
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // related_button      Element : кнопка с выбранным количеством строк
    // Возвращает параметры------------------------------
    // form_data          FormData : объект для изменения размера таблицы
-   function getNavigationTableSizeFormData(related_button) {
+   function getNavigationTableSizeFormData (related_button) {
       let form_data = new FormData();
       let view_name = document.querySelector('[name="navigation__view-name"]').value;
       form_data.append('view_name', view_name);
@@ -61,14 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
    // Принимает параметры-------------------------------
    // size_header       Element : родительский блок с кнопками
    // new_size_button   Element : новый выбранный размер
-   function changeSelectedSize(size_header, new_size_button) {
+   function changeSelectedSize (size_header, new_size_button) {
       let selected_size = size_header.querySelector('[data-is_selected="1"]');
       selected_size.dataset.is_selected = '0';
       new_size_button.dataset.is_selected = '1';
    }
 
    // Предназначен для обработки кнопок выбора сортировки таблицы навигации
-   function handleChangeSortTypeButtons() {
+   function handleChangeSortTypeButtons () {
       let sort_header = document.querySelector('.navigation-table__sort-header');
 
       let sort_buttons = sort_header.querySelectorAll('.navigation-table__category');
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // Предназначен для изменения сортировки таблицы навигации
    // Принимает параметры-------------------------------
    // button       Element : кнопка с выбранным типом сортировки
-   function changeSortType(button) {
+   function changeSortType (button) {
       button.dataset.sort_type = button.dataset.sort_type === 'ASC' ? 'DESC' : 'ASC';
 
       let form_data = getNavigationTableSortFormData(button);
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // related_button      Element : кнопка с выбранным количеством строк
 // Возвращает параметры------------------------------
 // form_data          FormData : объект для изменения сортировки таблицы
-function getNavigationTableSortFormData(related_button) {
+function getNavigationTableSortFormData (related_button) {
    let form_data = new FormData();
    let view_name = document.querySelector('[name="navigation__view-name"]').value;
    form_data.append('view_name', view_name);

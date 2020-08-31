@@ -10,7 +10,7 @@ class PartBlock {
 
    data;
 
-   constructor(multiple_block) {
+   constructor (multiple_block) {
       this.parent = multiple_block;
 
       this.element = this.parent.createBlock(this.parent.element, 'part');
@@ -22,7 +22,7 @@ class PartBlock {
       this.handleCancelButton();
    }
 
-   handleSaveButton() {
+   handleSaveButton () {
       let save_btn = this.actions.querySelector('.save');
       save_btn.addEventListener('click', () => {
          let part_data = new PartData(this.element);
@@ -36,7 +36,7 @@ class PartBlock {
       });
    }
 
-   savePart(part_data) {
+   savePart (part_data) {
       this.parent.is_changed = 'true';
       this.data = part_data;
 
@@ -52,7 +52,7 @@ class PartBlock {
 
    }
 
-   createShortElement() {
+   createShortElement () {
       this.short_block = this.parent.createBlock(this.element, 'part_short');
 
       let delete_btn = this.short_block.querySelector('.body-card__part-delete');
@@ -76,14 +76,14 @@ class PartBlock {
       changeParentCardMaxHeight(this.parent.element);
    }
 
-   handleCancelButton() {
+   handleCancelButton () {
       this.cancel_btn = this.actions.querySelector('.cancel');
       this.cancel_btn.addEventListener('click', this.element.remove());
    }
 
 }
 
-function PartData(part_block) {
+function PartData (part_block) {
    let dependent_blocks = part_block.querySelectorAll('.block[data-active="true"]');
 
    dependent_blocks.forEach(block => {

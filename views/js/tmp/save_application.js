@@ -17,13 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
    });
 });
 
-function closeSaveModal(save_overlay) {
+function closeSaveModal (save_overlay) {
    let save_modal = document.querySelector('.save-modal');
    save_modal.classList.remove('active');
    save_overlay.classList.remove('active');
 }
 
-function saveApplication() {
+function saveApplication () {
    let application_form = document.getElementById('application');
    let request_urn = '/home/application/API_save_form';
 
@@ -56,7 +56,7 @@ function saveApplication() {
       });
 }
 
-function saveMultipleBlocks() {
+function saveMultipleBlocks () {
 
 
    let multiple_blocks = document.querySelectorAll('.block[data-type="multiple"]');
@@ -74,14 +74,14 @@ function saveMultipleBlocks() {
    });
 }
 
-function showSaveModal() {
+function showSaveModal () {
    let save_modal = document.querySelector('.save-modal');
    let save_overlay = document.querySelector('.save-overlay');
    save_modal.classList.add('active');
    save_overlay.classList.add('active');
 }
 
-function updateFileNeeds() {
+function updateFileNeeds () {
    let request_urn = '/home/API_file_needs_setter';
    let form_data = getFilesNeedsFormData();
 
@@ -109,7 +109,7 @@ function updateFileNeeds() {
       });
 }
 
-function getFilesNeedsFormData() {
+function getFilesNeedsFormData () {
    let form_data = new FormData();
    form_data.append('id_application', getIdApplication());
    form_data.append('file_needs_json', FileNeeds.getFileNeedsJSON());

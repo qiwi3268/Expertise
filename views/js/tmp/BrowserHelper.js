@@ -1,20 +1,19 @@
 // Вспомогательный класс для определения поддерживаемые свойств текущего браузера
 //
-class BrowserHelper{
+class BrowserHelper {
 
 
-
-   static checkBrowser() {
+   static checkBrowser () {
       //TODO alert
 
       // Блок проверок на непподерживаемые браузеры
-      if(BrowserHelper.isInternetExplorer()){
+      if (BrowserHelper.isInternetExplorer()) {
          console.log('Браузер не соответствует требованиям АИС (Internet Explorer не поддерживается)');
          return false;
-      } else if(BrowserHelper.isEdge()) {
+      } else if (BrowserHelper.isEdge()) {
          console.log('Браузер не соответствует требованиям АИС (Edge не поддерживается)');
          return false;
-      } else if(!BrowserHelper.canPromise()) {
+      } else if (!BrowserHelper.canPromise()) {
          console.log('Браузер не соответствует требованиям АИС (отсутствует поддержка promise)');
          return false;
       }
@@ -23,15 +22,15 @@ class BrowserHelper{
    }
 
    // Проверка браузера на наличие promise
-   static canPromise(){
+   static canPromise () {
       return !!window.Promise;
    }
 
    // Проверка браузера на наличие File Api
-   static canFileApi(){
-      if(!!window.FileReader){
+   static canFileApi () {
+      if (!!window.FileReader) {
          let fileReader = new FileReader();
-         if(typeof(fileReader.readAsDataURL) == 'function'){
+         if (typeof (fileReader.readAsDataURL) == 'function') {
             return true;
          }
       }
@@ -39,16 +38,16 @@ class BrowserHelper{
    }
 
    // Проверка на браузер IE
-   static isInternetExplorer(){
-      let retVal = (("Microsoft Internet Explorer" == navigator.appName) || // IE < 11
-         navigator.userAgent.match(/Trident\/./i)); // IE 11
-      return retVal;
+   static isInternetExplorer () {
+      return (
+         ("Microsoft Internet Explorer" == navigator.appName)
+         || navigator.userAgent.match(/Trident\/./i)
+      );
    };
 
    // Проверка на браузер Edge
-   static isEdge(){
-      let retVal = navigator.userAgent.match(/Edge\/./i);
-      return retVal;
+   static isEdge () {
+      return navigator.userAgent.match(/Edge\/./i);
    }
 
 

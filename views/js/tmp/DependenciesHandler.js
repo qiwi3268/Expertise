@@ -16,7 +16,7 @@ class DependenciesHandler {
    static blocks_container;
    static multiple_block;
 
-   static initialize(result_input) {
+   static initialize (result_input) {
       this.result_input = result_input;
 
       let parent_block = this.result_input.closest('.block');
@@ -32,7 +32,7 @@ class DependenciesHandler {
       }
    }
 
-   static handleDependencies(result_input) {
+   static handleDependencies (result_input) {
       this.initialize(result_input);
 
       let field_name = this.result_input.name;
@@ -52,7 +52,7 @@ class DependenciesHandler {
       changeParentCardMaxHeight(this.result_input);
    }
 
-   static handleBlockDependencies(dependencies) {
+   static handleBlockDependencies (dependencies) {
       let field_name = this.result_input.name;
       let field_value = this.result_input.value;
       let dependent_values = new Map();
@@ -105,12 +105,12 @@ class DependenciesHandler {
 
    }
 
-   static getBlockStateSetter(dependency_key) {
+   static getBlockStateSetter (dependency_key) {
       let setBlockState;
 
       if (!isNaN(parseInt(dependency_key)) || dependency_key === '') {
 
-         setBlockState = function(block_state) {
+         setBlockState = function (block_state) {
             return block_state;
          };
 
@@ -119,7 +119,7 @@ class DependenciesHandler {
          let field_value = JSON.parse(this.result_input.value);
          let includes = dependency_key.replace('JSON_TRUE_OR:', '').split('#');
 
-         setBlockState = function(block_state) {
+         setBlockState = function (block_state) {
 
             if (field_value.find(field_value => includes.includes(field_value))) {
                return block_state;
@@ -134,7 +134,7 @@ class DependenciesHandler {
          let field_value = JSON.parse(this.result_input.value);
          let excludes = dependency_key.replace('JSON_FALSE_AND:', '').split('#');
 
-         setBlockState = function(block_state) {
+         setBlockState = function (block_state) {
 
             if (!field_value.find(field_value => excludes.includes(field_value))) {
                return block_state;
@@ -146,7 +146,7 @@ class DependenciesHandler {
       return setBlockState;
    }
 
-   static handleRadioDependencies() {
+   static handleRadioDependencies () {
       let dependency_inputs = radio_dependency.querySelectorAll(`input[data-when_change=${this.result_input.name}]`);
 
 
@@ -183,7 +183,7 @@ class DependenciesHandler {
       });
    }
 
-   static handleRequireDependencies(dependencies) {
+   static handleRequireDependencies (dependencies) {
       let dependent_row_names = dependencies[this.result_input.value];
 
       if (dependent_row_names) {

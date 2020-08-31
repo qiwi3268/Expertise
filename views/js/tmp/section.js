@@ -21,7 +21,7 @@ window.addEventListener('load', () => {
 });
 
 // Предназначен для обавления событие изменения размера текстового поля для нормального отображения размера блока
-function handleTextAreasResize() {
+function handleTextAreasResize () {
    let text_areas = document.querySelectorAll('textarea.application-input');
    text_areas.forEach(text_area => {
       text_area.addEventListener('mousedown', () => {
@@ -44,7 +44,7 @@ function handleTextAreasResize() {
 // Предназначен для раскрытия или сужения блока анкеты
 // Принимает параметры-------------------------------
 // card       Element : блок, для раскрытия или сужения
-function expandCard(card) {
+function expandCard (card) {
    let card_arrow;
    let card_body;
    if (card) {
@@ -69,7 +69,7 @@ function expandCard(card) {
 // Принимает параметры-------------------------------
 // inner_element       Element : элемент, по которому получаем родительский блок анкеты
 // value               string : значение высоты
-function changeParentCardMaxHeight(inner_element, value) {
+function changeParentCardMaxHeight (inner_element, value) {
    let card_body = inner_element.closest('.card-form__body');
 
    if (value) {
@@ -83,6 +83,6 @@ function changeParentCardMaxHeight(inner_element, value) {
 // при изменении размера текстового поля
 // Принимает параметры-------------------------------
 // text_area       Element : текстовое поле, которое изменяется
-function expandListener(text_area) {
+function expandListener (text_area) {
    changeParentCardMaxHeight(text_area);
 }

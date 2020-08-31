@@ -19,7 +19,7 @@ class MultipleBlock {
    templates_container;
    is_changed = false;
 
-   constructor(main_block) {
+   constructor (main_block) {
 
       this.element = main_block;
       MultipleBlock.multiple_blocks.set(this.element.dataset.block_name, this);
@@ -37,11 +37,11 @@ class MultipleBlock {
 
    }
 
-   static getBlockByName(name) {
+   static getBlockByName (name) {
       return MultipleBlock.multiple_blocks.get(name);
    }
 
-   createBlock(main_block, dependent_block_name) {
+   createBlock (main_block, dependent_block_name) {
 
       let template = this.templates_container.querySelector(`[data-block_name='${dependent_block_name}']`);
       let new_block = template.cloneNode(true);
@@ -60,12 +60,12 @@ class MultipleBlock {
       return new_block;
    }
 
-   addEventListeners(new_block) {
+   addEventListeners (new_block) {
       initializeModalSelects(new_block);
       initializeRadio(new_block);
    }
 
-   getPartsDataJSON() {
+   getPartsDataJSON () {
       return JSON.stringify(this.parts.map(part => part.data));
    }
 

@@ -2,11 +2,11 @@ class FileChecker {
 
    static extensions = ['.pdf', '.sig', '.docx', '.xlsx'];
 
-   static checkSize(file_size) {
+   static checkSize (file_size) {
       return file_size / 1024 / 1024 < 80;
    }
 
-   static checkExtension(file_name, extension) {
+   static checkExtension (file_name, extension) {
       let is_valid;
 
       if (!extension) {
@@ -18,7 +18,7 @@ class FileChecker {
       return is_valid;
    }
 
-   static IsReadyToUpload(files) {
+   static IsReadyToUpload (files) {
       for (let file of files) {
          if (!FileChecker.checkExtension(file.name) || !FileChecker.checkSize(file.size)) {
             return false;

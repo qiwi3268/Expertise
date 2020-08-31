@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Предназначен для валидации модального окна
 // Принимает параметры-------------------------------
 // modal         Modal : объект модального окна
-function validateModal(modal) {
+function validateModal (modal) {
    let parent_field = modal.element.closest('.field');
    let field_value = parent_field.querySelector('.modal-select');
    let error = parent_field.querySelector('.field-error');
@@ -55,7 +55,7 @@ function validateModal(modal) {
 // Принимает параметры-------------------------------
 // input         Element : поле для валидации
 // pattern        string : тип поля
-function validateField(input, pattern) {
+function validateField (input, pattern) {
    let regex;
    let error_message;
    switch (pattern) {
@@ -97,7 +97,7 @@ function validateField(input, pattern) {
 // input         Element : поле для валидации
 // regex          string : регулярное выражение, по которому проверяется значение
 // message        string : сообщение с ошибкой для отображения
-function validateInput(input, regex, message) {
+function validateInput (input, regex, message) {
    let value = input.value;
    let parent_field = input.closest('.field');
    let error_element = parent_field.querySelector('.field-error');
@@ -128,7 +128,7 @@ function validateInput(input, regex, message) {
 // Предназначен для валидации блока анкеты и отображения состояния в связанном элементе сайдбара
 // Принимает параметры-------------------------------
 // card         Element : блок для валидации
-function validateCard(card) {
+function validateCard (card) {
    let card_name = card.dataset.type;
    let is_valid = isValidCard(card);
 
@@ -144,7 +144,7 @@ function validateCard(card) {
 // card         Element : блок для валидации
 // Возвращает параметры------------------------------
 // is_valid     boolean : заполнен ли блок
-function isValidCard(card) {
+function isValidCard (card) {
    //TODO проверка файлов
    let required_fields = card.querySelectorAll('.field[data-required="true"]:not([data-mapping_level_1])');
    let field_value;

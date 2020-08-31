@@ -12,7 +12,7 @@ class FileNeeds {
 
    // Предназначен для добавления файлов в массивы для сохранения и удаления
    // во всех блоках с файлами
-   static putFilesToFileNeeds() {
+   static putFilesToFileNeeds () {
       let file_blocks = document.querySelectorAll('.files');
       let parent_field;
       let is_active;
@@ -40,7 +40,7 @@ class FileNeeds {
    // Принимает параметры-------------------------------
    // files            Array[Element] : массив с элементами файлов
    // parent_field            Element : родительское поле блока с файлами
-   static saveFiles(files, parent_field) {
+   static saveFiles (files, parent_field) {
       files.forEach(file => {
          FileNeeds.putFileToSave(
             file.dataset.id,
@@ -58,7 +58,7 @@ class FileNeeds {
    // mapping_level_1     string : первый маппинг
    // mapping_level_2     string : второй маппинг
    // file_item          Element : элемент файла
-   static putFileToSave(id_file, mapping_level_1, mapping_level_2, file_item) {
+   static putFileToSave (id_file, mapping_level_1, mapping_level_2, file_item) {
       let is_file_saved = file_item.dataset.saved === 'true';
       if (!is_file_saved) {
          //TODO в метод
@@ -68,7 +68,7 @@ class FileNeeds {
       }
    }
 
-   static putSignToSave(id_sign, mapping_level_1, mapping_level_2) {
+   static putSignToSave (id_sign, mapping_level_1, mapping_level_2) {
       let file_data = FileNeeds.getFileData(id_sign, mapping_level_1, mapping_level_2);
       FileNeeds.sign_needs.to_save.set(id_sign, file_data);
    }
@@ -80,7 +80,7 @@ class FileNeeds {
    // mapping_level_2     string : второй маппинг
    // Возвращает параметры------------------------------
    // file_data           Object : объект с данными файла
-   static getFileData(id_file, mapping_level_1, mapping_level_2) {
+   static getFileData (id_file, mapping_level_1, mapping_level_2) {
       return {
          id_file: parseInt(id_file),
          mapping_level_1: parseInt(mapping_level_1),
@@ -93,7 +93,7 @@ class FileNeeds {
    // files            Array[Element] : массив с элементами файлов
    // parent_field            Element : родительское поле блока с файлами
    // file_block              Element : родительский блок с файлами
-   static deleteFiles(files, parent_field, file_block) {
+   static deleteFiles (files, parent_field, file_block) {
       files.forEach(file => {
          FileNeeds.putFileToDelete(
             file.dataset.id,
@@ -111,7 +111,7 @@ class FileNeeds {
    // mapping_level_1     string : первый маппинг
    // mapping_level_2     string : второй маппинг
    // file_item          Element : элемент файла
-   static putFileToDelete(id_file, mapping_level_1, mapping_level_2, file_item) {
+   static putFileToDelete (id_file, mapping_level_1, mapping_level_2, file_item) {
       let is_file_saved = file_item.dataset.saved === 'true';
       if (is_file_saved) {
          let to_delete = FileNeeds.file_needs.to_delete;
@@ -120,7 +120,7 @@ class FileNeeds {
       }
    }
 
-   static putSignToDelete(id_sign, mapping_level_1, mapping_level_2) {
+   static putSignToDelete (id_sign, mapping_level_1, mapping_level_2) {
       if (FileNeeds.sign_needs.to_save.has(id_sign)) {
          FileNeeds.sign_needs.to_save.delete(id_sign);
       } else {
@@ -130,23 +130,23 @@ class FileNeeds {
    }
 
    //TODO делать по-другому
-   static addSigns() {
+   static addSigns () {
       FileNeeds.file_needs.to_save = FileNeeds.file_needs.to_save.concat(Array.from(FileNeeds.sign_needs.to_save.values()));
       FileNeeds.file_needs.to_delete = FileNeeds.file_needs.to_delete.concat(Array.from(FileNeeds.sign_needs.to_delete.values()));
    }
 
    // Предназначен для получения объекта с массивами сохранения и удаления файлов
-   static getFileNeeds() {
+   static getFileNeeds () {
       return FileNeeds.file_needs;
    }
 
    // Предназначен для получения массивов сохранения и удаления файлов в формате json
-   static getFileNeedsJSON() {
+   static getFileNeedsJSON () {
       return JSON.stringify(FileNeeds.file_needs);
    }
 
    // Предназначен для очистки массивов сохранения и удаления файлов
-   static clear() {
+   static clear () {
       FileNeeds.file_needs.to_save = [];
       FileNeeds.file_needs.to_delete = [];
       FileNeeds.sign_needs.to_save = new Map();
@@ -156,7 +156,7 @@ class FileNeeds {
    // Предназначен для определения наличия файлов для сохранения или удаления
    // Возвращает параметры------------------------------
    // has_files     boolean : есть ли файлы для сохранения или удаления
-   static hasFiles() {
+   static hasFiles () {
       return FileNeeds.file_needs.to_save.length !== 0
          || FileNeeds.file_needs.to_delete.length !== 0
          || FileNeeds.sign_needs.to_save.size !== 0

@@ -18,14 +18,14 @@ class FileBlock {
    mapping_2;
    id_structure_node;
 
-   constructor(block) {
+   constructor (block) {
 
       this.element = block;
       this.initFieldData();
 
    }
 
-   initFieldData() {
+   initFieldData () {
       let parent_field = this.element.closest('[data-mapping_level_1]');
       let parent_node = this.element.closest('[data-id_structure_node]');
 
@@ -41,7 +41,7 @@ class FileBlock {
    }
 
 
-   initFiles() {
+   initFiles () {
       let files = this.element.querySelectorAll('.files__item');
 
       if (files.length > 0) {

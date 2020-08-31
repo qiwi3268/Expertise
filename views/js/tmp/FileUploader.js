@@ -33,7 +33,7 @@ class FileUploader {
    parent_node;
 
 
-   static getInstance() {
+   static getInstance () {
 
       if (!this.instance) {
          this.instance = new FileUploader();
@@ -42,12 +42,12 @@ class FileUploader {
       return this.instance;
    }
 
-   constructor() {
+   constructor () {
       this.initModalElements();
       this.initActions();
    }
 
-   initModalElements() {
+   initModalElements () {
       this.form = document.getElementById('file_uploader');
       this.file_input = this.form.querySelector('[name="download_files[]"]');
 
@@ -61,7 +61,7 @@ class FileUploader {
       this.progress_bar = this.modal.querySelector('.file-modal__progress_bar');
    }
 
-   initActions() {
+   initActions () {
       this.clearDefaultDropEvents();
       this.handleDropArea();
       this.handleFileUploadButton();
@@ -74,7 +74,7 @@ class FileUploader {
       this.overlay.addEventListener('click', this.closeModal);
    }
 
-   clearDefaultDropEvents() {
+   clearDefaultDropEvents () {
       let events = ['dragenter', 'dragover', 'dragleave', 'drop'];
       events.forEach(event_name => {
          document.addEventListener(event_name, event => {
@@ -84,7 +84,7 @@ class FileUploader {
       });
    }
 
-   handleDropArea() {
+   handleDropArea () {
       ;['dragenter', 'dragover'].forEach(eventName => {
          this.drop_area.addEventListener(eventName, () => {
             this.drop_area.classList.add('active');
@@ -114,18 +114,18 @@ class FileUploader {
       });
    }
 
-   clearModal() {
+   clearModal () {
       this.modal_body.innerHTML = '';
       this.file_input.value = '';
    }
 
-   addFilesToModal(files) {
+   addFilesToModal (files) {
       Array.from(files).forEach(file_data => {
          this.modal_body.appendChild(this.createFileModalItem(file_data));
       });
    }
 
-   createFileModalItem(file_data) {
+   createFileModalItem (file_data) {
       let file_item = document.createElement('DIV');
       file_item.classList.add('file-modal__item');
 
@@ -151,7 +151,7 @@ class FileUploader {
       return file_item;
    }
 
-   handleFileUploadButton() {
+   handleFileUploadButton () {
       let upload_button = this.modal.querySelector('.file-modal__upload');
 
       upload_button.addEventListener('click', () => {
@@ -168,7 +168,7 @@ class FileUploader {
       });
    }
 
-   handleSubmitButton() {
+   handleSubmitButton () {
       let submit_button = this.modal.querySelector('.file-modal__submit');
       submit_button.addEventListener('click', () => {
          if (!this.is_uploading && FileChecker.IsReadyToUpload(this.file_input.files)) {
@@ -179,7 +179,7 @@ class FileUploader {
       });
    }
 
-   sendFiles() {
+   sendFiles () {
 
       this.progress_bar.style.transition = '.15s';
       this.is_uploading = true;
@@ -213,22 +213,19 @@ class FileUploader {
 
    }
 
-
-
    // Предназначен для анимации состояния загрузки файлов
    // Принимает параметры-------------------------------
    // event      ProgressEvent : объект, содержащий информацию о состоянии загрузки
-   uploadProgressCallback(event){
+   uploadProgressCallback (event) {
       let download_percent = Math.round(100 * event.loaded / event.total);
       this.modal_title.innerHTML = `Загрузка ${download_percent}%`;
       this.progress_bar.style.width = download_percent + '%';
    }
 
-
    // Предназначен для добавления файлов в родительское поле
    // Принимает параметры-------------------------------
    // files         Array[Object] : массив с файлами
-   async putFilesToRow(files) {
+   async putFilesToRow (files) {
       let parent_select = this.parent_field.querySelector('.field-select');
       if (parent_select) {
          parent_select.classList.add('filled');
@@ -255,7 +252,7 @@ class FileUploader {
       return 1;
    }
 
-   putFile(file_item) {
+   putFile (file_item) {
 
       API.checkFile(file_item.dataset.id, this.mapping_1, this.mapping_2)
          .then(check_response => {
@@ -277,7 +274,7 @@ class FileUploader {
          });
    }
 
-   closeModal() {
+   closeModal () {
       if (!this.is_uploading) {
          this.modal.classList.remove('active');
          this.overlay.classList.remove('active');
@@ -287,7 +284,7 @@ class FileUploader {
       }
    }
 
-   putFileData(select) {
+   putFileData (select) {
       this.parent_node = select.closest('[data-id_structure_node]');
       this.parent_field = select.closest('[data-mapping_level_1]');
 
@@ -307,7 +304,7 @@ class FileUploader {
 
    }
 
-   show(select) {
+   show (select) {
       this.putFileData(select);
       this.clearModalTitle();
       this.modal.classList.add('active');
@@ -315,13 +312,13 @@ class FileUploader {
       disableScroll();
    }
 
-   clearModalTitle() {
+   clearModalTitle () {
       this.progress_bar.style.transition = '0s';
       this.modal_title.innerHTML = 'Выберите или перетащите файлы';
       this.progress_bar.style.width = '0';
    }
 
-   handleDeleteButton() {
+   handleDeleteButton () {
       let delete_icon = this.modal.querySelector('.file-modal__delete');
       delete_icon.addEventListener('click', () => {
          if (!this.is_uploading) {

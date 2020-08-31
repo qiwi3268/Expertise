@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-  /* let radio_blocks = document.querySelectorAll('.radio');
+   /* let radio_blocks = document.querySelectorAll('.radio');
 
-   // Добавляем обработку переключателей для каждого блока с переключателями
-   radio_blocks.forEach(radio_elem => {
-      initRadioItems(radio_elem);
-   });*/
+    // Добавляем обработку переключателей для каждого блока с переключателями
+    radio_blocks.forEach(radio_elem => {
+       initRadioItems(radio_elem);
+    });*/
 
    initializeRadio(document);
 
 });
 
-function initializeRadio(block) {
+function initializeRadio (block) {
    let radio_blocks = block.querySelectorAll('.radio');
 
    // Добавляем обработку переключателей для каждого блока с переключателями
@@ -22,7 +22,7 @@ function initializeRadio(block) {
 // Предназначен для добавления обработчиков для переключателей
 // Принимает параметры-------------------------------
 // radio_elem         Element : блок с переключателями
-function initRadioItems(radio_elem) {
+function initRadioItems (radio_elem) {
    let parent_field = radio_elem.closest('.field');
    let body = radio_elem.querySelector('.radio__body');
 
@@ -68,7 +68,7 @@ function initRadioItems(radio_elem) {
 // value         string : текст переключателя
 // Возвращает параметры------------------------------
 // item         Element : элемент переключателя
-function createRadioItem(value) {
+function createRadioItem (value) {
    let item = document.createElement('DIV');
    item.classList.add('radio__item', 'col');
    item.dataset.id = value.id;
@@ -89,7 +89,7 @@ function createRadioItem(value) {
 // Предназначен для добавления отметки выбора переключателя
 // Принимает параметры-------------------------------
 // radio_item         Element : элемент переключателя
-function addSelectedItem(radio_item) {
+function addSelectedItem (radio_item) {
    radio_item.classList.add('selected');
 
    // Меняем на иконку с галочкой
@@ -105,7 +105,7 @@ function addSelectedItem(radio_item) {
 // Принимает параметры-------------------------------
 // radio_item       Element : элемент переключателя
 // required         boolean : обязателен ли хотя бы один выбранный элемент
-function removeSelectedItem(radio_item, required) {
+function removeSelectedItem (radio_item, required) {
    let selected_items = radio_item.parentElement.querySelectorAll('.selected');
 
    if (!required || selected_items.length > 1) {
@@ -124,7 +124,7 @@ function removeSelectedItem(radio_item, required) {
 // Предназначен для смены выбранного элемента блока переключателя
 // Принимает параметры-------------------------------
 // radio_item         Element : переключатель, который становится выбранным
-function changeSelectedItem(radio_item) {
+function changeSelectedItem (radio_item) {
    let items = radio_item.parentElement;
    let selected_item = items.querySelector('.selected');
 
@@ -143,7 +143,7 @@ function changeSelectedItem(radio_item) {
 // radio_body      Element : блок переключателей
 // Возвращает параметры------------------------------
 // result             JSON : json с id выбранных элементов
-function getRadioResult(radio_body, multiple) {
+function getRadioResult (radio_body, multiple) {
    let result = [];
    let selected_items = radio_body.querySelectorAll('.selected');
 
