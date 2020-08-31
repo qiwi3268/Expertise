@@ -1,10 +1,10 @@
 <?php
 
 
-$variablesTV = VariableTransfer::getInstance();
+$variablesTV = \Lib\Singles\VariableTransfer::getInstance();
 
 $applicationId = $_GET['id_application'];
-$applicationAssoc = ApplicationsTable::getAssocById($applicationId);
+$applicationAssoc = \Tables\applications::getAssocById($applicationId);
 
 //var_dump($applicationAssoc);
 

@@ -1,4 +1,4 @@
-<?php $variablesTV = VariableTransfer::getInstance(); ?>
+<?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
 <style>
     .block{

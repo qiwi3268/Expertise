@@ -1,6 +1,9 @@
 <?php
 
 
+use core\Classes\Session;
+
+
 // API предназначен для проверки возможности выгрузить указанный файл в констекте заявления
 //
 // API result:
@@ -26,25 +29,26 @@
 //       {result, message : текст ошибки, code: код ошибки}
 
 // Проверка наличия обязательных параметров
-if(!checkParamsPOST('id_application', 'id_file', 'mapping_level_1', 'mapping_level_2')){
-    exit(json_encode(['result'        => 1,
-                      'error_message' => 'Нет обязательных параметров POST запроса'
-                     ]));
+if (!checkParamsPOST('id_application', 'id_file', 'mapping_level_1', 'mapping_level_2')) {
+    exit(json_encode([
+        'result' => 1,
+        'error_message' => 'Нет обязательных параметров POST запроса'
+    ]));
 }
 
-try{
-    
+try {
+
     $_POST['id_application'];
 
 
-    /** @var string $P_id_application  */
-    /** @var string $P_id_file         */
+    /** @var string $P_id_application */
+    /** @var string $P_id_file */
     /** @var string $P_mapping_level_1 */
     /** @var string $P_mapping_level_2 */
     extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
 
     // Проверка заявителя на доступ к заявлению
-    if(Session::isApplicant()){
+    if (Session::isApplicant()) {
         //TODO для заявителя необходимо реализовать проверку, что он имеет право получать документы из указанного заявления
         //exit result 2
     }
@@ -54,21 +58,15 @@ try{
 
     $mappingErrorCode = $Mapping->getErrorCode();
 
-    if(!is_null($mappingErrorCode)){
+    if (!is_null($mappingErrorCode)) {
 
         $errorMessage = $Mapping->getErrorText();
 
-        switch($mappingErrorCode){
+        switch ($mappingErrorCode) {
 
-            case 1:
-                exit(json_encode(['result' => 3, 'error_message' => $errorMessage]));
-                break;
-            case 2:
-                exit(json_encode(['result' => 4, 'error_message' => $errorMessage]));
-                break;
-            case 3:
-                exit(json_encode(['result' => 5, 'error_message' => $errorMessage]));
-                break;
+            case 1: exit(json_encode(['result' => 3, 'error_message' => $errorMessage]));
+            case 2: exit(json_encode(['result' => 4, 'error_message' => $errorMessage]));
+            case 3: exit(json_encode(['result' => 5, 'error_message' => $errorMessage]));
         }
     }
 
@@ -77,50 +75,45 @@ try{
     $fileAssoc = $Class::getAssocById($P_id_file);
 
     // Проверка на существование записи в таблице
-    if(is_null($fileAssoc)){
-        exit(json_encode(['result'        => 6,
-                          'error_message' => 'Запрашиваемой записи файла не существует в БД'
-                         ]));
+    if (is_null($fileAssoc)) {
+        exit(json_encode([
+            'result'        => 6,
+            'error_message' => 'Запрашиваемой записи файла не существует в БД'
+        ]));
     }
 
     // Проверка на успешную загрузку файла на сервер
-    if($fileAssoc['is_uploaded'] == 0){
-        exit(json_encode(['result'        => 7,
-                          'error_message' => 'У запрашиваемой записи файла в БД не проставлен флаг загрузки на сервер'
-                         ]));
+    if ($fileAssoc['is_uploaded'] == 0) {
+        exit(json_encode([
+            'result'        => 7,
+            'error_message' => 'У запрашиваемой записи файла в БД не проставлен флаг загрузки на сервер'
+        ]));
     }
-    
-    $applicationDir = _APPLICATIONS_FILES_."/{$P_id_application}";
+
+    $applicationDir = APPLICATIONS_FILES . "/{$P_id_application}";
     $filePath = "{$applicationDir}/{$fileAssoc['hash']}";
 
     // Проверка файла на физическое существование
-    if(!file_exists($filePath)){
-        exit(json_encode(['result'        => 8,
-                          'error_message' => 'Файл физически отсутствует на сервере'
-                         ]));
+    if (!file_exists($filePath)) {
+        exit(json_encode([
+            'result'        => 8,
+            'error_message' => 'Файл физически отсутствует на сервере'
+        ]));
     }
 
     // Все проверки прошли успешно
-    exit(json_encode(['result'    => 9,
-                      'fs_name'   => $filePath,
-                      'file_name' => $fileAssoc['file_name']
-                     ]));
-    
+    exit(json_encode([
+        'result'    => 9,
+        'fs_name'   => $filePath,
+        'file_name' => $fileAssoc['file_name']
+    ]));
+
 // Непредвиденная ошибка
-}catch(Exception $e){
+} catch (Exception $e) {
 
-    exit(json_encode(['result'  => 10,
-                      'message' => $e->getMessage(),
-                      'code'	=> $e->getCode()
-                     ]));
+    exit(json_encode([
+        'result'  => 10,
+        'message' => $e->getMessage(),
+        'code'    => $e->getCode()
+    ]));
 }
-
-
-
-
-
-
-
-
-
-

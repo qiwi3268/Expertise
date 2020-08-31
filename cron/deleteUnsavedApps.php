@@ -3,13 +3,12 @@
 
 //require_once './initialization.php';
 
-file_put_contents(_ROOT_.'/logs/cron/deleteUnsavedApps.log', 'я работаю'."\n", FILE_APPEND);
+file_put_contents(ROOT.'/logs/cron/deleteUnsavedApps.log', 'я работаю'."\n", FILE_APPEND);
 
-require_once _ROOT_.'Classes/Tables/ApplicationsTable.php';
 
 //-------------------------------------------------------------
 
-$unsavedApps = ApplicationsTable::getAllUnsaved();
+$unsavedApps = \Tables\applications::getAllUnsaved();
 
 if(empty($unsavedApps)){
 
@@ -23,11 +22,11 @@ if(empty($unsavedApps)){
         $appsIds[] = $app['id'];
     }
 
-    ApplicationsTable::deleteFromIdsArray($appsIds);
+    \Tables\applications::deleteFromIdsArray($appsIds);
 
     $deletedCounts = count($appsIds);
     $strIds = implode(',', $appsIds);
     $message = " Количество удаленных записей: $deletedCounts, id: $strIds";
 }
 
-file_put_contents(_ROOT_.'/logs/cron/deleteUnsavedApps.log', date('d.m.Y H:i:s').$message."\n", FILE_APPEND);
+file_put_contents(ROOT.'/logs/cron/deleteUnsavedApps.log', date('d.m.Y H:i:s').$message."\n", FILE_APPEND);

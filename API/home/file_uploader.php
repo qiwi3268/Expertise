@@ -1,6 +1,10 @@
 <?php
 
 
+use Lib\Exceptions\DataBase as DataBaseEx;
+use core\Classes\Session;
+
+
 // API предназначен для загрузке файлов в контексте заявления
 //
 // API result:
@@ -39,103 +43,107 @@
 //       {result, message : текст ошибки, code: код ошибки}
 //
 
-
-
-
 // Проверка наличия обязательных параметров
-if(!checkParamsPOST('id_application', 'mapping_level_1', 'mapping_level_2')){
-    
+if (!checkParamsPOST('id_application', 'mapping_level_1', 'mapping_level_2')) {
+
     exit_missingParamsPOST();
-// Проверка наличия параметра id_structure_node для 2-го уровня _FILE_TABLE_MAPPING
-}elseif($_POST['mapping_level_1'] == 2 && !checkParamsPOST('id_structure_node')){
-    
+// Проверка наличия параметра id_structure_node для 2-го уровня FILE_TABLE_MAPPING
+} elseif ($_POST['mapping_level_1'] == 2 && !checkParamsPOST('id_structure_node')) {
+
     exit_missingParamsPOST();
 }
 
-function exit_missingParamsPOST(){
-    exit(json_encode(['result'        => 1,
-                      'error_message' => 'Нет обязательных параметров POST запроса'
+function exit_missingParamsPOST()
+{
+    exit(json_encode(['result' => 1,
+        'error_message' => 'Нет обязательных параметров POST запроса'
     ]));
 }
 
 
-try{
+try {
 
-    /** @var string $P_id_application    */
-    /** @var string $P_mapping_level_1   */
-    /** @var string $P_mapping_level_2   */
+    /** @var string $P_id_application */
+    /** @var string $P_mapping_level_1 */
+    /** @var string $P_mapping_level_2 */
     /** @var string $P_id_structure_node */
     extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
 
     // Проверка заявителя на доступ к загрузке файлов в указанное заявление
-    if(Session::isApplicant()){
+    if (Session::isApplicant()) {
         //TODO для заявителя необходимо реализовать проверку, что он имеет право получать документы из указанного заявления
         //exit result 2
     }
 
-    $files = new FilesUpload($_FILES);
+    $files = new \Lib\Files\Upload($_FILES);
 
-    if(!$files->checkFilesExist()){
-        exit(json_encode(['result'        => 3,
-                          'error_message' => 'Отсутствуют загруженные файлы'
-                         ]));
+    if (!$files->checkFilesExist()) {
+        exit(json_encode([
+            'result'        => 3,
+            'error_message' => 'Отсутствуют загруженные файлы'
+        ]));
     }
 
     // Ошибки при загрузке файлов на сервер
-    if(!$files->checkServerUploadErrors()){
+    if (!$files->checkServerUploadErrors()) {
 
         $errorArr = [];
 
-        foreach($files->getErrors() as $error){
+        foreach ($files->getErrors() as $error) {
 
-            $errorArr[] = ['file_name'  => $error['name'],
-                           'error_text' => $error['error']
-                          ];
+            $errorArr[] = [
+                'file_name'  => $error['name'],
+                'error_text' => $error['error']
+            ];
         }
 
-        exit(json_encode(['result'        => 4,
-                          'error_message' => 'Произошли ошибки при загрузке файлов на сервер',
-                          'error'         => $errorArr
-                         ]));
+        exit(json_encode([
+            'result' => 4,
+            'error_message' => 'Произошли ошибки при загрузке файлов на сервер',
+            'error' => $errorArr
+        ]));
     }
 
     // Блок проверок файлов для заявителя
-    if(Session::isApplicant()){
+    if (Session::isApplicant()) {
 
         // Допустимые форматы файлов
         $allowedFormats = ['.docx', '.doc', '.odt', '.pdf', '.xlsx', '.xls', '.ods', '.xml'];
 
-        if(!$files->checkFilesName($allowedFormats, true)){
+        if (!$files->checkFilesName($allowedFormats, true)) {
 
             $errorArr = $files->getErrors();
-            exit(json_encode(['result'        => 5,
-                              'error_message' => 'Не пройдены проверки на допустимые форматы файлов',
-                              'error'         => $errorArr
-                             ]));
+            exit(json_encode([
+                'result'        => 5,
+                'error_message' => 'Не пройдены проверки на допустимые форматы файлов',
+                'error'         => $errorArr
+            ]));
         }
 
         // Запрещенные символы в файлах
         $forbiddenSymbols = [','];
 
-        if(!$files->checkFilesName($forbiddenSymbols, false)){
+        if (!$files->checkFilesName($forbiddenSymbols, false)) {
 
             $errorArr = $files->getErrors();
-            exit(json_encode(['result'        => 6,
-                              'error_message' => 'Не пройдены проверки на запрещенные символы',
-                              'error'         => $errorArr
-                             ]));
+            exit(json_encode([
+                'result'        => 6,
+                'error_message' => 'Не пройдены проверки на запрещенные символы',
+                'error'         => $errorArr
+            ]));
         }
 
         // Максимальный размер файлов
         $maxFileSize = 80;
 
-        if(!$files->checkMaxFilesSize($maxFileSize)){
+        if (!$files->checkMaxFilesSize($maxFileSize)) {
 
             $errorArr = $files->getErrors();
-            exit(json_encode(['result'        => 7,
-                              'error_message' => 'Не пройдены проверки на максимально допустимый размер файлов',
-                              'error'         => $errorArr
-                             ]));
+            exit(json_encode([
+                'result'        => 7,
+                'error_message' => 'Не пройдены проверки на максимально допустимый размер файлов',
+                'error'         => $errorArr
+            ]));
         }
     }
 
@@ -143,88 +151,82 @@ try{
     $Mapping = new \Lib\Files\Mappings\FilesTableMapping($P_mapping_level_1, $P_mapping_level_2);
     $mappingErrorCode = $Mapping->getErrorCode();
 
-    if(!is_null($mappingErrorCode)){
+    if (!is_null($mappingErrorCode)) {
 
         $errorMessage = $Mapping->getErrorText();
 
-        switch($mappingErrorCode){
+        switch ($mappingErrorCode) {
 
-            case 1:
-                exit(json_encode(['result' => 8, 'error_message' => $errorMessage]));
-                break;
-            case 2:
-                exit(json_encode(['result' => 9, 'error_message' => $errorMessage]));
-                break;
-            case 3:
-                exit(json_encode(['result' => 10, 'error_message' => $errorMessage]));
-                break;
+            case 1: exit(json_encode(['result' => 8, 'error_message' => $errorMessage]));
+            case 2: exit(json_encode(['result' => 9, 'error_message' => $errorMessage]));
+            case 3: exit(json_encode(['result' => 10, 'error_message' => $errorMessage]));
         }
     }
 
     $Class = $Mapping->getClassName();
 
     // Блок генерации уникального хэша
-    $applicationDir = _APPLICATIONS_FILES_.'/'.$P_id_application.'/';
+    $applicationDir = APPLICATIONS_FILES . '/' . $P_id_application . '/';
     $inputName = 'download_files';
     $filesCount = $files->getFilesCount($inputName);
 
     $hashes = [];
     $uniqueHashCount = 0;
 
-    do{
+    do {
 
         $hash = bin2hex(random_bytes(40)); // Длина 80 символов
-        if(!file_exists($applicationDir.$hash)){
+        if (!file_exists($applicationDir . $hash)) {
 
             $hashes[] = $hash;
             $uniqueHashCount++;
         }
-    }while($uniqueHashCount != $filesCount);
+    } while ($uniqueHashCount != $filesCount);
 
     // Блок создания записей в указанной таблице
     $createdIds = []; // id успешно созданных записей в таблице файлов
     $filesName = $files->getFilesName($inputName);
     $filesSize = $files->getFilesSize($inputName);
-    
+
 
     // Формируем первую (переменную) часть параметров для передачи в метод создания записи.
     // Эти параметры будут распакованы и первыми переданы в сооветствующие методы,
     // таким образом, вторая часть принимаемых параметров должна быть идентичная
-    if($P_mapping_level_1 == 1)      $params = [$P_id_application];
-    elseif($P_mapping_level_1 == 2)  $params = [$P_id_application, $P_id_structure_node];
+    if ($P_mapping_level_1 == 1) $params = [$P_id_application];
+    elseif ($P_mapping_level_1 == 2) $params = [$P_id_application, $P_id_structure_node];
 
-    for($s = 0; $s < $filesCount; $s++){
+    for ($s = 0; $s < $filesCount; $s++) {
 
-        try{
+        try {
 
             $createdIds[] = call_user_func_array([$Class, 'create'], [...$params, $filesName[$s], $filesSize[$s], $hashes[$s]]);
-        }catch(DataBaseException $e){
+        } catch (DataBaseEx $e) {
 
             // При добавлении записи файла произошла ошибка, удаляем все предыдущие записи
-            try{
+            try {
 
-                foreach($createdIds as $id){
+                foreach ($createdIds as $id) {
                     $Class::deleteById($id);
                 }
 
-                exit(json_encode(['result'  => 11,
-                                  'message' => $e->getMessage(),
-                                  'code'    => $e->getCode()
-                                 ]));
-            }catch(DataBaseException $ex){
+                exit(json_encode(['result' => 11,
+                    'message' => $e->getMessage(),
+                    'code' => $e->getCode()
+                ]));
+            } catch (DataBaseEx $ex) {
 
                 // Возникла ошибка при попытке удалить созданные записи файлов
                 // (самый плохой исход из всех возможных)
-                exit(json_encode(['result'  => 12,
-                                  'message' => $ex->getMessage(),
-                                  'code'    => $ex->getCode()
-                                 ]));
+                exit(json_encode(['result' => 12,
+                    'message' => $ex->getMessage(),
+                    'code' => $ex->getCode()
+                ]));
             }
         }
     }
 
     // Загрузка файлов в указанну директорию
-    if(!$files->uploadFiles($inputName, $applicationDir, $hashes)){
+    if (!$files->uploadFiles($inputName, $applicationDir, $hashes)) {
 
         // Массив успешно загруженных файлов
         $successfullyUpload = array_diff($filesName, $files->getErrors());
@@ -232,9 +234,9 @@ try{
         $errorArr = [];
 
         // Если часть файлов загрузилась - пробуем их удалить
-        if(count($successfullyUpload) > 0){
+        if (count($successfullyUpload) > 0) {
 
-            foreach($successfullyUpload as $file){
+            foreach ($successfullyUpload as $file) {
 
                 // Имеются только имена успешно загруженных файлов. Находим их хэш
                 $fileIndex = array_search($file, $filesName, true);
@@ -242,43 +244,46 @@ try{
                 $hash = $hashes[$fileIndex];
 
                 // Не получилось удалить файл
-                if($fileIndex === false || !unlink($applicationDir.$hash)){
+                if ($fileIndex === false || !unlink($applicationDir . $hash)) {
                     $errorArr[] = $file;
                 }
             }
         }
 
         // Есть файлы, которые не получилось удалить
-        if($errorArr){
+        if ($errorArr) {
 
-            exit(json_encode(['result'        => 13,
-                              'error_message' => 'Возникли ошибки при переносе загруженного файла в указанную директорию, и НЕ получилось удалить часть из успешно загруженных',
-                              'error'         => $errorArr
-                             ]));
-        }else{
-            exit(json_encode(['result'        => 14,
-                              'error_message' => 'Возникли ошибки при переносе загруженного файла в указанную директорию, НО получилось удалить (или их не было) успешно загруженные'
-                             ]));
+            exit(json_encode([
+                'result'        => 13,
+                'error_message' => 'Возникли ошибки при переносе загруженного файла в указанную директорию, и НЕ получилось удалить часть из успешно загруженных',
+                'error'         => $errorArr
+            ]));
+        } else {
+            exit(json_encode([
+                'result'        => 14,
+                'error_message' => 'Возникли ошибки при переносе загруженного файла в указанную директорию, НО получилось удалить (или их не было) успешно загруженные'
+            ]));
         }
     }
 
     // Загрузка файлов прошла успешно, обновляем флаги в таблице файлов
-    try{
+    try {
 
-        foreach($createdIds as $id){
+        foreach ($createdIds as $id) {
             $Class::setUploadedById($id);
         }
-    }catch(DataBaseException $e){
+    } catch (DataBaseEx $e) {
 
-        exit(json_encode(['result'        => 15,
-                          'error_message' => 'Загрузка файлов прошла успешно, НО не получилось обновить флаги в таблице'
-                         ]));
+        exit(json_encode([
+            'result'        => 15,
+            'error_message' => 'Загрузка файлов прошла успешно, НО не получилось обновить флаги в таблице'
+        ]));
     }
 
     // Формирование выходного результата. Все операции прошли успешно
     $uploadedFiles = [];
 
-    for($s = 0; $s < $filesCount; $s++){
+    for ($s = 0; $s < $filesCount; $s++) {
 
         $uploadedFiles[] = [
             'id'   => $createdIds[$s],
@@ -287,16 +292,18 @@ try{
         ];
     }
 
-    exit(json_encode(['result'         => 16,
-                      'uploaded_files' => $uploadedFiles
-                     ]));
+    exit(json_encode([
+        'result'         => 16,
+        'uploaded_files' => $uploadedFiles
+    ]));
 
-}catch(Exception $e){
+} catch (Exception $e) {
 
-    exit(json_encode(['result'  => 17,
-                      'message' => $e->getMessage(),
-                      'code'	=> $e->getCode()
-                     ]));
+    exit(json_encode([
+        'result'  => 17,
+        'message' => $e->getMessage(),
+        'code'    => $e->getCode()
+    ]));
 }
 
 

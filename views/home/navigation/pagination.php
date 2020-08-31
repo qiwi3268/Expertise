@@ -1,5 +1,5 @@
 
-<?php $variablesTV = VariableTransfer::getInstance(); ?>
+<?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
 <?php if ($variablesTV->getExistenceFlag('pagination_PreviousPage')): ?>
     <a href="<?= $variablesTV->getValue('pagination_PreviousPageRef') ?>">Назад</a>

@@ -1,5 +1,5 @@
 <!-- view отображения заявления в табличной форме -->
-<?php $variablesTV = VariableTransfer::getInstance(); ?>
+<?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
 <div class="table-navigation__body">
     <div class="table-navigation__row table-navigation__header">

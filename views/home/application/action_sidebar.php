@@ -1,4 +1,4 @@
-<?php $variablesTV = VariableTransfer::getInstance(); ?>
+<?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
 <div class="sidebar-actions">
     <?php foreach($variablesTV->getValue('availableActions') as ['ref' => $ref, 'label' => $label]): ?>

@@ -19,7 +19,7 @@ $name = $sort->appendChild($xml->createElement('name'));
 
 $name->appendChild($xml->createTextNode('Яблоко'));
 
-$filePath = _ROOT_.'/uploads/goods.xml';
+$filePath = ROOT.'/uploads/goods.xml';
 
 $xml->save($filePath);
 

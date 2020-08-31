@@ -12,14 +12,14 @@ ini_set('display_startup_errors', 1);
 require_once '/var/www/html/core/Classes/StartingInitialization.php';
 $ini = new StartingInitialization('/var/www/html');
 $ini->requireDefinedVariables();
-$ini->enableClassAutoloading();
+$ini->enableClassAutoLoading();
 $ini->requireDataBasePack();
 
-require_once _ROOT_.'/Classes/Logger.php';
+require_once ROOT.'/Classes/Logger.php';
 
 // Директория логов действий и логов ошибок
-$logsDir = _LOGS_.'/cron';
-$logsErrorsDir = _LOGS_.'/cron/errors';
+$logsDir = LOGS.'/cron';
+$logsErrorsDir = LOGS.'/cron/errors';
 $logFileName = 'index.log';
 
 $Logger = new Logger($logsDir, $logFileName);
@@ -72,8 +72,8 @@ if(!file_exists($cron_logsErrorsPath)){
     exit;
 }
 
-require_once _ROOT_.'/functions/functions.php';
-require_once _ROOT_.'/Classes/VariableTransfer.php';
+require_once ROOT.'/functions/functions.php';
+require_once ROOT.'/Classes/VariableTransfer.php';
 
 
 
@@ -81,7 +81,7 @@ require_once _ROOT_.'/Classes/VariableTransfer.php';
 $cron_Logger = new Logger($logsDir, $cron_logFileName);
 $cron_ErrorLogger = new Logger($logsErrorsDir, $cron_logFileName);
 
-$variablesTV = VariableTransfer::getInstance();
+$variablesTV = \Lib\Singles\VariableTransfer::getInstance();
 $variablesTV->setValue('Logger', $cron_Logger);
 $variablesTV->setValue('ErrorLogger', $cron_ErrorLogger);
 

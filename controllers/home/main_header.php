@@ -1,6 +1,6 @@
 <?php
 
 
-$variablesTV = VariableTransfer::getInstance();
+$variablesTV = \Lib\Singles\VariableTransfer::getInstance();
 
-$variablesTV->setValue('userFIO', Session::getUserFullFIO());
+$variablesTV->setValue('userFIO', \core\Classes\Session::getUserFullFIO());

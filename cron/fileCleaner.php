@@ -2,16 +2,16 @@
 
 // Крон предназначен для очистки системы от несохраненных файлов
 
-$variablesTV = VariableTransfer::getInstance();
+$variablesTV = \Lib\Singles\VariableTransfer::getInstance();
 
 $Logger = $variablesTV->getValue('Logger');
 $ErrorLogger =  $variablesTV->getValue('ErrorLogger');
 
 $Logger->write("НАЧИНАЮ работу");
 
-require_once _ROOT_.'/Lib/Files/Mappings/FilesTableMapping.php';
+require_once ROOT.'/Lib/Files/Mappings/FilesTableMapping.php';
 
-foreach(_FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_2){
+foreach(FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_2){
     
     foreach($mapping_level_2 as $mapping_level_2_code => $className){
         
@@ -55,7 +55,7 @@ foreach(_FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_2){
             
             if($now - $file['date_cron_deleted_flag'] > $minimumSeconds){
                 
-                $applicationDir = _APPLICATIONS_FILES_."/{$file['id_application']}";
+                $applicationDir = APPLICATIONS_FILES."/{$file['id_application']}";
                 $pathToFile = "{$applicationDir}/{$file['hash']}";
                 
                 if(!file_exists($pathToFile)){

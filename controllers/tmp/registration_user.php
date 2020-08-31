@@ -37,11 +37,11 @@ $cryptPassword = password_hash($P_password, PASSWORD_DEFAULT);
 $hash = bin2hex(random_bytes(25)); // Длина 50 символов
 
 // Создание пользователя
-$userId = UsersTable::create($P_last_name, $P_first_name, $P_middle_name, $P_department, $P_position, $P_email, $P_login, $cryptPassword, $hash);
+$userId = \Tables\users::create($P_last_name, $P_first_name, $P_middle_name, $P_department, $P_position, $P_email, $P_login, $cryptPassword, $hash);
 
 // Создание ролей пользователя
 foreach($P_users_role as $role){
-    UsersRoleTable::create($userId, $role);
+    \Tables\users_role::create($userId, $role);
 }
 
 

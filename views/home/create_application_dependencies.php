@@ -1,4 +1,4 @@
-<?php $variablesTV = VariableTransfer::getInstance(); ?>
+<?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
 <!-- Зависимость "Предмет экспертизы" от "Цель обращения" -->
 <div class="radio__content-change-logic">

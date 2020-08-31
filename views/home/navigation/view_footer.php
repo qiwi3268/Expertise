@@ -1,4 +1,4 @@
-<?php $variablesTV = VariableTransfer::getInstance(); ?>
+<?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
             <div class="table-navigation__footer">
                 <div class="navigation-table__pagination pagination-table">

@@ -1,13 +1,13 @@
 <?php
 
 
-$actions = LocatorActions::getInstance()->getActions();
+$actions = \Lib\Actions\Locator::getInstance()->getActions();
 
 $availableActionsAssoc = $actions->getAvailableActions();
 
 $availableActions = [];
 
-foreach($availableActionsAssoc as $action){
+foreach ($availableActionsAssoc as $action) {
 
     $availableActions[] = [
 
@@ -16,4 +16,4 @@ foreach($availableActionsAssoc as $action){
     ];
 }
 
-VariableTransfer::getInstance()->setValue('availableActions', $availableActions);
+\Lib\Singles\VariableTransfer::getInstance()->setValue('availableActions', $availableActions);

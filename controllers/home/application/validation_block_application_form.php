@@ -1,7 +1,7 @@
 <?php
 
 
-$variablesTV = VariableTransfer::getInstance();
+$variablesTV = \Lib\Singles\VariableTransfer::getInstance();
 
 
 // -----------------------------------------------------------------------------------------------------------------

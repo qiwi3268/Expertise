@@ -4,7 +4,6 @@
 return [
 
     '' => [
-        'Classes'        => ['VariableTransfer'],
         'controllers' 	 => ['header', 'entry'],
         'views'          => ['header', 'entry'],
     ],
@@ -43,13 +42,13 @@ return [
     
     'home/API_external_signature_verifier' => [
         '/Classes/'          => ['Logger'],
-        '/core/Classes/csp/' => ['MessageParser', 'Shell', 'SignatureValidationShell', 'ExternalSignature', 'Validator'],
+        '/core/Classes/csp/' => ['MessageParser', 'Shell', 'ExternalSignature', 'Validator'],
         'API'                => ['external_signature_verifier']
     ],
     
     'home/API_internal_signature_verifier' => [
         '/Classes/'          => ['Logger'],
-        '/core/Classes/csp/' => ['MessageParser', 'Shell', 'SignatureValidationShell', 'InternalSignature', 'Validator'],
+        '/core/Classes/csp/' => ['MessageParser', 'Shell', 'InternalSignature', 'Validator'],
         'API'                => ['internal_signature_verifier']
     ],
     
@@ -72,7 +71,6 @@ return [
     'home/application/API_save_form' => [
         'access'                              => [],
         '/Classes/'                           => ['PrimitiveValidator'],
-        '/Classes/Home/ApplicationForm/Save/' => ['DataToUpdate', 'SingleMiscValidator', 'DependentMiscValidator'],
         'API'                                 => ['save_form']
     ],
 
@@ -92,10 +90,8 @@ return [
     //todo привести display_dependencies_application_form и create_application_dependencies к единообразному названию
     'home/application/create' => [
         'access'                                => [],
-        'ROOTClasses'                           => ['VariableTransfer', 'NodeStructure'],
         'ROOTcontrollers'                       => ['header'],
         'ROOTviews'                             => ['header'],
-        '/Classes/Home/ApplicationForm/Create/' => ['MiscInitializator'],
         'controllers'                           => ['create_application',
                                                     'display_dependencies_application_form'],
         '/controllers/home/'                    => ['main_header'],
@@ -105,7 +101,7 @@ return [
 
     'home/application/view' => [
         'access'              => [],
-        'ROOTClasses'         => ['VariableTransfer', 'NodeStructure', 'FilesInitialization'],
+        'ROOTClasses'         => ['FilesInitialization'],
         'ROOTcontrollers'     => ['header'],
         'ABScontrollers'      => ['/controllers/home/main_header.php'],
         'controllers'         => ['action_sidebar',
@@ -120,7 +116,7 @@ return [
     //todo на эту мусорку не обращать внимание
     'home/application/edit'  => [
         'access'             => [],
-        'ROOTClasses'        => ['VariableTransfer'],
+        'ROOTClasses'        => [],
         'ROOTcontrollers'    => ['header'],
         'ROOTviews'          => ['header'],
         //'/Classes/ApplicationForm/'   => ['MiscInitialization', 'MiscInitializationEditForm'],
@@ -134,7 +130,7 @@ return [
 
 
     'home/navigation' => [
-        'ROOTClasses'             => ['VariableTransfer', 'Pagination'],
+        'ROOTClasses'             => ['Pagination'],
         '/Classes/Navigation/'    => ['Navigation', 'NavigationParameters'],
         'ROOTcontrollers'         => ['header'],
         'ROOTviews'               => ['header'],
@@ -177,7 +173,6 @@ return [
     ],
 
     'tmp/documentation_structure' => [
-        'ROOTClasses'     => ['NodeStructure', 'VariableTransfer'],
         'ROOTcontrollers' => ['header'],
         'ROOTviews'       => ['header'],
         'controllers'     => ['documentation_structure'],

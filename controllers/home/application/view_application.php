@@ -1,16 +1,21 @@
 <?php
 
 
-$variablesTV = VariableTransfer::getInstance();
+use Lib\Singles\Helpers\FontAwesome5;
+
+
+$variablesTV = \Lib\Singles\VariableTransfer::getInstance();
 $applicationId = $_GET['id_application'];
 
-$applicationAssoc = ApplicationsTable::getAssocById($applicationId);
+$applicationAssoc = \Tables\applications::getAssocById($applicationId);
 
 // Преобразование дат к строкам
-UpdateDatesTimestampToDdMmYyyy($applicationAssoc,
-                        'date_planning_documentation_approval',
-                                           'date_GPZU',
-                                           'date_finish_building');
+UpdateDatesTimestampToDdMmYyyy(
+    $applicationAssoc,
+    'date_planning_documentation_approval',
+    'date_GPZU',
+    'date_finish_building'
+);
 
 // Заполнение сохраненных в заявлении данных (не включая файлы)
 foreach($applicationAssoc as $property => $value){
@@ -42,7 +47,7 @@ var_dump($needsFiles);
 foreach($needsFiles as &$mapping_level_2){
     foreach($mapping_level_2 as &$files){
         if(!is_null($files)){
-            FontAwesome5Helper::setFileIconClass($files);
+           FontAwesome5::setFileIconClass($files);
         }
     }
     unset($files);
@@ -64,12 +69,12 @@ if($variablesTV->getExistenceFlag('type_of_object')){
         case 1: // Производственные/непроизводственные
             $mapping_level_1 = 2;
             $mapping_level_2 = 1;
-            $className = 'structure_documentation1Table';
+            $className = '\Tables\Structures\documentation_1';
             break;
         case 2: // Линейные
             $mapping_level_1 = 2;
             $mapping_level_2 = 2;
-            $className = 'structure_documentation2Table';
+            $className = '\Tables\Structures\documentation_2';
             break;
         default:
             throw new Exception('Указан Вид объекта, при котором не определены действия для отображения загруженных файлов');
@@ -96,7 +101,7 @@ if($variablesTV->getExistenceFlag('type_of_object')){
         $needsFiles = [];
     }else{
         // Установка файловых иконок
-        FontAwesome5Helper::setFileIconClass($needsFiles);
+        FontAwesome5::setFileIconClass($needsFiles);
     }
     
     // Структура разделов документации с вложенностью дочерних разделов в родительские
@@ -107,19 +112,11 @@ if($variablesTV->getExistenceFlag('type_of_object')){
 }
 
 
-$test = shell_exec('lala 2>&1');
-//var_dump($test);
-
 
 $options = ['options' => ['min_range' => 25,
                           'max_range' => 75
            ]
 ];
-$test = "24";
-
-$test2 = filter_var($test, FILTER_VALIDATE_INT, $options);
-var_dump($test2);
-
 
 
 

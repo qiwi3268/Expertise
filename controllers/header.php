@@ -1,12 +1,12 @@
 <?php
 
 define('ROOT_CSS', '/views/css/');
-define('ROOT_LIB_CSS', ROOT_CSS.'lib/');
-define('TMP_CSS', ROOT_CSS.'tmp/');
+define('ROOT_LIB_CSS', ROOT_CSS . 'lib/');
+define('TMP_CSS', ROOT_CSS . 'tmp/');
 
 define('ROOT_JS', '/views/js/');
-define('ROOT_LIB_JS', ROOT_JS.'lib/');
-define('TMP_JS', ROOT_JS.'tmp/');
+define('ROOT_LIB_JS', ROOT_JS . 'lib/');
+define('TMP_JS', ROOT_JS . 'tmp/');
 
 
 // Подключаемые файлы
@@ -14,39 +14,39 @@ $sourcesFiles = [];
 // Название страницы
 $pageName = '';
 
-switch(_URN_){
+switch (URN) {
 
     case '':
         $pageName = 'АИС';
         $sourcesFiles = [...GetFontAwesome4Case(),
-                         ...CreateSource('css', ROOT_CSS, 'entry.css'),
-                         ...CreateSource('css', TMP_CSS, 'null.css', 'main.css'),
-                         ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
-                         ...CreateSource('js', ROOT_JS, 'API_login.js')
-                        ];
+            ...CreateSource('css', ROOT_CSS, 'entry.css'),
+            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css'),
+            ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
+            ...CreateSource('js', ROOT_JS, 'API_login.js')
+        ];
         break;
 
     case 'home/application/create' :
         $pageName = 'АИС';
         $sourcesFiles = [...GetFontAwesome5Case(),
-                         ...CreateSource('css', ROOT_CSS, 'entry.css'),
-                         ...CreateSource('css', TMP_CSS, 'null.css', 'header.css', 'footer.css', 'modal.css', 'radio.css', 'calendar.css', 'files.css', 'documentation.css', 'sign.css', 'main.css'),
-                         ...CreateSource('css', TMP_CSS, 'create_application.css'),
-                         ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js', 'cadesplugin_api.js'),
-                         ...CreateSource('js', TMP_JS, 'ErrorHandler.js', 'main.js', 'modal.js', 'sidebar.js', 'section.js', 'validation.js', 'FinanceSourcesHandler.js', 'DependenciesHandler.js', 'cards.js', 'calendar.js', 'radio.js', 'checkbox.js', 'save_application.js', 'SignHandler.js', 'PerfectCades.js', 'BrowserHelper.js', 'FileChecker.js', 'file_needs.js', 'file_download.js', 'file_actions.js', 'test.js')
+            ...CreateSource('css', ROOT_CSS, 'entry.css'),
+            ...CreateSource('css', TMP_CSS, 'null.css', 'header.css', 'footer.css', 'modal.css', 'radio.css', 'calendar.css', 'files.css', 'documentation.css', 'sign.css', 'main.css'),
+            ...CreateSource('css', TMP_CSS, 'create_application.css'),
+            ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js', 'cadesplugin_api.js'),
+            ...CreateSource('js', TMP_JS, 'ErrorHandler.js', 'main.js', 'modal.js', 'sidebar.js', 'section.js', 'validation.js', 'FinanceSourcesHandler.js', 'DependenciesHandler.js', 'cards.js', 'calendar.js', 'radio.js', 'checkbox.js', 'save_application.js', 'SignHandler.js', 'PerfectCades.js', 'BrowserHelper.js', 'FileChecker.js', 'file_needs.js', 'file_download.js', 'file_actions.js', 'test.js')
         ];
         break;
 
     case 'home/application/view' :
-       $pageName = 'АИС';
-       $sourcesFiles = [...GetFontAwesome5Case(),
-                        ...CreateSource('css', ROOT_CSS, 'entry.css'),
-                        ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'action_sidebar.css', 'radio.css'),
-                        ...CreateSource('css', TMP_CSS, 'create_application.css', 'view_application.css'),
-                        ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
-                        ...CreateSource('js', TMP_JS, 'section.js', 'file_actions.js')
-       ];
-       break;
+        $pageName = 'АИС';
+        $sourcesFiles = [...GetFontAwesome5Case(),
+            ...CreateSource('css', ROOT_CSS, 'entry.css'),
+            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'action_sidebar.css', 'radio.css'),
+            ...CreateSource('css', TMP_CSS, 'create_application.css', 'view_application.css'),
+            ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
+            ...CreateSource('js', TMP_JS, 'section.js', 'file_actions.js')
+        ];
+        break;
 
     case 'home/application/edit' :
         $pageName = 'АИС';
@@ -63,7 +63,7 @@ switch(_URN_){
     case 'tmp/form_to_file_download' :
         $pageName = 'Загрузка файлов на сервер';
         $sourcesFiles = [...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
-                         ...CreateSource('js', TMP_JS, 'file_download.js')
+            ...CreateSource('js', TMP_JS, 'file_download.js')
         ];
         break;
 
@@ -79,7 +79,7 @@ switch(_URN_){
     case 'home/navigation' :
         $pageName = 'Навигация';
         $sourcesFiles = [...GetFontAwesome5Case(),
-                         ...CreateSource('css', ROOT_CSS, 'entry.css'),
+            ...CreateSource('css', ROOT_CSS, 'entry.css'),
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css'),
             ...CreateSource('css', TMP_CSS, 'navigation.css'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
@@ -88,7 +88,7 @@ switch(_URN_){
         break;
 }
 
-$variablesTV = VariableTransfer::getInstance();
+$variablesTV = \Lib\Singles\VariableTransfer::getInstance();
 $variablesTV->setValue('pageName', $pageName);
 $variablesTV->setValue('sourcesFiles', $sourcesFiles);
 
@@ -101,29 +101,32 @@ $variablesTV->setValue('sourcesFiles', $sourcesFiles);
 // Возвращает параметры-----------------------------------
 // array : ссылки на ресурсы
 //
-function CreateSource(string $type, string $path, string ...$names):array {
+function CreateSource(string $type, string $path, string ...$names): array
+{
 
     $sources = [
-        'css' => ['<link rel="stylesheet" href="','">'],
-        'js'  => ['<script src="','"></script>']
+        'css' => ['<link rel="stylesheet" href="', '">'],
+        'js' => ['<script src="', '"></script>']
     ];
 
     $str = $sources[$type];
 
     $arr = [];
-    foreach ($names as $name){
+    foreach ($names as $name) {
 
-        $arr[] = $str[0].$path.$name.$str[1];
+        $arr[] = $str[0] . $path . $name . $str[1];
     }
     return $arr;
 }
 
 //---------------------- Готовые кейсы ----------------------
 
-function GetFontAwesome4Case():array {
-    return CreateSource('css', ROOT_LIB_CSS.'font-awesome-4.7.0/css/', 'font-awesome.min.css');
+function GetFontAwesome4Case(): array
+{
+    return CreateSource('css', ROOT_LIB_CSS . 'font-awesome-4.7.0/css/', 'font-awesome.min.css');
 }
 
-function GetFontAwesome5Case():array {
-    return CreateSource('css', ROOT_LIB_CSS.'fontawesome-free-5.13.0-web/css/', 'all.min.css');
+function GetFontAwesome5Case(): array
+{
+    return CreateSource('css', ROOT_LIB_CSS . 'fontawesome-free-5.13.0-web/css/', 'all.min.css');
 }

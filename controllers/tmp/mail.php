@@ -19,8 +19,8 @@ try{
 
     $mailAddon->addReplyTo('help@ge74.ru', 'Хэлп');
 
-    $mailAddon->addAttachment(_ROOT_.'/uploads/goods.xml');
-    $mailAddon->addAttachment(_ROOT_.'/uploads/goods1.xml');
+    $mailAddon->addAttachment(ROOT.'/uploads/goods.xml');
+    $mailAddon->addAttachment(ROOT.'/uploads/goods1.xml');
 
 
     $altBody = 'Текст этого письма....Хорошего дня!';
