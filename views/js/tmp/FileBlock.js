@@ -49,7 +49,8 @@ class FileBlock {
       }
 
       files.forEach(file_element => {
-         new GeFile(file_element);
+         let file = new GeFile(file_element);
+         file.handleActionButtons();
       });
 
    }

@@ -318,7 +318,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
    function putFile(file, file_item) {
 
-
       API.checkFile(file_item.dataset.id, mapping_input_1.value, mapping_input_2.value)
          .then(check_response => {
             return API.internalSignatureVerify(check_response.fs_name, mapping_input_1.value, mapping_input_2.value);
@@ -341,7 +340,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
    }
 
-
    // Предназначен для создания элемента файла
    // Принимает параметры-------------------------------
    // file             Object : объект, с информацией о файле
@@ -352,6 +350,9 @@ document.addEventListener('DOMContentLoaded', () => {
       file_item.classList.add('files__item');
       file_item.dataset.id = file.id;
       files_body.appendChild(file_item);
+
+      let ge_file = new GeFile(file_item, files_body);
+      ge_file.addInfo();
 
       addFileInfo(file_item, file);
       addFileActions(file_item);

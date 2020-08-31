@@ -98,7 +98,7 @@ function getUnloadFileURN(check_result) {
 // Предназначен для добавления блока с действиями к файлу
 // Принимает параметры-------------------------------
 // file         Element : блок с файлом, для которого добавляются действия
-function addFileActions(file) {
+/*function addFileActions(file) {
    let file_actions = document.createElement('DIV');
    file_actions.classList.add('files__actions');
    file.appendChild(file_actions);
@@ -117,7 +117,7 @@ function addFileActions(file) {
    delete_button.classList.add('files__delete', 'fas', 'fa-trash');
    file_actions.appendChild(delete_button);
    handleDeleteButton(delete_button);
-}
+}*/
 
 /*
 function handleSignButton(sign_button, file) {
