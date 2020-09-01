@@ -62,7 +62,7 @@
             </div>
             <div class="card-form__body body-card">
                 <!--Цель обращения-->
-                <div class="body-card__row field" data-row_name="expertise_purpose" data-required="true">
+                <div class="body-card__row field" data-field_name="expertise_purpose" data-required="true">
                     <span class="body-card__title field-title">Цель обращения</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
@@ -90,7 +90,7 @@
                 <!--//Цель обращения//-->
 
                 <!--Предмет экспертизы-->
-                <div class="body-card__row field center" data-row_name="expertise_subjects" data-required="true">
+                <div class="body-card__row field center" data-field_name="expertise_subjects" data-required="true">
                     <span class="body-card__title">Предмет экспертизы</span>
                     <div class="body-card__item">
                         <div class="body-card__field radio" data-multiple="true" data-required="true">
@@ -104,11 +104,11 @@
                 <!--//Предмет экспертизы//-->
 
                 <!--Дополнительная информация-->
-                <div class="body-card__row field" data-row_name="additional_information" data-pattern="text">
+                <div class="body-card__row field" data-field_name="additional_information" data-pattern="text">
                     <span class="body-card__title">Дополнительная информация</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
-                            <textarea class="body-card__input application-input body-card__result field-result" name="additional_information"></textarea>
+                            <textarea class="body-card__input body-card__result field-result application-input" name="additional_information"></textarea>
                         </div>
                         <span class="body-card__error field-error"></span>
                     </div>
@@ -126,7 +126,7 @@
             </div>
             <div class="card-form__body body-card">
                 <!--Наименование объекта-->
-                <div class="body-card__row field" data-row_name="object_name" data-required="true" data-pattern="text">
+                <div class="body-card__row field" data-field_name="object_name" data-required="true" data-pattern="text">
                     <span class="body-card__title">Наименование объекта</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
@@ -138,7 +138,7 @@
                 <!--//Наименование объекта//-->
 
                 <!--Вид объекта-->
-                <div class="body-card__row field" data-row_name="type_of_object" data-required="true">
+                <div class="body-card__row field" data-field_name="type_of_object" data-required="true">
                     <span class="body-card__title field-title">Вид объекта</span>
 
                     <div class="body-card__item">
@@ -168,7 +168,7 @@
                 <!--//Вид объекта//-->
 
                 <!--Функциональное назначение-->
-                <div class="body-card__row field" data-row_name="functional_purpose" data-required="true">
+                <div class="body-card__row field" data-field_name="functional_purpose" data-required="true">
                     <span class="body-card__title field-title">Функциональное назначение</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
@@ -196,7 +196,7 @@
                 <!--//Функциональное назначение//-->
 
                 <!--Функциональное назначение. Подотрасль-->
-                <div class="body-card__row field" data-row_name="functional_purpose_subsector" data-required="true">
+                <div class="body-card__row field" data-field_name="functional_purpose_subsector" data-required="true">
                     <span class="body-card__title field-title">Функциональное назначение. Подотрасль</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
@@ -217,7 +217,7 @@
                 <!--//Функциональное назначение. Подотрасль//-->
 
                 <!--Функциональное назначение. Группа-->
-                <div class="body-card__row field" data-row_name="functional_purpose_group" data-required="true">
+                <div class="body-card__row field" data-field_name="functional_purpose_group" data-required="true">
                     <span class="body-card__title field-title">Функциональное назначение. Группа</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
@@ -238,9 +238,9 @@
                 <!--//Функциональное назначение. Группа//-->
 
                 <!--Блок производственные/непроизводственные объекты капитального строительства-->
-                <div class="body-card__block block" data-block_name="planning_documentation_approval" data-active="false">
+                <div class="body-card__block block" data-name="planning_documentation_approval" data-active="false">
                     <!--Номер утверждения документации по планировке территории-->
-                    <div class="body-card__row field" data-row_name="number_planning_documentation_approval" data-pattern="number">
+                    <div class="body-card__row field" data-field_name="number_planning_documentation_approval" data-pattern="number">
                         <span class="body-card__title">Номер утверждения документации по планировке территории</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
@@ -251,7 +251,7 @@
                     </div>
                     <!--//Номер утверждения документации по планировке территории//-->
                     <!--Дата утверждения документации по планировке территории-->
-                    <div class="body-card__row field" data-row_name="date_planning_documentation_approval" data-pattern="date">
+                    <div class="body-card__row field" data-field_name="date_planning_documentation_approval" data-pattern="date">
                         <span class="body-card__title">Дата утверждения документации по планировке территории</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
@@ -270,9 +270,9 @@
 
 
                 <!--Блок линейные объекты капитального строительства-->
-                <div class="body-card__block block" data-block_name="GPZU" data-active="false">
+                <div class="body-card__block block" data-name="GPZU" data-active="false">
                     <!--Номер ГПЗУ-->
-                    <div class="body-card__row field" data-row_name="number_GPZU" data-pattern="">
+                    <div class="body-card__row field" data-field_name="number_GPZU" data-pattern="">
                         <span class="body-card__title">Номер ГПЗУ</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
@@ -283,7 +283,7 @@
                     </div>
                     <!--//Номер ГПЗУ//-->
                     <!--Дата ГПЗУ-->
-                    <div class="body-card__row field" data-row_name="date_GPZU" data-pattern="date">
+                    <div class="body-card__row field" data-field_name="date_GPZU" data-pattern="date">
                         <span class="body-card__title">Дата ГПЗУ</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
@@ -302,7 +302,7 @@
 
 
                 <!--Вид работ-->
-                <div class="body-card__row field" data-row_name="type_of_work" data-required="true">
+                <div class="body-card__row field" data-field_name="type_of_work" data-required="true">
                     <span class="body-card__title field-title">Вид работ</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
@@ -323,9 +323,9 @@
                 <!--//Вид работ//-->
 
                 <!--Блок смета-->
-                <div class="body-card__block block" data-block_name="estimate" data-active="false">
+                <div class="body-card__block block" data-name="estimate" data-active="false">
                     <!--Сметная стоимость-->
-                    <div class="body-card__row field" data-row_name="estimate_cost" data-pattern="number">
+                    <div class="body-card__row field" data-field_name="estimate_cost" data-pattern="number">
                         <span class="body-card__title">Сведения о сметной или предполагаемой (предельной) стоимости объекта капитального строительства, содержащиеся в решении по объекту или письме. тыс. руб.</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
@@ -344,7 +344,7 @@
                                 <span class="body-card__value">Загрузите файлы</span>
                                 <i class="body-card__icon fas fa-file"></i>
                             </div>
-                            <div class="files"></div>
+                            <div class="body-card__files files"></div>
                         </div>
                         <input class="body-card__result field-result" type="hidden" name="file_grbs">
                     </div>
@@ -353,7 +353,7 @@
                 <!--//Блок смета//-->
 
                 <!--Кадастровый номер земельного участка-->
-                <div class="body-card__row field" data-row_name="cadastral_number" data-pattern="number">
+                <div class="body-card__row field" data-field_name="cadastral_number" data-pattern="number">
                     <span class="body-card__title">Кадастровый номер земельного участка</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
@@ -365,7 +365,7 @@
                 <!--//Кадастровый номер земельного участка//-->
 
                 <!--CHECKBOX Объект культурного наследия-->
-                <div class="body-card__row field" data-row_name="cultural_object_type_checkbox" data-multiple="false">
+                <div class="body-card__row field" data-field_name="cultural_object_type_checkbox" data-multiple="false">
                     <span class="body-card__title">Объект культурного наследия</span>
                     <div class="body-card__item">
                         <div class="body-card__field radio" data-required="true">
@@ -386,9 +386,9 @@
                 <!--//CHECKBOX Объект культурного наследия//-->
 
                 <!--Блок культурное наследие-->
-                <div class="body-card__block block" data-block_name="cultural_object_type" data-active="false">
+                <div class="body-card__block block" data-name="cultural_object_type" data-active="false">
                     <!--Тип объекта культурного наследия-->
-                    <div class="body-card__row field" data-row_name="cultural_object_type" data-required="true">
+                    <div class="body-card__row field" data-field_name="cultural_object_type" data-required="true">
                         <span class="body-card__title field-title">Тип объекта культурного наследия</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
@@ -420,7 +420,7 @@
 
 
                 <!--CHECKBOX Национальный проект-->
-                <div class="body-card__row field center" data-row_name="national_project_checkbox">
+                <div class="body-card__row field center" data-field_name="national_project_checkbox">
                     <span class="body-card__title">Национальный проект</span>
                     <div class="body-card__item">
                         <div class="body-card__field radio" data-required="true">
@@ -442,9 +442,9 @@
 
 
                 <!--Блок национальный проект-->
-                <div class="body-card__block block" data-block_name="national_project" data-active="false">
+                <div class="body-card__block block" data-name="national_project" data-active="false">
                     <!--Название национального проекта-->
-                    <div class="body-card__row field" data-row_name="national_project" data-required="true">
+                    <div class="body-card__row field" data-field_name="national_project" data-required="true">
                         <span class="body-card__title field-title">Название национального проекта</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
@@ -473,7 +473,7 @@
                     <!--//Название национального проекта//-->
 
                     <!--Название федерального проекта-->
-                    <div class="body-card__row field" data-row_name="federal_project" data-required="true">
+                    <div class="body-card__row field" data-field_name="federal_project" data-required="true">
                         <span class="body-card__title field-title">Название федерального проекта</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
@@ -494,7 +494,7 @@
                     <!--//Название федерального проекта//-->
 
                     <!--Дата окончания строительства-->
-                    <div class="body-card__row field" data-row_name="date_finish_building" data-pattern="date">
+                    <div class="body-card__row field" data-field_name="date_finish_building" data-pattern="date">
                         <span class="body-card__title">Дата окончания строительства</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
@@ -513,7 +513,7 @@
 
 
                 <!--Куратор-->
-                <div class="body-card__row field" data-row_name="curator" data-required="true">
+                <div class="body-card__row field" data-field_name="curator" data-required="true">
                     <span class="body-card__title field-title">Куратор</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
@@ -542,7 +542,7 @@
             </div>
         </div>
 
-        <div class="application-form__card card-form" data-type="purpose">
+        <div class="application-form__card card-form" data-type="finance_sources">
             <div class="card-form__header">
                 <span class="card-form__title">СВЕДЕНИЯ ОБ ИСТОЧНИКАХ ФИНАНСИРОВАНИЯ</span>
                 <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
@@ -550,22 +550,22 @@
             <div class="card-form__body body-card">
 
                 <!--Источники финансирования-->
-                <div class="body-card__block block" data-type="multiple" data-block_name="finance_sources">
+                <div class="body-card__block multiple-block block" data-type="multiple" data-name="finance_sources">
 
-                    <div class="body-card__add-button field-add">
-                        <span class="body-card__add-text">Добавить источник финансирования</span>
-                        <i class="body-card__add-icon fas fa-plus-square"></i>
+                    <div class="multiple-block__add field-add">
+                        <span class="multiple-block__text">Добавить источник финансирования</span>
+                        <i class="multiple-block__icon fas fa-plus-square"></i>
                     </div>
 
                     <!--Шаблоны источников финансирования-->
-                    <div class="body-card__block block" data-block_name="templates_container">
+                    <div class="body-card__block block" data-name="templates_container">
                         <!--Шаблон элемента множественного блока-->
-                        <div class="body-card__block block" data-block_name="part" data-active="false">
+                        <div class="body-card__block block" data-name="part" data-active="false">
                         </div>
                         <!--Шаблон элемента множественного блока-->
                         <!--Шаблон "Вид финансирования"-->
-                        <div class="body-card__block block" data-type="part" data-block_name="type" data-active="false">
-                            <div class="body-card__row field" data-row_name="finance_type" data-required="true">
+                        <div class="body-card__block block" data-type="part" data-name="type" data-active="false">
+                            <div class="body-card__row field" data-field_name="finance_type" data-required="true">
                                 <span class="body-card__title field-title">Вид финансирования</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field radio" data-required="true">
@@ -594,8 +594,8 @@
                         </div>
                         <!--//Шаблон "Вид финансирования"//-->
                         <!--Шаблон "Бюджетные средства"-->
-                        <div class="body-card__block block" data-type="part" data-block_name="budget" data-active="false">
-                            <div class="body-card__row field" data-row_name="budget_level" data-required="true">
+                        <div class="body-card__block block" data-type="part" data-name="budget" data-active="false">
+                            <div class="body-card__row field" data-field_name="budget_level" data-required="true">
                                 <span class="body-card__title field-title">Уровень бюджета</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field">
@@ -620,8 +620,8 @@
                                 </div>
                                 <input class="body-card__result field-result" type="hidden" data-field="budget_level" name="budget_level">
                             </div>
-                            <div class="body-card__block block" data-type="part" data-block_name="no_data" data-active="false">
-                                <div class="body-card__row field center" data-row_name="no_data">
+                            <div class="body-card__block block" data-type="part" data-name="no_data" data-active="false">
+                                <div class="body-card__row field center" data-field_name="no_data">
                                     <span class="body-card__title">Размер финансирования</span>
                                     <div class="body-card__item">
                                         <div class="body-card__field radio">
@@ -635,8 +635,8 @@
                                     </div>
                                     <input class="body-card__result field-result" type="hidden" data-field="no_data" name="no_data">
                                 </div>
-                                <div class="body-card__block block" data-type="part" data-block_name="percent" data-active="true">
-                                    <div class="body-card__row field" data-required="true" data-row_name="percent" data-pattern="number">
+                                <div class="body-card__block block" data-type="part" data-name="percent" data-active="true">
+                                    <div class="body-card__row field" data-required="true" data-field_name="percent" data-pattern="number">
                                         <span class="body-card__title">Процент финансирования</span>
                                         <div class="body-card__item">
                                             <div class="body-card__field">
@@ -650,8 +650,8 @@
                         </div>
                         <!--//Шаблон "Бюджетные средства"//-->
                         <!--Шаблон "Средства юридических лиц"-->
-                        <div class="body-card__block block" data-type="part" data-block_name="organization" data-active="false">
-                            <div class="body-card__row field" data-required="true" data-row_name="full_name">
+                        <div class="body-card__block block" data-type="part" data-name="organization" data-active="false">
+                            <div class="body-card__row field" data-required="true" data-field_name="full_name">
                                 <span class="body-card__title">Полное наименование</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field">
@@ -660,7 +660,7 @@
                                     <span class="body-card__error field-error"></span>
                                 </div>
                             </div>
-                            <div class="body-card__row field" data-required="true" data-row_name="INN" data-pattern="inn">
+                            <div class="body-card__row field" data-required="true" data-field_name="INN" data-pattern="inn">
                                 <span class="body-card__title">ИНН</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field">
@@ -669,7 +669,7 @@
                                     <span class="body-card__error field-error"></span>
                                 </div>
                             </div>
-                            <div class="body-card__row field" data-required="true" data-row_name="KPP">
+                            <div class="body-card__row field" data-required="true" data-field_name="KPP">
                                 <span class="body-card__title">КПП</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field">
@@ -678,7 +678,7 @@
                                     <span class="body-card__error field-error"></span>
                                 </div>
                             </div>
-                            <div class="body-card__row field" data-required="true" data-row_name="OGRN">
+                            <div class="body-card__row field" data-required="true" data-field_name="OGRN">
                                 <span class="body-card__title">ОГРН</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field">
@@ -687,7 +687,7 @@
                                     <span class="body-card__error field-error"></span>
                                 </div>
                             </div>
-                            <div class="body-card__row field" data-required="true" data-row_name="address">
+                            <div class="body-card__row field" data-required="true" data-field_name="address">
                                 <span class="body-card__title">Адрес</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field">
@@ -696,7 +696,7 @@
                                     <span class="body-card__error field-error"></span>
                                 </div>
                             </div>
-                            <div class="body-card__row field" data-required="true" data-row_name="location">
+                            <div class="body-card__row field" data-required="true" data-field_name="location">
                                 <span class="body-card__title">Место нахождения</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field">
@@ -705,7 +705,7 @@
                                     <span class="body-card__error field-error"></span>
                                 </div>
                             </div>
-                            <div class="body-card__row field" data-required="true" data-row_name="telephone">
+                            <div class="body-card__row field" data-required="true" data-field_name="telephone">
                                 <span class="body-card__title">Телефон</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field">
@@ -714,7 +714,7 @@
                                     <span class="body-card__error field-error"></span>
                                 </div>
                             </div>
-                            <div class="body-card__row field" data-required="true" data-row_name="email">
+                            <div class="body-card__row field" data-required="true" data-field_name="email">
                                 <span class="body-card__title">Адрес электронной почты</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field">
@@ -723,8 +723,8 @@
                                     <span class="body-card__error field-error"></span>
                                 </div>
                             </div>
-                            <div class="body-card__block block" data-type="part" data-block_name="no_data" data-active="false">
-                                <div class="body-card__row field center" data-row_name="no_data">
+                            <div class="body-card__block block" data-type="part" data-name="no_data" data-active="false">
+                                <div class="body-card__row field center" data-field_name="no_data">
                                     <span class="body-card__title">Размер финансирования</span>
                                     <div class="body-card__item">
                                         <div class="body-card__field radio">
@@ -738,8 +738,8 @@
                                     </div>
                                     <input class="body-card__result field-result" type="hidden" data-field="no_data" name="no_data">
                                 </div>
-                                <div class="body-card__block block" data-type="part" data-block_name="percent" data-active="true">
-                                    <div class="body-card__row field" data-required="true" data-row_name="percent" data-pattern="number">
+                                <div class="body-card__block block" data-type="part" data-name="percent" data-active="true">
+                                    <div class="body-card__row field" data-required="true" data-field_name="percent" data-pattern="number">
                                         <span class="body-card__title">Процент финансирования</span>
                                         <div class="body-card__item">
                                             <div class="body-card__field">
@@ -753,9 +753,9 @@
                         </div>
                         <!--//Шаблон "Средства юридических лиц"//-->
                         <!--Шаблон "Собственные средства застройщика"-->
-                        <div class="body-card__block block" data-type="part" data-block_name="builder_source" data-active="false">
-                            <div class="body-card__block block" data-type="part" data-block_name="no_data" data-active="false">
-                                <div class="body-card__row field center" data-row_name="no_data">
+                        <div class="body-card__block block" data-type="part" data-name="builder_source" data-active="false">
+                            <div class="body-card__block block" data-type="part" data-name="no_data" data-active="false">
+                                <div class="body-card__row field center" data-field_name="no_data">
                                     <span class="body-card__title">Размер финансирования</span>
                                     <div class="body-card__item">
                                         <div class="body-card__field radio">
@@ -769,8 +769,8 @@
                                     </div>
                                     <input class="body-card__result field-result" type="hidden" data-field="no_data" name="no_data">
                                 </div>
-                                <div class="body-card__block block" data-type="part" data-block_name="percent" data-active="true">
-                                    <div class="body-card__row field" data-required="true" data-row_name="percent" data-pattern="number">
+                                <div class="body-card__block block" data-type="part" data-name="percent" data-active="true">
+                                    <div class="body-card__row field" data-required="true" data-field_name="percent" data-pattern="number">
                                         <span class="body-card__title">Процент финансирования</span>
                                         <div class="body-card__item">
                                             <div class="body-card__field">
@@ -784,9 +784,9 @@
                         </div>
                         <!--//Шаблон "Собственные средства застройщика"//-->
                         <!--Шаблон "Средства инвестора"-->
-                        <div class="body-card__block block" data-type="part" data-block_name="investor" data-active="false">
-                            <div class="body-card__block block" data-type="part" data-block_name="no_data" data-active="false">
-                                <div class="body-card__row field center" data-row_name="no_data">
+                        <div class="body-card__block block" data-type="part" data-name="investor" data-active="false">
+                            <div class="body-card__block block" data-type="part" data-name="no_data" data-active="false">
+                                <div class="body-card__row field center" data-field_name="no_data">
                                     <span class="body-card__title">Размер финансирования</span>
                                     <div class="body-card__item">
                                         <div class="body-card__field radio">
@@ -800,8 +800,8 @@
                                     </div>
                                     <input class="body-card__result field-result" type="hidden" data-field="no_data" name="no_data">
                                 </div>
-                                <div class="body-card__block block" data-type="part" data-block_name="percent" data-active="true">
-                                    <div class="body-card__row field" data-required="true" data-row_name="percent" data-pattern="number">
+                                <div class="body-card__block block" data-type="part" data-name="percent" data-active="true">
+                                    <div class="body-card__row field" data-required="true" data-field_name="percent" data-pattern="number">
                                         <span class="body-card__title">Процент финансирования</span>
                                         <div class="body-card__item">
                                             <div class="body-card__field">
@@ -815,8 +815,8 @@
                         </div>
                         <!--//Шаблон "Средства инвестора"//-->
                         <!--Шаблон "Размер финансирования"-->
-                        <div class="body-card__block block" data-type="part" data-block_name="no_data" data-active="false">
-                            <div class="body-card__row field center" data-row_name="no_data">
+                        <div class="body-card__block block" data-type="part" data-name="no_data" data-active="false">
+                            <div class="body-card__row field center" data-field_name="no_data">
                                 <span class="body-card__title">Размер финансирования</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field radio">
@@ -833,8 +833,8 @@
                         </div>
                         <!--//Шаблон "Размер финансирования"//-->
                         <!--Шаблон "Процент финансирования"-->
-                        <div class="body-card__block block" data-type="part" data-block_name="percent" data-active="false">
-                            <div class="body-card__row field" data-required="true" data-row_name="percent" data-pattern="number">
+                        <div class="body-card__block block" data-type="part" data-name="percent" data-active="false">
+                            <div class="body-card__row field" data-required="true" data-field_name="percent" data-pattern="number">
                                 <span class="body-card__title">Процент финансирования</span>
                                 <div class="body-card__item">
                                     <div class="body-card__field">
@@ -846,31 +846,29 @@
                         </div>
                         <!--//Шаблон "Процент финансирования"//-->
                         <!--Кнопка сохранить-->
-                        <div class="body-card__block block" data-block_name="actions" data-active="false">
-                            <div class="body-card__multiple_actions">
-                                <div class="body-card__multiple-button save">
-                                    <span class="body-card__multiple-text">Сохранить источник финансирования</span>
-                                    <i class="body-card__multiple-icon fas fa-check-circle"></i>
+                        <div class="body-card__block block" data-name="actions" data-active="false">
+                            <div class="multiple-block__actions">
+                                <div class="multiple-block__button save">
+                                    <span class="multiple-block__text">Сохранить источник финансирования</span>
+                                    <i class="multiple-block__icon fas fa-check-circle"></i>
                                 </div>
-                                <div class="body-card__multiple-button cancel">
-                                    <span class="body-card__multiple-text">Отмена</span>
-                                    <i class="body-card__multiple-icon fas fa-times-circle"></i>
+                                <div class="multiple-block__button cancel">
+                                    <span class="multiple-block__text">Отмена</span>
+                                    <i class="multiple-block__icon fas fa-times-circle"></i>
                                 </div>
                             </div>
                         </div>
                         <!--//Шаблон "Процент финансирования"//-->
-                        <div class="body-card__block block" data-block_name="part_short" data-active="false">
-                            <div class="body-card__part-short">
-                                <span class="body-card__part-info part-info"></span>
-                                <i class="body-card__part-delete fas fa-trash"></i>
+                        <div class="body-card__block block" data-name="part_short" data-active="false">
+                            <div class="multiple-block__short part-short">
+                                <span class="multiple-block__info part-info"></span>
+                                <i class="multiple-block__delete fas fa-trash delete"></i>
                             </div>
-                            
                         </div>
                     </div>
                     <!--//Шаблоны источников финансирования//-->
     
-                    
-                    <input class="body-card__result field-result" type="hidden" name="finance_sources">
+                    <input class="multiple-block__result field-result" type="hidden" name="finance_sources">
                 </div>
                 <!--//Источники финансирования//-->
     
@@ -883,11 +881,11 @@
                 <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
             </div>
             <div class="card-form__body body-card">
-                <div class="body-card__message" data-block_name="empty_documentation" data-active="true">
+                <div class="body-card__message" data-name="empty_documentation" data-active="true">
                     <i class="body-card__message-icon fas fa-exclamation"></i>
                     <span class="body-card__message-text">Для отображения структуры разделов документации выберите вид объекта</span>
                 </div>
-                <div class="documentation" data-block_name="structureDocumentation1" data-mapping_level_1="2" data-mapping_level_2="1" data-active="false">
+                <div class="documentation" data-name="structureDocumentation1" data-mapping_level_1="2" data-mapping_level_2="1" data-active="false">
                     <?php foreach ($variablesTV->getValue('structureDocumentation1') as ['id' => $id_structure_node, 'name' => $name, 'depth' => $depth]): ?>
                         <div class="documentation__node" data-id_structure_node="<?= $id_structure_node ?>">
                             <div class="documentation__header">
@@ -898,7 +896,7 @@
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <div class="documentation" data-block_name="structureDocumentation2" data-mapping_level_1="2" data-mapping_level_2="2" data-active="false">
+                <div class="documentation" data-name="structureDocumentation2" data-mapping_level_1="2" data-mapping_level_2="2" data-active="false">
                     <?php foreach ($variablesTV->getValue('structureDocumentation2') as ['id' => $id_structure_node, 'name' => $name, 'depth' => $depth]): ?>
                         <div class="documentation__node" data-id_structure_node="<?= $id_structure_node ?>">
                             <div class="documentation__header">

@@ -42,7 +42,7 @@ class API {
 
    static getUploadFormData (files, mapping_1, mapping_2, id_structure_node) {
       let form_data = new FormData();
-      form_data.append('id_application', getIdApplication());
+      form_data.append('id_application', getIdDocument());
       form_data.append('mapping_level_1', mapping_1);
       form_data.append('mapping_level_2', mapping_2);
 
@@ -98,7 +98,7 @@ class API {
 
    static getFileCheckFormData (id_file, mapping_1, mapping_2) {
       let form_data = new FormData();
-      form_data.append('id_application', getIdApplication());
+      form_data.append('id_application', getIdDocument());
       form_data.append('id_file', id_file);
       form_data.append('mapping_level_1', mapping_1);
       form_data.append('mapping_level_2', mapping_2);

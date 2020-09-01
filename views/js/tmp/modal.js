@@ -67,7 +67,7 @@ function getModalBySelect (select) {
    let modal_name;
    let parent_row = select.closest('.field');
 
-   modal_name = parent_row.dataset.row_name;
+   modal_name = parent_row.dataset.field_name;
 
    //TODO одинаковые модалки в разных блоках
    if (modals.has(modal_name)) {
@@ -137,7 +137,7 @@ class Modal {
    // Element модального окна
    element;
 
-   // data-row_name родительского блока
+   // data-field_name родительского блока
    name;
 
    // Блок со страницами с элементами из справочника
@@ -165,7 +165,7 @@ class Modal {
 
       this.parent_row = this.select.closest('.field');
 
-      this.name = this.parent_row.dataset.row_name;
+      this.name = this.parent_row.dataset.field_name;
       this.element = this.parent_row.querySelector('.modal');
       this.content = this.element.querySelector('.modal__items');
       this.result_input = this.parent_row.querySelector('.field-result');

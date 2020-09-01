@@ -69,9 +69,9 @@ class FileUploader {
       this.handleDeleteButton();
 
       let close_button = this.modal.querySelector('.modal__close');
-      close_button.addEventListener('click', this.closeModal);
+      close_button.addEventListener('click', this.closeModal.bind(this));
 
-      this.overlay.addEventListener('click', this.closeModal);
+      this.overlay.addEventListener('click', this.closeModal.bind(this));
    }
 
    clearDefaultDropEvents () {
@@ -191,7 +191,7 @@ class FileUploader {
          this.mapping_1,
          this.mapping_2,
          this.id_structure_node,
-         this.uploadProgressCallback
+         this.uploadProgressCallback.bind(this)
       )
          .then(uploaded_files => {
 
@@ -276,6 +276,7 @@ class FileUploader {
 
    closeModal () {
       if (!this.is_uploading) {
+
          this.modal.classList.remove('active');
          this.overlay.classList.remove('active');
          this.parent_node = null;
