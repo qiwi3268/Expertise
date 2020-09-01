@@ -27,7 +27,6 @@ trait SingleMiscValidate
         $query = "SELECT count(*)>0
                   FROM `{$table}`
                   WHERE `id`=?";
-
         // Автоматическое преобразование к bool типу
         return ParametrizedQuery::getSimpleArray($query, [$id])[0];
     }

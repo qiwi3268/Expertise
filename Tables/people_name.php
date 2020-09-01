@@ -7,9 +7,13 @@ use Lib\DataBase\SimpleQuery;
 use Lib\DataBase\ParametrizedQuery;
 
 
-class people_name
+final class people_name
 {
 
+    // Предназначен для создания записи в таблице имен
+    // Принимает параметры-----------------------------------
+    // name string : имя
+    //
     static public function create(string $name): void
     {
         $query = "INSERT INTO `people_name`
@@ -20,6 +24,10 @@ class people_name
     }
 
 
+    // Предназначен для полученя простого массива имен
+    // Возвращает параметры-----------------------------------
+    // array : простой массив имен
+    //
     static public function getNames(): array
     {
         $query = "SELECT `name`

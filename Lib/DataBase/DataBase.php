@@ -3,7 +3,7 @@
 
 namespace Lib\DataBase;
 
-use Lib\Exceptions\DataBase as SelfException;
+use Lib\Exceptions\DataBase as SelfEx;
 
 
 class DataBase
@@ -32,7 +32,7 @@ class DataBase
             $config['dbname']);
 
         if (self::$mysqli->connect_error) {
-            throw new SelfException('Ошибка подключения к базе данных: ' . self::$mysqli->connect_errno, self::$mysqli->connect_error);
+            throw new SelfEx('Ошибка подключения к базе данных: ' . self::$mysqli->connect_errno, self::$mysqli->connect_error);
         }
     }
 
@@ -79,7 +79,7 @@ class DataBase
                     break;
                 default:
                     $message = "Переданный параметр со значением значением: '{$value}', с индексом (в рамках перебора входного массива): '{$index}', имеет тип: '{$type}', и не подходит под указанные типы";
-                    throw new SelfException($message, 1);
+                    throw new SelfEx($message, 1);
                     break;
             }
         }
@@ -97,7 +97,7 @@ class DataBase
 
         // Ошибка в формировании параметризованного запроса
         if (!$stmt) {
-            throw new SelfException(self::$mysqli->error, self::$mysqli->errno);
+            throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
         }
 
         // Привязка переменных к параметрам запроса
@@ -111,7 +111,7 @@ class DataBase
             // количество символов в переменной больше, чем в поле БД
             // NULL в запросе указан в кавычках
             // повторяющееся значение для столбца с индексом unique
-            throw new SelfException(self::$mysqli->error, self::$mysqli->errno);
+            throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
         }
 
         $result = $stmt->get_result();
@@ -137,7 +137,7 @@ class DataBase
 
         // Ошибка в формировании простого запроса
         if (!$result) {
-            throw new SelfException(self::$mysqli->error, self::$mysqli->errno);
+            throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
         }
 
         return $result;
@@ -157,23 +157,23 @@ class DataBase
     static protected function executeTransaction(Transaction $Transaction): void
     {
 
-        if (!self::$mysqli->begin_transaction()) throw new SelfException(self::$mysqli->error, self::$mysqli->errno);
+        if (!self::$mysqli->begin_transaction()) throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
 
         try {
 
             $Transaction->executeQueries();
 
-        } catch (SelfException $e) {
+        } catch (SelfEx $e) {
 
-            if (!self::$mysqli->rollback()) throw new SelfException(self::$mysqli->error, self::$mysqli->errno);
-            throw new SelfException($e->getMessage(), $e->getCode());
+            if (!self::$mysqli->rollback()) throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
+            throw new SelfEx($e->getMessage(), $e->getCode());
 
         } catch (\Exception $e) {
 
-            if (!self::$mysqli->rollback()) throw new SelfException(self::$mysqli->error, self::$mysqli->errno);
+            if (!self::$mysqli->rollback()) throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
             throw new \Exception($e->getMessage(), $e->getCode());
         }
 
-        if (!self::$mysqli->commit()) throw new SelfException(self::$mysqli->error, self::$mysqli->errno);
+        if (!self::$mysqli->commit()) throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
     }
 }

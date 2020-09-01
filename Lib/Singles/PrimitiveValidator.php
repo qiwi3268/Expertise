@@ -3,7 +3,7 @@
 
 namespace Lib\Singles;
 
-use Lib\Exceptions\PrimitiveValidator as SelfException;
+use Lib\Exceptions\PrimitiveValidator as SelfEx;
 use Classes\Exceptions\PregMatch as PregMatchEx;
 
 
@@ -35,17 +35,17 @@ class PrimitiveValidator
         } catch (\jsonException $e) {
 
             $msg = "jsonException message: '{$e->getMessage()}', code: '{$e->getCode()}'";
-            throw new SelfException($msg, 1);
+            throw new SelfEx($msg, 1);
         }
 
         if (!is_array($array)) {
-            throw new SelfException("Декодированная json-строка: '{$json}' не является массивом", 2);
+            throw new SelfEx("Декодированная json-строка: '{$json}' не является массивом", 2);
         }
         // Проверка массива на нечисловые значения
         foreach ($array as &$element) {
 
             if (($int = filter_var($element, FILTER_VALIDATE_INT)) === false) {
-                throw new SelfException("В массиве, полученном из json-строки, присутствует нечисловой элемент: '{$element}'", 3);
+                throw new SelfEx("В массиве, полученном из json-строки, присутствует нечисловой элемент: '{$element}'", 3);
             }
             $element = $int;
         }
@@ -56,7 +56,7 @@ class PrimitiveValidator
 
             foreach (array_count_values($array) as $element => $count) {
 
-                if ($count > 1) throw new SelfException("В массиве, полученном из json-строки, элемент: '{$element}' найден: '{$count}' раз(а)", 4);
+                if ($count > 1) throw new SelfEx("В массиве, полученном из json-строки, элемент: '{$element}' найден: '{$count}' раз(а)", 4);
             }
         }
         return $array;
@@ -81,7 +81,7 @@ class PrimitiveValidator
         } catch (\jsonException $e) {
 
             $msg = "jsonException message: '{$e->getMessage()}', code: '{$e->getCode()}'";
-            throw new SelfException($msg, 1);
+            throw new SelfEx($msg, 1);
         }
     }
 
@@ -111,10 +111,10 @@ class PrimitiveValidator
         try {
             list(1 => $date, 2 => $month, 3 => $year) = GetHandlePregMatch($pattern, $fullDate, false);
         } catch (PregMatchEx $e) {
-            throw new SelfException("Строковая дата: '{$fullDate}' является некорректной", 5);
+            throw new SelfEx("Строковая дата: '{$fullDate}' является некорректной", 5);
         }
 
-        if (!checkdate($month, $date, $year)) throw new SelfException("Дата: '{$fullDate}' не существует по григорианскому календарю", 6);
+        if (!checkdate($month, $date, $year)) throw new SelfEx("Дата: '{$fullDate}' не существует по григорианскому календарю", 6);
     }
 
 
@@ -138,7 +138,7 @@ class PrimitiveValidator
         try {
             GetHandlePregMatch($pattern, $INN, false);
         } catch (PregMatchEx $e) {
-            throw new SelfException("Введенный ИНН: '{$INN}' является некорректным", 7);
+            throw new SelfEx("Введенный ИНН: '{$INN}' является некорректным", 7);
         }
     }
 
@@ -159,7 +159,7 @@ class PrimitiveValidator
         try {
             GetHandlePregMatch($pattern, $KPP, false);
         } catch (PregMatchEx $e) {
-            throw new SelfException("Введенный КПП: '{$KPP}' является некорректным", 8);
+            throw new SelfEx("Введенный КПП: '{$KPP}' является некорректным", 8);
         }
     }
 
@@ -180,7 +180,7 @@ class PrimitiveValidator
         try {
             GetHandlePregMatch($pattern, $OGRN, false);
         } catch (PregMatchEx $e) {
-            throw new SelfException("Введенный ОГРН: '{$OGRN}' является некорректным", 9);
+            throw new SelfEx("Введенный ОГРН: '{$OGRN}' является некорректным", 9);
         }
     }
 
@@ -195,7 +195,7 @@ class PrimitiveValidator
     public function validateEmail(string $email): void
     {
         if ((filter_var($email, FILTER_VALIDATE_EMAIL)) === false) {
-            throw new SelfException("Введенный email: '{$email}' является некорректным", 10);
+            throw new SelfEx("Введенный email: '{$email}' является некорректным", 10);
         }
     }
 
@@ -213,7 +213,7 @@ class PrimitiveValidator
             'max_range' => 100]
         ];
         if ((filter_var($percent, FILTER_VALIDATE_INT, $options)) === false) {
-            throw new SelfException("Введенный процент: '{$percent}' является некорректным", 11);
+            throw new SelfEx("Введенный процент: '{$percent}' является некорректным", 11);
         }
     }
 
@@ -228,7 +228,7 @@ class PrimitiveValidator
     public function validateInt(string $int): void
     {
         if (filter_var($int, FILTER_VALIDATE_INT) === false) {
-            throw new SelfException("Введеное значение: '{$int}' не является целочисленным", 12);
+            throw new SelfEx("Введеное значение: '{$int}' не является целочисленным", 12);
         }
     }
 
@@ -251,7 +251,7 @@ class PrimitiveValidator
         foreach ($settings as $key => $callbacks) {
 
             if (!array_key_exists($key, $array)) {
-                throw new SelfException("Во входном массиве отсутствует обязательное поле: '{$key}'", 13);
+                throw new SelfEx("Во входном массиве отсутствует обязательное поле: '{$key}'", 13);
             }
 
             $result = false;
@@ -293,7 +293,7 @@ class PrimitiveValidator
             }
 
             if (!$result) {
-                throw new SelfException("Значение входного массива по ключу: '{$key}' не прошло проверку", 14);
+                throw new SelfEx("Значение входного массива по ключу: '{$key}' не прошло проверку", 14);
             }
         }
     }
@@ -317,7 +317,7 @@ class PrimitiveValidator
             foreach ($inclusions as $l_key => $l_value) $inclusions[$l_key] .= ' (' . gettype($l_value) . ')';
             $msg = implode(' или ', $inclusions);
 
-            throw new SelfException("Значение: '{$value}' не подходит ни под одно из перечисленных: '{$msg}'", 15);
+            throw new SelfEx("Значение: '{$value}' не подходит ни под одно из перечисленных: '{$msg}'", 15);
         }
 
     }

@@ -10,16 +10,20 @@ require_once ROOT . '/functions/functions.php';
 
 spl_autoload_register(function (string $className) {
 
-    if (!containsAll($className, '\\')) {
-        throw new Exception("Загружаемый класс: '{$className}' не имеет пространства имен");
+    $path = null;
+
+    if (containsAll($className, '\\')) {
+
+        $namespacePath = str_replace('\\', '/', $className);
+
+        $pattern = "/\A(.+)\/(.+\z)/";
+
+        list(1 => $tmp_path, 2 => $tmp_name) = GetHandlePregMatch($pattern, $namespacePath, false);
+
+        $path = ROOT . "/{$tmp_path}/{$tmp_name}.php";
     }
 
-    $namespacePath = str_replace('\\', '/', $className);
-    $pattern = "/\A(.+)\/(.+\z)/";
-    list(1 => $tmp_path, 2 => $tmp_name) = GetHandlePregMatch($pattern, $namespacePath, false);
-    $path = ROOT . "/{$tmp_path}/{$tmp_name}.php";
-
-    if (file_exists($path)) require_once $path;
+    if (!is_null($path) && file_exists($path)) require_once $path;
 });
 
 

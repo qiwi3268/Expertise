@@ -3,7 +3,7 @@
 
 namespace Lib\Singles;
 
-use Lib\Exceptions\NodeStructure as SelfException;
+use Lib\Exceptions\NodeStructure as SelfEx;
 
 
 // Класс предназначен для построения структуры вложенности узлов
@@ -30,7 +30,7 @@ class NodeStructure
                 $parent = array_filter($structure, fn($localNode) => ($localNode['id'] == $parentNodeId));
 
                 if (empty($parent)) {
-                    throw new SelfException("У узла id: {$node['id']} отсутствует родительский узел id: {$parentNodeId}", 1);
+                    throw new SelfEx("У узла id: {$node['id']} отсутствует родительский узел id: {$parentNodeId}", 1);
                 }
             }
         }

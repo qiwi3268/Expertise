@@ -3,7 +3,7 @@
 
 namespace Lib\Files;
 
-use Lib\Exceptions\File as SelfException;
+use Lib\Exceptions\File as SelfEx;
 
 
 // Класс загрузки файлов из глобального массива $_FILES
@@ -252,7 +252,7 @@ class Upload
         }
 
         if (count($uploadNames) !== $this->FILESCount[$inputName]) {
-            throw new SelfException('Размерность массива uploadNames не соответствует имеющемуся количеству файлов');
+            throw new SelfEx('Размерность массива uploadNames не соответствует имеющемуся количеству файлов');
         }
 
         $files = $this->FILES[$inputName];

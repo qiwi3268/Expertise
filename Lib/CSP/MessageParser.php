@@ -3,7 +3,7 @@
 
 namespace Lib\CSP;
 
-use Lib\Exceptions\CSPMessageParser as SelfException;
+use Lib\Exceptions\CSPMessageParser as SelfEx;
 
 
 class MessageParser
@@ -145,10 +145,10 @@ class MessageParser
         $FIOs = implode(', ', $FIOs);
 
         // В БД не нашлось подходящего имени
-        if ($count === 0) throw new SelfException("В БД не нашлось имени из ФИО: '{$FIOs}'", 1);
+        if ($count === 0) throw new SelfEx("В БД не нашлось имени из ФИО: '{$FIOs}'", 1);
 
         // В одном Signer нашлось больше одного ФИО
-        if ($count > 1) throw new SelfException("В одном Signer: '{$Signer}' нашлось больше одного ФИО: '{$FIOs}'", 2);
+        if ($count > 1) throw new SelfEx("В одном Signer: '{$Signer}' нашлось больше одного ФИО: '{$FIOs}'", 2);
 
         return $result;
     }

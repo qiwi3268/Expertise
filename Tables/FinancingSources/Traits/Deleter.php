@@ -23,7 +23,6 @@ trait Deleter
         $query = "DELETE
                   FROM `{$table}`
                   WHERE `id_application`=?";
-
         ParametrizedQuery::set($query, [$id_application]);
     }
 }

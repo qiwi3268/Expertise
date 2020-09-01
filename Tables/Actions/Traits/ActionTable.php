@@ -6,7 +6,7 @@ namespace Tables\Actions\Traits;
 use Lib\DataBase\SimpleQuery;
 
 
-// Трейт, предназначений для реализации общих методов действий
+// Трейт, предназначеный для реализации общих методов действий
 // Для использования трейта необходимо, чтобы перед его включением было объявлено
 // статическое свойство tableName с соответствующим именем таблицы
 //
@@ -32,7 +32,6 @@ trait ActionTable
                   FROM `{$table}`
                   WHERE `is_active`=1
                   ORDER BY `sort` ASC";
-
         return SimpleQuery::getFetchAssoc($query);
     }
 }

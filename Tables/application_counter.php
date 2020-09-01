@@ -15,7 +15,6 @@ final class application_counter
     {
         $query = "UPDATE `application_counter`
                   SET `internal`=`internal`+1";
-
         SimpleQuery::set($query);
     }
 
@@ -28,8 +27,6 @@ final class application_counter
     {
         $query = "SELECT `internal`
                   FROM `application_counter`";
-
         return SimpleQuery::getSimpleArray($query)[0];
-
     }
 }

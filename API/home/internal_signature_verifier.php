@@ -238,7 +238,8 @@ try {
     unset($result);
 
     // Все прошло успешно
-    exit(json_encode(['result' => 8,
+    exit(json_encode([
+        'result'           => 8,
         'validate_results' => $validateResults
     ]));
 

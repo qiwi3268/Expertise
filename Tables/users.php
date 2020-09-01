@@ -4,6 +4,7 @@
 namespace Tables;
 
 use Lib\DataBase\ParametrizedQuery;
+use Tables\Helpers\Helper as TableHelper;
 
 
 final class users
@@ -14,8 +15,8 @@ final class users
     // Принимает параметры-----------------------------------
     // Все параметры, согласно таблице `users`
     // За исключением:
-    // position   int/NULL : для заявителя NULL
-    // department int/NULL : для заявителя NULL
+    // id_sys_department int/NULL : для заявителя NULL
+    // id_sys_position   int/NULL : для заявителя NULL
     // Возвращает параметры-----------------------------------
     // id int : id созданной записи
     //
@@ -23,20 +24,32 @@ final class users
         string $last_name,
         string $first_name,
         string $middle_name,
-        int $department,
-        int $position,
+        ?int $id_sys_department,
+        ?int $id_sys_position,
         string $email,
         string $login,
         string $password,
         string $hash
     ): int {
 
-        $query = "INSERT INTO `users`
-                    (`id`, `last_name`, `first_name`, `middle_name`, `department`, `position`, `email`, `login`, `password`, `hash`, `date_reg`, `is_banned`, `num_incorrect_password_input`)
-                  VALUES
-                    (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, UNIX_TIMESTAMP(), 0, 0)";
+        $bindParams = [
+            $last_name,
+            $first_name,
+            $middle_name,
+            $id_sys_department,
+            $id_sys_position,
+            $email,
+            $login,
+            $password,
+            $hash
+        ];
+        $values =TableHelper::getValuesWithoutNull($bindParams);
 
-        return ParametrizedQuery::set($query, [$last_name, $first_name, $middle_name, $department, $position, $email, $login, $password, $hash]);
+        $query = "INSERT INTO `users`
+                    (`id`, `last_name`, `first_name`, `middle_name`, `id_sys_department`, `id_sys_position`, `email`, `login`, `password`, `hash`, `date_reg`, `is_banned`, `num_incorrect_password_input`)
+                  VALUES
+                    (NULL, {$values}, UNIX_TIMESTAMP(), 0, 0)";
+        return ParametrizedQuery::set($query, $bindParams);
     }
 
 
@@ -53,8 +66,8 @@ final class users
                          `users`.`first_name`,
                          `users`.`middle_name`,
                          `users`.`last_name`,
-                         `code_department`.`long_name` AS `department`,
-                         `code_position`.`name` AS `position`,
+                         `sys_department`.`long_name` AS `department`,
+                         `sys_position`.`name` AS `position`,
                          `users`.`email`,
                          `users`.`login`,
                          `users`.`password`,
@@ -63,11 +76,10 @@ final class users
 				  FROM (SELECT *
 				        FROM `users`
 				        WHERE `users`.`login`=?) AS `users`
-                  LEFT JOIN `code_department`
-                        ON (`users`.`department`=`code_department`.`code`)
-                  LEFT JOIN code_position
-                        ON (`users`.`position`=`code_position`.`code`)";
-
+                  LEFT JOIN `sys_department`
+                        ON (`users`.`id_sys_department`=`sys_department`.`id`)
+                  LEFT JOIN `sys_position`
+                        ON (`users`.`id_sys_position`=`sys_position`.`id`)";
         $result = ParametrizedQuery::getFetchAssoc($query, [$login]);
         return $result ? $result[0] : null;
     }
@@ -80,17 +92,16 @@ final class users
     // array : в случае, если роли пользователя существуют
     // null  : в противном случае
     //
-
+    //todo среднее пересмотреть запрос
     static public function getRolesById(int $id): ?array
     {
-        $query = "SELECT `code_role`.`name`,
-                         `code_role`.`system_value`
+        $query = "SELECT `sys_role`.`name`,
+                         `sys_role`.`system_value`
                   FROM (SELECT *
 				        FROM `users_role`
 				        WHERE `users_role`.`id_user`=?) AS `users_role`
-                 LEFT JOIN `code_role`
-                        ON (`users_role`.`role`=`code_role`.`code`)";
-
+                  LEFT JOIN `sys_role`
+                         ON (`users_role`.`id_sys_role`=`sys_role`.`id`)";
         $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
         return $result ? $result : null;
     }

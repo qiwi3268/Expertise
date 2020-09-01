@@ -8,6 +8,8 @@ use Lib\DataBase\ParametrizedQuery;
 
 
 // Трейт, предназначений для реализации общих методов одиночных справочников
+// Для использования трейта необходимо, чтобы перед его включением было объявлено
+// статическое свойство tableName с соответствующим именем таблицы
 //
 trait SingleMisc
 {
@@ -27,7 +29,6 @@ trait SingleMisc
                   FROM `{$table}`
                   WHERE `is_active`=1
                   ORDER BY `sort` ASC";
-
         return SimpleQuery::getFetchAssoc($query);
     }
 
@@ -46,7 +47,6 @@ trait SingleMisc
         $query = "SELECT *
                   FROM `{$table}`
                   WHERE `id`=?";
-
         $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
         return $result ? $result[0] : null;
     }

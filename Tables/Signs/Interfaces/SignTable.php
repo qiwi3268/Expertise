@@ -7,7 +7,6 @@ namespace Tables\Signs\Interfaces;
 interface SignTable
 {
 
-
     // Предназначен для создания записи в таблице подписей
     //
     static public function create(

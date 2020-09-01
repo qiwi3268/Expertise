@@ -3,7 +3,7 @@
 
 namespace Lib\Miscs\Validation;
 
-use Lib\Exceptions\MiscValidator as SelfException;
+use Lib\Exceptions\MiscValidator as SelfEx;
 
 
 // Абстрактный класс, предназначенный для валидации справочников. Предоставляет потомкам (SingleMisc и DependentMisc)
@@ -30,7 +30,7 @@ abstract class Validator
     protected function getValidatedInt(string $form_value): int
     {
         if (($int_value = filter_var($form_value, FILTER_VALIDATE_INT)) === false) {
-            throw new SelfException("Передано некорректное значение справочника: '{$form_value}'", 1);
+            throw new SelfEx("Передано некорректное значение справочника: '{$form_value}'", 1);
         }
         return $int_value;
     }
@@ -49,13 +49,13 @@ abstract class Validator
     protected function checkClass(string $class, string $interface): void
     {
         if (!class_exists($class)) {
-            throw new SelfException("Класс справочника: '{$class}' не существует", 2);
+            throw new SelfEx("Класс справочника: '{$class}' не существует", 2);
         }
 
         $interfaces = class_implements($class);
 
         if (!$interfaces || !in_array($interface, $interfaces, true)) {
-            throw new SelfException("Класс: '{$class}' не реализует интерфейс: '{$interface}'", 3);
+            throw new SelfEx("Класс: '{$class}' не реализует интерфейс: '{$interface}'", 3);
         }
     }
 
@@ -75,7 +75,7 @@ abstract class Validator
         // Произошла ошибка при вызове функции или метод вернул отрицательный результат
         if (!call_user_func_array([$class, $method], $params)) {
             $params = implode(', ', $params);
-            throw new SelfException("Запрашиваемое значение справочника с параметрами запроса: '{$params}' не существует в таблице класса: '{$class}'", 4);
+            throw new SelfEx("Запрашиваемое значение справочника с параметрами запроса: '{$params}' не существует в таблице класса: '{$class}'", 4);
         }
     }
 

@@ -2,6 +2,8 @@
 
 use core\Classes\Session;
 use Lib\Singles\NodeStructure;
+use Lib\Singles\VariableTransfer;
+use Classes\Application\Helpers\Helper as ApplicationHelper;
 use Tables\applications;
 use Tables\application_counter;
 use Tables\Structures\{
@@ -10,18 +12,17 @@ use Tables\Structures\{
 };
 
 
+$variablesTV = VariableTransfer::getInstance();
 
-$variablesTV = \Lib\Singles\VariableTransfer::getInstance();
+$userId = Session::getUserInfo()['id'];
 
-$userInfo = Session::getUserInfo();
-$userId = $userInfo['id'];
 
 // Инкрементируем и получаем внутренний счетчик заявления
 application_counter::incrementInternal();
 $internalCounter = application_counter::getInternal();
 
 // Числовое имя
-$appNumName = \Classes\Application\Helpers\Helper::getInternalAppNumName($internalCounter);
+$appNumName = ApplicationHelper::getInternalAppNumName($internalCounter);
 
 $applicationId = applications::createTemporary($userId, $appNumName);
 

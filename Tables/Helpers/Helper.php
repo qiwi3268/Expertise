@@ -3,8 +3,6 @@
 
 namespace Tables\Helpers;
 
-use Lib\DataBase\SimpleQuery;
-
 
 // Класс предназначен для вспомогательных методов файловых таблиц
 //

@@ -3,7 +3,7 @@
 
 namespace Lib\DataBase;
 
-use Lib\Exceptions\Transaction as SelfException;
+use Lib\Exceptions\Transaction as SelfEx;
 
 
 // Предназначен для выполнения транзакций
@@ -34,11 +34,11 @@ final class Transaction extends DataBase
     public function add(string $class, string $method, array $params): void
     {
         if (!class_exists($class)) {
-            throw new SelfException("Переданный класс: '{$class}' не существует", 1);
+            throw new SelfEx("Переданный класс: '{$class}' не существует", 1);
         }
 
         if (!method_exists($class, $method)) {
-            throw new SelfException("Переданный метод: '{$class}:{$method}' не существует", 2);
+            throw new SelfEx("Переданный метод: '{$class}:{$method}' не существует", 2);
         }
 
         $reflection = new \ReflectionMethod($class, $method);
@@ -48,9 +48,9 @@ final class Transaction extends DataBase
         $N = count($params);
 
         if ($N < $min) {
-            throw new SelfException("Переданное количество параметров: '{$N}' меньше минимального: '{$min}', которое принимает метод: '{$class}:{$method}'", 3);
+            throw new SelfEx("Переданное количество параметров: '{$N}' меньше минимального: '{$min}', которое принимает метод: '{$class}:{$method}'", 3);
         } elseif ($N > $max) {
-            throw new SelfException("Переданное количество параметров: '{$N}' больше максимального: '{$max}', которое принимает метод: '{$class}:{$method}'", 4);
+            throw new SelfEx("Переданное количество параметров: '{$N}' больше максимального: '{$max}', которое принимает метод: '{$class}:{$method}'", 4);
         }
 
         $this->queries[] = [

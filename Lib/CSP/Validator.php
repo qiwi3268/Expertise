@@ -3,7 +3,7 @@
 
 namespace Lib\CSP;
 
-use Lib\Exceptions\CSPValidator as SelfException;
+use Lib\Exceptions\CSPValidator as SelfEx;
 use Lib\CSP\Interfaces\SignatureValidationShell;
 
 
@@ -97,7 +97,7 @@ class Validator
                 $noChain_signer = array_filter($noChain_signers, fn($tmp_signer) => ($signer['certificate'] == $tmp_signer['certificate']));
 
                 if (empty($noChain_signer)) {
-                    throw new SelfException('В результате проверки БЕЗ цепочки сертификатов не был найден подписант из результатов проверки С цепочкой сертификатов', 6);
+                    throw new SelfEx('В результате проверки БЕЗ цепочки сертификатов не был найден подписант из результатов проверки С цепочкой сертификатов', 6);
                 }
                 $noChain_signer = array_shift($noChain_signer);
 
@@ -183,7 +183,7 @@ class Validator
                     $verifyResult = false;
                     $s += 2; // Перескакиваем через сообщение об ошибке и Error: Signature.
                 } else {
-                    throw new SelfException("Неизвестный формат частей сообщения, следующий за Signer: next_1_part='{$next_1_part}', next_2_part='{$next_2_part}'" . $this->getDebugMessageParts($messageParts), 2);
+                    throw new SelfEx("Неизвестный формат частей сообщения, следующий за Signer: next_1_part='{$next_1_part}', next_2_part='{$next_2_part}'" . $this->getDebugMessageParts($messageParts), 2);
                 }
 
                 // Временный массив с данными о подписи
@@ -204,19 +204,19 @@ class Validator
                 continue; // Ошибки пропускаем, т.к. дальше (в следующих итерациях) отловится ее ErrorCode
             } else {
                 // В данную ветку ничего не должно попасть, т.к. блоки Signer и ErrorCode обрабатываются выше
-                throw new SelfException("Неизвестная часть сообщения: '{$part}'" . $this->getDebugMessageParts($messageParts), 3);
+                throw new SelfEx("Неизвестная часть сообщения: '{$part}'" . $this->getDebugMessageParts($messageParts), 3);
             }
         }
 
         // Проверки на единственную часть ErrorCode и существование одного и более Signers
         $count_errorCodes = count($errorCodes);
         if ($count_errorCodes != 1) {
-            throw new SelfException("Получено некорректное количество блоков ErrorCode: ({$count_errorCodes})" . $this->getDebugMessageParts($messageParts), 5);
+            throw new SelfEx("Получено некорректное количество блоков ErrorCode: ({$count_errorCodes})" . $this->getDebugMessageParts($messageParts), 5);
         }
 
         if (empty($signers)) {
             $this->lastErrorCode = $errorCodes[0]; // Запись последнего кода ошибки
-            throw new SelfException("В частях сообщения отсустсвует(ют) Signer" . $this->getDebugMessageParts($messageParts), 4);
+            throw new SelfEx("В частях сообщения отсустсвует(ют) Signer" . $this->getDebugMessageParts($messageParts), 4);
         }
 
         return ['signers' => $signers,
@@ -249,7 +249,7 @@ class Validator
                 return "Подпись не соответствует файлу";
 
             default:
-                throw new SelfException("Получен неизвестный результат проверки подписи: '{$verifyMessage}'", 1);
+                throw new SelfEx("Получен неизвестный результат проверки подписи: '{$verifyMessage}'", 1);
         }
     }
 
@@ -282,7 +282,7 @@ class Validator
                 return "Сертификат не проверялся";
 
             default:
-                throw new SelfException("Получен неизвестный результат проверки сертификата: '{$verifyMessage}'", 1);
+                throw new SelfEx("Получен неизвестный результат проверки сертификата: '{$verifyMessage}'", 1);
         }
     }
 

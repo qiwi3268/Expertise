@@ -1,6 +1,8 @@
 <?php
 
 
+namespace Classes\Navigation;
+
 use core\Classes\Cookie;
 
 

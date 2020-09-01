@@ -4,6 +4,7 @@
 namespace Tables\FinancingSources;
 
 use Lib\DataBase\ParametrizedQuery;
+use Tables\Helpers\Helper as TableHelper;
 
 
 // Источники финансирования
@@ -33,9 +34,7 @@ class type_1
                         WHERE `financing_source_type_1`.`id_application`=?) AS `financing_source_type_1`
                   LEFT JOIN (`misc_budget_level`)
                         ON (`financing_source_type_1`.`id_budget_level`=`misc_budget_level`.`id`)";
-
         $result = ParametrizedQuery::getFetchAssoc($query, [$id_application]);
-
         return $result ? $result : null;
     }
 
@@ -49,7 +48,7 @@ class type_1
     static public function create(int $id_application, ?int $id_budget_level, int $no_data, ?int $percent): int
     {
         $bindParams = [$id_application, $id_budget_level, $no_data, $percent];
-        $values = \Tables\Helpers\Helper::getValuesWithoutNull($bindParams);
+        $values =TableHelper::getValuesWithoutNull($bindParams);
 
         $query = "INSERT INTO `financing_source_type_1`
                     (`id_application`, `id_budget_level`, `no_data`, `percent`, `date_creation`)
