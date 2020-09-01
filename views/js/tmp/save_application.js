@@ -31,15 +31,15 @@ function saveApplication () {
 
    saveMultipleBlocks();
 
-   console.log(new Map(new FormData(application_form)));
 
    XHR('post', request_urn, new FormData(application_form), null, 'json', null, null)
       .then(response => {
 
          switch (response.result) {
             case 8:
-               console.log('result');
+               console.log('saved');
                if (FileNeeds.hasFiles()) {
+                  console.log('update file needs');
                   updateFileNeeds();
                }
                showSaveModal();
@@ -58,7 +58,6 @@ function saveApplication () {
 
 function saveMultipleBlocks () {
 
-
    let multiple_blocks = document.querySelectorAll('.block[data-type="multiple"]');
    multiple_blocks.forEach(block => {
 
@@ -73,6 +72,13 @@ function saveMultipleBlocks () {
       }
 
    });
+}
+//
+function getSaveApplicationFormData() {
+   let form_data = new FormData();
+   let fields = document.querySelectorAll('.field-result[data-form="application"]');
+   fields.forEach(field => form_data.append(field.name, field.value));
+   return form_data;
 }
 
 function showSaveModal () {
@@ -99,6 +105,7 @@ function updateFileNeeds () {
                FileNeeds.clear();
                break;
             default:
+               console.log('Ошибка при обновлении file_needs');
                console.log(response);
          }
 

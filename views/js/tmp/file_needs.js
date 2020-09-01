@@ -15,16 +15,20 @@ class FileNeeds {
    static putFilesToFileNeeds () {
       let file_blocks = document.querySelectorAll('.files');
       let parent_field;
+      let parent_block;
       let is_active;
       let files;
 
       file_blocks.forEach(file_block => {
          if (file_block.innerHTML) {
             parent_field = file_block.closest('[data-mapping_level_1]');
-            is_active = parent_field.dataset.active !== 'false';
+            parent_block = parent_field.closest('.block');
+
+            is_active = parent_block.dataset.active !== 'false';
 
             files = parent_field.querySelectorAll('.files__item');
             // Если блок не скрыт, сохраняем все файлы в нем, иначе - удаляем
+
             if (is_active) {
                FileNeeds.saveFiles(files, parent_field);
             } else {
@@ -114,6 +118,7 @@ class FileNeeds {
    // mapping_level_2     string : второй маппинг
    // file_item          Element : элемент файла
    static putFileToDelete (id_file, mapping_level_1, mapping_level_2, file_item) {
+
       let is_file_saved = file_item.dataset.saved === 'true';
       if (is_file_saved) {
          let to_delete = FileNeeds.file_needs.to_delete;
@@ -159,9 +164,11 @@ class FileNeeds {
    // Возвращает параметры------------------------------
    // has_files     boolean : есть ли файлы для сохранения или удаления
    static hasFiles () {
-      return FileNeeds.file_needs.to_save.length !== 0
+      return (
+         FileNeeds.file_needs.to_save.length !== 0
          || FileNeeds.file_needs.to_delete.length !== 0
          || FileNeeds.sign_needs.to_save.size !== 0
-         || FileNeeds.sign_needs.to_delete.size !== 0;
+         || FileNeeds.sign_needs.to_delete.size !== 0
+      );
    }
 }

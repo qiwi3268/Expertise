@@ -53,7 +53,7 @@
         </div>
     </div>
     <form id="application" class="application-form__cards" action="" method="POST">
-        <input type="hidden" value="<?= $variablesTV->getValue('id_application') ?>" name="id_application">
+        <input data-form="application" type="hidden" name="id_application" value="<?= $variablesTV->getValue('id_application') ?>">
 
         <div class="application-form__card card-form" data-type="purpose">
             <div class="card-form__header">
@@ -85,7 +85,7 @@
                             <?php endforeach; ?>
                         </div>
                     </div>
-                    <input class="body-card__result field-result" type="hidden" name="expertise_purpose">
+                    <input data-form="application" class="body-card__result field-result" type="hidden" name="expertise_purpose">
                 </div>
                 <!--//Цель обращения//-->
 
@@ -99,7 +99,7 @@
                             </div>
                         </div>
                     </div>
-                    <input class="body-card__result field-result" type="hidden" name="expertise_subjects" value="">
+                    <input data-form="application" class="body-card__result field-result" type="hidden" name="expertise_subjects" value="">
                 </div>
                 <!--//Предмет экспертизы//-->
 
@@ -108,7 +108,7 @@
                     <span class="body-card__title">Дополнительная информация</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
-                            <textarea class="body-card__input body-card__result field-result application-input" name="additional_information"></textarea>
+                            <textarea data-form="application" class="body-card__input body-card__result field-result application-input" name="additional_information"></textarea>
                         </div>
                         <span class="body-card__error field-error"></span>
                     </div>
@@ -130,7 +130,7 @@
                     <span class="body-card__title">Наименование объекта</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
-                            <textarea class="body-card__input body-card__result field-result application-input" name="object_name"></textarea>
+                            <textarea data-form="application" class="body-card__input body-card__result field-result application-input" name="object_name"></textarea>
                         </div>
                         <span class="body-card__error field-error"></span>
                     </div>
@@ -163,7 +163,7 @@
                             <?php endforeach; ?>
                         </div>
                     </div>
-                    <input class="body-card__result field-result" type="hidden" name="type_of_object">
+                    <input data-form="application" class="body-card__result field-result" type="hidden" name="type_of_object">
                 </div>
                 <!--//Вид объекта//-->
 
@@ -191,7 +191,7 @@
                             <?php endforeach; ?>
                         </div>
                     </div>
-                    <input class="body-card__result field-result" type="hidden" name="functional_purpose">
+                    <input data-form="application" class="body-card__result field-result" type="hidden" name="functional_purpose">
                 </div>
                 <!--//Функциональное назначение//-->
 
@@ -212,7 +212,7 @@
                         <i class="modal__close fas fa-times"></i>
                         <div class="modal__items"></div>
                     </div>
-                    <input class="body-card__result field-result" type="hidden" name="functional_purpose_subsector">
+                    <input data-form="application" class="body-card__result field-result" type="hidden" name="functional_purpose_subsector">
                 </div>
                 <!--//Функциональное назначение. Подотрасль//-->
 
@@ -233,7 +233,7 @@
                         <i class="modal__close fas fa-times"></i>
                         <div class="modal__items"></div>
                     </div>
-                    <input class="body-card__result field-result" type="hidden" name="functional_purpose_group">
+                    <input data-form="application" class="body-card__result field-result" type="hidden" name="functional_purpose_group">
                 </div>
                 <!--//Функциональное назначение. Группа//-->
 
@@ -244,7 +244,7 @@
                         <span class="body-card__title">Номер утверждения документации по планировке территории</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
-                                <input class="body-card__input body-card__result field-result application-input" type="text" name="number_planning_documentation_approval" placeholder="Введите значение">
+                                <input data-form="application" class="body-card__input body-card__result field-result application-input" type="text" name="number_planning_documentation_approval" placeholder="Введите значение">
                             </div>
                             <span class="body-card__error field-error"></span>
                         </div>
@@ -262,7 +262,7 @@
                                 <i class="body-card__icon-clear fas fa-calendar-times"></i>
                             </div>
                         </div>
-                        <input class="body-card__result field-result" type="hidden" name="date_planning_documentation_approval">
+                        <input data-form="application" class="body-card__result field-result" type="hidden" name="date_planning_documentation_approval">
                     </div>
                     <!--//Дата утверждения документации по планировке территории//-->
                 </div>
@@ -276,7 +276,7 @@
                         <span class="body-card__title">Номер ГПЗУ</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
-                                <input class="body-card__input body-card__result field-result application-input" type="text" name="number_GPZU" placeholder="Введите значение">
+                                <input data-form="application" class="body-card__input body-card__result field-result application-input" type="text" name="number_GPZU" placeholder="Введите значение">
                                 <span class="body-card__error field-error"></span>
                             </div>
                         </div>
@@ -294,7 +294,7 @@
                                 <i class="body-card__icon-clear fas fa-calendar-times"></i>
                             </div>
                         </div>
-                        <input class="body-card__result field-result" type="hidden" name="date_GPZU">
+                        <input data-form="application" class="body-card__result field-result" type="hidden" name="date_GPZU">
                     </div>
                 <!--//Дата ГПЗУ//-->
                 </div>
@@ -318,7 +318,7 @@
                         <i class="modal__close fas fa-times"></i>
                         <div class="modal__items"></div>
                     </div>
-                    <input class="body-card__result field-result" type="hidden" name="type_of_work">
+                    <input data-form="application" class="body-card__result field-result" type="hidden" name="type_of_work">
                 </div>
                 <!--//Вид работ//-->
 
@@ -329,7 +329,7 @@
                         <span class="body-card__title">Сведения о сметной или предполагаемой (предельной) стоимости объекта капитального строительства, содержащиеся в решении по объекту или письме. тыс. руб.</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
-                                <input class="body-card__input body-card__result field-result application-input" type="text" name="estimate_cost" placeholder="Введите значение">
+                                <input data-form="application" class="body-card__input body-card__result field-result application-input" type="text" name="estimate_cost" placeholder="Введите значение">
                             </div>
                             <span class="body-card__error field-error"></span>
                         </div>
@@ -346,7 +346,7 @@
                             </div>
                             <div class="body-card__files files"></div>
                         </div>
-                        <input class="body-card__result field-result" type="hidden" name="file_grbs">
+                        <input data-form="application" class="body-card__result field-result" type="hidden" name="file_grbs">
                     </div>
                     <!--Файл ГРБС-->
                 </div>
@@ -357,7 +357,7 @@
                     <span class="body-card__title">Кадастровый номер земельного участка</span>
                     <div class="body-card__item">
                         <div class="body-card__field">
-                            <input class="body-card__input body-card__result field-result application-input" type="text" name="cadastral_number" placeholder="Введите значение">
+                            <input data-form="application" class="body-card__input body-card__result field-result application-input" type="text" name="cadastral_number" placeholder="Введите значение">
                         </div>
                         <span class="body-card__error field-error"></span>
                     </div>
@@ -381,7 +381,7 @@
                             </div>
                         </div>
                     </div>
-                    <input class="body-card__result field-result" type="hidden" name="cultural_object_type_checkbox">
+                    <input data-form="application" class="body-card__result field-result" type="hidden" name="cultural_object_type_checkbox">
                 </div>
                 <!--//CHECKBOX Объект культурного наследия//-->
 
@@ -412,7 +412,7 @@
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <input class="body-card__result field-result" type="hidden" name="cultural_object_type">
+                        <input data-form="application" class="body-card__result field-result" type="hidden" name="cultural_object_type">
                     </div>
                     <!--//Тип объекта культурного наследия//-->
                 </div>
@@ -436,7 +436,7 @@
                             </div>
                         </div>
                     </div>
-                    <input class="body-card__result field-result" type="hidden" name="national_project_checkbox">
+                    <input data-form="application" class="body-card__result field-result" type="hidden" name="national_project_checkbox">
                 </div>
                 <!--//CHECKBOX Национальный проект//-->
 
@@ -468,7 +468,7 @@
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <input class="body-card__result field-result" type="hidden" name="national_project">
+                        <input data-form="application" class="body-card__result field-result" type="hidden" name="national_project">
                     </div>
                     <!--//Название национального проекта//-->
 
@@ -489,7 +489,7 @@
                             <i class="modal__close fas fa-times"></i>
                             <div class="modal__items"></div>
                         </div>
-                        <input class="body-card__result field-result" type="hidden" name="federal_project">
+                        <input data-form="application" class="body-card__result field-result" type="hidden" name="federal_project">
                     </div>
                     <!--//Название федерального проекта//-->
 
@@ -505,7 +505,7 @@
                                 <i class="body-card__icon-clear fas fa-calendar-times"></i>
                             </div>
                         </div>
-                        <input class="body-card__result field-result" type="hidden" name="date_finish_building">
+                        <input data-form="application" class="body-card__result field-result" type="hidden" name="date_finish_building">
                     </div>
                     <!--//Дата окончания строительства//-->
                 </div>
@@ -536,7 +536,7 @@
                             <?php endforeach; ?>
                         </div>
                     </div>
-                    <input class="body-card__result field-result" type="hidden" name="curator">
+                    <input data-form="application" class="body-card__result field-result" type="hidden" name="curator">
                 </div>
                 <!--//Куратор//-->
             </div>
@@ -867,11 +867,11 @@
                         </div>
                     </div>
                     <!--//Шаблоны источников финансирования//-->
-    
+
                     <input class="multiple-block__result field-result" type="hidden" name="finance_sources">
                 </div>
                 <!--//Источники финансирования//-->
-    
+
             </div>
         </div>
 
@@ -881,31 +881,37 @@
                 <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
             </div>
             <div class="card-form__body body-card">
-                <div class="body-card__message" data-name="empty_documentation" data-active="true">
-                    <i class="body-card__message-icon fas fa-exclamation"></i>
-                    <span class="body-card__message-text">Для отображения структуры разделов документации выберите вид объекта</span>
+                <div class="body-card__block block" data-name="empty_documentation" data-active="true">
+                    <div class="body-card__message">
+                        <i class="body-card__message-icon fas fa-exclamation"></i>
+                        <span class="body-card__message-text">Для отображения структуры разделов документации выберите вид объекта</span>
+                    </div>
                 </div>
-                <div class="documentation" data-name="structureDocumentation1" data-mapping_level_1="2" data-mapping_level_2="1" data-active="false">
-                    <?php foreach ($variablesTV->getValue('structureDocumentation1') as ['id' => $id_structure_node, 'name' => $name, 'depth' => $depth]): ?>
-                        <div class="documentation__node" data-id_structure_node="<?= $id_structure_node ?>">
-                            <div class="documentation__header">
-                                <span class="documentation__name" style="padding-left: <?= $depth*25 + 15 ?>px"><?= $name ?></span>
-                                <i class="documentation__icon modal-file fas fa-plus"></i>
+                <div class="body-card__block block" data-name="structureDocumentation1" data-active="false">
+                    <div class="documentation" data-mapping_level_1="2" data-mapping_level_2="1">
+                        <?php foreach ($variablesTV->getValue('structureDocumentation1') as ['id' => $id_structure_node, 'name' => $name, 'depth' => $depth]): ?>
+                            <div class="documentation__node" data-id_structure_node="<?= $id_structure_node ?>">
+                                <div class="documentation__header">
+                                    <span class="documentation__name" style="padding-left: <?= $depth*25 + 15 ?>px"><?= $name ?></span>
+                                    <i class="documentation__icon modal-file fas fa-plus"></i>
+                                </div>
+                                <div class="documentation__files files" style="padding-left: <?= $depth*25 + 15 ?>px"></div>
                             </div>
-                            <div class="documentation__files files" style="padding-left: <?= $depth*25 + 15 ?>px"></div>
-                        </div>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
-                <div class="documentation" data-name="structureDocumentation2" data-mapping_level_1="2" data-mapping_level_2="2" data-active="false">
-                    <?php foreach ($variablesTV->getValue('structureDocumentation2') as ['id' => $id_structure_node, 'name' => $name, 'depth' => $depth]): ?>
-                        <div class="documentation__node" data-id_structure_node="<?= $id_structure_node ?>">
-                            <div class="documentation__header">
-                                <span class="documentation__name" style="padding-left: <?= $depth*25 + 15 ?>px"><?= $name ?></span>
-                                <i class="documentation__icon modal-file fas fa-plus"></i>
+                <div class="body-card__block block" data-name="structureDocumentation2" data-active="false">
+                    <div class="documentation" data-mapping_level_1="2" data-mapping_level_2="2">
+                        <?php foreach ($variablesTV->getValue('structureDocumentation2') as ['id' => $id_structure_node, 'name' => $name, 'depth' => $depth]): ?>
+                            <div class="documentation__node" data-id_structure_node="<?= $id_structure_node ?>">
+                                <div class="documentation__header">
+                                    <span class="documentation__name" style="padding-left: <?= $depth*25 + 15 ?>px"><?= $name ?></span>
+                                    <i class="documentation__icon modal-file fas fa-plus"></i>
+                                </div>
+                                <div class="documentation__files files" style="padding-left: <?= $depth*25 + 15 ?>px"></div>
                             </div>
-                            <div class="documentation__files files" style="padding-left: <?= $depth*25 + 15 ?>px"></div>
-                        </div>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
         </div>

@@ -42,6 +42,7 @@ class SignHandler {
    id_sign;
    mapping_level_1;
    mapping_level_2;
+   id_structure_node;
    //==================
 
    // Предназначен для получения объекта модуля подписания
@@ -284,7 +285,7 @@ class SignHandler {
       let fs_name_sign;
 
       // Загружаем открепленную подпись на сервер
-      API.uploadFiles(sign_files, this.mapping_level_1, this.mapping_level_2)
+      API.uploadFiles(sign_files, this.mapping_level_1, this.mapping_level_2, this.id_structure_node)
          // Проверяем подписываемый файл
          .then(uploaded_signs => {
 
@@ -506,7 +507,14 @@ class SignHandler {
       this.id_sign = file.dataset.id_sign;
       this.mapping_level_1 = parent_field.dataset.mapping_level_1;
       this.mapping_level_2 = parent_field.dataset.mapping_level_2;
+
+      let parent_node = file.closest('[data-id_structure_node]');
+      if (parent_node) {
+         this.id_structure_node = parent_node.dataset.id_structure_node;
+      }
+
    }
+
 
    addFileElement (file) {
       let file_info = file.querySelector('.files__info');

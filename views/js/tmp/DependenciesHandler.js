@@ -68,6 +68,7 @@ class DependenciesHandler {
 
       dependent_values.forEach((block_states, dependency_key) => {
 
+
          let setBlockState = this.getBlockStateSetter(dependency_key);
 
          Object.keys(block_states).forEach(name => {
@@ -101,9 +102,7 @@ class DependenciesHandler {
 
          });
 
-
       });
-
    }
 
    static getBlockStateSetter (dependency_key) {

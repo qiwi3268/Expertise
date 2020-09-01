@@ -9,7 +9,9 @@ class GeFile {
 
    constructor (file_element, files_block) {
       this.element = file_element;
-      this.container = files_block;
+      // this.container = files_block;
+      this.container = new FileBlock(files_block);
+
    }
 
    // Предназначен для добавления обработчиков кнопок действий с файлами
@@ -42,7 +44,6 @@ class GeFile {
             this.element.dataset.id,
             this.container.mapping_1,
             this.container.mapping_2,
-            this.container.id_structure_node
          )
             .then(check_result => {
                location.href = API.getUnloadFileURN(check_result);
@@ -78,10 +79,10 @@ class GeFile {
    removeElement () {
       this.element.remove();
 
-      if (!this.container.querySelector('.files__item')) {
-         this.container.classList.remove('filled');
+      if (!this.container.element.querySelector('.files__item')) {
+         this.container.element.classList.remove('filled');
 
-         let parent_select = this.container.previousElementSibling;
+         let parent_select = this.container.element.previousElementSibling;
          if (parent_select && parent_select.classList.contains('modal-file')) {
             parent_select.classList.remove('filled');
          }

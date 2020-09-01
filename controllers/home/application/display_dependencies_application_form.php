@@ -23,15 +23,15 @@ $blockDependencies = [
     'type_of_object' => [
         1 => ['planning_documentation_approval' => false,
               'GPZU'                            => true,
-              'structureDocumentation1'         => false,
-              'structureDocumentation2'         => true,
+              'structureDocumentation1'         => true,
+              'structureDocumentation2'         => false,
               'empty_documentation'             => false
         ],
 
         2 => ['planning_documentation_approval' => true,
               'GPZU'                            => false,
-              'structureDocumentation1'         => true,
-              'structureDocumentation2'         => false,
+              'structureDocumentation1'         => false,
+              'structureDocumentation2'         => true,
               'empty_documentation'             => false
         ]
     ],
@@ -48,8 +48,8 @@ $blockDependencies = [
         1 => ['national_project'     => true]
     ],
 
-    
-    
+
+
     // Зависимости множественных блоков
     // ----------------------------------------------------------
 

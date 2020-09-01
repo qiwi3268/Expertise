@@ -35,7 +35,7 @@ class FileBlock {
       this.mapping_2 = parent_field.dataset.mapping_level_1;
 
       if (parent_node) {
-         this.id_structure_node = parent_field.dataset.id_structure_node;
+         this.id_structure_node = parent_node.dataset.id_structure_node;
       }
 
    }
