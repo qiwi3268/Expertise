@@ -1,10 +1,4 @@
-.alert-modal {
-   flex-direction: row;
-   align-items: center;
-   justify-content: flex-start;
-   font-family: 'Roboto Condensed', sans-serif;
-   color: #343a40;
-}
+
 
 .alert-modal__icon {
    margin: 0px 0px 0px 20px;

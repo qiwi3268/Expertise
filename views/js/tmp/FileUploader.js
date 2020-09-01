@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
    file_selects.forEach(select => {
       select.addEventListener('click', () => {
+
          FileUploader.getInstance().show(select);
       });
    });

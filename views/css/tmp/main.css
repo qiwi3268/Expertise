@@ -146,6 +146,14 @@ textarea.application-input {
 
 }
 
+.alert-modal {
+   flex-direction: row;
+   align-items: center;
+   justify-content: flex-start;
+   font-family: 'Roboto Condensed', sans-serif;
+   color: #343a40;
+}
+
 .modal-overlay,
 .file-overlay,
 .save-overlay,
@@ -194,4 +202,6 @@ textarea.application-input {
 
 /* Общие элементы*/
 
-
+.alert-modal__body {
+   display: flex;
+}

@@ -4,8 +4,10 @@ use core\Classes\Session;
 use Lib\Singles\NodeStructure;
 use Lib\Singles\VariableTransfer;
 use Classes\Application\Helpers\Helper as ApplicationHelper;
+use Classes\Application\Miscs\Initialization\CreateFormInitializator;
 use Tables\applications;
 use Tables\application_counter;
+use Tables\Responsible\type_3\application as resp_application_type_3;
 use Tables\Structures\{
     documentation_1,
     documentation_2
@@ -25,7 +27,8 @@ $internalCounter = application_counter::getInternal();
 $appNumName = ApplicationHelper::getInternalAppNumName($internalCounter);
 
 $applicationId = applications::createTemporary($userId, $appNumName);
-
+resp_application_type_3::createFullAccess($applicationId, $userId);
+p($_SESSION);
 var_dump($applicationId);
 
 // Создание директории заявления
@@ -46,7 +49,7 @@ $variablesTV->setValue('id_application', $applicationId);
 
 
 // Справочники
-$miscInitializator = new \Classes\Application\Miscs\Initialization\CreateFormInitializator();
+$miscInitializator = new CreateFormInitializator();
 
 foreach ($miscInitializator->getPaginationSingleMiscs() as $miscName => $misc) {
     $variablesTV->setValue($miscName, $misc);

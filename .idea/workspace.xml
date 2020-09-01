@@ -3,9 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/FinancingSources/type_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/FinancingSources/type_1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/users.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/applications.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/applications.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/home/application/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/create_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/modal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/FileUploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/FileUploader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +73,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.deploy.options" />
+    <property name="settings.editor.selected.configurable" value="web.server" />
     <property name="ts.external.directory.path" value="G:\PhpStorm 2020.1.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
@@ -101,14 +106,7 @@
       <workItem from="1597575204380" duration="8076000" />
       <workItem from="1598327166376" duration="87205000" />
       <workItem from="1598767236475" duration="12765000" />
-      <workItem from="1598845123707" duration="24583000" />
-    </task>
-    <task id="LOCAL-00026" summary="31.07.2020_3">
-      <created>1596186858976</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1596186858976</updated>
+      <workItem from="1598845123707" duration="28605000" />
     </task>
     <task id="LOCAL-00027" summary="31.07.2020_4">
       <created>1596215729611</created>
@@ -446,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598936905311</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="01.09.2020_3">
+      <created>1598938367787</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1598938367787</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -463,7 +468,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="21.08.2020_5" />
     <MESSAGE value="24.08.2020" />
     <MESSAGE value="25.08.2020" />
     <MESSAGE value="25.08.2020_1" />
@@ -488,7 +492,8 @@
     <MESSAGE value="01.09.2020" />
     <MESSAGE value="01.09.2020_1" />
     <MESSAGE value="01.09.2020_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="01.09.2020_2" />
+    <MESSAGE value="01.09.2020_3" />
+    <option name="LAST_COMMIT_MESSAGE" value="01.09.2020_3" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Notifications" timestamp="1598851428350">
@@ -499,10 +504,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1598936901133">
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1598938364184">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1598936901133" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1598938364184" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598788293599" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog" timestamp="1598853557262">
@@ -517,10 +522,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="735" y="231" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598853548198" />
-    <state x="524" y="156" key="SettingsEditor" timestamp="1598938337130">
+    <state x="524" y="156" key="SettingsEditor" timestamp="1598947237695">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="524" y="156" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1598938337130" />
+    <state x="524" y="156" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1598947237695" />
     <state x="781" y="344" key="SettingsEditor/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598767293313" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1597580480401">
       <screen x="0" y="0" width="2560" height="1400" />
@@ -536,10 +541,10 @@
     </state>
     <state x="302" y="56" width="614" height="1035" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1598502743003" />
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597499951448" />
-    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1598867176518">
+    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1598941124984">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598867176518" />
+    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598941124984" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598791797973" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
     <state x="1150" y="591" key="publish.login" timestamp="1598767415653">

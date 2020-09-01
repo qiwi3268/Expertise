@@ -867,11 +867,11 @@
                         </div>
                     </div>
                     <!--//Шаблоны источников финансирования//-->
-    
+
                     <input class="multiple-block__result field-result" type="hidden" name="finance_sources">
                 </div>
                 <!--//Источники финансирования//-->
-    
+
             </div>
         </div>
 
@@ -921,8 +921,8 @@
 <div class="sign-overlay"></div>
 
 <div class="modal alert-modal">
-    <i class="alert-modal__icon fas fa-exclamation"></i>
-    <span class="alert-modal__message"></span>
+        <i class="alert-modal__icon fas fa-exclamation"></i>
+        <span class="alert-modal__message"></span>
 </div>
 
 <div class="calendar">
