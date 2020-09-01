@@ -3,7 +3,7 @@
 
 namespace Lib\Actions;
 
-use Lib\Exceptions\Actions as SelfException;
+use Lib\Exceptions\Actions as SelfEx;
 
 
 // Абстрактный класс для получения и проверки доступных действий у пользователя
@@ -59,7 +59,7 @@ abstract class Actions
             $message = "В классе: '{$this->childClassName}' отсутствуют методы, присутствующие в БД: ";
             $message .= implode(', ', $missingCallbacks);
 
-            throw new SelfException($message, 2);
+            throw new SelfEx($message, 2);
         }
 
         // Запись свойства через дочерний метод
@@ -83,7 +83,7 @@ abstract class Actions
             // 1 - свойство не указано в БД
             // 2 - попытка вызвать настойщий метод у страницы, не имеющей отношения к конкретному действию
             $message = 'Свойство currentActionCallbackName класса ActionsSidebar имеет значение null. При этом произошла попытка проверки доступа к текущему действию';
-            throw new SelfException($message, 3);
+            throw new SelfEx($message, 3);
         }
 
         return $this->getCallbackResult($callbackName);
@@ -123,7 +123,7 @@ abstract class Actions
         if (!is_bool($result)) {
 
             $message = "Метод: {$name} в классе: {$this->childClassName} возвращает значение, не принадлежащее типу boolean";
-            throw new SelfException($message, 4);
+            throw new SelfEx($message, 4);
         }
 
         return $result;

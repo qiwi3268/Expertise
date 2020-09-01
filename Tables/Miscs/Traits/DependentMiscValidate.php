@@ -29,7 +29,6 @@ trait DependentMiscValidate
         $query = "SELECT count(*)>0
                   FROM `{$table}`
                   WHERE `id_main`=? AND `id_dependent`=?";
-
         // Автоматическое преобразование к bool типу
         return ParametrizedQuery::getSimpleArray($query, [$id_main, $id_dependent])[0];
     }
@@ -55,7 +54,6 @@ trait DependentMiscValidate
                           ON (`corr`.`id_dependent`=`{$table}`.`id`)
                   WHERE `{$mainTable}`.`is_active`=1 AND `{$table}`.`is_active`=1
                   ORDER BY `{$table}`.`sort` ASC";
-
         $result = SimpleQuery::getFetchAssoc($query);
 
         // Укладываем зависимый справочник по id главного справочника
@@ -63,7 +61,6 @@ trait DependentMiscValidate
         foreach ($result as ['id_main' => $id_main, 'id' => $id, 'name' => $name]) {
             $arr[$id_main][] = ['id' => $id, 'name' => $name];
         }
-
         return $arr;
     }
 }

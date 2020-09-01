@@ -20,7 +20,6 @@ final class expertise_subject
                     (`id_application`, `id_expertise_subject`)
                   VALUES
                     (?, ?)";
-
         ParametrizedQuery::set($query, [$id_application, $id_expertise_subject]);
     }
 
@@ -38,7 +37,6 @@ final class expertise_subject
         $query = "SELECT `id_expertise_subject` AS `id`
                   FROM `expertise_subject`
                   WHERE `id_application`=?";
-
         $result = ParametrizedQuery::getSimpleArray($query, [$id_application]);
         return $result ? $result : null;
     }
@@ -54,7 +52,6 @@ final class expertise_subject
         $query = "DELETE
                   FROM `expertise_subject`
                   WHERE `id_application`=? AND `id_expertise_subject`=?";
-
         ParametrizedQuery::set($query, [$id_application, $id_expertise_subject]);
     }
 }

@@ -3,7 +3,7 @@
 
 namespace Lib\Files\Initialization;
 
-use Lib\Exceptions\File as SelfException;
+use Lib\Exceptions\File as SelfEx;
 use Lib\Files\Mappings\RequiredMappingsSetter;
 use Lib\Files\Mappings\FilesTableMapping;
 use Lib\Signs\Mappings\SignsTableMapping;
@@ -39,7 +39,7 @@ abstract class Initializator
                 $filesMapping = new FilesTableMapping($mapping_level_1_code, $mapping_level_2_code);
 
                 if (!is_null($filesMapping->getErrorCode())) {
-                    throw new SelfException("Ошибка в маппинг таблице (файлов) в классе '{$className}': '{$filesMapping->getErrorText()}'", $filesMapping->getErrorCode());
+                    throw new SelfEx("Ошибка в маппинг таблице (файлов) в классе '{$className}': '{$filesMapping->getErrorText()}'", $filesMapping->getErrorCode());
                 }
                 unset($filesMapping);
 
@@ -54,7 +54,7 @@ abstract class Initializator
                     // Не существует соответствующего класса таблицы подписей к классу файловой таблицы
                     $signsRequiredMappings[$mapping_level_1_code][$mapping_level_2_code] = null;
                 } else {
-                    throw new SelfException("Ошибка в маппинг таблице (подписей) в классе '{$className}': '{$signsMapping->getErrorText()}'", $signsMappingErrorCode);
+                    throw new SelfEx("Ошибка в маппинг таблице (подписей) в классе '{$className}': '{$signsMapping->getErrorText()}'", $signsMappingErrorCode);
                 }
                 unset($signsMapping);
             }
@@ -193,7 +193,7 @@ abstract class Initializator
                     }
                     $ids = implode(', ', $ids);
                     // Вероятнее всего, требуемый файл не попал в выборку getNeedsAssocByIdMainDocument по причине is_needs=0
-                    throw new SelfException("Осталась(лись) подпись с id: '{$ids}' из таблицы подписей: '{$signClassName}', которая не подошла ни к одному из файлов");
+                    throw new SelfEx("Осталась(лись) подпись с id: '{$ids}' из таблицы подписей: '{$signClassName}', которая не подошла ни к одному из файлов");
                 }
                 $result[$mapping_level_1_code][$mapping_level_2_code] = $files->getArrayCopy();
             }

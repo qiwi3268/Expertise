@@ -3,13 +3,17 @@
 
 use core\Classes\Session;
 
-use Lib\Singles\Helpers\PageAddress as PageAddressHelper;
 
+use Lib\Singles\VariableTransfer;
+use Lib\Singles\Helpers\PageAddress as PageAddressHelper;
+use Classes\Navigation\Navigation;
+use Classes\Navigation\NavigationParameters;
+use Classes\Pagination;
 
 
 // Данная страница представляет собой мини-движок по формированию навигационных страниц
 // Подключение sidebar'а и view происходит напрямую, поскольку заранее неизвестно, какая view нужна
-$variablesTV = \Lib\Singles\VariableTransfer::getInstance();
+$variablesTV = VariableTransfer::getInstance();
 
 // Получение параметров навигационной страницы
 list('b' => $G_block, 'v' => $G_view) = checkParamsGET('b', 'v') ? $_GET : PageAddressHelper::getDefaultNavigationPage();
@@ -55,7 +59,7 @@ if (!$blockIsset || !$viewIsset) {
 
 
 $path_sidebar_controller = ROOT . '/controllers/home/navigation_sidebar.php';
-$path_sidebar_view = ROOT . '/views/home/navigation/navigation_sidebar.php';
+$path_sidebar_view = Navigation::VIEWS_PATH . '/navigation_sidebar.php';
 
 if (!file_exists($path_sidebar_controller)) {
     throw new Exception("Отсутствует controller navigation_sidebar по пути: '{$path_sidebar_controller}'");
@@ -76,7 +80,7 @@ $NB = array_filter($userNavigation, fn($block) => ($block['name'] == $G_block));
 $NV = array_filter(array_shift($NB)['views'], fn($view) => ($view['name'] == $G_view));
 
 list('class_name' => $className, 'view_name' => $viewName) = array_shift($NV);
-
+$className = Navigation::NAMESPACE_CLASSES . "\\{$className}";
 
 // Получение сортировки и пагинации --------------------------------------------------------
 //
@@ -86,7 +90,7 @@ $NavigationParameters = new NavigationParameters($viewName);
 // Количество отображаемых элементов на странице
 $dataPerPage = $NavigationParameters->getDataPerPage();
 
-$Pagination = new \Classes\Pagination($className::getCountByIdUser($userId), $dataPerPage, $G_page);
+$Pagination = new Pagination($className::getCountByIdUser($userId), $dataPerPage, $G_page);
 
 // Флаги существования предыдущей/следующей страницы
 $issetPreviousPage = $Pagination->checkIssetPreviousPage();
@@ -157,6 +161,6 @@ $variablesTV->setValue('navigationSorting', $navigationSortingTV);
 $variablesTV->setValue('viewName', $viewName);
 
 // Подключение view
-require_once ROOT . "/views/home/navigation/view_header.php";
-require_once ROOT . "/views/home/navigation/{$viewName}.php";
-require_once ROOT . "/views/home/navigation/view_footer.php";
+require_once Navigation::VIEWS_PATH . "/view_header.php";
+require_once Navigation::VIEWS_PATH . "/{$viewName}.php";
+require_once Navigation::VIEWS_PATH . "/view_footer.php";

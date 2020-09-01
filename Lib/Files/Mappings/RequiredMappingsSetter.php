@@ -3,7 +3,7 @@
 
 namespace Lib\Files\Mappings;
 
-use Lib\Exceptions\File as SelfException;
+use Lib\Exceptions\File as SelfEx;
 
 
 // Класс предназначен для создания структуры нужных маппингов, по которой в дальнейшем классы будут получать файлы
@@ -60,7 +60,7 @@ class RequiredMappingsSetter
     private function checkMappingLevel1Exist(int $mapping_level_1): void
     {
         if (!array_key_exists($mapping_level_1, FILE_TABLE_MAPPING)) {
-            throw new SelfException("Запрашиваемый mapping_level_1: '{$mapping_level_1}' не существует в FILE_TABLE_MAPPING");
+            throw new SelfEx("Запрашиваемый mapping_level_1: '{$mapping_level_1}' не существует в FILE_TABLE_MAPPING");
         }
     }
 
@@ -77,7 +77,7 @@ class RequiredMappingsSetter
     {
         $this->checkMappingLevel1Exist($mapping_level_1);
         if (!array_key_exists($mapping_level_2, FILE_TABLE_MAPPING[$mapping_level_1])) {
-            throw new SelfException("Запрашиваемый mapping_level_2: '{$mapping_level_2}' не существует в mapping_level_1: '{$mapping_level_1}' в FILE_TABLE_MAPPING");
+            throw new SelfEx("Запрашиваемый mapping_level_2: '{$mapping_level_2}' не существует в mapping_level_1: '{$mapping_level_1}' в FILE_TABLE_MAPPING");
         }
     }
 }

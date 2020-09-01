@@ -62,13 +62,12 @@ function saveMultipleBlocks () {
    let multiple_blocks = document.querySelectorAll('.block[data-type="multiple"]');
    multiple_blocks.forEach(block => {
 
-      let multiple_block = MultipleBlock.getBlockByName(block.dataset.name);
+      let multiple_block = MultipleBlock.getBlockByName(block.dataset.block_name);
       if (multiple_block.is_changed) {
 
          multiple_block.is_changed = false;
 
-         let block_result = block.querySelector(`.field-result[name='${block.dataset.name}']`);
-
+         let block_result = block.querySelector(`.field-result[name='${block.dataset.block_name}']`);
          block_result.value = multiple_block.getPartsDataJSON();
       }
 
@@ -82,7 +81,6 @@ function showSaveModal () {
    save_overlay.classList.add('active');
 }
 
-//todo вынести
 function updateFileNeeds () {
    let request_urn = '/home/API_file_needs_setter';
    let form_data = getFilesNeedsFormData();
@@ -113,7 +111,7 @@ function updateFileNeeds () {
 
 function getFilesNeedsFormData () {
    let form_data = new FormData();
-   form_data.append('id_application', getIdDocument());
+   form_data.append('id_application', getIdApplication());
    form_data.append('file_needs_json', FileNeeds.getFileNeedsJSON());
    return form_data;
 }

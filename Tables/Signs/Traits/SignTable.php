@@ -5,9 +5,10 @@ namespace Tables\Signs\Traits;
 
 use Lib\DataBase\SimpleQuery;
 use Lib\DataBase\ParametrizedQuery;
+use Tables\Helpers\Helper as TableHelper;
 
 
-// Трейт, реализующий интерфейс Tables\Signs\Interfaces
+// Трейт, реализующий интерфейс Tables\Signs\Interfaces\SignTable
 // Для использования трейта необходимо, чтобы перед его включением было объявлено
 // статическое свойство tableName с соответствующим именем таблицы
 //
@@ -60,7 +61,7 @@ trait  SignTable
             $certificate_user_message
         ];
 
-        $values = \Tables\Helpers\Helper::getValuesWithoutNull($bindParams);
+        $values = TableHelper::getValuesWithoutNull($bindParams);
 
         $query = "INSERT INTO `{$table}`
                     (`id`,
@@ -75,11 +76,9 @@ trait  SignTable
                      `certificate_result`,
                      `certificate_message`,
                      `certificate_user_message`)
-                    VALUES ({$values}))";
-
+                    VALUES (NULL, {$values})";
         return ParametrizedQuery::set($query, $bindParams);
     }
-
 
 
     // Предназначен для получения ассоциативных массивов всех подписей по id файлов,
@@ -99,9 +98,7 @@ trait  SignTable
         $query = "SELECT *
                   FROM `{$table}`
                   WHERE `id_sign` IN {$in} OR `id_file` IN {$in}";
-
         $result = SimpleQuery::getFetchAssoc($query);
-
         return $result ? $result : null;
     }
 }

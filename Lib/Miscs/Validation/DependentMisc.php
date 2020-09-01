@@ -3,7 +3,7 @@
 
 namespace Lib\Miscs\Validation;
 
-use Lib\Exceptions\MiscValidator as SelfException;
+use Lib\Exceptions\MiscValidator as SelfEx;
 
 
 // Предназначен для валидации зависимых справочников
@@ -40,7 +40,7 @@ class DependentMisc extends Validator
         if ($this->form_value !== '') {
 
             if (!$this->MainValidator->isExist()) {
-                throw new SelfException("При наличии значения зависимого справочника: '{$this->class}', флаг наличия проверенных данных главного справочника отрицательный", 5);
+                throw new SelfEx("При наличии значения зависимого справочника: '{$this->class}', флаг наличия проверенных данных главного справочника отрицательный", 5);
             }
 
             $int = $this->int_value = $this->getValidatedInt($this->form_value);

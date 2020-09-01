@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
    DependenciesHandler.block_dependencies = JSON.parse(document.getElementById('block_dependencies').value);
    DependenciesHandler.require_dependencies = JSON.parse(document.getElementById('require_dependencies').value);
 
-   DependenciesHandler.handleClearFieldButtons();
 });
 
 
@@ -25,8 +24,8 @@ class DependenciesHandler {
          this.blocks_container = parent_block;
          this.is_multiple_block = true;
 
-         let multiple_name = parent_block.closest('.block[data-type="multiple"]').dataset.name;
-         this.multiple_block = MultipleBlock.getBlockByName(multiple_name);
+         let multiple_block_name = parent_block.closest('.block[data-type="multiple"]').dataset.block_name;
+         this.multiple_block = MultipleBlock.getBlockByName(multiple_block_name);
       } else {
          this.blocks_container = document;
          this.is_multiple_block = false;
@@ -70,15 +69,15 @@ class DependenciesHandler {
 
          let setBlockState = this.getBlockStateSetter(dependency_key);
 
-         Object.keys(block_states).forEach(name => {
-            let is_active = setBlockState(block_states[name]);
+         Object.keys(block_states).forEach(block_name => {
+            let is_active = setBlockState(block_states[block_name]);
 
             if (this.is_multiple_block) {
 
-               let dependent_blocks = this.blocks_container.querySelectorAll(`.block[data-name="${name}"]`);
+               let dependent_blocks = this.blocks_container.querySelectorAll(`[data-block_name="${block_name}"]`);
                if (dependent_blocks.length === 0 && is_active) {
 
-                  let new_block = this.multiple_block.createBlock(this.blocks_container, name);
+                  let new_block = this.multiple_block.createBlock(this.blocks_container, block_name);
                   new_block.dataset.active = is_active;
                   changeParentCardMaxHeight(new_block);
 
@@ -91,7 +90,7 @@ class DependenciesHandler {
 
             } else {
 
-               let dependent_blocks = document.querySelectorAll(`.block[data-name="${name}"]`);
+               let dependent_blocks = document.querySelectorAll(`[data-block_name="${block_name}"]`);
                dependent_blocks.forEach(block => {
                   block.dataset.active = is_active;
                   changeParentCardMaxHeight(block);
@@ -148,7 +147,7 @@ class DependenciesHandler {
    }
 
    static handleRadioDependencies () {
-      let dependency_inputs = this.radio_dependency.querySelectorAll(`input[data-when_change=${this.result_input.name}]`);
+      let dependency_inputs = radio_dependency.querySelectorAll(`input[data-when_change=${this.result_input.name}]`);
 
 
       dependency_inputs.forEach(input => {
@@ -159,7 +158,7 @@ class DependenciesHandler {
          // Берем нужные значения, по значению родительского поля
          let radio_values = values[this.result_input.value][0];
 
-         let dependent_row = this.blocks_container.querySelector(`[data-field_name=${input.dataset.target_change}]`);
+         let dependent_row = this.blocks_container.querySelector(`[data-row_name=${input.dataset.target_change}]`);
          let dependent_radio = dependent_row.querySelector('.radio');
 
          if (dependent_radio) {
@@ -185,73 +184,14 @@ class DependenciesHandler {
    }
 
    static handleRequireDependencies (dependencies) {
-      let dependent_field_names = dependencies[this.result_input.value];
+      let dependent_row_names = dependencies[this.result_input.value];
 
-      if (dependent_field_names) {
-         Object.keys(dependent_field_names).forEach(field_name => {
-            let dependent_rows = this.blocks_container.querySelectorAll(`[data-row-name="${field_name}"]`);
-            dependent_rows.forEach(row => row.dataset.required = dependent_field_names[field_name]);
+      if (dependent_row_names) {
+         Object.keys(dependent_row_names).forEach(row_name => {
+            let dependent_rows = this.blocks_container.querySelectorAll(`[data-row-name="${row_name}"]`);
+            dependent_rows.forEach(row => row.dataset.required = dependent_row_names[row_name]);
          });
       }
    }
 
-   // Предназначен для обработки кнопок удаления значений полей
-   static handleClearFieldButtons () {
-      let clear_buttons = document.querySelectorAll('.body-card__icon-clear');
-
-      clear_buttons.forEach(button => {
-         button.addEventListener('click', () => {
-            let parent_field = button.closest('.field');
-
-            let field_result = parent_field.querySelector('.field-result');
-            this.handleDependencies(field_result);
-
-            let parent_select = parent_field.querySelector('.modal-select');
-            if (field_result.value) {
-
-               this.removeRowValue(parent_field);
-
-               let related_modal = parent_field.querySelector('.modal');
-               if (related_modal) {
-                  let modal = getModalBySelect(parent_select);
-                  modal.clearRelatedModals();
-                  validateModal(modal);
-               }
-
-               validateCard(parent_field.closest('.card-form'));
-            }
-         });
-      });
-   }
-
-   removeRowValue (field) {
-      // Удаляем записанное значение в зависимом поле
-      field.querySelector('.field-result').value = '';
-
-      let select = field.querySelector('.field-select');
-      if (select) {
-         select.classList.remove('filled');
-
-         let value = field.querySelector('.field-value');
-         // Если зависимое поле - дата, удаляем отображаемую дату
-         if (select.classList.contains('modal-calendar')) {
-            value.innerHTML = 'Выберите дату';
-         } else if (value) {
-            value.innerHTML = 'Выберите значение';
-         }
-      }
-   }
-
-   clearBlock (block) {
-      let dependent_fields = block.querySelectorAll('.field');
-      dependent_fields.forEach(field => {
-         removeRowValue(field);
-      });
-
-
-      let parent_card_body = block.closest('.card-form__body');
-      if (parent_card_body.style.maxHeight) {
-         changeParentCardMaxHeight(block);
-      }
-   }
 }

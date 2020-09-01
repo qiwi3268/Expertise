@@ -5,8 +5,7 @@ namespace Tables;
 
 use Lib\DataBase\SimpleQuery;
 use Lib\DataBase\ParametrizedQuery;
-
-use Tables\Exceptions\Exception as SelfException;
+use Tables\Exceptions\Exception as SelfEx;
 
 
 final class applications
@@ -25,7 +24,6 @@ final class applications
                     (`id`, `is_saved`, `id_author`, `numerical_name`, `date_creation`)
                   VALUES
                     (NULL, 0, ?, ?, UNIX_TIMESTAMP())";
-
         return ParametrizedQuery::set($query, [$id_author, $numerical_name]);
     }
 
@@ -43,9 +41,7 @@ final class applications
                   FROM `applications`
                   WHERE `id_author`=?
                   ORDER BY `id` DESC";
-
         $result = ParametrizedQuery::getSimpleArray($query, [$id_author]);
-
         return $result ? $result : null;
     }
 
@@ -63,7 +59,6 @@ final class applications
         $query = "SELECT *
 				  FROM `applications`
                   WHERE `applications`.`id`=?";
-
         $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
         return $result ? $result[0] : null;
     }
@@ -142,11 +137,7 @@ final class applications
                         ON (`applications`.`id_federal_project`=`misc_federal_project`.`id`)
                   LEFT JOIN (`misc_curator`)
                         ON (`applications`.`id_curator`=`misc_curator`.`id`)
-
-
-
                   ";
-
         $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
 
         if (empty($result)) {
@@ -209,7 +200,7 @@ final class applications
     ): void {
 
         if (!array_key_exists($id_misc, $result) || !array_key_exists($name_misc, $result)) {
-            throw new SelfException("В массиве result отсутствует(ют) свойства: '{$id_misc}' и/или '{$name_misc}'");
+            throw new SelfEx("В массиве result отсутствует(ют) свойства: '{$id_misc}' и/или '{$name_misc}'");
         }
 
         if (is_null($result[$id_misc])) {
@@ -236,7 +227,6 @@ final class applications
         $query = "SELECT count(*)>0
                   FROM `applications`
                   WHERE `id`=?";
-
         // Автоматическое преобразование к bool типу
         return ParametrizedQuery::getSimpleArray($query, [$id])[0];
     }
@@ -282,10 +272,7 @@ final class applications
         ParametrizedQuery::set($query, [...$bindParams, $id]);
     }
 
-    static public function test(int $id, int $id2, int $id3 = 3, int $id4 = 4)
-    {
 
-    }
 
 
 
@@ -311,7 +298,7 @@ final class applications
 
     // todo
     // тестовый метод для работы крона
-    static public function deleteFromIdsArray(array $ids)
+    static public function deleteFromIdsArray(array $ids): void
     {
         $condition = implode(',', $ids);
 

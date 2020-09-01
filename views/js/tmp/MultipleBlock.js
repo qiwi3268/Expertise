@@ -22,9 +22,9 @@ class MultipleBlock {
    constructor (main_block) {
 
       this.element = main_block;
-      MultipleBlock.multiple_blocks.set(this.element.dataset.name, this);
+      MultipleBlock.multiple_blocks.set(this.element.dataset.block_name, this);
 
-      this.templates_container = this.element.querySelector('.block[data-name="templates_container"]');
+      this.templates_container = this.element.querySelector('[data-block_name="templates_container"]');
 
       this.add_btn = this.element.querySelector('.field-add');
       this.add_btn.addEventListener('click', () => {
@@ -41,14 +41,17 @@ class MultipleBlock {
       return MultipleBlock.multiple_blocks.get(name);
    }
 
-   createBlock (main_block, dependent_name) {
+   createBlock (main_block, dependent_block_name) {
 
-      let template = this.templates_container.querySelector(`.block[data-name='${dependent_name}']`);
+      let template = this.templates_container.querySelector(`[data-block_name='${dependent_block_name}']`);
       let new_block = template.cloneNode(true);
+
 
       main_block.appendChild(new_block);
 
+
       new_block.dataset.active = 'true';
+
 
       this.addEventListeners(new_block);
 

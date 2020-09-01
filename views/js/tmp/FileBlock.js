@@ -29,7 +29,7 @@ class FileBlock {
       let parent_field = this.element.closest('[data-mapping_level_1]');
       let parent_node = this.element.closest('[data-id_structure_node]');
 
-      this.document_id = getIdDocument();
+      this.document_id = getIdApplication();
 
       this.mapping_1 = parent_field.dataset.mapping_level_1;
       this.mapping_2 = parent_field.dataset.mapping_level_1;

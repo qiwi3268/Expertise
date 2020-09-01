@@ -3,7 +3,7 @@
 
 namespace Lib\Actions;
 
-use Lib\Exceptions\Actions as SelfException;
+use Lib\Exceptions\Actions as SelfEx;
 
 
 // Паттерн: ServiceLocator
@@ -26,7 +26,7 @@ class Locator
 
         if (is_null($documentType)) {
 
-            throw new SelfException('Методу PageAddress::getDocumentType не удалось определить тип документа', 1);
+            throw new SelfEx('Методу PageAddress::getDocumentType не удалось определить тип документа', 1);
         }
 
         switch ($documentType) {
@@ -36,7 +36,7 @@ class Locator
                 break;
 
             default:
-                throw new SelfException('Методу Locator::__construct не удалось распознать тип документа', 1);
+                throw new SelfEx('Методу Locator::__construct не удалось распознать тип документа', 1);
         }
     }
 

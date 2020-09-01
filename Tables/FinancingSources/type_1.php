@@ -33,9 +33,7 @@ class type_1
                         WHERE `financing_source_type_1`.`id_application`=?) AS `financing_source_type_1`
                   LEFT JOIN (`misc_budget_level`)
                         ON (`financing_source_type_1`.`id_budget_level`=`misc_budget_level`.`id`)";
-
         $result = ParametrizedQuery::getFetchAssoc($query, [$id_application]);
-
         return $result ? $result : null;
     }
 

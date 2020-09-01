@@ -4,6 +4,7 @@
 namespace Tables\FinancingSources;
 
 use Lib\DataBase\ParametrizedQuery;
+use Tables\Helpers\Helper as TableHelper;
 
 
 // Источники финансирования
@@ -28,9 +29,7 @@ class type_4
         $query = "SELECT *
                   FROM `financing_source_type_4`
                   WHERE `id_application`=?";
-
         $result = ParametrizedQuery::getFetchAssoc($query, [$id_application]);
-
         return $result ? $result : null;
     }
 
@@ -44,12 +43,11 @@ class type_4
     static public function create(int $id_application, int $no_data, ?int $percent): int
     {
         $bindParams = [$id_application, $no_data, $percent];
-        $values = \Tables\Helpers\Helper::getValuesWithoutNull($bindParams);
+        $values = TableHelper::getValuesWithoutNull($bindParams);
 
         $query = "INSERT INTO `financing_source_type_4`
                     (`id_application`, `no_data`, `percent`, `date_creation`)
                   VALUES ({$values}, UNIX_TIMESTAMP())";
-
         return ParametrizedQuery::set($query, $bindParams);
     }
 }

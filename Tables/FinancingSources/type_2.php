@@ -4,6 +4,7 @@
 namespace Tables\FinancingSources;
 
 use Lib\DataBase\ParametrizedQuery;
+use Tables\Helpers\Helper as TableHelper;
 
 
 // Источники финансирования
@@ -28,9 +29,7 @@ class type_2
         $query = "SELECT *
                   FROM `financing_source_type_2`
                   WHERE `id_application`=?";
-
         $result = ParametrizedQuery::getFetchAssoc($query, [$id_application]);
-
         return $result ? $result : null;
     }
 
@@ -56,12 +55,11 @@ class type_2
     ): int {
 
         $bindParams = [$id_application, $full_name, $INN, $KPP, $OGRN, $address, $location, $telephone, $email, $no_data, $percent];
-        $values = \Tables\Helpers\Helper::getValuesWithoutNull($bindParams);
+        $values = TableHelper::getValuesWithoutNull($bindParams);
 
         $query = "INSERT INTO `financing_source_type_2`
                     (`id_application`, `full_name`, `INN`, `KPP`, `OGRN`, `address`, `location`, `telephone`, `email`, `no_data`, `percent`, `date_creation`)
                  VALUES ({$values}, UNIX_TIMESTAMP())";
-
         return ParametrizedQuery::set($query, $bindParams);
     }
 

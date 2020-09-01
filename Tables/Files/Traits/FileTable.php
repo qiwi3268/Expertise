@@ -117,7 +117,6 @@ trait FileTable
         $query = "SELECT count(*)>0
                   FROM `{$table}`
                   WHERE `id`=?";
-
         // Автоматическое преобразование к bool типу
         return ParametrizedQuery::getSimpleArray($query, [$id])[0];
     }
@@ -156,7 +155,6 @@ trait FileTable
                   WHERE `is_needs`=0";
 
         $result = SimpleQuery::getFetchAssoc($query);
-
         return $result ? $result : null;
     }
 

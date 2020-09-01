@@ -3,7 +3,7 @@
 
 namespace core\Classes;
 
-use core\Classes\Exceptions\Route as SelfException;
+use core\Classes\Exceptions\Route as SelfEx;
 
 
 final class Route
@@ -82,10 +82,10 @@ final class Route
         if (isset($tmpArr['redirect'])) {
 
             if (!is_string($tmpArr['redirect'])) {
-                throw new SelfException('redirect должен быть ключом строки');
+                throw new SelfEx('redirect должен быть ключом строки');
             }
             if (containsAll($tmpArr['redirect'], ' ')) {
-                throw new SelfException('redirect сореждит пробелы');
+                throw new SelfEx('redirect сореждит пробелы');
             }
             unset($tmpArr['redirect']);
         }
@@ -94,11 +94,11 @@ final class Route
         if (isset($tmpArr['access'])) {
 
             if (!is_array($tmpArr['access'])) {
-                throw new SelfException('access должен быть ключом массива');
+                throw new SelfEx('access должен быть ключом массива');
             }
             foreach ($tmpArr['access'] as $function) {
                 if (!is_string($function) || containsAll($function, ' ')) {
-                    throw new SelfException('access function не является строкой или содержит пробелы');
+                    throw new SelfEx('access function не является строкой или содержит пробелы');
                 }
             }
             unset($tmpArr['access']);
@@ -108,10 +108,10 @@ final class Route
         foreach ($tmpArr as $routeUnit => $unitList) {
 
             if (containsAll($routeUnit, ' ')) {
-                throw new SelfException("routeUnit '{$routeUnit}' содержит пробелы");
+                throw new SelfEx("routeUnit '{$routeUnit}' содержит пробелы");
             }
             if (!is_array($unitList)) {
-                throw new SelfException("routeUnit '{$routeUnit}' должен быть ключом массива");
+                throw new SelfEx("routeUnit '{$routeUnit}' должен быть ключом массива");
             }
 
             // Флаг ABS
@@ -123,32 +123,32 @@ final class Route
                 if (is_numeric($contentFunction)) {
 
                     if (!is_string($unit) || containsAll($unit, ' ')) {
-                        throw new SelfException("unit в '{$routeUnit}' не является строкой или содержит пробелы");
+                        throw new SelfEx("unit в '{$routeUnit}' не является строкой или содержит пробелы");
                     }
                     if ($ABSflag && !$this->checkABSfile($unit)) {
-                        throw new SelfException("unit '{$unit}' в '{$routeUnit}' должен являться абсолютным путем к файлу");
+                        throw new SelfEx("unit '{$unit}' в '{$routeUnit}' должен являться абсолютным путем к файлу");
                     }
 
                     // Юнит с ограниченным доступом
                 } else {
 
                     if (containsAll($contentFunction, ' ')) {
-                        throw new SelfException("contentFunction '{$contentFunction}' в '{$routeUnit}' содержит пробелы");
+                        throw new SelfEx("contentFunction '{$contentFunction}' в '{$routeUnit}' содержит пробелы");
                     }
                     if (!is_array($unit)) {
-                        throw new SelfException("contentFunction '{$contentFunction}' в '{$routeUnit}' должен быть ключом массива");
+                        throw new SelfEx("contentFunction '{$contentFunction}' в '{$routeUnit}' должен быть ключом массива");
                     }
 
                     foreach ($unit as $accessUnitKey => $accessUnit) {
 
                         if (!is_numeric($accessUnitKey)) {
-                            throw new SelfException("accessUnit '{$accessUnit}' в '{$routeUnit}' должен быть элементом индексного массива");
+                            throw new SelfEx("accessUnit '{$accessUnit}' в '{$routeUnit}' должен быть элементом индексного массива");
                         }
                         if (!is_string($accessUnit) || containsAll($accessUnit, ' ')) {
-                            throw new SelfException("В contentFunction '{$contentFunction}' в '{$routeUnit}' один из accessUnit не является строкой или содержит пробелы");
+                            throw new SelfEx("В contentFunction '{$contentFunction}' в '{$routeUnit}' один из accessUnit не является строкой или содержит пробелы");
                         }
                         if ($ABSflag && !$this->checkABSfile($accessUnit)) {
-                            throw new SelfException("accessUnit '{$accessUnit}' в contentFunction '{$contentFunction}' в '{$routeUnit}'  должен являться абсолютным путем к файлу");
+                            throw new SelfEx("accessUnit '{$accessUnit}' в contentFunction '{$contentFunction}' в '{$routeUnit}'  должен являться абсолютным путем к файлу");
                         }
                     }
                 }
@@ -193,7 +193,7 @@ final class Route
                 if (method_exists('Access', $function)) {
                     Access::$function();
                 } else {
-                    throw new SelfException("В классе Access отсутствует метод $function()");
+                    throw new SelfEx("В классе Access отсутствует метод $function()");
                 }
             }
         }

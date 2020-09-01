@@ -3,7 +3,7 @@
 
 namespace Lib\Singles;
 
-use Lib\Exceptions\Logger as SelfException;
+use Lib\Exceptions\Logger as SelfEx;
 
 
 // Предназначен для логирования действий
@@ -67,7 +67,7 @@ class Logger
         $date = date('d.m.Y H:i:s');
         $message = "{$date} {$message}" . PHP_EOL;
         if (file_put_contents("{$this->logsDir}/{$this->logsName}", $message, FILE_APPEND) === false) {
-            throw new SelfException("Произошла ошибка при попытке записать логируемое сообщение: '{$message}' в файл: '{$this->logsDir}/{$this->logsName}'", 5);
+            throw new SelfEx("Произошла ошибка при попытке записать логируемое сообщение: '{$message}' в файл: '{$this->logsDir}/{$this->logsName}'", 5);
         }
         return $date;
     }
@@ -85,7 +85,7 @@ class Logger
     private function validateLogsDir(string $logsDir): void
     {
         if ($logsDir[0] != '/' || $logsDir[mb_strlen($logsDir) - 1] == '/') {
-            throw new SelfException("Передан некорректный параметр logsDir: '{$logsDir}'. Путь к директории должен начинться с '/' и не должен заканчиваться на '/'", 1);
+            throw new SelfEx("Передан некорректный параметр logsDir: '{$logsDir}'. Путь к директории должен начинться с '/' и не должен заканчиваться на '/'", 1);
         }
     }
 
@@ -101,7 +101,7 @@ class Logger
     //
     private function validateLogsName(string $logsName): void
     {
-        if ($logsName[0] == '/') throw new SelfException("Передан некорректный параметр logsName: '{$logsName}'. Название файла не должно начинаться с '/'", 2);
+        if ($logsName[0] == '/') throw new SelfEx("Передан некорректный параметр logsName: '{$logsName}'. Название файла не должно начинаться с '/'", 2);
     }
 
 
@@ -116,7 +116,7 @@ class Logger
     //
     private function checkExistAndWritable(string $path): void
     {
-        if (!file_exists($path)) throw new SelfException("Указанный лог файл: '{$path}' не существует в файловой системе сервера", 3);
-        elseif (!is_writable($path)) throw new SelfException("Указанный лог файл: '{$path}' не доступен для записи", 4);
+        if (!file_exists($path)) throw new SelfEx("Указанный лог файл: '{$path}' не существует в файловой системе сервера", 3);
+        elseif (!is_writable($path)) throw new SelfEx("Указанный лог файл: '{$path}' не доступен для записи", 4);
     }
 }

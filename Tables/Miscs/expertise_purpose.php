@@ -3,8 +3,6 @@
 
 namespace Tables\Miscs;
 
-use Lib\DataBase\ParametrizedQuery;
-
 
 // Справочник "Цель обращения"
 //

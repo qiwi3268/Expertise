@@ -55,13 +55,13 @@ class PartBlock {
    createShortElement () {
       this.short_block = this.parent.createBlock(this.element, 'part_short');
 
-      let delete_btn = this.short_block.querySelector('.delete');
+      let delete_btn = this.short_block.querySelector('.body-card__part-delete');
       delete_btn.addEventListener('click', () => {
          this.parent.is_changed = true;
          this.element.remove();
       });
 
-      let expand_btn = this.short_block.querySelector('.part-short');
+      let expand_btn = this.short_block.querySelector('.body-card__part-short');
       expand_btn.addEventListener('click', () => {
          this.actions.dataset.active = 'true';
          this.body.dataset.active = 'true';
@@ -78,7 +78,7 @@ class PartBlock {
 
    handleCancelButton () {
       this.cancel_btn = this.actions.querySelector('.cancel');
-      this.cancel_btn.addEventListener('click', () => this.element.remove());
+      this.cancel_btn.addEventListener('click', this.element.remove());
    }
 
 }
@@ -88,7 +88,6 @@ function PartData (part_block) {
 
    dependent_blocks.forEach(block => {
       let field_inputs = block.querySelectorAll('.field-result[data-field]');
-
-      field_inputs.forEach(input => this[input.dataset.field] = input.value || null);
+      field_inputs.forEach(input => this[input.dataset.field] = input.value ? input.value : null);
    });
 }
