@@ -245,18 +245,19 @@ class FileUploader {
          let actions = [GeFile.sign, GeFile.unload, GeFile.delete];
          let file_item = GeFile.createElement(file, files_body, actions);
 
-         await this.putFile(file_item);
+         await this.putFile(file_item, files_body);
          changeParentCardMaxHeight(this.parent_field);
       }
 
       return 1;
    }
 
-   putFile (file_item) {
+   putFile (file_item, files_body) {
+      let id_file = parseInt(file_item.dataset.id);
 
-      API.checkFile(file_item.dataset.id, this.mapping_1, this.mapping_2)
+      API.checkFile(id_file, this.mapping_1, this.mapping_2)
          .then(check_response => {
-            return API.internalSignatureVerify(check_response.fs_name, this.mapping_1, this.mapping_2);
+            return API.internalSignatureVerify(check_response.fs_name, this.mapping_1, this.mapping_2, id_file);
          })
          .then(validate_results => {
 
@@ -271,6 +272,9 @@ class FileUploader {
          })
          .catch(exc => {
             console.error('Ошибка при проверке подписи файла:\n' + exc);
+            // FileNeeds.putFileToDelete(id_file, this.mapping_1, this.mapping_2, file_item);
+            let ge_file = new GeFile(file_item, files_body);
+            ge_file.removeElement();
          });
    }
 

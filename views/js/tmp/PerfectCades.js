@@ -44,22 +44,15 @@ class GeCades {
                let CurrentPluginVersion_string
 
                try {
-
-
                   CurrentPluginVersion_string = (yield CurrentPluginVersion.toString());
-
                } catch (exc) {
                   console.log(exc);
                }
 
                let CurrentCPVersion_string;
                try {
-
-
                   CurrentCPVersion_string = (yield CurrentCSPVersion.MajorVersion) + "." + (yield CurrentCSPVersion.MinorVersion) + "." + (yield CurrentCSPVersion.BuildVersion);
-
                } catch (exc) {
-
 
                   console.log(exc);
                }

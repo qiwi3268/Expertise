@@ -352,6 +352,20 @@
                 </div>
                 <!--//Блок смета//-->
 
+                <!--Файл тест-->
+                <div class="body-card__row field" data-row-name='file_test' data-required="true" data-multiple="true" data-mapping_level_1="1" data-mapping_level_2="1">
+                    <span class="body-card__title">Файл</span>
+                    <div class="body-card__item">
+                        <div class="body-card__select field-select modal-file">
+                            <span class="body-card__value">Загрузите файлы</span>
+                            <i class="body-card__icon fas fa-file"></i>
+                        </div>
+                        <div class="body-card__files files"></div>
+                    </div>
+                    <input data-form="application" class="body-card__result field-result" type="hidden" name="file_test">
+                </div>
+                <!--Файл тест-->
+
                 <!--Кадастровый номер земельного участка-->
                 <div class="body-card__row field" data-field_name="cadastral_number" data-pattern="number">
                     <span class="body-card__title">Кадастровый номер земельного участка</span>
@@ -969,6 +983,8 @@
         <div class="file-modal__button file-modal__delete">Удалить файлы</div>
     </div>
 
+
+    <!--todo убрать-->
     <form id="file_uploader" action="" method="POST" enctype="multipart/form-data" >
         <input type="file" name="download_files[]" hidden/>
         <input name="id_application" value="<?= $variablesTV->getValue('id_application') ?>" type="hidden"/>
@@ -991,12 +1007,11 @@
         </div>
     </div>
 
-    <div class="sign-modal__body">
+
+    <div class="sign-modal__file-body">
         <div class="sign-modal__file-info">
             <div class="sign-modal__file"></div>
 
-            <div class="sign-modal__validate" data-active="false">
-            </div>
         </div>
 
         <div class="sign-modal__buttons">
@@ -1014,13 +1029,18 @@
             </div>
             <input id="external_sign" type="file" name="download_files[]" hidden/>
         </div>
+
     </div>
+
+    <div class="sign-modal__validate" data-active="false"></div>
+
+
 
     <div class="sign-modal__cert-body">
 
         <div class="sign-modal__certs" data-active="false">
             <span class="sign-modal__title">Выберите сертификат:</span>
-            <select class="sign-modal__cert-list" size="4" id="cert_list_select"></select>
+            <select class="sign-modal__cert-list" size="2" id="cert_list_select"></select>
 
             <div class="sign-modal__cert-info" data-active="false">
                 <div class="sign-modal__row">
@@ -1048,16 +1068,16 @@
                 </div>
             </div>
 
+
         </div>
 
-
-
+        <div class="sign-modal__actions" data-active="false">
+            <div id="signature_button" class="file-modal__button sign-modal__button">Подписать</div>
+            <div id="sign_cancel" class="file-modal__button sign-modal__button">Отмена</div>
+        </div>
     </div>
 
-    <div class="sign-modal__actions" data-active="false">
-        <div id="signature_button" class="file-modal__button sign-modal__button">Подписать</div>
-        <div id="sign_cancel" class="file-modal__button sign-modal__button">Отмена</div>
-    </div>
+
 
 
 </div>
