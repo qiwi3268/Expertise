@@ -47,45 +47,21 @@ if (checkParamsPOST('login', 'password')) {
                     users::zeroingIncorrectPasswordInputById($userAssoc['id']);
                 }
 
-                $userRole = users::getRolesById($userAssoc['id']);
+                $userRoles = users::getRolesById($userAssoc['id']);
 
                 // Пользователь не имеет ролей
-                if (is_null($userRole)) {
+                if (is_null($userRoles)) {
 
                     exit(json_encode(['result' => 4]));
                 }
 
                 // Создание сессии пользователя
-                Session::createUser($userAssoc, $userRole);
-
-                if (Session::isApplicant()) {
-
-                    $applicationsIds = \Tables\applications::getIdsWhereAuthorById(Session::getUserId());
-
-                    if (!is_null($applicationsIds)) {
-                        Session::createAuthorRoleApplicationIds($applicationsIds);
-                    }
-                }
-
-
-                // Определяем, на какую страницу перенаправлять пользователя
-                $roles = Session::getUserRoles();
-
-                $ref = '';
-
-                if (in_array(ROLE['APP'], $roles, true)) $ref = '/home/applicant';
-                elseif (in_array(ROLE['EXP'], $roles, true)) $ref = '/home/experts';
-                elseif (in_array(ROLE['EMP_PTO'], $roles, true)) $ref = '/home/pto';
-                elseif (in_array(ROLE['EMP_BUH'], $roles, true)) $ref = '/home/buh';
-                elseif (in_array(ROLE['EMP_PKR'], $roles, true)) $ref = '/home/pkr';
-                elseif (in_array(ROLE['BOSS'], $roles, true)) $ref = '/home/boss';
-                elseif (in_array(ROLE['ADM'], $roles, true)) $ref = '/home/admin';
-
-                $ref = '/home/navigation';
+                Session::createUser($userAssoc, $userRoles);
 
                 // Авторизация прошла успешно
-                exit(json_encode(['result' => 5,
-                    'ref' => $ref
+                exit(json_encode([
+                    'result' => 5,
+                    'ref'    => '/home/navigation'
                 ]));
             }
 

@@ -44,7 +44,7 @@ class RequiredMappingsSetter
     // Возвращает параметры-----------------------------------
     // array : нужные маппинги
     //
-    public function getRequiredMappings(): array
+    public function getMappings(): array
     {
         return $this->mappings;
     }

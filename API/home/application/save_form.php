@@ -121,7 +121,9 @@ try {
 
         // Проверка прав заявителя на доступ к сохранению заявления
         // todo переделать на вызов из специализированного класса
-        $canSaveApplication = \Classes\Application\Helpers\Helper::checkApplicantRightsToSaveApplication($form_applicationID);
+        //$canSaveApplication = \Classes\Application\Helpers\Helper::checkApplicantRightsToSaveApplication($form_applicationID);
+
+        $canSaveApplication = true;
 
         // Заявителю говорим, что нет прав, даже в том случае, если заявление не существует,
         // чтобы не могли через html проверять заявления
@@ -147,14 +149,14 @@ try {
     try {
 
         // Проверка Цели обращения (и добавление к массиву обновлений) -----------------------------
-        $ExpertisePurpose = new SingleMiscValidator($P_expertise_purpose, 'expertise_purpose', 'id_expertise_purpose');
+        $ExpertisePurpose = new SingleMiscValidator($P_expertise_purpose, '\Tables\Miscs\expertise_purpose', 'id_expertise_purpose');
         $ExpertisePurpose->validate()->addToUpdate();
 
 
         // Проверка Предметов экспертизы -----------------------------------------------------------
         if ($P_expertise_subjects !== '') {
             $ExpertiseSubjects = $PrimitiveValidator->getValidatedArrayFromNumericalJson($P_expertise_subjects, true);
-            foreach ($ExpertiseSubjects as $id) (new DependentMiscValidator($ExpertisePurpose, $id, 'expertise_subject'))->validate();
+            foreach ($ExpertiseSubjects as $id) (new DependentMiscValidator($ExpertisePurpose, $id, '\Tables\Miscs\expertise_subject'))->validate();
         }
 
 
@@ -185,7 +187,10 @@ try {
 
         // Проверка Типа объекта культурного наследия (и добавление к массиву обновлений) ----------
         if ($P_cultural_object_type !== '' && $P_cultural_object_type_checkbox !== '1') {
-            exit(json_encode(['result' => 7, 'error_message' => 'Тип объекта культурного наследия не может быть заполнен при невыбраном чекбоксе Объект культурного наследия (Да)']));
+            exit(json_encode([
+                'result'        => 7,
+                'error_message' => 'Тип объекта культурного наследия не может быть заполнен при невыбраном чекбоксе Объект культурного наследия (Да)'
+            ]));
         }
         $CulturalObjectType = new SingleMiscValidator($P_cultural_object_type, '\Tables\Miscs\cultural_object_type', 'id_cultural_object_type');
         $CulturalObjectType->validate()->addToUpdate();
@@ -193,7 +198,10 @@ try {
 
         // Проверка Национального проекта (и добавление к массиву обновлений) ----------------------
         if ($P_national_project !== '' && $P_national_project_checkbox !== '1') {
-            exit(json_encode(['result' => 7, 'error_message' => 'Название национального проекта не может быть заполнено при невыбраном чекбоксе Национальный проект (Да)']));
+            exit(json_encode([
+                'result'        => 7,
+                'error_message' => 'Название национального проекта не может быть заполнено при невыбраном чекбоксе Национальный проект (Да)'
+            ]));
         }
         $NationalProject = new SingleMiscValidator($P_national_project, '\Tables\Miscs\national_project', 'id_national_project');
         $NationalProject->validate()->addToUpdate();
@@ -327,7 +335,7 @@ try {
     // Проверка Источников финансирования --------------------------------------------------------------
     //
     // В источники финансирования было внесено изменение
-    if (true) {
+    if (false) {
 
         try {
 

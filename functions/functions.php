@@ -64,8 +64,7 @@ function clearHtmlArr(array $arr): array
     return $clearArr;
 }
 
-
-//todo убрать позор
+//todo среднее вынести в date helper
 function GetDdMmYyyyDate(int $timestamp): string
 {
     return date('d.m.Y', $timestamp);

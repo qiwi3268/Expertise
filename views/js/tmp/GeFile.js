@@ -42,7 +42,10 @@ class GeFile {
 
       this.mapping_1 = this.field.dataset.mapping_level_1;
       this.mapping_2 = this.field.dataset.mapping_level_2;
-      this.id_structure_node = this.node.dataset.id_structure_node;
+
+      if (this.node) {
+         this.id_structure_node = this.node.dataset.id_structure_node;
+      }
 
    }
 

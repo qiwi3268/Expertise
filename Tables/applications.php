@@ -12,6 +12,8 @@ final class applications
 {
 
     // Предназначен для создания временной записи заявления
+    // - стадия: "Оформление заявления"
+    // - ответственные: группы заявителей к заявлению
     // Принимает параметры-----------------------------------
     // id_author         int : id текущего пользователя
     // numerical_name string : числовое имя заявления
@@ -21,9 +23,9 @@ final class applications
     static public function createTemporary(int $id_author, string $numerical_name): int
     {
         $query = "INSERT INTO `applications`
-                    (`id`, `is_saved`, `id_author`, `numerical_name`, `date_creation`)
+                    (`id`, `is_saved`, `id_author`, `id_stage`, `resp_type`, `numerical_name`, `date_creation`)
                   VALUES
-                    (NULL, 0, ?, ?, UNIX_TIMESTAMP())";
+                    (NULL, 0, ?, 1, 'type_3', ?, UNIX_TIMESTAMP())";
         return ParametrizedQuery::set($query, [$id_author, $numerical_name]);
     }
 
@@ -273,15 +275,7 @@ final class applications
     }
 
 
-
-
-
-
-
-
-
-    // todo
-    // тестовый метод для работы крона
+    // todo тестовый метод для работы крона
     // Предназначен для получения всех несохраненных заявлений
     // Возвращает параметры-----------------------------------
     // array : несохраненные заявления
@@ -296,8 +290,7 @@ final class applications
     }
 
 
-    // todo
-    // тестовый метод для работы крона
+    // todo тестовый метод для работы крона
     static public function deleteFromIdsArray(array $ids): void
     {
         $condition = implode(',', $ids);
@@ -308,5 +301,16 @@ final class applications
 
         SimpleQuery::set($query);
     }
+
+
+    //todo
+    static public function deleteResponsibleByIdApplication(int $id_application): void
+    {
+        // ищем тип ответственных
+
+        // удаляем ответственых
+        // $query =
+    }
+
 
 }

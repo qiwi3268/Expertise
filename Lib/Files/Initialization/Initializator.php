@@ -7,13 +7,13 @@ use Lib\Exceptions\File as SelfEx;
 use Lib\Files\Mappings\RequiredMappingsSetter;
 use Lib\Files\Mappings\FilesTableMapping;
 use Lib\Signs\Mappings\SignsTableMapping;
+use Lib\Singles\NodeStructure;
 
 
 // Абстрактный класс для инициализации сохраненных файлов
 //
 abstract class Initializator
 {
-
 
     private array $filesRequiredMappings; // Массив нужных маппингов файловых таблиц
     private array $signsRequiredMappings; // Массив нужных маппингов таблиц подписей
@@ -28,11 +28,10 @@ abstract class Initializator
     //
     protected function __construct(RequiredMappingsSetter $filesRequiredMappings)
     {
-
         $signsRequiredMappings = [];
 
         // Проверка классов нужных маппингов
-        foreach ($filesRequiredMappings->getRequiredMappings() as $mapping_level_1_code => $mapping_level_2) {
+        foreach ($filesRequiredMappings->getMappings() as $mapping_level_1_code => $mapping_level_2) {
 
             foreach ($mapping_level_2 as $mapping_level_2_code => $className) {
 
@@ -59,7 +58,7 @@ abstract class Initializator
                 unset($signsMapping);
             }
         }
-        $this->filesRequiredMappings = $filesRequiredMappings->getRequiredMappings();
+        $this->filesRequiredMappings = $filesRequiredMappings->getMappings();
         $this->signsRequiredMappings = $signsRequiredMappings;
     }
 
@@ -79,7 +78,6 @@ abstract class Initializator
     //
     public function getNeedsFilesWithSigns(): array
     {
-
         $result = [];
 
         foreach ($this->filesRequiredMappings as $mapping_level_1_code => $mapping_level_2) {
@@ -145,17 +143,12 @@ abstract class Initializator
                         // Итерируемый file является файлом, к которому есть открепленная подпись
                         } elseif ($file['id'] == $sign['id_file'] && $sign['is_external'] == 1 && isset($idsHash[$sign['id_sign']])) {
 
-                            // Находим file открепленной подписи
-                            unset($ind);
-                            foreach ($files->getArrayCopy() as $tmp_index => $tmp_file) {
-                                if ($tmp_file['id'] == $sign['id_sign']) {
-                                    $ind = $tmp_index;
-                                    break;
-                                }
-                            }
+                            // Находим file открепленной подписи (файл id которого равен id_sign)
+                            $ind = $this->getFileIndex($files->getArrayCopy(), $sign['id_sign']);
+
                             $files[$fi]['signs']['external'][] = $sign;
 
-                            //unset($idsHash[$sign['id_sign']]); // Удаляем file открепленной подписи из хэш-массива id файлов
+                            unset($idsHash[$sign['id_sign']]); // Удаляем file открепленной подписи из хэш-массива id файлов
 
                             $files->offsetUnset($ind); // Удаляем file открепленной подписи
                             $signs->offsetUnset($si);
@@ -164,17 +157,12 @@ abstract class Initializator
                         // Итерируемый file является открепленной подписью к другому file
                         } elseif ($file['id'] == $sign['id_sign'] && $sign['is_external'] == 1 && isset($idsHash[$sign['id_file']])) {
 
-                            // Находим file с данными
-                            unset($ind);
-                            foreach ($files->getArrayCopy() as $tmp_index => $tmp_file) {
-                                if ($tmp_file['id'] == $sign['id_file']) {
-                                    $ind = $tmp_index;
-                                    break;
-                                }
-                            }
+                            // Находим file с данными (файл id которого равен id_file)
+                            $ind = $this->getFileIndex($files->getArrayCopy(), $sign['id_file']);
+
                             $files[$ind]['signs']['external'][] = $sign;
 
-                            //unset($idsHash[$sign['id_file']]); // Удаляем file открепленной подписи из хэш-массива id файлов
+                            unset($idsHash[$sign['id_file']]); // Удаляем file открепленной подписи из хэш-массива id файлов
 
                             $files->offsetUnset($fi); // Удаляем итерируемый file (открепленную подпись)
                             $signs->offsetUnset($si);
@@ -199,5 +187,51 @@ abstract class Initializator
             }
         }
         return $result;
+    }
+
+
+    // Вспомогательный метод для поиска индекса нужного файла
+    // Принимает параметры-----------------------------------
+    // files array : индексный масив с ассоциативными массивами файлов
+    // Возвращает параметры----------------------------------
+    // int : найденный индекс в массиве files
+    // Выбрасывает исключения--------------------------------
+    // Lib\Exceptions\File:
+    //   в массиве файлов не найден нужный id
+    //
+    private function getFileIndex(array $files, int $neededId): int
+    {
+        foreach ($files as $index => $file) {
+            if ($file['id'] == $neededId) return $index;
+        }
+        throw new SelfEx("В массиве файлов не найден нужный id: '{$neededId}'");
+    }
+
+
+    // Предназначен для получения файлов внутри стркутуры
+    // *** files должны иметь прямую принадлежность к стркутуре, т.е. ключ id_structure_node
+    // Принимает параметры-----------------------------------
+    // files                 array : индексный масив с ассоциативными массивами файлов
+    // NodeStructure NodeStructure : экземпляр класса NodeStructure
+    // Возвращает параметры----------------------------------
+    // array : "глубинная" структура, в узлах которой находятся файлы
+    //
+    static public function getFilesInDepthStructure(array $files, NodeStructure $NodeStructure): array
+    {
+        $structure = $NodeStructure->getDepthStructure();
+
+        foreach ($structure as $structureIndex => $node) {
+
+            foreach ($files as $fileIndex => $file) {
+
+                if ($node['id'] == $file['id_structure_node']) {
+
+                    $structure[$structureIndex]['files'][] = $file;
+                    unset($files[$fileIndex]);
+                }
+            }
+            if (empty($files)) break;
+        }
+        return $structure;
     }
 }

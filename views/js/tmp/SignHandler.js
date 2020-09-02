@@ -43,7 +43,7 @@ class SignHandler {
    mapping_level_1;
    mapping_level_2;
    id_structure_node;
-   //==================
+   //------------------
 
    // Предназначен для получения объекта модуля подписания
    static getInstance () {
@@ -85,7 +85,7 @@ class SignHandler {
    static removeSign (file, mapping_1, mapping_2) {
 
       FileNeeds.putSignToDelete(
-         file.dataset.id_sign,
+         parseInt(file.dataset.id_sign),
          mapping_1,
          mapping_2
       );

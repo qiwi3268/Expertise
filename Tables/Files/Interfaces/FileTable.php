@@ -31,7 +31,7 @@ interface FileTable
     //
     static public function checkExistById(int $id): bool;
 
-    // Предназначен для получения ассоциативного массива нужных файлов к главному документу по его id
+    // Предназначен для получения ассоциативных массивов нужных файлов к главному документу по его id
     //
     static public function getNeedsAssocByIdMainDocument(int $id_main_document): ?array;
 

@@ -129,10 +129,9 @@ class FileNeeds {
    static putSignToDelete (id_sign, mapping_level_1, mapping_level_2) {
       if (FileNeeds.sign_needs.to_save.has(id_sign)) {
          FileNeeds.sign_needs.to_save.delete(id_sign);
-      } else {
-         let sign_data = FileNeeds.getFileData(id_sign, mapping_level_1, mapping_level_2);
-         FileNeeds.sign_needs.to_delete.set(id_sign, sign_data);
       }
+      let sign_data = FileNeeds.getFileData(id_sign, mapping_level_1, mapping_level_2);
+      FileNeeds.sign_needs.to_delete.set(id_sign, sign_data);
    }
 
    //TODO делать по-другому

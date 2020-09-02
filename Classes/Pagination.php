@@ -67,7 +67,7 @@ class Pagination
     //
     public function checkIssetPreviousPage(): bool
     {
-        return $this->currentPage != 1;
+        return $this->currentPage > 1;
     }
 
 
@@ -78,6 +78,6 @@ class Pagination
     //
     public function checkIssetNextPage(): bool
     {
-        return $this->currentPage != $this->pageCount;
+        return $this->currentPage < $this->pageCount;
     }
 }
