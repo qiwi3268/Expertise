@@ -361,6 +361,27 @@
                             <i class="body-card__icon fas fa-file"></i>
                         </div>
                         <div class="body-card__files files"></div>
+                        <div class="body-card__files files filled">
+                            <div class="files__item" data-id="">
+                                <div class="files__info">
+                                    <div class="files__description">
+                                        <i class="files__icon fas fa-file-excel"></i>
+                                        <span class="files__name">123 (3)789572937928798425978978DSFDSKL:FJSDJFLKSDJFGHERU34askljgrtnjsa#$JJDSFOJSFOREJWFOPEWJHUPEHWFUHEWIU#$%$$543hjoihjfrodefjoekrgp534534430478945792790243493sdfKLJDFH24.xlsx</span>
+                                    </div>
+
+
+                                    <div class="files__state">
+                                        <i class="files__state-icon fas fa-pen-alt"></i>
+                                        <span class="files__state-text">Подписано</span>
+                                    </div>
+                                </div>
+                                <div class="files__actions">
+                                    <i class="files__sign fas fa-file-signature"></i>
+                                    <i class="files__unload fas fa-file-download"></i>
+                                    <i class="files__delete fas fa-trash"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <input data-form="application" class="body-card__result field-result" type="hidden" name="file_test">
                 </div>
