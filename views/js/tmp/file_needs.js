@@ -104,6 +104,15 @@ class FileNeeds {
             parent_field.dataset.mapping_level_2,
             file
          );
+
+         if (file.dataset.id_sign) {
+            SignHandler.removeSign(
+               file,
+               parent_field.dataset.mapping_level_1,
+               parent_field.dataset.mapping_level_2
+            );
+         }
+
          let ge_file = new GeFile(file, file_block);
          ge_file.removeElement();
 

@@ -196,36 +196,59 @@ class SignHandler {
    handleCertListSelect (certs) {
       this.certs_select = document.getElementById('cert_list_select');
 
+      this.cert_list = document.getElementById('cert_list');
+
+      console.log(this.cert_list);
+
+
       // Добавляем сертификаты на страницу
-      this.fillCertListSelect(certs);
+      this.fillCertList(certs);
 
-      GeCades.setCertificatesList(this.certs_select);
+      GeCades.setCertificatesList(this.cert_list);
 
-      this.certs_select.addEventListener('change', () => {
-         // При выборе сертификата получаем информацию о нем
-         GeCades.getCertInfo()
-            // Добавляем на страницу данные о выбранном сертификате
-            .then(cert_info => {
-               this.fillCertInfo(cert_info);
-            })
-            .catch(exc => {
-               console.log('Ошибка при получении информации о сертификате: ' + exc);
-            });
-      });
    }
 
    // Предназначен для заполнения селекта выбора сертификатов
    // Принимает параметры-------------------------------
    // certs       Array[Object] : массив с сертификатами
-   fillCertListSelect (certs) {
+   fillCertList (certs) {
+
       certs.forEach(cert => {
-         let option = document.createElement('option');
-         option.text = cert.text;
-         option.value = cert.value;
-         option.classList.add('sign-modal__cert');
-         this.certs_select.options.add(option);
+         let cert_item = document.createElement('DIV');
+         cert_item.value = cert.value;
+         cert_item.classList.add('sign-modal__cert');
+
+         let cert_text = document.createElement('SPAN');
+         cert_text.innerHTML = cert.text;
+         cert_text.classList.add('sign-modal__cert-text');
+
+         cert_item.appendChild(cert_text);
+         this.cert_list.appendChild(cert_item);
+
+         cert_item.addEventListener('click', () => {
+            this.selectCert(cert_item);
+         });
       });
 
+   }
+
+   selectCert(cert_item) {
+      let selected_cert = this.cert_list.querySelector('.sign-modal__cert[data-selected="true"]');
+      if (selected_cert) {
+         selected_cert.dataset.selected = 'false';
+         selected_cert.removeAttribute('data-state');
+      }
+      cert_item.dataset.selected = 'true';
+
+      // При выборе сертификата получаем информацию о нем
+      GeCades.getCertInfo()
+         // Добавляем на страницу данные о выбранном сертификате
+         .then(cert_info => {
+            this.fillCertInfo(cert_info, cert_item);
+         })
+         .catch(exc => {
+            console.log('Ошибка при получении информации о сертификате: ' + exc);
+         });
    }
 
    // Предназначен для отображения элементов для создания подписи
@@ -244,14 +267,19 @@ class SignHandler {
    // Предназначен для добавления информации о выбранном сертификате
    // Принимает параметры-------------------------------
    // cert_info         Object : объект с информацией о сертификате
-   fillCertInfo (cert_info) {
+   fillCertInfo (cert_info, cert_item) {
       document.getElementById('subject_name').innerHTML = cert_info.subject_name;
       document.getElementById('issuer_name').innerHTML = cert_info.issuer_name;
       document.getElementById('valid_from_date').innerHTML = GeCades.formattedDateTo_ddmmyyy_hhmmss(cert_info.valid_from_date);
       document.getElementById('valid_to_date').innerHTML = GeCades.formattedDateTo_ddmmyyy_hhmmss(cert_info.valid_to_date);
-      document.getElementById('cert_message').innerHTML = cert_info.cert_message;
-      document.getElementById('cert_message').style.color = cert_info.cert_status ? '#6cb37e' : '#db5151';
+
+      let cert_message = document.getElementById('cert_message');
+      cert_message.innerHTML = cert_info.cert_message;
+      cert_message.dataset.state = cert_info.cert_status;
+      cert_item.dataset.state = cert_info.cert_status;
+
       this.cert_info.dataset.active = 'true';
+
    }
 
    // Предназначен для обработки кнопки загрузки файла открепленной подписи
@@ -362,7 +390,7 @@ class SignHandler {
       let cert_row = this.createInfoRow('Сертификат: ', cert_state.user_message, cert_state.result);
 
       let sign_state = result.signature_verify;
-      let sign_row = this.createInfoRow('Подпись: ', sign_state.user_message, cert_state.result);
+      let sign_row = this.createInfoRow('Подпись: ', sign_state.user_message, sign_state.result);
 
       let name_row = this.createInfoRow('Подписант: ', result.fio);
       let info_row = this.createInfoRow('Информация: ', result.certificate);
@@ -377,7 +405,7 @@ class SignHandler {
 
    createInfoRow (label, text, state) {
       let row = document.createElement('DIV');
-      row.classList.add('sign-modal__row');
+      row.classList.add('sign-modal__sign-row');
 
       let label_span = document.createElement('SPAN');
       label_span.classList.add('sign-modal__label');

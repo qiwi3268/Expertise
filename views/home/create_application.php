@@ -998,11 +998,11 @@
 
     <div class="sign-modal__header" data-active="false">
         <div class="sign-modal__row">
-            <span class="sign-modal__label">Версия плагина: </span>
+            <span class="sign-modal__plugin-label">Версия плагина: </span>
             <span id="plugin_version" class="sign-modal__text"></span>
         </div>
         <div class="sign-modal__row">
-            <span class="sign-modal__label">Версия криптопровайдера: </span>
+            <span class="sign-modal__plugin-label">Версия криптопровайдера: </span>
             <span id="csp_version" class="sign-modal__text"></span>
         </div>
     </div>
@@ -1011,7 +1011,6 @@
     <div class="sign-modal__file-body">
         <div class="sign-modal__file-info">
             <div class="sign-modal__file"></div>
-
         </div>
 
         <div class="sign-modal__buttons">
@@ -1034,51 +1033,47 @@
 
     <div class="sign-modal__validate" data-active="false"></div>
 
+    <div class="sign-modal__empty"></div>
 
+    <div class="sign-modal__certs" data-active="false">
 
-    <div class="sign-modal__cert-body">
+        <div id="cert_list" class="sign-modal__cert-list">
+            <div class="sign-modal__title">Выберите сертификат:</div>
+        </div>
 
-        <div class="sign-modal__certs" data-active="false">
-            <span class="sign-modal__title">Выберите сертификат:</span>
-            <select class="sign-modal__cert-list" size="2" id="cert_list_select"></select>
-
-            <div class="sign-modal__cert-info" data-active="false">
-                <div class="sign-modal__row">
-                    <span class="sign-modal__label">Данные о выбранном сертификате:</span>
-                </div>
-                <div class="sign-modal__row">
-                    <span class="sign-modal__label">Владелец: </span>
-                    <span id="subject_name" class="sign-modal__text"></span>
-                </div>
-                <div class="sign-modal__row">
-                    <span class="sign-modal__label">Издатель: </span>
-                    <span id="issuer_name" class="sign-modal__text"></span>
-                </div>
-                <div class="sign-modal__row">
-                    <span class="sign-modal__label">Дата выдачи: </span>
-                    <span id="valid_from_date" class="sign-modal__text"></span>
-                </div>
-                <div class="sign-modal__row">
-                    <span class="sign-modal__label">Срок действия: </span>
-                    <span id="valid_to_date" class="sign-modal__text"></span>
-                </div>
-                <div class="sign-modal__row">
-                    <span class="sign-modal__label">Статус: </span>
-                    <span id="cert_message" class="sign-modal__text"></span>
-                </div>
+        <div class="sign-modal__cert-info" data-active="false">
+            <div class="sign-modal__cert-row">
+                <span class="sign-modal__label">Данные о выбранном сертификате:</span>
             </div>
-
-
+            <div class="sign-modal__cert-row">
+                <span class="sign-modal__label">Владелец: </span>
+                <span id="subject_name" class="sign-modal__text"></span>
+            </div>
+            <div class="sign-modal__cert-row">
+                <span class="sign-modal__label">Издатель: </span>
+                <span id="issuer_name" class="sign-modal__text"></span>
+            </div>
+            <div class="sign-modal__cert-row">
+                <span class="sign-modal__label">Дата выдачи: </span>
+                <span id="valid_from_date" class="sign-modal__text"></span>
+            </div>
+            <div class="sign-modal__cert-row">
+                <span class="sign-modal__label">Срок действия: </span>
+                <span id="valid_to_date" class="sign-modal__text"></span>
+            </div>
+            <div class="sign-modal__cert-row">
+                <span class="sign-modal__label">Статус: </span>
+                <span id="cert_message" class="sign-modal__text"></span>
+            </div>
         </div>
 
-        <div class="sign-modal__actions" data-active="false">
-            <div id="signature_button" class="file-modal__button sign-modal__button">Подписать</div>
-            <div id="sign_cancel" class="file-modal__button sign-modal__button">Отмена</div>
-        </div>
     </div>
 
 
-
+    <div class="sign-modal__actions" data-active="false">
+        <div id="signature_button" class="file-modal__button sign-modal__button">Подписать</div>
+        <div id="sign_cancel" class="file-modal__button sign-modal__button">Отмена</div>
+    </div>
 
 </div>
 

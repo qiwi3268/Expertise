@@ -425,16 +425,16 @@ class GeCades {
       if (!('globalCertsMap' in GeCades)) {
          return null;
       }
-      let select = GeCades.getCertificatesList();
-      let selectedIndex = select.selectedIndex;
+
+      let list = GeCades.getCertificatesList();
+      let selected_cert = list.querySelector('.sign-modal__cert[data-selected="true"]');
 
       // Не выбран сертификат
-      if (selectedIndex === -1) {
+      if (!selected_cert) {
          return null
       }
 
-      let key = select.options[selectedIndex].value;
-      return GeCades.globalCertsMap.get(key);
+      return GeCades.globalCertsMap.get(selected_cert.value);
    }
 
    // Возвращает код алгоритма в зависимости от значения в открытом ключе
