@@ -1,9 +1,21 @@
+/*
 document.addEventListener('DOMContentLoaded', () => {
    let file_blocks = document.querySelectorAll('.files');
 
    file_blocks.forEach(block => {
-      let file_block = new FileBlock(block);
-      file_block.initFiles();
+      // let file_block = new FileBlock(block);
+      // file_block.initFiles();
+
+      let files = block.querySelectorAll('.files__item');
+
+      if (files.length > 0) {
+         block.classList.add('filled');
+      }
+
+      files.forEach(file_element => {
+         let file = new GeFile(file_element, block);
+         file.handleActionButtons();
+      });
    });
 
 });
@@ -57,6 +69,7 @@ class FileBlock {
 
 
 }
+*/
 
 
 

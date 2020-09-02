@@ -403,7 +403,7 @@ class SignHandler {
 
          this.id_sign = this.file_element.dataset.id_sign;
 
-         SignHandler.removeSign(this.file_element);
+         SignHandler.removeSign(this.file_element, this.mapping_level_1, this.mapping_level_2);
 
          this.validate_info.dataset.active = 'false';
          this.delete_sign_btn.dataset.active = 'false';

@@ -888,7 +888,7 @@
                     </div>
                 </div>
                 <div class="body-card__block block" data-name="structureDocumentation1" data-active="false">
-                    <div class="documentation" data-mapping_level_1="2" data-mapping_level_2="1">
+                    <div class="documentation field" data-mapping_level_1="2" data-mapping_level_2="1">
                         <?php foreach ($variablesTV->getValue('structureDocumentation1') as ['id' => $id_structure_node, 'name' => $name, 'depth' => $depth]): ?>
                             <div class="documentation__node" data-id_structure_node="<?= $id_structure_node ?>">
                                 <div class="documentation__header">
@@ -901,7 +901,7 @@
                     </div>
                 </div>
                 <div class="body-card__block block" data-name="structureDocumentation2" data-active="false">
-                    <div class="documentation" data-mapping_level_1="2" data-mapping_level_2="2">
+                    <div class="documentation field" data-mapping_level_1="2" data-mapping_level_2="2">
                         <?php foreach ($variablesTV->getValue('structureDocumentation2') as ['id' => $id_structure_node, 'name' => $name, 'depth' => $depth]): ?>
                             <div class="documentation__node" data-id_structure_node="<?= $id_structure_node ?>">
                                 <div class="documentation__header">

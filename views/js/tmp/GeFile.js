@@ -1,3 +1,22 @@
+document.addEventListener('DOMContentLoaded', () => {
+   let file_blocks = document.querySelectorAll('.files');
+
+   file_blocks.forEach(block => {
+
+      let files = block.querySelectorAll('.files__item');
+
+      if (files.length > 0) {
+         block.classList.add('filled');
+      }
+
+      files.forEach(file_element => {
+         let file = new GeFile(file_element, block);
+         file.handleActionButtons();
+      });
+   });
+
+});
+
 class GeFile {
 
    container;
@@ -7,10 +26,23 @@ class GeFile {
    delete_button;
    sign_button;
 
+   field;
+   node;
+
+   mapping_1;
+   mapping_2;
+   id_structure_node;
+
    constructor (file_element, files_block) {
       this.element = file_element;
-      // this.container = files_block;
-      this.container = new FileBlock(files_block);
+
+      this.container = files_block || file_element.closest('.files');
+      this.field = this.container.closest('[data-mapping_level_1]');
+      this.node = this.container.closest('[data-id_structure_node]');
+
+      this.mapping_1 = this.field.dataset.mapping_level_1;
+      this.mapping_2 = this.field.dataset.mapping_level_2;
+      this.id_structure_node = this.node.dataset.id_structure_node;
 
    }
 
@@ -42,8 +74,8 @@ class GeFile {
 
          API.checkFile(
             this.element.dataset.id,
-            this.container.mapping_1,
-            this.container.mapping_2,
+            this.mapping_1,
+            this.mapping_2,
          )
             .then(check_result => {
                location.href = API.getUnloadFileURN(check_result);
@@ -62,13 +94,13 @@ class GeFile {
 
          FileNeeds.putFileToDelete(
             this.element.dataset.id,
-            this.container.mapping_1,
-            this.container.mapping_2,
+            this.mapping_1,
+            this.mapping_2,
             this.element
          );
 
          if (this.element.dataset.id_sign) {
-            SignHandler.removeSign(this.element);
+            SignHandler.removeSign(this.element, this.mapping_1, this.mapping_2);
          }
 
          this.removeElement();
@@ -79,10 +111,11 @@ class GeFile {
    removeElement () {
       this.element.remove();
 
-      if (!this.container.element.querySelector('.files__item')) {
-         this.container.element.classList.remove('filled');
+      if (!this.container.querySelector('.files__item')) {
+         this.container.classList.remove('filled');
 
-         let parent_select = this.container.element.previousElementSibling;
+         // todo вынести выше
+         let parent_select = this.container.previousElementSibling;
          if (parent_select && parent_select.classList.contains('modal-file')) {
             parent_select.classList.remove('filled');
          }

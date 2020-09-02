@@ -65,7 +65,6 @@ class FileNeeds {
    static putFileToSave (id_file, mapping_level_1, mapping_level_2, file_item) {
       let is_file_saved = file_item.dataset.saved === 'true';
       if (!is_file_saved) {
-         //TODO в метод
          let to_save = FileNeeds.file_needs.to_save;
          let file_data = FileNeeds.getFileData(id_file, mapping_level_1, mapping_level_2);
          to_save.push(file_data);

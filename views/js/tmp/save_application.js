@@ -37,9 +37,7 @@ function saveApplication () {
 
          switch (response.result) {
             case 8:
-               console.log('saved');
                if (FileNeeds.hasFiles()) {
-                  console.log('update file needs');
                   updateFileNeeds();
                }
                showSaveModal();
@@ -101,11 +99,9 @@ function updateFileNeeds () {
          switch (response.result) {
             case 9:
                console.log(response);
-               console.log('file_clear');
                FileNeeds.clear();
                break;
             default:
-               console.log('Ошибка при обновлении file_needs');
                console.log(response);
          }
 
