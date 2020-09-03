@@ -60,21 +60,26 @@ class SignHandler {
    // file         Element : проверяемый файл
    static validateFileField (file) {
       let results_json = file.dataset.validate_results;
+      let sign_state;
 
       if (results_json) {
          let results = JSON.parse(results_json);
 
          for (let result of results) {
             if (result.signature_verify.result && result.certificate_verify.result) {
-
-               file.dataset.sign_state = 'valid';
+               sign_state = 'valid';
+               // file.dataset.sign_state = 'valid';
             } else if (result.signature_verify.result) {
-               file.dataset.sign_state = 'warning';
+               sign_state = 'warning';
+               // file.dataset.sign_state = 'warning';
                break;
             } else {
+               sign_state = 'not_signed';
                break;
             }
          }
+
+         GeFile.setSignState(file, sign_state);
       }
    }
 
@@ -95,7 +100,9 @@ class SignHandler {
 
       file.removeAttribute('data-id_sign');
       file.removeAttribute('data-validate_results');
-      file.removeAttribute('data-sign_state');
+
+      GeFile.setSignState(file, 'not_signed');
+      // file.removeAttribute('data-sign_state');
    }
 
    // Предназначен для инициализации модуля подписания

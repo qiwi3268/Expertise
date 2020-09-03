@@ -140,9 +140,14 @@ class GeFile {
       let file = new GeFile(file_item, files_block);
 
       file.addInfo(file_data);
+
+      let sign_state = document.createElement('DIV');
+      sign_state.classList.add('files__state');
+      file_item.appendChild(sign_state);
+      this.setSignState(file_item, 'checking');
+
       file.addActions(file, actions);
 
-      // this.setSignState(file_item, 'checking');
 
       return file_item;
    }
@@ -170,10 +175,10 @@ class GeFile {
             state_text.innerHTML = 'Подписано';
             file.dataset.state = 'valid';
             break;
-         case 'invalid':
+         case 'not_signed':
             state_icon.classList.add('fa-times');
             state_text.innerHTML = 'Не подписано';
-            file.dataset.state = 'invalid';
+            file.dataset.state = 'not_signed';
             break;
          case 'warning':
             state_icon.classList.add('fa-exclamation');

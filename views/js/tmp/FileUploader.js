@@ -225,7 +225,7 @@ class FileUploader {
    // Предназначен для добавления файлов в родительское поле
    // Принимает параметры-------------------------------
    // files         Array[Object] : массив с файлами
-   async putFilesToRow (files) {
+   putFilesToRow (files) {
       //todo вынести
       let parent_select = this.parent_field.querySelector('.field-select');
       if (parent_select) {
@@ -246,11 +246,12 @@ class FileUploader {
          let actions = [GeFile.sign, GeFile.unload, GeFile.delete];
          let file_item = GeFile.createElement(file, files_body, actions);
 
-         await this.putFile(file_item, files_body);
+         this.putFile(file_item, files_body);
          changeParentCardMaxHeight(this.parent_field);
+
       }
 
-      return 1;
+
    }
 
    putFile (file_item, files_body) {
@@ -268,6 +269,8 @@ class FileUploader {
                file_item.dataset.is_internal = 'true';
                SignHandler.validateFileField(file_item);
 
+            } else {
+               GeFile.setSignState(file_item, 'not_signed');
             }
 
          })
