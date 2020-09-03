@@ -340,11 +340,14 @@
                     <div class="body-card__row field" data-row-name='file_grbs' data-required="false" data-multiple="true" data-mapping_level_1="1" data-mapping_level_2="1">
                         <span class="body-card__title">Файл ГРБС</span>
                         <div class="body-card__item">
-                            <div class="body-card__select field-select modal-file">
-                                <span class="body-card__value">Загрузите файлы</span>
-                                <i class="body-card__icon fas fa-file"></i>
+                            <div class="body-card__file-field">
+                                <div class="body-card__select field-select modal-file">
+                                    <span class="body-card__value">Загрузите файлы</span>
+                                    <i class="body-card__icon fas fa-file"></i>
+                                </div>
+                                <div class="body-card__files files"></div>
                             </div>
-                            <div class="body-card__files files"></div>
+                            <span class="body-card__error field-error"></span>
                         </div>
                         <input data-form="application" class="body-card__result field-result" type="hidden" name="file_grbs">
                     </div>
@@ -352,39 +355,6 @@
                 </div>
                 <!--//Блок смета//-->
 
-                <!--Файл тест-->
-      <!--          <div class="body-card__row field" data-row-name='file_test' data-required="true" data-multiple="true" data-mapping_level_1="1" data-mapping_level_2="1">
-                    <span class="body-card__title">Файл</span>
-                    <div class="body-card__item">
-                        <div class="body-card__select field-select modal-file">
-                            <span class="body-card__value">Загрузите файлы</span>
-                            <i class="body-card__icon fas fa-file"></i>
-                        </div>
-                        <div class="body-card__files files"></div>
-
-                        <div class="body-card__files files filled">
-                            <div class="files__item" data-id="">
-                                <div class="files__info">
-                                    <i class="files__icon fas fa-file-excel"></i>
-                                    <span class="files__name">123 (3)789572937928798425978978DSFDSKL:FJSDJFLKSDJFGHERU34askljgrtnjsa#$JJDSFOJSFOREJWFOPEWJHUPEHWFUHEWIU#$%$$543hjoihjfrodefjoekrgp534534430478945792790243493sdfKLJDFH24.xlsx</span>
-
-                                    <div class="files__state">
-                                        <i class="files__state-icon fas fa-pen-alt"></i>
-                                        <span class="files__state-text">Подписано</span>
-                                    </div>
-                                </div>
-                                <div class="files__actions">
-                                    <i class="files__sign fas fa-file-signature"></i>
-                                    <i class="files__unload fas fa-file-download"></i>
-                                    <i class="files__delete fas fa-trash"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <input data-form="application" class="body-card__result field-result" type="hidden" name="file_test">
-                </div>-->
-                <!--Файл тест-->
 
                 <!--Кадастровый номер земельного участка-->
                 <div class="body-card__row field" data-field_name="cadastral_number" data-pattern="number">

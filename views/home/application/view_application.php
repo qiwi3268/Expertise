@@ -255,6 +255,27 @@
                 </div>
                 <!--//Вид работ//-->
 
+                <!--ГРБС-->
+                <?php if (!is_null($variablesTV->getValue('form_files')[1][1])): ?>
+                    <div class="body-card__row" data-mapping_level_1="1" data-mapping_level_2="1">
+                        <span class="body-card__title">Файл ГРБС</span>
+                        <div class="body-card__files files">
+                            <?php foreach ($variablesTV->getValue('form_files')[1][1] as $file): ?>
+                                <div class="files__item" data-id="<?= $file['id'] ?>" data-validate_results="<?= $file['id'] ?>">
+                                    <div class="files__info">
+                                        <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
+                                        <div class="files__name"><?= $file['file_name'] ?></div>
+                                    </div>
+                                    <div class="files__actions">
+                                        <i class="files__unload fas fa-file-download"></i>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <!--//ГРБС//-->
+
                 <!--Кадастровый номер земельного участка-->
                 <?php if ($variablesTV->getExistenceFlag('cadastral_number')): ?>
                     <div class="body-card__row">
@@ -309,26 +330,6 @@
                 <?php endif; ?>
                 <!--//Куратор//-->
 
-                <!--ГРБС-->
-                <?php if (!is_null($variablesTV->getValue('form_files')[1][1])): ?>
-                    <div class="body-card__row" data-mapping_level_1="1" data-mapping_level_2="1">
-                        <span class="body-card__title">Файл ГРБС</span>
-                        <div class="body-card__files files">
-                            <?php foreach ($variablesTV->getValue('form_files')[1][1] as $file): ?>
-                                <div class="files__item" data-id="<?= $file['id'] ?>">
-                                    <div class="files__info">
-                                        <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
-                                        <div class="files__name"><?= $file['file_name'] ?></div>
-                                    </div>
-                                    <div class="files__actions">
-                                        <i class="files__unload fas fa-file-download"></i>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                <?php endif; ?>
-                <!--//ГРБС//-->
 
             </div>
         </div>

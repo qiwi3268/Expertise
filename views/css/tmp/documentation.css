@@ -12,10 +12,10 @@
    color: #343a40;
 }
 
-.documentation__node.filled {
+/*.documentation__node.filled {
    border-left: 3px solid #ffd354;
    border-bottom: 3px solid #ffd354;
-}
+}*/
 
 .documentation__header {
    display: flex;

@@ -233,8 +233,9 @@
 .body-card__field {
    display: flex;
    align-items: center;
-
 }
+
+
 
 .body-card__select {
    box-sizing: border-box;
@@ -249,6 +250,8 @@
    cursor: pointer;
    transition: box-shadow .10s;
 }
+
+
 
 .body-card__select.filled {
    color: #343a40;
