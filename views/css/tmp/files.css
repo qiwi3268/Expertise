@@ -254,6 +254,7 @@
    /*border-color: #87c596;*/
   /* border: 1px solid #C5E6C1;
    color: #537A5D;*/
+   transition: .15s;
 }
 
 .files__item[data-state='checking'] > .files__state {
@@ -262,10 +263,18 @@
    color: #6A7E9A;
 }
 
+.files__item[data-state='checking'] > .files__state:hover {
+   background-color: #D4E4FA;
+}
+
 .files__item[data-state='valid'] > .files__state {
    background-color: #ddfad9;
    border: 1px solid #C5E6C1;
    color: #537A5D;
+}
+
+.files__item[data-state='valid'] > .files__state:hover {
+   background-color: #D9F0D6;
 }
 
 .files__item[data-state='not_signed'] > .files__state {
@@ -274,10 +283,18 @@
    color: #A57474;
 }
 
+.files__item[data-state='not_signed'] > .files__state:hover {
+   background-color: #F8DCDC;
+}
+
 .files__item[data-state='warning'] > .files__state {
    background-color: #FCF4D9;
    border: 1px solid #E4DAB7;
    color: #9F8E53;
+}
+
+.files__item[data-state='warning'] > .files__state:hover {
+   background-color: #F7ECC7;
 }
 
 
@@ -297,7 +314,9 @@
 
 }
 
-
+.files__signs {
+   display: none;
+}
 
 
 /*tmp============*/

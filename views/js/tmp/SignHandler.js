@@ -60,7 +60,7 @@ class SignHandler {
    // file         Element : проверяемый файл
    static validateFileField (file) {
       let results_json = file.dataset.validate_results;
-      let sign_state;
+      let sign_state = 'not_signed';
 
       if (results_json) {
          let results = JSON.parse(results_json);
@@ -74,13 +74,13 @@ class SignHandler {
                // file.dataset.sign_state = 'warning';
                break;
             } else {
-               sign_state = 'not_signed';
                break;
             }
          }
 
-         GeFile.setSignState(file, sign_state);
       }
+      GeFile.setSignState(file, sign_state);
+
    }
 
 

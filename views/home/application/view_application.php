@@ -261,11 +261,13 @@
                         <span class="body-card__title">Файл ГРБС</span>
                         <div class="body-card__files files">
                             <?php foreach ($variablesTV->getValue('form_files')[1][1] as $file): ?>
-                                <div class="files__item" data-id="<?= $file['id'] ?>" data-validate_results="<?= $file['id'] ?>">
+                                <div class="files__item" data-id="<?= $file['id'] ?>">
+                                    <div class="files__signs"><?= json_encode($file['signs']); ?></div>
                                     <div class="files__info">
                                         <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
                                         <div class="files__name"><?= $file['file_name'] ?></div>
                                     </div>
+                                    <div class="files__state"></div>
                                     <div class="files__actions">
                                         <i class="files__unload fas fa-file-download"></i>
                                     </div>

@@ -10,7 +10,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       files.forEach(file_element => {
+
+
          let file = new GeFile(file_element, block);
+
+         let signs = file_element.querySelector('.files__signs');
+         if (signs) {
+            file.handleSigns(signs.innerHTML);
+            signs.remove();
+            SignHandler.validateFileField(file.element);
+         }
+
          file.handleActionButtons();
       });
    });
@@ -47,6 +57,46 @@ class GeFile {
          this.id_structure_node = this.node.dataset.id_structure_node;
       }
 
+   }
+
+   handleSigns(signs_json) {
+
+      let validate_results = [];
+
+      let signs = JSON.parse(signs_json);
+
+      for (let sign_type in signs) {
+
+         signs[sign_type].forEach(sign => {
+            validate_results.push(this.getSignData(sign));
+         });
+
+      }
+
+      if (validate_results.length > 0) {
+         this.element.dataset.validate_results = JSON.stringify(validate_results);
+         console.log(this.element);
+      }
+
+   }
+
+   getSignData(sign) {
+      let sign_data = {};
+
+      sign_data.fio = sign.fio;
+      sign_data.certificate = sign.certificate;
+
+      sign_data.signature_verify = {
+         result: sign.signature_result,
+         user_message: sign.signature_user_message
+      }
+
+      sign_data.certificate_verify = {
+         result: sign.certificate_result,
+         user_message: sign.certificate_user_message
+      }
+
+      return sign_data;
    }
 
    // Предназначен для добавления обработчиков кнопок действий с файлами
@@ -147,7 +197,6 @@ class GeFile {
       this.setSignState(file_item, 'checking');
 
       file.addActions(file, actions);
-
 
       return file_item;
    }
