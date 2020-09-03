@@ -899,7 +899,7 @@
                                     <span class="documentation__name" style="padding-left: <?= $depth*25 + 15 ?>px"><?= $name ?></span>
                                     <i class="documentation__icon modal-file fas fa-plus"></i>
                                 </div>
-                                <div class="documentation__files files" style="padding-left: <?= $depth*25 + 15 ?>px"></div>
+                                <div class="documentation__files files" data-depth="<?= $depth ?>"></div>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -912,7 +912,7 @@
                                     <span class="documentation__name" style="padding-left: <?= $depth*25 + 15 ?>px"><?= $name ?></span>
                                     <i class="documentation__icon modal-file fas fa-plus"></i>
                                 </div>
-                                <div class="documentation__files files" style="padding-left: <?= $depth*25 + 15 ?>px"></div>
+                                <div class="documentation__files files" data-depth="<?= $depth ?>"></div>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -997,7 +997,6 @@
         </div>
     </div>
 
-
     <div class="sign-modal__file-body">
         <div class="sign-modal__file-info">
             <div class="sign-modal__file"></div>
@@ -1058,7 +1057,6 @@
         </div>
 
     </div>
-
 
     <div class="sign-modal__actions" data-active="false">
         <div id="signature_button" class="file-modal__button sign-modal__button">Подписать</div>

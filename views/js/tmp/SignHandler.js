@@ -1,4 +1,4 @@
-class SignHandler {
+class SignHandler extends SignView{
 
    // Объект модуля подписания
    static instance;
@@ -100,17 +100,18 @@ class SignHandler {
       file.removeAttribute('data-validate_results');
 
       GeFile.setSignState(file, 'not_signed');
-      // file.removeAttribute('data-sign_state');
    }
 
    // Предназначен для инициализации модуля подписания
    constructor () {
+      super();
 
       this.modal = mQS(document, '.sign-modal', 12);
-      this.plugin_info = mQS(this.modal, '.sign-modal__header', 13);
-      this.cert_info = mQS(this.modal, '.sign-modal__cert-info', 17);
       this.validate_info = mQS(this.modal, '.sign-modal__validate', 14);
+
+      this.plugin_info = mQS(this.modal, '.sign-modal__header', 13);
       this.certs = mQS(this.modal, '.sign-modal__certs', 15);
+      this.cert_info = mQS(this.modal, '.sign-modal__cert-info', 17);
       this.actions = mQS(this.modal, '.sign-modal__actions', 16);
 
       this.handleOverlay();
@@ -123,11 +124,11 @@ class SignHandler {
       this.handleSignButton();
    }
 
-   // Предназначен для обработки нажатия на фон модального окна
+ /*  // Предназначен для обработки нажатия на фон модального окна
    handleOverlay () {
       this.overlay = mQS(document, '.sign-overlay', 17);
       this.overlay.addEventListener('click', () => this.closeModal());
-   }
+   }*/
 
    // Предназначен для закрытия модуля подписания
    closeModal () {
@@ -380,6 +381,7 @@ class SignHandler {
       this.fillSignsInfo(results_json);
    }
 
+/*
    fillSignsInfo (validate_results_json) {
       this.validate_info.dataset.active = 'true';
       this.validate_info.innerHTML = '';
@@ -389,8 +391,9 @@ class SignHandler {
          this.validate_info.appendChild(this.createSignInfo(result));
       });
    }
+*/
 
-   createSignInfo (result) {
+/*   createSignInfo (result) {
       let sign = document.createElement('DIV');
       sign.classList.add('sign-modal__sign');
 
@@ -409,9 +412,9 @@ class SignHandler {
       sign.appendChild(info_row);
 
       return sign;
-   }
-
-   createInfoRow (label, text, state) {
+   }*/
+/*
+   createInfoRow (label, text, state = null) {
       let row = document.createElement('DIV');
       row.classList.add('sign-modal__sign-row');
 
@@ -423,7 +426,7 @@ class SignHandler {
       text_span.classList.add('sign-modal__text');
       text_span.innerHTML = text;
       //asd
-      if (state !== undefined) {
+      if (state !== null) {
          text_span.dataset.state = state;
       }
 
@@ -431,7 +434,7 @@ class SignHandler {
       row.appendChild(text_span);
 
       return row;
-   }
+   }*/
 
    handleDeleteSignButton () {
       this.delete_sign_btn = document.getElementById('signature_delete');
@@ -552,9 +555,9 @@ class SignHandler {
    }
 
 
-   addFileElement (file) {
+ /*  addFileElement (file) {
       let file_info = file.querySelector('.files__info');
       let sign_file = this.modal.querySelector('.sign-modal__file');
       sign_file.innerHTML = file_info.innerHTML;
-   }
+   }*/
 }

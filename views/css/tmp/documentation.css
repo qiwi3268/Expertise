@@ -30,6 +30,8 @@
    padding: 13px 15px;
    transition: .1s;
    cursor: pointer;
+   border-left: 1px solid #e0e0e0;
+
 }
 
 .documentation__icon:hover {
@@ -38,7 +40,7 @@
 
 .documentation__files {
    border: 0px;
-   color: #343a40;
+   /*color: #343a40;*/
    border-top: 1px solid #e0e0e0;
 }
 

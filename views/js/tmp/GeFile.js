@@ -111,7 +111,7 @@ class GeFile {
          this.handleDeleteButton();
       }
 
-      this.sign_button = this.actions.querySelector('.files__sign');
+      this.sign_button = this.element.querySelector('.files__state');
       if (this.sign_button) {
          this.handleSignButton();
       }
@@ -175,7 +175,11 @@ class GeFile {
 
    handleSignButton () {
       this.sign_button.addEventListener('click', () => {
-         SignHandler.getInstance().open(this.element);
+         if (this.element.dataset.read_only) {
+            SignView.getInstance().open(this.element);
+         } else {
+            SignHandler.getInstance().open(this.element);
+         }
       });
    }
 
@@ -246,11 +250,11 @@ class GeFile {
       file.handleActionButtons();
    }
 
-   static sign (file) {
+   /*static sign (file) {
       let sign_button = document.createElement('I');
       sign_button.classList.add('files__sign', 'fas', 'fa-file-signature');
       file.actions.appendChild(sign_button);
-   }
+   }*/
 
    static unload (file) {
       let unload_button = document.createElement('I');
@@ -285,9 +289,9 @@ class GeFile {
       file_info.appendChild(file_name);
    }
 
-   static getFileSizeString (file_data) {
+   static getFileSizeString (file_size) {
       let size;
-      let kb = file_data.size / 1024;
+      let kb = file_size / 1024;
 
       if (kb > 1024) {
          size = Math.round(kb / 1024) + ' МБ'

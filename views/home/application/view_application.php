@@ -261,11 +261,14 @@
                         <span class="body-card__title">Файл ГРБС</span>
                         <div class="body-card__files files">
                             <?php foreach ($variablesTV->getValue('form_files')[1][1] as $file): ?>
-                                <div class="files__item" data-id="<?= $file['id'] ?>">
+                                <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>">
                                     <div class="files__signs"><?= json_encode($file['signs']); ?></div>
                                     <div class="files__info">
                                         <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
-                                        <div class="files__name"><?= $file['file_name'] ?></div>
+                                        <div class="files__description">
+                                            <div class="files__name"><?= $file['file_name'] ?></div>
+                                            <div class="files__size"><?= $file['file_size'] ?></div>
+                                        </div>
                                     </div>
                                     <div class="files__state"></div>
                                     <div class="files__actions">
@@ -361,12 +364,15 @@
                             <?php if (isset($node['files'])): ?>
                                 <div class="documentation__files files" >
                                     <?php foreach ($node['files'] as $file): ?>
-                                        <div class="files__item" data-id="<?= $file['id'] ?>" style="padding-left: <?= $node['depth']*25 + 7 ?>px">
+                                        <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" style="padding-left: <?= $node['depth']*25 + 7 ?>px">
                                             <div class="files__signs"><?= json_encode($file['signs']); ?></div>
 
                                             <div class="files__info">
                                                 <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
-                                                <span class="files__name"><?= $file['file_name'] ?></span>
+                                                <div class="files__description">
+                                                    <div class="files__name"><?= $file['file_name'] ?></div>
+                                                    <div class="files__size"><?= $file['file_size'] ?></div>
+                                                </div>
                                             </div>
                                             <div class="files__state"></div>
                                             <div class="files__actions">

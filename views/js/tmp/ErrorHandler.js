@@ -10,6 +10,8 @@ class ErrorHandler {
 
    static createError (code) {
 
+
+
       document.alert(`Код ошибки: ${code}`);
 
    }

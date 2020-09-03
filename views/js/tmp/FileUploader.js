@@ -141,7 +141,7 @@ class FileUploader {
 
       let file_size = document.createElement('DIV');
       file_size.classList.add('file-modal__size');
-      file_size.innerHTML = GeFile.getFileSizeString(file_data);
+      file_size.innerHTML = GeFile.getFileSizeString(file_data.size);
 
       file_item.appendChild(file_icon);
       file_info.appendChild(file_name);
@@ -243,7 +243,7 @@ class FileUploader {
       files_body.classList.add('filled');
 
       for (let file of files) {
-         let actions = [GeFile.sign, GeFile.unload, GeFile.delete];
+         let actions = [GeFile.unload, GeFile.delete];
          let file_item = GeFile.createElement(file, files_body, actions);
 
          this.putFile(file_item, files_body);
