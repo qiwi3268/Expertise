@@ -44,7 +44,7 @@ switch (URN) {
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'action_sidebar.css', 'radio.css'),
             ...CreateSource('css', TMP_CSS, 'create_application.css', 'view_application.css'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
-            ...CreateSource('js', TMP_JS, 'section.js', 'GeFile.js', 'SignHandler.js')
+            ...CreateSource('js', TMP_JS, 'section.js', 'main.js', 'API.js', 'GeFile.js', 'SignHandler.js')
         ];
         break;
 

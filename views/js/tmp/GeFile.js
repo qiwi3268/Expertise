@@ -60,7 +60,6 @@ class GeFile {
    }
 
    handleSigns(signs_json) {
-
       let validate_results = [];
 
       let signs = JSON.parse(signs_json);
@@ -75,7 +74,6 @@ class GeFile {
 
       if (validate_results.length > 0) {
          this.element.dataset.validate_results = JSON.stringify(validate_results);
-         console.log(this.element);
       }
 
    }
