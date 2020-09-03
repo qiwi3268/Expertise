@@ -142,7 +142,47 @@ class GeFile {
       file.addInfo(file_data);
       file.addActions(file, actions);
 
+      // this.setSignState(file_item, 'checking');
+
       return file_item;
+   }
+
+   static setSignState(file, state) {
+      let file_state = file.querySelector('.files__state');
+      file_state.innerHTML = '';
+
+      let state_icon = document.createElement('I');
+      state_icon.classList.add('files__state-icon', 'fas');
+      file_state.appendChild(state_icon);
+
+      let state_text = document.createElement('SPAN');
+      state_text.classList.add('files__state-text');
+      file_state.appendChild(state_text);
+
+      switch (state) {
+         case 'checking':
+            state_icon.classList.add('fa-clock');
+            state_text.innerHTML = 'Проверка';
+            file.dataset.state = 'checking';
+            break;
+         case 'valid':
+            state_icon.classList.add('fa-pen-alt');
+            state_text.innerHTML = 'Подписано';
+            file.dataset.state = 'valid';
+            break;
+         case 'invalid':
+            state_icon.classList.add('fa-times');
+            state_text.innerHTML = 'Не подписано';
+            file.dataset.state = 'invalid';
+            break;
+         case 'warning':
+            state_icon.classList.add('fa-exclamation');
+            state_text.innerHTML = 'Ошибка';
+            file.dataset.state = 'warning';
+            break;
+
+      }
+
    }
 
    addActions (file, actions) {
@@ -171,6 +211,8 @@ class GeFile {
       delete_button.classList.add('files__delete', 'fas', 'fa-trash');
       file.actions.appendChild(delete_button);
    }
+
+
 
    // Предназначен для добавления информации о файле в его блок
    // Принимает параметры-------------------------------

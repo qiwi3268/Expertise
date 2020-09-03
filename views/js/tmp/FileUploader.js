@@ -226,6 +226,7 @@ class FileUploader {
    // Принимает параметры-------------------------------
    // files         Array[Object] : массив с файлами
    async putFilesToRow (files) {
+      //todo вынести
       let parent_select = this.parent_field.querySelector('.field-select');
       if (parent_select) {
          parent_select.classList.add('filled');
@@ -276,6 +277,10 @@ class FileUploader {
             let ge_file = new GeFile(file_item, files_body);
             ge_file.removeElement();
          });
+   }
+
+   setFileSignState() {
+
    }
 
    closeModal () {

@@ -103,6 +103,10 @@
     color: #6cb37e;
 }
 
+.sign-modal__label[data-state='true']:hover {
+    color: #6cb37e;
+}
+
 .sign-modal__label[data-state='true'] {
     color: #db5151;
 }

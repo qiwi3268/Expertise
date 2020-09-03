@@ -353,7 +353,7 @@
                 <!--//Блок смета//-->
 
                 <!--Файл тест-->
-                <div class="body-card__row field" data-row-name='file_test' data-required="true" data-multiple="true" data-mapping_level_1="1" data-mapping_level_2="1">
+      <!--          <div class="body-card__row field" data-row-name='file_test' data-required="true" data-multiple="true" data-mapping_level_1="1" data-mapping_level_2="1">
                     <span class="body-card__title">Файл</span>
                     <div class="body-card__item">
                         <div class="body-card__select field-select modal-file">
@@ -361,14 +361,12 @@
                             <i class="body-card__icon fas fa-file"></i>
                         </div>
                         <div class="body-card__files files"></div>
+
                         <div class="body-card__files files filled">
                             <div class="files__item" data-id="">
                                 <div class="files__info">
-                                    <div class="files__description">
-                                        <i class="files__icon fas fa-file-excel"></i>
-                                        <span class="files__name">123 (3)789572937928798425978978DSFDSKL:FJSDJFLKSDJFGHERU34askljgrtnjsa#$JJDSFOJSFOREJWFOPEWJHUPEHWFUHEWIU#$%$$543hjoihjfrodefjoekrgp534534430478945792790243493sdfKLJDFH24.xlsx</span>
-                                    </div>
-
+                                    <i class="files__icon fas fa-file-excel"></i>
+                                    <span class="files__name">123 (3)789572937928798425978978DSFDSKL:FJSDJFLKSDJFGHERU34askljgrtnjsa#$JJDSFOJSFOREJWFOPEWJHUPEHWFUHEWIU#$%$$543hjoihjfrodefjoekrgp534534430478945792790243493sdfKLJDFH24.xlsx</span>
 
                                     <div class="files__state">
                                         <i class="files__state-icon fas fa-pen-alt"></i>
@@ -382,9 +380,10 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <input data-form="application" class="body-card__result field-result" type="hidden" name="file_test">
-                </div>
+                </div>-->
                 <!--Файл тест-->
 
                 <!--Кадастровый номер земельного участка-->

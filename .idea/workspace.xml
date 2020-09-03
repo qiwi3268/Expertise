@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="02.09.2020_3">
+    <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/Miscs/Initialization/CreateFormInitializator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Miscs/Initialization/CreateFormInitializator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/Miscs/Validation/DependentMisc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Miscs/Validation/DependentMisc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/Miscs/Validation/SingleMisc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Miscs/Validation/SingleMisc.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classes/Exceptions/ApplicationFormMiscValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Exceptions/ApplicationFormMiscValidator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/CSP/MessageParser.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/CSP/MessageParser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Miscs/Initialization/Initializator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Miscs/Initialization/Initializator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Miscs/Validation/DependentMisc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Miscs/Validation/DependentMisc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Miscs/Validation/Validator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Miscs/Validation/Validator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Signs/Traits/SignTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Signs/Traits/SignTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/people_name.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/people_name.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/users.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/files.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/files.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/sign.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/sign.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/FileUploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/FileUploader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/GeFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/GeFile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,14 +109,7 @@
       <workItem from="1598947442925" duration="9801000" />
       <workItem from="1598975483271" duration="4756000" />
       <workItem from="1599017361858" duration="34276000" />
-      <workItem from="1599103848788" duration="1027000" />
-    </task>
-    <task id="LOCAL-00027" summary="31.07.2020_4">
-      <created>1596215729611</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1596215729611</updated>
+      <workItem from="1599103848788" duration="5780000" />
     </task>
     <task id="LOCAL-00028" summary="01.08.2020">
       <created>1596427603654</created>
@@ -460,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599063265710</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="03.09.2020">
+      <created>1599105019587</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1599105019587</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -477,7 +471,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="25.08.2020" />
     <MESSAGE value="25.08.2020_1" />
     <MESSAGE value="25.08.2020_2" />
     <MESSAGE value="26.08.2020" />
@@ -502,7 +495,8 @@
     <MESSAGE value="02.09.2020_1" />
     <MESSAGE value="02.09.2020_2" />
     <MESSAGE value="02.09.2020_3" />
-    <option name="LAST_COMMIT_MESSAGE" value="02.09.2020_3" />
+    <MESSAGE value="03.09.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="03.09.2020" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Notifications" timestamp="1598851428350">
@@ -517,11 +511,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1599104505933">
+    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1599105018640">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1598854964348" />
-    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599104505933" />
+    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599105018640" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog" timestamp="1598853557262">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -558,12 +552,12 @@
     </state>
     <state x="302" y="56" width="614" height="1035" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1598502743003" />
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597499951448" />
-    <state x="-1473" y="310" width="980" height="708" key="find.popup" timestamp="1599066389671">
-      <screen x="-1920" y="209" width="1920" height="1040" />
+    <state x="596" y="136" width="1306" height="952" key="find.popup" timestamp="1599105733402">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598845293362" />
     <state x="-1473" y="310" width="980" height="708" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1599066389671" />
-    <state x="596" y="136" width="1306" height="952" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599047435405" />
+    <state x="596" y="136" width="1306" height="952" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599105733402" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
     <state x="1150" y="591" key="publish.login" timestamp="1598767415653">
       <screen x="0" y="0" width="2560" height="1400" />

@@ -66,6 +66,7 @@ class SignHandler {
 
          for (let result of results) {
             if (result.signature_verify.result && result.certificate_verify.result) {
+
                file.dataset.sign_state = 'valid';
             } else if (result.signature_verify.result) {
                file.dataset.sign_state = 'warning';
@@ -76,6 +77,8 @@ class SignHandler {
          }
       }
    }
+
+
 
    // Предназначен для удаления подписи файла
    // Принимает параметры-------------------------------
