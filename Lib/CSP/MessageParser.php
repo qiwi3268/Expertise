@@ -129,6 +129,9 @@ class MessageParser
 
         foreach ($matches as $match) {
 
+            // Заменяем все ё на е, т.е. в БД хранятся только е
+            $match = str_replace('ё', 'е', $match);
+
             $fio_matches = GetHandlePregMatch($fio_pattern, $match, true)[0]; // Массив полных вхождений шаблона
 
             // Так как нет уверенности в том, что имя следует именно вторым, поэтому проверяем все слова

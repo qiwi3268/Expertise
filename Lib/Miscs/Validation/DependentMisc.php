@@ -13,7 +13,6 @@ class DependentMisc extends Validator
     private const INTERFACE = 'Tables\Miscs\Interfaces\DependentMiscValidate';
     private const METHOD = 'checkExistCorrByIds';
 
-
     private Validator $MainValidator; // Объект главного справочника
 
 

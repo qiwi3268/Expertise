@@ -52,6 +52,10 @@ return [
         'controllers' => ['test']
     ],
 
+    'files_in_documentation' => [
+        'controllers' => ['files_in_documentation']
+    ],
+
 
     'home/application/API_save_form' => [
         'API'                                 => ['save_form']

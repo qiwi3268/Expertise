@@ -4,6 +4,8 @@
 namespace Lib\Miscs\Validation;
 
 use Lib\Exceptions\MiscValidator as SelfEx;
+use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
+use Lib\Singles\PrimitiveValidator;
 
 
 // Абстрактный класс, предназначенный для валидации справочников. Предоставляет потомкам (SingleMisc и DependentMisc)
@@ -29,10 +31,13 @@ abstract class Validator
     //
     protected function getValidatedInt(string $form_value): int
     {
-        if (($int_value = filter_var($form_value, FILTER_VALIDATE_INT)) === false) {
+        $PrimitiveValidator =  new PrimitiveValidator();
+        try {
+            $PrimitiveValidator->validateInt($form_value);
+        } catch (PrimitiveValidatorEx $e) {
             throw new SelfEx("Передано некорректное значение справочника: '{$form_value}'", 1);
         }
-        return $int_value;
+        return $form_value;
     }
 
 
@@ -89,7 +94,7 @@ abstract class Validator
     public function isExist(): bool
     {
         if (is_null($this->isExist)) {
-            throw new \LogicException("Попытка вызвать метод \MiscValidator\Validator::isExist при значении свойства isExist = null. Название класса справочника: '{$this->class}'");
+            throw new \LogicException("Попытка вызвать метод Lib\Miscs\Validation\Validator::isExist при значении свойства isExist = null. Название класса справочника: '{$this->class}'");
         }
         return $this->isExist;
     }
@@ -104,7 +109,7 @@ abstract class Validator
     public function getIntValue(): int
     {
         if (is_null($this->int_value)) {
-            throw new \LogicException("Попытка вызвать метод \MiscValidator\Validator::getIntValue при значении свойства int_value = null. Название класса справочника: '{$this->class}'");
+            throw new \LogicException("Попытка вызвать метод Lib\Miscs\Validation\Validator::getIntValue при значении свойства int_value = null. Название класса справочника: '{$this->class}'");
         }
         return $this->int_value;
     }

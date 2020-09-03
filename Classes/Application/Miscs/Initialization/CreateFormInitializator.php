@@ -2,6 +2,7 @@
 
 
 namespace Classes\Application\Miscs\Initialization;
+use Lib\Miscs\Initialization\Initializator;
 
 use Tables\Miscs\{
     budget_level,
@@ -21,7 +22,7 @@ use Tables\Miscs\{
 
 // Предназначен для инициализации справочников в форме анкеты
 //
-class CreateFormInitializator extends \Lib\Miscs\Initialization\Initializator
+class CreateFormInitializator extends Initializator
 {
 
     // Количество справочных элементов на странице при пагинации
@@ -30,7 +31,6 @@ class CreateFormInitializator extends \Lib\Miscs\Initialization\Initializator
     // Инициализация имеющихся справочников
     public function __construct()
     {
-
         // Справочник "Цель обращения"
         $this->setSingleMisc('expertise_purpose', expertise_purpose::getAllActive());
 

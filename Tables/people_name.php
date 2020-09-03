@@ -34,4 +34,18 @@ final class people_name
                   FROM `people_name`";
         return SimpleQuery::getSimpleArray($query);
     }
+
+    static public function getAll(): array {
+        $query = "SELECT *
+                  FROM `people_name`";
+        return SimpleQuery::getFetchAssoc($query);
+    }
+
+    static public function updateName(int $id, string $name): void
+    {
+        $query = "UPDATE `people_name`
+                  SET `name`=?
+                  WHERE `id`=?";
+        ParametrizedQuery::set($query, [$name, $id]);
+    }
 }
