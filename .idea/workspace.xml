@@ -2,17 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/views/js/tmp/SignView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/css/tmp/action_1.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/home/application/action_1.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/documentation.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/documentation.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/files.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/files.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/sign.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/sign.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/view_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/ErrorHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/ErrorHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/FileUploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/FileUploader.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/GeFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/GeFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,8 +39,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript File" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -113,6 +111,7 @@
       <workItem from="1598975483271" duration="4756000" />
       <workItem from="1599017361858" duration="34276000" />
       <workItem from="1599103848788" duration="34376000" />
+      <workItem from="1599190622808" duration="12224000" />
     </task>
     <task id="LOCAL-00033" summary="15.08.2020_1">
       <created>1597516366006</created>
@@ -532,6 +531,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="248" y="121" key="MergeDialog/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596186835322" />
+    <state x="1114" y="623" key="NewPhpFileDialog" timestamp="1599213454625">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1114" y="623" key="NewPhpFileDialog/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599213454625" />
     <state x="735" y="231" key="RollbackChangesDialog" timestamp="1598853548198">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -555,12 +558,12 @@
     </state>
     <state x="302" y="56" width="614" height="1035" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1598502743003" />
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597499951448" />
-    <state x="596" y="136" width="1306" height="952" key="find.popup" timestamp="1599150519025">
+    <state x="596" y="136" width="1306" height="952" key="find.popup" timestamp="1599211580474">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598845293362" />
     <state x="-1473" y="310" width="980" height="708" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1599066389671" />
-    <state x="596" y="136" width="1306" height="952" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599150519025" />
+    <state x="596" y="136" width="1306" height="952" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599211580474" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
     <state x="1150" y="591" key="publish.login" timestamp="1598767415653">
       <screen x="0" y="0" width="2560" height="1400" />

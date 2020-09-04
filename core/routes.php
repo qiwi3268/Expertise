@@ -31,15 +31,15 @@ return [
     'home/API_file_needs_setter' => [
         'API'               => ['file_needs_setter']
     ],
-    
+
     'home/API_get_file_hash' => [
         'API'                => ['get_file_hash']
     ],
-    
+
     'home/API_external_signature_verifier' => [
         'API'                => ['external_signature_verifier']
     ],
-    
+
     'home/API_internal_signature_verifier' => [
         'API'                => ['internal_signature_verifier']
     ],
@@ -112,6 +112,16 @@ return [
         '/views/home/'       => ['create_application_dependencies', 'main_header', 'create_application', 'main_footer']
     ],
 
+    'home/application/action_1' => [
+        'access'                                => [],
+        'ROOTcontrollers'                       => ['header'],
+        'ROOTviews'                             => ['header'],
+        '/controllers/home/'                    => ['main_header'],
+        '/views/home/%header' => ['main_header'],
+        'views'               => ['action_1'],
+        '/views/home/%footer'     => ['main_footer'],
+    ],
+
 
     'home/navigation' => [
         'ROOTcontrollers'         => ['header'],
@@ -121,7 +131,7 @@ return [
         'controllers'             => ['navigation'],
         '/views/home/%footer'     => ['main_footer'],
     ],
-    
+
     'sign' => [
         '/views/tmp/'             => ['cades']
     ],

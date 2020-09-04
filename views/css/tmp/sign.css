@@ -122,6 +122,8 @@
     cursor: default;
     transition: .15s;
     border-radius: 4px;
+    color: #6e6e6e;
+
 }
 
 .sign-modal__file:hover {

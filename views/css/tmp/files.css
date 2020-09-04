@@ -118,7 +118,7 @@
    flex-grow: 1;
    /*padding: 5px;*/
    border: 1px solid #cccccc;
-   font-size: 14px;
+   /*font-size: 14px;*/
    color: #6e6e6e;
    cursor: pointer;
    transition: box-shadow .10s;
@@ -217,10 +217,12 @@
 
 .files__actions {
    display: flex;
+   margin: 0px 0px 0px 10px;
 }
 
 .files__actions > .fas {
    font-size: 18px;
+   padding: 5px;
    /*color: #287ab8;*/
 
 }
@@ -237,11 +239,17 @@
    flex-grow: 1;
    font-size: 16px;
    word-break: break-all;
-   margin: 0px 8px 0px 0px;
+   /*margin: 0px 8px 0px 0px;*/
+   color: #343a40;
+}
+
+.files__size {
+   font-size: 14px;
 }
 
 .files__description {
-   /*display: flex;*/
+   display: flex;
+   flex-direction: column;
    /*align-items: center;*/
    margin: 0px 10px 0px 0px;
 }
@@ -283,7 +291,7 @@
 }
 
 .files__item[data-state='not_signed'] > .files__state:hover {
-   background-color: #F8DCDC;
+   background-color: #F3D6D6;
 }
 
 .files__item[data-state='warning'] > .files__state {

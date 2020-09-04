@@ -14,12 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
          let file = new GeFile(file_element, block);
 
-         let signs = file_element.querySelector('.files__signs');
+       /*  let signs = file_element.querySelector('.files__signs');
          if (signs) {
             file.handleSigns(signs.innerHTML);
             signs.remove();
-            SignHandler.validateFileField(file.element);
-         }
+         }*/
+
+         SignHandler.validateFileField(file.element);
+
 
          file.handleActionButtons();
       });
@@ -283,10 +285,19 @@ class GeFile {
       file_icon.classList.add('files__icon', 'fas', GeFile.getFileIconClass(file_data.name));
       file_info.appendChild(file_icon);
 
+      let file_description = document.createElement('DIV');
+      file_description.classList.add('files__description');
+      file_info.appendChild(file_description);
+
       let file_name = document.createElement('SPAN');
       file_name.classList.add('files__name');
       file_name.innerHTML = file_data.name;
-      file_info.appendChild(file_name);
+      file_description.appendChild(file_name);
+
+      let file_size = document.createElement('SPAN');
+      file_size.classList.add('files__size');
+      file_size.innerHTML = file_data.human_file_size;
+      file_description.appendChild(file_size);
    }
 
    static getFileSizeString (file_size) {

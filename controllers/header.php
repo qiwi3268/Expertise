@@ -27,7 +27,7 @@ switch (URN) {
         break;
 
     case 'home/application/create' :
-        $pageName = 'АИС';
+        $pageName = 'АИС_create';
         $sourcesFiles = [...GetFontAwesome5Case(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
             ...CreateSource('css', TMP_CSS, 'null.css', 'header.css', 'footer.css', 'main.css', 'modal.css', 'radio.css', 'calendar.css', 'files.css', 'documentation.css', 'sign.css'),
@@ -38,10 +38,10 @@ switch (URN) {
         break;
 
     case 'home/application/view' :
-        $pageName = 'АИС';
+        $pageName = 'АИС_view';
         $sourcesFiles = [...GetFontAwesome5Case(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
-            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'action_sidebar.css', 'radio.css'),
+            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'action_sidebar.css', 'radio.css', 'sign.css'),
             ...CreateSource('css', TMP_CSS, 'create_application.css', 'view_application.css'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
             ...CreateSource('js', TMP_JS, 'section.js', 'main.js', 'API.js', 'GeFile.js', 'SignView.js', 'SignHandler.js', 'ErrorHandler.js')
@@ -84,6 +84,15 @@ switch (URN) {
             ...CreateSource('css', TMP_CSS, 'navigation.css'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
             ...CreateSource('js', TMP_JS, 'sorting.js')
+        ];
+        break;
+
+    case 'home/application/action_1' :
+        $pageName = 'Action_1';
+        $sourcesFiles = [...GetFontAwesome5Case(),
+            ...CreateSource('css', ROOT_CSS, 'entry.css'),
+            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css'),
+            ...CreateSource('css', TMP_CSS, 'action_1.css'),
         ];
         break;
 }
