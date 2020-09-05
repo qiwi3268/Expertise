@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="04.09.2020">
+    <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/action_1.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_1.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/action_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/action_1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/files.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/files.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/view_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/FileUploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/FileUploader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/GeFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/GeFile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,14 +107,8 @@
       <workItem from="1598975483271" duration="4756000" />
       <workItem from="1599017361858" duration="34276000" />
       <workItem from="1599103848788" duration="34376000" />
-      <workItem from="1599190622808" duration="13437000" />
-    </task>
-    <task id="LOCAL-00034" summary="17.08.2020_1">
-      <created>1597667409356</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1597667409356</updated>
+      <workItem from="1599190622808" duration="14050000" />
+      <workItem from="1599280319536" duration="3621000" />
     </task>
     <task id="LOCAL-00035" summary="18.08.2020">
       <created>1597740757220</created>
@@ -450,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599219222432</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="04.09.2020_1">
+      <created>1599220343978</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1599220343978</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -467,7 +470,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="27.08.2020_1" />
     <MESSAGE value="27.08.2020_2" />
     <MESSAGE value="before global refactor" />
     <MESSAGE value="27.08.2020" />
@@ -492,7 +494,8 @@
     <MESSAGE value="03.09.2020_4!" />
     <MESSAGE value="03.09.2020_5" />
     <MESSAGE value="04.09.2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="04.09.2020" />
+    <MESSAGE value="04.09.2020_1" />
+    <option name="LAST_COMMIT_MESSAGE" value="04.09.2020_1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Notifications" timestamp="1598851428350">
@@ -507,11 +510,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1599220288390">
+    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1599220343575">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1598854964348" />
-    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599220288390" />
+    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599220343575" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog" timestamp="1598853557262">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -569,10 +572,10 @@
     </state>
     <state x="702" y="245" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598439449074" />
     <state x="936" y="330" key="run.anything.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599135163134" />
-    <state x="707" y="234" width="672" height="160" key="search.everywhere.popup" timestamp="1598854055208">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="943" y="315" width="672" height="160" key="search.everywhere.popup" timestamp="1599280454036">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="707" y="234" width="672" height="160" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598854055208" />
-    <state x="943" y="315" width="670" height="58" key="search.everywhere.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1595572409795" />
+    <state x="943" y="315" width="672" height="160" key="search.everywhere.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599280454036" />
   </component>
 </project>

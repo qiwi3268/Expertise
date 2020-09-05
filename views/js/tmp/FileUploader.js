@@ -243,6 +243,7 @@ class FileUploader {
       files_body.classList.add('filled');
 
       for (let file of files) {
+
          let actions = [GeFile.unload, GeFile.delete];
          let file_item = GeFile.createElement(file, files_body, actions);
 

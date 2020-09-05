@@ -206,11 +206,22 @@
    justify-content: space-between;
    align-items: center;
    padding: 5px 8px;
+
+   transition: 0.5s;
 }
 
 .files__item:not(:last-child) {
    border-bottom: 1px solid #e1e1e1;
 }
+
+.files__state-icon {
+   /*transition: .1s;*/
+}
+
+.files__state-icon {
+
+}
+
 
 
 /*tmp========*/

@@ -194,16 +194,36 @@ class GeFile {
       let file = new GeFile(file_item, files_block);
 
       file.addInfo(file_data);
-
-      let sign_state = document.createElement('DIV');
-      sign_state.classList.add('files__state');
-      file_item.appendChild(sign_state);
-      this.setSignState(file_item, 'checking');
-
-      file.addActions(file, actions);
+      file.addState();
+      file.addActions(actions);
 
       return file_item;
    }
+
+   addState() {
+      let sign_state = document.createElement('DIV');
+      sign_state.classList.add('files__state');
+      this.element.appendChild(sign_state);
+      GeFile.setSignState(this.element, 'checking');
+      this.spinStateIcon(this);
+   }
+
+   spinStateIcon(file) {
+      let state_icon = file.element.querySelector('.files__state-icon');
+      let degrees = 0;
+
+      let spin = setInterval(() => {
+         degrees++;
+         state_icon.style.transform = 'rotate(' + degrees + 'deg)';
+
+         if (file.element.dataset.state !== 'checking') {
+            clearInterval(spin);
+         }
+
+      }, 5);
+   }
+
+
 
    static setSignState(file, state) {
       let file_state = file.querySelector('.files__state');
@@ -219,7 +239,7 @@ class GeFile {
 
       switch (state) {
          case 'checking':
-            state_icon.classList.add('fa-clock');
+            state_icon.classList.add('fa-spinner');
             state_text.innerHTML = 'Проверка';
             file.dataset.state = 'checking';
             break;
@@ -243,20 +263,14 @@ class GeFile {
 
    }
 
-   addActions (file, actions) {
+   addActions (actions) {
       this.actions = document.createElement('DIV');
       this.actions.classList.add('files__actions');
-      file.element.appendChild(this.actions);
+      this.element.appendChild(this.actions);
 
-      actions.forEach(action => action(file));
-      file.handleActionButtons();
+      actions.forEach(action => action(this));
+      this.handleActionButtons();
    }
-
-   /*static sign (file) {
-      let sign_button = document.createElement('I');
-      sign_button.classList.add('files__sign', 'fas', 'fa-file-signature');
-      file.actions.appendChild(sign_button);
-   }*/
 
    static unload (file) {
       let unload_button = document.createElement('I');
