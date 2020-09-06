@@ -176,10 +176,7 @@ textarea.application-input {
 .modal-overlay.active,
 .file-overlay.active,
 .modal__close.active,
-/*.file-modal.active,*/
-/*.save-modal.active,*/
 .save-overlay.active,
-/*.sign-modal.active,*/
 .sign-overlay.active,
 .error-overlay.active
 {

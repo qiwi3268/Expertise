@@ -31,7 +31,7 @@ class FileUploader {
 
    parent_field;
    parent_node;
-
+   // result_input;
 
    static getInstance () {
 
@@ -109,7 +109,7 @@ class FileUploader {
             this.file_input.files = files;
             this.addFilesToModal(files);
          } else { // Попытка загрузить несколько файлов, где разрешен только 1
-            //TODO error
+            ErrorModal.open('Ошибка при загрузке файлов', 'Загрузить можно только 1 файл');
          }
       });
    }
@@ -121,7 +121,24 @@ class FileUploader {
 
    addFilesToModal (files) {
       Array.from(files).forEach(file_data => {
-         this.modal_body.appendChild(this.createFileModalItem(file_data));
+         if (!FileChecker.checkExtension(file_data.name)) {
+
+            ErrorModal.open(
+               'Ошибка при загрузке файла',
+               'Загружен файл в неверном формате (доступные форматы: pdf, docx, xlsx, sig)'
+            );
+            this.closeModal();
+
+         } else if (!FileChecker.checkSize(file_data.size)) {
+
+            ErrorModal.open('Ошибка при загрузке файла', 'Загружен файл c размером больше 80 МБ');
+            this.closeModal();
+
+         } else {
+            this.modal_body.appendChild(this.createFileModalItem(file_data));
+         }
+
+
       });
    }
 
@@ -171,10 +188,8 @@ class FileUploader {
    handleSubmitButton () {
       let submit_button = this.modal.querySelector('.file-modal__submit');
       submit_button.addEventListener('click', () => {
-         if (!this.is_uploading && FileChecker.IsReadyToUpload(this.file_input.files)) {
+         if (!this.is_uploading) {
             this.sendFiles();
-         } else {
-            console.log('Неправильные файлы');
          }
       });
    }
@@ -194,6 +209,10 @@ class FileUploader {
          this.uploadProgressCallback.bind(this)
       )
          .then(uploaded_files => {
+
+            /*if (this.result_input) {
+               this.result_input.value = '1';
+            }*/
 
             return this.putFilesToRow(uploaded_files);
 
@@ -308,7 +327,9 @@ class FileUploader {
       // Если блок с документацией
       if (this.parent_node) {
          this.id_structure_node = this.parent_node.dataset.id_structure_node;
-      }
+      } /*else {
+         this.result_input = this.parent_field.querySelector('.field-result');
+      }*/
 
       if (this.parent_field.dataset.multiple !== 'false') {
          this.file_input.setAttribute('multiple', '');
