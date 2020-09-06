@@ -133,8 +133,8 @@ try {
         ]));
     } catch (PregMatchEx $e) {
 
-        // GetHandlePregMatch
-        // Произошла ошибка или нет вхождений шаблона при работе функции GetHandlePregMatch
+        // getHandlePregMatch
+        // Произошла ошибка или нет вхождений шаблона при работе функции getHandlePregMatch
         $date = $Logger->write($e->getMessage());
 
         exit(json_encode([

@@ -27,7 +27,7 @@ class StartingInitialization
 
             $namespacePath = str_replace('\\', '/', $className);
             $pattern = "/\A(.+)\/(.+\z)/";
-            list(1 => $tmp_path, 2 => $tmp_name) = GetHandlePregMatch($pattern, $namespacePath, false);
+            list(1 => $tmp_path, 2 => $tmp_name) = getHandlePregMatch($pattern, $namespacePath, false);
             $path = "{$this->rootPath}/{$tmp_path}/{$tmp_name}.php";
 
 

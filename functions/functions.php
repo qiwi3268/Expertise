@@ -65,7 +65,7 @@ function clearHtmlArr(array $arr): array
 }
 
 //todo среднее вынести в date helper
-function GetDdMmYyyyDate(int $timestamp): string
+function getDdMmYyyyDate(int $timestamp): string
 {
     return date('d.m.Y', $timestamp);
 }
@@ -76,7 +76,7 @@ function GetDdMmYyyyDate(int $timestamp): string
 // &assocArray       array : ссылка на ассоциативный массив
 // datePropertyNames string: перечисление названий свойств, в которых находятся даты в формате timestamp
 //
-function UpdateDatesTimestampToDdMmYyyy(array &$assocArray, string ...$datePropertyNames): void
+function updateDatesTimestampToDdMmYyyy(array &$assocArray, string ...$datePropertyNames): void
 {
     foreach ($datePropertyNames as $propertyName) {
 
@@ -141,7 +141,7 @@ function containsAny(string $haystack, string ...$needles): bool
 // Выбрасывает исключения--------------------------------
 // Classes\Exceptions\PregMatch : во время выполнения функции произошла ошибка или нет вхождений шаблона
 //
-function GetHandlePregMatch(string $pattern, string $subject, bool $is_preg_match_all): array
+function getHandlePregMatch(string $pattern, string $subject, bool $is_preg_match_all): array
 {
     $functionName = $is_preg_match_all ? 'preg_match_all' : 'preg_match';
     $matches = null;
@@ -156,6 +156,25 @@ function GetHandlePregMatch(string $pattern, string $subject, bool $is_preg_matc
 }
 
 
+// Предназначен для перевода байт в человекопонятный формат
+// Принимает параметры-----------------------------------
+// bytes int : размер файла в байтах
+// Возвращает параметры----------------------------------
+// string : строка формата 20,65 Мб
+//
+function getHumanFileSize(int $bytes): string
+{
+    if ($bytes == 0) return '0 Б';
+
+    foreach (array_reverse(['Б', 'Кб', 'Мб', 'Гб', 'Тб'], true) as $exp => $label) {
+
+        if ($bytes >= ($value = pow(1024, $exp))) {
+            return str_replace('.', ',', round(($bytes / $value), 2) . " {$label}");
+        }
+    }
+}
+
+
 // Возвращает хэш-массив на основе входного индексного массива
 // [0 => 'a', 1 => 'b', 2 => 'c'] трансформирует в ['a' => true, 'b' => true, 'c' => true]
 // Принимает параметры-----------------------------------
@@ -163,7 +182,7 @@ function GetHandlePregMatch(string $pattern, string $subject, bool $is_preg_matc
 // Возвращает параметры----------------------------------
 // array : хэш-массив
 //
-function GetHashArray(array $array): array
+function getHashArray(array $array): array
 {
     $result = [];
     foreach ($array as $elem) {

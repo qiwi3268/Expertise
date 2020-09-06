@@ -108,7 +108,7 @@ class PrimitiveValidator
         // конец текста
         $pattern = "/\A(\d{2})\.(\d{2})\.(\d{4})\z/";
         try {
-            list(1 => $date, 2 => $month, 3 => $year) = GetHandlePregMatch($pattern, $fullDate, false);
+            list(1 => $date, 2 => $month, 3 => $year) = getHandlePregMatch($pattern, $fullDate, false);
         } catch (PregMatchEx $e) {
             throw new SelfEx("Строковая дата: '{$fullDate}' является некорректной", 5);
         }
@@ -136,7 +136,7 @@ class PrimitiveValidator
         // конец текста
         $pattern = "/\A\d{10}\z|\A\d{12}\z/";
         try {
-            GetHandlePregMatch($pattern, $INN, false);
+            getHandlePregMatch($pattern, $INN, false);
         } catch (PregMatchEx $e) {
             throw new SelfEx("Введенный ИНН: '{$INN}' является некорректным", 7);
         }
@@ -157,7 +157,7 @@ class PrimitiveValidator
         // конец текста
         $pattern = "/\A\d{9}\z/";
         try {
-            GetHandlePregMatch($pattern, $KPP, false);
+            getHandlePregMatch($pattern, $KPP, false);
         } catch (PregMatchEx $e) {
             throw new SelfEx("Введенный КПП: '{$KPP}' является некорректным", 8);
         }
@@ -178,7 +178,7 @@ class PrimitiveValidator
         // конец текста
         $pattern = "/\A\d{13}\z/";
         try {
-            GetHandlePregMatch($pattern, $OGRN, false);
+            getHandlePregMatch($pattern, $OGRN, false);
         } catch (PregMatchEx $e) {
             throw new SelfEx("Введенный ОГРН: '{$OGRN}' является некорректным", 9);
         }

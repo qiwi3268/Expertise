@@ -11,7 +11,7 @@ use Classes\Application\Miscs\Validation\DependentMisc as DependentMiscValidator
 
 use core\Classes\Session;
 use Tables\expertise_subject;
-use Tables\applications;
+use Tables\application;
 
 
 // API предназначен для динамической сохранения анкеты заявления
@@ -113,7 +113,7 @@ try {
     $form_applicationID = (int)$P_id_application;
 
     // Проверка на доступ к заявлению и его существование
-    $applicationAssoc = applications::getFlatAssocById($form_applicationID);
+    $applicationAssoc = application::getFlatAssocById($form_applicationID);
 
     $applicationExist = !is_null($applicationAssoc);
 
@@ -560,7 +560,7 @@ try {
         // Обновляем флаг сохраненности заявления для новых заявлений
         DataToUpdate::addInt(1, 'is_saved');
 
-        applications::smartUpdateById(DataToUpdate::get(), $form_applicationID);
+        application::smartUpdateById(DataToUpdate::get(), $form_applicationID);
     }
 
     // Успешное сохранение

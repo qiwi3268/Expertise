@@ -38,7 +38,10 @@ use core\Classes\Session;
 //  15 - Загрузка файлов прошла успешно, НО не получилось обновить флаги в таблице
 //       {result, error_message : текст ошибки}
 //  16 - Все операции прошли усешно
-//       {result, uploaded_files = [{id : id записи в таблице, name : имя файла, hash : хэш файла},...]}
+//       {result, uploaded_files = [{id : id записи в таблице,
+//                                   name : имя файла,
+//                                   hash : хэш файла,
+//                                   human_file_size : человекопонятный формат размера файла'},...]}
 //  17 - Непредвиденная ошибка
 //       {result, message : текст ошибки, code: код ошибки}
 //
@@ -209,17 +212,19 @@ try {
                     $Class::deleteById($id);
                 }
 
-                exit(json_encode(['result' => 11,
+                exit(json_encode([
+                    'result'  => 11,
                     'message' => $e->getMessage(),
-                    'code' => $e->getCode()
+                    'code'    => $e->getCode()
                 ]));
             } catch (DataBaseEx $ex) {
 
                 // Возникла ошибка при попытке удалить созданные записи файлов
                 // (самый плохой исход из всех возможных)
-                exit(json_encode(['result' => 12,
+                exit(json_encode([
+                    'result'  => 12,
                     'message' => $ex->getMessage(),
-                    'code' => $ex->getCode()
+                    'code'    => $ex->getCode()
                 ]));
             }
         }
@@ -286,9 +291,10 @@ try {
     for ($s = 0; $s < $filesCount; $s++) {
 
         $uploadedFiles[] = [
-            'id'   => $createdIds[$s],
-            'name' => $filesName[$s],
-            'hash' => $hashes[$s]
+            'id'              => $createdIds[$s],
+            'name'            => $filesName[$s],
+            'hash'            => $hashes[$s],
+            'human_file_size' => getHumanFileSize($filesSize[$s])
         ];
     }
 

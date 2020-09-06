@@ -2,7 +2,7 @@
 
 use Lib\Exceptions\DataBase as DataBaseEx;
 use core\Classes\Session;
-use Tables\users;
+use Tables\user;
 
 
 //API result:
@@ -29,7 +29,7 @@ if (checkParamsPOST('login', 'password')) {
         /** @var string $P_password пароль */
         extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
 
-        $userAssoc = users::getAssocByLogin($P_login);
+        $userAssoc = user::getAssocByLogin($P_login);
 
         // Пользователь сущесвует
         if (!is_null($userAssoc)) {
@@ -44,10 +44,10 @@ if (checkParamsPOST('login', 'password')) {
                 } else {
 
                     // Обнуляем счетчик неверно введенных паролей
-                    users::zeroingIncorrectPasswordInputById($userAssoc['id']);
+                    user::zeroingIncorrectPasswordInputById($userAssoc['id']);
                 }
 
-                $userRoles = users::getRolesById($userAssoc['id']);
+                $userRoles = user::getRolesById($userAssoc['id']);
 
                 // Пользователь не имеет ролей
                 if (is_null($userRoles)) {
@@ -66,7 +66,7 @@ if (checkParamsPOST('login', 'password')) {
             }
 
             // Инкрементируем счетчик неверно введенных паролей
-            users::incrementIncorrectPasswordInputById($userAssoc['id']);
+            user::incrementIncorrectPasswordInputById($userAssoc['id']);
 
             // Максимально допустимое количество неверно введенных паролей
             $maxCountIncorrectPassword = 4;
@@ -74,7 +74,7 @@ if (checkParamsPOST('login', 'password')) {
             if ($userAssoc['num_incorrect_password_input'] + 1 > $maxCountIncorrectPassword) {
 
                 // Баним пользователя
-                users::banById($userAssoc['id']);
+                user::banById($userAssoc['id']);
             }
         }
 

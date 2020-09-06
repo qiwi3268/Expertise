@@ -79,7 +79,7 @@ define('SIGN_TABLE_MAPPING', [
 //         description - описание кнопки на панели сортировки
 //         column_name - название столбца в БД для сортировки
 // -----------------------------------------------------------------------------------------
-// view_1 - таблица applications
+// view_1 - таблица application
 //
 define('NAVIGATION_SORTING', [
     'view_1' => [

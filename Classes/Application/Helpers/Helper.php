@@ -53,7 +53,7 @@ class Helper{
         // - регистронезависимые
         // - использование кодировки utf-8
         $pattern ="/{$applicationDir}\/(\d+)\/(\S+)/iu";
-        $matches =  GetHandlePregMatch($pattern, $path, false);
+        $matches =  getHandlePregMatch($pattern, $path, false);
 
         return [
             'application_id' => (int)$matches[1],

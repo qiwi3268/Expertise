@@ -114,7 +114,7 @@ abstract class Initializator
                 $signs = new \ArrayIterator($signs);
 
                 // Хэш-массив id файлов для быстрого поиска
-                $idsHash = GetHashArray($ids);
+                $idsHash = getHashArray($ids);
 
                 $files->rewind();
                 while ($files->valid()) {

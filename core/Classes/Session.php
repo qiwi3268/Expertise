@@ -32,9 +32,9 @@ class Session
         }
 
         $_SESSION['flags'] = [
-            'authorized' => !empty(self::getUserRoles()),
-            'admin'      => in_array(ROLE['ADM'], self::getUserRoles(), true),
-            'applicant'  => in_array(ROLE['APP'], self::getUserRoles(), true)
+            'authorized' => !empty($_SESSION['user_info']['roles']),
+            'admin'      => in_array(ROLE['ADM'], $_SESSION['user_info']['roles'], true),
+            'applicant'  => in_array(ROLE['APP'], $_SESSION['user_info']['roles'], true)
         ];
     }
 

@@ -4,6 +4,8 @@
 namespace Lib\Actions;
 
 use Lib\Exceptions\Actions as SelfEx;
+use Lib\Singles\Helpers\PageAddress as PageAddressHelper;
+use Classes\Application\Actions\Actions as ApplicationActions;
 
 
 // Паттерн: ServiceLocator
@@ -22,21 +24,21 @@ class Locator
     private function __construct()
     {
 
-        $documentType = \Lib\Singles\Helpers\PageAddress::getDocumentType();
+        $documentType = PageAddressHelper::getDocumentType();
 
         if (is_null($documentType)) {
 
-            throw new SelfEx('Методу PageAddress::getDocumentType не удалось определить тип документа', 1);
+            throw new SelfEx('Методу Lib\Singles\Helpers\PageAddress::getDocumentType не удалось определить тип документа', 1);
         }
 
         switch ($documentType) {
 
             case DOCUMENT_TYPE['application']:
-                $this->Actions = new \Classes\Application\Actions\Actions();
+                $this->Actions = new ApplicationActions();
                 break;
 
             default:
-                throw new SelfEx('Методу Locator::__construct не удалось распознать тип документа', 1);
+                throw new SelfEx('Методу Lib\Actions\Locator::__construct не удалось распознать тип документа', 1);
         }
     }
 
