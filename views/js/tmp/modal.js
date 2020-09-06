@@ -51,7 +51,6 @@ function getModalBySelect (select) {
       modal = Modal.modals.get(select.dataset.modal_id);
    } else {
       modal = new Modal(select);
-
    }
 
    // Если страниц больше 1 отображаем пагинацию
@@ -110,12 +109,16 @@ class Modal {
    static modals_count = 0;
    static modals = new Map();
    // Родительское поле
-   parent_row;
+   parent_field;
+
+   id;
+
+   dependency_scope;
 
    // Element модального окна
    element;
 
-   // data-field_name родительского блока
+   // data-name родительского блока
    name;
 
    // Блок со страницами с элементами из справочника
@@ -142,12 +145,14 @@ class Modal {
 
       this.select = select;
 
-      this.parent_row = this.select.closest('.field');
+      this.dependency_scope = this.select.closest('.block[data-dependency_scope]');
 
-      this.name = this.parent_row.dataset.field_name;
-      this.element = this.parent_row.querySelector('.modal');
+      this.parent_field = this.select.closest('.field');
+
+      this.name = this.parent_field.dataset.name;
+      this.element = this.parent_field.querySelector('.modal');
       this.content = this.element.querySelector('.modal__items');
-      this.result_input = this.parent_row.querySelector('.field-result');
+      this.result_input = this.parent_field.querySelector('.field-result');
 
       this.close_button = this.element.querySelector('.modal__close');
       this.close_button.addEventListener('click', () => {
@@ -160,7 +165,8 @@ class Modal {
       //добавляем событие для выбора элемента
       this.initItems();
 
-      this.select.dataset.modal_id = (Modal.modals_count++).toString();
+      this.id = (Modal.modals_count++).toString();
+      this.select.dataset.modal_id = this.id;
       Modal.modals.set(this.select.dataset.modal_id, this);
    }
 
@@ -288,7 +294,7 @@ class Modal {
          modal.clearRelatedModals();
          this.clearModal(modal);
 
-         if (modal.parent_row.dataset.required === 'true' && modal.result_input.value) {
+         if (modal.parent_field.dataset.required === 'true' && modal.result_input.value) {
             validateModal(modal);
          }
       });
@@ -300,15 +306,13 @@ class Modal {
    clearModal (modal) {
       modal.content.innerHTML = '';
       modal.result_input.value = '';
-      modal.select.classList.remove('filled', 'invalid');
-
-      // Убираем сообщение с ошибкой
-      let error = modal.parent_row.querySelector('.field-error');
-      error.classList.remove('active');
+      modal.select.classList.remove('filled');
 
       let select_value = modal.select.querySelector('.field-value');
       select_value.innerHTML = 'Выберите значение';
-      modals.delete(modal.name);
+
+      modal.select.removeAttribute('data-modal_id');
+      Modal.modals.delete(modal.select.dataset.id);
    }
 
    // Предназначен для получения массива зависимых модальных окон
@@ -322,16 +326,14 @@ class Modal {
 
       dependent_inputs.forEach(input => {
 
+         let field = this.dependency_scope.querySelector(`.field[data-name='${input.dataset.target_change}']`);
+         let select = field.querySelector('.modal-select[data-modal_id]');
 
-         let select = input.closest('.modal-select');
-         console.log(select);
-
-         console.log(input.dataset.target_change);
-         dependent_modal = modals.get(input.dataset.target_change);
-
-         if (dependent_modal) {
+         if (select) {
+            dependent_modal = Modal.modals.get(select.dataset.modal_id);
             dependent_modals.push(dependent_modal);
          }
+
       });
 
       return dependent_modals;
