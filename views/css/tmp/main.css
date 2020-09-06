@@ -157,7 +157,8 @@ textarea.application-input {
 .modal-overlay,
 .file-overlay,
 .save-overlay,
-.sign-overlay {
+.sign-overlay,
+.error-overlay {
    visibility: hidden;
    opacity: 0;
    position: fixed;
@@ -175,11 +176,12 @@ textarea.application-input {
 .modal-overlay.active,
 .file-overlay.active,
 .modal__close.active,
-.file-modal.active,
-.save-modal.active,
+/*.file-modal.active,*/
+/*.save-modal.active,*/
 .save-overlay.active,
-.sign-modal.active,
-.sign-overlay.active
+/*.sign-modal.active,*/
+.sign-overlay.active,
+.error-overlay.active
 {
    visibility: visible;
    opacity: 1;
@@ -205,3 +207,42 @@ textarea.application-input {
 .alert-modal__body {
    display: flex;
 }
+
+/*tmp*/
+
+.error-modal {
+
+}
+
+.error-modal__header {
+   padding: 10px 15px;
+   border-bottom: 1px solid #cccccc;;
+}
+
+.error-modal__icon {
+   margin: 0px 5px 0px 0px;
+   font-size: 24px;
+   color: #bd4949;
+}
+
+.error-modal__title {
+   font-weight: 700;
+   font-size: 18px;
+}
+
+.error-modal__message {
+   padding: 10px 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

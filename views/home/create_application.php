@@ -322,7 +322,7 @@
                     <!--//Вид работ//-->
 
                     <!--Блок смета-->
-                    <div class="body-card__block block" data-name="estimate" data-active="false">
+                    <div class="body-card__block block" data-name="estimate" data-active="true">
                         <!--Сметная стоимость-->
                         <div class="body-card__row field" data-name="estimate_cost" data-pattern="number">
                             <span class="body-card__title">Сведения о сметной или предполагаемой (предельной) стоимости объекта капитального строительства, содержащиеся в решении по объекту или письме. тыс. руб.</span>
@@ -1074,11 +1074,11 @@
 </div>
 
 <div class="modal error-modal">
-    <div class="error-modal__title"></div>
-    <div class="error-modal__body">
+    <div class="error-modal__header">
         <i class="error-modal__icon fas fa-exclamation"></i>
-        <span class="error-modal__message"></span>
+        <span class="error-modal__title"></span>
     </div>
+    <span class="error-modal__message"></span>
 </div>
 
 

@@ -1,8 +1,6 @@
 class GeCades {
 
    static getCadesPlugin () {
-      console.log(cadesplugin);
-
       return cadesplugin;
    }
 
@@ -16,60 +14,51 @@ class GeCades {
 
             cadesplugin.async_spawn(function* () {
 
-               let plugin_data = {};
                let oAbout;
 
                try {
-
                   oAbout = yield cadesplugin.CreateObjectAsync("CAdESCOM.About");
-
                } catch (exc) {
                   reject("Ошибка при создании объекта About: " + cadesplugin.getLastError(exc));
                }
 
-               let CurrentPluginVersion = yield oAbout.PluginVersion;  // Версия плагина
 
+               let CurrentPluginVersion
+               try {
+                  CurrentPluginVersion = yield oAbout.PluginVersion;  // Версия плагина
+               } catch (exc) {
+                  reject('Ошибка при получении версии плагина');
+               }
 
                let CurrentCSPVersion;
 
                try {
-
                   CurrentCSPVersion = yield oAbout.CSPVersion("", 80); // Версия криптопровайдера
-
-                  console.log(CurrentCSPVersion);
-
                } catch (exc) {
-                  console.log(exc);
+                  // потом раскомментить
+                  // reject('Отсутствует криптопровайдер');
                }
 
                let CurrentPluginVersion_string
-               let plugin_state = true;
 
                try {
                   CurrentPluginVersion_string = (yield CurrentPluginVersion.toString());
                } catch (exc) {
-                  // Попадаем сюда если не установлен плагин
-                  CurrentPluginVersion_string = 'Отстутствует плагин';
-                  plugin_state = false;
+                  reject('Отстутствует плагин КриптоПРО');
                }
 
                let CurrentCPVersion_string;
-               let csp_state = true;
 
                try {
                   CurrentCPVersion_string = (yield CurrentCSPVersion.MajorVersion) + "." + (yield CurrentCSPVersion.MinorVersion) + "." + (yield CurrentCSPVersion.BuildVersion);
                } catch (exc) {
-                  // Попадаем сюда если не установлен криптопровайдер
-                  CurrentCPVersion_string = 'Отсутствует криптопровайдер';
-                  csp_state = false;
+                  // потом раскомментить
+                  // reject('Ошибка при получении версии криптопровайдера');
                }
 
-               plugin_data = {
+               let plugin_data = {
                   plugin_version: CurrentPluginVersion_string,
-                  plugin_state: plugin_state,
                   csp_version: CurrentCPVersion_string,
-                  csp_state: csp_state
-
                };
 
                resolve(plugin_data);
@@ -107,7 +96,6 @@ class GeCades {
 
    }
 
-   // TODO добавить коды для ошибок
    static getCerts () {
       return new Promise((resolve, reject) => {
 
@@ -147,7 +135,6 @@ class GeCades {
 
             // В хранилище отсутствуют сертификаты
             if (certs_count === 0) {
-               //TODO alert
                reject('Хранилище сертификатов пусто');
             }
 
@@ -161,7 +148,7 @@ class GeCades {
                try {
                   cert = yield certs.Item(i);
                } catch (exc) {
-                  reject("Ошибка при перечислении сертификатов: " + cadesplugin.getLastError(exc));
+                  reject('Ошибка при перечислении сертификатов: ' + cadesplugin.getLastError(exc));
                }
 
                let valid_from_date; // Дата выдачи
@@ -175,7 +162,7 @@ class GeCades {
                   subject_name = yield cert.SubjectName;
 
                } catch (exc) {
-                  console.log("Ошибка при получении свойства ValidFromDate / ValidToDate / SubjectName: " + cadesplugin.getLastError(exc));
+                  ErrorModal.open('Ошибка при получении свойства ValidFromDate / ValidToDate / SubjectName', cadesplugin.getLastError(exc));
                   continue;
                }
 
@@ -184,11 +171,11 @@ class GeCades {
                try {
                   hasPrivateKey = yield cert.HasPrivateKey();
                } catch (exc) {
-                  console.log("Ошибка при получении свойства HasPrivateKey: " + cadesplugin.getLastError(exc));
+                  ErrorModal.open('Ошибка при получении свойства HasPrivateKey', cadesplugin.getLastError(exc));
                }
 
                // Берем только действительные сертификаты и с привязкой к закрытому ключу
-               // if(new Date() < ValidToDate && hasPrivateKey) {
+               // if(new Date() < valid_to_date && hasPrivateKey) {
                if (new Date() < valid_to_date) {
 
                   cert_data.text = GeCades.extractCN(subject_name) + ' Выдан: ' + GeCades.formattedDateTo_ddmmyyyy(valid_from_date);
@@ -206,7 +193,7 @@ class GeCades {
 
 
                } catch (exc) {
-                  console.log("Ошибка при получении свойства Thumbprint: " + cadesplugin.getLastError(exc));
+                  ErrorModal.open('Ошибка при получении свойства Thumbprint', cadesplugin.getLastError(exc));
                   continue;
                }
 
@@ -216,6 +203,11 @@ class GeCades {
             }
 
             yield o_store.Close();
+
+            if (certs_data.length === 0) {
+               reject('Отсутствуют сертификаты');
+            }
+
             resolve(certs_data);
 
          });
@@ -244,7 +236,7 @@ class GeCades {
                valid_to_date = new Date(yield o_certificate.ValidToDate);
 
             } catch (exc) {
-               console.log("Ошибка при получении свойства SubjectName / IssuerName / ValidFromDate / ValidToDate: " + cadesplugin.getLastError(exc));
+               ErrorModal.open('Ошибка при получении свойства SubjectName / IssuerName / ValidFromDate / ValidToDate', cadesplugin.getLastError(exc));
             }
 
             let validator;
@@ -264,7 +256,7 @@ class GeCades {
             try {
                has_private_key = yield o_certificate.HasPrivateKey();
             } catch (exc) {
-               console.log("Ошибка при получении свойства HasPrivateKey: " + cadesplugin.getLastError(exc));
+               ErrorModal.open('Ошибка при получении свойства HasPrivateKey', cadesplugin.getLastError(exc));
             }
 
             let now = new Date();

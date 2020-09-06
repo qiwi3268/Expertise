@@ -81,8 +81,6 @@ class SignHandler extends SignView{
 
    }
 
-
-
    // Предназначен для удаления подписи файла
    // Принимает параметры-------------------------------
    // file         Element : файл, у которого удаляется подпись
@@ -180,7 +178,7 @@ class SignHandler extends SignView{
             this.is_plugin_initialized = true;
          })
          .catch(exc => {
-            console.log('Ошибка инициализации плагина и заполнения списка сертификатов:\n' + exc);
+            ErrorModal.open('Ошибка инициализации плагина и заполнения списка сертификатов', exc);
             this.closeModal();
          });
    }
@@ -198,17 +196,12 @@ class SignHandler extends SignView{
    // certs        Array[Object] : массив с данными сертификатов
    handleCertListSelect (certs) {
       this.certs_select = document.getElementById('cert_list_select');
-
       this.cert_list = document.getElementById('cert_list');
-
-      console.log(this.cert_list);
-
 
       // Добавляем сертификаты на страницу
       this.fillCertList(certs);
 
       GeCades.setCertificatesList(this.cert_list);
-
    }
 
    // Предназначен для заполнения селекта выбора сертификатов
@@ -250,7 +243,7 @@ class SignHandler extends SignView{
             this.fillCertInfo(cert_info, cert_item);
          })
          .catch(exc => {
-            console.log('Ошибка при получении информации о сертификате: ' + exc);
+            ErrorModal.open('Ошибка при получении информации о сертификате', exc);
          });
    }
 
@@ -263,8 +256,6 @@ class SignHandler extends SignView{
 
       this.upload_sign_btn.dataset.active = 'false';
       this.create_sign_btn.dataset.active = 'false';
-
-      // this.modal.querySelector('.sign-modal__buttons').style.display = 'none';
    }
 
    // Предназначен для добавления информации о выбранном сертификате
@@ -282,7 +273,6 @@ class SignHandler extends SignView{
       cert_item.dataset.state = cert_info.cert_status;
 
       this.cert_info.dataset.active = 'true';
-
    }
 
    // Предназначен для обработки кнопки загрузки файла открепленной подписи
