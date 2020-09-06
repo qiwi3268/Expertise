@@ -9,9 +9,6 @@ let overlay;
 document.addEventListener('DOMContentLoaded', () => {
    modals = new Map();
 
-   // Поля для заполнения
-   // let modal_selects = document.querySelectorAll('.modal-select');
-
    // Фон модального окна
    overlay = document.querySelector('.modal-overlay');
 
@@ -20,21 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
    });
 
    initializeModalSelects(document);
-
-   /*   modal_selects.forEach(select => {
-         select.addEventListener('click', () => {
-            modal = getModalBySelect(select);
-
-            if (!modal.is_empty) {
-               modal.show();
-            } else {
-               createAlert(modal.alert_message);
-               modal.alert_message = '';
-            }
-            disableScroll();
-
-         });
-      });*/
 });
 
 function initializeModalSelects (block) {
@@ -64,18 +46,12 @@ function initializeModalSelects (block) {
 //
 function getModalBySelect (select) {
    let modal;
-   let modal_name;
-   let parent_row = select.closest('.field');
 
-   modal_name = parent_row.dataset.field_name;
-
-   //TODO одинаковые модалки в разных блоках
-   if (modals.has(modal_name)) {
-      modal = new Modal(select);
-      // modal = modals.get(modal_name);
+   if (select.dataset.modal_id) {
+      modal = Modal.modals.get(select.dataset.modal_id);
    } else {
       modal = new Modal(select);
-      modals.set(modal.name, modal);
+
    }
 
    // Если страниц больше 1 отображаем пагинацию
@@ -131,6 +107,8 @@ function createModalCloseButton (modal) {
 
 //Modal--------------------------------------------------------------------------------------------
 class Modal {
+   static modals_count = 0;
+   static modals = new Map();
    // Родительское поле
    parent_row;
 
@@ -161,6 +139,7 @@ class Modal {
    // Принимает параметры-------------------------------------------
    // select     Element : поле, для которого вызывается модальное окно
    constructor (select) {
+
       this.select = select;
 
       this.parent_row = this.select.closest('.field');
@@ -181,6 +160,8 @@ class Modal {
       //добавляем событие для выбора элемента
       this.initItems();
 
+      this.select.dataset.modal_id = (Modal.modals_count++).toString();
+      Modal.modals.set(this.select.dataset.modal_id, this);
    }
 
    // Предназначен для инициализации страниц с элементами из справочника модального окна
@@ -336,10 +317,16 @@ class Modal {
    //
    getDependentModals () {
       let dependent_modals = [];
-      let dependent_inputs = document.querySelectorAll(`[data-when_change="${this.name}"]`);
+      let dependent_inputs = document.querySelectorAll(`[data-when_change='${this.name}']`);
       let dependent_modal;
 
       dependent_inputs.forEach(input => {
+
+
+         let select = input.closest('.modal-select');
+         console.log(select);
+
+         console.log(input.dataset.target_change);
          dependent_modal = modals.get(input.dataset.target_change);
 
          if (dependent_modal) {

@@ -124,12 +124,6 @@ class SignHandler extends SignView{
       this.handleSignButton();
    }
 
- /*  // Предназначен для обработки нажатия на фон модального окна
-   handleOverlay () {
-      this.overlay = mQS(document, '.sign-overlay', 17);
-      this.overlay.addEventListener('click', () => this.closeModal());
-   }*/
-
    // Предназначен для закрытия модуля подписания
    closeModal () {
       this.modal.classList.remove('active');

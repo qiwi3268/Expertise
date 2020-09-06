@@ -199,6 +199,8 @@ class DependenciesHandler {
       let clear_buttons = document.querySelectorAll('.body-card__icon-clear');
 
       clear_buttons.forEach(button => {
+         let parent_block = button.closest('.block');
+
          button.addEventListener('click', () => {
             let parent_field = button.closest('.field');
 
@@ -223,7 +225,7 @@ class DependenciesHandler {
       });
    }
 
-   removeRowValue (field) {
+   static removeRowValue (field) {
       // Удаляем записанное значение в зависимом поле
       field.querySelector('.field-result').value = '';
 

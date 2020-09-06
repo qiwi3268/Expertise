@@ -16,6 +16,7 @@ class GeCades {
 
             cadesplugin.async_spawn(function* () {
 
+               let plugin_data = {};
                let oAbout;
 
                try {
@@ -42,24 +43,33 @@ class GeCades {
                }
 
                let CurrentPluginVersion_string
+               let plugin_state = true;
 
                try {
                   CurrentPluginVersion_string = (yield CurrentPluginVersion.toString());
                } catch (exc) {
-                  console.log(exc);
+                  // Попадаем сюда если не установлен плагин
+                  CurrentPluginVersion_string = 'Отстутствует плагин';
+                  plugin_state = false;
                }
 
                let CurrentCPVersion_string;
+               let csp_state = true;
+
                try {
                   CurrentCPVersion_string = (yield CurrentCSPVersion.MajorVersion) + "." + (yield CurrentCSPVersion.MinorVersion) + "." + (yield CurrentCSPVersion.BuildVersion);
                } catch (exc) {
-
-                  console.log(exc);
+                  // Попадаем сюда если не установлен криптопровайдер
+                  CurrentCPVersion_string = 'Отсутствует криптопровайдер';
+                  csp_state = false;
                }
 
-               let plugin_data = {
+               plugin_data = {
                   plugin_version: CurrentPluginVersion_string,
-                  csp_version: CurrentCPVersion_string
+                  plugin_state: plugin_state,
+                  csp_version: CurrentCPVersion_string,
+                  csp_state: csp_state
+
                };
 
                resolve(plugin_data);

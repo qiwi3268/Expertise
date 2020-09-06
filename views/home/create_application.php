@@ -929,6 +929,7 @@
 <div class="file-overlay"></div>
 <div class="save-overlay"></div>
 <div class="sign-overlay"></div>
+<div class="error-overlay"></div>
 
 <div class="modal alert-modal">
     <i class="alert-modal__icon fas fa-exclamation"></i>
@@ -1076,7 +1077,13 @@
     </div>
 </div>
 
-
+<div class="modal error-modal">
+    <div class="error-modal__title"></div>
+    <div class="error-modal__body">
+        <i class="error-modal__icon fas fa-exclamation"></i>
+        <span class="error-modal__message"></span>
+    </div>
+</div>
 
 
 </body>
