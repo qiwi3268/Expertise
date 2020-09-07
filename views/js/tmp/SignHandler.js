@@ -55,32 +55,6 @@ class SignHandler extends SignView{
       return this.instance;
    }
 
-   // Предназначен для отображения состояния проверки подписи в поле с файлом
-   // Принимает параметры-------------------------------
-   // file         Element : проверяемый файл
-   static validateFileField (file) {
-      let results_json = file.dataset.validate_results;
-      let sign_state = 'not_signed';
-
-      if (results_json) {
-         let results = JSON.parse(results_json);
-
-         for (let result of results) {
-            if (result.signature_verify.result && result.certificate_verify.result) {
-               sign_state = 'valid';
-            } else if (result.signature_verify.result) {
-               sign_state = 'warning';
-               break;
-            } else {
-               break;
-            }
-         }
-
-      }
-      GeFile.setSignState(file, sign_state);
-
-   }
-
    // Предназначен для удаления подписи файла
    // Принимает параметры-------------------------------
    // file         Element : файл, у которого удаляется подпись
@@ -358,7 +332,7 @@ class SignHandler extends SignView{
       this.file_element.dataset.id_sign = this.id_sign;
       this.file_element.dataset.validate_results = results_json;
 
-      SignHandler.validateFileField(this.file_element);
+      SignView.validateFileField(this.file_element);
 
       FileNeeds.putSignToSave(this.id_sign, this.mapping_level_1, this.mapping_level_2);
 

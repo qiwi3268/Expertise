@@ -295,7 +295,7 @@ class FileUploader {
 
                file_item.dataset.validate_results = JSON.stringify(validate_results);
                file_item.dataset.is_internal = 'true';
-               SignHandler.validateFileField(file_item);
+               SignView.validateFileField(file_item);
 
             } else {
                GeFile.setSignState(file_item, 'not_signed');

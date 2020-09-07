@@ -78,7 +78,7 @@ try {
         //exit result 2
     }
 
-    $files = new \Lib\Files\Upload($_FILES);
+    $files = new \Lib\Files\Uploader($_FILES);
 
     if (!$files->checkFilesExist()) {
         exit(json_encode([

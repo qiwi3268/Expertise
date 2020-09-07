@@ -112,14 +112,19 @@ return [
         '/views/home/'       => ['create_application_dependencies', 'main_header', 'create_application', 'main_footer']
     ],
 
-    'home/application/action_1' => [
-        'access'                                => [],
-        'ROOTcontrollers'                       => ['header'],
-        'ROOTviews'                             => ['header'],
-        '/controllers/home/'                    => ['main_header'],
+    'home/application/actions/action_1' => [
+
+    ],
+
+    'home/application/actions/action_2' => [
+        'access'              => [],
+        'ROOTcontrollers'     => ['header'],
+        'ROOTviews'           => ['header'],
+        '/controllers/home/'  => ['main_header'],
         '/views/home/%header' => ['main_header'],
-        'views'               => ['action_1'],
-        '/views/home/%footer'     => ['main_footer'],
+        'controllers'         => ['action_2'],
+        'views'               => ['action_2'],
+        '/views/home/%footer' => ['main_footer'],
     ],
 
 

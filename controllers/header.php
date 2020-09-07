@@ -87,12 +87,13 @@ switch (URN) {
         ];
         break;
 
-    case 'home/application/action_1' :
-        $pageName = 'Action_1';
+    case 'home/application/action_2' :
+        $pageName = 'Action_2';
         $sourcesFiles = [...GetFontAwesome5Case(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css'),
-            ...CreateSource('css', TMP_CSS, 'action_1.css'),
+            ...CreateSource('css', TMP_CSS, 'files.css', 'sign.css', 'action_2.css'),
+            ...CreateSource('js', TMP_JS, 'main.js', 'ErrorModal.js', 'GeFile.js', 'SignView.js')
         ];
         break;
 }

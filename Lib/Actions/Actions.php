@@ -4,6 +4,7 @@
 namespace Lib\Actions;
 
 use Lib\Exceptions\Actions as SelfEx;
+use Lib\Responsible\Responsible;
 
 
 // Абстрактный класс для получения и проверки доступных действий у пользователя
@@ -24,6 +25,8 @@ abstract class Actions
     // null в случае, если никакое действие не выбрано, т.е. режим просмотра документа
     protected ?string $currentActionPageName = null;
     protected ?string $currentActionCallbackName = null;
+
+    protected Responsible $responsible;
 
 
     // Предназначен для проверки того, что в классе типа документа реализованы
@@ -67,6 +70,8 @@ abstract class Actions
 
         // Запись свойства через дочерний метод
         $this->businessProcessAssoc = $this->getAssocBusinessProcess();
+
+        $this->responsible = new Responsible($this->getDocumentId());
     }
 
 
@@ -137,6 +142,9 @@ abstract class Actions
 
         return $result;
     }
+
+
+    abstract protected function getDocumentId(): int;
 
 
     // Предназначен для получения ассоциативных массивов активных действий из БД для выбранного типа документа

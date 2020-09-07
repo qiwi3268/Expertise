@@ -1,0 +1,63 @@
+<responsible>
+
+    <document name="application">
+        <queries>
+            <getResponsibleType>
+                <class name="\Tables\application" />
+                <method name="getResponsibleTypeById" />
+            </getResponsibleType>
+
+            <updateResponsibleType>
+                <class name="\Tables\application" />
+                <method name="updateResponsibleTypeById" />
+            </updateResponsibleType>
+
+            <createResponsible>
+                <type_2>
+                    <class name="" />
+                    <method name="" />
+                </type_2>
+                <type_3>
+                    <class name="\Tables\Responsible\type_3\application" />
+                    <method name="create" />
+                </type_3>
+                <type_4>
+                    <class name="" />
+                    <method name="" />
+                </type_4>
+            </createResponsible>
+
+            <getResponsible>
+                <type_2>
+                    <class name="" />
+                    <method name="" />
+                </type_2>
+                <type_3>
+                    <class name="\Tables\Responsible\type_3\application" />
+                    <method name="getResponsibleByIdMainDocument" />
+                </type_3>
+                <type_4>
+                    <class name="" />
+                    <method name="" />
+                </type_4>
+            </getResponsible>
+
+            <deleteResponsible>
+                <type_2>
+                    <class name="" />
+                    <method name="" />
+                </type_2>
+                <type_3>
+                    <class name="\Tables\Responsible\type_3\application" />
+                    <method name="deleteResponsibleByIdMainDocument" />
+                </type_3>
+                <type_4>
+                    <class name="" />
+                    <method name="" />
+                </type_4>
+            </deleteResponsible>
+        </queries>
+    </document>
+
+
+</responsible>

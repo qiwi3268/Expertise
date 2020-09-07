@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             signs.remove();
          }*/
 
-         SignHandler.validateFileField(file.element);
+         SignView.validateFileField(file.element);
 
 
          file.handleActionButtons();
@@ -52,8 +52,10 @@ class GeFile {
       this.field = this.container.closest('[data-mapping_level_1]');
       this.node = this.container.closest('[data-id_structure_node]');
 
-      this.mapping_1 = this.field.dataset.mapping_level_1;
-      this.mapping_2 = this.field.dataset.mapping_level_2;
+      if (this.field) {
+         this.mapping_1 = this.field.dataset.mapping_level_1;
+         this.mapping_2 = this.field.dataset.mapping_level_2;
+      }
 
       if (this.node) {
          this.id_structure_node = this.node.dataset.id_structure_node;

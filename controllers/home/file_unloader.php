@@ -1,5 +1,6 @@
 <?php
 
+use Lib\Files\Unloader;
 
 // Ошибки в этом скрипте в максимальной степени нежелательны,
 // т.к. человек со своей рабочей страницы будет перенаправлен на эту с ошибкой и все
@@ -57,4 +58,4 @@ if(!file_exists($G_fs_name) || empty($G_file_name)){
 }
 
 // Выгрузка файла
-FilesUnload::unload($G_fs_name, $G_file_name);
+Unloader::unload($G_fs_name, $G_file_name);

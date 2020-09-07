@@ -6,7 +6,7 @@ define('LOGS', '/var/www/logs');                              // Директо�
 define('APPLICATIONS_FILES', '/var/www/applications_files');  // Директория файлов заявлений
 define('TMP_HASH_FILES', '/var/www/hash/tmp_hash');           // Директория хранения временных файлов полученных hash'ей
 
-define('NAVIGATION_SETTINGS', '/var/www/html/settings/navigation.xml');
+define('SETTINGS', '/var/www/html/settings');
 
 
 // ---------------------------------------------------------------

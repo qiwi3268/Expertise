@@ -3,7 +3,7 @@
 
 use Lib\Files\Mappings\RequiredMappingsSetter;
 use Lib\Singles\NodeStructure;
-use Classes\Application\Files\Initialization\Initializator;
+use Classes\Application\Files\Initialization\Initializer;
 use Tables\Structures\documentation_1;
 use Tables\Structures\documentation_2;
 
@@ -13,25 +13,25 @@ $requiredMappings = new RequiredMappingsSetter();
 
 $requiredMappings->setMappingLevel1(2);
 
-$Initializator = new Initializator($requiredMappings, $_GET['a']);
+$Initializer = new Initializer($requiredMappings, $_GET['a']);
 
 $structureWithFiles[0] = [];
 $structureWithFiles[1] = [];
 
-$needsFiles = $Initializator->getNeedsFilesWithSigns()[2][1];
+$needsFiles = $Initializer->getNeedsFilesWithSigns()[2][1];
 
 if (!is_null($needsFiles)) {
 
-    $filesInStructure = Initializator::getFilesInDepthStructure($needsFiles, new NodeStructure(documentation_1::getAllActive()));
+    $filesInStructure = Initializer::getFilesInDepthStructure($needsFiles, new NodeStructure(documentation_1::getAllActive()));
 
     $structureWithFiles[0] = array_filter($filesInStructure, fn($node) => isset($node['files']));
 }
 
-$needsFiles = $Initializator->getNeedsFilesWithSigns()[2][2];
+$needsFiles = $Initializer->getNeedsFilesWithSigns()[2][2];
 
 if (!is_null($needsFiles)) {
 
-    $filesInStructure = Initializator::getFilesInDepthStructure($needsFiles, new NodeStructure(documentation_2::getAllActive()));
+    $filesInStructure = Initializer::getFilesInDepthStructure($needsFiles, new NodeStructure(documentation_2::getAllActive()));
 
     $structureWithFiles[1] = array_filter($filesInStructure, fn($node) => isset($node['files']));
 }

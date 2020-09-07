@@ -18,7 +18,7 @@ final class application implements Responsible, ResponsibleType3
 
     // Предназначен для удаления всех ответственных
     //
-    static public function deleteResponsible(int $id_main_document): void
+    static public function deleteResponsibleByIdMainDocument(int $id_main_document): void
     {
         $table = self::$tableName;
 
@@ -28,7 +28,7 @@ final class application implements Responsible, ResponsibleType3
     }
 
 
-    public static function getResponsible(int $id_main_document): ?array
+    public static function getResponsibleByIdMainDocument(int $id_main_document): ?array
     {
         $table = self::$tableName;
 
