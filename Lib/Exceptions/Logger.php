@@ -3,6 +3,8 @@
 
 namespace Lib\Exceptions;
 
+use Lib\Exceptions\Traits\MainTrait;
+
 
 // exception, связанный с ошибками при работе класса Logger
 // code:
@@ -11,7 +13,8 @@ namespace Lib\Exceptions;
 //  3 - указанный лог файл не существует в файловой системе сервера
 //  4 - указанный лог файл не доступен для записи
 //  5 - произошла ошибка при попытке записать логируемое сообщение
+//
 class Logger extends \Exception
 {
-    use \Lib\Exceptions\Traits\MainTrait;
+    use MainTrait;
 }

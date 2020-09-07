@@ -120,7 +120,7 @@ class FileUploader {
    }
 
    addFilesToModal (files) {
-      Array.from(files).forEach(file_data => {
+      for (let file_data of Array.from(files)) {
          if (!FileChecker.checkExtension(file_data.name)) {
 
             ErrorModal.open(
@@ -128,18 +128,22 @@ class FileUploader {
                'Загружен файл в неверном формате (доступные форматы: pdf, docx, xlsx, sig)'
             );
             this.closeModal();
+            break;
 
          } else if (!FileChecker.checkSize(file_data.size)) {
 
-            ErrorModal.open('Ошибка при загрузке файла', 'Загружен файл c размером больше 80 МБ');
+            ErrorModal.open(
+               'Ошибка при загрузке файла',
+               'Загружен файл c размером больше 80 МБ'
+            );
             this.closeModal();
+            break;
 
          } else {
             this.modal_body.appendChild(this.createFileModalItem(file_data));
          }
+      }
 
-
-      });
    }
 
    createFileModalItem (file_data) {
@@ -226,7 +230,11 @@ class FileUploader {
          .catch(exc => {
 
             this.is_uploading = false;
-            console.error('Ошибка при загрузке файлов на сервер:\n' + exc);
+
+            this.closeModal();
+            ErrorModal.open('Ошибка при загрузке файлов на сервер', exc);
+
+            // console.error('Ошибка при загрузке файлов на сервер:\n' + exc);
 
          });
 

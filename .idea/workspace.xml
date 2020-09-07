@@ -3,83 +3,27 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/home/application/save_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/application/save_form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/home/external_signature_verifier.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/external_signature_verifier.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/home/file_uploader.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/file_uploader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/home/internal_signature_verifier.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/internal_signature_verifier.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/Actions/Actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Actions/Actions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/Files/Initialization/Initializator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Files/Initialization/Initializator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/Helpers/Helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Helpers/Helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/Miscs/Initialization/CreateFormInitializator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Miscs/Initialization/CreateFormInitializator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/Miscs/Validation/DependentMisc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Miscs/Validation/DependentMisc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/Miscs/Validation/SingleMisc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Miscs/Validation/SingleMisc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Exceptions/ApplicationFormMiscValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Exceptions/ApplicationFormMiscValidator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Exceptions/PregMatch.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Exceptions/PregMatch.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Navigation/Classes/block_1_type_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Navigation/Classes/block_1_type_1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Navigation/Classes/block_1_type_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Navigation/Classes/block_1_type_2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Pagination.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Pagination.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lib/Actions/Actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Actions/Actions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lib/Actions/Locator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Actions/Locator.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lib/CSP/MessageParser.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/CSP/MessageParser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/DataBase/Transaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/DataBase/Transaction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/CSP/Validator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/CSP/Validator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/Actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/Actions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/CSPMessageParser.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/CSPMessageParser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/CSPValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/CSPValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/DataBase.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/DataBase.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lib/Exceptions/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/File.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Files/Initialization/Initializator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Files/Initialization/Initializator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Files/Mappings/FilesTableMapping.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Files/Mappings/FilesTableMapping.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Files/Mappings/RequiredMappingsSetter.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Files/Mappings/RequiredMappingsSetter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Files/Upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Files/Upload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Miscs/Initialization/Initializator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Miscs/Initialization/Initializator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Miscs/Validation/DependentMisc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Miscs/Validation/DependentMisc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Miscs/Validation/Validator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Miscs/Validation/Validator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Signs/Mappings/SignsTableMapping.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Signs/Mappings/SignsTableMapping.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Singles/Logger.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/Logger.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Singles/NodeStructure.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/NodeStructure.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Singles/PHPSpreadSheetAddon.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/PHPSpreadSheetAddon.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Singles/PrimitiveValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/PrimitiveValidator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Singles/VariableTransfer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/VariableTransfer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Actions/Traits/ActionTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Actions/Traits/ActionTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Actions/application.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Actions/application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Exceptions/Exception.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Exceptions/Exception.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Files/Interfaces/FileTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Files/Interfaces/FileTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Files/Traits/FileTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Files/Traits/FileTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Responsible/type_3/application.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Responsible/type_3/application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Signs/Traits/SignTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Signs/Traits/SignTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/people_name.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/people_name.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/application/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/create_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/application/display_dependencies_application_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/display_dependencies_application_form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/application/edit_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/edit_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/view_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/navigation.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/navigation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/tmp/registration_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/tmp/registration_user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Classes/Session.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/Session.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Classes/StartingInitialization.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/StartingInitialization.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/defined_variables.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/defined_variables.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cron/deleteUnsavedApps.php" beforeDir="false" afterPath="$PROJECT_DIR$/cron/deleteUnsavedApps.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/Logger.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/Logger.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/MiscValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/MiscValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/NodeStructure.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/NodeStructure.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/PrimitiveValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/PrimitiveValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/Shell.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/Shell.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/Transaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/Transaction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/action_1.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_1.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/documentation.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/documentation.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/files.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/files.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/sign.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/sign.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/view_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/view_application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/view_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/application/action_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/action_1.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/API.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/BrowserHelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/BrowserHelper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/DependenciesHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/DependenciesHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/ErrorHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/ErrorHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/FileBlock.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/FileUploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/FileUploader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/GeFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/GeFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/PerfectCades.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/PerfectCades.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/file_needs.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_needs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/modal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/save_application.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/save_application.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,14 +119,7 @@
       <workItem from="1597575204380" duration="8076000" />
       <workItem from="1598327166376" duration="87205000" />
       <workItem from="1598767236475" duration="12765000" />
-      <workItem from="1598845123707" duration="30838000" />
-    </task>
-    <task id="LOCAL-00028" summary="01.08.2020">
-      <created>1596427603654</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1596427603654</updated>
+      <workItem from="1598845123707" duration="37321000" />
     </task>
     <task id="LOCAL-00029" summary="04.08.2020">
       <created>1596513453762</created>
@@ -520,7 +457,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598947349009</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="07.09.2020">
+      <created>1599450473576</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1599450473577</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,7 +481,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="25.08.2020" />
     <MESSAGE value="25.08.2020_1" />
     <MESSAGE value="25.08.2020_2" />
     <MESSAGE value="26.08.2020" />
@@ -562,7 +505,8 @@
     <MESSAGE value="01.09.2020_2" />
     <MESSAGE value="01.09.2020_3" />
     <MESSAGE value="01.09.2020_4" />
-    <option name="LAST_COMMIT_MESSAGE" value="01.09.2020_4" />
+    <MESSAGE value="07.09.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="07.09.2020" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Notifications" timestamp="1598851428350">
@@ -573,10 +517,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1598947346544">
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1599450470109">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1598947346544" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1599450470109" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598788293599" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog" timestamp="1598853557262">
@@ -610,10 +554,10 @@
     </state>
     <state x="302" y="56" width="614" height="1035" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1598502743003" />
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597499951448" />
-    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1598941124984">
+    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1599454484727">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598941124984" />
+    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599454484727" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598791797973" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
     <state x="1150" y="591" key="publish.login" timestamp="1598767415653">

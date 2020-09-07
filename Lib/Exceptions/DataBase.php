@@ -3,6 +3,8 @@
 
 namespace Lib\Exceptions;
 
+use Lib\Exceptions\Traits\MainTrait;
+
 
 // exception, связанный с ошибками при работе класса DataBase
 // code:
@@ -14,7 +16,8 @@ namespace Lib\Exceptions;
 //      ошибка при старте транзакции
 //      ошибка при откате текущей транзакции
 //      ошибка при фиксации текущей транзакции
+//
 class DataBase extends \Exception
 {
-    use \Lib\Exceptions\Traits\MainTrait;
+    use MainTrait;
 }

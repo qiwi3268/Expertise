@@ -185,7 +185,7 @@
 
 .card-form__body {
    /**/
-   /*max-height: 0;*/
+   max-height: 0;
 
    overflow: hidden;
    font-family: 'Roboto Condensed', sans-serif;
@@ -482,7 +482,7 @@
 }
 
 .body-card__block[data-name='part']:not(:last-child) {
-   border-bottom: 2px solid #93b0d1;
+   border-bottom: 1px solid #cccccc;
 }
 
 

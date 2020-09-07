@@ -3,6 +3,8 @@
 
 namespace Lib\Exceptions;
 
+use Lib\Exceptions\Traits\MainTrait;
+
 
 // exception, связанный с ошибками при работе MiscValidator класса Validator
 // code:
@@ -10,5 +12,5 @@ namespace Lib\Exceptions;
 //
 class NodeStructure extends \Exception
 {
-    use \Lib\Exceptions\Traits\MainTrait;
+    use MainTrait;
 }

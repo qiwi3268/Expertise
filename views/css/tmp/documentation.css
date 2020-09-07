@@ -19,9 +19,8 @@
 
 .documentation__name {
    flex-grow: 1;
-   padding: 13px 0px;
-   /*border-right: 1px solid #e0e0e0;*/
-   transition: .1s;
+   padding: 13px 7px 13px 0px;
+   /*transition: .1s;*/
 }
 
 .documentation__icon {

@@ -3,6 +3,8 @@
 
 namespace Lib\Exceptions;
 
+use Lib\Exceptions\Traits\MainTrait;
+
 
 // exception, связанный с ошибками при работе файловых классов
 // Lib\Files\Upload:
@@ -15,8 +17,9 @@ namespace Lib\Exceptions;
 //      ошибка в маппинг таблице (подписей)
 //      осталась(лись) подпись, которая не подошла ни к одному из файлов
 //      в массиве файлов не найден нужный id
+//
 class File extends \Exception
 {
-    use \Lib\Exceptions\Traits\MainTrait;
+    use MainTrait;
 }
 

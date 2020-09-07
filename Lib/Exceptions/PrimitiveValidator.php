@@ -3,6 +3,8 @@
 
 namespace Lib\Exceptions;
 
+use Lib\Exceptions\Traits\MainTrait;
+
 
 // exception, связанный с ошибками при работе класса проверки примитивов PrimitiveValidator
 // code:
@@ -21,7 +23,8 @@ namespace Lib\Exceptions;
 // 13 - во входном массиве отсутствует обязательное поле
 // 14 - значение входного массива по ключу не прошло проверку
 // 15 - значение не подходит ни под одно из перечисленных
+//
 class PrimitiveValidator extends \Exception
 {
-    use \Lib\Exceptions\Traits\MainTrait;
+    use MainTrait;
 }

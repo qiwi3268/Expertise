@@ -3,6 +3,8 @@
 
 namespace Lib\Exceptions;
 
+use Lib\Exceptions\Traits\MainTrait;
+
 
 // exception, Ссвязанный с ошибками при работе csp класса Validator
 // code:
@@ -12,7 +14,8 @@ namespace Lib\Exceptions;
 //  4 - в частях сообщения отсустсвует(ют) Signer
 //  5 - получено некорректное количество блоков ErrorCode
 //  6 - в результате проверки БЕЗ цепочки сертификатов не был найден подписант из результатов проверки С цепочкой сертификатов
+//
 class CSPValidator extends \Exception
 {
-    use \Lib\Exceptions\Traits\MainTrait;
+    use MainTrait;
 }

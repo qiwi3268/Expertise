@@ -73,11 +73,14 @@ class Validator
             // Результат с проверкой цепочки сертификатов невалидный и при этом есть ошибки, что подпись невалидная
             // (если открепленная подпись не соответствует файлу, это сообщение (Error: Invalid Signature.) выйдет первым, даже если сертификат уже просрочен,
             //  поэтому нет смысла в повторной проверке подписи без проверки цепочки сертификатов)
-            if ($signer['result'] ||
-                (!$signer['result'] && ($signer['message'] == 'Error: Invalid Signature.' || $signer['message'] == 'Error: Invalid algorithm specified.'))) {
+            if (
+                $signer['result']
+                || (!$signer['result'] && ($signer['message'] == 'Error: Invalid Signature.' || $signer['message'] == 'Error: Invalid algorithm specified.'))
+            ) {
 
-                $signatureVerify = ['result' => $signer['result'],
-                    'message' => $signer['message'],
+                $signatureVerify = [
+                    'result'       => $signer['result'],
+                    'message'      => $signer['message'],
                     'user_message' => $this->getSignatureUserMessage($signer['message'])
                 ];
 
@@ -102,14 +105,16 @@ class Validator
                 $noChain_signer = array_shift($noChain_signer);
 
                 // Результат проверки сертификата остается от проверки с цепочкой сертификата ------------------
-                $signatureVerify = ['result' => $noChain_signer['result'],
-                    'message' => $noChain_signer['message'],
+                $signatureVerify = [
+                    'result'       => $noChain_signer['result'],
+                    'message'      => $noChain_signer['message'],
                     'user_message' => $this->getSignatureUserMessage($noChain_signer['message'])
                 ];
             }
 
-            $certificateVerify = ['result' => $signer['result'],
-                'message' => $signer['message'],
+            $certificateVerify = [
+                'result'       => $signer['result'],
+                'message'      => $signer['message'],
                 'user_message' => $this->getCertificateUserMessage($signer['message'])
             ];
 
@@ -140,7 +145,6 @@ class Validator
     // Выбрасывает исключения--------------------------------
     // Lib\Exceptions\CSPValidator :
     // code:
-    //  1 - получен неизвестный результат проверки подписи / сертификата (подписи)
     //  2 - неизвестный формат блока, следующий за Signer
     //  3 - неизвестная часть сообщения
     //  4 - в частях сообщения отсустсвует(ют) Signer
@@ -148,7 +152,6 @@ class Validator
     //
     private function getValidateResults(array $messageParts): array
     {
-
         $signers = [];
         $errorCodes = [];
 
@@ -166,7 +169,7 @@ class Validator
             //      ErrorCode: ...
             //      Error: The parameter is incorrect.
             //      Unknown error.
-            if (icontainsAll($part, 'Signer:')) {
+            if (containsAll($part, 'Signer:')) {
 
                 $FIO = $this->Parser->getFIO($part);
 
@@ -187,19 +190,22 @@ class Validator
                 }
 
                 // Временный массив с данными о подписи
-                $signers[] = ['fio' => $FIO,
+                $signers[] = [
+                    'fio'         => $FIO,
                     'certificate' => $this->Parser->getCertificateInfo($part),
-                    'result' => $verifyResult,
-                    'message' => $next_1_part
+                    'result'      => $verifyResult,
+                    'message'     => $next_1_part
                 ];
 
-            } elseif (icontainsAll($part, 'ErrorCode:')) {
+            } elseif (containsAll($part, 'ErrorCode:')) {
 
                 $errorCodes[] = $this->Parser->getErrorCode($part);
 
-            } elseif (icontainsAll($part, 'Error: Invalid cryptographic message type.') ||
-                icontainsAll($part, 'Error: The parameter is incorrect.') ||
-                icontainsAll($part, 'Unknown error.')) {
+            } elseif (containsAny($part,
+                'Error: Invalid cryptographic message type.',
+                'Error: The parameter is incorrect.',
+                'Unknown error.')
+            ){
 
                 continue; // Ошибки пропускаем, т.к. дальше (в следующих итерациях) отловится ее ErrorCode
             } else {
@@ -219,7 +225,8 @@ class Validator
             throw new SelfEx("В частях сообщения отсустсвует(ют) Signer" . $this->getDebugMessageParts($messageParts), 4);
         }
 
-        return ['signers' => $signers,
+        return [
+            'signers'   => $signers,
             'errorCode' => $errorCodes[0]
         ];
     }
@@ -237,7 +244,6 @@ class Validator
     //
     private function getSignatureUserMessage(string $verifyMessage): string
     {
-
         switch ($verifyMessage) {
             case "Signature's verified.":
                 return "Подпись действительна";
