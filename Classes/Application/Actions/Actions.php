@@ -13,6 +13,8 @@ use Tables\Actions\application;
 class Actions extends MainActions
 {
 
+    private const DOCUMENT_TYPE = DOCUMENT_TYPE['application'];
+
     private $applicationId;
 
 
@@ -20,7 +22,7 @@ class Actions extends MainActions
     {
         $this->applicationId = clearHtmlArr($_GET)['id_application'];
 
-        parent::__construct();
+        parent::__construct(self::DOCUMENT_TYPE);
     }
 
     // -----------------------------------------------------------------------------------------

@@ -321,14 +321,5 @@ final class application
     }
 
 
-    //todo
-    static public function deleteResponsibleByIdApplication(int $id_application): void
-    {
-        // ищем тип ответственных
-
-        // удаляем ответственых
-        // $query =
-    }
-
 
 }

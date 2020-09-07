@@ -161,7 +161,7 @@ final class user
 	                     `user`.`middle_name`
                   FROM `user`
                   WHERE EXISTS (SELECT * FROM `user_role`
-                                WHERE `user_role`.`id_user`=`user`.`id` AND `user_role`.`id_user_info_role` IN (3, 4))";
+                                WHERE `user_role`.`id_user`=`user`.`id` AND `user_role`.`id_user_info_role` IN (3, 4, 5))";
 
         $experts =  SimpleQuery::getFetchAssoc($query);
 

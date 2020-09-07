@@ -4,7 +4,6 @@
 namespace Lib\CSP;
 
 use Lib\Exceptions\CSPMessageParser as SelfEx;
-use Tables\people_name;
 
 
 class MessageParser
@@ -23,8 +22,12 @@ class MessageParser
     //
     public function __construct(bool $needNames)
     {
+
         if ($needNames) {
-            $this->hashNames = getHashArray(people_name::getNames());
+            //todo ВАЖНОЕ перенести это на вызывающую сторону
+            $names = \Tables\people_name::getNames();
+            // Перевод выборки в формат хэш-массива
+            foreach ($names as $name) $this->hashNames[$name] = true;
         }
     }
 
@@ -42,6 +45,7 @@ class MessageParser
     //
     public function getMessagePartsWithoutTechnicalPart(string $message): array
     {
+
         $result = [];
 
         $parts = explode(PHP_EOL, $message);
@@ -49,7 +53,7 @@ class MessageParser
         // Возможны ситуации, когда из-за отсутствия прогресс-бара проверки подписи Signature verifying и ErrorCode
         // окажутся в одной строке, т.к. символ переноса строк принадлежит прогресс-бару. В таком случае искусственно
         // добавляем блок ErrorCode к parts
-        $tmp = array_filter($parts, fn($part) => containsAll($part, 'Signature verifying...', 'ErrorCode:'));
+        $tmp = array_filter($parts, fn($part) => icontainsAll($part, 'Signature verifying...', 'ErrorCode:'));
         if (!empty($tmp)) {
 
             $tmp = array_shift($tmp);
@@ -70,15 +74,14 @@ class MessageParser
 
         foreach ($parts as $part) {
 
-            if (
-                !containsAll($part, 'CryptCP 4.0 (c) "Crypto-Pro", 2002-2020.')
-                && !containsAll($part, 'CryptCP 5.0 (c) "Crypto-Pro", 2002-2019.')
-                && !containsAll($part, 'Command prompt Utility for file signature and encryption.')
-                && !containsAll($part, 'Folder')
-                && !containsAll($part, 'Signature verifying...')
-                && !containsAll($part, 'CSPbuild')
-                && $part !== ''
-            ) {
+            if (!icontainsAll($part, 'CryptCP 4.0 (c) "Crypto-Pro", 2002-2020.') &&
+                !icontainsAll($part, 'CryptCP 5.0 (c) "Crypto-Pro", 2002-2019.') &&
+                !icontainsAll($part, 'Command prompt Utility for file signature and encryption.') &&
+                !icontainsAll($part, 'Folder') &&
+                !icontainsAll($part, 'Signature verifying...') &&
+                !icontainsAll($part, 'CSPbuild') &&
+                $part !== '') {
+
                 $result[] = trim($part); // Удаляем пробельные символы вначале и вконце строки
             }
         }
@@ -99,6 +102,7 @@ class MessageParser
     //
     public function getFIO(string $Signer): string
     {
+
         // запятая ноль и более раз                 | если ФИО начинает строку
         // пробельный символ ноль и более раз       | если ФИО начинает строку или просто нет пробела после запятой
         // любой символ кириллицы один и более раз  | Фамилия
@@ -125,7 +129,7 @@ class MessageParser
 
         foreach ($matches as $match) {
 
-            // Заменяем все ё на е, т.к. в БД хранятся только е
+            // Заменяем все ё на е, т.е. в БД хранятся только е
             $match = str_replace('ё', 'е', $match);
 
             $fio_matches = getHandlePregMatch($fio_pattern, $match, true)[0]; // Массив полных вхождений шаблона
@@ -144,7 +148,7 @@ class MessageParser
         $FIOs = implode(', ', $FIOs);
 
         // В БД не нашлось подходящего имени
-        if ($count == 0) throw new SelfEx("В БД не нашлось имени из ФИО: '{$FIOs}'", 1);
+        if ($count === 0) throw new SelfEx("В БД не нашлось имени из ФИО: '{$FIOs}'", 1);
 
         // В одном Signer нашлось больше одного ФИО
         if ($count > 1) throw new SelfEx("В одном Signer: '{$Signer}' нашлось больше одного ФИО: '{$FIOs}'", 2);
@@ -161,6 +165,7 @@ class MessageParser
     //
     public function getCertificateInfo(string $Signer): string
     {
+
         // Signer:
         // пробельный символ ноль и более раз
         // 1 группа:
@@ -180,6 +185,7 @@ class MessageParser
     //
     public function getErrorCode(string $message): string
     {
+
         // [ErrorCode:
         // пробельный символ ноль и более раз
         // 1 группа:

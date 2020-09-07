@@ -36,7 +36,7 @@ abstract class Actions
     // code:
     //  2 - в классе типа документа отсутствует callback-метод из БД
     //
-    public function __construct()
+    public function __construct(string $documentType)
     {
         // Запись свойства через дочерний метод
         $this->activeActionsAssoc = $this->getAssocActiveActions();
@@ -71,7 +71,7 @@ abstract class Actions
         // Запись свойства через дочерний метод
         $this->businessProcessAssoc = $this->getAssocBusinessProcess();
 
-        $this->responsible = new Responsible($this->getDocumentId());
+        $this->responsible = new Responsible($this->getDocumentId(), $documentType);
     }
 
 
@@ -144,6 +144,10 @@ abstract class Actions
     }
 
 
+    // Предназначен для получения id документа дочернего класса
+    // Возвращает параметры----------------------------------
+    // int : id документа
+    //
     abstract protected function getDocumentId(): int;
 
 

@@ -78,7 +78,7 @@ return [
         'ROOTcontrollers'                       => ['header'],
         'ROOTviews'                             => ['header'],
         'controllers'                           => ['create_application',
-                                                    'display_dependencies_application_form'],
+            'display_dependencies_application_form'],
         '/controllers/home/'                    => ['main_header'],
         '/views/home/'                          => ['create_application_dependencies', 'main_header', 'create_application', 'main_footer'],
     ],
@@ -89,8 +89,8 @@ return [
         'ROOTcontrollers'     => ['header'],
         'ABScontrollers'      => ['/controllers/home/main_header.php'],
         'controllers'         => ['action_sidebar',
-                                  'view_application',
-                                  'validation_block_application_form'],
+            'view_application',
+            'validation_block_application_form'],
         'ROOTviews'           => ['header'],
         '/views/home/%header' => ['main_header'],
         'views'               => ['hierarchy_sidebar', 'view_application', 'action_sidebar'],
@@ -105,9 +105,9 @@ return [
         'ROOTviews'          => ['header'],
         //'/Classes/ApplicationForm/'   => ['MiscInitialization', 'MiscInitializationEditForm'],
         'controllers'        => [
-                                 'edit_application',
-                                 'validation_block_application_form',
-                                 'display_dependencies_application_form'],
+            'edit_application',
+            'validation_block_application_form',
+            'display_dependencies_application_form'],
         '/controllers/home/' => ['main_header'],
         '/views/home/'       => ['create_application_dependencies', 'main_header', 'create_application', 'main_footer']
     ],
@@ -155,8 +155,8 @@ return [
     ],
 
     'tmp/cades' => [
-      'controllers'       => ['cades'],
-      'views'             => ['cades']
+        'controllers'       => ['cades'],
+        'views'             => ['cades']
     ],
 
     'tmp/mail' => [

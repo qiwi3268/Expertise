@@ -21,13 +21,9 @@ class Locator
 
 
     // Выполняется единожды
-    // Выбрасывает исключения--------------------------------
-    // Lib\Exceptions\Actions :
-    // code:
-    //  1 - ошибка при определении типа документа
-    //
     private function __construct()
     {
+
         $documentType = PageAddressHelper::getDocumentType();
 
         if (is_null($documentType)) {
