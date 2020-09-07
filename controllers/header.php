@@ -33,7 +33,7 @@ switch (URN) {
             ...CreateSource('css', TMP_CSS, 'null.css', 'header.css', 'footer.css', 'main.css', 'modal.css', 'radio.css', 'calendar.css', 'files.css', 'documentation.css', 'sign.css'),
             ...CreateSource('css', TMP_CSS, 'create_application.css'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js', 'cadesplugin_api.js'),
-            ...CreateSource('js', TMP_JS, 'ErrorHandler.js', 'main.js', 'API.js', 'modal.js', 'sidebar.js', 'section.js', 'validation.js', 'DependenciesHandler.js', 'Calendar.js', 'radio.js', 'checkbox.js', 'save_application.js', 'SignView.js', 'SignHandler.js', 'PerfectCades.js', 'BrowserHelper.js', 'FileChecker.js', 'file_needs.js', 'FileUploader.js', 'MultipleBlock.js', 'GeFile.js', 'PartBlock.js')
+            ...CreateSource('js', TMP_JS, 'ErrorHandler.js', 'main.js', 'modal.js', 'sidebar.js', 'section.js', 'validation.js', 'API.js', 'DependenciesHandler.js', 'Calendar.js', 'radio.js', 'checkbox.js', 'save_application.js', 'SignView.js', 'SignHandler.js', 'PerfectCades.js', 'BrowserHelper.js', 'FileChecker.js', 'file_needs.js', 'FileUploader.js', 'MultipleBlock.js', 'FileBlock.js', 'GeFile.js', 'PartBlock.js')
         ];
         break;
 
@@ -43,7 +43,7 @@ switch (URN) {
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'action_sidebar.css', 'radio.css', 'sign.css'),
             ...CreateSource('css', TMP_CSS, 'create_application.css', 'view_application.css'),
-            ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js', ),
+            ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
             ...CreateSource('js', TMP_JS, 'section.js', 'main.js', 'API.js', 'GeFile.js', 'SignView.js', 'SignHandler.js', 'ErrorHandler.js')
         ];
         break;
@@ -87,14 +87,12 @@ switch (URN) {
         ];
         break;
 
-    case 'home/application/actions/action_2' :
-        $pageName = 'Action_2';
+    case 'home/application/action_1' :
+        $pageName = 'Action_1';
         $sourcesFiles = [...GetFontAwesome5Case(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css'),
-            ...CreateSource('css', TMP_CSS, 'files.css', 'sign.css', 'action_2.css'),
-            ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
-            ...CreateSource('js', TMP_JS, 'main.js', 'API.js', 'ErrorModal.js', 'GeFile.js', 'SignView.js')
+            ...CreateSource('css', TMP_CSS, 'action_1.css'),
         ];
         break;
 }

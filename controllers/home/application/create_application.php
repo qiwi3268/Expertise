@@ -2,9 +2,9 @@
 
 use core\Classes\Session;
 use Lib\Singles\NodeStructure;
-use Lib\Responsible\Responsible;
 use Lib\Singles\VariableTransfer;
-use Classes\Application\Miscs\Initialization\CreateFormInitializer;
+use Classes\Application\Miscs\Initialization\CreateFormInitializator;
+use Classes\Application\Responsible as ApplicationResponsible;
 use Classes\Application\Helpers\Helper as ApplicationHelper;
 use Tables\application;
 use Tables\application_counter;
@@ -34,7 +34,7 @@ $applicationId = application::createTemporary($userId, $appNumName);
 // Записываем текущего пользователя в группу доступа "Полный доступ" к заявлению
 applicant_access_group::createFullAccess($applicationId, $userId);
 // Устанавливаем ответственную группу доступа "Полный доступ"
-$responsible = new Responsible($applicationId);
+$responsible = new ApplicationResponsible($applicationId);
 $responsible->createNewResponsibleType3('full_access');
 
 
@@ -56,13 +56,13 @@ $variablesTV->setValue('id_application', $applicationId);
 
 
 // Справочники
-$miscInitializer = new CreateFormInitializer();
+$miscInitializator = new CreateFormInitializator();
 
-foreach ($miscInitializer->getPaginationSingleMiscs() as $miscName => $misc) {
+foreach ($miscInitializator->getPaginationSingleMiscs() as $miscName => $misc) {
     $variablesTV->setValue($miscName, $misc);
 }
 
-foreach ($miscInitializer->getPaginationDependentMiscs() as $miscName => $mainMiscIds) {
+foreach ($miscInitializator->getPaginationDependentMiscs() as $miscName => $mainMiscIds) {
     $variablesTV->setValue($miscName, json_encode($mainMiscIds));
 }
 

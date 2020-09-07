@@ -43,7 +43,7 @@ class Navigation
         $this->PrimitiveValidator = new PrimitiveValidator();
 
         // Ошибка при инициализации объекта
-        if (($data = simplexml_load_file(SETTINGS . '/navigation.xml')) === false) {
+        if (($data = simplexml_load_file(NAVIGATION_SETTINGS)) === false) {
             throw new SelfEx("Ошибка при инициализации XML-схемы навигации", 1);
         }
 

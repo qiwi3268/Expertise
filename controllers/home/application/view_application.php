@@ -1,12 +1,12 @@
 <?php
 
 
-use Lib\Responsible\Responsible;
 use Lib\Files\Mappings\RequiredMappingsSetter;
 use Lib\Singles\VariableTransfer;
 use Lib\Singles\NodeStructure;
 use Lib\Singles\Helpers\FileHandler;
-use Classes\Application\Files\Initialization\Initializer as FilesInitializer;
+use Classes\Application\Files\Initialization\Initializator as FilesInitializator;
+use Classes\Application\Responsible as ApplicationResponsible;
 use Tables\application;
 
 
@@ -40,9 +40,9 @@ foreach ($applicationAssoc as $property => $value) {
 $requiredMappings = new RequiredMappingsSetter();
 $requiredMappings->setMappingLevel1(1);
 
-$filesInitializer = new FilesInitializer($requiredMappings, $applicationId);
+$FilesInitializator = new FilesInitializator($requiredMappings, $applicationId);
 
-$needsFiles = $filesInitializer->getNeedsFilesWithSigns();
+$needsFiles = $FilesInitializator->getNeedsFilesWithSigns();
 
 
 // Обработка файловых массивов
@@ -66,7 +66,7 @@ var_dump($variablesTV->getValue('form_files')[1][1]);
 if ($variablesTV->getExistenceFlag('type_of_object')) {
 
     // Удаление переменных, служивших выше
-    unset($requiredMappings, $filesInitializer, $needsFiles);
+    unset($requiredMappings, $FilesInitializator, $needsFiles);
 
     // В зависимости от Вида объекта выбираем нужную таблицу
     switch ($variablesTV->getValue('type_of_object')['id']) {
@@ -93,18 +93,18 @@ if ($variablesTV->getExistenceFlag('type_of_object')) {
 
     $requiredMappings->setMappingLevel2($mapping_level_1, $mapping_level_2);
 
-    $filesInitializer = new FilesInitializer($requiredMappings, $applicationId);
+    $FilesInitializator = new FilesInitializator($requiredMappings, $applicationId);
 
-    $needsFiles = $filesInitializer->getNeedsFilesWithSigns()[$mapping_level_1][$mapping_level_2] ?? [];
+    $needsFiles = $FilesInitializator->getNeedsFilesWithSigns()[$mapping_level_1][$mapping_level_2] ?? [];
 
     // Обработка файловых массивов
     FileHandler::setFileIconClass($needsFiles);
     FileHandler::setValidateResultJSON($needsFiles);
     FileHandler::setHumanFileSize($needsFiles);
 
-    $nodeStructure = new NodeStructure($className::getAllActive());
+    $NodeStructure = new NodeStructure($className::getAllActive());
 
-    $filesInStructure = FilesInitializer::getFilesInDepthStructure($needsFiles, $nodeStructure);
+    $filesInStructure = FilesInitializator::getFilesInDepthStructure($needsFiles, $NodeStructure);
 
     var_dump($filesInStructure);
 
@@ -113,8 +113,8 @@ if ($variablesTV->getExistenceFlag('type_of_object')) {
 
 //todo перенести вместе с use в другое место
 
-$responsible = new Responsible($applicationId);
-$responsible = $responsible->getCurrentResponsible();
+$ApplicationResponsible = new ApplicationResponsible($applicationId);
+$responsible = $ApplicationResponsible->getResponsible();
 
 
 var_dump($responsible);

@@ -394,6 +394,8 @@
 
 
     <div class="sign-overlay"></div>
+
+
     <div class="modal sign-modal" data-plugin_loaded="false">
         <div class="sign-modal__file-body">
             <div class="sign-modal__file-info">
@@ -404,13 +406,4 @@
         <div class="sign-modal__validate" data-active="false"></div>
 
         <div class="sign-modal__empty"></div>
-    </div>
-    
-    <div class="error-overlay"></div>
-    <div class="modal error-modal">
-        <div class="error-modal__header">
-            <i class="error-modal__icon fas fa-exclamation"></i>
-            <span class="error-modal__title"></span>
-        </div>
-        <span class="error-modal__message"></span>
     </div>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="7226fd9e-96ca-417d-b4e4-efaa971b4485" name="Expertise" url="http://192.168.1.251">
+        <fileTransfer accessType="SFTP" host="192.168.1.251" port="22" sshConfigId="6856c168-0e3d-4824-b3b1-b19895d5580a" sshConfig="root@192.168.1.251:22 password">
+          <advancedOptions>
+            <advancedOptions controlEncoding="windows-1251" dataProtectionLevel="Private" muteSftpMessages="true" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

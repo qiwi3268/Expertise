@@ -194,7 +194,7 @@
 
 .card-form__body {
    /**/
-   max-height: 0;
+   /*max-height: 0;*/
 
    overflow: hidden;
    font-family: 'Roboto Condensed', sans-serif;
