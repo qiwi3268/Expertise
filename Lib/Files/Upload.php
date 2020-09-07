@@ -101,12 +101,12 @@ class Upload
         // Массив файлов с одного input'а
         foreach ($this->FILES as $inputName => $files) {
 
-            for ($s = 0; $s < $this->FILESCount[$inputName]; $s++) {
+            for ($l = 0; $l < $this->FILESCount[$inputName]; $l++) {
 
-                if ($files['error'][$s] != 0) {
+                if ($files['error'][$l] != 0) {
 
                     // Определение типа ошибки к файлу
-                    switch ($files['error'][$s]) {
+                    switch ($files['error'][$l]) {
                         case 1:
                             $errorText = 'Размер принятого файла превысил максимально допустимый размер, который задан директивой upload_max_filesize';
                             break;
@@ -129,10 +129,11 @@ class Upload
                             $errorText = 'PHP-расширение остановило загрузку файла';
                             break;
                         default:
-                            $errorText = 'Не найден код ошибки: ' . $files['error'][$s];
+                            $errorText = 'Не найден код ошибки: ' . $files['error'][$l];
                             break;
                     }
-                    $errors[] = ['name' => $files['name'][$s],
+                    $errors[] = [
+                        'name'  => $files['name'][$l],
                         'error' => $errorText
                     ];
                 }
@@ -164,10 +165,11 @@ class Upload
 
         // Массив файлов с одного input'а
         foreach ($this->FILES as $inputName => $files) {
-            for ($s = 0; $s < $this->FILESCount[$inputName]; $s++) {
 
-                if ($files['size'][$s] > $sizeB) {
-                    $errors[] = $files['name'][$s];
+            for ($l = 0; $l < $this->FILESCount[$inputName]; $l++) {
+
+                if ($files['size'][$l] > $sizeB) {
+                    $errors[] = $files['name'][$l];
                 }
             }
         }
@@ -200,11 +202,11 @@ class Upload
         // Массив файлов с одного input'а
         foreach ($this->FILES as $inputName => $files) {
             // Цикл по всей секции файлов
-            for ($s = 0; $s < $this->FILESCount[$inputName]; $s++) {
+            for ($l = 0; $l < $this->FILESCount[$inputName]; $l++) {
 
                 foreach ($formats as $format) {
 
-                    if (mb_strpos($files['name'][$s], $format) !== false) {
+                    if (containsAll($files['name'][$l], $format)) {
 
                         $formatFlag = true;
                         break;
@@ -214,9 +216,8 @@ class Upload
                 // Если не было вхождения формата, а оно должно быть - ошибка
                 // Если было вхождение формата, а его не должно быть - ошибка
                 if ((!$formatFlag && $isAllowed) || ($formatFlag && !$isAllowed)) {
-                    $errors[] = $files['name'][$s];
+                    $errors[] = $files['name'][$l];
                 }
-
                 $formatFlag = false;
             }
         }
@@ -257,12 +258,12 @@ class Upload
 
         $files = $this->FILES[$inputName];
 
-        for ($s = 0; $s < $this->FILESCount[$inputName]; $s++) {
+        for ($l = 0; $l < $this->FILESCount[$inputName]; $l++) {
 
-            $uploadFile = $dir . basename($uploadNames[$s]);
+            $uploadFile = $dir . basename($uploadNames[$l]);
 
-            if (!move_uploaded_file($files['tmp_name'][$s], $uploadFile)) {
-                $errors[] = $files['name'][$s];
+            if (!move_uploaded_file($files['tmp_name'][$l], $uploadFile)) {
+                $errors[] = $files['name'][$l];
             }
         }
 

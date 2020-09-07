@@ -1,4 +1,4 @@
-class SignHandler {
+class SignHandler extends SignView{
 
    // Объект модуля подписания
    static instance;
@@ -42,7 +42,8 @@ class SignHandler {
    id_sign;
    mapping_level_1;
    mapping_level_2;
-   //==================
+   id_structure_node;
+   //------------------
 
    // Предназначен для получения объекта модуля подписания
    static getInstance () {
@@ -59,21 +60,25 @@ class SignHandler {
    // file         Element : проверяемый файл
    static validateFileField (file) {
       let results_json = file.dataset.validate_results;
+      let sign_state = 'not_signed';
 
       if (results_json) {
          let results = JSON.parse(results_json);
 
          for (let result of results) {
             if (result.signature_verify.result && result.certificate_verify.result) {
-               file.dataset.sign_state = 'valid';
+               sign_state = 'valid';
             } else if (result.signature_verify.result) {
-               file.dataset.sign_state = 'warning';
+               sign_state = 'warning';
                break;
             } else {
                break;
             }
          }
+
       }
+      GeFile.setSignState(file, sign_state);
+
    }
 
    // Предназначен для удаления подписи файла
@@ -84,24 +89,27 @@ class SignHandler {
    static removeSign (file, mapping_1, mapping_2) {
 
       FileNeeds.putSignToDelete(
-         file.dataset.id_sign,
+         parseInt(file.dataset.id_sign),
          mapping_1,
          mapping_2
       );
 
       file.removeAttribute('data-id_sign');
       file.removeAttribute('data-validate_results');
-      file.removeAttribute('data-sign_state');
+
+      GeFile.setSignState(file, 'not_signed');
    }
 
    // Предназначен для инициализации модуля подписания
    constructor () {
+      super();
 
       this.modal = mQS(document, '.sign-modal', 12);
-      this.plugin_info = mQS(this.modal, '.sign-modal__header', 13);
-      this.cert_info = mQS(this.modal, '.sign-modal__cert-info', 17);
       this.validate_info = mQS(this.modal, '.sign-modal__validate', 14);
+
+      this.plugin_info = mQS(this.modal, '.sign-modal__header', 13);
       this.certs = mQS(this.modal, '.sign-modal__certs', 15);
+      this.cert_info = mQS(this.modal, '.sign-modal__cert-info', 17);
       this.actions = mQS(this.modal, '.sign-modal__actions', 16);
 
       this.handleOverlay();
@@ -112,12 +120,6 @@ class SignHandler {
 
       this.handleCancelButton();
       this.handleSignButton();
-   }
-
-   // Предназначен для обработки нажатия на фон модального окна
-   handleOverlay () {
-      this.overlay = mQS(document, '.sign-overlay', 17);
-      this.overlay.addEventListener('click', () => this.closeModal());
    }
 
    // Предназначен для закрытия модуля подписания
@@ -176,7 +178,7 @@ class SignHandler {
             this.is_plugin_initialized = true;
          })
          .catch(exc => {
-            console.log('Ошибка инициализации плагина и заполнения списка сертификатов:\n' + exc);
+            ErrorModal.open('Ошибка инициализации плагина и заполнения списка сертификатов', exc);
             this.closeModal();
          });
    }
@@ -194,37 +196,55 @@ class SignHandler {
    // certs        Array[Object] : массив с данными сертификатов
    handleCertListSelect (certs) {
       this.certs_select = document.getElementById('cert_list_select');
+      this.cert_list = document.getElementById('cert_list');
 
       // Добавляем сертификаты на страницу
-      this.fillCertListSelect(certs);
+      this.fillCertList(certs);
 
-      GeCades.setCertificatesList(this.certs_select);
-
-      this.certs_select.addEventListener('change', () => {
-         // При выборе сертификата получаем информацию о нем
-         GeCades.getCertInfo()
-            // Добавляем на страницу данные о выбранном сертификате
-            .then(cert_info => {
-               this.fillCertInfo(cert_info);
-            })
-            .catch(exc => {
-               console.log('Ошибка при получении информации о сертификате: ' + exc);
-            });
-      });
+      GeCades.setCertificatesList(this.cert_list);
    }
 
    // Предназначен для заполнения селекта выбора сертификатов
    // Принимает параметры-------------------------------
    // certs       Array[Object] : массив с сертификатами
-   fillCertListSelect (certs) {
+   fillCertList (certs) {
+
       certs.forEach(cert => {
-         let option = document.createElement('option');
-         option.text = cert.text;
-         option.value = cert.value;
-         option.classList.add('sign-modal__cert');
-         this.certs_select.options.add(option);
+         let cert_item = document.createElement('DIV');
+         cert_item.value = cert.value;
+         cert_item.classList.add('sign-modal__cert');
+
+         let cert_text = document.createElement('SPAN');
+         cert_text.innerHTML = cert.text;
+         cert_text.classList.add('sign-modal__cert-text');
+
+         cert_item.appendChild(cert_text);
+         this.cert_list.appendChild(cert_item);
+
+         cert_item.addEventListener('click', () => {
+            this.selectCert(cert_item);
+         });
       });
 
+   }
+
+   selectCert(cert_item) {
+      let selected_cert = this.cert_list.querySelector('.sign-modal__cert[data-selected="true"]');
+      if (selected_cert) {
+         selected_cert.dataset.selected = 'false';
+         selected_cert.removeAttribute('data-state');
+      }
+      cert_item.dataset.selected = 'true';
+
+      // При выборе сертификата получаем информацию о нем
+      GeCades.getCertInfo()
+         // Добавляем на страницу данные о выбранном сертификате
+         .then(cert_info => {
+            this.fillCertInfo(cert_info, cert_item);
+         })
+         .catch(exc => {
+            ErrorModal.open('Ошибка при получении информации о сертификате', exc);
+         });
    }
 
    // Предназначен для отображения элементов для создания подписи
@@ -236,20 +256,22 @@ class SignHandler {
 
       this.upload_sign_btn.dataset.active = 'false';
       this.create_sign_btn.dataset.active = 'false';
-
-      // this.modal.querySelector('.sign-modal__buttons').style.display = 'none';
    }
 
    // Предназначен для добавления информации о выбранном сертификате
    // Принимает параметры-------------------------------
    // cert_info         Object : объект с информацией о сертификате
-   fillCertInfo (cert_info) {
+   fillCertInfo (cert_info, cert_item) {
       document.getElementById('subject_name').innerHTML = cert_info.subject_name;
       document.getElementById('issuer_name').innerHTML = cert_info.issuer_name;
       document.getElementById('valid_from_date').innerHTML = GeCades.formattedDateTo_ddmmyyy_hhmmss(cert_info.valid_from_date);
       document.getElementById('valid_to_date').innerHTML = GeCades.formattedDateTo_ddmmyyy_hhmmss(cert_info.valid_to_date);
-      document.getElementById('cert_message').innerHTML = cert_info.cert_message;
-      document.getElementById('cert_message').style.color = cert_info.cert_status ? '#6cb37e' : '#db5151';
+
+      let cert_message = document.getElementById('cert_message');
+      cert_message.innerHTML = cert_info.cert_message;
+      cert_message.dataset.state = cert_info.cert_status;
+      cert_item.dataset.state = cert_info.cert_status;
+
       this.cert_info.dataset.active = 'true';
    }
 
@@ -284,7 +306,7 @@ class SignHandler {
       let fs_name_sign;
 
       // Загружаем открепленную подпись на сервер
-      API.uploadFiles(sign_files, this.mapping_level_1, this.mapping_level_2)
+      API.uploadFiles(sign_files, this.mapping_level_1, this.mapping_level_2, this.id_structure_node)
          // Проверяем подписываемый файл
          .then(uploaded_signs => {
 
@@ -343,6 +365,7 @@ class SignHandler {
       this.fillSignsInfo(results_json);
    }
 
+/*
    fillSignsInfo (validate_results_json) {
       this.validate_info.dataset.active = 'true';
       this.validate_info.innerHTML = '';
@@ -352,8 +375,9 @@ class SignHandler {
          this.validate_info.appendChild(this.createSignInfo(result));
       });
    }
+*/
 
-   createSignInfo (result) {
+/*   createSignInfo (result) {
       let sign = document.createElement('DIV');
       sign.classList.add('sign-modal__sign');
 
@@ -361,7 +385,7 @@ class SignHandler {
       let cert_row = this.createInfoRow('Сертификат: ', cert_state.user_message, cert_state.result);
 
       let sign_state = result.signature_verify;
-      let sign_row = this.createInfoRow('Подпись: ', sign_state.user_message, cert_state.result);
+      let sign_row = this.createInfoRow('Подпись: ', sign_state.user_message, sign_state.result);
 
       let name_row = this.createInfoRow('Подписант: ', result.fio);
       let info_row = this.createInfoRow('Информация: ', result.certificate);
@@ -372,11 +396,11 @@ class SignHandler {
       sign.appendChild(info_row);
 
       return sign;
-   }
-
-   createInfoRow (label, text, state) {
+   }*/
+/*
+   createInfoRow (label, text, state = null) {
       let row = document.createElement('DIV');
-      row.classList.add('sign-modal__row');
+      row.classList.add('sign-modal__sign-row');
 
       let label_span = document.createElement('SPAN');
       label_span.classList.add('sign-modal__label');
@@ -386,7 +410,7 @@ class SignHandler {
       text_span.classList.add('sign-modal__text');
       text_span.innerHTML = text;
       //asd
-      if (state !== undefined) {
+      if (state !== null) {
          text_span.dataset.state = state;
       }
 
@@ -394,7 +418,7 @@ class SignHandler {
       row.appendChild(text_span);
 
       return row;
-   }
+   }*/
 
    handleDeleteSignButton () {
       this.delete_sign_btn = document.getElementById('signature_delete');
@@ -402,7 +426,7 @@ class SignHandler {
 
          this.id_sign = this.file_element.dataset.id_sign;
 
-         SignHandler.removeSign(this.file_element);
+         SignHandler.removeSign(this.file_element, this.mapping_level_1, this.mapping_level_2);
 
          this.validate_info.dataset.active = 'false';
          this.delete_sign_btn.dataset.active = 'false';
@@ -506,11 +530,18 @@ class SignHandler {
       this.id_sign = file.dataset.id_sign;
       this.mapping_level_1 = parent_field.dataset.mapping_level_1;
       this.mapping_level_2 = parent_field.dataset.mapping_level_2;
+
+      let parent_node = file.closest('[data-id_structure_node]');
+      if (parent_node) {
+         this.id_structure_node = parent_node.dataset.id_structure_node;
+      }
+
    }
 
-   addFileElement (file) {
+
+ /*  addFileElement (file) {
       let file_info = file.querySelector('.files__info');
       let sign_file = this.modal.querySelector('.sign-modal__file');
       sign_file.innerHTML = file_info.innerHTML;
-   }
+   }*/
 }

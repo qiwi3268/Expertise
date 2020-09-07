@@ -4,17 +4,16 @@ class BrowserHelper {
 
 
    static checkBrowser () {
-      //TODO alert
 
       // Блок проверок на непподерживаемые браузеры
       if (BrowserHelper.isInternetExplorer()) {
-         console.log('Браузер не соответствует требованиям АИС (Internet Explorer не поддерживается)');
+         ErrorModal.open('Браузер не соответствует требованиям АИС', 'Internet Explorer не поддерживается');
          return false;
       } else if (BrowserHelper.isEdge()) {
-         console.log('Браузер не соответствует требованиям АИС (Edge не поддерживается)');
+         ErrorModal.open('Браузер не соответствует требованиям АИС', 'Edge не поддерживается');
          return false;
       } else if (!BrowserHelper.canPromise()) {
-         console.log('Браузер не соответствует требованиям АИС (отсутствует поддержка promise)');
+         ErrorModal.open('Браузер не соответствует требованиям АИС', 'Отсутствует поддержка promise');
          return false;
       }
 

@@ -255,6 +255,32 @@
                 </div>
                 <!--//Вид работ//-->
 
+                <!--ГРБС-->
+                <?php if (!is_null($variablesTV->getValue('form_files')[1][1])): ?>
+                    <div class="body-card__row" data-mapping_level_1="1" data-mapping_level_2="1">
+                        <span class="body-card__title">Файл ГРБС</span>
+                        <div class="body-card__files files">
+                            <?php foreach ($variablesTV->getValue('form_files')[1][1] as $file): ?>
+                                <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" data-validate_results='<?= $file['validate_results'] ?>'>
+
+                                    <div class="files__info">
+                                        <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
+                                        <div class="files__description">
+                                            <span class="files__name"><?= $file['file_name'] ?></span>
+                                            <span class="files__size"><?= $file['human_file_size'] ?></span>
+                                        </div>
+                                    </div>
+                                    <div class="files__state"></div>
+                                    <div class="files__actions">
+                                        <i class="files__unload fas fa-file-download"></i>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <!--//ГРБС//-->
+
                 <!--Кадастровый номер земельного участка-->
                 <?php if ($variablesTV->getExistenceFlag('cadastral_number')): ?>
                     <div class="body-card__row">
@@ -309,26 +335,6 @@
                 <?php endif; ?>
                 <!--//Куратор//-->
 
-                <!--ГРБС-->
-                <?php if (!is_null($variablesTV->getValue('form_files')[1][1])): ?>
-                    <div class="body-card__row" data-mapping_level_1="1" data-mapping_level_2="1">
-                        <span class="body-card__title">Файл ГРБС</span>
-                        <div class="body-card__files files">
-                            <?php foreach ($variablesTV->getValue('form_files')[1][1] as $file): ?>
-                                <div class="files__item" data-id="<?= $file['id'] ?>">
-                                    <div class="files__info">
-                                        <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
-                                        <div class="files__name"><?= $file['file_name'] ?></div>
-                                    </div>
-                                    <div class="files__actions">
-                                        <i class="files__unload fas fa-file-download"></i>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                <?php endif; ?>
-                <!--//ГРБС//-->
 
             </div>
         </div>
@@ -353,31 +359,51 @@
                 <?php else: ?>
                 <div class="documentation" data-mapping_level_1="<?= $variablesTV->getValue('documentation_mapping_level_1') ?>" data-mapping_level_2="<?= $variablesTV->getValue('documentation_mapping_level_2') ?>">
                 <?php foreach ($variablesTV->getValue('documentation_files_in_structure') as $node): ?>
-                        <div class="documentation__node">
-                            <span class="documentation__name" style="padding-left: <?= $node['depth']*25 + 15 ?>px"><?= $node['name'] ?></span>
-                            <?php if (isset($node['files'])): ?>
-                                <div class="documentation__files files" style="padding-left: <?= $node['depth']*25 + 15 ?>px">
-                                    <?php foreach ($node['files'] as $file): ?>
-                                        <div class="files__item" data-id="<?= $file['id'] ?>">
-                                            <div class="files__info">
-                                                <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
+                    <div class="documentation__node">
+                        <span class="documentation__name" style="padding-left: <?= $node['depth']*25 + 15 ?>px"><?= $node['name'] ?></span>
+                        <?php if (isset($node['files'])): ?>
+                            <div class="documentation__files files" >
+                                <?php foreach ($node['files'] as $file): ?>
+                                    <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" style="padding-left: <?= $node['depth']*25 + 7 ?>px" data-validate_results='<?= $file['validate_results'] ?>'>
+                                        <div class="files__info">
+                                            <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
+                                            <div class="files__description">
                                                 <span class="files__name"><?= $file['file_name'] ?></span>
-                                            </div>
-                                            <div class="files__actions">
-                                                <i class="files__unload fas fa-file-download"></i>
+                                                <span class="files__size"><?= $file['human_file_size'] ?></span>
                                             </div>
                                         </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-                <?php endif; ?>
+                                        <div class="files__state"></div>
+                                        <div class="files__actions">
+                                            <i class="files__unload fas fa-file-download"></i>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
             </div>
+            <?php endif; ?>
+        </div>
 
         </div>
 
 
 
+    </div>
+
+
+    <div class="sign-overlay"></div>
+
+
+    <div class="modal sign-modal" data-plugin_loaded="false">
+        <div class="sign-modal__file-body">
+            <div class="sign-modal__file-info">
+                <div class="sign-modal__file"></div>
+            </div>
+        </div>
+
+        <div class="sign-modal__validate" data-active="false"></div>
+
+        <div class="sign-modal__empty"></div>
     </div>

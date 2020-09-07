@@ -68,6 +68,7 @@ class DependenciesHandler {
 
       dependent_values.forEach((block_states, dependency_key) => {
 
+
          let setBlockState = this.getBlockStateSetter(dependency_key);
 
          Object.keys(block_states).forEach(name => {
@@ -101,9 +102,7 @@ class DependenciesHandler {
 
          });
 
-
       });
-
    }
 
    static getBlockStateSetter (dependency_key) {
@@ -159,7 +158,7 @@ class DependenciesHandler {
          // Берем нужные значения, по значению родительского поля
          let radio_values = values[this.result_input.value][0];
 
-         let dependent_row = this.blocks_container.querySelector(`[data-field_name=${input.dataset.target_change}]`);
+         let dependent_row = this.blocks_container.querySelector(`.field[data-name=${input.dataset.target_change}]`);
          let dependent_radio = dependent_row.querySelector('.radio');
 
          if (dependent_radio) {
@@ -189,7 +188,7 @@ class DependenciesHandler {
 
       if (dependent_field_names) {
          Object.keys(dependent_field_names).forEach(field_name => {
-            let dependent_rows = this.blocks_container.querySelectorAll(`[data-row-name="${field_name}"]`);
+            let dependent_rows = this.blocks_container.querySelectorAll(`.field[data-name="${field_name}"]`);
             dependent_rows.forEach(row => row.dataset.required = dependent_field_names[field_name]);
          });
       }
@@ -224,7 +223,7 @@ class DependenciesHandler {
       });
    }
 
-   removeRowValue (field) {
+   static removeRowValue (field) {
       // Удаляем записанное значение в зависимом поле
       field.querySelector('.field-result').value = '';
 

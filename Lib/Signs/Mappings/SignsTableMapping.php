@@ -3,12 +3,14 @@
 
 namespace Lib\Signs\Mappings;
 
+use Lib\Files\Mappings\FilesTableMapping;
 
-class SignsTableMapping extends \Lib\Files\Mappings\FilesTableMapping
+
+class SignsTableMapping extends FilesTableMapping
 {
 
 
-    private string $neededInterface = 'Tables\Signs\Interfaces\SignTable';
+    private const NEEDED_INTERFACE = 'Tables\Signs\Interfaces\SignTable';
     private string $fileClass;
 
 
@@ -40,13 +42,13 @@ class SignsTableMapping extends \Lib\Files\Mappings\FilesTableMapping
             return;
         }
 
-        $interfaces = class_implements($signClass);
-
         // Проверка на реализацию интерфейса
-        $neededInterface = $this->neededInterface;
-        if (!$interfaces || !in_array($this->neededInterface, $interfaces, true)) {
+        if (
+            !($interfaces = class_implements($signClass))
+            || !in_array(self::NEEDED_INTERFACE, $interfaces, true)
+        ) {
             $this->errorCode = 3;
-            $this->errorText = "Указанный в маппинге класс: '{$signClass}' не реализует требуемый интерфейс: '{$neededInterface}'";
+            $this->errorText = "Указанный в маппинге класс: '{$signClass}' не реализует требуемый интерфейс: '{" . self::NEEDED_INTERFACE . "}'";
             return;
         }
 

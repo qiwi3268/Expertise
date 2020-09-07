@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
    file_selects.forEach(select => {
       select.addEventListener('click', () => {
-
          FileUploader.getInstance().show(select);
       });
    });
@@ -32,7 +31,7 @@ class FileUploader {
 
    parent_field;
    parent_node;
-
+   // result_input;
 
    static getInstance () {
 
@@ -110,7 +109,7 @@ class FileUploader {
             this.file_input.files = files;
             this.addFilesToModal(files);
          } else { // Попытка загрузить несколько файлов, где разрешен только 1
-            //TODO error
+            ErrorModal.open('Ошибка при загрузке файлов', 'Загрузить можно только 1 файл');
          }
       });
    }
@@ -122,7 +121,24 @@ class FileUploader {
 
    addFilesToModal (files) {
       Array.from(files).forEach(file_data => {
-         this.modal_body.appendChild(this.createFileModalItem(file_data));
+         if (!FileChecker.checkExtension(file_data.name)) {
+
+            ErrorModal.open(
+               'Ошибка при загрузке файла',
+               'Загружен файл в неверном формате (доступные форматы: pdf, docx, xlsx, sig)'
+            );
+            this.closeModal();
+
+         } else if (!FileChecker.checkSize(file_data.size)) {
+
+            ErrorModal.open('Ошибка при загрузке файла', 'Загружен файл c размером больше 80 МБ');
+            this.closeModal();
+
+         } else {
+            this.modal_body.appendChild(this.createFileModalItem(file_data));
+         }
+
+
       });
    }
 
@@ -142,7 +158,7 @@ class FileUploader {
 
       let file_size = document.createElement('DIV');
       file_size.classList.add('file-modal__size');
-      file_size.innerHTML = GeFile.getFileSizeString(file_data);
+      file_size.innerHTML = GeFile.getFileSizeString(file_data.size);
 
       file_item.appendChild(file_icon);
       file_info.appendChild(file_name);
@@ -172,10 +188,8 @@ class FileUploader {
    handleSubmitButton () {
       let submit_button = this.modal.querySelector('.file-modal__submit');
       submit_button.addEventListener('click', () => {
-         if (!this.is_uploading && FileChecker.IsReadyToUpload(this.file_input.files)) {
+         if (!this.is_uploading) {
             this.sendFiles();
-         } else {
-            console.log('Неправильные файлы');
          }
       });
    }
@@ -195,6 +209,10 @@ class FileUploader {
          this.uploadProgressCallback.bind(this)
       )
          .then(uploaded_files => {
+
+            /*if (this.result_input) {
+               this.result_input.value = '1';
+            }*/
 
             return this.putFilesToRow(uploaded_files);
 
@@ -226,7 +244,8 @@ class FileUploader {
    // Предназначен для добавления файлов в родительское поле
    // Принимает параметры-------------------------------
    // files         Array[Object] : массив с файлами
-   async putFilesToRow (files) {
+   putFilesToRow (files) {
+      //todo вынести
       let parent_select = this.parent_field.querySelector('.field-select');
       if (parent_select) {
          parent_select.classList.add('filled');
@@ -243,21 +262,24 @@ class FileUploader {
       files_body.classList.add('filled');
 
       for (let file of files) {
-         let actions = [GeFile.sign, GeFile.unload, GeFile.delete];
+
+         let actions = [GeFile.unload, GeFile.delete];
          let file_item = GeFile.createElement(file, files_body, actions);
 
-         await this.putFile(file_item);
+         this.putFile(file_item, files_body);
          changeParentCardMaxHeight(this.parent_field);
+
       }
 
-      return 1;
+
    }
 
-   putFile (file_item) {
+   putFile (file_item, files_body) {
+      let id_file = parseInt(file_item.dataset.id);
 
-      API.checkFile(file_item.dataset.id, this.mapping_1, this.mapping_2)
+      API.checkFile(id_file, this.mapping_1, this.mapping_2)
          .then(check_response => {
-            return API.internalSignatureVerify(check_response.fs_name, this.mapping_1, this.mapping_2);
+            return API.internalSignatureVerify(check_response.fs_name, this.mapping_1, this.mapping_2, id_file);
          })
          .then(validate_results => {
 
@@ -267,12 +289,21 @@ class FileUploader {
                file_item.dataset.is_internal = 'true';
                SignHandler.validateFileField(file_item);
 
+            } else {
+               GeFile.setSignState(file_item, 'not_signed');
             }
 
          })
          .catch(exc => {
             console.error('Ошибка при проверке подписи файла:\n' + exc);
+            // FileNeeds.putFileToDelete(id_file, this.mapping_1, this.mapping_2, file_item);
+            let ge_file = new GeFile(file_item, files_body);
+            ge_file.removeElement();
          });
+   }
+
+   setFileSignState() {
+
    }
 
    closeModal () {
@@ -296,7 +327,9 @@ class FileUploader {
       // Если блок с документацией
       if (this.parent_node) {
          this.id_structure_node = this.parent_node.dataset.id_structure_node;
-      }
+      } /*else {
+         this.result_input = this.parent_field.querySelector('.field-result');
+      }*/
 
       if (this.parent_field.dataset.multiple !== 'false') {
          this.file_input.setAttribute('multiple', '');

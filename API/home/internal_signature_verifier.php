@@ -123,8 +123,8 @@ try {
         ]));
     } catch (PregMatchEx $e) {
 
-        // GetHandlePregMatch
-        // Произошла ошибка или нет вхождений шаблона при работе функции GetHandlePregMatch
+        // getHandlePregMatch
+        // Произошла ошибка или нет вхождений шаблона при работе функции getHandlePregMatch
         $date = $Logger->write($e->getMessage());
 
         exit(json_encode([
@@ -197,7 +197,7 @@ try {
         ]));
     }
 
-    $ClassName = $Mapping->getClassName();
+    $className = $Mapping->getClassName();
     $id_sign = $fileAssoc['id'];
 
     // Создаем запись в таблице подписей
@@ -205,7 +205,7 @@ try {
 
         try {
 
-            $ClassName::create(
+            $className::create(
                 $id_sign,
                 0,
                 null,
@@ -222,7 +222,7 @@ try {
 
             $errorMessage = $e->getMessage();
             $errorCode = $e->getCode();
-            $Logger->write("Произошла ошибка при добавлении записи в таблицу подписей: '{$ClassName}'. Message: '{$errorMessage}', Code: '{$errorCode}'");
+            $Logger->write("Произошла ошибка при добавлении записи в таблицу подписей: '{$className}'. Message: '{$errorMessage}', Code: '{$errorCode}'");
 
             exit(json_encode([
                 'result'  => 7,

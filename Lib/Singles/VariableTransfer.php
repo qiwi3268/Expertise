@@ -10,7 +10,7 @@ class VariableTransfer
 {
 
     // Сущность (единственный возможный экземпляр) класса
-    private static VariableTransfer $instance;
+    private static self $instance;
     // Режим работы класса
     // isHardMode  true : жеский режим работы - попытки получить от get'тера несуществующий ключ вызывают exception
     //            false : мягкий режим работы - попытки получить от get'тера несуществующий ключ возвращают null
@@ -78,7 +78,7 @@ class VariableTransfer
         }
 
         if ($isHardMode && !isset($container[$key])) {
-            throw new Exception("Ключ '$key' не существует в запрашиваемом контейнере");
+            throw new \Exception("Ключ '{$key}' не существует в запрашиваемом контейнере");
         }
     }
 

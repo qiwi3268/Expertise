@@ -8,7 +8,7 @@ namespace Lib\Files\Mappings;
 //
 class FilesTableMapping
 {
-    private string $neededInterface = 'Tables\Files\Interfaces\FileTable';
+    private const NEEDED_INTERFACE = 'Tables\Files\Interfaces\FileTable';
     protected ?int $errorCode = null;
     protected string $errorText;
     protected string $class;
@@ -20,7 +20,6 @@ class FilesTableMapping
     //
     public function __construct(string $mappingLevel1, string $mappingLevel2)
     {
-
         // Проверка существования маппинга
         if (!isset(FILE_TABLE_MAPPING[$mappingLevel1][$mappingLevel2])) {
             $this->errorCode = 1;
@@ -38,13 +37,13 @@ class FilesTableMapping
             return;
         }
 
-        $interfaces = class_implements($class);
-
         // Проверка на реализацию интерфейса
-        $neededInterface = $this->neededInterface;
-        if (!$interfaces || !in_array($neededInterface, $interfaces, true)) {
+        if (
+            !($interfaces = class_implements($class))
+            || !in_array(self::NEEDED_INTERFACE, $interfaces, true)
+        ) {
             $this->errorCode = 3;
-            $this->errorText = "Указанный в маппинге класс: '{$class}' не реализует требуемый интерфейс: '{$neededInterface}'";
+            $this->errorText = "Указанный в маппинге класс: '{$class}' не реализует требуемый интерфейс: '" . self::NEEDED_INTERFACE . "'";
             return;
         }
 

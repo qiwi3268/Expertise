@@ -207,7 +207,7 @@ class API {
       return form_data;
    }
 
-   static internalSignatureVerify (fs_name, mapping_1, mapping_2, verify_callback = null) {
+   static internalSignatureVerify (fs_name, mapping_1, mapping_2, id_file, verify_callback = null) {
 
       return new Promise((resolve, reject) => {
          let form_data = this.getInternalVerifyFormData(fs_name, mapping_1, mapping_2);
@@ -226,7 +226,7 @@ class API {
                switch (response.result) {
                   case 5.2:
                      alert('Открепленная подпись 2');
-                     //TODO на удаление
+                     reject(`Ошибка при проверке встроенной подписи: \nЗагружена встроенная подпись`);
                      break;
 
                   case 5.1:

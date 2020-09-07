@@ -69,7 +69,7 @@ class MessageParser
             // - регистронезависимые
             // - использование кодировки utf-8
             $pattern = "/.+Signature verifying\.\.\..*(\[ErrorCode:\s*.+])/iu";
-            $parts[] = GetHandlePregMatch($pattern, $tmp, false)[1];
+            $parts[] = getHandlePregMatch($pattern, $tmp, false)[1];
         }
 
         foreach ($parts as $part) {
@@ -116,7 +116,7 @@ class MessageParser
         // - использование кодировки utf-8
         $pattern = '/,*\s*[а-яё]+,\s*[а-яё]+\s[а-яё]+,*/iu';
 
-        $matches = GetHandlePregMatch($pattern, $Signer, true)[0]; // Массив полных вхождений шаблона
+        $matches = getHandlePregMatch($pattern, $Signer, true)[0]; // Массив полных вхождений шаблона
 
         $count = 0;             // Количество найденных ФИО
         $FIOs = [];             // Массив с фамилиями, именами и отчествами для вывода exception'а
@@ -129,7 +129,10 @@ class MessageParser
 
         foreach ($matches as $match) {
 
-            $fio_matches = GetHandlePregMatch($fio_pattern, $match, true)[0]; // Массив полных вхождений шаблона
+            // Заменяем все ё на е, т.е. в БД хранятся только е
+            $match = str_replace('ё', 'е', $match);
+
+            $fio_matches = getHandlePregMatch($fio_pattern, $match, true)[0]; // Массив полных вхождений шаблона
 
             // Так как нет уверенности в том, что имя следует именно вторым, поэтому проверяем все слова
             foreach ($fio_matches as $part) {
@@ -170,7 +173,7 @@ class MessageParser
         // - регистронезависимые
         // - использование кодировки utf-8
         $pattern = '/Signer:\s*(.+)/iu';
-        return GetHandlePregMatch($pattern, $Signer, false)[1]; // Возвращаем результат первой группы
+        return getHandlePregMatch($pattern, $Signer, false)[1]; // Возвращаем результат первой группы
     }
 
 
@@ -191,6 +194,6 @@ class MessageParser
         // - регистронезависимые
         // - использование кодировки utf-8
         $pattern = '/\[ErrorCode:\s*(.+)]/iu';
-        return GetHandlePregMatch($pattern, $message, false)[1]; // Возвращаем результат первой группы
+        return getHandlePregMatch($pattern, $message, false)[1]; // Возвращаем результат первой группы
     }
 }

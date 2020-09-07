@@ -3,11 +3,13 @@
 use core\Classes\Session;
 use Lib\Singles\NodeStructure;
 use Lib\Singles\VariableTransfer;
-use Classes\Application\Helpers\Helper as ApplicationHelper;
 use Classes\Application\Miscs\Initialization\CreateFormInitializator;
-use Tables\applications;
+use Classes\Application\Responsible as ApplicationResponsible;
+use Classes\Application\Helpers\Helper as ApplicationHelper;
+use Tables\application;
 use Tables\application_counter;
 use Tables\Responsible\type_3\application as resp_application_type_3;
+use Tables\applicant_access_group;
 use Tables\Structures\{
     documentation_1,
     documentation_2
@@ -26,8 +28,16 @@ $internalCounter = application_counter::getInternal();
 // Числовое имя
 $appNumName = ApplicationHelper::getInternalAppNumName($internalCounter);
 
-$applicationId = applications::createTemporary($userId, $appNumName);
-resp_application_type_3::createFullAccess($applicationId, $userId);
+$applicationId = application::createTemporary($userId, $appNumName);
+
+
+// Записываем текущего пользователя в группу доступа "Полный доступ" к заявлению
+applicant_access_group::createFullAccess($applicationId, $userId);
+// Устанавливаем ответственную группу доступа "Полный доступ"
+$responsible = new ApplicationResponsible($applicationId);
+$responsible->createNewResponsibleType3('full_access');
+
+
 p($_SESSION);
 var_dump($applicationId);
 
@@ -40,9 +50,6 @@ if (!mkdir(APPLICATIONS_FILES . "/$applicationId")) {
 if (!chmod(APPLICATIONS_FILES . "/$applicationId", 0757)) {
     exit('Не удалось задать права на директорию');
 }
-
-// Добавляем созданное заявление в сессию
-Session::addAuthorRoleApplicationId($applicationId);
 
 $variablesTV->setValue('numerical_name', $appNumName);
 $variablesTV->setValue('id_application', $applicationId);

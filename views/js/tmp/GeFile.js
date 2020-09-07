@@ -1,3 +1,34 @@
+document.addEventListener('DOMContentLoaded', () => {
+   let file_blocks = document.querySelectorAll('.files');
+
+   file_blocks.forEach(block => {
+
+      let files = block.querySelectorAll('.files__item');
+
+      if (files.length > 0) {
+         block.classList.add('filled');
+      }
+
+      files.forEach(file_element => {
+
+
+         let file = new GeFile(file_element, block);
+
+       /*  let signs = file_element.querySelector('.files__signs');
+         if (signs) {
+            file.handleSigns(signs.innerHTML);
+            signs.remove();
+         }*/
+
+         SignHandler.validateFileField(file.element);
+
+
+         file.handleActionButtons();
+      });
+   });
+
+});
+
 class GeFile {
 
    container;
@@ -7,9 +38,65 @@ class GeFile {
    delete_button;
    sign_button;
 
+   field;
+   node;
+
+   mapping_1;
+   mapping_2;
+   id_structure_node;
+
    constructor (file_element, files_block) {
       this.element = file_element;
-      this.container = files_block;
+
+      this.container = files_block || file_element.closest('.files');
+      this.field = this.container.closest('[data-mapping_level_1]');
+      this.node = this.container.closest('[data-id_structure_node]');
+
+      this.mapping_1 = this.field.dataset.mapping_level_1;
+      this.mapping_2 = this.field.dataset.mapping_level_2;
+
+      if (this.node) {
+         this.id_structure_node = this.node.dataset.id_structure_node;
+      }
+
+   }
+
+   handleSigns(signs_json) {
+      let validate_results = [];
+
+      let signs = JSON.parse(signs_json);
+
+      for (let sign_type in signs) {
+
+         signs[sign_type].forEach(sign => {
+            validate_results.push(this.getSignData(sign));
+         });
+
+      }
+
+      if (validate_results.length > 0) {
+         this.element.dataset.validate_results = JSON.stringify(validate_results);
+      }
+
+   }
+
+   getSignData(sign) {
+      let sign_data = {};
+
+      sign_data.fio = sign.fio;
+      sign_data.certificate = sign.certificate;
+
+      sign_data.signature_verify = {
+         result: sign.signature_result,
+         user_message: sign.signature_user_message
+      }
+
+      sign_data.certificate_verify = {
+         result: sign.certificate_result,
+         user_message: sign.certificate_user_message
+      }
+
+      return sign_data;
    }
 
    // Предназначен для добавления обработчиков кнопок действий с файлами
@@ -26,7 +113,7 @@ class GeFile {
          this.handleDeleteButton();
       }
 
-      this.sign_button = this.actions.querySelector('.files__sign');
+      this.sign_button = this.element.querySelector('.files__state');
       if (this.sign_button) {
          this.handleSignButton();
       }
@@ -40,9 +127,8 @@ class GeFile {
 
          API.checkFile(
             this.element.dataset.id,
-            this.container.mapping_1,
-            this.container.mapping_2,
-            this.container.id_structure_node
+            this.mapping_1,
+            this.mapping_2,
          )
             .then(check_result => {
                location.href = API.getUnloadFileURN(check_result);
@@ -61,13 +147,13 @@ class GeFile {
 
          FileNeeds.putFileToDelete(
             this.element.dataset.id,
-            this.container.mapping_1,
-            this.container.mapping_2,
+            this.mapping_1,
+            this.mapping_2,
             this.element
          );
 
          if (this.element.dataset.id_sign) {
-            SignHandler.removeSign(this.element);
+            SignHandler.removeSign(this.element, this.mapping_1, this.mapping_2);
          }
 
          this.removeElement();
@@ -81,6 +167,7 @@ class GeFile {
       if (!this.container.querySelector('.files__item')) {
          this.container.classList.remove('filled');
 
+         // todo вынести выше
          let parent_select = this.container.previousElementSibling;
          if (parent_select && parent_select.classList.contains('modal-file')) {
             parent_select.classList.remove('filled');
@@ -90,7 +177,11 @@ class GeFile {
 
    handleSignButton () {
       this.sign_button.addEventListener('click', () => {
-         SignHandler.getInstance().open(this.element);
+         if (this.element.dataset.read_only) {
+            SignView.getInstance().open(this.element);
+         } else {
+            SignHandler.getInstance().open(this.element);
+         }
       });
    }
 
@@ -103,24 +194,82 @@ class GeFile {
       let file = new GeFile(file_item, files_block);
 
       file.addInfo(file_data);
-      file.addActions(file, actions);
+      file.addState();
+      file.addActions(actions);
 
       return file_item;
    }
 
-   addActions (file, actions) {
-      this.actions = document.createElement('DIV');
-      this.actions.classList.add('files__actions');
-      file.element.appendChild(this.actions);
-
-      actions.forEach(action => action(file));
-      file.handleActionButtons();
+   addState() {
+      let sign_state = document.createElement('DIV');
+      sign_state.classList.add('files__state');
+      this.element.appendChild(sign_state);
+      GeFile.setSignState(this.element, 'checking');
+      this.spinStateIcon(this);
    }
 
-   static sign (file) {
-      let sign_button = document.createElement('I');
-      sign_button.classList.add('files__sign', 'fas', 'fa-file-signature');
-      file.actions.appendChild(sign_button);
+   spinStateIcon(file) {
+      let state_icon = file.element.querySelector('.files__state-icon');
+      let degrees = 0;
+
+      let spin = setInterval(() => {
+         degrees++;
+         state_icon.style.transform = 'rotate(' + degrees + 'deg)';
+
+         if (file.element.dataset.state !== 'checking') {
+            clearInterval(spin);
+         }
+
+      }, 5);
+   }
+
+
+
+   static setSignState(file, state) {
+      let file_state = file.querySelector('.files__state');
+      file_state.innerHTML = '';
+
+      let state_icon = document.createElement('I');
+      state_icon.classList.add('files__state-icon', 'fas');
+      file_state.appendChild(state_icon);
+
+      let state_text = document.createElement('SPAN');
+      state_text.classList.add('files__state-text');
+      file_state.appendChild(state_text);
+
+      switch (state) {
+         case 'checking':
+            state_icon.classList.add('fa-spinner');
+            state_text.innerHTML = 'Проверка';
+            file.dataset.state = 'checking';
+            break;
+         case 'valid':
+            state_icon.classList.add('fa-pen-alt');
+            state_text.innerHTML = 'Подписано';
+            file.dataset.state = 'valid';
+            break;
+         case 'not_signed':
+            state_icon.classList.add('fa-times');
+            state_text.innerHTML = 'Не подписано';
+            file.dataset.state = 'not_signed';
+            break;
+         case 'warning':
+            state_icon.classList.add('fa-exclamation');
+            state_text.innerHTML = 'Ошибка';
+            file.dataset.state = 'warning';
+            break;
+
+      }
+
+   }
+
+   addActions (actions) {
+      this.actions = document.createElement('DIV');
+      this.actions.classList.add('files__actions');
+      this.element.appendChild(this.actions);
+
+      actions.forEach(action => action(this));
+      this.handleActionButtons();
    }
 
    static unload (file) {
@@ -135,6 +284,8 @@ class GeFile {
       file.actions.appendChild(delete_button);
    }
 
+
+
    // Предназначен для добавления информации о файле в его блок
    // Принимает параметры-------------------------------
    // file_item     Element : блок с файлом
@@ -148,15 +299,24 @@ class GeFile {
       file_icon.classList.add('files__icon', 'fas', GeFile.getFileIconClass(file_data.name));
       file_info.appendChild(file_icon);
 
+      let file_description = document.createElement('DIV');
+      file_description.classList.add('files__description');
+      file_info.appendChild(file_description);
+
       let file_name = document.createElement('SPAN');
       file_name.classList.add('files__name');
       file_name.innerHTML = file_data.name;
-      file_info.appendChild(file_name);
+      file_description.appendChild(file_name);
+
+      let file_size = document.createElement('SPAN');
+      file_size.classList.add('files__size');
+      file_size.innerHTML = file_data.human_file_size;
+      file_description.appendChild(file_size);
    }
 
-   static getFileSizeString (file_data) {
+   static getFileSizeString (file_size) {
       let size;
-      let kb = file_data.size / 1024;
+      let kb = file_size / 1024;
 
       if (kb > 1024) {
          size = Math.round(kb / 1024) + ' МБ'

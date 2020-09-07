@@ -13,6 +13,8 @@ class NodeStructure
 
     private array $structure;
 
+    //todo написать что это ваще такое и какие должны быть элементы в вмассиве
+
     // Служебная проверка на то, что у каждого дочернего узла существует родитель
     // Выбрасывает исключения--------------------------------
     // Lib\Exceptions\NodeStructure :
@@ -30,7 +32,7 @@ class NodeStructure
                 $parent = array_filter($structure, fn($localNode) => ($localNode['id'] == $parentNodeId));
 
                 if (empty($parent)) {
-                    throw new SelfEx("У узла id: {$node['id']} отсутствует родительский узел id: {$parentNodeId}", 1);
+                    throw new SelfEx("У узла id: '{$node['id']}' отсутствует родительский узел id: '{$parentNodeId}'", 1);
                 }
             }
         }

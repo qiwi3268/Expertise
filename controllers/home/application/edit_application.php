@@ -4,7 +4,7 @@
 $variablesTV = \Lib\Singles\VariableTransfer::getInstance();
 
 $applicationId = $_GET['id_application'];
-$applicationAssoc = \Tables\applications::getAssocById($applicationId);
+$applicationAssoc = \Tables\application::getAssocById($applicationId);
 
 //var_dump($applicationAssoc);
 
@@ -19,13 +19,13 @@ $applicationAssocTV = $applicationAssoc;
 
 // Преобразование дат к строкам todo тоже переделать
 if(!is_null($applicationAssocTV['date_planning_documentation_approval'])){
-    $applicationAssocTV['date_planning_documentation_approval'] = GetDdMmYyyyDate($applicationAssocTV['date_planning_documentation_approval']);
+    $applicationAssocTV['date_planning_documentation_approval'] = getDdMmYyyyDate($applicationAssocTV['date_planning_documentation_approval']);
 }
 if(!is_null($applicationAssocTV['date_GPZU'])){
-    $applicationAssocTV['date_GPZU'] = GetDdMmYyyyDate($applicationAssocTV['date_GPZU']);
+    $applicationAssocTV['date_GPZU'] = getDdMmYyyyDate($applicationAssocTV['date_GPZU']);
 }
 if(!is_null($applicationAssocTV['date_finish_building'])){
-    $applicationAssocTV['date_finish_building'] = GetDdMmYyyyDate($applicationAssocTV['date_finish_building']);
+    $applicationAssocTV['date_finish_building'] = getDdMmYyyyDate($applicationAssocTV['date_finish_building']);
 }
 
 
@@ -180,7 +180,7 @@ if(!is_null($numberPlanningDocumentationApproval)){
 $datePlanningDocumentationApproval = $applicationAssoc[_PROPERTY_IN_APPLICATION['date_planning_documentation_approval']];
 if(!is_null($datePlanningDocumentationApproval)){
     $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['date_planning_documentation_approval'], true);
-    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['date_planning_documentation_approval'], GetDdMmYyyyDate($datePlanningDocumentationApproval));
+    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['date_planning_documentation_approval'], getDdMmYyyyDate($datePlanningDocumentationApproval));
 }else{
     $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['date_planning_documentation_approval'], false);
 }
@@ -202,7 +202,7 @@ if(!is_null($numberGPZU)){
 $dateGPZU = $applicationAssoc[_PROPERTY_IN_APPLICATION['date_GPZU']];
 if(!is_null($dateGPZU)){
     $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['date_GPZU'], true);
-    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['date_GPZU'], GetDdMmYyyyDate($dateGPZU));
+    $variablesTV->setValue(_PROPERTY_IN_APPLICATION['date_GPZU'], getDdMmYyyyDate($dateGPZU));
 }else{
     $variablesTV->setExistenceFlag(_PROPERTY_IN_APPLICATION['date_GPZU'], false);
 }

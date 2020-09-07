@@ -14,7 +14,7 @@ class Session
     // userAssoc array : данные о пользователе
     // userRole  array : данные о ролях пользователя
     //
-    static public function createUser(array $userAssoc, array $userRole): void
+    static public function createUser(array $userAssoc, array $userRoles): void
     {
         $_SESSION['user_info'] = [
             'id'          => $userAssoc['id'],
@@ -25,16 +25,16 @@ class Session
             'position'    => $userAssoc['position']
         ];
 
-        $_SESSION['user_info']['role'] = [];
+        $_SESSION['user_info']['roles'] = [];
 
-        foreach ($userRole as $role) {
-            $_SESSION['user_info']['role'][] = $role['system_value'];
+        foreach ($userRoles as $role) {
+            $_SESSION['user_info']['roles'][] = $role['system_value'];
         }
 
         $_SESSION['flags'] = [
-            'authorized' => !empty(self::getUserRoles()),
-            'admin'      => in_array(ROLE['ADM'], self::getUserRoles(), true),
-            'applicant'  => in_array(ROLE['APP'], self::getUserRoles(), true)
+            'authorized' => !empty($_SESSION['user_info']['roles']),
+            'admin'      => in_array(ROLE['ADM'], $_SESSION['user_info']['roles'], true),
+            'applicant'  => in_array(ROLE['APP'], $_SESSION['user_info']['roles'], true)
         ];
     }
 
@@ -44,39 +44,6 @@ class Session
     static public function deleteUser(): void
     {
         unset($_SESSION['user_info'], $_SESSION['flags'], $_SESSION['role_in_application']);
-    }
-
-
-    // Предназначен для создания (хранения) в сесии заявителя id-заявлений, в которых он является автором
-    //
-    static public function createAuthorRoleApplicationIds(array $applicationsIds): void
-    {
-        $_SESSION['role_in_application'][ROLE_IN_APPLICATION['AUTHOR']] = $applicationsIds;
-    }
-
-
-    // Предназначен для добавления id-заявления к списку тех, в которых он является автором
-    //
-    static public function addAuthorRoleApplicationId(int $applicationId): void
-    {
-        if (isset($_SESSION['role_in_application'][ROLE_IN_APPLICATION['AUTHOR']])) {
-
-            // Добавляем id в начало массива с заявлениями
-            array_unshift($_SESSION['role_in_application'][ROLE_IN_APPLICATION['AUTHOR']], $applicationId);
-        } else {
-
-            $_SESSION['role_in_application'][ROLE_IN_APPLICATION['AUTHOR']] = [$applicationId];
-        }
-    }
-
-    // Предназначен для получения массива id-заявлений, в которых пользователь являтеся автором
-    // Возвращает параметры-----------------------------------
-    // array  : id-заявлений в сессии
-    // null   : в сессии нет записанных id-заявлений
-    //
-    static public function getAuthorRoleApplicationIds(): ?array
-    {
-        return $_SESSION['role_in_application'][ROLE_IN_APPLICATION['AUTHOR']] ?? null;
     }
 
 
@@ -100,7 +67,7 @@ class Session
     //
     static public function getUserRoles(): array
     {
-        return $_SESSION['user_info']['role'];
+        return $_SESSION['user_info']['roles'];
     }
 
     // Предназначен для проверки пользователя на заявителя
@@ -110,8 +77,10 @@ class Session
     //
     static public function isApplicant(): bool
     {
-        if (isset($_SESSION['flags']['applicant']) &&
-            $_SESSION['flags']['applicant'] === true) {
+        if (
+            isset($_SESSION['flags']['applicant'])
+            && $_SESSION['flags']['applicant'] === true
+        ) {
             return true;
         }
         return false;
@@ -125,8 +94,10 @@ class Session
     //
     static protected function isAuthorized(): bool
     {
-        if (isset($_SESSION['flags']['authorized']) &&
-            $_SESSION['flags']['authorized'] === true) {
+        if (
+            isset($_SESSION['flags']['authorized'])
+            && $_SESSION['flags']['authorized'] === true
+        ) {
             return true;
         }
         return false;

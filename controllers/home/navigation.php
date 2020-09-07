@@ -109,12 +109,21 @@ $variablesTV->setValue('pagination_CurrentPage', "{$currentPage} из {$Paginati
 
 // Запрос в БД c учётом сортировки и пагинации ---------------------------------------------
 //
-$SORT_name = $NavigationParameters->getSortName();
-$SORT_type = $NavigationParameters->getSortType();
-$LIMIT_offset = ($currentPage - 1) * $dataPerPage;
-$LIMIT_row_count = $dataPerPage;
 
-$variablesTV->setValue('navigationData', $className::getAssocByIdUser($userId, $SORT_name, $SORT_type, $LIMIT_offset, $LIMIT_row_count));
+    $SORT_name = $NavigationParameters->getSortName();
+    $SORT_type = $NavigationParameters->getSortType();
+
+    //todo среднее переделать эту логику и если нет данных, то не отображать пагинацию и сделать через setExistanceflag в трансфере
+if ($Pagination->getPageCount() > 0) {
+
+    $LIMIT_offset = ($currentPage - 1) * $dataPerPage;
+    $LIMIT_row_count = $dataPerPage;
+
+    $variablesTV->setValue('navigationData', $className::getAssocByIdUser($userId, $SORT_name, $SORT_type, $LIMIT_offset, $LIMIT_row_count));
+} else {
+    $variablesTV->setValue('navigationData', []);
+}
+
 
 
 // Передаем во view количество отображаемых элементов и сортировку -------------------------

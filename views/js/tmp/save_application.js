@@ -31,14 +31,12 @@ function saveApplication () {
 
    saveMultipleBlocks();
 
-   console.log(new Map(new FormData(application_form)));
 
    XHR('post', request_urn, new FormData(application_form), null, 'json', null, null)
       .then(response => {
 
          switch (response.result) {
             case 8:
-               console.log('result');
                if (FileNeeds.hasFiles()) {
                   updateFileNeeds();
                }
@@ -58,7 +56,6 @@ function saveApplication () {
 
 function saveMultipleBlocks () {
 
-
    let multiple_blocks = document.querySelectorAll('.block[data-type="multiple"]');
    multiple_blocks.forEach(block => {
 
@@ -74,6 +71,13 @@ function saveMultipleBlocks () {
 
    });
 }
+//
+function getSaveApplicationFormData() {
+   let form_data = new FormData();
+   let fields = document.querySelectorAll('.field-result[data-form="application"]');
+   fields.forEach(field => form_data.append(field.name, field.value));
+   return form_data;
+}
 
 function showSaveModal () {
    let save_modal = document.querySelector('.save-modal');
@@ -87,6 +91,7 @@ function updateFileNeeds () {
    let request_urn = '/home/API_file_needs_setter';
    let form_data = getFilesNeedsFormData();
 
+   console.log(getIdDocument());
    console.log(FileNeeds.getFileNeedsJSON());
 
    XHR('post', request_urn, form_data, null, 'json', null, null)
@@ -95,7 +100,6 @@ function updateFileNeeds () {
          switch (response.result) {
             case 9:
                console.log(response);
-               console.log('file_clear');
                FileNeeds.clear();
                break;
             default:

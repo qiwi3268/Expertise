@@ -54,7 +54,7 @@ final class Transaction extends DataBase
         }
 
         $this->queries[] = [
-            'class' => $class,
+            'class'  => $class,
             'method' => $method,
             'params' => $params
         ];

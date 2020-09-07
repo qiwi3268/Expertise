@@ -10,6 +10,7 @@ namespace Classes\Exceptions;
 //  4 - передано некорректное значение справочника
 //  5 - запрашиваемое значение справочника не существует
 //  7 - при наличии значения зависимого справочника, флаг наличия проверенных данных главного справочника отрицательный
+//
 class ApplicationFormMiscValidator extends \Exception{
 
     use \Lib\Exceptions\Traits\MainTrait;

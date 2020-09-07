@@ -44,7 +44,7 @@ abstract class Initializator
     //
     public function getPaginationDependentMiscs(): array
     {
-        if (empty($this->dependentMiscs)) throw new \LogicException("Вызван метод Initializator::getPaginationDependentMiscs при пустом массиве dependentMiscs");
+        if (empty($this->dependentMiscs)) throw new \LogicException("Вызван метод Lib\Miscs\Initialization\Initializator::getPaginationDependentMiscs при пустом массиве dependentMiscs");
 
         $result = [];
 

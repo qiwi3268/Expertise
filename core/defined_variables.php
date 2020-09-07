@@ -38,12 +38,6 @@ define('DOCUMENT_TYPE', [
 ]);
 
 
-// Обозначения ролей в заявлении
-define('ROLE_IN_APPLICATION', [
-    'AUTHOR' => 'AUTHOR' // Автор заявления
-
-]);
-
 
 //todo дописать изменную с учетом крона структуру таблиц
 
@@ -70,7 +64,9 @@ define('FILE_TABLE_MAPPING', [
 // Ключ - существующий файловый класс. Значение - название класса
 //
 define('SIGN_TABLE_MAPPING', [
-    '\Tables\Files\grbs' => '\Tables\Signs\grbs'
+    '\Tables\Files\grbs'            => '\Tables\Signs\grbs',
+    '\Tables\Files\documentation_1' => '\Tables\Signs\documentation_1',
+    '\Tables\Files\documentation_2' => '\Tables\Signs\documentation_2',
 ]);
 
 
@@ -83,7 +79,7 @@ define('SIGN_TABLE_MAPPING', [
 //         description - описание кнопки на панели сортировки
 //         column_name - название столбца в БД для сортировки
 // -----------------------------------------------------------------------------------------
-// view_1 - таблица applications
+// view_1 - таблица application
 //
 define('NAVIGATION_SORTING', [
     'view_1' => [

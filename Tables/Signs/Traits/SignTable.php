@@ -82,6 +82,8 @@ trait  SignTable
 
 
     // Предназначен для получения ассоциативных массивов всех подписей по id файлов,
+    // Если открепленная подпись, то и id_sign и id_file должны присутствовать в выборке IN
+    // Если встроенная подписи, то id_sign должен присутствовать в выборке IN
     // которые могут быть в id_sign или id_file
     // Принимает параметры-----------------------------------
     // ids array : индексный массив с id файлов, к которым будут искаться записи в таблице подписей
@@ -97,7 +99,11 @@ trait  SignTable
 
         $query = "SELECT *
                   FROM `{$table}`
-                  WHERE `id_sign` IN {$in} OR `id_file` IN {$in}";
+                  WHERE (
+                            (`is_external`=1 AND `id_file` IS NOT NULL AND (`id_sign` IN {$in} AND `id_file` IN {$in}))
+                            OR
+                            (`is_external`=0 AND `id_file` IS NULL AND (`id_sign` IN {$in}))
+                        )";
         $result = SimpleQuery::getFetchAssoc($query);
         return $result ? $result : null;
     }

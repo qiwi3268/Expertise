@@ -4,15 +4,10 @@
 namespace Lib\Singles;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-
-//use PhpSpreadsheet\Reader\IReadFilter;
-//use PhpSpreadsheet\Style\Fill;
-
-
 require ROOT . '/vendor/autoload.php';
+
 
 // Класс-обертка для работы с PHPSpreadSheet
 //
@@ -34,7 +29,7 @@ class PHPSpreadSheetAddon
     //            array : массив (в т.ч. ассоциативный), значения которого будут добавлены на страницу
     // startCell string : верхняя левая координата, начиная с которой будет вставлен массив данных
     //
-    public function writeArray(array $array, string $startCell = 'A1', ?string $nullValue = NULL)
+    public function writeArray(array $array, string $startCell = 'A1', ?string $nullValue = null): void
     {
         $this->activeSheet->fromArray(
             $array,
@@ -48,7 +43,7 @@ class PHPSpreadSheetAddon
     // Принимает параметры------------------------------------
     // unloadName string : имя файла для выгрузки, включая расширение 'xlsx'
     //
-    public function unload(string $unloadName)
+    public function unload(string $unloadName): void
     {
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment; filename="' . $unloadName . '"');
@@ -58,28 +53,3 @@ class PHPSpreadSheetAddon
         $writer->save('php://output');
     }
 }
-
-
-$spreadsheet = new PHPSpreadSheetAddon();
-$spreadsheet->writeArray([123, 234, 345]);
-$spreadsheet->unload('hey.xlsx');
-//$sheet = $spreadsheet->getActiveSheet();
-
-/*
-$sheet->setCellValue('A1', 'Hello World');
-
-
-$writer = new Xlsx($spreadsheet);
-//$writer->save('hello world.xlsx');
-
-//Редирект вывода на клиентсткий браузер
-header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header("Content-Disposition: attachment; filename=lalal.xlsx");
-header('Cache-Control: max-age=0');
-$writer = new Xlsx($spreadsheet);
-$writer->save('php://output');
-
-*/
-
-
-

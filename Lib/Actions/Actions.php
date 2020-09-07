@@ -29,7 +29,7 @@ abstract class Actions
     // Предназначен для проверки того, что в классе типа документа реализованы
     // все активные (is_active) callback-методы из БД
     //
-    final public function __construct()
+    public function __construct()
     {
 
         // Запись свойства через дочерний метод
@@ -48,7 +48,7 @@ abstract class Actions
             }
 
             // Получение имени страницы и callback'а текущего действия
-            if ($page_name === URN) {
+            if ($page_name == URN) {
                 $this->currentActionPageName = $page_name;
                 $this->currentActionCallbackName = $callback_name;
             }
@@ -122,7 +122,7 @@ abstract class Actions
 
         if (!is_bool($result)) {
 
-            $message = "Метод: {$name} в классе: {$this->childClassName} возвращает значение, не принадлежащее типу boolean";
+            $message = "Метод: {$this->childClassName}::{$name} возвращает значение, не принадлежащее типу boolean";
             throw new SelfEx($message, 4);
         }
 

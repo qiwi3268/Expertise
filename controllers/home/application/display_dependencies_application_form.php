@@ -22,17 +22,17 @@ $blockDependencies = [
     // Зависимость от выбранного "Вида объекта"
     'type_of_object' => [
         1 => ['planning_documentation_approval' => false,
-              'GPZU'                            => true,
-              'structureDocumentation1'         => false,
-              'structureDocumentation2'         => true,
-              'empty_documentation'             => false
+            'GPZU'                            => true,
+            'structureDocumentation1'         => true,
+            'structureDocumentation2'         => false,
+            'empty_documentation'             => false
         ],
 
         2 => ['planning_documentation_approval' => true,
-              'GPZU'                            => false,
-              'structureDocumentation1'         => true,
-              'structureDocumentation2'         => false,
-              'empty_documentation'             => false
+            'GPZU'                            => false,
+            'structureDocumentation1'         => false,
+            'structureDocumentation2'         => true,
+            'empty_documentation'             => false
         ]
     ],
 
@@ -48,38 +48,38 @@ $blockDependencies = [
         1 => ['national_project'     => true]
     ],
 
-    
-    
+
+
     // Зависимости множественных блоков
     // ----------------------------------------------------------
 
     'finance_type' => [
         1 => ['budget'           => true,
-              'organization'     => false,
-              'builder_source'   => false,
-              'investor'         => false,
-              'no_data'          => true,
+            'organization'     => false,
+            'builder_source'   => false,
+            'investor'         => false,
+            'no_data'          => true,
         ],
 
         2 => ['budget'           => false,
-              'organization'     => true,
-              'builder_source'   => false,
-              'investor'         => false,
-              'no_data'          => true,
+            'organization'     => true,
+            'builder_source'   => false,
+            'investor'         => false,
+            'no_data'          => true,
         ],
 
         3 => ['budget'           => false,
-              'organization'     => false,
-              'builder_source'   => true,
-              'investor'         => false,
-              'no_data'          => true,
+            'organization'     => false,
+            'builder_source'   => true,
+            'investor'         => false,
+            'no_data'          => true,
         ],
 
         4 => ['budget'           => false,
-              'organization'     => false,
-              'builder_source'   => false,
-              'investor'         => true,
-              'no_data'          => true,
+            'organization'     => false,
+            'builder_source'   => false,
+            'investor'         => true,
+            'no_data'          => true,
         ],
     ],
 

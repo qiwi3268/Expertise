@@ -18,7 +18,7 @@ spl_autoload_register(function (string $className) {
 
         $pattern = "/\A(.+)\/(.+\z)/";
 
-        list(1 => $tmp_path, 2 => $tmp_name) = GetHandlePregMatch($pattern, $namespacePath, false);
+        list(1 => $tmp_path, 2 => $tmp_name) = getHandlePregMatch($pattern, $namespacePath, false);
 
         $path = ROOT . "/{$tmp_path}/{$tmp_name}.php";
     }

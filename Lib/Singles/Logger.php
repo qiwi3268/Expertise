@@ -10,6 +10,7 @@ use Lib\Exceptions\Logger as SelfEx;
 //
 class Logger
 {
+
     private string $logsDir;
     private string $logsName;
 

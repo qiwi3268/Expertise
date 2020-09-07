@@ -11,7 +11,6 @@ use Classes\Exceptions\PregMatch as PregMatchEx;
 class PrimitiveValidator
 {
 
-
     // Предназначен для получения массива, полученного декодированием входной json-строки, массив которого является
     // индексным массивом (без вложенных массивов) с только числовыми значениями
     // Принимает параметры-----------------------------------
@@ -109,7 +108,7 @@ class PrimitiveValidator
         // конец текста
         $pattern = "/\A(\d{2})\.(\d{2})\.(\d{4})\z/";
         try {
-            list(1 => $date, 2 => $month, 3 => $year) = GetHandlePregMatch($pattern, $fullDate, false);
+            list(1 => $date, 2 => $month, 3 => $year) = getHandlePregMatch($pattern, $fullDate, false);
         } catch (PregMatchEx $e) {
             throw new SelfEx("Строковая дата: '{$fullDate}' является некорректной", 5);
         }
@@ -125,6 +124,7 @@ class PrimitiveValidator
     // Lib\Exceptions\PrimitiveValidator :
     // code:
     //  7 - введенный ИНН является некорректным
+    //
     public function validateINN(string $INN): void
     {
         // начало текста
@@ -136,7 +136,7 @@ class PrimitiveValidator
         // конец текста
         $pattern = "/\A\d{10}\z|\A\d{12}\z/";
         try {
-            GetHandlePregMatch($pattern, $INN, false);
+            getHandlePregMatch($pattern, $INN, false);
         } catch (PregMatchEx $e) {
             throw new SelfEx("Введенный ИНН: '{$INN}' является некорректным", 7);
         }
@@ -157,7 +157,7 @@ class PrimitiveValidator
         // конец текста
         $pattern = "/\A\d{9}\z/";
         try {
-            GetHandlePregMatch($pattern, $KPP, false);
+            getHandlePregMatch($pattern, $KPP, false);
         } catch (PregMatchEx $e) {
             throw new SelfEx("Введенный КПП: '{$KPP}' является некорректным", 8);
         }
@@ -178,7 +178,7 @@ class PrimitiveValidator
         // конец текста
         $pattern = "/\A\d{13}\z/";
         try {
-            GetHandlePregMatch($pattern, $OGRN, false);
+            getHandlePregMatch($pattern, $OGRN, false);
         } catch (PregMatchEx $e) {
             throw new SelfEx("Введенный ОГРН: '{$OGRN}' является некорректным", 9);
         }
@@ -192,6 +192,7 @@ class PrimitiveValidator
     // Lib\Exceptions\PrimitiveValidator :
     // code:
     // 10 - введенный email является некорректным
+    //
     public function validateEmail(string $email): void
     {
         if ((filter_var($email, FILTER_VALIDATE_EMAIL)) === false) {
@@ -207,10 +208,14 @@ class PrimitiveValidator
     // Lib\Exceptions\PrimitiveValidator :
     // code:
     // 11 - введенный процент является некорректным
+    //
     public function validatePercent(string $percent): void
     {
-        $options = ['options' => ['min_range' => 0,
-            'max_range' => 100]
+        $options = [
+            'options' => [
+                'min_range' => 0,
+                'max_range' => 100
+            ]
         ];
         if ((filter_var($percent, FILTER_VALIDATE_INT, $options)) === false) {
             throw new SelfEx("Введенный процент: '{$percent}' является некорректным", 11);
@@ -225,6 +230,7 @@ class PrimitiveValidator
     // Lib\Exceptions\PrimitiveValidator :
     // code:
     // 12 - введеное значение не является целочисленным
+    //
     public function validateInt(string $int): void
     {
         if (filter_var($int, FILTER_VALIDATE_INT) === false) {
@@ -246,6 +252,7 @@ class PrimitiveValidator
     // code:
     // 13 - во входном массиве отсутствует обязательное поле
     // 14 - значение входного массива по ключу не прошло проверку
+    //
     function validateAssociativeArray(array $array, array $settings): void
     {
         foreach ($settings as $key => $callbacks) {
@@ -264,7 +271,7 @@ class PrimitiveValidator
 
                 if ($is_array) {
 
-                    if (!method_exists($callback[0], $callback[1])) throw new \BadMethodCallException("Переданный метод: '{$callback[1]} не существует'");
+                    if (!method_exists($callback[0], $callback[1])) throw new \BadMethodCallException("Переданный метод: '{$callback[1]}' не существует'");
 
                     // Первый параметр - значение проверяемого массива
                     $params = [$array[$key]];
@@ -307,6 +314,7 @@ class PrimitiveValidator
     // Lib\Exceptions\PrimitiveValidator :
     // code:
     // 15 - значение не подходит ни под одно из перечисленных
+    //
     public function validateSomeInclusions($value, ...$inclusions): void
     {
         if (!in_array($value, $inclusions, true)) {
@@ -319,6 +327,5 @@ class PrimitiveValidator
 
             throw new SelfEx("Значение: '{$value}' не подходит ни под одно из перечисленных: '{$msg}'", 15);
         }
-
     }
 }

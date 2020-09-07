@@ -14,6 +14,7 @@ namespace Lib\Exceptions;
 //      ошибка в маппинг таблице (файлов)
 //      ошибка в маппинг таблице (подписей)
 //      осталась(лись) подпись, которая не подошла ни к одному из файлов
+//      в массиве файлов не найден нужный id
 class File extends \Exception
 {
     use \Lib\Exceptions\Traits\MainTrait;

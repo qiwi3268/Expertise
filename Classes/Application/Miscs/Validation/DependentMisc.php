@@ -4,18 +4,18 @@
 namespace Classes\Application\Miscs\Validation;
 
 use Lib\Exceptions\MiscValidator as MiscValidatorEx;
+use Lib\Miscs\Validation\Validator;
+use Lib\Miscs\Validation\DependentMisc as MainDependentMisc;
 use Classes\Exceptions\ApplicationFormMiscValidator as ApplicationFormMiscValidatorEx;
-
 use Classes\Application\DataToUpdate;
 
 
-class DependentMisc extends \Lib\Miscs\Validation\DependentMisc
+class DependentMisc extends MainDependentMisc
 {
-
     private ?string $columnName; // Имя столбца справочника в БД
 
 
-    public function __construct(\Lib\Miscs\Validation\Validator $MainValidator, string $form_value, string $class, ?string $columnName = null)
+    public function __construct(Validator $MainValidator, string $form_value, string $class, ?string $columnName = null)
     {
         parent::__construct($MainValidator, $form_value, $class);
 
@@ -32,7 +32,7 @@ class DependentMisc extends \Lib\Miscs\Validation\DependentMisc
 
             $msg = $e->getMessage();
             $code = $e->getCode();
-            // Конвертируем значения MiscValidatorExc к значениям API_save_form result
+            // Конвертируем значения MiscValidatorEx к значениям API_save_form result
             switch ($code) {
                 case 1:
                     throw new ApplicationFormMiscValidatorEx($msg, 4);
@@ -54,7 +54,7 @@ class DependentMisc extends \Lib\Miscs\Validation\DependentMisc
     public function addToUpdate(): void
     {
         if (is_null($this->columnName)) {
-            throw new \LogicException("Попытка вызвать метод SingleMiscValidator::addToUpdate при неуказанном в конструкторе columnName. Название класса справочника: '{$this->class}'");
+            throw new \LogicException("Попытка вызвать метод Classes\Application\Miscs\Validation::DependentMiscValidator::addToUpdate при неуказанном в конструкторе columnName. Название класса справочника: '{$this->class}'");
         }
 
         DataToUpdate::addInt($this->form_value, $this->columnName);

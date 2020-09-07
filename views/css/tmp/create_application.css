@@ -185,7 +185,7 @@
 
 .card-form__body {
    /**/
-   max-height: 0;
+   /*max-height: 0;*/
 
    overflow: hidden;
    font-family: 'Roboto Condensed', sans-serif;
@@ -235,6 +235,8 @@
    align-items: center;
 }
 
+
+
 .body-card__select {
    box-sizing: border-box;
    display: flex;
@@ -248,6 +250,8 @@
    cursor: pointer;
    transition: box-shadow .10s;
 }
+
+
 
 .body-card__select.filled {
    color: #343a40;
