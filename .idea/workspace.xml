@@ -2,26 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/views/home/application/actions/action_2.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/home/modals/create_sign_modal.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/home/modals/error_modal.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/home/modals/view_sign_modal.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/view_application.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/action_1.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_2.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/documentation.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/documentation.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/files.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/files.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/view_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/view_application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/action_1.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/view_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/actions/action_2.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/FileUploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/FileUploader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/modals/create_sign_modal.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/modals/create_sign_modal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/modals/error_modal.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/modals/error_modal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/modals/view_sign_modal.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/modals/view_sign_modal.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/GeFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/GeFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/SignView.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/SignView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/file_download.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/file_download.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,14 +115,7 @@
       <workItem from="1597575204380" duration="8076000" />
       <workItem from="1598327166376" duration="87205000" />
       <workItem from="1598767236475" duration="12765000" />
-      <workItem from="1598845123707" duration="54624000" />
-    </task>
-    <task id="LOCAL-00030" summary="04.08.2020_1">
-      <created>1596544320375</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1596544320375</updated>
+      <workItem from="1598845123707" duration="58482000" />
     </task>
     <task id="LOCAL-00031" summary="05.08.2020">
       <created>1596601055336</created>
@@ -467,7 +453,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599456982755</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="07.09.2020_2">
+      <created>1599476068505</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1599476068505</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -484,7 +477,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="25.08.2020_2" />
     <MESSAGE value="26.08.2020" />
     <MESSAGE value="26.08.2020_1" />
     <MESSAGE value="26.08.2020_2" />
@@ -509,7 +501,8 @@
     <MESSAGE value="01.09.2020_4" />
     <MESSAGE value="07.09.2020" />
     <MESSAGE value="07.09.2020_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="07.09.2020_1" />
+    <MESSAGE value="07.09.2020_2" />
+    <option name="LAST_COMMIT_MESSAGE" value="07.09.2020_2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Notifications" timestamp="1598851428350">
@@ -520,10 +513,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1599475962375">
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1599476063510">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1599475962375" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1599476063510" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598788293599" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog" timestamp="1598853557262">
@@ -561,10 +554,10 @@
     </state>
     <state x="302" y="56" width="614" height="1035" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1598502743003" />
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597499951448" />
-    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1599475167352">
+    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1599480325660">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599475167352" />
+    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599480325660" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598791797973" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
     <state x="1150" y="591" key="publish.login" timestamp="1598767415653">

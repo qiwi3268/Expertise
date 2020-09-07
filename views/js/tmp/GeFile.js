@@ -91,12 +91,12 @@ class GeFile {
       sign_data.signature_verify = {
          result: sign.signature_result,
          user_message: sign.signature_user_message
-      }
+      };
 
       sign_data.certificate_verify = {
          result: sign.certificate_result,
          user_message: sign.certificate_user_message
-      }
+      };
 
       return sign_data;
    }
@@ -179,11 +179,19 @@ class GeFile {
 
    handleSignButton () {
       this.sign_button.addEventListener('click', () => {
-         if (this.element.dataset.read_only) {
+         let sign_state = this.element.dataset.state;
+
+         if (this.element.dataset.read_only && sign_state !== 'not_signed') {
+
+            //todo один класс в другой
             SignView.getInstance().open(this.element);
-         } else {
+
+         } else if (!this.element.dataset.read_only && sign_state !== 'checking') {
+
             SignHandler.getInstance().open(this.element);
+
          }
+
       });
    }
 
@@ -250,6 +258,11 @@ class GeFile {
             state_text.innerHTML = 'Подписано';
             file.dataset.state = 'valid';
             break;
+         case 'invalid':
+            state_icon.classList.add('fa-times');
+            state_text.innerHTML = 'Подпись недействительна';
+            file.dataset.state = 'invalid';
+            break;
          case 'not_signed':
             state_icon.classList.add('fa-times');
             state_text.innerHTML = 'Не подписано';
@@ -257,7 +270,7 @@ class GeFile {
             break;
          case 'warning':
             state_icon.classList.add('fa-exclamation');
-            state_text.innerHTML = 'Ошибка';
+            state_text.innerHTML = 'Ошибка сертификата';
             file.dataset.state = 'warning';
             break;
 

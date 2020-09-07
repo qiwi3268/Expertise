@@ -124,6 +124,7 @@ return [
         '/views/home/%header' => ['main_header'],
         'controllers'         => ['action_2'],
         'views'               => ['action_2'],
+        '/views/home/modals/' => ['view_sign_modal', 'error_modal'],
         '/views/home/%footer' => ['main_footer'],
     ],
 

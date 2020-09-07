@@ -281,14 +281,16 @@
    background-color: #D9F0D6;
 }
 
-.files__item[data-state='not_signed'] > .files__state {
+.files__item[data-state='not_signed'] > .files__state,
+.files__item[data-state='invalid'] > .files__state {
    background-color: #FFE3E3;
    border: 1px solid #E8CBCB;
    color: #A57474;
 }
 
-.files__item[data-state='not_signed'] > .files__state:hover {
-   background-color: #F3D6D6;
+.files__item[data-state='not_signed'] > .files__state:hover,
+.files__item[data-state='invalid'] > .files__state:hover {
+   background-color: #F9DEDE;
 }
 
 .files__item[data-state='warning'] > .files__state {
@@ -327,11 +329,11 @@
 }
 
 .files[data-depth='1'] > .files__item {
-   padding-left: 40px;
+   padding-left: 35px;
 }
 
 .files[data-depth='2'] > .files__item {
-   padding-left: 65px;
+   padding-left: 60px;
 }
 
 

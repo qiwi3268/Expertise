@@ -122,6 +122,7 @@ class SignView {
                sign_state = 'warning';
                break;
             } else {
+               sign_state = 'invalid';
                break;
             }
          }
