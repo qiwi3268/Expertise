@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             signs.remove();
          }*/
 
-         SignHandler.validateFileField(file.element);
+         SignView.validateFileField(file.element);
 
 
          file.handleActionButtons();
@@ -52,8 +52,10 @@ class GeFile {
       this.field = this.container.closest('[data-mapping_level_1]');
       this.node = this.container.closest('[data-id_structure_node]');
 
-      this.mapping_1 = this.field.dataset.mapping_level_1;
-      this.mapping_2 = this.field.dataset.mapping_level_2;
+      if (this.field) {
+         this.mapping_1 = this.field.dataset.mapping_level_1;
+         this.mapping_2 = this.field.dataset.mapping_level_2;
+      }
 
       if (this.node) {
          this.id_structure_node = this.node.dataset.id_structure_node;
@@ -89,12 +91,12 @@ class GeFile {
       sign_data.signature_verify = {
          result: sign.signature_result,
          user_message: sign.signature_user_message
-      }
+      };
 
       sign_data.certificate_verify = {
          result: sign.certificate_result,
          user_message: sign.certificate_user_message
-      }
+      };
 
       return sign_data;
    }
@@ -177,11 +179,19 @@ class GeFile {
 
    handleSignButton () {
       this.sign_button.addEventListener('click', () => {
-         if (this.element.dataset.read_only) {
+         let sign_state = this.element.dataset.state;
+
+         if (this.element.dataset.read_only && sign_state !== 'not_signed') {
+
+            //todo один класс в другой
             SignView.getInstance().open(this.element);
-         } else {
+
+         } else if (!this.element.dataset.read_only && sign_state !== 'checking') {
+
             SignHandler.getInstance().open(this.element);
+
          }
+
       });
    }
 
@@ -248,6 +258,11 @@ class GeFile {
             state_text.innerHTML = 'Подписано';
             file.dataset.state = 'valid';
             break;
+         case 'invalid':
+            state_icon.classList.add('fa-times');
+            state_text.innerHTML = 'Подпись недействительна';
+            file.dataset.state = 'invalid';
+            break;
          case 'not_signed':
             state_icon.classList.add('fa-times');
             state_text.innerHTML = 'Не подписано';
@@ -255,7 +270,7 @@ class GeFile {
             break;
          case 'warning':
             state_icon.classList.add('fa-exclamation');
-            state_text.innerHTML = 'Ошибка';
+            state_text.innerHTML = 'Ошибка сертификата';
             file.dataset.state = 'warning';
             break;
 

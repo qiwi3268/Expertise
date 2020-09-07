@@ -924,8 +924,6 @@
 <div class="calendar-overlay"></div>
 <div class="file-overlay"></div>
 <div class="save-overlay"></div>
-<div class="sign-overlay"></div>
-<div class="error-overlay"></div>
 
 <div class="modal alert-modal">
     <i class="alert-modal__icon fas fa-exclamation"></i>
@@ -974,13 +972,10 @@
     <!--todo убрать-->
     <form id="file_uploader" action="" method="POST" enctype="multipart/form-data" >
         <input type="file" name="download_files[]" hidden/>
-        <input name="id_application" value="<?= $variablesTV->getValue('id_application') ?>" type="hidden"/>
-        <input name="mapping_level_1" type="hidden"/>
-        <input name="mapping_level_2" type="hidden"/>
-        <input name="id_structure_node" type="hidden"/>
     </form>
 </div>
 
+<div class="sign-overlay"></div>
 <div class="modal sign-modal" data-plugin_loaded="false">
 
     <div class="sign-modal__header" data-active="false">
@@ -1001,15 +996,15 @@
 
         <div class="sign-modal__buttons">
             <div id="signature_delete" class="sign-modal__btn sign-modal__upload" data-active="false">
-                <span class="sign-modal__name-button">Удалить подпись</span>
+                <span class="sign-modal__button-name">Удалить подпись</span>
                 <i class="sign-modal__icon-button fas fa-eraser"></i>
             </div>
             <div id="sign_upload" class="sign-modal__btn sign-modal__upload" data-active="false">
-                <span class="sign-modal__name-button">Загрузить открепленную подпись</span>
+                <span class="sign-modal__button-name">Загрузить открепленную подпись</span>
                 <i class="sign-modal__icon-button fas fa-file-upload"></i>
             </div>
             <div id="sign_create" class="sign-modal__btn sign-modal__sign" data-active="false">
-                <span class="sign-modal__name-button">Создать открепленную подпись</span>
+                <span class="sign-modal__button-name">Создать открепленную подпись</span>
                 <i class="sign-modal__icon-button fas fa-pen-alt"></i>
             </div>
             <input id="external_sign" type="file" name="download_files[]" hidden/>
@@ -1073,6 +1068,7 @@
     </div>
 </div>
 
+<div class="error-overlay"></div>
 <div class="modal error-modal">
     <div class="error-modal__header">
         <i class="error-modal__icon fas fa-exclamation"></i>

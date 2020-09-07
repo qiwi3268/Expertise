@@ -3,9 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/FileUploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/FileUploader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/documentation.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/documentation.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/files.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/files.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/actions/action_2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/modals/create_sign_modal.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/modals/create_sign_modal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/modals/error_modal.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/modals/error_modal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/modals/view_sign_modal.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/modals/view_sign_modal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/GeFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/GeFile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/SignView.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/SignView.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +23,9 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable />
+    </execution>
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -69,7 +80,12 @@
     <property name="settings.editor.selected.configurable" value="reference.settings.deploy.options" />
     <property name="ts.external.directory.path" value="G:\PhpStorm 2020.1.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\home\application\actions" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -99,17 +115,63 @@
       <workItem from="1597575204380" duration="8076000" />
       <workItem from="1598327166376" duration="87205000" />
       <workItem from="1598767236475" duration="12765000" />
-      <workItem from="1598845123707" duration="9001000" />
-      <workItem from="1598935147298" duration="7270000" />
-      <workItem from="1598946955916" duration="476000" />
-      <workItem from="1598947442925" duration="9801000" />
-      <workItem from="1598975483271" duration="4756000" />
-      <workItem from="1599017361858" duration="34276000" />
-      <workItem from="1599103848788" duration="34376000" />
-      <workItem from="1599190622808" duration="14050000" />
-      <workItem from="1599280319536" duration="4235000" />
-      <workItem from="1599366562760" duration="16397000" />
-      <workItem from="1599409339006" duration="2008000" />
+      <workItem from="1598845123707" duration="58482000" />
+    </task>
+    <task id="LOCAL-00031" summary="05.08.2020">
+      <created>1596601055336</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1596601055336</updated>
+    </task>
+    <task id="LOCAL-00032" summary="15.08.2020">
+      <created>1597464288128</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1597464288128</updated>
+    </task>
+    <task id="LOCAL-00033" summary="15.08.2020_1">
+      <created>1597516366006</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1597516366006</updated>
+    </task>
+    <task id="LOCAL-00034" summary="17.08.2020_1">
+      <created>1597667409356</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1597667409356</updated>
+    </task>
+    <task id="LOCAL-00035" summary="18.08.2020">
+      <created>1597740757220</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1597740757220</updated>
+    </task>
+    <task id="LOCAL-00036" summary="18.08.2020_1">
+      <created>1597754361419</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1597754361419</updated>
+    </task>
+    <task id="LOCAL-00037" summary="19.08.2020">
+      <created>1597813069197</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1597813069197</updated>
+    </task>
+    <task id="LOCAL-00038" summary="19.08.2020_1">
+      <created>1597834834351</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1597834834351</updated>
     </task>
     <task id="LOCAL-00039" summary="19.08.2020_2">
       <created>1597840206675</created>
@@ -328,137 +390,81 @@
       <option name="project" value="LOCAL" />
       <updated>1598852529448</updated>
     </task>
-    <task id="LOCAL-00070" summary="01.09.2020">
-      <created>1598940518070</created>
+    <task id="LOCAL-00070" summary="refactor complete">
+      <created>1598855089601</created>
       <option name="number" value="00070" />
       <option name="presentableId" value="LOCAL-00070" />
       <option name="project" value="LOCAL" />
-      <updated>1598940518070</updated>
+      <updated>1598855089601</updated>
     </task>
-    <task id="LOCAL-00071" summary="30.08.2020_4">
-      <created>1598976798475</created>
+    <task id="LOCAL-00071" summary="31.08.2020_1">
+      <created>1598868252909</created>
       <option name="number" value="00071" />
       <option name="presentableId" value="LOCAL-00071" />
       <option name="project" value="LOCAL" />
-      <updated>1598976798476</updated>
+      <updated>1598868252910</updated>
     </task>
-    <task id="LOCAL-00072" summary="02.09.2020">
-      <created>1599017386806</created>
+    <task id="LOCAL-00072" summary="01.09.2020">
+      <created>1598931655920</created>
       <option name="number" value="00072" />
       <option name="presentableId" value="LOCAL-00072" />
       <option name="project" value="LOCAL" />
-      <updated>1599017386806</updated>
+      <updated>1598931655920</updated>
     </task>
-    <task id="LOCAL-00073" summary="02.09.2020_1">
-      <created>1599022907057</created>
+    <task id="LOCAL-00073" summary="01.09.2020_1">
+      <created>1598935576379</created>
       <option name="number" value="00073" />
       <option name="presentableId" value="LOCAL-00073" />
       <option name="project" value="LOCAL" />
-      <updated>1599022907057</updated>
+      <updated>1598935576379</updated>
     </task>
-    <task id="LOCAL-00074" summary="02.09.2020_2">
-      <created>1599034044218</created>
+    <task id="LOCAL-00074" summary="01.09.2020_2">
+      <created>1598936905311</created>
       <option name="number" value="00074" />
       <option name="presentableId" value="LOCAL-00074" />
       <option name="project" value="LOCAL" />
-      <updated>1599034044218</updated>
+      <updated>1598936905311</updated>
     </task>
-    <task id="LOCAL-00075" summary="02.09.2020_3">
-      <created>1599063265710</created>
+    <task id="LOCAL-00075" summary="01.09.2020_3">
+      <created>1598938367787</created>
       <option name="number" value="00075" />
       <option name="presentableId" value="LOCAL-00075" />
       <option name="project" value="LOCAL" />
-      <updated>1599063265710</updated>
+      <updated>1598938367787</updated>
     </task>
-    <task id="LOCAL-00076" summary="03.09.2020">
-      <created>1599105019587</created>
+    <task id="LOCAL-00076" summary="01.09.2020_4">
+      <created>1598947349009</created>
       <option name="number" value="00076" />
       <option name="presentableId" value="LOCAL-00076" />
       <option name="project" value="LOCAL" />
-      <updated>1599105019587</updated>
+      <updated>1598947349009</updated>
     </task>
-    <task id="LOCAL-00077" summary="03.09.2020_1">
-      <created>1599109913138</created>
+    <task id="LOCAL-00077" summary="07.09.2020">
+      <created>1599450473576</created>
       <option name="number" value="00077" />
       <option name="presentableId" value="LOCAL-00077" />
       <option name="project" value="LOCAL" />
-      <updated>1599109913138</updated>
+      <updated>1599450473577</updated>
     </task>
-    <task id="LOCAL-00078" summary="03.09.2020_2">
-      <created>1599120988631</created>
+    <task id="LOCAL-00078" summary="07.09.2020_1">
+      <created>1599456982723</created>
       <option name="number" value="00078" />
       <option name="presentableId" value="LOCAL-00078" />
       <option name="project" value="LOCAL" />
-      <updated>1599120988631</updated>
+      <updated>1599456982755</updated>
     </task>
-    <task id="LOCAL-00079" summary="03.09.2020_3">
-      <created>1599125631993</created>
+    <task id="LOCAL-00079" summary="07.09.2020_2">
+      <created>1599476068505</created>
       <option name="number" value="00079" />
       <option name="presentableId" value="LOCAL-00079" />
       <option name="project" value="LOCAL" />
-      <updated>1599125631993</updated>
+      <updated>1599476068505</updated>
     </task>
-    <task id="LOCAL-00080" summary="03.09.2020_4!">
-      <created>1599135997618</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1599135997618</updated>
-    </task>
-    <task id="LOCAL-00081" summary="03.09.2020_5">
-      <created>1599139043289</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1599139043289</updated>
-    </task>
-    <task id="LOCAL-00082" summary="04.09.2020">
-      <created>1599219222432</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1599219222432</updated>
-    </task>
-    <task id="LOCAL-00083" summary="04.09.2020_1">
-      <created>1599220343978</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1599220343978</updated>
-    </task>
-    <task id="LOCAL-00084" summary="05.09.2020">
-      <created>1599292620660</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1599292620661</updated>
-    </task>
-    <task id="LOCAL-00085" summary="06.09.2020">
-      <created>1599366739798</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1599366739798</updated>
-    </task>
-    <task id="LOCAL-00086" summary="06.09.2020_1">
-      <created>1599377430497</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1599377430497</updated>
-    </task>
-    <task id="LOCAL-00087" summary="06.09.2020_2">
-      <created>1599384252514</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1599384252514</updated>
-    </task>
-    <option name="localTasksCounter" value="88" />
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -471,77 +477,69 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="26.08.2020" />
+    <MESSAGE value="26.08.2020_1" />
+    <MESSAGE value="26.08.2020_2" />
+    <MESSAGE value="26.08.2020_3" />
+    <MESSAGE value="27.08.2020_1" />
+    <MESSAGE value="27.08.2020_2" />
+    <MESSAGE value="before global refactor" />
+    <MESSAGE value="27.08.2020" />
+    <MESSAGE value="28.08.2020" />
     <MESSAGE value="inactive" />
     <MESSAGE value="28.08.2020_1" />
     <MESSAGE value="28.08.2020_2" />
     <MESSAGE value="30.08.2020" />
     <MESSAGE value="30.08.2020_1" />
     <MESSAGE value="31.08.2020" />
+    <MESSAGE value="refactor complete" />
     <MESSAGE value="31.08.2020_1" />
     <MESSAGE value="01.09.2020" />
-    <MESSAGE value="30.08.2020_4" />
-    <MESSAGE value="02.09.2020" />
-    <MESSAGE value="02.09.2020_1" />
-    <MESSAGE value="02.09.2020_2" />
-    <MESSAGE value="02.09.2020_3" />
-    <MESSAGE value="03.09.2020" />
-    <MESSAGE value="03.09.2020_1" />
-    <MESSAGE value="03.09.2020_2" />
-    <MESSAGE value="03.09.2020_3" />
-    <MESSAGE value="03.09.2020_4!" />
-    <MESSAGE value="03.09.2020_5" />
-    <MESSAGE value="04.09.2020" />
-    <MESSAGE value="04.09.2020_1" />
-    <MESSAGE value="05.09.2020" />
-    <MESSAGE value="06.09.2020" />
-    <MESSAGE value="06.09.2020_1" />
-    <MESSAGE value="06.09.2020_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="06.09.2020_2" />
+    <MESSAGE value="01.09.2020_1" />
+    <MESSAGE value="01.09.2020_2" />
+    <MESSAGE value="01.09.2020_3" />
+    <MESSAGE value="01.09.2020_4" />
+    <MESSAGE value="07.09.2020" />
+    <MESSAGE value="07.09.2020_1" />
+    <MESSAGE value="07.09.2020_2" />
+    <option name="LAST_COMMIT_MESSAGE" value="07.09.2020_2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Notifications" timestamp="1598851428350">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1598851428350" />
-    <state x="856" y="344" key="#SSH_Configurations" timestamp="1598947122413">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="856" y="344" key="#SSH_Configurations/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598947122413" />
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1598852315903">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1599384252112">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1599476063510">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1598854964348" />
-    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599384252112" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1599476063510" />
+    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598788293599" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog" timestamp="1598853557262">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598853557262" />
-    <state x="1060" y="454" key="FileChooserDialogImpl" timestamp="1598957187917">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1060" y="454" key="FileChooserDialogImpl/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598957187917" />
     <state x="248" y="121" key="MergeDialog" timestamp="1596186835322">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="248" y="121" key="MergeDialog/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596186835322" />
-    <state x="1114" y="623" key="NewPhpFileDialog" timestamp="1599213454625">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1599475651694">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1114" y="623" key="NewPhpFileDialog/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599213454625" />
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1599475651694" />
     <state x="735" y="231" key="RollbackChangesDialog" timestamp="1598853548198">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="735" y="231" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598853548198" />
-    <state x="781" y="344" key="SettingsEditor" timestamp="1598947596796">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="524" y="156" key="SettingsEditor" timestamp="1598948173505">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="677" y="168" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1598852765595" />
-    <state x="781" y="344" key="SettingsEditor/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598947596796" />
+    <state x="524" y="156" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1598948173505" />
+    <state x="781" y="344" key="SettingsEditor/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598767293313" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1597580480401">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -556,27 +554,26 @@
     </state>
     <state x="302" y="56" width="614" height="1035" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1598502743003" />
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597499951448" />
-    <state x="596" y="136" width="1306" height="952" key="find.popup" timestamp="1599387897762">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1599480325660">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598845293362" />
-    <state x="-1473" y="310" width="980" height="708" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1599066389671" />
-    <state x="596" y="136" width="1306" height="952" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599387897762" />
+    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599480325660" />
+    <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598791797973" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
     <state x="1150" y="591" key="publish.login" timestamp="1598767415653">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1150" y="591" key="publish.login/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598767415653" />
     <state x="1150" y="591" key="publish.login/0.0.2560.1400@0.0.2560.1400" timestamp="1597575229830" />
-    <state x="936" y="330" key="run.anything.popup" timestamp="1599388570452">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="702" y="245" key="run.anything.popup" timestamp="1598439449074">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="702" y="245" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598439449074" />
-    <state x="936" y="330" key="run.anything.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599388570452" />
-    <state x="943" y="315" width="672" height="160" key="search.everywhere.popup" timestamp="1599280454036">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="936" y="330" key="run.anything.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596602547364" />
+    <state x="707" y="234" width="672" height="160" key="search.everywhere.popup" timestamp="1598854055208">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="707" y="234" width="672" height="160" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598854055208" />
-    <state x="943" y="315" width="672" height="160" key="search.everywhere.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599280454036" />
+    <state x="943" y="315" width="670" height="58" key="search.everywhere.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1595572409795" />
   </component>
 </project>

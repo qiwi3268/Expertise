@@ -5,8 +5,6 @@ namespace Classes\Application\Actions;
 
 use core\Classes\Session;
 use Lib\Actions\Actions as MainActions;
-use Lib\Singles\VariableTransfer;
-use Classes\Application\Responsible as ApplicationResponsible;
 use Tables\Actions\application;
 
 
@@ -14,23 +12,24 @@ use Tables\Actions\application;
 //
 class Actions extends MainActions
 {
+
     private $applicationId;
+
 
     public function __construct()
     {
         $this->applicationId = clearHtmlArr($_GET)['id_application'];
 
         parent::__construct();
-
-        $test = 1;
-        $test = 2;
-
-        // todo Ответственных из трансфера, которые м.б. передались через хедер
     }
 
     // -----------------------------------------------------------------------------------------
     // Реализация абстрактных методов родительского класса
     // -----------------------------------------------------------------------------------------
+    protected function getDocumentId(): int
+    {
+        return $this->applicationId;
+    }
 
     protected function getAssocActiveActions(): array
     {
@@ -54,12 +53,31 @@ class Actions extends MainActions
             return false;
         }
 
-        // Ответственные
-        // - ответственные группы заявителей: 'Полный доступ'
-        $responsible = new ApplicationResponsible($this->applicationId);
-
+        // Ответственный
+        if (!$this->responsible->isUserResponsible(Session::getUserId())) {
+            return false;
+        }
 
         // Стадия
+        // todo
+
+        return true;
+    }
+
+    // "Назначить экспертов"
+    protected function action_2(): bool
+    {
+        // Тип учетной записи:
+        // - ПТО
+        // todo
+
+        // Ответственный
+        // ? (ПТО назначают когда хотят)
+
+        // Стадия
+        // ? (ПТО назначают на любой стадии)
+
+        // Нет сводного замечания/заключения, у которого есть назначенные эксперты
 
         return true;
     }

@@ -4,8 +4,6 @@
 namespace Tables;
 
 use Lib\DataBase\ParametrizedQuery;
-use Lib\DataBase\SimpleQuery;
-use Tables\Exceptions\Exception as SelfEx;
 use Tables\Helpers\Helper as TableHelper;
 
 
@@ -147,68 +145,5 @@ final class users
                   SET `is_banned`=1
                   WHERE `id`=?";
         ParametrizedQuery::set($query, [$id]);
-    }
-
-
-
-
-    static public function getActiveExperts()
-    {
-        // Получение экспертов (Сотрудник экспертного отдела / todo ???Сотрудник сметного отдела)
-        $query = "SELECT DISTINCT `users`.`id`,
-	                              `users`.`last_name`,
-	                              `users`.`first_name`,
-	                              `users`.`middle_name`
-                 FROM `users`
-                 INNER JOIN `users_role`
-	                ON (`users_role`.`id_user`=`users`.`id` AND `users_role`.`id_sys_role` IN (3,4))";
-
-        $query = "SELECT `users`.`id`,
-	                     `users`.`last_name`,
-	                     `users`.`first_name`,
-	                     `users`.`middle_name`
-                 FROM `users`
-                 WHERE EXISTS (SELECT * FROM `users_role`
-                               WHERE `users_role`.`id_user`=`users`.`id` AND `users_role`.`id_sys_role` IN (3, 4))";
-
-        $experts =  SimpleQuery::getFetchAssoc($query);
-
-        return $experts;
-
-        $query = "SELECT `id`,
-                         `id_substitutional`,
-                         `id_substitutable`
-                  FROM `expert_substitution`";
-        $substitution = SimpleQuery::getFetchAssoc($query) ?? [];
-
-        foreach ($experts as $exp_ind => $expert) {
-
-            foreach ($substitution as $sub_ind => $sub) {
-
-                // Эксперт замещается другим экспертом
-                if ($expert['id'] == $sub['id_substitutable']) {
-
-                    // Замещающие эксперты
-                    $substitutionals = array_filter($experts, fn($tmp) => ($tmp['id'] == $sub['id_substitutional']));
-
-                    if(empty($substitutionals)){
-                        throw new SelfEx("В замещении id: '{$sub['id']}' не найден замещающий эксперт с id: '{$sub['id_substitutional']}'");
-                    }
-
-                    foreach ($substitutionals as $substitutional) {
-                        $experts[$exp_ind]['substitutionals'][] = $substitutional;
-                    }
-
-                    unset($substitution[$sub_ind]);
-                }
-            }
-
-            if (!isset($experts[$exp_ind]['substitutionals'])) {
-                $experts[$exp_ind]['substitutionals'] = null;
-            }
-        }
-
-        var_dump($experts);
-
     }
 }

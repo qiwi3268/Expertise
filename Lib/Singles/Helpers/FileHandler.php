@@ -18,15 +18,9 @@ class FileHandler
 
             $name = $file['file_name'];
 
-<<<<<<< HEAD
             if (containsAll($name, '.pdf'))      $class = 'fa-file-pdf';
             elseif (containsAll($name, '.docx')) $class = 'fa-file-word';
             elseif (containsAll($name, '.xlsx')) $class = 'fa-file-excel';
-=======
-            if (containsAll($name, '.pdf'))      $class = 'fa-File-pdf';
-            elseif (containsAll($name, '.docx')) $class = 'fa-File-word';
-            elseif (containsAll($name, '.xlsx')) $class = 'fa-File-excel';
->>>>>>> a079240578d525ed83df11c016d74a5d605155e8
             else $class = 'fa-File-alt';
 
             $file['file_icon'] = $class;

@@ -4,6 +4,7 @@
 namespace Lib\Actions;
 
 use Lib\Exceptions\Actions as SelfEx;
+use Lib\Responsible\Responsible;
 
 
 // Абстрактный класс для получения и проверки доступных действий у пользователя
@@ -25,13 +26,18 @@ abstract class Actions
     protected ?string $currentActionPageName = null;
     protected ?string $currentActionCallbackName = null;
 
+    protected Responsible $responsible;
+
 
     // Предназначен для проверки того, что в классе типа документа реализованы
     // все активные (is_active) callback-методы из БД
+    // Выбрасывает исключения--------------------------------
+    // Lib\Exceptions\Actions :
+    // code:
+    //  2 - в классе типа документа отсутствует callback-метод из БД
     //
     public function __construct()
     {
-
         // Запись свойства через дочерний метод
         $this->activeActionsAssoc = $this->getAssocActiveActions();
 
@@ -64,6 +70,8 @@ abstract class Actions
 
         // Запись свойства через дочерний метод
         $this->businessProcessAssoc = $this->getAssocBusinessProcess();
+
+        $this->responsible = new Responsible($this->getDocumentId());
     }
 
 
@@ -71,10 +79,14 @@ abstract class Actions
     // Возвращает параметры----------------------------------
     // true  : есть доступ к действию
     // false : нет доступа к действию
+    // Выбрасывает исключения--------------------------------
+    // Lib\Exceptions\Actions :
+    // code:
+    //  3 - свойство callbackName класса ActionsSidebar имеет значение null. При этом
+    //		произошла попытка проверки доступа к текущему действию
     //
     public function checkAccessFromCurrentAction(): bool
     {
-
         $callbackName = $this->currentActionCallbackName;
 
         if (is_null($callbackName)) {
@@ -96,7 +108,6 @@ abstract class Actions
     //
     public function getAvailableActions(): array
     {
-
         $result = [];
 
         foreach ($this->activeActionsAssoc as $action) {
@@ -114,10 +125,13 @@ abstract class Actions
     // Предназначен для получения результатов callback-метода с учетом проверки на возвращаемое значение
     // Возвращает параметры----------------------------------
     // bool : результат callback'а
+    // Выбрасывает исключения--------------------------------
+    // Lib\Exceptions\Actions :
+    // code:
+    //  4 - callback-метод дочернего класса возвращает значение, не принадлежащее типу boolean
     //
     private function getCallbackResult(string $name): bool
     {
-
         $result = $this->$name();
 
         if (!is_bool($result)) {
@@ -130,15 +144,15 @@ abstract class Actions
     }
 
 
-    // -----------------------------------------------------------------------------------------
-    // Объявление абстрактных методов класса
-    // -----------------------------------------------------------------------------------------
+    abstract protected function getDocumentId(): int;
 
-    // Предназначен для получения ассоциативного массива активных действий из БД для выбранного типа документа
+
+    // Предназначен для получения ассоциативных массивов активных действий из БД для выбранного типа документа
     // Возвращает параметры----------------------------------
-    // array : ассоциативный массив действий
+    // array : ассоциативные массивы действий
     //
     abstract protected function getAssocActiveActions(): array;
+
 
     // Предназначен для получения ассоциативного массива необходимых данных по бизнесс-процессу, для работы callback-методов
     // Возвращает параметры----------------------------------

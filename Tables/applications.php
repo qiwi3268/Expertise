@@ -275,7 +275,15 @@ final class applications
     }
 
 
-    // todo тестовый метод для работы крона
+
+
+
+
+
+
+
+    // todo
+    // тестовый метод для работы крона
     // Предназначен для получения всех несохраненных заявлений
     // Возвращает параметры-----------------------------------
     // array : несохраненные заявления
@@ -290,7 +298,8 @@ final class applications
     }
 
 
-    // todo тестовый метод для работы крона
+    // todo
+    // тестовый метод для работы крона
     static public function deleteFromIdsArray(array $ids): void
     {
         $condition = implode(',', $ids);
@@ -301,16 +310,5 @@ final class applications
 
         SimpleQuery::set($query);
     }
-
-
-    //todo
-    static public function deleteResponsibleByIdApplication(int $id_application): void
-    {
-        // ищем тип ответственных
-
-        // удаляем ответственых
-        // $query =
-    }
-
 
 }
