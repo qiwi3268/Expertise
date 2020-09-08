@@ -14,7 +14,5 @@
         <div class="calendar__week-day">Сб</div>
         <div class="calendar__week-day">Вс</div>
     </div>
-    <div class="calendar__body">
-    
-    </div>
+    <div class="calendar__body"></div>
 </div>

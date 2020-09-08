@@ -2,18 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/views/home/modals/static_error.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/js/tmp/action_2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/Actions/AccessActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Actions/AccessActions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Responsible/Responsible.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Responsible/Responsible.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Responsible/XMLReader.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Responsible/XMLReader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/entry.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/entry.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/files_in_documentation.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/files_in_documentation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/action_sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/action_sidebar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/actions/action_2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/create_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/display_dependencies_application_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/display_dependencies_application_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/edit_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/edit_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/validation_block_application_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/validation_block_application_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/view_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/file_unloader.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/file_unloader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/main_header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/main_header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/navigation.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/navigation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/navigation_sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/navigation_sidebar.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Classes/Route.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/Route.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Classes/Session.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/Session.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/tmp/mail.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/tmp/mail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/tmp/registration_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/tmp/registration_user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/tmp/xml.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/tmp/xml.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/Drag&amp;Drop.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/Drag&amp;Drop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/modals/calendar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/modals/calendar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/modals/static_error.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/modals/static_error.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/API.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,9 +38,7 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -84,7 +98,7 @@
       <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\home\application\actions" />
     </key>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -116,6 +130,8 @@
       <workItem from="1598767236475" duration="12765000" />
       <workItem from="1598845123707" duration="58482000" />
       <workItem from="1599482743968" duration="26946000" />
+      <workItem from="1599582890447" duration="117000" />
+      <workItem from="1599583021238" duration="1603000" />
     </task>
     <task id="LOCAL-00035" summary="18.08.2020">
       <created>1597740757220</created>
@@ -464,7 +480,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -505,10 +521,18 @@
     <option name="LAST_COMMIT_MESSAGE" value="08.09.2020_2" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="872" y="358" key="#Deployment" timestamp="1599583061353">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="872" y="358" key="#Deployment/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599583061353" />
     <state x="552" y="178" key="#Notifications" timestamp="1598851428350">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1598851428350" />
+    <state x="856" y="345" key="#SSH_Configurations" timestamp="1599583054699">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="856" y="345" key="#SSH_Configurations/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599583054699" />
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1598852315903">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -535,11 +559,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="735" y="231" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598853548198" />
-    <state x="547" y="180" key="SettingsEditor" timestamp="1599485401616">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="781" y="344" key="SettingsEditor" timestamp="1599583106670">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="547" y="180" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1599485401616" />
-    <state x="781" y="344" key="SettingsEditor/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598767293313" />
+    <state x="781" y="344" key="SettingsEditor/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599583106670" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1597580480401">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -560,10 +584,10 @@
     <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599568409517" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598791797973" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
-    <state x="1150" y="591" key="publish.login" timestamp="1598767415653">
+    <state x="1150" y="591" key="publish.login" timestamp="1599582915682">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1150" y="591" key="publish.login/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598767415653" />
+    <state x="1150" y="591" key="publish.login/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599582915682" />
     <state x="1150" y="591" key="publish.login/0.0.2560.1400@0.0.2560.1400" timestamp="1597575229830" />
     <state x="702" y="245" key="run.anything.popup" timestamp="1598439449074">
       <screen x="0" y="0" width="1920" height="1040" />

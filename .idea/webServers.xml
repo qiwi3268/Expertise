@@ -3,11 +3,10 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="4142f5fd-ab29-4488-bcfe-19ba91e3b802" name="Expertise" url="http://192.168.1.251">
-        <fileTransfer host="192.168.1.251" port="22" accessType="SFTP">
+        <fileTransfer accessType="SFTP" host="192.168.1.251" port="22" sshConfigId="3a50fef9-84a6-413a-9212-efe3a80c9607" sshConfig="Expertise">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
-          <option name="port" value="22" />
         </fileTransfer>
       </webServer>
     </option>

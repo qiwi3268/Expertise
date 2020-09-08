@@ -79,7 +79,7 @@ return [
         'ROOTviews'                             => ['header'],
         'controllers'                           => ['create_application', 'display_dependencies_application_form'],
         '/controllers/home/'                    => ['main_header'],
-        '/views/home/'                          => ['create_application_dependencies', 'main_header', 'create_application', 'main_footer'],
+        '/views/home/'                          => ['create_application_dependencies', 'main_header', 'create_application'],
         '/views/home/modals/'                   => ['calendar', 'file_upload', 'create_sign', 'error'],
         '/views/home/%footer'                   => ['main_footer'],
     ],
@@ -138,7 +138,7 @@ return [
         'controllers'             => ['navigation'],
         '/views/home/%footer'     => ['main_footer'],
         '/views/home/modals/'     => ['static_error'],
-        
+
     ],
 
     'sign' => [

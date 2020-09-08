@@ -874,7 +874,7 @@
                 </div>
             </div>
         </div>
-
+        </div>
 
         <div class="application-form__card card-form" data-type="documentation">
             <div class="card-form__header">
@@ -916,7 +916,6 @@
                 </div>
             </div>
         </div>
-
     </form>
 </div>
 
@@ -938,7 +937,3 @@
         <a href="/home/navigation" class="save-modal__link application-button">Выйти в личный кабинет</a>
     </div>
 </div>
-
-</body>
-
-</html>

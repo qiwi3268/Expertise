@@ -63,8 +63,6 @@ $route->checkAccess();
 $route->checkAction();
 
 
-
-var_dump($_SESSION);
 foreach ($route->getRequiredFiles() as $routeRequiredFile) {
 
     if (!file_exists($routeRequiredFile['path'])) {
