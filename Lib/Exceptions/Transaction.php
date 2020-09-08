@@ -6,7 +6,7 @@ namespace Lib\Exceptions;
 use Lib\Exceptions\Traits\MainTrait;
 
 
-// exception, связанный с ошибками при работе класса Transaction
+// exception, связанный с ошибками при работе класса Lib\DataBase\Transaction
 // code:
 //  1 - переданный класс не существует
 //  2 - переданный метод не существует

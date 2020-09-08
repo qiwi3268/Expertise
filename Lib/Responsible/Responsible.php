@@ -108,7 +108,7 @@ class Responsible
         }
 
         return [
-            'type' => $this->currentResponsibleType,
+            'type'  => $this->currentResponsibleType,
             'users' => $responsible
         ];
     }

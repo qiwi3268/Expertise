@@ -4,6 +4,7 @@
 namespace Lib\DataBase;
 
 use Lib\Exceptions\Transaction as SelfEx;
+use ReflectionMethod;
 
 
 // Предназначен для выполнения транзакций
@@ -41,7 +42,7 @@ final class Transaction extends DataBase
             throw new SelfEx("Переданный метод: '{$class}:{$method}' не существует", 2);
         }
 
-        $reflection = new \ReflectionMethod($class, $method);
+        $reflection = new ReflectionMethod($class, $method);
         $min = $reflection->getNumberOfRequiredParameters();
         $max = $reflection->getNumberOfParameters();
 

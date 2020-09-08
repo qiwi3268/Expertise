@@ -3,23 +3,32 @@
 
 namespace Lib\Responsible;
 
-use Exception as SelfEx; //todo
+use Lib\Exceptions\Responsible as SelfEx;
 use SimpleXMLElement;
 
 
+// Предназначен для получения названий классов и методов из XML-схемы ответственных
+//
 class XMLReader
 {
 
+    // XPath шаблон для "плоского" пути, т.е. без type
     private const XPATH_FLAT = "/responsible/document[@name='%s']/queries/%s";
+    // XPath шаблон для пути с type
     private const XPATH_BY_TYPE = "/responsible/document[@name='%s']/queries/%s/%s";
 
     private SimpleXMLElement $data;
 
 
+    // Выбрасывает исключения---------------------------------
+    // Classes\Exceptions\Responsible :
+    // code:
+    //  4  - ошибка при инициализации XML-схемы ответственных
+    //
     public function __construct()
     {
         if (($data = simplexml_load_file(SETTINGS . '/responsible.xml')) === false) {
-            throw new SelfEx("Ошибка при инициализации XML-схемы ответственных", 1);
+            throw new SelfEx("Ошибка при инициализации XML-схемы ответственных", 4);
         }
         $this->data = $data;
     }
@@ -60,6 +69,20 @@ class XMLReader
     }
 
 
+    // Предназначен для получения проверенного названия класса и метода в требуемом путь в XML-схеме
+    // Принимает параметры------------------------------------
+    // path string : XPath путь
+    // Возвращает параметры-----------------------------------
+    // array : массив формата:
+    //    'class'  => название класса
+    //    'method' => название метода
+    // Выбрасывает исключения---------------------------------
+    // Classes\Exceptions\Responsible :
+    // code:
+    //  5  - ошибка при получении XML-пути в схеме ответственных
+    //  6  - класс в XML-схеме ответственных не существует
+    //  7  - метод в XML-схеме ответственных не существует
+    //
     private function getValidatedResults(string $path): array
     {
         $XMLElement = $this->data->xpath($path);
@@ -70,17 +93,17 @@ class XMLReader
             || (count($XMLElement) != 1)
             || (count($XMLElement[0]) != 2)
         ) {
-            throw new SelfEx("Ошибка при получении XML-пути: '{$path}' в схеме ответственных", 2);
+            throw new SelfEx("Ошибка при получении XML-пути: '{$path}' в схеме ответственных", 5);
         }
 
         $XMLElement = $XMLElement[0];
 
         if (!class_exists($class = (string)$XMLElement->class['name'])) {
-            throw new SelfEx("Класс: '{$class}' в XML-схеме ответственных не существует", 3);
+            throw new SelfEx("Класс: '{$class}' в XML-схеме ответственных не существует", 6);
         }
 
         if (!method_exists($class, $method = (string)$XMLElement->method['name'])) {
-            throw new SelfEx("Метод: '{$class}:{$method}' в XML-схеме ответственных не существует", 4);
+            throw new SelfEx("Метод: '{$class}:{$method}' в XML-схеме ответственных не существует", 7);
         }
 
         return [

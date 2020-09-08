@@ -8,6 +8,7 @@ use Lib\Files\Mappings\RequiredMappingsSetter;
 use Lib\Files\Mappings\FilesTableMapping;
 use Lib\Signs\Mappings\SignsTableMapping;
 use Lib\Singles\NodeStructure;
+use ArrayIterator;
 
 
 // Абстрактный класс для инициализации сохраненных файлов
@@ -91,7 +92,7 @@ abstract class Initializer
                     continue;
                 }
 
-                $files = new \ArrayIterator($files);
+                $files = new ArrayIterator($files);
 
                 // Формирование id файлов для запроса IN
                 $ids = [];
@@ -111,7 +112,7 @@ abstract class Initializer
                     continue;
                 }
 
-                $signs = new \ArrayIterator($signs);
+                $signs = new ArrayIterator($signs);
 
                 // Хэш-массив id файлов для быстрого поиска
                 $idsHash = getHashArray($ids);

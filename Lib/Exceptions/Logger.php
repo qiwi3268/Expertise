@@ -6,7 +6,7 @@ namespace Lib\Exceptions;
 use Lib\Exceptions\Traits\MainTrait;
 
 
-// exception, связанный с ошибками при работе класса Logger
+// exception, связанный с ошибками при работе класса Lib\Singles\Logger
 // code:
 //  1 - передан некорректный параметр logsDir
 //  2 - передан некорректный параметр logsName

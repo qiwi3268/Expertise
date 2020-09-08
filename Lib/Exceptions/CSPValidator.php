@@ -6,7 +6,7 @@ namespace Lib\Exceptions;
 use Lib\Exceptions\Traits\MainTrait;
 
 
-// exception, Ссвязанный с ошибками при работе csp класса Validator
+// exception, Ссвязанный с ошибками при работе csp класса Lib\CSP\Validator
 // code:
 //  1 - получен неизвестный результат проверки подписи / сертификата (подписи)
 //  2 - неизвестный формат блока, следующий за Signer

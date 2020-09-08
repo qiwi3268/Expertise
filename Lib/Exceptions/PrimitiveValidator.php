@@ -6,7 +6,7 @@ namespace Lib\Exceptions;
 use Lib\Exceptions\Traits\MainTrait;
 
 
-// exception, связанный с ошибками при работе класса проверки примитивов PrimitiveValidator
+// exception, связанный с ошибками при работе класса проверки примитивов Lib\Singles\PrimitiveValidator
 // code:
 //  1 - ошибка при декодировании json-строки
 //  2 - декодированная json-строка не является массивом

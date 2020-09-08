@@ -5,6 +5,8 @@ namespace Lib\Singles;
 
 use Lib\Exceptions\PrimitiveValidator as SelfEx;
 use Classes\Exceptions\PregMatch as PregMatchEx;
+use BadMethodCallException;
+use BadFunctionCallException;
 
 
 // Предназначен для валидации (получения) примитивов
@@ -150,6 +152,7 @@ class PrimitiveValidator
     // Lib\Exceptions\PrimitiveValidator :
     // code:
     //  8 - введенный КПП является некорректным
+    //
     public function validateKPP(string $KPP): void
     {
         // начало текста
@@ -171,6 +174,7 @@ class PrimitiveValidator
     // Lib\Exceptions\PrimitiveValidator :
     // code:
     //  9 - введенный ОГРН является некорректным
+    //
     public function validateOGRN(string $OGRN): void
     {
         // начало текста
@@ -271,7 +275,7 @@ class PrimitiveValidator
 
                 if ($is_array) {
 
-                    if (!method_exists($callback[0], $callback[1])) throw new \BadMethodCallException("Переданный метод: '{$callback[1]}' не существует'");
+                    if (!method_exists($callback[0], $callback[1])) throw new BadMethodCallException("Переданный метод: '{$callback[1]}' не существует'");
 
                     // Первый параметр - значение проверяемого массива
                     $params = [$array[$key]];
@@ -284,7 +288,7 @@ class PrimitiveValidator
 
                 } else {
 
-                    if (!function_exists($callback)) throw new \BadFunctionCallException("Переданная функция: '{$callback}' не существует");
+                    if (!function_exists($callback)) throw new BadFunctionCallException("Переданная функция: '{$callback}' не существует");
 
                     $res = call_user_func($callback, $array[$key]);
                 }

@@ -20,6 +20,7 @@ class Uploader
     // Массив ошибок
     private array $errors = [];
 
+
     public function __construct(array $FILES)
     {
         $this->FILES = $FILES;
@@ -252,7 +253,7 @@ class Uploader
             $uploadNames = $this->getFilesName($inputName);
         }
 
-        if (count($uploadNames) !== $this->FILESCount[$inputName]) {
+        if (count($uploadNames) != $this->FILESCount[$inputName]) {
             throw new SelfEx('Размерность массива uploadNames не соответствует имеющемуся количеству файлов');
         }
 
