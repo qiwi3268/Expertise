@@ -919,7 +919,6 @@
     </form>
 </div>
 
-
 <div class="modal-overlay"></div>
 <div class="save-overlay"></div>
 
@@ -927,7 +926,6 @@
     <i class="alert-modal__icon fas fa-exclamation"></i>
     <span class="alert-modal__message"></span>
 </div>
-
 
 <div class="modal save-modal">
     <div class="save-modal__info">

@@ -182,12 +182,11 @@ function getHumanFileSize(int $bytes): string
 // Возвращает параметры----------------------------------
 // string : ФИО в нужном формате
 //
-//todo важное переформировть чтобы в бд можно было без отчества и чтобы тут работало без отчества
 function getFIO(array $userInfo, bool $needShort = true): string
 {
     list('last_name' => $F, 'first_name' => $I, 'middle_name' => $O) = $userInfo;
 
-    $full = "{$F} {$I} {$O}";
+    $full = is_null($O) ? "{$F} {$I}" : "{$F} {$I} {$O}";
 
     if ($needShort) {
 
@@ -205,6 +204,7 @@ function getFIO(array $userInfo, bool $needShort = true): string
         // конец текста
         // - регистронезависимые
         // - использование кодировки utf-8
+        //todo дописать регулярку чтобы без отчетства
         $pattern = '/\A([а-яё]+)\s([а-яё]{1})[а-яё]+\s([а-яё]{1})[а-яё]+\z/iu';
 
         list(1 => $f, 2 => $i, 3 => $o) = getHandlePregMatch($pattern, $full, false);

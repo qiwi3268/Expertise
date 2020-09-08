@@ -23,7 +23,6 @@ class Locator
     // Выполняется единожды
     private function __construct()
     {
-
         $documentType = PageAddressHelper::getDocumentType();
 
         if (is_null($documentType)) {

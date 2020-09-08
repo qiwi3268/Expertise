@@ -2,7 +2,7 @@
 
 <?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
-<?php var_dump($variablesTV->getValue('documentation_files_in_structure')); ?>
+<?php //var_dump($variablesTV->getValue('documentation_files_in_structure')); ?>
 
 <div class="action">
 
@@ -25,6 +25,20 @@
     
         <div class="assignment__experts">
             <div class="assignment__header">Эксперты</div>
+            <div class="assignment__expert-list">
+                <div class="assignment__expert-section" data-drag_container data-drag_multiple="true">
+                    <div class="assignment__type">Смета</div>
+                    <?php foreach ($variablesTV->getValue('experts') as $expert): ?>
+                        <div class="assignment__expert" data-drag_element data-id="<?= $expert['id'] ?>"><?= $expert['fio'] ?></div>
+                    <?php endforeach; ?>
+                </div>
+                <div class="assignment__expert-section" data-drag_container data-drag_multiple="false">
+                    <div class="assignment__type">Не смета</div>
+                    <?php foreach ($variablesTV->getValue('experts') as $expert): ?>
+                        <div class="assignment__expert" data-drag_element data-id="<?= $expert['id'] ?>"><?= $expert['fio'] ?></div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
         </div>
         <div class="assignment__sections">
             <div class="assignment__main">
@@ -32,15 +46,20 @@
                 
                 <div class="assignment__body">
     
-    
                     <?php foreach ($variablesTV->getValue('documentation_files_in_structure') as $section): ?>
-                        <div class="assignment__section section">
+                        <div class="assignment__section section" data-drop_area>
                             <span class="section__title"><?= $section['name'] ?></span>
                             <div class="section__body">
                                 <div class="section__experts">
                                     <div class="section__experts-title">Назначенные эксперты:</div>
+                                    <div class="section__expert-list" data-drop_container data-drop_multiple="false">
+                                        <div class="section__expert">
+                                            <span class="section__name">Белов А.В.</span>
+                                            <i class="section__icon-remove fas fa-minus"></i>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="section__files">
+                                <div class="section__uploaded-files">
                                     <div class="section__expand-button">
                                         <span class="section__button-name">Показать загруженные файлы</span>
                                         <i class="section__icon-expand fas fa-chevron-down"></i>
@@ -66,30 +85,46 @@
                             </div>
                         </div>
                     <?php endforeach; ?>
-                    
-                    <div class="assignment__section">
-                        <div class="assignment__section-title">
-                            <span class="assignment__name">Ведомости объемов работ по разделу и спецификации, выполненные на основании проектной документации</span>
-                            <i class="assignment__icon-expand fas fa-chevron-right"></i>
+                    <div class="assignment__section section">====================</div>
+                    <?php foreach ($variablesTV->getValue('documentation_files_in_structure') as $section): ?>
+                        <div class="assignment__section section" data-drop_area>
+                            <span class="section__title"><?= $section['name'] ?></span>
+                            <div class="section__body">
+                                <div class="section__experts">
+                                    <div class="section__experts-title">Назначенные эксперты:</div>
+                                    <div class="section__expert-list" data-drop_container data-drop_multiple="true">
+                                        <div class="section__expert">
+                                            <span class="section__name">Белов А.В.</span>
+                                            <i class="section__icon-remove fas fa-minus"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="section__uploaded-files">
+                                    <div class="section__expand-button">
+                                        <span class="section__button-name">Показать загруженные файлы</span>
+                                        <i class="section__icon-expand fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="section__files files filled block">
+                                        <?php foreach ($section['files'] as $file): ?>
+                                            <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" data-validate_results='<?= $file['validate_results'] ?>'>
+                                                <div class="files__info">
+                                                    <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
+                                                    <div class="files__description">
+                                                        <span class="files__name"><?= $file['file_name'] ?></span>
+                                                        <span class="files__size"><?= $file['human_file_size'] ?></span>
+                                                    </div>
+                                                </div>
+                                                <div class="files__state"></div>
+                                                <div class="files__actions">
+                                                    <i class="files__unload fas fa-file-download"></i>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="assignment__section">
-                        <div class="assignment__section-title">
-                            <span class="assignment__name">Раздел 5. Сведения об инженерном оборудовании, о сетях инженерно-технического обеспечения, перечень инженерно-технических мероприятий, содержание технологических решений</span>
-                            <i class="assignment__icon-expand fas fa-chevron-right"></i>
-                        </div>
-                        <div class="assignment__section-items">
-                            <div class="assignment__item">Expert</div>
-                        </div>
-                    </div>
-                    
-                    <div class="assignment__section section">
-                        <div class="section__title">
-                            <span class="section__name">Мероприятия по обеспечению пожарной безопасности</span>
-                            <i class="section__icon-expand fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-                    
+                    <?php endforeach; ?>
                     
 <!--                    <div class="assignment__section section">-->
 <!--                        <span class="section__title">Сметные расчеты на отдельные виды затрат (калькуляции, расчёт земляных масс, расчёт по НЦС, расчёт по мусору, ведомость поставки материалов, утвержденную Заказчиком (для дорожного строительства по области) и т.п.)</span>-->

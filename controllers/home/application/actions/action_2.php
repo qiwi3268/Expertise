@@ -10,7 +10,22 @@ use Lib\Files\Mappings\RequiredMappingsSetter;
 use Lib\Singles\Helpers\FileHandler;
 use Lib\Singles\NodeStructure;
 use Tables\application;
+use Tables\user;
 use Classes\Application\Files\Initialization\Initializer as FilesInitializer;
+
+
+$variablesTV = VariableTransfer::getInstance();
+
+
+$activeExperts = user::getActiveExperts();
+
+foreach ($activeExperts as &$expert) {
+    $expert['fio'] = getFIO($expert);
+    unset($expert['last_name'], $expert['first_name'],$expert['middle_name']);
+}
+unset($expert);
+
+$variablesTV->setValue('experts', $activeExperts);
 
 
 $applicationId = $_GET['id_application'];

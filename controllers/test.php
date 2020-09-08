@@ -10,14 +10,13 @@ use Tables\Responsible\type_3\application as resp_application_type_3;
 use Tables\applicant_access_group;
 
 
-$responsible = new Responsible(613, 'application');
+$activeExperts = user::getActiveExperts();
 
-$responsible->createNewResponsibleType3( 'only_view', 'full_access');
+foreach ($activeExperts as &$expert) {
+    $expert['fio'] = getFIO($expert);
+    unset($expert['last_name'], $expert['first_name'],$expert['middle_name']);
+}
+unset($expert);
 
-$test = $responsible->isUserResponsible(1);
-
-var_dump($test);
-
-
-
+var_dump($activeExperts);
 
