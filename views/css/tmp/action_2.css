@@ -114,7 +114,7 @@
 
 /*.assignment__experts,*/
 /*.assignment__main,*/
-.assignment__expert-list,
+.assignment__body-experts,
 .assignment__additional {
    background-color: #ffffff;
    border-radius: 4px;
@@ -357,7 +357,7 @@
    /*border-color: #93b0d1;*/
 }
 
-.assignment__expert-list {
+.assignment__body-experts {
    margin: 10px 0px 0px 0px;
 
    /*padding: 7px;*/
@@ -380,6 +380,11 @@
    text-align: center;
 }
 
+.assignment__expert-list {
+   display: flex;
+   flex-direction: column;
+}
+
 .assignment__expert {
    padding: 10px 15px;
 
@@ -392,6 +397,7 @@
    /*border-radius: 4px;*/
    cursor: pointer;
    transition: background-color 0.15s;
+
 }
 
 .assignment__expert:hover {
@@ -399,16 +405,23 @@
 
 }
 
-.assignment__expert.drug {
+.assignment__expert.drag {
    /*background-color: #E3EFFF;*/
    /*border: 1px solid #CAD6E7;*/
    /*color: #6A7E9A;*/
+
+   position: absolute;
+   z-index: 1000;
+
 
    background-color: #ddfad9;
    border: 1px solid #C5E6C1;
    color: #537A5D;
 
    border-radius: 4px;
+
+   /*pointer-events: none;*/
+
 
 }
 

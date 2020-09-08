@@ -1,19 +1,25 @@
 <?php
 
 
-$actions = \Lib\Actions\Locator::getInstance()->getActions();
+use Lib\Actions\Locator as ActionLocator;
+use Lib\Singles\VariableTransfer;
 
-$availableActionsAssoc = $actions->getAvailableActions();
+$availableActions = ActionLocator::getInstance()->getActions()->getAccessActions()->getAvailableActions();
 
-$availableActions = [];
+var_dump($availableActions);
 
-foreach ($availableActionsAssoc as $action) {
 
-    $availableActions[] = [
+
+
+$availableActionsTV = [];
+
+foreach ($availableActions as $action) {
+
+    $availableActionsTV[] = [
 
         'ref'   => "/{$action['page_name']}?id_application={$_GET['id_application']}",
         'label' => $action['name']
     ];
 }
 
-\Lib\Singles\VariableTransfer::getInstance()->setValue('availableActions', $availableActions);
+VariableTransfer::getInstance()->setValue('availableActions', $availableActionsTV);

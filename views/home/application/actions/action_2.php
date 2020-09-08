@@ -3,6 +3,7 @@
 <?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
 <?php //var_dump($variablesTV->getValue('documentation_files_in_structure')); ?>
+<?php var_dump($variablesTV->getValue('experts')); ?>
 
 <div class="action">
 
@@ -25,18 +26,22 @@
     
         <div class="assignment__experts">
             <div class="assignment__header">Эксперты</div>
-            <div class="assignment__expert-list">
-                <div class="assignment__expert-section" data-drag_container data-drag_multiple="true">
+            <div class="assignment__body-experts">
+                <div class="assignment__expert-section">
                     <div class="assignment__type">Смета</div>
-                    <?php foreach ($variablesTV->getValue('experts') as $expert): ?>
-                        <div class="assignment__expert" data-drag_element data-id="<?= $expert['id'] ?>"><?= $expert['fio'] ?></div>
-                    <?php endforeach; ?>
+                    <div class="assignment__expert-list" data-drag_container data-drag_multiple="true">
+                        <?php foreach ($variablesTV->getValue('experts') as $index => $expert): ?>
+                            <div class="assignment__expert" data-drag_element data-id="<?= $expert['id'] ?>" style="order: <?= -$index ?>"><?= $expert['fio'] ?></div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
-                <div class="assignment__expert-section" data-drag_container data-drag_multiple="false">
+                <div class="assignment__expert-section">
                     <div class="assignment__type">Не смета</div>
-                    <?php foreach ($variablesTV->getValue('experts') as $expert): ?>
-                        <div class="assignment__expert" data-drag_element data-id="<?= $expert['id'] ?>"><?= $expert['fio'] ?></div>
-                    <?php endforeach; ?>
+                    <div class="assignment__expert-list" data-drag_container data-drag_multiple="false">
+                        <?php foreach ($variablesTV->getValue('experts') as $index => $expert): ?>
+                            <div class="assignment__expert" data-drag_element data-id="<?= $expert['id'] ?>" style="order: <?= $index ?>"><?= $expert['fio'] ?></div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -44,7 +49,7 @@
             <div class="assignment__main">
                 <div class="assignment__header">Разделы ПД</div>
                 
-                <div class="assignment__body">
+                <div class="assignment__body-sections">
     
                     <?php foreach ($variablesTV->getValue('documentation_files_in_structure') as $section): ?>
                         <div class="assignment__section section" data-drop_area>

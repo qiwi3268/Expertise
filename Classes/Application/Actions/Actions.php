@@ -2,85 +2,36 @@
 
 
 namespace Classes\Application\Actions;
-
-use core\Classes\Session;
 use Lib\Actions\Actions as MainActions;
-use Tables\Actions\application;
+use Lib\Actions\AccessActions as MainAccessActions;
+use Lib\Actions\ExecutionActions as MainExecutionActions;
+use Tables\Actions\application as ActionTable;
 
 
-// Предназначен для реализации действий над типом документа - Заявление
-//
 class Actions extends MainActions
 {
-
-    private const DOCUMENT_TYPE = DOCUMENT_TYPE['application'];
-
-    private $applicationId;
-
-
-    public function __construct()
+    public function getAssocActiveActions(): array
     {
-        $this->applicationId = clearHtmlArr($_GET)['id_application'];
-
-        parent::__construct(self::DOCUMENT_TYPE);
+        return ActionTable::getAllActive();
     }
 
-    // -----------------------------------------------------------------------------------------
-    // Реализация абстрактных методов родительского класса
-    // -----------------------------------------------------------------------------------------
-    protected function getDocumentId(): int
+    public function getAssocActiveActionByPageName(string $pageName): ?array
     {
-        return $this->applicationId;
+        return ActionTable::getAssocByPageName($pageName);
     }
 
-    protected function getAssocActiveActions(): array
+    public function getAssocActionByHash(string $hash): ?array
     {
-        return application::getAllActive();
+        return ActionTable::getAssocByHash($hash);
     }
 
-    protected function getAssocBusinessProcess(): array
+    public function getAccessActions(): MainAccessActions
     {
-        return application::getAssocBusinessProcessById($this->applicationId);
+        return new AccessActions($this);
     }
 
-
-    // Реализация callback'ов действий из БД ---------------------------------------------------
-
-    // "Передать на рассмотрение в ПТО"
-    protected function action_1(): bool
+    public function getExecutionActions(): MainExecutionActions
     {
-        // Тип учетной записи:
-        // - заявитель
-        if (!Session::isApplicant()) {
-            return false;
-        }
-
-        // Ответственный
-        if (!$this->responsible->isUserResponsible(Session::getUserId())) {
-            return false;
-        }
-
-        // Стадия
-        // todo
-
-        return true;
-    }
-
-    // "Назначить экспертов"
-    protected function action_2(): bool
-    {
-        // Тип учетной записи:
-        // - ПТО
-        // todo
-
-        // Ответственный
-        // ? (ПТО назначают когда хотят)
-
-        // Стадия
-        // ? (ПТО назначают на любой стадии)
-
-        // Нет сводного замечания/заключения, у которого есть назначенные эксперты
-
-        return true;
+        return new ExecutionActions($this);
     }
 }
