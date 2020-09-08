@@ -578,6 +578,7 @@
                                                     <span class="radio__text" data-part_title="2">Средства юридических лиц, указанных в ч. 2 статьи 48.2 ГрК</span>
                                                 </div>
                                                 <div class="radio__item" data-id="3">
+                                                <div class="radio__item" data-id="3">
                                                     <i class="radio__icon inline far fa-square"></i>
                                                     <span class="radio__text" data-part_title="3">Собственные средства застройщика</span>
                                                 </div>

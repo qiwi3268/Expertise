@@ -50,6 +50,8 @@ if (!$route->checkRoute()) {
 
 $route->checkRouteCorrect();
 
+define('URN', $route->getURN());
+
 $redirect = $route->getRedirect();
 
 if ($redirect) {
@@ -58,10 +60,11 @@ if ($redirect) {
 }
 
 $route->checkAccess();
+$route->checkAction();
 
-define('URN', $route->getURN());
 
 
+var_dump($_SESSION);
 foreach ($route->getRequiredFiles() as $routeRequiredFile) {
 
     if (!file_exists($routeRequiredFile['path'])) {

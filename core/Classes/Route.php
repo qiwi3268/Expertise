@@ -4,7 +4,9 @@
 namespace core\Classes;
 
 use core\Classes\Exceptions\Route as SelfEx;
-
+use core\Classes\Session;
+use Lib\Actions\Locator as ActionLocator;
+use Tables\Exceptions\Exception;
 
 final class Route
 {
@@ -104,6 +106,15 @@ final class Route
             unset($tmpArr['access']);
         }
 
+        // Отдельная проверка для check_action
+        if (isset($tmpArr['check_action'])) {
+
+            if (!is_bool($tmpArr['check_action'])) {
+                throw new SelfEx('check_action должен быть boolean значением');
+            }
+            unset($tmpArr['check_action']);
+        }
+
         // Проверка всего остального
         foreach ($tmpArr as $routeUnit => $unitList) {
 
@@ -184,7 +195,8 @@ final class Route
 
     // Метод проверяет доступ пользователя к странице, вызывая access функции
     //
-    public function checkAccess()
+    //todo среднее переименовать access в check_access
+    public function checkAccess(): void
     {
         if (isset($this->route['access'])) {
 
@@ -199,6 +211,28 @@ final class Route
         }
     }
 
+    public function checkAction(): void
+    {
+        if (isset($this->route['check_action'])) {
+
+            $actions = ActionLocator::getInstance()->getActions();
+
+            $accessActions = $actions->getAccessActions();
+
+            // todo важное try/catch после того, как классы будут готовы
+
+            try {
+                if (!$accessActions->checkAccessFromActionByPageName()) {
+                    Session::setErrorMessage('Действие ... недоступно');
+                    header('Location: /home/navigation');
+                }
+            } catch (Exception $e) {
+
+            }
+            $lala=12;
+        }
+    }
+
 
     // Метод для получения подключаемых к странице файлов
     // Возвращает параметры-----------------------------------
@@ -210,10 +244,10 @@ final class Route
 
         // Удаление из роута redirect и access, т.к. работа с ними
         // должна быть уже произведена
-        unset($tmpArr['redirect'], $tmpArr['access']);
+        unset($tmpArr['redirect'], $tmpArr['access'], $tmpArr['check_action']);
 
         // Удаление пустых routeUnit
-        $tmpArr = array_filter($tmpArr, fn($value) => empty($value) ? false : true);
+        $tmpArr = array_filter($tmpArr, fn($value) => !empty($value));
 
         // 1 - составление роута под пользователя согласно доступа к контенту
         $routeForUser = [];
@@ -257,11 +291,11 @@ final class Route
                     return ROOT . $property[0];
                 };
 
-            } elseif ($routeUnit[0] === '/') {                         // Абсолютная директория
+            } elseif ($routeUnit[0] == '/') {                         // Абсолютная директория
 
                 $tmpStrPos = mb_strpos($routeUnit, '%');
 
-                if ($tmpStrPos !== false) {
+                if ($tmpStrPos != false) {
                     $routeUnit = mb_substr($routeUnit, 0, $tmpStrPos);
                 }
 
@@ -286,7 +320,8 @@ final class Route
             // Сбор подключаемых файлов
             foreach ($unitList as $unit) {
 
-                $requiredFiles[] = ['type' => $routeUnit,
+                $requiredFiles[] = [
+                    'type' => $routeUnit,
                     'path' => $calcFilePath([$unit, $routeUnit])
                 ];
             }

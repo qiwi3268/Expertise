@@ -103,4 +103,40 @@ class Session
         return false;
     }
 
+
+    // Предназначен для установки сообщения об ошибке
+    // Принимает параметры-----------------------------------
+    // text string : текст ошибки
+    //
+    static public function setErrorMessage(string $text): void
+    {
+        $_SESSION['error_message'] = [
+            'text'   => $text,
+            'isRead' => false
+        ];
+    }
+
+
+    // Предназначен для получения сообщения об ошибке
+    // После получения сообщения, оно помечается как "прочитанное", а в следующий заход удаляется
+    // Возвращает параметры-----------------------------------
+    // string : текст сообщения
+    // null   : сообщение не существует, либо было уже прочитано
+    //
+    static public function getErrorMessage(): ?string
+    {
+        if (isset($_SESSION['error_message'])) {
+
+            if ($_SESSION['error_message']['isRead']) {
+
+                unset($_SESSION['error_message']);
+            } else {
+
+                $_SESSION['error_message']['isRead'] = true;
+                return $_SESSION['error_message']['text'];
+            }
+        }
+        return null;
+    }
+
 }

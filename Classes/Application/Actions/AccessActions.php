@@ -14,6 +14,6 @@ class AccessActions extends MainAccessActions
 
     public function action_2(): bool
     {
-        return true;
+        return false;
     }
 }

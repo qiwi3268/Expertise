@@ -2,15 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/views/home/modals/static_error.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/js/tmp/action_2.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/Actions/Actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Actions/Actions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Actions/Actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Actions/Actions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Actions/Interfaces/ActionTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Actions/Interfaces/ActionTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Actions/Traits/ActionTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Actions/Traits/ActionTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/application/action_sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/action_sidebar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Application/Actions/AccessActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Actions/AccessActions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/action_2.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/actions/action_2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/Route.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/Route.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/Session.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/Session.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/Drag&amp;Drop.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/Drag&amp;Drop.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,14 +115,7 @@
       <workItem from="1598327166376" duration="87205000" />
       <workItem from="1598767236475" duration="12765000" />
       <workItem from="1598845123707" duration="58482000" />
-      <workItem from="1599482743968" duration="22690000" />
-    </task>
-    <task id="LOCAL-00034" summary="17.08.2020_1">
-      <created>1597667409356</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1597667409356</updated>
+      <workItem from="1599482743968" duration="26946000" />
     </task>
     <task id="LOCAL-00035" summary="18.08.2020">
       <created>1597740757220</created>
@@ -458,7 +453,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599557039185</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="08.09.2020_2">
+      <created>1599564440703</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1599564440703</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -475,7 +477,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="26.08.2020_3" />
     <MESSAGE value="27.08.2020_1" />
     <MESSAGE value="27.08.2020_2" />
     <MESSAGE value="before global refactor" />
@@ -500,7 +501,8 @@
     <MESSAGE value="06.09.2020_3" />
     <MESSAGE value="08.09.2020" />
     <MESSAGE value="08.09.2020_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="08.09.2020_1" />
+    <MESSAGE value="08.09.2020_2" />
+    <option name="LAST_COMMIT_MESSAGE" value="08.09.2020_2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Notifications" timestamp="1598851428350">
@@ -511,10 +513,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1599557035959">
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1599564437181">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1599557035959" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1599564437181" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598788293599" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog" timestamp="1598853557262">
@@ -525,10 +527,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="248" y="121" key="MergeDialog/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596186835322" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1599536952204">
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1599566568501">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1599536952204" />
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1599566568501" />
     <state x="735" y="231" key="RollbackChangesDialog" timestamp="1598853548198">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -552,10 +554,10 @@
     </state>
     <state x="302" y="56" width="614" height="1035" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1598502743003" />
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597499951448" />
-    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1599559528422">
+    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1599568409517">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599559528422" />
+    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599568409517" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598791797973" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
     <state x="1150" y="591" key="publish.login" timestamp="1598767415653">

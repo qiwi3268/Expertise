@@ -118,6 +118,7 @@ return [
 
     'home/application/actions/action_2' => [
         'access'              => [],
+        'check_action'        => true,
         'ROOTcontrollers'     => ['header'],
         'ROOTviews'           => ['header'],
         '/controllers/home/'  => ['main_header'],
@@ -136,6 +137,8 @@ return [
         'views'                   => ['main_header'],
         'controllers'             => ['navigation'],
         '/views/home/%footer'     => ['main_footer'],
+        '/views/home/modals/'     => ['static_error'],
+        
     ],
 
     'sign' => [

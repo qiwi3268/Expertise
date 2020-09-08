@@ -1,17 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
-   clearDefaultDropEvents();
 
-   let drag_containers = document.querySelectorAll('[data-drag_container]');
-   drag_containers.forEach(container => {
-      new DragContainer(container);
-   });
-
-   let drop_areas = document.querySelectorAll('[data-drop_area]');
-   drop_areas.forEach(area => {
-      new DropArea(area);
-   });
-
-});
 
 
 class DropArea {
@@ -21,7 +8,7 @@ class DropArea {
    elements;
 
 
-   constructor (drop_area, element) {
+   constructor (drop_area, element, transform_callback) {
       this.area = drop_area;
       this.elements = [element];
 
@@ -39,7 +26,9 @@ class DragContainer {
 
    draggable_elem;
 
-   constructor (drag_container) {
+   transform_callback;
+
+   constructor (drag_container, transform_callback = null, drug_callback = null) {
 
       this.container = drag_container;
       this.multiple = this.container.dataset.drag_multiple === 'true';
@@ -142,7 +131,9 @@ class DragContainer {
       return deepest_elem ? deepest_elem.closest('[data-drop_area]') : null;
    }
 
+   addElement (element) {
 
+   }
 
    mouseMove (event) {
       this.draggable_elem.style.left = event.pageX - this.draggable_elem.offsetWidth / 2 + 'px';

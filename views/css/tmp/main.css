@@ -140,7 +140,6 @@ textarea.application-input {
    background-color: #ffffff;
    transform: translate(-50%, -50%);
    transition: 0.3s all;
-
    font-family: 'Roboto Condensed', sans-serif;
    color: #343a40;
 
@@ -213,7 +212,7 @@ textarea.application-input {
 
 .error-modal__header {
    padding: 10px 15px;
-   border-bottom: 1px solid #cccccc;;
+   border-bottom: 1px solid #cccccc;
 }
 
 .error-modal__icon {
