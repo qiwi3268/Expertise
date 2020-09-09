@@ -55,11 +55,11 @@ final class Route
         return $this->routeExist;
     }
 
+    public function getURI(): string
+    {
+        return $this->URI;
+    }
 
-    // Метод для получения URN текущего запроса
-    // Возвращает параметры-----------------------------------
-    // string : URN текущего запроса
-    //
     public function getURN(): string
     {
         return $this->URN;
@@ -86,54 +86,19 @@ final class Route
     //todo проверку на абсолютную директорию (новый функционал)
     public function checkRouteCorrect()
     {
-        $tmpArr = $this->route;
-
-        $userCallbacks = array_filter(
-            $tmpArr,
-            fn($routeUnit) => (containsAll($routeUnit, 'user_callback')),
-            ARRAY_FILTER_USE_BOTH
-        );
+        $route = $this->route;
 
 
 
-        // Отдельная проверка для redirect
-        if (isset($tmpArr['redirect'])) {
 
-            if (!is_string($tmpArr['redirect'])) {
-                throw new SelfEx('redirect должен быть ключом строки');
-            }
-            if (containsAll($tmpArr['redirect'], ' ')) {
-                throw new SelfEx('redirect сореждит пробелы');
-            }
-            unset($tmpArr['redirect']);
-        }
-
-        // Отдельная проверка для access
-        if (isset($tmpArr['access'])) {
-
-            if (!is_array($tmpArr['access'])) {
-                throw new SelfEx('access должен быть ключом массива');
-            }
-            foreach ($tmpArr['access'] as $function) {
-                if (!is_string($function) || containsAll($function, ' ')) {
-                    throw new SelfEx('access function не является строкой или содержит пробелы');
-                }
-            }
-            unset($tmpArr['access']);
-        }
-
-        // Отдельная проверка для check_action
-        if (isset($tmpArr['check_action'])) {
-
-            if (!is_bool($tmpArr['check_action'])) {
-                throw new SelfEx('check_action должен быть boolean значением');
-            }
-            unset($tmpArr['check_action']);
-        }
+        //todo
+        unset($route['redirect']);
+        unset($route['access']);
+        unset($route['check_action']);
 
 
         // Проверка всего остального
-        foreach ($tmpArr as $routeUnit => $unitList) {
+        foreach ($route as $routeUnit => $unitList) {
 
             if (containsAll($routeUnit, ' ')) {
                 throw new SelfEx("routeUnit '{$routeUnit}' содержит пробелы");
@@ -142,8 +107,6 @@ final class Route
                 throw new SelfEx("routeUnit '{$routeUnit}' должен быть ключом массива");
             }
 
-            // Флаг ABS
-            $ABSflag = containsAll($routeUnit, 'ABS') ? true : false;
 
             foreach ($unitList as $contentFunction => $unit) {
 
@@ -153,11 +116,7 @@ final class Route
                     if (!is_string($unit) || containsAll($unit, ' ')) {
                         throw new SelfEx("unit в '{$routeUnit}' не является строкой или содержит пробелы");
                     }
-                    if ($ABSflag && !$this->checkABSfile($unit)) {
-                        throw new SelfEx("unit '{$unit}' в '{$routeUnit}' должен являться абсолютным путем к файлу");
-                    }
-
-                    // Юнит с ограниченным доступом
+                // Юнит с ограниченным доступом
                 } else {
 
                     if (containsAll($contentFunction, ' ')) {
@@ -175,78 +134,39 @@ final class Route
                         if (!is_string($accessUnit) || containsAll($accessUnit, ' ')) {
                             throw new SelfEx("В contentFunction '{$contentFunction}' в '{$routeUnit}' один из accessUnit не является строкой или содержит пробелы");
                         }
-                        if ($ABSflag && !$this->checkABSfile($accessUnit)) {
-                            throw new SelfEx("accessUnit '{$accessUnit}' в contentFunction '{$contentFunction}' в '{$routeUnit}'  должен являться абсолютным путем к файлу");
-                        }
                     }
                 }
             }
         }
     }
 
-
-    // Метод для проверки названия файла на соответствие абсолютному пути
-    // название должно: начинаться с '/' и иметь одно из расширений
-    // Возвращает параметры-----------------------------------
-    // true  - название файла соответствует абсолютному пути
-    // false - название файла не соответствует абсолютному пути
-    //
-    private function checkABSfile(string $fileName): bool
+    public function executeUserCallbacks(): void
     {
-        if ($fileName[0] == '/') return containsAny($fileName, '.php', '.html', '.css', '.js');
+        $callbacks = [];
 
-        return false;
-    }
+        foreach ($this->route as $routeUnit => $unitList) {
 
+            if (containsAll($routeUnit, 'user_callback')) {
 
-    // Метод возвращает редирект из роута, или false - если его нет
-    // Возвращает параметры-----------------------------------
-    // string : страница для редиректа
-    // false - у роута отсутствует редирект
-    //
-    public function getRedirect()
-    {
-        return $this->route['redirect'] ?? false;
-    }
+                foreach ($unitList as $callback) {
 
+                    if (!method_exists($this->routeCallback, $callback)) {
 
-    // Метод проверяет доступ пользователя к странице, вызывая access функции
-    //
-    public function checkAccess(): void
-    {
-        if (isset($this->route['access'])) {
-
-            foreach ($this->route['access'] as $function) {
-
-                if (method_exists('Access', $function)) {
-                    Access::$function();
-                } else {
-                    throw new SelfEx("В классе Access отсутствует метод $function()");
+                        throw new SelfEx("Отсуствует метод core\Classes\RouteCallback::{$callback}");
+                    }
+                    $callbacks[] = $callback;
                 }
+                unset($this->route[$routeUnit]);
             }
+        }
+
+        foreach ($callbacks as $method) {
+            $this->routeCallback->$method();
         }
     }
 
 
-    // Предназначен для проверки доступа к дейстувию
-    //
-    public function checkAction(): void
-    {
-        if (isset($this->route['check_action'])) {
 
-            $actions = ActionLocator::getInstance()->getActions();
-
-            $accessActions = $actions->getAccessActions();
-            $executionActions = $actions->getExecutionActions();
-
-            if (!$accessActions->checkAccessFromActionByPageName($this->URN)) {
-                Session::setErrorMessage("Действие по странице: '{$this->URN}' недоступно");
-                header('Location: /home/navigation');
-            }
-
-            $executionActions->checkIssetCallbackByPageName($this->URN);
-        }
-    }
 
 
     // Метод для получения подключаемых к странице файлов
@@ -255,19 +175,19 @@ final class Route
     //
     public function getRequiredFiles(): array
     {
-        $tmpArr = $this->route;
+        $route = $this->route;
 
         // Удаление из роута redirect и access, т.к. работа с ними
         // должна быть уже произведена
-        unset($tmpArr['redirect'], $tmpArr['access'], $tmpArr['check_action']);
+        unset($route['redirect'], $route['access'], $route['check_action']);
 
         // Удаление пустых routeUnit
-        $tmpArr = array_filter($tmpArr, fn($value) => !empty($value));
+        $route = array_filter($route, fn($value) => !empty($value));
 
         // 1 - составление роута под пользователя согласно доступа к контенту
         $routeForUser = [];
         $tmpUnitList = [];
-        foreach ($tmpArr as $routeUnit => $unitList) {
+        foreach ($route as $routeUnit => $unitList) {
 
             foreach ($unitList as $contentFunction => $unit) {
 
@@ -295,17 +215,7 @@ final class Route
         foreach ($routeForUser as $routeUnit => $unitList) {
 
             // Выбор типа функции рассчета пути в зависимости от routeUnit
-            if (containsAll($routeUnit, 'ABS')) {    // Абсолютный файл
-
-                // Расчет пути к файлу
-                //	property : индексный массив
-                //	[0] - fileName
-                //	[1] - fileFolder
-                $calcFilePath = function (array $property): string {
-                    return ROOT . $property[0];
-                };
-
-            } elseif ($routeUnit[0] == '/') {                         // Абсолютная директория
+            if ($routeUnit[0] == '/') {                         // Абсолютная директория
 
                 $tmpStrPos = mb_strpos($routeUnit, '%');
 

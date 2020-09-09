@@ -19,11 +19,11 @@ class DropArea {
    area;
    container;
 
-   // elements;
-
    multiple;
 
    drag_container;
+
+   result_input;
 
    constructor (drop_area) {
       this.area = drop_area;
@@ -35,10 +35,11 @@ class DropArea {
          this.drag_container = new DragContainer(this.container);
       }
 
+      this.result_input = this.container.querySelector('[data-drop_result]');
+      console.log(this.result_input);
+
       this.area.dataset.id = DropArea.areas_counter.toString();
       DropArea.drop_areas.set(DropArea.areas_counter++, this);
-
-      // this.elements = new Map();
 
    }
 
@@ -321,5 +322,19 @@ function defaultAvatar (element) {
 }
 
 function getResultCallback (drop_container) {
+   let callback;
+
+   switch (drop_container.dataset.result_callback) {
+      case 'experts_json':
+         callback = putExpertToJSON;
+         break;
+      default:
+
+   }
+
+   return callback;
+}
+
+function putExpertToJSON (drop_container) {
 
 }

@@ -69,6 +69,10 @@ return [
         'API'                         => ['navigation_cookie']
     ],
 
+    'home/API_action_executor' => [
+        'API' => ['action_executor']
+    ],
+
 
 
     //todo перенести view create_application в ветку /home/application/
@@ -86,15 +90,15 @@ return [
 
 
     'home/application/view' => [
-        'access'                                => [],
-        'ROOTcontrollers'                       => ['header'],
-        'ABScontrollers'                        => ['/controllers/home/main_header.php'],
-        'controllers'                           => ['action_sidebar', 'view_application', 'validation_block_application_form'],
-        'ROOTviews'                             => ['header'],
-        '/views/home/%header'                   => ['main_header'],
-        'views'                                 => ['hierarchy_sidebar', 'view_application', 'action_sidebar'],
-        '/views/home/modals/'                   => ['view_sign', 'error'],
-        '/views/home/%footer'                   => ['main_footer'],
+        'access'              => [],
+        'ROOTcontrollers'     => ['header'],
+        '/controllers/home/'  => ['main_header'],
+        'controllers'         => ['action_sidebar', 'view_application', 'validation_block_application_form'],
+        'ROOTviews'           => ['header'],
+        '/views/home/%header' => ['main_header'],
+        'views'               => ['hierarchy_sidebar', 'view_application', 'action_sidebar'],
+        '/views/home/modals/' => ['view_sign', 'error'],
+        '/views/home/%footer' => ['main_footer'],
     ],
 
     //todo на эту мусорку не обращать внимание
@@ -113,13 +117,14 @@ return [
     ],
 
     'home/application/actions/action_1' => [
-        'user_callback%1' => ['hey', 'mey'],
-        'user_callback' => ['rtrtr', 'ewrew']
+
     ],
 
     'home/application/actions/action_2' => [
-        'access'              => [],
-        'check_action'        => true,
+        'user_callback'       => [
+            'handleActionURI',
+            'checkAccessToAction'
+        ],
         'ROOTcontrollers'     => ['header'],
         'ROOTviews'           => ['header'],
         '/controllers/home/'  => ['main_header'],

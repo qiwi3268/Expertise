@@ -26,15 +26,8 @@ class Locator
     // code:
     //  1 - ошибка при определении типа документа
     //
-    private function __construct()
+    private function __construct(string $documentType)
     {
-        $documentType = PageAddressHelper::getDocumentType();
-
-        if (is_null($documentType)) {
-
-            throw new SelfEx('Методу Lib\Singles\Helpers\PageAddress::getDocumentType не удалось определить тип документа', 1);
-        }
-
         switch ($documentType) {
 
             case DOCUMENT_TYPE['application']:
@@ -51,10 +44,10 @@ class Locator
     // Возвращает параметры----------------------------------
     // Locator : сущность класса
     //
-    static public function getInstance(): self
+    static public function getInstance(string $documentType): self
     {
         if (empty(self::$instance)) {
-            self::$instance = new self();
+            self::$instance = new self($documentType);
         }
         return self::$instance;
     }

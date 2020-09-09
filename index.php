@@ -52,15 +52,8 @@ $route->checkRouteCorrect();
 
 define('URN', $route->getURN());
 
-$redirect = $route->getRedirect();
+$route->executeUserCallbacks();
 
-if ($redirect) {
-    header("Location: /$redirect");
-    exit();
-}
-
-$route->checkAccess();
-$route->checkAction();
 
 
 foreach ($route->getRequiredFiles() as $routeRequiredFile) {

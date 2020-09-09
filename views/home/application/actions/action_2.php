@@ -96,6 +96,7 @@
                                         <?php endforeach; ?>
                                     </div>
                                 </div>
+                                <input class="section__result" data-drop_result type="hidden">
                             </div>
                         </div>
                     <?php endforeach; ?>
