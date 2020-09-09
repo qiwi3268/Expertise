@@ -3,31 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/Actions/AccessActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Actions/AccessActions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/Actions/Actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Actions/Actions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/Actions/ExecutionActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Actions/ExecutionActions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/Helpers/Helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Helpers/Helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Actions/AccessActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Actions/AccessActions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Actions/Actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Actions/Actions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Actions/ExecutionActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Actions/ExecutionActions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/DataBase/DataBase.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/DataBase/DataBase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/Actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/Actions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/PrimitiveValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/PrimitiveValidator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Singles/PrimitiveValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/PrimitiveValidator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Actions/Interfaces/ActionTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Actions/Interfaces/ActionTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Actions/Traits/ActionTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Actions/Traits/ActionTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Helpers/Helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Helpers/Helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/application/action_sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/action_sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/actions/action_2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/application/edit_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/edit_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/view_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Classes/Route.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/Route.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/action_2.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_2.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/actions/action_2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/navigation/view_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/navigation/view_1.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/Drag&amp;Drop.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/Drag&amp;Drop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/action_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/action_2.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,13 +111,6 @@
       <workItem from="1599482743968" duration="26946000" />
       <workItem from="1599582890447" duration="117000" />
       <workItem from="1599583021238" duration="1603000" />
-    </task>
-    <task id="LOCAL-00037" summary="19.08.2020">
-      <created>1597813069197</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1597813069197</updated>
     </task>
     <task id="LOCAL-00038" summary="19.08.2020_1">
       <created>1597834834351</created>
@@ -476,7 +448,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599630622495</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="09.09.2020_2">
+      <created>1599642058246</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1599642058247</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -493,7 +472,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="before global refactor" />
     <MESSAGE value="27.08.2020" />
     <MESSAGE value="28.08.2020" />
     <MESSAGE value="inactive" />
@@ -518,7 +496,8 @@
     <MESSAGE value="08.09.2020_2" />
     <MESSAGE value="09.09.2020" />
     <MESSAGE value="09.09.2020_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="09.09.2020_1" />
+    <MESSAGE value="09.09.2020_2" />
+    <option name="LAST_COMMIT_MESSAGE" value="09.09.2020_2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="872" y="358" key="#Deployment" timestamp="1599583061353">
@@ -537,10 +516,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1599630620002">
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1599648718150">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1599630620002" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1599648718150" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598788293599" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog" timestamp="1598853557262">
@@ -578,10 +557,10 @@
     </state>
     <state x="302" y="56" width="614" height="1035" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1598502743003" />
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597499951448" />
-    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1599633049678">
+    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1599648244340">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599633049678" />
+    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599648244340" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598791797973" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
     <state x="1150" y="591" key="publish.login" timestamp="1599582915682">

@@ -12,7 +12,7 @@
             <span class="header-action__name">ПЕРЕДАТЬ НА РАССМОТРЕНИЕ В ПТО</span>
             <span class="header-action__document">Заявление на экспертизу № 2020-6-1179/2020-8-1025-С от 18.08.2020</span>
             <div class="header-action__buttons">
-                <span class="header-action__button">ОК</span>
+                <span class="header-action__button" data-action_submit>ОК</span>
                 <span class="header-action__button">Отмена</span>
             </div>
         </div>
@@ -59,11 +59,9 @@
         <div class="assignment__sections">
             <div class="assignment__main">
                 <div class="assignment__header">Разделы ПД</div>
-                
                 <div class="assignment__body-sections">
-    
                     <?php foreach ($variablesTV->getValue('documentation_files_in_structure') as $section): ?>
-                        <div class="assignment__section section" data-drop_area>
+                        <div class="assignment__section section" data-drop_area data-id="<?= $section['id'] ?>">
                             <span class="section__title"><?= $section['name'] ?></span>
                             <div class="section__body">
                                 <div class="section__experts">
@@ -72,7 +70,8 @@
                                          data-drop_container
                                          data-drop_multiple="false"
                                          data-drag_container
-                                         data-drag_multiple="false"></div>
+                                         data-drag_multiple="false"
+                                         data-result_callback="experts_json"></div>
                                 </div>
                                 <div class="section__uploaded-files">
                                     <div class="section__expand-button">
@@ -100,108 +99,7 @@
                             </div>
                         </div>
                     <?php endforeach; ?>
-                    <div class="assignment__section section">====================</div>
-                    <?php foreach ($variablesTV->getValue('documentation_files_in_structure') as $section): ?>
-                        <div class="assignment__section section" data-drop_area>
-                            <span class="section__title"><?= $section['name'] ?></span>
-                            <div class="section__body">
-                                <div class="section__experts">
-                                    <div class="section__experts-title">Назначенные эксперты:</div>
-                                    <div class="section__expert-list" data-drop_container data-drop_multiple="true"></div>
-                                </div>
-                                <div class="section__uploaded-files">
-                                    <div class="section__expand-button">
-                                        <span class="section__button-name">Показать загруженные файлы</span>
-                                        <i class="section__icon-expand fas fa-chevron-down"></i>
-                                    </div>
-                                    <div class="section__files files filled block">
-                                        <?php foreach ($section['files'] as $file): ?>
-                                            <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" data-validate_results='<?= $file['validate_results'] ?>'>
-                                                <div class="files__info">
-                                                    <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
-                                                    <div class="files__description">
-                                                        <span class="files__name"><?= $file['file_name'] ?></span>
-                                                        <span class="files__size"><?= $file['human_file_size'] ?></span>
-                                                    </div>
-                                                </div>
-                                                <div class="files__state"></div>
-                                                <div class="files__actions">
-                                                    <i class="files__unload fas fa-file-download"></i>
-                                                </div>
-                                            </div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                    
-<!--                    <div class="assignment__section section">-->
-<!--                        <span class="section__title">Сметные расчеты на отдельные виды затрат (калькуляции, расчёт земляных масс, расчёт по НЦС, расчёт по мусору, ведомость поставки материалов, утвержденную Заказчиком (для дорожного строительства по области) и т.п.)</span>-->
-<!--                        <div class="section__body">-->
-<!--                            <div class="section__experts">-->
-<!--                                <div class="section__expert">-->
-<!--                                    <span class="section__name">Носков И.Н.</span>-->
-<!--                                    <i class="section__icon-remove fas fa-minus"></i>-->
-<!--                                </div>-->
-<!--                                <div class="section__expert">-->
-<!--                                    <span class="section__name">Карякин В.А.</span>-->
-<!--                                    <i class="section__icon-remove fas fa-minus"></i>-->
-<!--                                </div>-->
-<!--                                <div class="section__expert">-->
-<!--                                    <span class="section__name">Некерова Т.С.</span>-->
-<!--                                    <i class="section__icon-remove fas fa-minus"></i>-->
-<!--                                </div>-->
-<!--                                <div class="section__expert">-->
-<!--                                    <span class="section__name">Антошкин В.А.</span>-->
-<!--                                    <i class="section__icon-remove fas fa-minus"></i>-->
-<!--                                </div>-->
-<!--                                <div class="section__expert">-->
-<!--                                    <span class="section__name">Белов А.В.</span>-->
-<!--                                    <i class="section__icon-remove fas fa-minus"></i>-->
-<!--                                </div>-->
-<!--                                -->
-<!--                            </div>-->
-<!--                            <div class="section__files">-->
-<!--                                <div class="section__expand-button">-->
-<!--                                    <span class="section__button-name">Показать загруженные файлы</span>-->
-<!--                                    <i class="section__icon-expand fas fa-chevron-down"></i>-->
-<!--                                </div>-->
-<!--                                <div class="section__files files filled">-->
-<!--                                    <div class="files__item" data-id="775" data-state="not_signed">-->
-<!--                                        <div class="files__info">-->
-<!--                                            <i class="files__icon fas fa-file-pdf"></i>-->
-<!--                                            <div class="files__description">-->
-<!--                                                <span class="files__name">Темы участников.pdf</span>-->
-<!--                                                <span class="files__size">609,13 Кб</span>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="files__item" data-id="775" data-state="not_signed">-->
-<!--                                        <div class="files__info">-->
-<!--                                            <i class="files__icon fas fa-file-pdf"></i>-->
-<!--                                            <div class="files__description">-->
-<!--                                                <span class="files__name">Темы участников.pdf</span>-->
-<!--                                                <span class="files__size">609,13 Кб</span>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="files__item" data-id="775" data-state="not_signed">-->
-<!--                                        <div class="files__info">-->
-<!--                                            <i class="files__icon fas fa-file-pdf"></i>-->
-<!--                                            <div class="files__description">-->
-<!--                                                <span class="files__name">Темы участников.pdf</span>-->
-<!--                                                <span class="files__size">609,13 Кб</span>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        -->
-<!--                    </div>-->
                 </div>
-                
             </div>
             <div class="assignment__additional">
                 <div class="assignment__header">Дополнительные разделы</div>

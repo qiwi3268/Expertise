@@ -1,18 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
    clearDefaultDropEvents();
 
-
-
    let drag_containers = document.querySelectorAll('[data-drag_container]');
    drag_containers.forEach(container => {
       let drag_container = new DragContainer(container);
       drag_container.initElements();
    });
-
-   /*  let drop_areas = document.querySelectorAll('[data-drop_area]');
-     drop_areas.forEach(area => {
-        new DropArea(area);
-     });*/
 
 
 
@@ -45,27 +38,28 @@ class DropArea {
       this.area.dataset.id = DropArea.areas_counter.toString();
       DropArea.drop_areas.set(DropArea.areas_counter++, this);
 
-      this.elements = new Map();
+      // this.elements = new Map();
 
    }
 
    addElement (element) {
-      let id = parseInt(element.dataset.id);
 
-      if (!this.elements.has(id) || this.multiple) {
+      if (!this.contains(element) || this.multiple) {
 
          if (this.drag_container) {
             this.drag_container.addElement(element);
          } else {
             this.container.appendChild(element);
          }
-         this.elements.set(id, element);
 
       }
 
    }
 
-  
+   contains (element) {
+      let id = parseInt(element.dataset.id);
+      return !!this.container.querySelector(`[data-drag_element][data-id='${id}']`);
+   }
 
    static getDropArea (area) {
       let id = parseInt(area.dataset.id);
@@ -95,20 +89,16 @@ class DragElement {
       document.body.style.userSelect = 'none';
       document.onmousemove = event => {
 
-         // this.move(mouse_down_event);
-
          if (!this.avatar) {
             this.createAvatar = getAvatarCreationCallback(this.ancestor);
             this.avatar = this.createAvatar(this.ancestor);
-            this.avatar.hidden = true;
             document.body.appendChild(this.avatar);
+
+            if (!this.drag_container.multiple) {
+               this.ancestor.style.display = 'none';
+            }
          }
 
-         //todo один раз
-         if (!this.drag_container.multiple) {
-            this.ancestor.style.display = 'none';
-         }
-         this.avatar.hidden = false;
 
          this.move(event);
 
@@ -119,80 +109,52 @@ class DragElement {
          document.onmousemove = null;
          document.body.style.userSelect = null;
 
-
          this.avatar.hidden = true;
 
-
-
          let drop_area = this.findDropArea(event);
-
-
-         // this.avatar.hidden = false;
-
-         // console.log(drop_area);
-         // console.log(DropArea.drop_areas);
-
          if (drop_area) {
 
-            /*if (this.drag_container.container.hasAttribute('data-drop_container')) {
-               console.log(this.ancestor);
-               console.log(drop_area.elements);
-               console.log(drop_area.elements.has(parseInt(this.ancestor.dataset.id)));
 
-            }*/
+            if (this.drag_container.container === drop_area.container) {
 
-            if (
-               this.drag_container.container !== drop_area.container
-               && this.drag_container.container.hasAttribute('data-drop_container')
-            ) {
-               console.log('123');
-               let area_id = parseInt(this.drag_container.container.dataset.id);
-               let area = DropArea.drop_areas.get(area_id);
-
-               console.log(area);
-            }
-
-               if (this.drag_container.container === drop_area.container) {
-
-               console.log('old');
-               this.ancestor.style.display = null;
+               this.remove();
 
             } else {
-               console.log('new');
+
 
                this.transformed_elem = this.drag_container.transform_callback(this.ancestor);
 
-               this.remove_button = this.transformed_elem.querySelector('[data-drop_remove]');
-               if (this.remove_button) {
-                  this.remove_button.addEventListener('click', event => {
+               if (!drop_area.contains(this.transformed_elem) || drop_area.multiple) {
 
-                     this.transformed_elem.remove();
-                     this.remove();
+                  drop_area.addElement(this.transformed_elem);
 
-                  });
+                  this.remove_button = this.transformed_elem.querySelector('[data-drop_remove]');
+                  if (this.remove_button) {
+
+                     this.remove_button.addEventListener('click', () => {
+
+                        this.transformed_elem.remove();
+                        this.remove();
+
+                     });
+
+                  }
+
+               } else {
+                  this.remove();
                }
-
-               drop_area.addElement(this.transformed_elem);
 
             }
 
-
          } else {
-            console.log('123');
             this.remove();
          }
 
-         // this.avatar.remove();
-
-
+         this.avatar.remove();
          document.onmouseup = null;
-
       };
 
-      document.onscroll = () => {
-         // this.move(event);
-         // todo scroll
-      };
+
 
    }
 
@@ -213,17 +175,12 @@ class DragElement {
 
    remove () {
 
-      // this.ancestor.remove();
 
       if (!this.drag_container.multiple) {
          this.ancestor.style.display = null;
       }
 
    }
-/*
-   removeAncestor () {
-
-   }*/
 
 }
 
@@ -319,7 +276,7 @@ function transformExpert (expert) {
 }
 
 function defaultTransform (element) {
-   // element.style.display = null;
+   element.style.display = null;
    return element;
 }
 
@@ -361,4 +318,8 @@ function defaultAvatar (element) {
    avatar.classList.add('draggable');
    avatar.style.display = 'block';
    return avatar;
+}
+
+function getResultCallback (drop_container) {
+
 }
