@@ -219,17 +219,15 @@ final class Route
 
             $accessActions = $actions->getAccessActions();
 
-            // todo важное try/catch после того, как классы будут готовы
 
             try {
                 if (!$accessActions->checkAccessFromActionByPageName()) {
-                    Session::setErrorMessage('Действие ... недоступно');
+                    Session::setErrorMessage("Действие по странице: '{$this->URN}' недоступно");
                     header('Location: /home/navigation');
                 }
             } catch (Exception $e) {
 
             }
-            $lala=12;
         }
     }
 

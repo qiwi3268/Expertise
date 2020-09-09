@@ -17,10 +17,15 @@ class Locator
     // Сущность (единственный возможный экземпляр) класса
     private static self $instance;
 
-    private Actions $Actions;
+    private Actions $actions;
 
 
     // Выполняется единожды
+    // Выбрасывает исключения--------------------------------
+    // Lib\Exceptions\Actions :
+    // code:
+    //  1 - ошибка при определении типа документа
+    //
     private function __construct()
     {
         $documentType = PageAddressHelper::getDocumentType();
@@ -33,7 +38,7 @@ class Locator
         switch ($documentType) {
 
             case DOCUMENT_TYPE['application']:
-                $this->Actions = new ApplicationActions();
+                $this->actions = new ApplicationActions();
                 break;
 
             default:
@@ -57,10 +62,10 @@ class Locator
 
     // Предназначен для получения класса действий в зависимости от того, какой тип документа открыт
     // Возвращает параметры----------------------------------
-    // Actions : сущность класса
+    // Actions : экземпляр класса
     //
     public function getActions(): Actions
     {
-        return $this->Actions;
+        return $this->actions;
     }
 }

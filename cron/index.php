@@ -22,22 +22,22 @@ $logsDir = LOGS.'/cron';
 $logsErrorsDir = LOGS.'/cron/errors';
 $logFileName = 'index.log';
 
-$Logger = new Logger($logsDir, $logFileName);
-$ErrorLogger = new Logger($logsErrorsDir, $logFileName);
+$logger = new Logger($logsDir, $logFileName);
+$errorLogger = new Logger($logsErrorsDir, $logFileName);
 
-function FlushLogger(Logger $Logger){
-    return function($buffer) use ($Logger){
-        if(!empty($buffer)) $Logger->write('СООБЩЕНИЕ ИЗ БУФЕРА ВЫВОДА:'.PHP_EOL.$buffer);
+function FlushLogger(Logger $logger){
+    return function($buffer) use ($logger){
+        if(!empty($buffer)) $logger->write('СООБЩЕНИЕ ИЗ БУФЕРА ВЫВОДА:'.PHP_EOL.$buffer);
     };
 }
-ob_start(FlushLogger($ErrorLogger));
+ob_start(FlushLogger($errorLogger));
 
 
 if($argc > 2){
     $tmp = $argv;
     unset($tmp[0]);
     $tmp = implode(', ', $tmp);
-    $ErrorLogger->write("ОШИБКА. Передано более 1 параметра: '{$tmp}'");
+    $errorLogger->write("ОШИБКА. Передано более 1 параметра: '{$tmp}'");
     exit;
 }
 
@@ -45,7 +45,7 @@ $cron_fileName = $argv[1];
 $cron_path = __DIR__."/{$cron_fileName}";
 
 if(!file_exists($cron_path)){
-    $ErrorLogger->write("ОШИБКА. Указанный cron: '{$argv[1]}', по пути: '{$cron_path}' не существует");
+    $errorLogger->write("ОШИБКА. Указанный cron: '{$argv[1]}', по пути: '{$cron_path}' не существует");
     exit;
 }
 
@@ -57,18 +57,18 @@ $cron_logsErrorsPath = $logsErrorsDir."/{$cron_logFileName}";
 
 
 if(!file_exists($cron_logsPath)){
-    $ErrorLogger->write("ОШИБКА. Не существует лог-файл действий по пути: '{$cron_logsPath}'");
+    $errorLogger->write("ОШИБКА. Не существует лог-файл действий по пути: '{$cron_logsPath}'");
     exit;
 }elseif(!is_writable($cron_logsPath)){
-    $ErrorLogger->write("ОШИБКА. Лог-файл действий по пути: '{$cron_logsPath}', недоступен для записи");
+    $errorLogger->write("ОШИБКА. Лог-файл действий по пути: '{$cron_logsPath}', недоступен для записи");
     exit;
 }
 
 if(!file_exists($cron_logsErrorsPath)){
-    $ErrorLogger->write("ОШИБКА. Не существует лог-файл ошибок по пути: '{$cron_logsErrorsPath}'");
+    $errorLogger->write("ОШИБКА. Не существует лог-файл ошибок по пути: '{$cron_logsErrorsPath}'");
     exit;
 }elseif(!is_writable($cron_logsErrorsPath)){
-    $ErrorLogger->write("ОШИБКА. Лог-файл ошибок действий по пути: '{$cron_logsErrorsPath}', недоступен для записи");
+    $errorLogger->write("ОШИБКА. Лог-файл ошибок действий по пути: '{$cron_logsErrorsPath}', недоступен для записи");
     exit;
 }
 
@@ -92,11 +92,11 @@ DataBase::constructDB('ge');
 ob_end_clean();
 ob_start(FlushLogger($cron_ErrorLogger));
 
-$Logger->write("Запускается: $cron_fileName");
+$logger->write("Запускается: $cron_fileName");
 
 // Удаляем объекты, связанные с единой точкой входа
-unset($Logger);
-unset($ErrorLogger);
+unset($logger);
+unset($errorLogger);
 
 // Подключаем cron
 require_once $cron_path;

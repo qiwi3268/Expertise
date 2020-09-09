@@ -62,7 +62,7 @@ try {
     /** @var string $P_mapping_level_2 */
     extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
 
-    $Logger = new Logger(LOGS . '/csp/errors', 'API_external_signature_verifier.log');
+    $logger = new Logger(LOGS . '/csp/errors', 'API_external_signature_verifier.log');
 
     // Блок проверки маппинга
     $Mapping = new SignsTableMapping($P_mapping_level_1, $P_mapping_level_2);
@@ -70,7 +70,7 @@ try {
     if (!is_null($Mapping->getErrorCode())) {
 
         $errorMessage = $Mapping->getErrorText();
-        $Logger->write($errorMessage);
+        $logger->write($errorMessage);
 
         exit(json_encode([
             'result'        => 2,
@@ -87,7 +87,7 @@ try {
 
         // Произошла ошибка при парсинге P_fs_name_data / P_fs_name_sign
         $errorMessage = $e->getMessage();
-        $Logger->write($errorMessage);
+        $logger->write($errorMessage);
 
         exit(json_encode([
             'result'  => 3,
@@ -100,7 +100,7 @@ try {
     if ($application_id != $tmp_id) {
 
         $errorMessage = "id заявления исходного файла: '{$application_id}' не равен id заявления файла подписи: '{$tmp_id}'";
-        $Logger->write($errorMessage);
+        $logger->write($errorMessage);
 
         exit(json_encode([
             'result'        => 4,
@@ -125,7 +125,7 @@ try {
 
         // Lib\CSP\Shell:exec
         // Исполняемая команда: не произвела вывод или произошла ошибка
-        $date = $Logger->write($e->getMessage());
+        $date = $logger->write($e->getMessage());
 
         exit(json_encode([
             'result'        => 5,
@@ -135,7 +135,7 @@ try {
 
         // getHandlePregMatch
         // Произошла ошибка или нет вхождений шаблона при работе функции getHandlePregMatch
-        $date = $Logger->write($e->getMessage());
+        $date = $logger->write($e->getMessage());
 
         exit(json_encode([
             'result'        => 5,
@@ -147,7 +147,7 @@ try {
         // code:
         //  1 - в БД не нашлось имени из ФИО
         //  2 - в одном Signer нашлось больше одного ФИО
-        $date = $Logger->write($e->getMessage());
+        $date = $logger->write($e->getMessage());
         $code = $e->getCode();
 
         exit(json_encode([
@@ -164,7 +164,7 @@ try {
         //  4 - в частях сообщения отсустсвует(ют) Signer
         //  5 - получено некорректное количество блоков ErrorCode
         //  6 - в результате проверки БЕЗ цепочки сертификатов не был найден подписант из результатов проверки С цепочкой сертификатов
-        $date = $Logger->write($e->getMessage());
+        $date = $logger->write($e->getMessage());
         $code = $e->getCode();
 
         // В частях сообщения отсутствует(ют) Signer
@@ -188,7 +188,7 @@ try {
 
         $errorMessage = $e->getMessage();
         $errorCode = $e->getCode();
-        $Logger->write("Произошла непредвиденная ошибка при работе метода 'Lib\CSP\Validator::validate'. Message: '{$errorMessage}', Code: '{$errorCode}'");
+        $logger->write("Произошла непредвиденная ошибка при работе метода 'Lib\CSP\Validator::validate'. Message: '{$errorMessage}', Code: '{$errorCode}'");
 
         exit(json_encode([
             'result'  => 7,
@@ -228,7 +228,7 @@ try {
 
             $errorMessage = $e->getMessage();
             $errorCode = $e->getCode();
-            $Logger->write("Произошла ошибка при добавлении записи в таблицу подписей: '{$ClassName}'. Message: '{$errorMessage}', Code: '{$errorCode}'");
+            $logger->write("Произошла ошибка при добавлении записи в таблицу подписей: '{$ClassName}'. Message: '{$errorMessage}', Code: '{$errorCode}'");
 
             exit(json_encode([
                 'result'  => 8,
@@ -260,7 +260,7 @@ try {
 
     $errorMessage = $e->getMessage();
     $errorCode = $e->getCode();
-    $Logger->write("Произошла непредвиденная ошибка. Message: '{$errorMessage}', Code: '{$errorCode}'");
+    $logger->write("Произошла непредвиденная ошибка. Message: '{$errorMessage}', Code: '{$errorCode}'");
 
     exit(json_encode([
         'result'  => 11,

@@ -54,7 +54,7 @@ try {
     /** @var string $P_fs_name */
     extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
 
-    $Logger = new Logger(LOGS . '/csp/errors', 'API_get_file_hash.log');
+    $logger = new Logger(LOGS . '/csp/errors', 'API_get_file_hash.log');
 
     // Проверка заявителя на доступ к заявлению не нужна, т.к. производится на предыдущем этапе - в file_checker
     // Блок проверки маппинга - не нужен, т.к. производится на предыдущем этапе - в file_checker
@@ -62,7 +62,7 @@ try {
     // Проверка существования указанного алгоритма попдписи
     if (!isset(SIGN_ALGORITHMS[$P_sign_algorithm])) {
         $errorMessage = "Получен неопределенный алгоритм подписи: '{$P_sign_algorithm}'";
-        $Logger->write($errorMessage);
+        $logger->write($errorMessage);
 
         exit(json_encode([
             'result'        => 2,
@@ -77,7 +77,7 @@ try {
 
         // Произошла ошибка при парсинге P_fs_name
         $errorMessage = $e->getMessage();
-        $Logger->write($errorMessage);
+        $logger->write($errorMessage);
 
         exit(json_encode([
             'result'  => 3,
@@ -98,7 +98,7 @@ try {
     } catch (ShellEx $e) {
 
         $errorMessage = $e->getMessage();
-        $Logger->write($errorMessage);
+        $logger->write($errorMessage);
 
         exit(json_encode([
             'result'  => 4,
@@ -117,7 +117,7 @@ try {
 
         // Произошла ошибка или нет вхождений ErrorCode
         $errorMessage = $e->getMessage();
-        $Logger->write($errorMessage);
+        $logger->write($errorMessage);
 
         exit(json_encode([
             'result'  => 5,
@@ -129,7 +129,7 @@ try {
     // ErrorCode не соответствует
     if ($errorCode != $MessageParser::OK_ERROR_CODE) {
         $errorMessage = "Исполняемая команда по получению hash-файла завершилась с ошибкой. [ErrorCode: {$errorCode}]";
-        $Logger->write($errorMessage);
+        $logger->write($errorMessage);
 
         exit(json_encode([
             'result'        => 6,
@@ -144,7 +144,7 @@ try {
 
     if ($hash_data === false) {
         $errorMessage = "Произошла ошибка при чтении созданного hash-файла: '{$hash_filePath}'";
-        $Logger->write($errorMessage);
+        $logger->write($errorMessage);
 
         exit(json_encode([
             'result'        => 7,
@@ -155,7 +155,7 @@ try {
     // Удаляем временный hash-файл
     if (!unlink($hash_filePath)) {
         $errorMessage = "Произошла ошибка при удалении созданного hash-файла: '{$hash_filePath}'";
-        $Logger->write($errorMessage);
+        $logger->write($errorMessage);
 
         exit(json_encode([
             'result'        => 8,
@@ -180,7 +180,7 @@ try {
 
     $errorMessage = $e->getMessage();
     $errorCode = $e->getCode();
-    $Logger->write("Произошла непредвиденная ошибка. Message: '{$errorMessage}', Code: '{$errorCode}'");
+    $logger->write("Произошла непредвиденная ошибка. Message: '{$errorMessage}', Code: '{$errorCode}'");
 
     exit(json_encode([
         'result'  => 11,

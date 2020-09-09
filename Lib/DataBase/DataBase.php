@@ -60,10 +60,13 @@ class DataBase
     // Lib\Exceptions\DataBase:
     //   1 - переданный параметр не подходит под указанные типы
     //   ошибка в формировании параметризованного запроса
+    //   ошибка при привязке привязке переменных
     //   ошибка при выполнении параметризованного запроса
+    //   ошибка при получении результата параметризованного запроса
+    //   ошибка при закрытии параметризованного запроса
+    //
     static protected function executeParametrizedQuery(string $query, array $bindParams)
     {
-
         // Формирования строки с сокращенными типами, для
         // их привязки к метрам параметров в sql-выражении
         // типы параметров - s(string), i(integer), d(double)
@@ -91,25 +94,25 @@ class DataBase
         // в формате: [0] -> типы параметров, далее - параметры запроса
         $arrToCallback[] = $bindParamsTypes;
 
-        for ($s = 0; $s < count($bindParams); $s++) {
-            $arrToCallback[] = &$bindParams[$s];
+        for ($l = 0; $l < count($bindParams); $l++) {
+            $arrToCallback[] = &$bindParams[$l];
         }
 
         // Подготовка запроса к выполнению
-        $stmt = self::$mysqli->prepare($query);
-
-        // Ошибка в формировании параметризованного запроса
-        if (!$stmt) {
+        if (!($stmt = self::$mysqli->prepare($query))) {
+            // Ошибка в формировании параметризованного запроса
             throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
         }
 
         // Привязка переменных к параметрам запроса
         // $stmt->bind_param(типы параметров, параметры запроса)
-        call_user_func_array([$stmt, 'bind_param'], $arrToCallback);
+        if(!call_user_func_array([$stmt, 'bind_param'], $arrToCallback)){
+            // Ошибка при привязке привязке переменных
+            throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
+        }
 
-        // Ошибка при выполнении параметризованного запроса
         if (!$stmt->execute()) {
-
+            // Ошибка при выполнении параметризованного запроса
             // Возможные ошибки:
             // количество символов в переменной больше, чем в поле БД
             // NULL в запросе указан в кавычках
@@ -117,10 +120,16 @@ class DataBase
             throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
         }
 
-        $result = $stmt->get_result();
+        if(!$result = $stmt->get_result()){
+            // Ошибка при получении результата параметризованного запроса
+            throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
+        }
 
         // Закрытие подготовленного вопроса
-        $stmt->close();
+        if(!$stmt->close()){
+            // Ошибка при закрытии параметризованного запроса
+            throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
+        }
 
         return $result;
     }
@@ -156,16 +165,15 @@ class DataBase
     //   ошибка при откате текущей транзакции
     //   ошибка при фиксации текущей транзакции
     //
-    static protected function executeTransaction(Transaction $Transaction): void
+    static protected function executeTransaction(Transaction $transaction): void
     {
-
         if (!self::$mysqli->begin_transaction()) {
             throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
         }
 
         try {
 
-            $Transaction->executeQueries();
+            $transaction->executeQueries();
 
         } catch (SelfEx $e) {
 
