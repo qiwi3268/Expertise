@@ -8,7 +8,8 @@ use core\Classes\Session;
 
 // Предназначен для вспомогательной работы с заявлением
 //
-class Helper{
+class Helper
+{
 
 
     // Предназначен для получения числового имени заявления,
@@ -18,12 +19,13 @@ class Helper{
     // Возвращает параметры----------------------------------
     // string : числовое имя
     //
-    static public function getInternalAppNumName(int $internalCounter):string {
+    static public function getInternalAppNumName(int $internalCounter): string
+    {
 
         $nowDate = date('Y-m');
 
-        if($internalCounter < 10){
-            $internalCounter = str_pad($internalCounter, 2,'0', STR_PAD_LEFT);
+        if ($internalCounter < 10) {
+            $internalCounter = str_pad($internalCounter, 2, '0', STR_PAD_LEFT);
         }
 
         return "$nowDate-$internalCounter";
@@ -38,7 +40,8 @@ class Helper{
     //    application_id int : id заявления
     //    file_name   string : имя файла в ФС
     //
-    static public function parseApplicationFilePath($path):array {
+    static public function parseApplicationFilePath($path): array
+    {
 
         // Экранирование абсолютного путь в ФС сервера к директории файлов заявлений
         $applicationDir = preg_quote(APPLICATIONS_FILES, '/');
@@ -52,8 +55,8 @@ class Helper{
         //   любой не пробельный символ один и более раз
         // - регистронезависимые
         // - использование кодировки utf-8
-        $pattern ="/{$applicationDir}\/(\d+)\/(\S+)/iu";
-        $matches =  getHandlePregMatch($pattern, $path, false);
+        $pattern = "/{$applicationDir}\/(\d+)\/(\S+)/iu";
+        $matches = getHandlePregMatch($pattern, $path, false);
 
         return [
             'application_id' => (int)$matches[1],

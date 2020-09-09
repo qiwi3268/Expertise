@@ -28,8 +28,7 @@ trait ActionTable
                          `page_name`,
                          `name`,
                          `callback_name`,
-                         `description`,
-                         `hash`
+                         `description`
                   FROM `{$table}`
                   WHERE `is_active`=1
                   ORDER BY `sort` ASC";
@@ -37,13 +36,30 @@ trait ActionTable
     }
 
 
-    // Предназначен для получения ассоциативного массива действия по имени страницы
+    // Предназначен для получения ассоциативного массива активного действия по имени страницы
     // возвращает активую запись
     // Принимает параметры-----------------------------------
     // pageName string : имя страницы
     // Возвращает параметры----------------------------------
     // array : в случае, если запись существует
     // null  : в противном случае
+    //
+    static public function getAssocActiveByPageName(string $pageName): ?array
+    {
+        $table = self::$tableName;
+
+        $query = "SELECT `id`,
+                         `page_name`,
+                         `name`,
+                         `callback_name`,
+                         `description`
+                  FROM `{$table}`
+                  WHERE `page_name`=? AND`is_active`=1";
+        $result = ParametrizedQuery::getFetchAssoc($query, [$pageName]);
+        return $result ? $result[0] : null;
+    }
+
+    // Предназначен для получения ассоциативного массива действия по имени страницы
     //
     static public function getAssocByPageName(string $pageName): ?array
     {
@@ -53,36 +69,10 @@ trait ActionTable
                          `page_name`,
                          `name`,
                          `callback_name`,
-                         `description`,
-                         `hash`
+                         `description`
                   FROM `{$table}`
-                  WHERE `page_name`=? AND`is_active`=1
-                  ORDER BY `sort` ASC";
+                  WHERE `page_name`=?";
         $result = ParametrizedQuery::getFetchAssoc($query, [$pageName]);
-        return $result ? $result[0] : null;
-    }
-
-
-    // Предназначен для получения ассоциативного массива действия по hash'у
-    // Принимает параметры-----------------------------------
-    // hash string : hash
-    // Возвращает параметры-----------------------------------
-    // array : в случае, если запись существует
-    // null  : в противном случае
-    //
-    static public function getAssocByHash(string $hash): ?array
-    {
-        $table = self::$tableName;
-
-        $query = "SELECT `id`,
-                         `page_name`,
-                         `name`,
-                         `callback_name`,
-                         `description`,
-                         `hash`
-                  FROM `{$table}`
-                  WHERE `hash`=?";
-        $result = ParametrizedQuery::getFetchAssoc($query, [$hash]);
         return $result ? $result[0] : null;
     }
 }

@@ -3,6 +3,8 @@
 
 namespace Lib\Actions;
 use Lib\Exceptions\Actions as SelfEx;
+use Lib\Singles\PrimitiveValidator;
+use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
 
 
 // Предназначен для исполнения действия
@@ -24,46 +26,69 @@ abstract class ExecutionActions
     }
 
 
-    // Предназначен для проверки существования метода выполения действия по названию странцы
+    // Предназначен для проверки существования активного метода выполения действия по имени странцы
     // Принимает параметры-----------------------------------
     // pageName string : URN страницы
-    // Выбрасывает исключения--------------------------------
-    // Lib\Exceptions\Actions :
-    // code:
-    //  5 - отсутствует метод выполнения действия
     //
-    public function checkIssetCallbackByPageName(string $pageName = URN): void
+    public function checkIssetCallbackByPageName(string $pageName): void
     {
+        // Получаем только активное действие
         $action = $this->actions->getAssocActiveActionByPageName($pageName);
-
-        $method = $action['callback_name'];
-
-        if (!method_exists($this, $method)) {
-            throw new SelfEx("Отсутствует метод выполнения действия: '{$this->childClassName}:{$method}'", 5);
-        }
+        $this->getValidatedCallback($action, $pageName);
     }
 
 
-    // Предназначен для выполнения действия по его названию страницы
+    // Предназначен для выполнения метода действия по имени страницы
     // Принимает параметры-----------------------------------
     // pageName string : URN страницы
     // Возвращает параметры----------------------------------
     // string : URN страницы, на которую необходимо перенаправить пользователя после действия
+    //
+    public function executeCallbackByPageName(string $pageName): string
+    {
+        // Получаем любое действие, в т.ч. неактивное, т.к. до захода
+        // на страницу выполнения действия оно могло быть активным
+        $action = $this->actions->getAssocActionByPageName($pageName);
+
+        $method = $this->getValidatedCallback($action, $pageName);
+
+        return $this->$method();
+    }
+
+
+    // Предназначен для получения проверенного метода действия
+    // Принимает параметры-----------------------------------
+    // action   ?array : массив действия, если оно существует
+    // pageName string : имя страницы для вывода в сообщение об ошибке
+    // Возвращает параметры----------------------------------
+    // string : название метода действия
     // Выбрасывает исключения--------------------------------
     // Lib\Exceptions\Actions :
     // code:
-    //  6 - не найден метод выполнения действия по требуемому hash'у
+    //  2 - попытка получить доступ к несуществующему действию для страницы
+    //  3 - метод исполнения действия не реализован в дочернем классе
+    //  4 - ошибка метода исполнения действия для страницы (объявленный тип возвращаемого значения не string)
     //
-    public function executeCallbackByHash(string $hash): string
+    private function getValidatedCallback(?array $action, string $pageName): string
     {
-        $action = $this->actions->getAssocActionByHash($hash);
-
         if (is_null($action)) {
-            throw new SelfEx("Не найден метод выполнения действия по требуемому hash'у: {$hash}'", 6);
+            throw new SelfEx("Попытка получить доступ к несуществующему действию для страницы: '{$pageName}'", 2);
         }
 
         $method = $action['callback_name'];
 
-        return $this->$method();
+        if (!method_exists($this, $method)) {
+            throw new SelfEx("Метод исполнения действия: '{$this->childClassName}::{$method}' для страницы: '{$pageName}' не реализован в дочернем классе: '{$this->childClassName}'", 3);
+        }
+
+        $primitiveValidator = new PrimitiveValidator();
+
+        try {
+            $primitiveValidator->validateReturnType([$this, $method], 'string');
+        } catch (PrimitiveValidatorEx $e) {
+            throw new SelfEx("Ошибка метода исполнения действия для страницы: '{$pageName}'. {$e->getMessage()}", 4);
+        }
+
+        return $method;
     }
 }

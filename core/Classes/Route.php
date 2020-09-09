@@ -10,8 +10,11 @@ use Tables\Exceptions\Exception;
 
 final class Route
 {
+    private RouteCallback $routeCallback;
 
-    // Запрос в формате без первого слэша и get параметров, без первого '/'
+    // Полный запрос с первым '/' и get-параметрами
+    private string $URI;
+    // Запрос в формате без первого '/' и get-параметров
     private string $URN;
     // Директория, в которой должны находится файлы роута
     private string $dir;
@@ -20,8 +23,11 @@ final class Route
     private array $route;
     private bool $routeExist = false;
 
+
     public function __construct(string $requestURI)
     {
+        $this->URI = $requestURI;
+
         $this->URN = mb_substr(parse_url($requestURI, PHP_URL_PATH), 1);
 
         $this->dir = mb_substr($this->URN, 0, mb_strripos($this->URN, '/'));
@@ -34,6 +40,8 @@ final class Route
             $this->route = $allRoutes[$this->URN];
             $this->routeExist = true;
         }
+
+        $this->routeCallback = new RouteCallback($this);
     }
 
 
@@ -80,6 +88,14 @@ final class Route
     {
         $tmpArr = $this->route;
 
+        $userCallbacks = array_filter(
+            $tmpArr,
+            fn($routeUnit) => (containsAll($routeUnit, 'user_callback')),
+            ARRAY_FILTER_USE_BOTH
+        );
+
+
+
         // Отдельная проверка для redirect
         if (isset($tmpArr['redirect'])) {
 
@@ -114,6 +130,7 @@ final class Route
             }
             unset($tmpArr['check_action']);
         }
+
 
         // Проверка всего остального
         foreach ($tmpArr as $routeUnit => $unitList) {
@@ -195,7 +212,6 @@ final class Route
 
     // Метод проверяет доступ пользователя к странице, вызывая access функции
     //
-    //todo среднее переименовать access в check_access
     public function checkAccess(): void
     {
         if (isset($this->route['access'])) {
@@ -211,6 +227,9 @@ final class Route
         }
     }
 
+
+    // Предназначен для проверки доступа к дейстувию
+    //
     public function checkAction(): void
     {
         if (isset($this->route['check_action'])) {
@@ -218,16 +237,14 @@ final class Route
             $actions = ActionLocator::getInstance()->getActions();
 
             $accessActions = $actions->getAccessActions();
+            $executionActions = $actions->getExecutionActions();
 
-
-            try {
-                if (!$accessActions->checkAccessFromActionByPageName()) {
-                    Session::setErrorMessage("Действие по странице: '{$this->URN}' недоступно");
-                    header('Location: /home/navigation');
-                }
-            } catch (Exception $e) {
-
+            if (!$accessActions->checkAccessFromActionByPageName($this->URN)) {
+                Session::setErrorMessage("Действие по странице: '{$this->URN}' недоступно");
+                header('Location: /home/navigation');
             }
+
+            $executionActions->checkIssetCallbackByPageName($this->URN);
         }
     }
 
@@ -261,8 +278,7 @@ final class Route
                 }
 
                 // Юнит с ограниченным доступом
-
-                //..проверка наличия метода в классе проверки доступа к контенту Иначе exception
+                // ..проверка наличия метода в классе проверки доступа к контенту Иначе exception
                 // Вызов метода
                 // Если True, то $tmpUnitList[] = ...
             }

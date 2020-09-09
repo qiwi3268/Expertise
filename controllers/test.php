@@ -1,9 +1,10 @@
 <?php
 
+use core\Classes\Session;
 use Exception as SelfEx;
 use Lib\Responsible\Responsible;
 use Lib\Responsible\XMLReader;
-use core\Classes\Session;
+use Lib\Singles\PrimitiveValidator;
 use Tables\user;
 use Tables\people_name;
 use Tables\application;
@@ -12,5 +13,6 @@ use Tables\applicant_access_group;
 use Tables\Actions\application as ApplicationActions;
 
 
-Session::setErrorMessage('hey');
+$validator = new PrimitiveValidator();
+$validator->validateReturnType('getFIO', 'string');
 

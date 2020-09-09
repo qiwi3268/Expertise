@@ -32,9 +32,6 @@ class Helper
             }
         }
 
-        // Сбрасываем индексы массива, чтобы избавиться от "дырок" удаленных элементов
-        $bindParams = array_values($bindParams);
-
         return implode(', ', $result);
     }
 }

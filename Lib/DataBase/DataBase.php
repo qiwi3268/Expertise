@@ -70,6 +70,10 @@ class DataBase
         // Формирования строки с сокращенными типами, для
         // их привязки к метрам параметров в sql-выражении
         // типы параметров - s(string), i(integer), d(double)
+
+        // Сбрасываем индексы массива, чтобы они наверняка начинались с 0 и шли по порядку
+        $bindParams = array_values($bindParams);
+
         $bindParamsTypes = '';
         foreach ($bindParams as $index => $value) {
 
@@ -91,27 +95,32 @@ class DataBase
         }
 
         // Передаваемые в функцию call_user_func_array параметры в виде индексного массива
-        // в формате: [0] -> типы параметров, далее - параметры запроса
+        // в формате: [0] -> типы параметров, далее - ссылки на параметры запроса
         $arrToCallback[] = $bindParamsTypes;
 
         for ($l = 0; $l < count($bindParams); $l++) {
             $arrToCallback[] = &$bindParams[$l];
         }
 
+        $stmt = self::$mysqli->prepare($query);
+
         // Подготовка запроса к выполнению
-        if (!($stmt = self::$mysqli->prepare($query))) {
+        if ($stmt === false) {
             // Ошибка в формировании параметризованного запроса
             throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
         }
 
         // Привязка переменных к параметрам запроса
         // $stmt->bind_param(типы параметров, параметры запроса)
-        if(!call_user_func_array([$stmt, 'bind_param'], $arrToCallback)){
+        if(
+            call_user_func_array([$stmt, 'bind_param'], $arrToCallback) === false
+            && self::$mysqli->errno != 0
+        ){
             // Ошибка при привязке привязке переменных
             throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
         }
 
-        if (!$stmt->execute()) {
+        if ($stmt->execute() === false) {
             // Ошибка при выполнении параметризованного запроса
             // Возможные ошибки:
             // количество символов в переменной больше, чем в поле БД
@@ -120,13 +129,18 @@ class DataBase
             throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
         }
 
-        if(!$result = $stmt->get_result()){
+        $result = $stmt->get_result();
+
+        if(
+            $result === false
+            && self::$mysqli->errno != 0
+        ){
             // Ошибка при получении результата параметризованного запроса
             throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
         }
 
         // Закрытие подготовленного вопроса
-        if(!$stmt->close()){
+        if($stmt->close() === false){
             // Ошибка при закрытии параметризованного запроса
             throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
         }
@@ -147,7 +161,7 @@ class DataBase
         $result = self::$mysqli->query($query);
 
         // Ошибка при выполнении простого запроса
-        if (!$result) {
+        if ($result === false) {
             throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
         }
 
@@ -167,7 +181,7 @@ class DataBase
     //
     static protected function executeTransaction(Transaction $transaction): void
     {
-        if (!self::$mysqli->begin_transaction()) {
+        if (self::$mysqli->begin_transaction() === false) {
             throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
         }
 
@@ -177,19 +191,19 @@ class DataBase
 
         } catch (SelfEx $e) {
 
-            if (!self::$mysqli->rollback()) {
+            if (self::$mysqli->rollback() === false) {
                 throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
             }
             throw new SelfEx($e->getMessage(), $e->getCode());
         } catch (Exception $e) {
 
-            if (!self::$mysqli->rollback()) {
+            if (self::$mysqli->rollback() === false) {
                 throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
             }
             throw new Exception($e->getMessage(), $e->getCode());
         }
 
-        if (!self::$mysqli->commit()) {
+        if (self::$mysqli->commit() === false) {
             throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
         }
     }

@@ -5,6 +5,8 @@ namespace Lib\Singles;
 
 use Lib\Exceptions\PrimitiveValidator as SelfEx;
 use Classes\Exceptions\PregMatch as PregMatchEx;
+use ReflectionMethod;
+use ReflectionFunction;
 use BadMethodCallException;
 use BadFunctionCallException;
 
@@ -330,6 +332,55 @@ class PrimitiveValidator
             $msg = implode(' или ', $inclusions);
 
             throw new SelfEx("Значение: '{$value}' не подходит ни под одно из перечисленных: '{$msg}'", 15);
+        }
+    }
+
+    // Предназначен для пророверки типа возвращаемого значения методом / функцией
+    // Принимает параметры-----------------------------------
+    // function array : где 0 => имя / экземпляр класса, 1 => название метода
+    //          или
+    //          string : название функции
+    // type string : требуемый тип, формата 'string' / '?int' ..
+    //        null : в методе / функции должно отсутствовать объявление типа возвращаемого значения
+    // Выбрасывает исключения--------------------------------
+    // Lib\Exceptions\PrimitiveValidator :
+    // code:
+    // 16 - в требуемом методе / функции  не объявлен тип возвращаемого значения
+    // 17 - требуемый метод / функция имеет тип возвращаемого значения, когда его не должно быть
+    // 18 - требуемый метод / функция имеет тип возвращаемого значения не равный требуемому
+    //
+    public function validateReturnType($function, ?string $type): void
+    {
+        if (is_array($function)) {
+            $reflectionMethod = new ReflectionMethod($function[0], $function[1]);
+            $reflectionType = $reflectionMethod->getReturnType();
+            $debug = "{$reflectionMethod->getDeclaringClass()->getName()}::{$function[1]}";
+        } else {
+            $reflectionFunction = new ReflectionFunction($function);
+            $reflectionType = $reflectionFunction->getReturnType();
+            $debug = $function;
+        }
+
+        if (is_null($reflectionType)) {
+
+            if (is_null($type)) return;
+
+            throw new SelfEx("В требуемом методе / функции: '{$debug}' не объявлен тип возвращаемого значения", 16);
+        }
+
+        $typeName = $reflectionType->getName();
+
+        if($reflectionType->allowsNull()) {
+            $typeName = "?{$typeName}";
+        }
+
+        // Имеется тип возвращаемого значения, в то время как его не должно быть
+        if (is_null($type)) {
+            throw new SelfEx("Требуемый метод / функция: '{$debug}' имеет тип возвращаемого значения: '{$typeName}', когда его не должно быть", 17);
+        }
+
+        if ($typeName != $type) {
+            throw new SelfEx("Требуемый метод / функция: '{$debug}' имеет тип возвращаемого значения: '{$typeName}' не равный требуемому: '{$type}'", 18);
         }
     }
 }

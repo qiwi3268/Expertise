@@ -11,7 +11,7 @@ use Tables\application;
 
 
 $variablesTV = VariableTransfer::getInstance();
-$applicationId = $_GET['id_application'];
+$applicationId = $_GET['id_document'];
 
 $applicationAssoc = application::getAssocById($applicationId);
 

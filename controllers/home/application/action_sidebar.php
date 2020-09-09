@@ -6,8 +6,6 @@ use Lib\Singles\VariableTransfer;
 
 $availableActions = ActionLocator::getInstance()->getActions()->getAccessActions()->getAvailableActions();
 
-var_dump($availableActions);
-
 
 
 
@@ -17,7 +15,7 @@ foreach ($availableActions as $action) {
 
     $availableActionsTV[] = [
 
-        'ref'   => "/{$action['page_name']}?id_application={$_GET['id_application']}",
+        'ref'   => "/{$action['page_name']}?id_document={$_GET['id_document']}",
         'label' => $action['name']
     ];
 }

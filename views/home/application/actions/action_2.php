@@ -72,12 +72,7 @@
                                          data-drop_container
                                          data-drop_multiple="false"
                                          data-drag_container
-                                         data-drag_multiple="false">
-                                        <div class="section__expert">
-                                            <span class="section__name">Белов А.В.</span>
-                                            <i class="section__icon-remove fas fa-minus"></i>
-                                        </div>
-                                    </div>
+                                         data-drag_multiple="false"></div>
                                 </div>
                                 <div class="section__uploaded-files">
                                     <div class="section__expand-button">
@@ -112,12 +107,7 @@
                             <div class="section__body">
                                 <div class="section__experts">
                                     <div class="section__experts-title">Назначенные эксперты:</div>
-                                    <div class="section__expert-list" data-drop_container data-drop_multiple="true">
-                                        <div class="section__expert">
-                                            <span class="section__name">Белов А.В.</span>
-                                            <i class="section__icon-remove fas fa-minus"></i>
-                                        </div>
-                                    </div>
+                                    <div class="section__expert-list" data-drop_container data-drop_multiple="true"></div>
                                 </div>
                                 <div class="section__uploaded-files">
                                     <div class="section__expand-button">

@@ -10,6 +10,7 @@ use Tables\Actions\application as ActionTable;
 
 class Actions extends MainActions
 {
+
     public function getAssocActiveActions(): array
     {
         return ActionTable::getAllActive();
@@ -17,12 +18,12 @@ class Actions extends MainActions
 
     public function getAssocActiveActionByPageName(string $pageName): ?array
     {
-        return ActionTable::getAssocByPageName($pageName);
+        return ActionTable::getAssocActiveByPageName($pageName);
     }
 
-    public function getAssocActionByHash(string $hash): ?array
+    public function getAssocActionByPageName(string $pageName): ?array
     {
-        return ActionTable::getAssocByHash($hash);
+        return ActionTable::getAssocByPageName($pageName);
     }
 
     public function getAccessActions(): MainAccessActions

@@ -28,7 +28,7 @@ unset($expert);
 $variablesTV->setValue('experts', $activeExperts);
 
 
-$applicationId = $_GET['id_application'];
+$applicationId = $_GET['id_document'];
 
 switch (application::getFlatAssocById($applicationId)['id_type_of_object']) {
     case 1: // Производственные/непроизводственные

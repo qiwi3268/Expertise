@@ -3,6 +3,8 @@
 
 namespace Lib\Actions;
 use Lib\Exceptions\Actions as SelfEx;
+use Lib\Singles\PrimitiveValidator;
+use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
 
 
 // Предназначен для проверки доступа пользователя к действиям
@@ -35,7 +37,7 @@ abstract class AccessActions
 
         foreach ($this->actions->getAssocActiveActions() as $action) {
 
-            if ($this->getValidatedCallbackResult($action['callback_name'])) {
+            if ($this->getValidatedCallbackResult($action, $action['page_name'])) {
                 $result[] = $action;
             }
         }
@@ -43,50 +45,54 @@ abstract class AccessActions
     }
 
 
-    // Предназначен для проверки доступа к действию по названию страницы
+    // Предназначен для проверки доступа к действию по имени страницы
     // Принимает параметры-----------------------------------
     // pageName string : URN требуемой страницы
     // Возвращает параметры----------------------------------
     // true  : есть доступ к действию
     // false : нет доступа к действию
-    // Выбрасывает исключения--------------------------------
-    // Lib\Exceptions\Actions :
-    // code:
-    //  2 - попытка получить доступ к несуществующему действию для страницы
     //
-    public function checkAccessFromActionByPageName(string $pageName = URN): bool
+    public function checkAccessFromActionByPageName(string $pageName): bool
     {
         $action = $this->actions->getAssocActiveActionByPageName($pageName);
 
-        if (is_null($action)) {
-            throw new SelfEx("Попытка получить доступ к несуществующему действию для страницы: '{$pageName}'", 2);
-        }
-
-        return $this->getValidatedCallbackResult($action['callback_name']);
+        return $this->getValidatedCallbackResult($action, $pageName);
     }
 
 
     // Предназначен для получения проверенного результата callback'а
     // Принимает параметры-----------------------------------
-    // method string : название метода, который должен присутствовать в дочернем классе
+    // action   ?array : массив действия, если оно существует
+    // pageName string : имя страницы для вывода в сообщение об ошибке
     // Возвращает параметры----------------------------------
     // bool : результат callback'а
     // Выбрасывает исключения--------------------------------
     // Lib\Exceptions\Actions :
     // code:
-    //  3 - отсутствует метод доступа к действию
-    //  4 - метод доступа действию возвращает значение, не принадлежащее типу boolean
+    //  2 - попытка получить доступ к несуществующему действию для страницы
+    //  3 - метод доступа к действию не реализован в дочернем классе
+    //  4 - ошибка метода доступа к действию для страницы (объявленный тип возвращаемого значения не bool)
     //
-    public function getValidatedCallbackResult(string $method): bool
+    public function getValidatedCallbackResult(?array $action, string $pageName): bool
     {
+        if (is_null($action)) {
+            throw new SelfEx("Попытка получить доступ к несуществующему действию для страницы: '{$pageName}'", 2);
+        }
+
+        $method = $action['callback_name'];
+
         if (!method_exists($this, $method)) {
-            throw new SelfEx("Отсутствует метод доступа к действию: '{$this->childClassName}::{$method}'", 3);
+            throw new SelfEx("Метод доступа к действию: '{$this->childClassName}::{$method}' для страницы: '{$pageName}' не реализован в дочернем классе: '{$this->childClassName}'", 3);
         }
 
-        if (!is_bool($result = $this->$method())) {
-            throw new SelfEx("Метод доступа действию: '{$this->childClassName}::{$method}' возвращает значение, не принадлежащее типу boolean", 4);
+        $primitiveValidator = new PrimitiveValidator();
+
+        try {
+            $primitiveValidator->validateReturnType([$this, $method], 'bool');
+        } catch (PrimitiveValidatorEx $e) {
+            throw new SelfEx("Ошибка метода доступа к действию для страницы: '{$pageName}'. {$e->getMessage()}", 4);
         }
 
-        return $result;
+        return $this->$method();
     }
 }

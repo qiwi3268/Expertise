@@ -444,7 +444,32 @@
 }
 
 
+.draggable {
+   position: absolute;
+   z-index: 1000;
+   padding: 10px 15px;
 
+   font-size: 16px;
+   font-family: 'Roboto Condensed', sans-serif;
+
+   cursor: pointer;
+
+   /*color: #343a40;*/
+
+   background-color: #ddfad9;
+   border: 1px solid #C5E6C1;
+   color: #537A5D;
+
+   border-radius: 4px;
+}
+
+/*[hidden] {*/
+/*   display: none;*/
+/*}*/
+
+.draggable:hover {
+   background-color: #ddfad9;
+}
 
 
 

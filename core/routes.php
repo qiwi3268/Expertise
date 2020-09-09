@@ -113,7 +113,8 @@ return [
     ],
 
     'home/application/actions/action_1' => [
-
+        'user_callback%1' => ['hey', 'mey'],
+        'user_callback' => ['rtrtr', 'ewrew']
     ],
 
     'home/application/actions/action_2' => [
