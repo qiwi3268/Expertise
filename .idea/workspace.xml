@@ -3,6 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/action_2.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/actions/action_2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/Drag&amp;Drop.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/Drag&amp;Drop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/action_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/action_2.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,13 +112,6 @@
       <workItem from="1599482743968" duration="26946000" />
       <workItem from="1599582890447" duration="117000" />
       <workItem from="1599583021238" duration="1603000" />
-    </task>
-    <task id="LOCAL-00035" summary="18.08.2020">
-      <created>1597740757220</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1597740757220</updated>
     </task>
     <task id="LOCAL-00036" summary="18.08.2020_1">
       <created>1597754361419</created>
@@ -451,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599564440703</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="09.09.2020">
+      <created>1599623456947</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1599623456947</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -468,7 +473,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="27.08.2020_1" />
     <MESSAGE value="27.08.2020_2" />
     <MESSAGE value="before global refactor" />
     <MESSAGE value="27.08.2020" />
@@ -493,7 +497,8 @@
     <MESSAGE value="08.09.2020" />
     <MESSAGE value="08.09.2020_1" />
     <MESSAGE value="08.09.2020_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="08.09.2020_2" />
+    <MESSAGE value="09.09.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="09.09.2020" />
   </component>
   <component name="WindowStateProjectService">
     <state x="872" y="358" key="#Deployment" timestamp="1599583061353">

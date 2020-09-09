@@ -1,15 +1,17 @@
+/*
 document.addEventListener('DOMContentLoaded', () => {
    clearDefaultDropEvents();
 
    let drag_containers = document.querySelectorAll('[data-drag_container]');
    drag_containers.forEach(container => {
-      new DragContainer(container, transformExpert);
+      let drag_container = new DragContainer(container, transformExpert);
+      drag_container.initElements();
    });
 
-   /*  let drop_areas = document.querySelectorAll('[data-drop_area]');
+   /!*  let drop_areas = document.querySelectorAll('[data-drop_area]');
      drop_areas.forEach(area => {
         new DropArea(area);
-     });*/
+     });*!/
 
 });
 
@@ -30,4 +32,4 @@ function transformExpert (expert) {
    new_expert.appendChild(remove_btn);
 
    return new_expert;
-}
+}*/

@@ -261,7 +261,9 @@
 
    cursor: pointer;
 
-   transition: 0.15s;
+   /*transition: 0.15s;*/
+   transition: background-color 0.15s;
+
 }
 
 
@@ -405,10 +407,11 @@
 
 }
 
-.assignment__expert.drag {
-   /*background-color: #E3EFFF;*/
-   /*border: 1px solid #CAD6E7;*/
-   /*color: #6A7E9A;*/
+/*.assignment__expert.drag,
+.section__expert.drag {
+   !*background-color: #E3EFFF;*!
+   !*border: 1px solid #CAD6E7;*!
+   !*color: #6A7E9A;*!
 
    position: absolute;
    z-index: 1000;
@@ -420,11 +423,25 @@
 
    border-radius: 4px;
 
-   /*pointer-events: none;*/
+}*/
 
+.avatar__expert {
+   position: absolute;
+   z-index: 1000;
 
+   padding: 10px 15px;
+
+   font-size: 16px;
+   font-family: 'Roboto Condensed', sans-serif;
+
+   cursor: pointer;
+
+   background-color: #ddfad9;
+   border: 1px solid #C5E6C1;
+   color: #537A5D;
+
+   border-radius: 4px;
 }
-
 
 
 

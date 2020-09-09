@@ -3,7 +3,7 @@
 <?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
 <?php //var_dump($variablesTV->getValue('documentation_files_in_structure')); ?>
-<?php var_dump($variablesTV->getValue('experts')); ?>
+<?php //var_dump($variablesTV->getValue('experts')); ?>
 
 <div class="action">
 
@@ -29,17 +29,28 @@
             <div class="assignment__body-experts">
                 <div class="assignment__expert-section">
                     <div class="assignment__type">Смета</div>
-                    <div class="assignment__expert-list" data-drag_container data-drag_multiple="true">
+                    <div class="assignment__expert-list"
+                         data-drag_container
+                         data-drag_multiple="true"
+                         data-transform_callback="expert">
                         <?php foreach ($variablesTV->getValue('experts') as $index => $expert): ?>
-                            <div class="assignment__expert" data-drag_element data-id="<?= $expert['id'] ?>" style="order: <?= -$index ?>"><?= $expert['fio'] ?></div>
+                            <div class="assignment__expert"
+                                 data-drag_element
+                                 data-id="<?= $expert['id'] ?>"
+                                 data-drag_callback="expert"
+                                 style="order: <?= -$index ?>"><?= $expert['fio'] ?></div>
                         <?php endforeach; ?>
                     </div>
                 </div>
                 <div class="assignment__expert-section">
                     <div class="assignment__type">Не смета</div>
-                    <div class="assignment__expert-list" data-drag_container data-drag_multiple="false">
+                    <div class="assignment__expert-list" data-drag_container data-drag_multiple="false" data-transform_callback="expert">
                         <?php foreach ($variablesTV->getValue('experts') as $index => $expert): ?>
-                            <div class="assignment__expert" data-drag_element data-id="<?= $expert['id'] ?>" style="order: <?= $index ?>"><?= $expert['fio'] ?></div>
+                            <div class="assignment__expert"
+                                 data-drag_element
+                                 data-id="<?= $expert['id'] ?>"
+                                 data-drag_callback="expert"
+                                 style="order: <?= $index ?>"><?= $expert['fio'] ?></div>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -57,7 +68,11 @@
                             <div class="section__body">
                                 <div class="section__experts">
                                     <div class="section__experts-title">Назначенные эксперты:</div>
-                                    <div class="section__expert-list" data-drop_container data-drop_multiple="false">
+                                    <div class="section__expert-list"
+                                         data-drop_container
+                                         data-drop_multiple="false"
+                                         data-drag_container
+                                         data-drag_multiple="false">
                                         <div class="section__expert">
                                             <span class="section__name">Белов А.В.</span>
                                             <i class="section__icon-remove fas fa-minus"></i>
