@@ -10,9 +10,14 @@ use Tables\application;
 use Tables\Responsible\type_3\application as resp_application_type_3;
 use Tables\applicant_access_group;
 use Tables\Actions\application as ApplicationActions;
-use core\Classes\XMLReader;
+use core\Classes\XMLHandler;
 
-$reader = new XMLReader();
-$reader->validatePages();
+$handler = new XMLHandler();
+$handler->validatePagesStructure();
+
+$page = $handler->getPage('home/application/create22');
+
+$handler->handleValidatedPageValues($page);
+
 
 

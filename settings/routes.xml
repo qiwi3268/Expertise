@@ -1,7 +1,7 @@
-<routes>
+<routes lala="12">
     <pages>
 
-        <page urn="home/application/create">
+        <page urn="home/application/create1">
             <files>
                 <dir path="/home/application/controllers/" ext=".php">
                     <file name="header" />
@@ -13,11 +13,33 @@
                     <file name="header" />
                     <file name="header1" />
                     <file name="header2" />
+                </dir>
+            </files>
+            <callbacks>
+                <namespace name="\Classes\DocumentParameters">
+                    <class name="ActionPage" type="instance">
+                        <method name="defineDocumentParameters"/>
+                    </class>
+                </namespace>
+            </callbacks>
+            <files>
+                <dir path="/home/application/controllers/" ext=".php">
+                    <file name="header444" />
+                </dir>
+            </files>
+            <files>
+                <dir path="/home/application/controllers/" ext=".php">
+                    <file name="header444" />
+                </dir>
+                <dir path="/home/application/controllers/" ext=".php">
+                    <file name="header445">
+
+                    </file>
                 </dir>
             </files>
         </page>
 
-        <page urn="home/application/create2">
+        <page urn="home/application/create22">
             <files>
                 <dir path="/home/application/controllers/" ext=".php">
                     <file name="header" />
@@ -31,8 +53,28 @@
                     <file name="header2" />
                 </dir>
             </files>
+
+
+            <callbacks>
+                <namespace name="\Classes\DocumentParameters">
+                    <class name="ActionPage" type="instance">
+                        <method name="defineDocumentParameters"/>
+                    </class>
+                </namespace>
+            </callbacks>
+
+
         </page>
 
     </pages>
+
+    <pages hey="12">
+    </pages>
+    <pages>
+    </pages>
+
+    <lala>
+
+    </lala>
 </routes>
 

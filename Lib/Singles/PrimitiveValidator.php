@@ -383,4 +383,19 @@ class PrimitiveValidator
             throw new SelfEx("Требуемый метод / функция: '{$debug}' имеет тип возвращаемого значения: '{$typeName}' не равный требуемому: '{$type}'", 18);
         }
     }
+
+
+    public function validateClassExist(string $className): void
+    {
+        if (!class_exists($className)) {
+            throw new SelfEx("Класс: '{$className}' не существует", 19);
+        }
+    }
+
+    public function validateMethodExist(string $className, string $method): void
+    {
+        if (!method_exists($className, $method)) {
+            throw new SelfEx("Метод: '{$className}::{$method}' не существует", 20);
+        }
+    }
 }
