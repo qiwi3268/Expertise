@@ -1,6 +1,6 @@
 <?php
 
 
-if (!checkParamsPOST()) {
+if (!checkParamsPOST('path_name', 'id_documert')) {
 
 }

@@ -3,8 +3,10 @@
 
 namespace Classes\Exceptions;
 
+use Lib\Exceptions\Traits\MainTrait;
 
-// exception, связанный с ошибками при работе навигационного класса Navigation
+
+// exception, связанный с ошибками при работе навигационного класса Classes\Navigation\Navigation
 // code:
 //  1  - ошибка при инициализации XML-схемы навигации
 //  2  - пользователю c ролями не определен ни один навигационный блок
@@ -21,7 +23,7 @@ namespace Classes\Exceptions;
 //  13 - аттрибут show_counter не равен 0 или 1
 //  14 - внутренняя ссылка на внутренний ресурс должна начинаться с символа '/'
 //
-class Navigation extends \Exception{
-
-    use \Lib\Exceptions\Traits\MainTrait;
+class Navigation extends \Exception
+{
+    use MainTrait;
 }

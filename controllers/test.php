@@ -13,6 +13,13 @@ use Tables\applicant_access_group;
 use Tables\Actions\application as ApplicationActions;
 
 
-$validator = new PrimitiveValidator();
-$validator->validateReturnType('getFIO', 'string');
+$user = [
+    'last_name' => 'Макаров',
+    'first_name' => 'Владимир',
+    'middle_name' => 'Алексеевич'
+];
+
+$fio = getFIO($user, true);
+
+var_dump($fio);
 

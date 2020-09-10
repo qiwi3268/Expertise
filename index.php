@@ -50,6 +50,7 @@ if (!$route->checkRoute()) {
 
 $route->checkRouteCorrect();
 
+define('URI', $route->getURI());
 define('URN', $route->getURN());
 
 $route->executeUserCallbacks();
