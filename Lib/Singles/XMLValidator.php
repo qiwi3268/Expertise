@@ -13,7 +13,7 @@ class XMLValidator
     public function validateAttributes(SimpleXMLElement $node, string $debugName, array $requiredAttributes, array $optionalAttributes = []): void
     {
         // Получение массива аттрибутов узла из XML-объекта
-        $arr_attributes = (array)$node->attributes();
+        $arr_attributes = (array)$node->attributes() ?? [];
         $attributes = isset($arr_attributes['@attributes']) ? array_keys($arr_attributes['@attributes']) : [];
 
         // Строка для дампа ошибок
@@ -45,7 +45,7 @@ class XMLValidator
 
     public function validateChildren(SimpleXMLElement $node, string $debugName, array $requiredChildren, array $optionalChildren = [])
     {
-        // Берем только названия дочерних узлов (они имеют тип SimpleXMLElement, в отличие от аттрибутов)
+        // Берем только названия дочерних узлов
         $childrenName = array_filter(array_keys((array)$node), fn($el) => ($el != '@attributes'));
 
         $dump_1 = implode(', ', $childrenName);

@@ -8,7 +8,6 @@ use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
 use Lib\Singles\XMLValidator;
 use Lib\Singles\PrimitiveValidator;
 use SimpleXMLElement;
-use ReflectionClass;
 
 
 class XMLHandler
@@ -174,14 +173,8 @@ class XMLHandler
                         }
 
 
-                        if ($classType == 'instance') {
-                            
-                            $reflectionClass = new ReflectionClass($fullClassName);
-                            $object = $reflectionClass->newInstanceArgs();
-                        } else {
-                            
-                            $object = $fullClassName;
-                        }
+                        $object = ($classType == 'instance') ? new $fullClassName() : $fullClassName;
+
 
                         foreach ($class->children() as $method) {
 
@@ -206,7 +199,7 @@ class XMLHandler
 
         foreach ($result as $value) {
 
-            ($value['type'] == 'file') ? require_once $value['fs'] : call_user_func([$value['object'], $value['method']]);
+            $value['type'] == 'file' ? require_once $value['fs'] : call_user_func_array([$value['object'], $value['method']], []);
         }
     }
 

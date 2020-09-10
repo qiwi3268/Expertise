@@ -9,13 +9,15 @@
 
 
 .action__row {
-   display: flex;
+   /*display: flex;
    align-items: center;
    padding: 0px 0px 0px 20px;
    background-color: #ffffff;
    margin: 0px 0px 10px 0px;
    border-radius: 4px;
-   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);*/
+
+
 }
 
 .header-action__row:not(:last-child) {
@@ -45,13 +47,13 @@
 }
 
 .header-action__button {
-   display: flex;
+  /* display: flex;
    align-items: center;
    padding: 15px 20px;
    border-bottom: 2px solid #ffffff;
    cursor: pointer;
    transition: 0.15s;
-   font-size: 18px;
+   font-size: 18px;*/
 }
 
 .header-action__button:last-child {
@@ -59,8 +61,8 @@
 }
 
 .header-action__button:hover {
-   border-bottom: 2px solid #ffd354;
-   background-color: #f6f6f6;
+   /*border-bottom: 2px solid #ffd354;*/
+   /*background-color: #f6f6f6;*/
 }
 
 .header-action__btn-icon {
@@ -89,8 +91,10 @@
 
 /*.assignment__experts,*/
 /*.assignment__main,*/
-.assignment__body-experts,
-.assignment__additional {
+/*.assignment__additional */
+
+.assignment__body-experts {
+
    background-color: #ffffff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
@@ -104,8 +108,13 @@
 
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
 
-   margin: 10px 0px 0px 0px;
+   /*margin: 10px 0px 0px 0px;*/
+   margin: 0px 0px 10px 0px;
 
+}
+
+.assignment__section:last-child {
+   /*margin: 0px 0px 10px 0px;*/
 }
 
 
@@ -116,38 +125,27 @@
    border-left: 4px solid #93b0d1;
 }
 
-.assignment__header {
-   background-color: #ffffff;
-   border-radius: 4px;
-   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
-
-}
 
 .assignment__header {
    font-size: 16px;
-
    font-weight: 700;
    /*font-size: 18px;*/
-
-
    padding: 8px 15px;
    text-align: center;
    /*border-bottom: 2px solid #ffd354;*/
    border-bottom: 3px solid #ffd354;
    /*border-bottom: 3px solid #93b0d1;*/
    /*border-bottom: 2px solid #93b0d1;*/
+   background-color: #ffffff;
+   border-radius: 4px;
+   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+
 }
+
 
 /**/
 
 
-.assignment {
-   flex-grow: 1;
-   display: flex;
-   margin: 0px 0px 10px 0px;
-   font-size: 16px;
-
-}
 
 .assignment__experts {
    width: 15%;
@@ -164,16 +162,9 @@
 .assignment__main {
 
    flex-grow: 1;
-   margin: 0px 0px 10px 0px;
+   /*margin: 0px 0px 10px 0px;*/
 
 }
-
-.assignment__additional {
-   /*display: flex;*/
-   /*flex-direction: column;*/
-}
-
-
 
 
 
@@ -373,7 +364,7 @@
 
 .avatar__expert {
    position: absolute;
-   z-index: 1000;
+   z-index: 9999;
    box-sizing: border-box;
    align-items: center;
    flex-grow: 1;
@@ -391,8 +382,9 @@
 /**/
 .action-header {
    position: sticky;
-   top: 10px;
-   z-index: 1;
+   top: 0;
+   z-index: 2000;
+
 }
 
 .action {
@@ -400,7 +392,130 @@
    /*top: 10px;*/
 }
 
-.assignment__experts {
+.action-header {
+   font-family: 'Roboto Condensed', sans-serif;
+   color: #343a40;
 
 }
+
+.assignment__experts {
+   position: sticky;
+   top: 70px;
+   align-self: flex-start;
+   z-index: 100;
+}
+
+.assignment__header {
+   position: sticky;
+   top: 70px;
+   align-self: flex-start;
+   z-index: 100;
+
+   margin: 0px 0px 10px 0px;
+
+
+}
+
+.action {
+
+}
+
+
+.assignment {
+   flex-grow: 1;
+   display: flex;
+   font-size: 16px;
+
+   /*margin: 0px 0px 10px 0px;*/
+
+}
+
+
+.assignment__sections {
+}
+
+.action__empty {
+   flex-grow: 1;
+}
+
+/*tmp*/
+
+.action-header {
+   display: flex;
+   margin: 0px 0px 10px;
+
+   height: 50px;
+
+   top: 10px;
+
+}
+
+.action__row {
+   flex-grow: 1;
+
+}
+
+.header-action__button {
+
+   display: flex;
+   justify-content: space-between;
+   text-align: center;
+   /*margin: 0px 0px 8px 0px;*/
+   font-family: 'Roboto Condensed', sans-serif;
+   color: #343a40;
+   transition: .10s;
+   cursor: pointer;
+   border: 1px solid #ffffff;
+
+   background-color: #ffffff;
+   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+
+   height: 48px;
+
+   padding: 0px 20px;
+   align-items: center;
+
+   margin: 0px 0px 0px 5px;
+   border-radius: 4px;
+
+}
+
+
+
+.header-action__buttons {
+   display: flex;
+   align-items: center;
+}
+
+.header-action__button:last-child {
+   border-radius: 4px;
+}
+
+.action__row {
+   display: flex;
+   align-items: center;
+   padding: 0px 0px 0px 20px;
+   background-color: #ffffff;
+   border-radius: 4px;
+   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+
+
+}
+
+
+.header-action__button:hover {
+   border: 1px solid #80bdff;
+   box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
+}
+
+
+
+
+
+
+
+
+
+
+
 
