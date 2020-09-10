@@ -230,6 +230,21 @@ textarea.application-input {
    padding: 10px 15px;
 }
 
+.card-body {
+   max-height: 0;
+   overflow: hidden;
+   transition: max-height .3s;
+}
+
+.arrow-up {
+   transform: rotate(-180deg);
+   transition: .3s;
+}
+
+.arrow-down {
+   transform: rotate(0);
+   transition: .3s;
+}
 
 
 

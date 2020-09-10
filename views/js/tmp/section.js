@@ -1,11 +1,11 @@
+// todo вынести в отдельный файл
+
 document.addEventListener('DOMContentLoaded', () => {
    let cards = document.querySelectorAll('.card');
    cards.forEach(card => {
       let card_header = card.querySelector('.card-expand');
 
-      card_header.addEventListener('click', () => {
-         expandCard(card);
-      });
+      card_header.addEventListener('click', () => expandCard(card));
    });
 
    handleTextAreasResize();
@@ -48,12 +48,14 @@ function expandCard (card) {
    let card_arrow;
    let card_body;
    if (card) {
-      card_arrow = card.querySelector('.card-icon');
       card_body = card.querySelector('.card-body');
+      card_arrow = card.querySelector('.card-icon');
 
       //переворачиваем стрелку
-      card_arrow.classList.toggle('arrow-down');
-      card_arrow.classList.toggle('arrow-up');
+      if (card_arrow) {
+         card_arrow.classList.toggle('arrow-down');
+         card_arrow.classList.toggle('arrow-up');
+      }
 
       if (card_body.style.maxHeight) {
          // Сужаем блок

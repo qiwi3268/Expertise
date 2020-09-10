@@ -90,7 +90,12 @@ return [
 
 
     'home/application/view' => [
-        'access'              => [],
+        'instance_callback'   => [
+            [
+                'class' => '\Classes\DocumentParameters\ExpertiseCard',
+                'method' => 'defineDocumentParameters'
+            ],
+        ],
         'ROOTcontrollers'     => ['header'],
         '/controllers/home/'  => ['main_header'],
         'controllers'         => ['action_sidebar', 'view_application', 'validation_block_application_form'],
@@ -117,14 +122,16 @@ return [
     ],
 
     'home/application/actions/action_1' => [
-
+        'instance_callback%1'       => [
+            [
+                'class' => '\Classes\DocumentParameters\ActionPage',
+                'method' => 'defineDocumentParameters'
+            ],
+        ],
+        'controllers' => ['action_1']
     ],
 
     'home/application/actions/action_2' => [
-        'user_callback'       => [
-            'handleActionURI',
-            'checkAccessToAction'
-        ],
         'ROOTcontrollers'     => ['header'],
         'ROOTviews'           => ['header'],
         '/controllers/home/'  => ['main_header'],

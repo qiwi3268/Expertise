@@ -10,16 +10,21 @@ document.addEventListener('DOMContentLoaded', () => {
          selected_row.classList.remove('selected');
       }
 
-      let related_card = document.querySelector(`.card-form[data-type='${row.dataset.card}']`);
-      let card_body = related_card.querySelector('.card-form__body');
+      let related_card = document.querySelector(`.card[data-type='${row.dataset.card}']`);
+      if (related_card) {
 
-      // Раскрываем связанный блок, если он не раскрыт
-      if (!card_body.style.maxHeight) {
-         expandCard(related_card);
+         let card_body = related_card.querySelector('.card-body');
+
+         // Раскрываем связанный блок, если он не раскрыт
+         if (!card_body.style.maxHeight) {
+            expandCard(related_card);
+         }
+
+         // Выделяем элемент и добавляем линию слева
+         row.classList.add('selected');
+
       }
 
-      // Выделяем элемент и добавляем линию слева
-      row.classList.add('selected');
    }));
 
 });

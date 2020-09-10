@@ -64,13 +64,13 @@
                 <div class="assignment__header">Разделы ПД</div>
                 <div class="assignment__body-sections">
                     <?php foreach ($variablesTV->getValue('documentation_files_in_structure') as $section): ?>
-                        <div class="assignment__section section"
+                        <div class="assignment__section section card"
                              data-drop_area
                              data-id="<?= $section['id'] ?>"
                              data-result_callback="experts_json"
                         >
-                            <span class="section__title"><?= $section['name'] ?></span>
-                            <div class="section__body">
+                            <span class="section__title card-expand"><?= $section['name'] ?></span>
+                            <div class="section__body card-body">
                                 <div class="section__experts">
                                     <div class="section__experts-title">Назначенные эксперты:</div>
                                     <div class="section__expert-list"
@@ -80,12 +80,12 @@
                                          data-drag_multiple="false"
                                     ></div>
                                 </div>
-                                <div class="section__uploaded-files">
+                                <div class="section__uploaded-files card">
                                     <div class="section__expand-button">
-                                        <span class="section__button-name">Показать загруженные файлы</span>
-                                        <i class="section__icon-expand fas fa-chevron-down"></i>
+                                        <span class="section__button-name card-expand">Показать загруженные файлы</span>
+                                        <i class="section__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                                     </div>
-                                    <div class="section__files files filled block">
+                                    <div class="section__files files filled block card-body">
                                         <?php foreach ($section['files'] as $file): ?>
                                             <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" data-validate_results='<?= $file['validate_results'] ?>'>
                                                 <div class="files__info">

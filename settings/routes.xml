@@ -1,0 +1,38 @@
+<routes>
+    <pages>
+
+        <page urn="home/application/create">
+            <files>
+                <dir path="/home/application/controllers/" ext=".php">
+                    <file name="header" />
+                </dir>
+                <dir path="/home/application/controllers/" ext=".html">
+                    <file name="header" />
+                </dir>
+                <dir path="/home/application/views/" ext=".php">
+                    <file name="header" />
+                    <file name="header1" />
+                    <file name="header2" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="home/application/create2">
+            <files>
+                <dir path="/home/application/controllers/" ext=".php">
+                    <file name="header" />
+                </dir>
+                <dir path="/home/application/controllers/" ext=".html">
+                    <file name="header" />
+                </dir>
+                <dir path="/home/application/views/" ext=".php">
+                    <file name="header" />
+                    <file name="header1" />
+                    <file name="header2" />
+                </dir>
+            </files>
+        </page>
+
+    </pages>
+</routes>
+

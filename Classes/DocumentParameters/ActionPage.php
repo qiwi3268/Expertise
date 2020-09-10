@@ -33,8 +33,9 @@ class ActionPage extends DocumentParameters
         // конец текста
         // - регистронезависимые
         // - использование кодировки utf-8
+        //$pattern = "/\Ahome\/([a-z]+)\/actions\/action_\d+\z/iu";
         $pattern = "/\Ahome\/([a-z]+)\/actions\/action_\d+\z/iu";
 
-        $this->validateAndDefineParameters($clearDocumentId, URN, $pattern);
+        $this->validateAndDefineParameters($clearDocumentId, $pattern, URN);
     }
 }

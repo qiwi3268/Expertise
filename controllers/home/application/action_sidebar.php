@@ -4,7 +4,11 @@
 use Lib\Actions\Locator as ActionLocator;
 use Lib\Singles\VariableTransfer;
 
-$availableActions = ActionLocator::getInstance()->getActions()->getAccessActions()->getAvailableActions();
+//todo
+$availableActions = ActionLocator::getInstance(CURRENT_DOCUMENT_TYPE)
+    ->getActions()
+    ->getAccessActions()
+    ->getAvailableActions();
 
 
 

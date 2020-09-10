@@ -7,10 +7,16 @@ use core\Classes\Exceptions\Route as SelfEx;
 use core\Classes\Session;
 use Lib\Actions\Locator as ActionLocator;
 use Tables\Exceptions\Exception;
+use ReflectionClass;
 
 final class Route
 {
+    //todo delete
     private RouteCallback $routeCallback;
+
+    private const INSTANCE_CALLBACK = 'instance_callback';
+    private const STATIC_CALLBACK = 'static_callback';
+    private array $callbacks = [];
 
     // Полный запрос с первым '/' и get-параметрами
     private string $URI;
@@ -107,6 +113,12 @@ final class Route
                 throw new SelfEx("routeUnit '{$routeUnit}' должен быть ключом массива");
             }
 
+            //tudu тут проеряем корректность, существование классов/методов, записываем в свойство класса.
+            //дергаем их при вызове метода
+            if (containsAny($routeUnit, 'instance_callback', 'static_callback')) {
+                continue;
+            }
+
 
             foreach ($unitList as $contentFunction => $unit) {
 
@@ -162,6 +174,49 @@ final class Route
 
         foreach ($callbacks as $method) {
             $this->routeCallback->$method();
+        }
+    }
+
+    public function executeCallbacks(): void
+    {
+        $callbacks = [];
+
+        foreach ($this->route as $routeUnit => $unitList) {
+
+            if (containsAny($routeUnit, 'instance_callback', 'static_callback')) {
+
+                foreach ($unitList as ['class' => $class, 'method' => $method]) {
+
+                    if (!class_exists($class)) {
+                        throw new SelfEx("Запрашиваемый класс: '{$class}' в callback'е типа: '{$routeUnit}' не существует");
+                    }
+
+                    if (!method_exists($class, $method)) {
+                        throw new SelfEx("Запрашиваемый метод: '{$class}::{$method}' в callback'е типа: '{$routeUnit}' не существует");
+                    }
+
+                    $type = containsAll($routeUnit, 'instance_callback') ? self::INSTANCE_CALLBACK : self::STATIC_CALLBACK;
+                    $this->callbacks[] = [
+                        'type'   => $type,
+                        'class'  => $class,
+                        'method' => $method
+                    ];
+                }
+                unset($this->route[$routeUnit]);
+            }
+        }
+
+        foreach ($this->callbacks as ['type' => $type, 'class' => $class, 'method' => $method]) {
+
+            if ($type == self::INSTANCE_CALLBACK) {
+
+                $reflectionClass = new ReflectionClass($class);
+                $instance = $reflectionClass->newInstanceArgs();
+                call_user_func_array([$instance, $method], []);
+            } else {
+
+                call_user_func_array([$class, $method], []);
+            }
         }
     }
 

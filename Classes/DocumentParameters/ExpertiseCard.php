@@ -35,6 +35,6 @@ class ExpertiseCard extends DocumentParameters
         // - использование кодировки utf-8
         $pattern = "/\Ahome\/([a-z]+)\/[a-z]+\z/iu";
 
-        $this->validateAndDefineParameters($clearDocumentId, URN, $pattern);
+        $this->validateAndDefineParameters($clearDocumentId, $pattern, URN);
     }
 }

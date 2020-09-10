@@ -53,7 +53,7 @@ $route->checkRouteCorrect();
 define('URI', $route->getURI());
 define('URN', $route->getURN());
 
-$route->executeUserCallbacks();
+$route->executeCallbacks();
 
 
 

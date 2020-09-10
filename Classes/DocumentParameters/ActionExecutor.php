@@ -35,6 +35,6 @@ class ActionExecutor extends DocumentParameters
         // - использование кодировки utf-8
         $pattern = "/\A\/home\/([a-z]+)\/actions\/action_\d+\z/iu";
 
-        $this->validateAndDefineParameters($clearDocumentId, $path_name, $pattern);
+        $this->validateAndDefineParameters($clearDocumentId, $pattern, $path_name);
     }
 }
