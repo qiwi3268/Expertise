@@ -64,13 +64,13 @@
                 <div class="assignment__header">Разделы ПД</div>
                 <div class="assignment__body-sections">
                     <?php foreach ($variablesTV->getValue('documentation_files_in_structure') as $section): ?>
-                        <div class="assignment__section section card"
+                        <div class="assignment__section section"
                              data-drop_area
                              data-id="<?= $section['id'] ?>"
                              data-result_callback="experts_json"
                         >
-                            <span class="section__title card-expand"><?= $section['name'] ?></span>
-                            <div class="section__body card-body">
+                            <span class="section__title"><?= $section['name'] ?></span>
+                            <div class="section__body">
                                 <div class="section__experts">
                                     <div class="section__experts-title">Назначенные эксперты:</div>
                                     <div class="section__expert-list"

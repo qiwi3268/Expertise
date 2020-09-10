@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
    let cards = document.querySelectorAll('.card');
    cards.forEach(card => {
       let card_header = card.querySelector('.card-expand');
-
       card_header.addEventListener('click', () => expandCard(card));
    });
 
@@ -45,26 +44,22 @@ function handleTextAreasResize () {
 // Принимает параметры-------------------------------
 // card       Element : блок, для раскрытия или сужения
 function expandCard (card) {
-   let card_arrow;
-   let card_body;
-   if (card) {
-      card_body = card.querySelector('.card-body');
-      card_arrow = card.querySelector('.card-icon');
+   let card_body = card.querySelector('.card-body');
+   let card_arrow = card.querySelector('.card-icon');
 
-      //переворачиваем стрелку
-      if (card_arrow) {
-         card_arrow.classList.toggle('arrow-down');
-         card_arrow.classList.toggle('arrow-up');
-      }
-
-      if (card_body.style.maxHeight) {
-         // Сужаем блок
-         card_body.style.maxHeight = null;
-      } else {
-         // Раскрываем блок
-         changeParentCardMaxHeight(card_body);
-      }
+   //переворачиваем стрелку
+   if (card_arrow) {
+      card_arrow.classList.toggle('arrow-down');
+      card_arrow.classList.toggle('arrow-up');
    }
+   if (card_body.style.maxHeight) {
+      // Сужаем блок
+      card_body.style.maxHeight = null;
+   } else {
+      // Раскрываем блок
+      changeParentCardMaxHeight(card_body);
+   }
+
 }
 
 // Предназначен для изменения максимальной высоты блока анкеты при изменении контенета
@@ -74,11 +69,15 @@ function expandCard (card) {
 function changeParentCardMaxHeight (inner_element, value = null) {
    let card_body = inner_element.closest('.card-body');
 
+   card_body.style.transition = `${card_body.scrollHeight / 2500 + 0.2}s`;
+   // card_body.style.transition = `${card_body.scrollHeight / 2500 + 0.2}s cubic-bezier(0.65, 0, 0.35, 1)`;
+
    if (!value) {
       card_body.style.maxHeight = card_body.scrollHeight + 'px';
    } else {
       card_body.style.maxHeight = value;
    }
+
 }
 
 function resizeCard (inner_element) {

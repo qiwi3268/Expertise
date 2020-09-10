@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
          selected_row.classList.remove('selected');
       }
 
+      // todo name
       let related_card = document.querySelector(`.card[data-type='${row.dataset.card}']`);
       if (related_card) {
 

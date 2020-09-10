@@ -78,7 +78,10 @@ class PartBlock {
 
    handleCancelButton () {
       this.cancel_btn = this.actions.querySelector('.cancel');
-      this.cancel_btn.addEventListener('click', () => this.element.remove());
+      this.cancel_btn.addEventListener('click', () => {
+         this.element.remove();
+         resizeCard(this.parent.element);
+      });
    }
 
 }

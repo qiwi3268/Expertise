@@ -232,8 +232,11 @@ textarea.application-input {
 
 .card-body {
    max-height: 0;
+   /*height: 0;*/
    overflow: hidden;
-   transition: max-height .3s;
+   /*transition: .3s;*/
+
+   /*transition: height .3s;*/
 }
 
 .arrow-up {
@@ -246,7 +249,9 @@ textarea.application-input {
    transition: .3s;
 }
 
-
+/*.card-body.active {
+   height: auto;
+}*/
 
 
 
