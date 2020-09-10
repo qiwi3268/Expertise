@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-   let cards = document.querySelectorAll('.card-form');
+   let cards = document.querySelectorAll('.card');
    cards.forEach(card => {
-      let card_header = card.querySelector('.card-form__header');
+      let card_header = card.querySelector('.card-expand');
 
       card_header.addEventListener('click', () => {
          expandCard(card);
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Сразу делаем блоки раскрытыми без анимации развертывания
 window.addEventListener('load', () => {
-   let cards_view = document.querySelectorAll('.card-form__body.expanded');
+   let cards_view = document.querySelectorAll('.card-body.expanded');
    cards_view.forEach(card_body => {
       changeParentCardMaxHeight(card_body);
       card_body.classList.remove('expanded');
@@ -48,8 +48,8 @@ function expandCard (card) {
    let card_arrow;
    let card_body;
    if (card) {
-      card_arrow = card.querySelector('.card-form__icon-expand');
-      card_body = card.querySelector('.card-form__body');
+      card_arrow = card.querySelector('.card-icon');
+      card_body = card.querySelector('.card-body');
 
       //переворачиваем стрелку
       card_arrow.classList.toggle('arrow-down');
@@ -69,13 +69,22 @@ function expandCard (card) {
 // Принимает параметры-------------------------------
 // inner_element       Element : элемент, по которому получаем родительский блок анкеты
 // value               string : значение высоты
-function changeParentCardMaxHeight (inner_element, value) {
-   let card_body = inner_element.closest('.card-form__body');
+function changeParentCardMaxHeight (inner_element, value = null) {
+   let card_body = inner_element.closest('.card-body');
 
-   if (value) {
-      card_body.style.maxHeight = value;
-   } else {
+   if (!value) {
       card_body.style.maxHeight = card_body.scrollHeight + 'px';
+   } else {
+      card_body.style.maxHeight = value;
+   }
+}
+
+function resizeCard (inner_element) {
+   let card_body = inner_element.closest('.card-body');
+
+   if (card_body.style.maxHeight) {
+      // Раскрываем блок
+      changeParentCardMaxHeight(card_body);
    }
 }
 

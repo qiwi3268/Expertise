@@ -275,7 +275,7 @@ class FileUploader {
          let file_item = GeFile.createElement(file, files_body, actions);
 
          this.putFile(file_item, files_body);
-         changeParentCardMaxHeight(this.parent_field);
+         resizeCard(this.parent_field);
 
       }
 

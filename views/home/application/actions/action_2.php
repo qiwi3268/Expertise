@@ -32,13 +32,15 @@
                     <div class="assignment__expert-list"
                          data-drag_container
                          data-drag_multiple="true"
-                         data-transform_callback="expert">
+                         data-transform_callback="expert"
+                    >
                         <?php foreach ($variablesTV->getValue('experts') as $index => $expert): ?>
                             <div class="assignment__expert"
                                  data-drag_element
                                  data-id="<?= $expert['id'] ?>"
                                  data-drag_callback="expert"
-                                 style="order: <?= -$index ?>"><?= $expert['fio'] ?></div>
+                                 style="order: <?= -$index ?>"
+                            ><?= $expert['fio'] ?></div>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -50,7 +52,8 @@
                                  data-drag_element
                                  data-id="<?= $expert['id'] ?>"
                                  data-drag_callback="expert"
-                                 style="order: <?= $index ?>"><?= $expert['fio'] ?></div>
+                                 style="order: <?= $index ?>"
+                            ><?= $expert['fio'] ?></div>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -61,7 +64,11 @@
                 <div class="assignment__header">Разделы ПД</div>
                 <div class="assignment__body-sections">
                     <?php foreach ($variablesTV->getValue('documentation_files_in_structure') as $section): ?>
-                        <div class="assignment__section section" data-drop_area data-id="<?= $section['id'] ?>">
+                        <div class="assignment__section section"
+                             data-drop_area
+                             data-id="<?= $section['id'] ?>"
+                             data-result_callback="experts_json"
+                        >
                             <span class="section__title"><?= $section['name'] ?></span>
                             <div class="section__body">
                                 <div class="section__experts">
@@ -71,7 +78,7 @@
                                          data-drop_multiple="false"
                                          data-drag_container
                                          data-drag_multiple="false"
-                                         data-result_callback="experts_json"></div>
+                                    ></div>
                                 </div>
                                 <div class="section__uploaded-files">
                                     <div class="section__expand-button">
@@ -96,7 +103,6 @@
                                         <?php endforeach; ?>
                                     </div>
                                 </div>
-                                <input class="section__result" data-drop_result type="hidden">
                             </div>
                         </div>
                     <?php endforeach; ?>

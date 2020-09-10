@@ -52,7 +52,7 @@ class MultipleBlock {
 
       this.addEventListeners(new_block);
 
-      changeParentCardMaxHeight(main_block);
+      resizeCard(main_block);
 
       return new_block;
    }

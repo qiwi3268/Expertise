@@ -53,18 +53,18 @@
 
 
     <div class="application-form__cards">
-        <div class="application-form__card card-form" data-type="purpose">
-            <div class="card-form__header">
+        <div class="application-form__card card-form card" data-type="purpose">
+            <div class="card-form__header card-expand">
                 <?php if ($variablesTV->getValue('block1_completed')): ?>
                     <i class="card-form__icon-state fas fa-check-circle valid"></i>
                 <?php else: ?>
                     <i class="card-form__icon-state fas fa-exclamation-circle"></i>
                 <?php endif; ?>
                 <span class="card-form__title">СВЕДЕНИЯ О ЦЕЛИ ОБРАЩЕНИЯ</span>
-                <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
+                <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
             </div>
 
-            <div class="card-form__body body-card expanded">
+            <div class="card-form__body body-card card-body expanded">
 
                 <!--Цель обращения-->
                 <div class="body-card__row">
@@ -116,17 +116,17 @@
             </div>
         </div>
 
-        <div class="application-form__card card-form" data-type="object">
-            <div class="card-form__header">
+        <div class="application-form__card card-form card" data-type="object">
+            <div class="card-form__header card-expand">
                 <?php if ($variablesTV->getValue('block2_completed')): ?>
                     <i class="card-form__icon-state fas fa-check-circle valid"></i>
                 <?php else: ?>
                     <i class="card-form__icon-state fas fa-exclamation-circle"></i>
                 <?php endif; ?>
                 <span class="card-form__title">СВЕДЕНИЯ ОБ ОБЪЕКТЕ</span>
-                <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
+                <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
             </div>
-            <div class="card-form__body body-card expanded">
+            <div class="card-form__body body-card card-body expanded">
 
                 <!--Наименование объекта-->
                 <div class="body-card__row">
@@ -340,17 +340,17 @@
         </div>
 
             <!-- todo data-type-->
-        <div class="application-form__card card-form" data-type="ещвщ">
-            <div class="card-form__header">
+        <div class="application-form__card card-form card" data-type="ещвщ">
+            <div class="card-form__header card-expand">
                 <?php if ($variablesTV->getValue('block77_completed')): ?>
                     <i class="card-form__icon-state fas fa-check-circle valid"></i>
                 <?php else: ?>
                     <i class="card-form__icon-state fas fa-exclamation-circle"></i>
                 <?php endif; ?>
                 <span class="card-form__title">ДОКУМЕНТАЦИЯ</span>
-                <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
+                <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
             </div>
-            <div class="card-form__body body-card expanded">
+            <div class="card-form__body body-card card-body expanded">
                 <?php if (!$variablesTV->getExistenceFlag('type_of_object')): ?>
                     <div class="body-card__message">
                         <i class="body-card__message-icon fas fa-exclamation"></i>

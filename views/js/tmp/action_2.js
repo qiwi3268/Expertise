@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
       form_data.append('path_name', action_path);
       form_data.append('id_document', id_document);
 
+
+      getAssignedExpertsJSON();
+
       console.log(new Map(form_data));
 
       XHR(
@@ -36,4 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+function getAssignedExpertsJSON () {
+   console.log('qwe');
+   DropArea.drop_areas.forEach(area => {
+      console.log(area.getResult());
 
+   })
+}

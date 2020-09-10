@@ -38,7 +38,7 @@ function validateModal (modal) {
       if (!modal.result_input.value) {
          field_value.classList.add('invalid');
          error.classList.add('active');
-         changeParentCardMaxHeight(parent_field);
+         resizeCard(parent_field);
       } else {
          field_value.classList.remove('invalid');
          error.classList.remove('active');
@@ -116,7 +116,7 @@ function validateInput (input, regex, message) {
          error_element.innerHTML = 'Поле обязательно для заполнения';
       }
 
-      changeParentCardMaxHeight(parent_field);
+      resizeCard(parent_field);
    } else {
       input.classList.remove('invalid');
       error_element.classList.remove('active');

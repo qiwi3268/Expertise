@@ -23,7 +23,8 @@ class DropArea {
 
    drag_container;
 
-   result_input;
+   result_callback;
+   elements;
 
    constructor (drop_area) {
       this.area = drop_area;
@@ -35,8 +36,7 @@ class DropArea {
          this.drag_container = new DragContainer(this.container);
       }
 
-      this.result_input = this.container.querySelector('[data-drop_result]');
-      console.log(this.result_input);
+      this.elements = [];
 
       this.area.dataset.id = DropArea.areas_counter.toString();
       DropArea.drop_areas.set(DropArea.areas_counter++, this);
@@ -53,6 +53,8 @@ class DropArea {
             this.container.appendChild(element);
          }
 
+         this.elements.push(element);
+
       }
 
    }
@@ -65,6 +67,12 @@ class DropArea {
    static getDropArea (area) {
       let id = parseInt(area.dataset.id);
       return this.drop_areas.has(id) ? this.drop_areas.get(id) : new DropArea(area);
+   }
+
+   getResult () {
+      this.result_callback = this.area.dataset.result_callback;
+      let get_result = getResultCallback(this);
+      return get_result(this);
    }
 
 }
@@ -110,48 +118,59 @@ class DragElement {
          document.onmousemove = null;
          document.body.style.userSelect = null;
 
-         this.avatar.hidden = true;
-
-         let drop_area = this.findDropArea(event);
-         if (drop_area) {
+         if (this.avatar) {
 
 
-            if (this.drag_container.container === drop_area.container) {
-
-               this.remove();
-
-            } else {
+            this.avatar.hidden = true;
 
 
-               this.transformed_elem = this.drag_container.transform_callback(this.ancestor);
+            let drop_area = this.findDropArea(event);
+            if (drop_area) {
 
-               if (!drop_area.contains(this.transformed_elem) || drop_area.multiple) {
 
-                  drop_area.addElement(this.transformed_elem);
+               if (this.drag_container.container === drop_area.container) {
 
-                  this.remove_button = this.transformed_elem.querySelector('[data-drop_remove]');
-                  if (this.remove_button) {
-
-                     this.remove_button.addEventListener('click', () => {
-
-                        this.transformed_elem.remove();
-                        this.remove();
-
-                     });
-
-                  }
+                  this.remove();
 
                } else {
-                  this.remove();
+
+
+                  this.transformed_elem = this.drag_container.transform_callback(this.ancestor);
+
+                  if (!drop_area.contains(this.transformed_elem) || drop_area.multiple) {
+
+                     drop_area.addElement(this.transformed_elem);
+
+                     this.remove_button = this.transformed_elem.querySelector('[data-drop_remove]');
+                     if (this.remove_button) {
+
+                        this.remove_button.addEventListener('click', () => {
+
+                           this.transformed_elem.remove();
+                           this.remove();
+
+                        });
+                     }
+
+
+
+                  } else {
+                     this.remove();
+                  }
+
                }
 
+            } else {
+               this.remove();
             }
 
-         } else {
-            this.remove();
+
+
+            this.avatar.remove();
          }
 
-         this.avatar.remove();
+
+
          document.onmouseup = null;
       };
 
@@ -321,20 +340,27 @@ function defaultAvatar (element) {
    return avatar;
 }
 
-function getResultCallback (drop_container) {
+function getResultCallback (drop_area) {
    let callback;
 
-   switch (drop_container.dataset.result_callback) {
+   switch (drop_area.result_callback) {
       case 'experts_json':
-         callback = putExpertToJSON;
+         callback = getAssignedSectionsJSON;
          break;
       default:
-
+         
    }
 
    return callback;
 }
 
-function putExpertToJSON (drop_container) {
+function getAssignedSectionsJSON (drop_area) {
+   let section = { };
+   section.id = drop_area.area.dataset.id;
+   section.experts = drop_area.elements.map(expert => expert.dataset.id);
+   return section;
+}
+
+function defaultResult () {
 
 }

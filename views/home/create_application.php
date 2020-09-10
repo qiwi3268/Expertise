@@ -56,12 +56,12 @@
         <input data-form="application" type="hidden" name="id_application" value="<?= $variablesTV->getValue('id_application') ?>">
 
         <div class="application-form__block block" data-dependency_scope>
-            <div class="application-form__card card-form" data-type="purpose">
-                <div class="card-form__header">
+            <div class="application-form__card card-form card" data-type="purpose">
+                <div class="card-form__header card-expand">
                     <span class="card-form__title">СВЕДЕНИЯ О ЦЕЛИ ОБРАЩЕНИЯ</span>
-                    <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
+                    <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
-                <div class="card-form__body body-card">
+                <div class="card-form__body body-card card-body">
                     <!--Цель обращения-->
                     <div class="body-card__row field" data-name="expertise_purpose" data-required="true">
                         <span class="body-card__title field-title">Цель обращения</span>
@@ -118,14 +118,14 @@
                 </div>
             </div>
 
-            <div class="application-form__card card-form" data-type="object">
-                <div class="card-form__header">
+            <div class="application-form__card card-form card" data-type="object">
+                <div class="card-form__header card-expand">
                 <span class="card-form__title">
                     СВЕДЕНИЯ ОБ ОБЪЕКТЕ
                 </span>
-                    <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
+                    <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
-                <div class="card-form__body body-card">
+                <div class="card-form__body body-card card-body">
                     <!--Наименование объекта-->
                     <div class="body-card__row field" data-name="object_name" data-required="true" data-pattern="text">
                         <span class="body-card__title">Наименование объекта</span>
@@ -541,12 +541,12 @@
                 </div>
             </div>
 
-            <div class="application-form__card card-form" data-type="finance_sources">
-                <div class="card-form__header">
+            <div class="application-form__card card-form card" data-type="finance_sources">
+                <div class="card-form__header card-expand">
                     <span class="card-form__title">СВЕДЕНИЯ ОБ ИСТОЧНИКАХ ФИНАНСИРОВАНИЯ</span>
-                    <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
+                    <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
-                <div class="card-form__body body-card">
+                <div class="card-form__body body-card card-body">
 
                     <!--Источники финансирования-->
                     <div class="body-card__block multiple-block block" data-type="multiple" data-name="finance_sources">
@@ -876,12 +876,12 @@
         </div>
         </div>
 
-        <div class="application-form__card card-form" data-type="documentation">
-            <div class="card-form__header">
+        <div class="application-form__card card-form card" data-type="documentation">
+            <div class="card-form__header card-expand">
                 <span class="card-form__title">ДОКУМЕНТАЦИЯ</span>
-                <i class="card-form__icon-expand fas fa-chevron-down arrow-down"></i>
+                <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
             </div>
-            <div class="card-form__body body-card">
+            <div class="card-form__body body-card card-body">
                 <div class="body-card__block block" data-name="empty_documentation" data-active="true">
                     <div class="body-card__message">
                         <i class="body-card__message-icon fas fa-exclamation"></i>

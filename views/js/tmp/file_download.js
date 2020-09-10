@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
          let file_item = createFileElement(file, files_body);
 
          await putFile(file, file_item);
-         changeParentCardMaxHeight(parent_field);
+         resizeCard(parent_field);
 
       }
 

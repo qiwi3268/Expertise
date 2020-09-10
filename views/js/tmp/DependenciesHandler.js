@@ -50,7 +50,7 @@ class DependenciesHandler {
          this.handleRequireDependencies(require_dependencies);
       }
 
-      changeParentCardMaxHeight(this.result_input);
+      resizeCard(this.result_input);
    }
 
    static handleBlockDependencies (dependencies) {
@@ -81,12 +81,12 @@ class DependenciesHandler {
 
                   let new_block = this.multiple_block.createBlock(this.blocks_container, name);
                   new_block.dataset.active = is_active;
-                  changeParentCardMaxHeight(new_block);
+                  resizeCard(new_block);
 
                } else {
                   dependent_blocks.forEach(block => {
                      block.dataset.active = is_active;
-                     changeParentCardMaxHeight(block);
+                     resizeCard(block);
                   });
                }
 
@@ -95,7 +95,7 @@ class DependenciesHandler {
                let dependent_blocks = document.querySelectorAll(`.block[data-name="${name}"]`);
                dependent_blocks.forEach(block => {
                   block.dataset.active = is_active;
-                  changeParentCardMaxHeight(block);
+                  resizeCard(block);
                });
 
             }
@@ -240,7 +240,7 @@ class DependenciesHandler {
          }
       }
    }
-
+/*
    clearBlock (block) {
       let dependent_fields = block.querySelectorAll('.field');
       dependent_fields.forEach(field => {
@@ -250,7 +250,7 @@ class DependenciesHandler {
 
       let parent_card_body = block.closest('.card-form__body');
       if (parent_card_body.style.maxHeight) {
-         changeParentCardMaxHeight(block);
+         resizeCard(block);
       }
-   }
+   }*/
 }

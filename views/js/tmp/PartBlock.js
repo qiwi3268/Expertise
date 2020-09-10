@@ -66,14 +66,14 @@ class PartBlock {
          this.actions.dataset.active = 'true';
          this.body.dataset.active = 'true';
          this.short_block.dataset.active = 'false';
-         changeParentCardMaxHeight(this.parent.element);
+         resizeCard(this.parent.element);
       });
 
       let part_info = this.short_block.querySelector('.part-info');
       let part_title = this.element.querySelector(`[data-part_title='${this.data.type}']`);
       part_info.innerHTML = part_title.innerHTML;
 
-      changeParentCardMaxHeight(this.parent.element);
+      resizeCard(this.parent.element);
    }
 
    handleCancelButton () {
