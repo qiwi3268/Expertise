@@ -3,309 +3,66 @@
 
 namespace core\Classes;
 
-use core\Classes\Exceptions\Route as SelfEx;
-use core\Classes\Session;
-use Lib\Actions\Locator as ActionLocator;
-use Tables\Exceptions\Exception;
-use ReflectionClass;
+use core\Classes\Exceptions\XMLHandler as RouteHandlerEx;
+use core\Classes\XMLHandler as RouteHandler;
+use SimpleXMLElement;
+
 
 final class Route
 {
-    //todo delete
-    private RouteCallback $routeCallback;
 
-    private const INSTANCE_CALLBACK = 'instance_callback';
-    private const STATIC_CALLBACK = 'static_callback';
-    private array $callbacks = [];
+    private RouteHandler $routeHandler;
+    private SimpleXMLElement $page;
 
-    // Полный запрос с первым '/' и get-параметрами
-    private string $URI;
-    // Запрос в формате без первого '/' и get-параметров
-    private string $URN;
-    // Директория, в которой должны находится файлы роута
-    private string $dir;
-
-    // Роут текущего запроса
-    private array $route;
-    private bool $routeExist = false;
+    private bool $routeExist;
 
 
+    // Принимает параметры-----------------------------------
+    // requestURI string : URI входящего на сервер запроса
+    //
     public function __construct(string $requestURI)
     {
-        $this->URI = $requestURI;
+        // Полный запрос с первым '/' и get-параметрами
+        define('URI', $requestURI);
+        // Запрос в формате без первого '/' и get-параметров
+        define('URN', mb_substr(parse_url($requestURI, PHP_URL_PATH), 1));
 
-        $this->URN = mb_substr(parse_url($requestURI, PHP_URL_PATH), 1);
+        $this->routeHandler = new RouteHandler();
 
-        $this->dir = mb_substr($this->URN, 0, mb_strripos($this->URN, '/'));
+        try {
 
-        // Массив всех роутов
-        $allRoutes = require_once(ROOT . '/core/routes.php');
-
-        if (isset($allRoutes[$this->URN])) {
-
-            $this->route = $allRoutes[$this->URN];
+            $this->page = $this->routeHandler->getPage(URN);
             $this->routeExist = true;
-        }
+        } catch (RouteHandlerEx $e) {
 
-        $this->routeCallback = new RouteCallback($this);
+            $e_message = $e->getMessage();
+            $e_code = $e->getCode();
+
+            // Не найдено узлов по XML-пути
+            if ($e_code == 3) {
+                $this->routeExist = false;
+            } else {
+                throw new RouteHandlerEx($e_message, $e_code);
+            }
+        }
     }
 
 
-    // Метод для проверки существования запрашиваемого роута
-    // Возвращает параметры-----------------------------------
-    // true  - роут существует
-    // false - роут не существует
-    //
-    public function checkRoute(): bool
+    public function isRouteExist(): bool
     {
         return $this->routeExist;
     }
 
-    public function getURI(): string
-    {
-        return $this->URI;
-    }
 
-    public function getURN(): string
+    public function validatePageStructure(): self
     {
-        return $this->URN;
+        $this->routeHandler->validatePageStructure($this->page);
+        return $this;
     }
 
 
-    // Метод для проверки роута на корректность
-    // + ни в одном из элементов не должно быть символа пробела
-    //
-    // + redirect - строка
-    //
-    // + access - массив - внутри только строки
-    //
-    // + все остальные routeUnit - массивы
-    //
-    // + если routeUnit содержит ABS, то все unit должны начинаться со '/' и
-    //	 иметь одно из допустимых расширений файла
-    //
-    // + если массив индексный (общего доступа) - внутри только строки
-    //
-    // + если массив НЕ индексный (ограниченного доступа) - внутри только массивы,
-    //	 в которых только строки
-    //
-    //todo проверку на абсолютную директорию (новый функционал)
-    public function checkRouteCorrect()
+    public function handleValidatedPageValues(): void
     {
-        $route = $this->route;
-
-
-
-
-        //todo
-        unset($route['redirect']);
-        unset($route['access']);
-        unset($route['check_action']);
-
-
-        // Проверка всего остального
-        foreach ($route as $routeUnit => $unitList) {
-
-            if (containsAll($routeUnit, ' ')) {
-                throw new SelfEx("routeUnit '{$routeUnit}' содержит пробелы");
-            }
-            if (!is_array($unitList)) {
-                throw new SelfEx("routeUnit '{$routeUnit}' должен быть ключом массива");
-            }
-
-            //tudu тут проеряем корректность, существование классов/методов, записываем в свойство класса.
-            //дергаем их при вызове метода
-            if (containsAny($routeUnit, 'instance_callback', 'static_callback')) {
-                continue;
-            }
-
-
-            foreach ($unitList as $contentFunction => $unit) {
-
-                // Юнит с общим доступом
-                if (is_numeric($contentFunction)) {
-
-                    if (!is_string($unit) || containsAll($unit, ' ')) {
-                        throw new SelfEx("unit в '{$routeUnit}' не является строкой или содержит пробелы");
-                    }
-                // Юнит с ограниченным доступом
-                } else {
-
-                    if (containsAll($contentFunction, ' ')) {
-                        throw new SelfEx("contentFunction '{$contentFunction}' в '{$routeUnit}' содержит пробелы");
-                    }
-                    if (!is_array($unit)) {
-                        throw new SelfEx("contentFunction '{$contentFunction}' в '{$routeUnit}' должен быть ключом массива");
-                    }
-
-                    foreach ($unit as $accessUnitKey => $accessUnit) {
-
-                        if (!is_numeric($accessUnitKey)) {
-                            throw new SelfEx("accessUnit '{$accessUnit}' в '{$routeUnit}' должен быть элементом индексного массива");
-                        }
-                        if (!is_string($accessUnit) || containsAll($accessUnit, ' ')) {
-                            throw new SelfEx("В contentFunction '{$contentFunction}' в '{$routeUnit}' один из accessUnit не является строкой или содержит пробелы");
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public function executeUserCallbacks(): void
-    {
-        $callbacks = [];
-
-        foreach ($this->route as $routeUnit => $unitList) {
-
-            if (containsAll($routeUnit, 'user_callback')) {
-
-                foreach ($unitList as $callback) {
-
-                    if (!method_exists($this->routeCallback, $callback)) {
-
-                        throw new SelfEx("Отсуствует метод core\Classes\RouteCallback::{$callback}");
-                    }
-                    $callbacks[] = $callback;
-                }
-                unset($this->route[$routeUnit]);
-            }
-        }
-
-        foreach ($callbacks as $method) {
-            $this->routeCallback->$method();
-        }
-    }
-
-    public function executeCallbacks(): void
-    {
-        $callbacks = [];
-
-        foreach ($this->route as $routeUnit => $unitList) {
-
-            if (containsAny($routeUnit, 'instance_callback', 'static_callback')) {
-
-                foreach ($unitList as ['class' => $class, 'method' => $method]) {
-
-                    if (!class_exists($class)) {
-                        throw new SelfEx("Запрашиваемый класс: '{$class}' в callback'е типа: '{$routeUnit}' не существует");
-                    }
-
-                    if (!method_exists($class, $method)) {
-                        throw new SelfEx("Запрашиваемый метод: '{$class}::{$method}' в callback'е типа: '{$routeUnit}' не существует");
-                    }
-
-                    $type = containsAll($routeUnit, 'instance_callback') ? self::INSTANCE_CALLBACK : self::STATIC_CALLBACK;
-                    $this->callbacks[] = [
-                        'type'   => $type,
-                        'class'  => $class,
-                        'method' => $method
-                    ];
-                }
-                unset($this->route[$routeUnit]);
-            }
-        }
-
-        foreach ($this->callbacks as ['type' => $type, 'class' => $class, 'method' => $method]) {
-
-            if ($type == self::INSTANCE_CALLBACK) {
-
-                $reflectionClass = new ReflectionClass($class);
-                $instance = $reflectionClass->newInstanceArgs();
-                call_user_func_array([$instance, $method], []);
-            } else {
-
-                call_user_func_array([$class, $method], []);
-            }
-        }
-    }
-
-
-
-
-
-    // Метод для получения подключаемых к странице файлов
-    // Возвращает параметры-----------------------------------
-    // array : подключаемые файлы
-    //
-    public function getRequiredFiles(): array
-    {
-        $route = $this->route;
-
-        // Удаление из роута redirect и access, т.к. работа с ними
-        // должна быть уже произведена
-        unset($route['redirect'], $route['access'], $route['check_action']);
-
-        // Удаление пустых routeUnit
-        $route = array_filter($route, fn($value) => !empty($value));
-
-        // 1 - составление роута под пользователя согласно доступа к контенту
-        $routeForUser = [];
-        $tmpUnitList = [];
-        foreach ($route as $routeUnit => $unitList) {
-
-            foreach ($unitList as $contentFunction => $unit) {
-
-                // Юнит с общим доступом
-                if (is_numeric($contentFunction)) {
-                    $tmpUnitList[] = $unit;
-                    continue;
-                }
-
-                // Юнит с ограниченным доступом
-                // ..проверка наличия метода в классе проверки доступа к контенту Иначе exception
-                // Вызов метода
-                // Если True, то $tmpUnitList[] = ...
-            }
-
-            if (!empty($tmpUnitList)) {
-                $routeForUser[$routeUnit] = $tmpUnitList;
-                unset($tmpUnitList);
-            }
-        }
-
-        // 2 - сбор подключаемых файлов из роута пользователя
-        $requiredFiles = [];
-
-        foreach ($routeForUser as $routeUnit => $unitList) {
-
-            // Выбор типа функции рассчета пути в зависимости от routeUnit
-            if ($routeUnit[0] == '/') {                         // Абсолютная директория
-
-                $tmpStrPos = mb_strpos($routeUnit, '%');
-
-                if ($tmpStrPos != false) {
-                    $routeUnit = mb_substr($routeUnit, 0, $tmpStrPos);
-                }
-
-                $calcFilePath = function (array $property): string {
-                    return ROOT . "{$property[1]}{$property[0]}.php";
-                };
-
-            } elseif (mb_strpos($routeUnit, 'ROOT') !== false) {
-
-                $calcFilePath = function (array $property): string {
-                    $fileFolder = str_replace('ROOT', '', $property[1]);
-                    return ROOT . "/{$fileFolder}/{$property[0]}.php";
-                };
-            } else {
-
-                $calcFilePath = function (array $property): string {
-                    $separator = empty($this->dir) ? '' : '/';
-                    return ROOT . "/{$property[1]}{$separator}{$this->dir}/{$property[0]}.php";
-                };
-            }
-
-            // Сбор подключаемых файлов
-            foreach ($unitList as $unit) {
-
-                $requiredFiles[] = [
-                    'type' => $routeUnit,
-                    'path' => $calcFilePath([$unit, $routeUnit])
-                ];
-            }
-        }
-
-        return $requiredFiles;
+        $this->routeHandler->handleValidatedPageValues($this->page);
     }
 }

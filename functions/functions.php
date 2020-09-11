@@ -1,6 +1,30 @@
 <?php
 
 
+// Предназначен для включения пользовательской автозагрузки
+//
+function enableAutoloadRegister() {
+
+    spl_autoload_register(function (string $className) {
+
+        $path = null;
+
+        if (containsAll($className, '\\')) {
+
+            $namespacePath = str_replace('\\', '/', $className);
+
+            $pattern = "/\A(.+)\/(.+\z)/";
+
+            list(1 => $tmp_path, 2 => $tmp_name) = getHandlePregMatch($pattern, $namespacePath, false);
+
+            $path = ROOT . "/{$tmp_path}/{$tmp_name}.php";
+        }
+
+        if (!is_null($path) && file_exists($path)) require_once $path;
+    });
+}
+
+
 // Предназначен для проверки наличия требуемых параметров в POST запросе
 // Принимает параметры-----------------------------------
 // params string: перечисление необходимых параметров

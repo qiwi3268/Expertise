@@ -94,7 +94,7 @@ switch (URN) {
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css'),
             ...CreateSource('css', TMP_CSS, 'files.css', 'sign.css', 'action_2.css'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
-            ...CreateSource('js', TMP_JS, 'main.js', 'API.js', 'ErrorModal.js', 'GeFile.js', 'SignView.js', 'Drag&Drop.js', 'section.js', 'action_2.js')
+            ...CreateSource('js', TMP_JS, 'main.js', 'API.js', 'ErrorModal.js', 'GeFile.js', 'SignView.js', "Drag&Drop.js")
         ];
         break;
 }

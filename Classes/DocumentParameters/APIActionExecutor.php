@@ -7,7 +7,7 @@ use Classes\Exceptions\DocumentParameters as SelfEx;
 
 // Предназначен для объявления констант открытого документа из API выполнений действий
 //
-class ActionExecutor extends DocumentParameters
+class APIActionExecutor extends DocumentParameters
 {
 
     // Предназначен для объявления констант открытого документа

@@ -13,10 +13,10 @@ use Tables\Actions\application as ApplicationActions;
 use core\Classes\XMLHandler;
 
 $handler = new XMLHandler();
-$handler->validatePagesStructure();
 
 $page = $handler->getPage('home/application/create22');
 
+$handler->validatePagesStructure();
 $handler->handleValidatedPageValues($page);
 
 

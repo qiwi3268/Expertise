@@ -1,20 +1,202 @@
-<routes lala="12">
+<routes>
     <pages>
 
-        <page urn="home/application/create1">
+        <page urn="">
             <files>
-                <dir path="/home/application/controllers/" ext=".php">
+                <dir path="/controllers/" ext=".php">
                     <file name="header" />
+                    <file name="entry" />
                 </dir>
-                <dir path="/home/application/controllers/" ext=".html">
+                <dir path="/views/" ext=".php">
                     <file name="header" />
-                </dir>
-                <dir path="/home/application/views/" ext=".php">
-                    <file name="header" />
-                    <file name="header1" />
-                    <file name="header2" />
+                    <file name="entry" />
                 </dir>
             </files>
+        </page>
+
+        <page urn="API_login">
+            <files>
+                <dir path="/API/" ext=".php">
+                    <file name="login" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="home/file_unloader">
+            <files>
+                <dir path="/controllers/home/" ext=".php">
+                    <file name="file_unloader" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="home/API_file_uploader">
+            <files>
+                <dir path="/API/home/" ext=".php">
+                    <file name="file_uploader" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="home/API_file_checker">
+            <files>
+                <dir path="/API/home/" ext=".php">
+                    <file name="file_checker" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="home/API_file_needs_setter">
+            <files>
+                <dir path="/API/home/" ext=".php">
+                    <file name="file_needs_setter" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="home/API_get_file_hash">
+            <files>
+                <dir path="/API/home/" ext=".php">
+                    <file name="get_file_hash" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="home/API_external_signature_verifier">
+            <files>
+                <dir path="/API/home/" ext=".php">
+                    <file name="external_signature_verifier" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="home/API_internal_signature_verifier">
+            <files>
+                <dir path="/API/home/" ext=".php">
+                    <file name="internal_signature_verifier" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="home/API_navigation_cookie">
+            <files>
+                <dir path="/API/home/" ext=".php">
+                    <file name="navigation_cookie" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="home/API_action_executor">
+            <files>
+                <dir path="/API/home/" ext=".php">
+                    <file name="action_executor" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="home/application/API_save_form">
+            <files>
+                <dir path="/API/home/application/" ext=".php">
+                    <file name="save_form" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="home/application/create">
+            <files>
+                <dir path="/controllers/" ext=".php">
+                    <file name="header" />
+                </dir>
+                <dir path="/views/" ext=".php">
+                    <file name="header" />
+                </dir>
+                <dir path="/controllers/home/application/" ext=".php">
+                    <file name="create_application" />
+                    <file name="display_dependencies_application_form" />
+                </dir>
+                <dir path="/controllers/home/" ext=".php">
+                    <file name="main_header" />
+                </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="create_application_dependencies" />
+                    <file name="main_header" />
+                    <file name="create_application" />
+                </dir>
+                <dir path="/views/home/modals/" ext=".php">
+                    <file name="calendar" />
+                    <file name="file_upload" />
+                    <file name="create_sign" />
+                    <file name="error" />
+                </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="main_footer" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="home/application/view">
+            <files>
+                <dir path="/controllers/" ext=".php">
+                    <file name="header" />
+                </dir>
+                <dir path="/controllers/home/" ext=".php">
+                    <file name="main_header" />
+                </dir>
+                <dir path="/controllers/home/application/" ext=".php">
+                    <file name="action_sidebar" />
+                    <file name="view_application" />
+                    <file name="validation_block_application_form" />
+                </dir>
+                <dir path="/views/" ext=".php">
+                    <file name="header" />
+                </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="main_header" />
+                </dir>
+                <dir path="/views/home/application/" ext=".php">
+                    <file name="hierarchy_sidebar" />
+                    <file name="view_application" />
+                    <file name="action_sidebar" />
+                </dir>
+                <dir path="/views/home/modals/" ext=".php">
+                    <file name="view_sign" />
+                    <file name="error" />
+                </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="main_footer" />
+                </dir>
+            </files>
+        </page>
+
+        <!-- На странице используется динамическое подключение файлов -->
+        <!-- см. /controllers/home/navigation.php -->
+        <page urn="home/navigation">
+            <files>
+                <dir path="/controllers/" ext=".php">
+                    <file name="header" />
+                </dir>
+                <dir path="/views/" ext=".php">
+                    <file name="header" />
+                </dir>
+                <dir path="/controllers/home/" ext=".php">
+                    <file name="main_header" />
+                </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="main_header" />
+                </dir>
+                <dir path="/controllers/home/" ext=".php">
+                    <file name="navigation" />
+                </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="main_footer" />
+                </dir>
+                <dir path="/views/home/modals/" ext=".php">
+                    <file name="static_error" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="home/application/actions/action_2">
             <callbacks>
                 <namespace name="\Classes\DocumentParameters">
                     <class name="ActionPage" type="instance">
@@ -23,58 +205,34 @@
                 </namespace>
             </callbacks>
             <files>
-                <dir path="/home/application/controllers/" ext=".php">
-                    <file name="header444" />
+                <dir path="/controllers/" ext=".php">
+                    <file name="header" />
                 </dir>
-            </files>
-            <files>
-                <dir path="/home/application/controllers/" ext=".php">
-                    <file name="header444" />
+                <dir path="/views/" ext=".php">
+                    <file name="header" />
                 </dir>
-                <dir path="/home/application/controllers/" ext=".php">
-                    <file name="header445">
-
-                    </file>
+                <dir path="/controllers/home/" ext=".php">
+                    <file name="main_header" />
+                </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="main_header" />
+                </dir>
+                <dir path="/controllers/home/application/actions/" ext=".php">
+                    <file name="action_2" />
+                </dir>
+                <dir path="/views/home/application/actions/" ext=".php">
+                    <file name="action_2" />
+                </dir>
+                <dir path="/views/home/modals/" ext=".php">
+                    <file name="view_sign" />
+                    <file name="error" />
+                </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="main_footer" />
                 </dir>
             </files>
         </page>
 
-        <page urn="home/application/create22">
-            <files>
-                <dir path="/home/application/controllers/" ext=".php">
-                    <file name="header" />
-                </dir>
-                <dir path="/home/application/controllers/" ext=".html">
-                    <file name="header" />
-                </dir>
-                <dir path="/home/application/views/" ext=".php">
-                    <file name="header" />
-                    <file name="header1" />
-                    <file name="header2" />
-                </dir>
-            </files>
-
-
-            <callbacks>
-                <namespace name="\Classes\DocumentParameters">
-                    <class name="ActionPage" type="instance">
-                        <method name="defineDocumentParameters"/>
-                    </class>
-                </namespace>
-            </callbacks>
-
-
-        </page>
-
     </pages>
-
-    <pages hey="12">
-    </pages>
-    <pages>
-    </pages>
-
-    <lala>
-
-    </lala>
 </routes>
 

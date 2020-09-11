@@ -10,34 +10,34 @@ $administrationMessage = '<h4>Пожалуйста, обратитесь в ад
 $URIMessage = "Ваш запрос: {$_SERVER['REQUEST_URI']}</br>";
 
 
-if(!checkParamsGET('fs_name', 'file_name')){
+if (!checkParamsGET('fs_name', 'file_name')) {
 
     $message = '<h1>ОШИБКА. Нет обязательных параметров GET запроса</h1><br/>';
     $message .= $URIMessage;
     $message .= '<h3>Результаты проверок параметров на существование:</h3><br/>';
 
-    
+
     $isset = isset($_GET['fs_name']);
     $isset_string = $isset ? 'true' : '<strong>false</strong>';
     $message .= "Существование fs_name = {$isset_string}<br/>";
-    if($isset) $message .= "Значение fs_name = {$_GET['fs_name']}<br/>";
+    if ($isset) $message .= "Значение fs_name = {$_GET['fs_name']}<br/>";
     $message .= '<hr/>';
 
     $isset = isset($_GET['file_name']);
     $isset_string = $isset ? 'true' : '<strong>false</strong>';
     $message .= "Существование file_name = {$isset_string}<br/>";
-    if($isset) $message .= "Значение file_name = {$_GET['file_name']}<br/>";
+    if ($isset) $message .= "Значение file_name = {$_GET['file_name']}<br/>";
     $message .= '<hr/>';
 
     $message .= $administrationMessage;
     exit($message);
 }
 
-/** @var string $G_fs_name        */
-/** @var string $G_file_name      */
+/** @var string $G_fs_name */
+/** @var string $G_file_name */
 extract(clearHtmlArr($_GET), EXTR_PREFIX_ALL, 'G');
 
-if(!file_exists($G_fs_name) || empty($G_file_name)){
+if (!file_exists($G_fs_name) || empty($G_file_name)) {
 
     $message = '<h1>ОШИБКА. Файл не существует или передано пустое имя для выгрузки</h1><br/>';
     $message .= $URIMessage;
