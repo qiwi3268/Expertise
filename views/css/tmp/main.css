@@ -54,6 +54,12 @@ button {
    /*height: 100%;*/
    min-height: 100%;
    margin: 0 auto;
+
+   /*todo брать везде*/
+   font-family: 'Roboto Condensed', sans-serif;
+   color: #343a40;
+
+
 }
 
 [data-active='false'] {
