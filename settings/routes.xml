@@ -54,6 +54,7 @@
             </files>
         </page>
 
+
         <page urn="home/API_get_file_hash">
             <files>
                 <dir path="/API/home/" ext=".php">
@@ -135,6 +136,13 @@
         </page>
 
         <page urn="home/application/view">
+            <callbacks>
+                <namespace name="\Classes\DocumentParameters">
+                    <class name="ExpertiseCard" type="instance">
+                        <method name="defineDocumentParameters" />
+                    </class>
+                </namespace>
+            </callbacks>
             <files>
                 <dir path="/controllers/" ext=".php">
                     <file name="header" />
@@ -231,6 +239,17 @@
                     <file name="main_footer" />
                 </dir>
             </files>
+        </page>
+
+
+        <page urn="home/test">
+            <callbacks>
+                <namespace name="\Classes\DocumentParameters">
+                    <class name="ActionPage" type="instance">
+                        <method name="defineDocumentParameters"/>
+                    </class>
+                </namespace>
+            </callbacks>
         </page>
 
     </pages>
