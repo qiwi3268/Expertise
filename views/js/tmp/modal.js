@@ -165,7 +165,7 @@ class Modal {
 
       this.parent_row = this.select.closest('.field');
 
-      this.name = this.parent_row.dataset.field_name;
+      this.name = this.parent_row.dataset.name;
       this.element = this.parent_row.querySelector('.modal');
       this.content = this.element.querySelector('.modal__items');
       this.result_input = this.parent_row.querySelector('.field-result');
@@ -319,7 +319,7 @@ class Modal {
    clearModal (modal) {
       modal.content.innerHTML = '';
       modal.result_input.value = '';
-      modal.select.classList.remove('filled', 'invalid');
+      modal.select.classList.remove('filled');
 
       // Убираем сообщение с ошибкой
       let error = modal.parent_row.querySelector('.field-error');

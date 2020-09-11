@@ -26,12 +26,6 @@ class XMLValidator
     //
     public function validateAttributes(SimpleXMLElement $node, string $debugName, array $requiredAttributes, array $optionalAttributes = []): void
     {
-        //todo важное уточнить когда возвращается null
-        if (is_null($node->attributes())) {
-            var_dump('attributes return null');
-        }
-
-
         // Получение массива аттрибутов узла из XML-объекта
         $arr_attributes = (array)$node->attributes() ?? [];
         $attributes = isset($arr_attributes['@attributes']) ? array_keys($arr_attributes['@attributes']) : [];

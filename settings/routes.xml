@@ -88,6 +88,13 @@
         </page>
 
         <page urn="home/API_action_executor">
+            <callbacks>
+                <namespace name="\Classes\RouteCallbacks\DocumentParameters">
+                    <class name="APIActionExecutor" type="instance">
+                        <method name="defineDocumentParameters"/>
+                    </class>
+                </namespace>
+            </callbacks>
             <files>
                 <dir path="/API/home/" ext=".php">
                     <file name="action_executor" />
@@ -137,7 +144,7 @@
 
         <page urn="home/application/view">
             <callbacks>
-                <namespace name="\Classes\DocumentParameters">
+                <namespace name="\Classes\RouteCallbacks\DocumentParameters">
                     <class name="ExpertiseCard" type="instance">
                         <method name="defineDocumentParameters" />
                     </class>
@@ -206,9 +213,16 @@
 
         <page urn="home/application/actions/action_2">
             <callbacks>
-                <namespace name="\Classes\DocumentParameters">
+                <namespace name="\Classes\RouteCallbacks\DocumentParameters">
                     <class name="ActionPage" type="instance">
                         <method name="defineDocumentParameters"/>
+                    </class>
+                </namespace>
+                <namespace name="\Classes\RouteCallbacks">
+                    <class name="ActionChecker" type="instance">
+                        <method name="construct"/>
+                        <method name="checkAccess"/>
+                        <method name="checkIssetExecutionCallback"/>
                     </class>
                 </namespace>
             </callbacks>
@@ -250,8 +264,39 @@
                     </class>
                 </namespace>
             </callbacks>
+            <callback_template id="3" />
         </page>
-
     </pages>
+
+    <callback_templates>
+
+        <template id="1">
+            <callbacks>
+                <namespace name="\Classes\DocumentParameters">
+                    <class name="APIActionExecutor" type="instance">
+                        <method name="defineDocumentParameters"/>
+                    </class>
+                </namespace>
+            </callbacks>
+        </template>
+
+        <template id="3">
+            <callbacks>
+                <namespace name="\Classes\RouteCallbacks\DocumentParameters">
+                    <class name="ActionPage" type="instance">
+                        <method name="defineDocumentParameters"/>
+                    </class>
+                </namespace>
+                <namespace name="\Classes\RouteCallbacks">
+                    <class name="ActionChecker" type="instance">
+                        <method name="construct"/>
+                        <method name="checkAccess"/>
+                        <method name="checkIssetExecutionCallback"/>
+                    </class>
+                </namespace>
+            </callbacks>
+        </template>
+
+    </callback_templates>
 </routes>
 

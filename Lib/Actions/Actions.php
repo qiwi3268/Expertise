@@ -8,23 +8,8 @@ use Lib\Exceptions\Actions as SelfEx;
 abstract class Actions
 {
 
-    private int $documentId;
-
-    // Выбрасывает исключения--------------------------------
-    // Lib\Exceptions\Actions :
-    // code:
-    //  5 - отсутствует обязательный параметер GET / POST запроса: 'id_document'
-    //
     public function __construct()
     {
-        if (checkParamsGET('id_document')) {
-            $this->documentId = clearHtmlArr($_GET)['id_document'];
-        } elseif (checkParamsPOST('id_document')) {
-            $this->documentId = clearHtmlArr($_POST)['id_document'];
-        } else {
-            throw new SelfEx("Отсутствует обязательный параметер GET / POST запроса: 'id_document'", 5);
-        }
-
     }
 
 

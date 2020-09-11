@@ -28,9 +28,7 @@ unset($expert);
 $variablesTV->setValue('experts', $activeExperts);
 
 
-$applicationId = $_GET['id_document'];
-
-switch (application::getFlatAssocById($applicationId)['id_type_of_object']) {
+switch (application::getFlatAssocById(CURRENT_DOCUMENT_ID)['id_type_of_object']) {
     case 1: // Производственные/непроизводственные
         $mapping_level_1 = 2;
         $mapping_level_2 = 1;
@@ -50,7 +48,7 @@ $requiredMappings = new RequiredMappingsSetter();
 
 $requiredMappings->setMappingLevel2($mapping_level_1, $mapping_level_2);
 
-$filesInitializer = new FilesInitializer($requiredMappings, $applicationId);
+$filesInitializer = new FilesInitializer($requiredMappings, CURRENT_DOCUMENT_ID);
 
 $needsFiles = $filesInitializer->getNeedsFilesWithSigns()[$mapping_level_1][$mapping_level_2];
 

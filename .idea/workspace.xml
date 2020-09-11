@@ -6,6 +6,8 @@
       <change beforePath="$PROJECT_DIR$/views/css/tmp/action_2.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_2.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/actions/action_2.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/Drag&amp;Drop.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/Drag&amp;Drop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/action_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/action_2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/modal.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,13 +103,6 @@
       <workItem from="1599582890447" duration="117000" />
       <workItem from="1599583021238" duration="1603000" />
       <workItem from="1599708732884" duration="21428000" />
-    </task>
-    <task id="LOCAL-00047" summary="21.08.2020_4">
-      <created>1597999396502</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1597999396502</updated>
     </task>
     <task id="LOCAL-00048" summary="21.08.2020_5">
       <created>1598009436828</created>
@@ -445,7 +440,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599805945237</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="11.09.2020_3">
+      <created>1599814330592</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1599814330592</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -462,7 +464,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="31.08.2020_1" />
     <MESSAGE value="01.09.2020" />
     <MESSAGE value="01.09.2020_1" />
     <MESSAGE value="01.09.2020_2" />
@@ -487,7 +488,8 @@
     <MESSAGE value="11.09.2020" />
     <MESSAGE value="11.09.2020_1" />
     <MESSAGE value="11.09.2020_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="11.09.2020_2" />
+    <MESSAGE value="11.09.2020_3" />
+    <option name="LAST_COMMIT_MESSAGE" value="11.09.2020_3" />
   </component>
   <component name="WindowStateProjectService">
     <state x="872" y="358" key="#Deployment" timestamp="1599583061353">
@@ -506,10 +508,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1599805943124">
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1599827361150">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1599805943124" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1599827361150" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598788293599" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog" timestamp="1598853557262">
@@ -537,20 +539,20 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.2560.1400@0.0.2560.1400" timestamp="1597580480401" />
-    <state x="823" y="455" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599805935132">
+    <state x="823" y="455" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599814691806">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="823" y="455" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1599805935132" />
+    <state x="823" y="455" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1599814691806" />
     <state x="1097" y="613" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598767446265" />
     <state x="302" y="56" width="614" height="1035" key="dock-window-1" timestamp="1598502743003">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="302" y="56" width="614" height="1035" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1598502743003" />
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597499951448" />
-    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1599805730142">
+    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1599822811801">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599805730142" />
+    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599822811801" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599760233256" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
     <state x="1150" y="591" key="publish.login" timestamp="1599582915682">
