@@ -428,7 +428,7 @@ class SignHandler extends SignView{
          if (GeCades.getSelectedCertificateFromGlobalMap()) {
             this.createSign();
          } else {
-            alert('Выберите сертификат');
+            ErrorModal.open('Ошибка при подписании файла', 'Не выбран сертификат');
          }
 
       });
@@ -468,7 +468,7 @@ class SignHandler extends SignView{
 
          })
          .catch(exc => {
-            console.error('Произошла ошибка при создании открепленной подписи:\n' + exc);
+            ErrorModal.open('Ошибка при создании открепленной подписи', exc);
          });
 
    }

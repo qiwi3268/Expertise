@@ -26,8 +26,14 @@ class API {
                      reject('Отсутствуют загруженные файлы');
                      break;
 
+                  case 11:
+                     // todo получить из сообщения
+                     reject('Слишком длинное название файла');
+                     break;
+
                   default:
-                     reject(`Ошибка при загрузке файла на сервер:\n${response.error_message || response}`);
+                     console.log(response);
+                     reject(`Ошибка при загрузке файла на сервер:\n${response.error_message || response.message.message}`);
 
                }
 
@@ -82,7 +88,7 @@ class API {
                      break;
 
                   default:
-                     reject(`Ошибка при проверке файла:\n${response.error_message || response}`);
+                     reject(`Ошибка при проверке файла:\n${response.error_message || response.message}`);
 
                }
 
@@ -141,7 +147,7 @@ class API {
                      break;
 
                   default:
-                     reject(`Ошибка при проверке открепленной подписи:\n${response.error_message || response}`);
+                     reject(`Ошибка при проверке открепленной подписи:\n${response.error_message || response.message}`);
 
                }
 
@@ -185,7 +191,7 @@ class API {
                      break;
 
                   default:
-                     reject(`Ошибка при получении хэша файла: \n${response.error_message || response}`);
+                     reject(`Ошибка при получении хэша файла: \n${response.error_message || response.message}`);
 
                }
 
@@ -237,7 +243,7 @@ class API {
                      break;
 
                   default:
-                     reject(`Ошибка при проверке встроенной подписи: \n${response.error_message || response}`);
+                     reject(`Ошибка при проверке встроенной подписи: \n${response.error_message || response.message}`);
 
                }
 

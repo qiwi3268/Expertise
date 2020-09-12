@@ -14,7 +14,6 @@
    font-family: 'Bebas Neue', sans-serif;
    font-size: 20px;
    font-weight: 700;
-   color: #343a40;
 }
 
 .header-form__actions {
@@ -40,7 +39,6 @@
    margin: 0px 15px 0px 0px;
    font-family: 'PT Sans Narrow', sans-serif;
    font-size: 18px;
-   color: #343a40;
 }
 
 .header-form__icon {
@@ -111,11 +109,6 @@
    background-color: #fef5da;
 }
 
-.sidebar-form__text {
-   font-family: 'Roboto Condensed', sans-serif;
-   color: #343a40;
-}
-
 .sidebar-form__icon {
    display: none;
    font-size: 22px;
@@ -161,16 +154,10 @@
 
 
 .card-form__title {
-   /*flex-grow: 1;
-   margin: 0px 0px 0px 10px;
-   font-family: 'Roboto Condensed', sans-serif;
-   font-size: 16px;*/
-
    flex-grow: 1;
    display: flex;
    padding: 10px 0px;
    margin: 0px 20px 0px 10px;
-   font-family: 'Roboto Condensed', sans-serif;
    font-size: 16px;
    word-break: break-all;
 }
@@ -181,16 +168,6 @@
 }
 
 /* card-form =================================================================== */
-
-.card-form__body {
-   /**/
-   /*max-height: 0;*/
-   /*overflow: hidden;*/
-   /*transition: .3s;*/
-
-   font-family: 'Roboto Condensed', sans-serif;
-   color: #343a40;
-}
 
 .body-card.fas {
    margin-right: 5px;
@@ -221,7 +198,6 @@
 
 .body-card__title.fas {
    font-size: 12px;
-   color: #343a40;
 }
 
 .body-card__item {
@@ -234,8 +210,7 @@
    align-items: center;
 }
 
-
-
+/*todo вынести*/
 .body-card__select {
    box-sizing: border-box;
    display: flex;
@@ -249,8 +224,6 @@
    cursor: pointer;
    transition: box-shadow .10s;
 }
-
-
 
 .body-card__select.filled {
    color: #343a40;
@@ -313,7 +286,7 @@
 }
 
 .body-card__icon-clear {
-   margin: 0px 0px 0px 2px;
+   margin: 0px 0px 0px 3px;
    padding: 10px;
    border: #ffffff solid 2px;
    border-radius: 4px;
@@ -336,8 +309,6 @@
    display: flex;
    align-items: center;
    padding: 15px 10px;
-   font-family: 'Roboto Condensed', sans-serif;
-
 }
 
 .body-card__message-icon {
@@ -347,19 +318,15 @@
 }
 
 .body-card__message-text {
-   color: #343a40;
    cursor: default;
 }
 
 /* card-form =================================================================== */
-
-/* tmp ========================================================================= */
+/* save-modal =================================================================== */
 
 .save-modal {
    padding: 10px;
-   font-family: 'Roboto Condensed', sans-serif;
    font-size: 18px;
-   color: #343a40;
 }
 
 .save-modal__info {
@@ -389,114 +356,16 @@
    margin: 0px 10px 0px 0px;
 }
 
+/* save-modal =================================================================== */
 
-
-
-
-
-
-.multiple-block__text {
-   /*margin: 0px 10px 0px 0px;*/
-
-}
-
-.multiple-block__icon {
-   font-size: 18px;
-}
-
-.multiple-block__actions {
-   display: flex;
-   justify-content: center;
-
-}
-
-.multiple-block__add,
-.multiple-block__button {
-   max-width: 300px;
-   margin: 10px;
-   justify-content: space-between;
-
-   box-sizing: border-box;
-   display: flex;
-   align-items: center;
-   flex-grow: 1;
-   padding: 10px;
-   border: 1px solid #cccccc;
-   border-radius: 4px;
-   font-size: 14px;
-   color: #6e6e6e;
-   cursor: pointer;
-   transition: box-shadow .10s;
-}
-
-.multiple-block__add:hover,
-.multiple-block__button:hover {
-   box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
-   border-color: #80bdff;
-}
-
-.multiple-block__short {
-   margin: 10px;
-   display: flex;
-   align-items: center;
-}
-
-
-.multiple-block__info {
-
-   box-sizing: border-box;
-   display: flex;
-   align-items: center;
-   /*flex-grow: 1;*/
-   padding: 10px;
-   border: 1px solid #cccccc;
-   border-radius: 4px;
-   font-size: 14px;
-   color: #6e6e6e;
-   cursor: pointer;
-   transition: box-shadow .10s;
-
-}
-
-.multiple-block__info:hover {
-   box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
-   border-color: #80bdff;
-}
-
-.multiple-block__delete {
-   margin: 0px 0px 0px 2px;
-   padding: 10px;
-   border: #ffffff solid 2px;
-   border-radius: 4px;
-   color: #6e6e6e;
-   cursor: pointer;
-   transition: 0.15s;
-}
-
-
-.multiple-block__delete:hover {
-   border-color: #ffb0b0;
-   background-color: #ffb0b0;
-   color: #a93d3d;
-}
-
-.body-card__block[data-name='part']:not(:last-child) {
-   border-bottom: 1px solid #cccccc;
-}
-
+/* tmp ========================================================================= */
 
 [data-active='false'] {
    display: none;
 }
 
 
-/**/
-
 /* tmp ========================================================================= */
-
-/*.body-card__files.files {*/
-/*   border-radius: 0px 0px 4px 4px;*/
-/*}*/
 
 .files {
    display: none;

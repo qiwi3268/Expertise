@@ -9,9 +9,6 @@ let overlay;
 document.addEventListener('DOMContentLoaded', () => {
    modals = new Map();
 
-   // Поля для заполнения
-   // let modal_selects = document.querySelectorAll('.modal-select');
-
    // Фон модального окна
    overlay = document.querySelector('.modal-overlay');
 
@@ -21,20 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
    initializeModalSelects(document);
 
-   /*   modal_selects.forEach(select => {
-         select.addEventListener('click', () => {
-            modal = getModalBySelect(select);
-
-            if (!modal.is_empty) {
-               modal.show();
-            } else {
-               createAlert(modal.alert_message);
-               modal.alert_message = '';
-            }
-            disableScroll();
-
-         });
-      });*/
 });
 
 function initializeModalSelects (block) {
@@ -110,7 +93,6 @@ function createAlert (message) {
    modal.classList.add('active');
    overlay.classList.add('active');
 
-   //TODO создавать сразу
    createModalCloseButton(modal);
 }
 
@@ -291,7 +273,6 @@ class Modal {
                this.clearRelatedModals();
                this.close();
 
-
             });
          });
       });
@@ -320,10 +301,6 @@ class Modal {
       modal.content.innerHTML = '';
       modal.result_input.value = '';
       modal.select.classList.remove('filled');
-
-      // Убираем сообщение с ошибкой
-      let error = modal.parent_row.querySelector('.field-error');
-      error.classList.remove('active');
 
       let select_value = modal.select.querySelector('.field-value');
       select_value.innerHTML = 'Выберите значение';

@@ -192,7 +192,7 @@ class FileUploader {
    handleSubmitButton () {
       let submit_button = this.modal.querySelector('.file-modal__submit');
       submit_button.addEventListener('click', () => {
-         if (!this.is_uploading) {
+         if (!this.is_uploading && this.file_input.files.length > 0) {
             this.sendFiles();
          }
       });
@@ -214,10 +214,6 @@ class FileUploader {
       )
          .then(uploaded_files => {
 
-            /*if (this.result_input) {
-               this.result_input.value = '1';
-            }*/
-
             return this.putFilesToRow(uploaded_files);
 
          })
@@ -232,10 +228,7 @@ class FileUploader {
             this.is_uploading = false;
 
             this.closeModal();
-            ErrorModal.open('Ошибка при загрузке файлов на сервер', exc);
-
-            // console.error('Ошибка при загрузке файлов на сервер:\n' + exc);
-
+            ErrorModal.open('Ошибка при загрузке файлов', exc);
          });
 
    }
