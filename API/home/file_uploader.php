@@ -58,7 +58,8 @@ if (!checkParamsPOST('id_application', 'mapping_level_1', 'mapping_level_2')) {
 
 function exit_missingParamsPOST()
 {
-    exit(json_encode(['result' => 1,
+    exit(json_encode([
+        'result'        => 1,
         'error_message' => 'Нет обязательных параметров POST запроса'
     ]));
 }

@@ -11,8 +11,6 @@ use Lib\Exceptions\Traits\MainTrait;
 // code:
 // Classes\DocumentParameters\ActionPage:
 //    1  - id открытого документа не существует в GET параметрах
-// Classes\DocumentParameters\APIActionExecutor:
-//    1  - id открытого документа и/или path_name не существует в POST параметрах
 // Classes\DocumentParameters\ExpertiseCard:
 //    1  - id открытого документа не существует в GET параметрах
 //Classes\DocumentParameters\DocumentParameters

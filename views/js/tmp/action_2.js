@@ -37,12 +37,27 @@ document.addEventListener('DOMContentLoaded', () => {
          });
    });
 
+   let add_section_btn = document.querySelector('.assignment__add');
+   let additional_sections = document.querySelector('.assignment__additional');
+
+   add_section_btn.addEventListener('click', () => {
+
+      if (additional_sections.dataset.active !== 'true') {
+         additional_sections.dataset.active = 'true';
+         let header = additional_sections.querySelector('.assignment__header');
+         header.appendChild(add_section_btn);
+      }
+
+   });
+
 });
 
+function createSection () {
+
+}
+
 function getAssignedExpertsJSON () {
-   console.log('qwe');
    DropArea.drop_areas.forEach(area => {
       console.log(area.getResult());
-
    })
 }

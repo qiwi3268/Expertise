@@ -7,6 +7,7 @@ use Lib\Exceptions\PrimitiveValidator as SelfEx;
 use Classes\Exceptions\PregMatch as PregMatchEx;
 use ReflectionMethod;
 use ReflectionFunction;
+use jsonException;
 use BadMethodCallException;
 use BadFunctionCallException;
 
@@ -35,7 +36,7 @@ class PrimitiveValidator
         try {
 
             $array = json_decode($json, false, 2, JSON_THROW_ON_ERROR);
-        } catch (\jsonException $e) {
+        } catch (jsonException $e) {
 
             $msg = "jsonException message: '{$e->getMessage()}', code: '{$e->getCode()}'";
             throw new SelfEx($msg, 1);
@@ -81,7 +82,7 @@ class PrimitiveValidator
         try {
 
             return json_decode($json, true, 512, JSON_THROW_ON_ERROR);
-        } catch (\jsonException $e) {
+        } catch (jsonException $e) {
 
             $msg = "jsonException message: '{$e->getMessage()}', code: '{$e->getCode()}'";
             throw new SelfEx($msg, 1);
@@ -335,6 +336,7 @@ class PrimitiveValidator
         }
     }
 
+
     // Предназначен для пророверки типа возвращаемого значения методом / функцией
     // Принимает параметры-----------------------------------
     // function array : где 0 => имя / экземпляр класса, 1 => название метода
@@ -385,6 +387,14 @@ class PrimitiveValidator
     }
 
 
+    // Предназначен для проверки существования класса
+    // Принимает параметры-----------------------------------
+    // className string : название класса
+    // Выбрасывает исключения--------------------------------
+    // Lib\Exceptions\PrimitiveValidator :
+    // code:
+    // 19 - класс не существует
+    //
     public function validateClassExist(string $className): void
     {
         if (!class_exists($className)) {
@@ -392,10 +402,20 @@ class PrimitiveValidator
         }
     }
 
-    public function validateMethodExist(string $className, string $method): void
+
+    // Предназначен для пророверки существования метода класса
+    // Принимает параметры-----------------------------------
+    // className  string : название класса
+    // methodName string : название метода
+    // Выбрасывает исключения--------------------------------
+    // Lib\Exceptions\PrimitiveValidator :
+    // code:
+    // 20 - метод не существует
+    //
+    public function validateMethodExist(string $className, string $methodName): void
     {
-        if (!method_exists($className, $method)) {
-            throw new SelfEx("Метод: '{$className}::{$method}' не существует", 20);
+        if (!method_exists($className, $methodName)) {
+            throw new SelfEx("Метод: '{$className}::{$methodName}' не существует", 20);
         }
     }
 }

@@ -65,7 +65,7 @@
                     <div class="assignment__title">Разделы ПД</div>
                     <div class="assignment__add">
                         <div class="assignment__add-text">Добавить раздел</div>
-<!--                        <div class="assignment__add-icon"></div>-->
+                        <i class="assignment__add-icon fas fa-plus"></i>
                     </div>
                 </div>
                 <div class="assignment__body-sections">
@@ -115,11 +115,12 @@
                     <?php endforeach; ?>
                 </div>
             </div>
-            <div class="assignment__additional">
-                <div class="assignment__header">Дополнительные разделы</div>
-    
+            <div class="assignment__additional" data-active="false">
+                <div class="assignment__header">
+                    <div class="assignment__title">Дополнительные разделы</div>
+                </div>
+                <div class="assignment__body-sections"></div>
             </div>
-
         </div>
 
 </div>

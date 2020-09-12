@@ -364,7 +364,9 @@ function getResultCallback (drop_area) {
 
 function getAssignedSectionsJSON (drop_area) {
    let section = { };
-   section.id = drop_area.area.dataset.id;
+   if (drop_area.area.hasAttribute('data-id')) {
+      section.id = drop_area.area.dataset.id;
+   }
    section.experts = drop_area.elements.map(expert => expert.dataset.id);
    return section;
 }

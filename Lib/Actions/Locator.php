@@ -4,7 +4,6 @@
 namespace Lib\Actions;
 
 use Lib\Exceptions\Actions as SelfEx;
-use Lib\Singles\Helpers\PageAddress as PageAddressHelper;
 use Classes\Application\Actions\Actions as ApplicationActions;
 
 
@@ -24,7 +23,7 @@ class Locator
     // Выбрасывает исключения--------------------------------
     // Lib\Exceptions\Actions :
     // code:
-    //  1 - ошибка при определении типа документа
+    //  1 - ошибка при распознании типа документа
     //
     private function __construct(string $documentType)
     {
