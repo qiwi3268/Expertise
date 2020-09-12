@@ -142,7 +142,6 @@ class API {
                      break;
 
                   case 6.1:
-                     alert(response.error_message);
                      reject('Загружен файл без открепленной подписи');
                      break;
 

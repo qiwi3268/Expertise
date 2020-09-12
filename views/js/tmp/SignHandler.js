@@ -9,6 +9,7 @@ class SignHandler extends SignView{
    overlay;
 
    is_plugin_initialized = false;
+   is_signing = false;
 
    // Блок с информацией о версии плагина
    plugin_info;
@@ -253,7 +254,11 @@ class SignHandler extends SignView{
    handleUploadSignButton () {
       this.upload_sign_btn = document.getElementById('sign_upload');
       this.upload_sign_btn.addEventListener('click', () => {
-         this.external_sign_input.click();
+
+         if (!this.is_signing) {
+            this.external_sign_input.click();
+         }
+
       });
 
       this.external_sign_input = document.getElementById('external_sign');
@@ -261,6 +266,7 @@ class SignHandler extends SignView{
 
          if (this.external_sign_input.files.length > 0) {
             let sign_files = Array.from(this.external_sign_input.files);
+            this.is_signing = true;
             this.sendSigns(sign_files);
          }
 
@@ -318,9 +324,11 @@ class SignHandler extends SignView{
             this.upload_sign_btn.dataset.active = 'false';
             this.delete_sign_btn.dataset.active = 'true';
 
+            this.is_signing = false;
          })
          .catch(exc => {
-            console.error('Ошибка при загрузке файла открепленной подписи:\n' + exc);
+            this.is_signing = false;
+            ErrorModal.open('Ошибка при загрузке файла открепленной подписи', exc);
          });
 
 
@@ -425,12 +433,15 @@ class SignHandler extends SignView{
    handleSignButton () {
       this.sign_btn = document.getElementById('signature_button');
       this.sign_btn.addEventListener('click', () => {
-         if (GeCades.getSelectedCertificateFromGlobalMap()) {
-            this.createSign();
-         } else {
-            ErrorModal.open('Ошибка при подписании файла', 'Не выбран сертификат');
-         }
+         if (!this.is_signing) {
 
+            if (GeCades.getSelectedCertificateFromGlobalMap()) {
+               this.createSign();
+            } else {
+               ErrorModal.open('Ошибка при подписании файла', 'Не выбран сертификат');
+            }
+
+         }
       });
 
    }
@@ -439,6 +450,8 @@ class SignHandler extends SignView{
       let selected_algorithm;
       let file_name;
       let fs_name_data;
+
+      this.is_signing = true;
 
       API.checkFile(this.id_file, this.mapping_level_1, this.mapping_level_2)
          .then(file_check_response => {
@@ -468,6 +481,7 @@ class SignHandler extends SignView{
 
          })
          .catch(exc => {
+            this.is_signing = false;
             ErrorModal.open('Ошибка при создании открепленной подписи', exc);
          });
 
