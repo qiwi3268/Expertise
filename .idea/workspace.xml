@@ -109,14 +109,7 @@
       <workItem from="1599582890447" duration="117000" />
       <workItem from="1599583021238" duration="1603000" />
       <workItem from="1599708732884" duration="21428000" />
-      <workItem from="1599974572726" duration="9244000" />
-    </task>
-    <task id="LOCAL-00053" summary="26.08.2020">
-      <created>1598421692742</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1598421692742</updated>
+      <workItem from="1599974572726" duration="14363000" />
     </task>
     <task id="LOCAL-00054" summary="26.08.2020_1">
       <created>1598424897826</created>
@@ -454,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599986913230</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="13.09.2020_3">
+      <created>1599991718571</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1599991718571</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -471,7 +471,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="07.09.2020" />
     <MESSAGE value="07.09.2020_1" />
     <MESSAGE value="07.09.2020_2" />
     <MESSAGE value="06.09.2020_3" />
@@ -496,7 +495,8 @@
     <MESSAGE value="13.09.2020" />
     <MESSAGE value="13.09.2020_1" />
     <MESSAGE value="13.09.2020_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="13.09.2020_2" />
+    <MESSAGE value="13.09.2020_3" />
+    <option name="LAST_COMMIT_MESSAGE" value="13.09.2020_3" />
   </component>
   <component name="WindowStateProjectService">
     <state x="872" y="358" key="#Deployment" timestamp="1599583061353">
@@ -515,11 +515,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1599986912779">
+    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1599991718208">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1599805943124" />
-    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599986912779" />
+    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599991718208" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog" timestamp="1598853557262">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -556,22 +556,22 @@
     </state>
     <state x="302" y="56" width="614" height="1035" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1598502743003" />
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597499951448" />
-    <state x="987" y="433" width="585" height="624" key="find.popup" timestamp="1599991534252">
+    <state x="987" y="433" width="585" height="624" key="find.popup" timestamp="1599996090077">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599805730142" />
-    <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599991534252" />
+    <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599996090077" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
     <state x="1150" y="591" key="publish.login" timestamp="1599582915682">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1150" y="591" key="publish.login/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599582915682" />
     <state x="1150" y="591" key="publish.login/0.0.2560.1400@0.0.2560.1400" timestamp="1597575229830" />
-    <state x="702" y="245" key="run.anything.popup" timestamp="1598439449074">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="936" y="330" key="run.anything.popup" timestamp="1599992851704">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="702" y="245" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598439449074" />
-    <state x="936" y="330" key="run.anything.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596602547364" />
+    <state x="936" y="330" key="run.anything.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1599992851704" />
     <state x="707" y="234" width="672" height="160" key="search.everywhere.popup" timestamp="1599639641576">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
