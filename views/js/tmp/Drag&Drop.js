@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
    });
 
 
-
 });
 
 
@@ -213,13 +212,9 @@ class DragElement {
 class DragContainer {
 
    container;
-
    multiple;
-
    transform_callback;
-
    elements;
-
 
    constructor (drag_container) {
 
@@ -254,7 +249,6 @@ class DragContainer {
 
 
 }
-
 
 function clearDefaultDropEvents () {
    let events = ['dragenter', 'dragover', 'dragleave', 'drop'];
@@ -337,7 +331,7 @@ function sectionExpert (expert) {
    let expert_avatar = document.createElement('DIV');
    expert_avatar.dataset.id = expert.dataset.id;
    expert_avatar.innerHTML = expert.querySelector('.section__name').innerHTML;
-   expert_avatar.classList.add('avatar__expert');
+   expert_avatar.classList.add('avatar');
    return expert_avatar;
 }
 
@@ -356,7 +350,6 @@ function getResultCallback (drop_area) {
          callback = getAssignedSectionsJSON;
          break;
       default:
-         
    }
 
    return callback;
