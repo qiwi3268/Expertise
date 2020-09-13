@@ -312,6 +312,7 @@ class Modal {
 
       let select_value = modal.select.querySelector('.field-value');
       select_value.innerHTML = 'Выберите значение';
+      modal.select.removeAttribute('data-id_modal');
       modals.delete(modal.id);
    }
 
@@ -322,15 +323,17 @@ class Modal {
    getDependentModals () {
       let dependent_modals = [];
       let scope = this.element.closest('[data-dependency_scope]') || document;
-      let dependent_inputs = scope.querySelectorAll(`[data-when_change='${this.name}']`);
-      let dependent_modal;
+      let dependent_inputs = document.querySelectorAll(`[data-when_change='${this.name}']`);
 
       dependent_inputs.forEach(input => {
-         dependent_modal = modals.get(input.dataset.target_change);
+         let dependent_field = scope.querySelector(`.field[data-name='${input.dataset.target_change}']`);
+         let modal_select = dependent_field.querySelector('[data-id_modal]');
 
-         if (dependent_modal) {
+         if (modal_select) {
+            let dependent_modal = modals.get(parseInt(modal_select.dataset.id_modal));
             dependent_modals.push(dependent_modal);
          }
+
       });
 
       return dependent_modals;

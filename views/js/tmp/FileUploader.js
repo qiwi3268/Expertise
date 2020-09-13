@@ -297,7 +297,6 @@ class FileUploader {
          })
          .catch(exc => {
             console.error('Ошибка при проверке подписи файла:\n' + exc);
-            // FileNeeds.putFileToDelete(id_file, this.mapping_1, this.mapping_2, file_item);
             let ge_file = new GeFile(file_item, files_body);
             ge_file.removeElement();
          });

@@ -18,11 +18,13 @@ switch (URN) {
 
     case '':
         $pageName = 'АИС';
-        $sourcesFiles = [...GetFontAwesome4Case(),
+        $sourcesFiles = [...GetFontAwesome5Case(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
-            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css'),
+            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'modal.css'),
+            ...CreateSource('js', TMP_JS, 'ErrorHandler.js', 'BrowserHelper.js'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
-            ...CreateSource('js', ROOT_JS, 'API_login.js')
+            ...CreateSource('js', ROOT_JS, 'API_login.js'),
+
         ];
         break;
 

@@ -11,6 +11,9 @@
                     <file name="header" />
                     <file name="entry" />
                 </dir>
+                <dir path="/views/home/modals/" ext=".php">
+                    <file name="error" />
+                </dir>
             </files>
         </page>
 

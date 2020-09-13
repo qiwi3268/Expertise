@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
       saveApplication();
    });
 
-
    let save_overlay = document.querySelector('.save-overlay');
    save_overlay.addEventListener('click', () => {
       closeSaveModal(save_overlay);
@@ -24,23 +23,32 @@ function closeSaveModal (save_overlay) {
 }
 
 function saveApplication () {
-   let application_form = document.getElementById('application');
-   let request_urn = '/home/application/API_save_form';
-
    FileNeeds.putFilesToFileNeeds();
 
-   saveMultipleBlocks();
+   let form_data = getSaveApplicationFormData();
 
+   console.log(new Map(form_data));
 
-   XHR('post', request_urn, new FormData(application_form), null, 'json', null, null)
+   XHR(
+      'post',
+      '/home/application/API_save_form',
+      form_data,
+      null,
+      'json',
+      null,
+      null
+   )
       .then(response => {
 
          switch (response.result) {
             case 8:
                if (FileNeeds.hasFiles()) {
-                  updateFileNeeds();
+                  API.updateFileNeeds();
                }
                showSaveModal();
+               break;
+            case 1:
+               ErrorModal.open('Ошибка при сохранении заявления', 'Нет обязательных параметров POST запроса');
                break;
             default:
                console.log(response);
@@ -48,9 +56,7 @@ function saveApplication () {
 
       })
       .catch(error => {
-         alert(error.result);
-         alert(error.message);
-         console.error('XHR error: ', error);
+         ErrorModal.open('Ошибка при сохранении заявления', error.message);
       });
 }
 
@@ -63,19 +69,25 @@ function saveMultipleBlocks () {
       if (multiple_block.is_changed) {
 
          multiple_block.is_changed = false;
-
          let block_result = block.querySelector(`.field-result[name='${block.dataset.name}']`);
-
          block_result.value = multiple_block.getPartsDataJSON();
+
       }
 
    });
 }
-//
+
 function getSaveApplicationFormData() {
    let form_data = new FormData();
+
+   saveMultipleBlocks();
+
+   let id_application = document.querySelector('[name="id_application"]').value;
+   form_data.append('id_application', id_application);
+
    let fields = document.querySelectorAll('.field-result[data-form="application"]');
    fields.forEach(field => form_data.append(field.name, field.value));
+
    return form_data;
 }
 
@@ -84,40 +96,4 @@ function showSaveModal () {
    let save_overlay = document.querySelector('.save-overlay');
    save_modal.classList.add('active');
    save_overlay.classList.add('active');
-}
-
-//todo вынести
-function updateFileNeeds () {
-   let request_urn = '/home/API_file_needs_setter';
-   let form_data = getFilesNeedsFormData();
-
-   console.log(getIdDocument());
-   console.log(FileNeeds.getFileNeedsJSON());
-
-   XHR('post', request_urn, form_data, null, 'json', null, null)
-      .then(response => {
-
-         switch (response.result) {
-            case 9:
-               console.log(response);
-               FileNeeds.clear();
-               break;
-            default:
-               console.log(response);
-         }
-
-
-      })
-      .catch(error => {
-         alert(error.result);
-         alert(error.message);
-         console.error('XHR error: ', error);
-      });
-}
-
-function getFilesNeedsFormData () {
-   let form_data = new FormData();
-   form_data.append('id_application', getIdDocument());
-   form_data.append('file_needs_json', FileNeeds.getFileNeedsJSON());
-   return form_data;
 }

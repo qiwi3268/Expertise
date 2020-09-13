@@ -53,7 +53,7 @@
         </div>
     </div>
     <form id="application" class="application-form__cards" action="" method="POST">
-        <input data-form="application" type="hidden" name="id_application" value="<?= $variablesTV->getValue('id_application') ?>">
+        <input type="hidden" name="id_application" value="<?= $variablesTV->getValue('id_application') ?>">
 
         <div class="application-form__block block" data-dependency_scope>
             <div class="application-form__card card-form card" data-type="purpose">
@@ -867,7 +867,7 @@
                         </div>
                         <!--//Шаблоны источников финансирования//-->
 
-                        <input class="multiple-block__result field-result" type="hidden" name="finance_sources">
+                        <input data-form="application" class="multiple-block__result field-result" type="hidden" name="finance_sources">
                     </div>
                     <!--//Источники финансирования//-->
                 </div>
