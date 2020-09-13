@@ -17,7 +17,6 @@ class SignView {
       this.validate_info = mQS(this.modal, '.sign-modal__validate', 14);
 
       this.handleOverlay();
-
    }
 
    // Предназначен для обработки нажатия на фон модального окна

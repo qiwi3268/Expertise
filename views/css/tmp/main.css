@@ -40,6 +40,10 @@ button {
    background-color: #ffffff;
 }
 
+a {
+   color: #343a40;
+}
+
 .stop-scrolling {
    height: 100%;
    overflow: hidden;
@@ -56,6 +60,8 @@ button {
    font-family: 'Roboto Condensed', sans-serif;
    color: #343a40;
 }
+
+
 
 [data-active='false'] {
    display: none;

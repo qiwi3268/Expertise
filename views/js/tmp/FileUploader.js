@@ -32,7 +32,6 @@ class FileUploader {
 
    parent_field;
    parent_node;
-   // result_input;
 
    static getInstance () {
 
