@@ -47,19 +47,21 @@ function initializeModalSelects (block) {
 //
 function getModalBySelect (select) {
    let modal;
-   let modal_name;
-   let parent_row = select.closest('.field');
+   // let modal_name;
+   // let parent_row = select.closest('.field');
 
-   modal_name = parent_row.dataset.field_name;
+   // let modal_name = parent_row.dataset.field_name;
+   let id_modal = select.dataset.id_modal;
+   modal = id_modal ? modals.get(parseInt(id_modal)) : new Modal(select);
 
-   //TODO одинаковые модалки в разных блоках
+/*   //TODO одинаковые модалки в разных блоках
    if (modals.has(modal_name)) {
       modal = new Modal(select);
       // modal = modals.get(modal_name);
    } else {
       modal = new Modal(select);
-      modals.set(modal.name, modal);
-   }
+      modals.set(modal.id, modal);
+   }*/
 
    // Если страниц больше 1 отображаем пагинацию
    if (modal.pages.length > 1) {
@@ -113,6 +115,9 @@ function createModalCloseButton (modal) {
 
 //Modal--------------------------------------------------------------------------------------------
 class Modal {
+   static modals_counter = 0;
+   id;
+
    // Родительское поле
    parent_row;
 
@@ -143,7 +148,9 @@ class Modal {
    // Принимает параметры-------------------------------------------
    // select     Element : поле, для которого вызывается модальное окно
    constructor (select) {
+      this.id = Modal.modals_counter++;
       this.select = select;
+      this.select.dataset.id_modal = this.id;
 
       this.parent_row = this.select.closest('.field');
 
@@ -163,6 +170,7 @@ class Modal {
       //добавляем событие для выбора элемента
       this.initItems();
 
+      modals.set(this.id, this);
    }
 
    // Предназначен для инициализации страниц с элементами из справочника модального окна
@@ -304,7 +312,7 @@ class Modal {
 
       let select_value = modal.select.querySelector('.field-value');
       select_value.innerHTML = 'Выберите значение';
-      modals.delete(modal.name);
+      modals.delete(modal.id);
    }
 
    // Предназначен для получения массива зависимых модальных окон
@@ -313,7 +321,8 @@ class Modal {
    //
    getDependentModals () {
       let dependent_modals = [];
-      let dependent_inputs = document.querySelectorAll(`[data-when_change="${this.name}"]`);
+      let scope = this.element.closest('[data-dependency_scope]') || document;
+      let dependent_inputs = scope.querySelectorAll(`[data-when_change='${this.name}']`);
       let dependent_modal;
 
       dependent_inputs.forEach(input => {
