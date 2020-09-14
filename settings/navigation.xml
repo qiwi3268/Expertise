@@ -20,7 +20,7 @@
         <ref label="Ссылочка на документацию" value="/tmp/documentation_structure"/>
     </block>
 
-    <block name="block_3" label="Мои документы2">
+    <block name="block_5" label="Мои документы2">
         <ref label="Ссылочка на документацию" value="/tmp/documentation_structure"/>
         <view name="view_3" label="Мои заявления2" class_name="block_1_type_2" view_name="view_1" show_counter="1" />
         <view name="view_4" label="Мои заявления3" class_name="block_1_type_2" view_name="view_1" show_counter="1" />

@@ -130,7 +130,8 @@ function validateInput (input, regex, message) {
 // card         Element : блок для валидации
 function validateCard (card) {
    let card_name = card.dataset.type;
-   let is_valid = isValidCard(card);
+   // let is_valid = isValidCard(card);
+   let is_valid = !findInvalidField(card);
 
    let sidebar_item = document.querySelector(`.sidebar-form__row[data-card=${card_name}]`);
 
@@ -146,24 +147,82 @@ function validateCard (card) {
 // card         Element : блок для валидации
 // Возвращает параметры------------------------------
 // is_valid     boolean : заполнен ли блок
+/*
 function isValidCard (card) {
+   return !findInvalidField(card);
+
    //TODO проверка файлов
    let required_fields = card.querySelectorAll('.field[data-required="true"]:not([data-mapping_level_1])');
 
    let field_value;
-   let is_valid = true;
+   // let is_valid = true;
 
    // Для всех обязательных полей, проверяем наличие значений
    required_fields.forEach(field => {
-      if (field.dataset.active !== 'false') {
+
+      if (!field.closest('.block[data-active="false"]')) {
          field_value = field.querySelector('.field-result');
 
          if (!field_value.value) {
             is_valid = false;
          }
       }
+
    });
+
+   if (!hasInvalidFields(card)) {
+      is_valid = checkFileBlocks(card);
+   } else {
+      is_valid = false;
+   }
 
    return is_valid;
 }
+*/
 
+function hasInvalidFields (card) {
+   let required_fields = card.querySelectorAll('.field[data-required="true"]:not([data-mapping_level_1])');
+   return required_fields.find(field => {
+
+      if (!field.closest('.block[data-active="false"]')) {
+         let field_value = field.querySelector('.field-result');
+
+         if (!field_value.value) {
+            return true;
+         }
+      }
+
+   });
+}
+
+function findInvalidField (card) {
+   let file_fields = card.querySelector('.field[data-required="true"]');
+   return !file_fields.find(field => {
+
+      if (!field.closest('.block[data-active="false"]')) {
+
+         if (field.hasAttribute('data-mapping_level_1')) {
+
+            let files_body = field.querySelector('.files');
+            if (!files_body.innerHTML) {
+               console.log(field);
+               console.log('invalid files');
+               return true;
+            }
+
+         } else {
+
+            let field_value = field.querySelector('.field-result');
+            if (!field_value.value) {
+
+               console.log(field);
+               console.log('empty field');
+               return true;
+            }
+
+         }
+
+      }
+
+   });
+}

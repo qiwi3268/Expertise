@@ -113,6 +113,30 @@
             </files>
         </page>
 
+        <page urn="home/documentation_structure">
+            <files>
+                <dir path="/controllers/home/" ext=".php">
+                    <file name="documentation_structure" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="files_in_documentation">
+            <files>
+                <dir path="/controllers/" ext=".php">
+                    <file name="files_in_documentation" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="test">
+            <files>
+                <dir path="/controllers/" ext=".php">
+                    <file name="test" />
+                </dir>
+            </files>
+        </page>
+
         <page urn="home/application/create">
             <files>
                 <dir path="/controllers/" ext=".php">
@@ -213,7 +237,7 @@
                 </dir>
             </files>
         </page>
-        
+
 
         <page urn="home/application/actions/action_2">
 
@@ -259,6 +283,7 @@
             </callbacks>
             <callback_template id="3" />
         </page>
+
     </pages>
 
 

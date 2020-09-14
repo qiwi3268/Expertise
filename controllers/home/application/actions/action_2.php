@@ -57,10 +57,29 @@ FileHandler::setFileIconClass($needsFiles);
 FileHandler::setValidateResultJSON($needsFiles);
 FileHandler::setHumanFileSize($needsFiles);
 
+
+
 $nodeStructure = new NodeStructure($className::getAllActive());
 
 $filesInStructure = FilesInitializer::getFilesInDepthStructure($needsFiles, $nodeStructure);
 
-$structureWithFiles = array_filter($filesInStructure, fn($node) => isset($node['files']));
+// Отображаем только те разделы, к которым есть файлы и которые привязаны к 341 приказу
+$ids = [];
 
-VariableTransfer::getInstance()->setValue('documentation_files_in_structure', $structureWithFiles);
+
+foreach ($filesInStructure as $index => $node) {
+
+    if (isset($node['files']) && !is_null($node['id_341_main_block'])) {
+
+        $ids[] = (int)$node['id'];
+    } else {
+
+        unset($filesInStructure[$index]);
+    }
+}
+
+
+var_dump($ids);
+//var_dump($filesInStructure);
+
+VariableTransfer::getInstance()->setValue('documentation_files_in_structure', $filesInStructure);

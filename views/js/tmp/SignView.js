@@ -1,8 +1,26 @@
+/**
+ * Представляет собой модальное окно для просмотра подписей файла
+ * @class
+ * @property {SignView} instance - статический объект модального окна просмотра подписей
+ * @property {Element} modal - элемент модального окна
+ * @property {Element} validate_info - блок с результатами проверки подписей
+ *
+ * @property {Function} handleOverlay {@link handleOverlay}
+ *
+ */
 class SignView {
 
+   static instance;
+   modal;
    validate_info;
+   overlay;
 
-
+   /**
+    * Предназначен для получения объекта модального окна
+    * просмотра подписей файла
+    *
+    * @returns {SignView} объект модального окна просмотра подписей файла
+    */
    static getInstance () {
 
       if (!this.instance) {
@@ -12,6 +30,10 @@ class SignView {
       return this.instance;
    }
 
+
+   /**
+    * Создает объект модального окна просмотра подписей файла
+    */
    constructor () {
       this.modal = mQS(document, '.sign-modal', 12);
       this.validate_info = mQS(this.modal, '.sign-modal__validate', 14);
@@ -19,7 +41,15 @@ class SignView {
       this.handleOverlay();
    }
 
-   // Предназначен для обработки нажатия на фон модального окна
+
+   /**
+    * This method does...Предназначен для обработки нажатия на фон модального окна
+    *
+    * @method
+    * @name handleOverlay
+    * @method
+    * asdasd
+    */
    handleOverlay () {
       this.overlay = mQS(document, '.sign-overlay', 17);
       this.overlay.addEventListener('click', () => this.closeModal());

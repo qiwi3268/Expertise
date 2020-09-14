@@ -21,7 +21,7 @@ class NodeStructure
      *
      * Служебная проверка на то, что у каждого дочернего узла существует родитель
      *
-     * @param array $structure
+     * @param array $structure структура родительских и дочерних узлов
      * @throws SelfEx
      */
     public function __construct(array $structure)
@@ -49,7 +49,7 @@ class NodeStructure
      *
      * У каждого узла будет проставлен уровень его вложенности
      *
-     * @return array массив с массивами формата id, name, depth
+     * @return array массив с массивами формата id, name, is_header, depth
      */
     public function getDepthStructure(): array
     {
@@ -84,9 +84,11 @@ class NodeStructure
             }
 
             $result[] = [
-                'id'    => $node['id'],
-                'name'  => $node['name'],
-                'depth' => $depth
+                'id'                => $node['id'],
+                'id_341_main_block' => $node['id_341_main_block'],
+                'name'              => $node['name'],
+                'is_header'         => (bool)$node['is_header'],
+                'depth'             => $depth
             ];
         }
         return $result;

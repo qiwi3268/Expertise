@@ -328,13 +328,12 @@ function isGeneralPartExpert (expert) {
 }
 
 function toggleGeneralPart (expert) {
-   let is_general = expert.dataset.general === 'true' ? 'false' : 'true';
+   let is_general = (expert.dataset.general !== 'true').toString();
    let current_expert = document.querySelectorAll(`.section__expert[data-id='${expert.dataset.id}']`);
    current_expert.forEach(expert_copy => {
       expert_copy.dataset.general = is_general;
    });
 }
-
 
 function defaultTransform (element) {
    element.style.display = null;

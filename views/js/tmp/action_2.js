@@ -15,7 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       getAssignedExpertsJSON();
 
+      let leading_expert;
+      let general_part_experts;
+
       console.log(new Map(form_data));
+      // console.log(getAssignedExpertsJSON());
 
       XHR(
          'post',
@@ -25,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
          'json'
       )
          .then(response => {
+
 
             // console.log('qwe');
             // console.log(response);

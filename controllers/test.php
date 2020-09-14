@@ -11,14 +11,10 @@ use Tables\Responsible\type_3\application as resp_application_type_3;
 use Tables\applicant_access_group;
 use Tables\Actions\application as ApplicationActions;
 use core\Classes\RoutesXMLHandler;
+use Tables\Structures\documentation_1;
 
-$handler = new RoutesXMLHandler();
-
-$page = $handler->getPage('home/application/create22');
-
-$handler->validatePagesStructure();
-$handler->handleValidatedPageValues($page);
-
+$test = documentation_1::getAllAssocWhereActiveAndId341NN();
+var_dump($test);
 
 
 
