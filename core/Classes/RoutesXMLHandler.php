@@ -4,6 +4,7 @@
 namespace core\Classes;
 
 use core\Classes\Exceptions\RoutesXMLHandler as SelfEx;
+use Lib\Exceptions\XMLValidator as XMLValidatorEx;
 use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
 use Lib\Singles\XMLValidator;
 use Lib\Singles\PrimitiveValidator;
@@ -48,7 +49,7 @@ final class RoutesXMLHandler
      *
      * @param string $urn urn страницы
      * @return SimpleXMLElement найденный узел page
-     * @throws \Lib\Exceptions\XMLValidator
+     * @throws XMLValidatorEx
      */
     public function getPage(string $urn): SimpleXMLElement
     {
@@ -62,7 +63,7 @@ final class RoutesXMLHandler
      *
      * @param string $id id шаблона
      * @return SimpleXMLElement найденный узел template
-     * @throws \Lib\Exceptions\XMLValidator
+     * @throws XMLValidatorEx
      */
     public function getTemplate(string $id): SimpleXMLElement
     {
@@ -75,7 +76,7 @@ final class RoutesXMLHandler
      * Предназначен для валидации структуры узла page, без проверки конкретных значений
      *
      * @param SimpleXMLElement $page узел page
-     * @throws \Lib\Exceptions\XMLValidator
+     * @throws XMLValidatorEx
      */
     public function validatePageStructure(SimpleXMLElement $page): void
     {
@@ -103,7 +104,7 @@ final class RoutesXMLHandler
      * Предназначен для валидации структуры узла files, без проверки конкретных значений
      *
      * @param SimpleXMLElement $files узел files
-     * @throws \Lib\Exceptions\XMLValidator
+     * @throws XMLValidatorEx
      */
     private function validateFilesStructure(SimpleXMLElement $files): void
     {
@@ -128,7 +129,7 @@ final class RoutesXMLHandler
      * Предназначен для валидации структуры узла callbacks, без проверки конкретных значений
      *
      * @param SimpleXMLElement $callbacks узел callbacks
-     * @throws \Lib\Exceptions\XMLValidator
+     * @throws XMLValidatorEx
      */
     private function validateCallbacksStructure(SimpleXMLElement $callbacks): void
     {
@@ -161,7 +162,7 @@ final class RoutesXMLHandler
      * Проверяет в том числе узел template, на который ссылается в аттрибуте id
      *
      * @param SimpleXMLElement $callback_template узел callback_template
-     * @throws \Lib\Exceptions\XMLValidator
+     * @throws XMLValidatorEx
      */
     private function validateCallbackTemplateStructure(SimpleXMLElement $callback_template): void
     {
@@ -189,6 +190,7 @@ final class RoutesXMLHandler
      *
      * @param SimpleXMLElement $page узел page
      * @throws SelfEx
+     * @throws XMLValidatorEx
      */
     public function handleValidatedPageValues(SimpleXMLElement $page): void
     {
@@ -343,6 +345,7 @@ final class RoutesXMLHandler
      * @param SimpleXMLElement $callback_template узел callback_template
      * @param array $XMLHandler_result <i>ссылка</i> на массив результатов
      * @throws SelfEx
+     * @throws XMLValidatorEx
      */
     private function handleCallbackTemplateValue(SimpleXMLElement $callback_template, array &$XMLHandler_result): void
     {

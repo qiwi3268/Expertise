@@ -93,6 +93,7 @@ class Responsible
      * @return array массив формата:<br>
      * 'type'  => тип ответственных<br>
      * 'users' => ?array : null / ассоциативные массивы ответственных пользователей
+     * @throws SelfEx
      */
     public function getCurrentResponsible(): array
     {
@@ -125,12 +126,13 @@ class Responsible
             'users' => $responsible
         ];
     }
-    
+
 
     /**
      * Предназначен для удаления текущих ответственных
      *
      * @param bool $needUpdateResponsibleType нужно ли обновлять тип ответственных в текущем документе на type_1
+     * @throws SelfEx
      */
     public function deleteCurrentResponsible(bool $needUpdateResponsibleType = true): void
     {
@@ -215,6 +217,7 @@ class Responsible
      *
      * @param int $userId id пользователя
      * @return bool <b>true</b> пользователь является ответственным<br><b>false</b> в противном случае
+     * @throws SelfEx
      */
     public function isUserResponsible(int $userId): bool
     {

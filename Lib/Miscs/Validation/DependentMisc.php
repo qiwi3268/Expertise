@@ -42,9 +42,11 @@ class DependentMisc extends Validator
     /**
      * Предназначен для комплексной проверки справочника
      *
+     * <b>*</b> Возвращаемый тип не объявлен, чтобы дочерние классы при желании могли реализовать цепочки вызово
+     *
      * @throws SelfEx
      */
-    public function validate(): void
+    public function validate()
     {
         if ($this->form_value !== '') {
 

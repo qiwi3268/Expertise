@@ -68,6 +68,7 @@ abstract class AccessActions
      *
      * @param string $pageName URN требуемой страницы
      * @return bool <b>true</b> есть доступ к действию<br/><b>false</b> нет доступа к действию
+     *
      * @throws SelfEx
      */
     public function checkAccessFromActionByPageName(string $pageName): bool
@@ -85,6 +86,7 @@ abstract class AccessActions
      * @param string $pageName имя страницы для вывода в сообщение об ошибке
      * @return bool результат callback'а
      * @throws SelfEx
+     * @throws \ReflectionException
      */
     public function getValidatedCallbackResult(?array $action, string $pageName): bool
     {

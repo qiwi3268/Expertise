@@ -160,7 +160,7 @@ class Navigation
         foreach ($XML->block as $block) {
 
             $this->XMLValidator->validateAttributes($block, '<block />', ['name', 'label']);
-            $this->XMLValidator->validateChildren($block, '<block />', ['view', 'ref']);
+            $this->XMLValidator->validateChildren($block, '<block />', [], ['view', 'ref']);
 
             foreach ($block->view as $view) {
 

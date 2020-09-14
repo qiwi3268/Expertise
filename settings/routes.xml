@@ -213,22 +213,12 @@
                 </dir>
             </files>
         </page>
+        
 
         <page urn="home/application/actions/action_2">
-            <callbacks>
-                <namespace name="\Classes\RouteCallbacks\DocumentParameters">
-                    <class name="ActionPage" type="instance">
-                        <method name="defineDocumentParameters"/>
-                    </class>
-                </namespace>
-                <namespace name="\Classes\RouteCallbacks">
-                    <class name="ActionChecker" type="instance">
-                        <method name="construct"/>
-                        <method name="checkAccess"/>
-                        <method name="checkIssetExecutionCallback"/>
-                    </class>
-                </namespace>
-            </callbacks>
+
+            <callback_template id="3" />
+
             <files>
                 <dir path="/controllers/" ext=".php">
                     <file name="header" />
@@ -261,7 +251,7 @@
 
         <page urn="home/test">
             <callbacks>
-                <namespace name="\Classes\DocumentParameters">
+                <namespace name="\Classes\RouteCallbacks\DocumentParameters">
                     <class name="ActionPage" type="instance">
                         <method name="defineDocumentParameters"/>
                     </class>
@@ -271,11 +261,12 @@
         </page>
     </pages>
 
+
     <callback_templates>
 
         <template id="1">
             <callbacks>
-                <namespace name="\Classes\DocumentParameters">
+                <namespace name="\Classes\RouteCallbacks\DocumentParameters">
                     <class name="APIActionExecutor" type="instance">
                         <method name="defineDocumentParameters"/>
                     </class>

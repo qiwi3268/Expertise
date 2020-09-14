@@ -113,7 +113,7 @@ if ($variablesTV->getExistenceFlag('type_of_object')) {
 
 //todo перенести вместе с use в другое место
 
-$responsible = new Responsible($applicationId);
+$responsible = new Responsible($applicationId, CURRENT_DOCUMENT_TYPE);
 $responsible = $responsible->getCurrentResponsible();
 
 

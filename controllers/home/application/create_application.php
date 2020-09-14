@@ -34,7 +34,7 @@ $applicationId = application::createTemporary($userId, $appNumName);
 // Записываем текущего пользователя в группу доступа "Полный доступ" к заявлению
 applicant_access_group::createFullAccess($applicationId, $userId);
 // Устанавливаем ответственную группу доступа "Полный доступ"
-$responsible = new Responsible($applicationId);
+$responsible = new Responsible($applicationId, DOCUMENT_TYPE['application']);
 $responsible->createNewResponsibleType3('full_access');
 
 

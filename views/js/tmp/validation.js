@@ -46,7 +46,7 @@ function validateModal (modal) {
 
       let parent_card = field_value.closest('.card-form');
       if (parent_card) {
-         validateCard(field_value.closest('.card-form'));
+         validateCard(parent_card);
       }
    }
 }
@@ -149,13 +149,14 @@ function validateCard (card) {
 function isValidCard (card) {
    //TODO проверка файлов
    let required_fields = card.querySelectorAll('.field[data-required="true"]:not([data-mapping_level_1])');
+
    let field_value;
    let is_valid = true;
 
    // Для всех обязательных полей, проверяем наличие значений
-   required_fields.forEach(row => {
-      if (row.dataset.active !== 'false') {
-         field_value = row.querySelector('.field-result');
+   required_fields.forEach(field => {
+      if (field.dataset.active !== 'false') {
+         field_value = field.querySelector('.field-result');
 
          if (!field_value.value) {
             is_valid = false;
