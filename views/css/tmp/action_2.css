@@ -84,21 +84,21 @@
 }
 
 .section__experts {
-   min-width: 100px;
+   min-width: 230px;
    border-right: 1px solid #e0e0e0;
-
 }
 
 .section__expert {
    display: flex;
    align-items: center;
    justify-content: space-between;
-   padding: 7px 10px 7px 15px;
+   padding: 7px 10px 7px 5px;
    cursor: pointer;
    transition: background-color 0.15s;
 }
 
 .section__name {
+   flex-grow: 1;
    margin: 0px 8px 0px 0px;
    overflow: hidden;
 }
@@ -174,7 +174,11 @@
 }
 
 .assignment__expert {
-   padding: 10px 15px;
+   /*display: flex;*/
+   /*justify-content: space-between;*/
+   /*align-items: center;*/
+
+   padding: 10px 5px 10px 15px;
    font-size: 16px;
    cursor: pointer;
    transition: background-color 0.15s;
@@ -182,7 +186,38 @@
 
 .assignment__expert:hover {
    background-color: #F6F6F6;
+}
 
+/*.assignment__expert-name {*/
+/*   flex-grow: 1;*/
+/*}*/
+
+.section__leading,
+.section__general {
+   color: #DADADA;
+   padding: 5px;
+   transition: 0.15s;
+   /*font-size: 14px;*/
+}
+
+.section__general {
+   margin: 0px 5px 0px 0px;
+}
+
+.section__leading:hover {
+   color: #E8CC38;
+}
+
+.section__general:hover {
+   color: #5B87BA;
+}
+
+.section__expert[data-leading='true'] > .section__leading {
+   color: #EDD552;
+}
+
+.section__expert[data-general='true'] > .section__general {
+   color: #5B87BA;
 }
 
 .assignment__experts {

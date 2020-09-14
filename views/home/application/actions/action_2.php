@@ -51,8 +51,9 @@
                                  data-drag_element
                                  data-id="<?= $expert['id'] ?>"
                                  data-drag_callback="expert"
-                                 style="order: <?= $index ?>"
-                            ><?= $expert['fio'] ?></div>
+                                 style="order: <?= $index ?>">
+                                <?= $expert['fio'] ?>
+                            </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
