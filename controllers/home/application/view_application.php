@@ -60,6 +60,8 @@ unset($mapping_level_2);
 
 $variablesTV->setValue('form_files', $needsFiles);
 
+var_dump($variablesTV->getValue('form_files')[1][1]);
+
 // Сохранен Вид объекта, показываем документацию
 if ($variablesTV->getExistenceFlag('type_of_object')) {
 
@@ -104,6 +106,8 @@ if ($variablesTV->getExistenceFlag('type_of_object')) {
 
     $filesInStructure = FilesInitializer::getFilesInDepthStructure($needsFiles, $nodeStructure);
 
+    var_dump($filesInStructure);
+
     $variablesTV->setValue('documentation_files_in_structure', $filesInStructure);
 }
 
@@ -111,6 +115,9 @@ if ($variablesTV->getExistenceFlag('type_of_object')) {
 
 $responsible = new Responsible($applicationId);
 $responsible = $responsible->getCurrentResponsible();
+
+
+var_dump($responsible);
 
 
 

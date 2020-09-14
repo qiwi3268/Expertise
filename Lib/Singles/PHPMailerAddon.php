@@ -3,20 +3,29 @@
 
 namespace Lib\Singles;
 
-
+use PHPMailer\PHPMailer\Exception as PHPMailerEx;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+
 
 require ROOT . '/vendor/autoload.php';
 
-// Класс-обертка для работы с PHPMailer
-//
+
+/**
+ * Класс-обертка для работы с PHPMailer
+ *
+ */
 class PHPMailerAddon
 {
 
     private PHPMailer $mail;
 
+
+    /**
+     * Конструктор класса
+     *
+     * @throws PHPMailerEx
+     */
     public function __construct()
     {
         $this->mail = new PHPMailer(true);
@@ -35,49 +44,52 @@ class PHPMailerAddon
     }
 
 
-    // Предназначен для добавления получателя к письму
-    // Принимает параметры-----------------------------------
-    // address string : email адрес получателя
-    // name    string : имя получателя (необязательно)
-    //
+    /**
+     * Предназначен для добавления получателя к письму
+     *
+     * @param string $address email адрес получателя
+     * @param string $name имя получателя <i>(необязательно)</i>
+     * @throws PHPMailerEx
+     */
     public function addAddress(string $address, string $name = ''): void
     {
         $this->mail->addAddress($address, $name);
     }
 
 
-    // Предназначен для добавления прикрепленных файлов к письму
-    // Принимает параметры-----------------------------------
-    // path     string : путь к файлу
-    // name     string : имя файл, с которым он будет отправлен (!включая расширение)
-    // encoding string : тип кодировки вложения
-    // type     string : MIME type вложения
-    //
+    /**
+     * @param string $path путь к файлу
+     * @param string $name имя файл, с которым он будет отправлен <b>(включая расширение)</b>
+     * @param string $encoding тип кодировки вложения
+     * @param string $type MIME type вложения
+     * @throws PHPMailerEx
+     */
     public function addAttachment(string $path, string $name = '', string $encoding = PHPMailer::ENCODING_BASE64, string $type = ''): void
     {
         $this->mail->addAttachment($path, $name, $encoding, $type);
     }
 
 
-    // Предназначен для добавления адреса для ответа на отправленное нами письмо
-    // Принимает параметры-----------------------------------
-    // address string : email адрес для ответа
-    // name    string : имя получателя ответа (необязательно)
-    //
+    /**
+     * Предназначен для добавления адреса для ответа на отправленное нами письмо
+     *
+     * @param string $address email адрес для ответа
+     * @param string $name имя получателя ответа <i>(необязательно)</i>
+     * @throws PHPMailerEx
+     */
     public function addReplyTo(string $address, string $name = ''): void
     {
         $this->mail->addReplyTo($address, $name);
     }
 
 
-    // Предназначен для отправки простого письма
-    // Принимает параметры-----------------------------------
-    // subject string : тема письма
-    // body    string : текст письма
-    // Возвращает параметры----------------------------------
-    // true  : письмо отправлено
-    // false : письмо неотправлено
-    //
+    /**
+     * Предназначен для отправки простого письма
+     *
+     * @param string $subject тема письма
+     * @param string $body текст письма
+     * @return bool <b>true</b> письмо отправлено<br><b>false</b> письмо неотправлено
+     */
     public function sendSimple(string $subject, string $body): bool
     {
         $this->mail->isHTML(false);
@@ -87,15 +99,15 @@ class PHPMailerAddon
     }
 
 
-    // Предназначен для отправки HTML письма
-    // Принимает параметры-----------------------------------
-    // subject string : тема письма
-    // body    string : текст письма
-    // altBody string : текст письма для почтовых клиентов, не использующих HTML
-    // Возвращает параметры----------------------------------
-    // true  : письмо отправлено
-    // false : письмо неотправлено
-    //
+    /**
+     * Предназначен для отправки HTML письма
+     *
+     * @param string $subject тема письма
+     * @param string $body текст письма
+     * @param string $altBody текст письма для почтовых клиентов, не использующих HTML
+     * @return bool <b>true</b> письмо отправлено<br><b>false</b> письмо неотправлено
+     * @throws PHPMailerEx
+     */
     public function sendHTML(string $subject, string $body, string $altBody): bool
     {
         $this->mail->isHTML(true);
@@ -107,11 +119,12 @@ class PHPMailerAddon
     }
 
 
-    // Предназначен для оправки письма и возврата результата отправки
-    // Возвращает параметры----------------------------------
-    // true  : письмо отправлено
-    // false : письмо неотправлено
-    //
+    /**
+     * Предназначен для оправки письма и возврата результата отправки
+     *
+     * @return bool <b>true</b> письмо отправлено<br><b>false</b> письмо неотправлено
+     * @throws PHPMailerEx
+     */
     private function send(): bool
     {
         return $this->mail->send() !== false;

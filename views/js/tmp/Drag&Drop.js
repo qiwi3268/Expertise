@@ -96,10 +96,8 @@ function createAvatar (event) {
 
    console.log('567');
 
-
    document.removeEventListener('mousemove', this.create_avatar);
    // document.addEventListener('mousemove', this.move);
-
 
 }
 
@@ -137,12 +135,12 @@ function dropElement (event) {
       }
 
 
-      if (!is_added) {
-         this.remove();
-      }
 
 
+   }
 
+   if (!is_added) {
+      this.remove();
    }
 
    document.removeEventListener('mouseup', this.drop_element);
@@ -364,7 +362,7 @@ function getResultCallback (drop_area) {
 }
 
 function getAssignedSectionsJSON (drop_area) {
-   let section = { };
+   let section = {};
    if (drop_area.area.hasAttribute('data-id')) {
       section.id = drop_area.area.dataset.id;
    }

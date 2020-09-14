@@ -6,21 +6,25 @@ namespace Lib\Singles;
 use Lib\Exceptions\NodeStructure as SelfEx;
 
 
-// Класс предназначен для построения структуры вложенности узлов
-//
+/**
+ * Предназначен для построения структуры вложенности узлов
+ *
+ */
 class NodeStructure
 {
 
     private array $structure;
 
 
-    // Служебная проверка на то, что у каждого дочернего узла существует родитель
-    // Выбрасывает исключения--------------------------------
-    // Lib\Exceptions\NodeStructure :
-    // code:
-    //  1 - у узла отсутствует родительский узел
-    //
-    function __construct(array $structure)
+    /**
+     * Конструктор класса
+     *
+     * Служебная проверка на то, что у каждого дочернего узла существует родитель
+     *
+     * @param array $structure
+     * @throws SelfEx
+     */
+    public function __construct(array $structure)
     {
         foreach ($structure as $node) {
 
@@ -40,10 +44,13 @@ class NodeStructure
     }
 
 
-    // Предназначен для получения "глубинной" структуры, т.е. у каждого узла будет проставлен уровень его вложенности
-    // Возвращает параметры----------------------------------
-    // array : массив с массивами формата id, name, depth
-    //
+    /**
+     * Предназначен для получения "глубинной" структуры
+     *
+     * У каждого узла будет проставлен уровень его вложенности
+     *
+     * @return array массив с массивами формата id, name, depth
+     */
     public function getDepthStructure(): array
     {
         $result = [];
