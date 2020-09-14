@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
    });
 
 
-
 });
 
 
@@ -83,124 +82,132 @@ class DropArea {
 
 }
 
+function createAvatar (event) {
+
+   let create_avatar = getAvatarCreationCallback(this.ancestor);
+   this.avatar = create_avatar(this.ancestor);
+
+   document.body.appendChild(this.avatar);
+   document.body.style.userSelect = 'none';
+
+   if (!this.drag_container.multiple) {
+      this.ancestor.style.display = 'none';
+   }
+
+   console.log('567');
+
+
+   document.removeEventListener('mousemove', this.create_avatar);
+   // document.addEventListener('mousemove', this.move);
+
+
+}
+
+function move (event) {
+   console.log('qwe');
+   this.avatar.style.left = event.pageX - this.avatar.offsetWidth / 2 + 'px';
+   this.avatar.style.top = event.pageY - this.avatar.offsetHeight / 2 + 'px';
+}
+
+function dropElement (event) {
+   document.removeEventListener('mousemove', this.move);
+
+   let is_added = false;
+
+   if (this.avatar) {
+      console.log('123');
+
+      this.avatar.remove();
+
+      document.body.style.userSelect = null;
+
+      // this.avatar.hidden = true;
+
+      let drop_area = findDropArea(event);
+      if (drop_area) {
+
+         this.transformed_elem = this.drag_container.transform_callback(this.ancestor);
+
+         if (!drop_area.contains(this.transformed_elem) || drop_area.multiple) {
+            drop_area.addElement(this.transformed_elem);
+            this.handleRemoveButton(drop_area);
+            is_added = true;
+         }
+
+      }
+
+
+      if (!is_added) {
+         this.remove();
+      }
+
+
+
+   }
+
+   document.removeEventListener('mouseup', this.drop_element);
+
+
+}
+
+function findDropArea (event) {
+   // Получаем самый вложенный элемент под курсором мыши
+   let deepest_elem = document.elementFromPoint(event.clientX, event.clientY);
+   let drop_area = deepest_elem.closest('[data-drop_area]');
+
+   return drop_area ? DropArea.getDropArea(drop_area) : null;
+}
+
+
 class DragElement {
 
    ancestor;
    drag_container;
 
-   createAvatar;
+   create_avatar;
+   move;
+   drop_element;
 
    avatar;
 
    transformed_elem;
 
-   // remove_button;
-
    constructor (ancestor, mouse_down_event, container) {
 
       this.ancestor = ancestor;
       this.drag_container = container;
+      this.create_avatar = createAvatar.bind(this);
 
-      document.body.style.userSelect = 'none';
-      document.onmousemove = event => {
+      document.addEventListener('mousemove', this.create_avatar);
 
-         if (!this.avatar) {
-            this.createAvatar = getAvatarCreationCallback(this.ancestor);
-            this.avatar = this.createAvatar(this.ancestor);
-            document.body.appendChild(this.avatar);
+      this.move = move.bind(this);
+      document.addEventListener('mousemove', this.move);
 
-            if (!this.drag_container.multiple) {
-               this.ancestor.style.display = 'none';
-            }
-         }
-
-         this.move(event);
-
-      };
-
-      document.onmouseup = event => {
-
-         document.onmousemove = null;
-         document.body.style.userSelect = null;
-
-         if (this.avatar) {
-
-
-            this.avatar.hidden = true;
-
-
-            let drop_area = this.findDropArea(event);
-            if (drop_area) {
-
-
-               if (this.drag_container.container === drop_area.container) {
-
-                  this.remove();
-
-               } else {
-
-                  this.transformed_elem = this.drag_container.transform_callback(this.ancestor);
-
-                  if (!drop_area.contains(this.transformed_elem) || drop_area.multiple) {
-
-                     drop_area.addElement(this.transformed_elem);
-
-                     let remove_button = this.transformed_elem.querySelector('[data-drop_remove]');
-                     if (remove_button) {
-
-                        let remove_callback = getRemoveElementCallback(remove_button);
-                        remove_button.addEventListener('click', () => {
-
-                           this.transformed_elem.remove();
-                           this.remove();
-                           remove_callback(drop_area, this.transformed_elem);
-
-
-                        });
-
-                     }
-
-                  } else {
-                     this.remove();
-                  }
-
-               }
-
-            } else {
-               this.remove();
-            }
-
-
-
-            this.avatar.remove();
-         }
-
-
-
-         document.onmouseup = null;
-      };
-
-
-
+      this.drop_element = dropElement.bind(this);
+      document.addEventListener('mouseup', this.drop_element);
    }
 
-   move (event) {
-      this.avatar.style.left = event.pageX - this.avatar.offsetWidth / 2 + 'px';
-      this.avatar.style.top = event.pageY - this.avatar.offsetHeight / 2 + 'px';
+   handleRemoveButton (drop_area) {
+      let remove_button = this.transformed_elem.querySelector('[data-drop_remove]');
+
+      if (remove_button) {
+
+         let remove_callback = getRemoveElementCallback(remove_button);
+
+
+         remove_button.addEventListener('click', () => {
+
+            this.transformed_elem.remove();
+
+            console.log(this.transformed_elem);
+
+            remove_callback(drop_area, this.transformed_elem);
+
+         });
+      }
    }
-
-
-   findDropArea (event) {
-      // Получаем самый вложенный элемент под курсором мыши
-      let deepest_elem = document.elementFromPoint(event.clientX, event.clientY);
-      let drop_area = deepest_elem.closest('[data-drop_area]');
-
-      return drop_area ? DropArea.getDropArea(drop_area) : null;
-   }
-
 
    remove () {
-
 
       if (!this.drag_container.multiple) {
          this.ancestor.style.display = null;
@@ -213,13 +220,9 @@ class DragElement {
 class DragContainer {
 
    container;
-
    multiple;
-
    transform_callback;
-
    elements;
-
 
    constructor (drag_container) {
 
@@ -254,7 +257,6 @@ class DragContainer {
 
 
 }
-
 
 function clearDefaultDropEvents () {
    let events = ['dragenter', 'dragover', 'dragleave', 'drop'];
@@ -329,7 +331,7 @@ function getAvatarCreationCallback (draggable_element) {
 function expertAvatar (expert) {
    let expert_avatar = expert.cloneNode(true);
    expert_avatar.classList.remove('assignment__expert');
-   expert_avatar.classList.add('avatar__expert');
+   expert_avatar.classList.add('avatar');
    return expert_avatar;
 }
 
@@ -337,7 +339,7 @@ function sectionExpert (expert) {
    let expert_avatar = document.createElement('DIV');
    expert_avatar.dataset.id = expert.dataset.id;
    expert_avatar.innerHTML = expert.querySelector('.section__name').innerHTML;
-   expert_avatar.classList.add('avatar__expert');
+   expert_avatar.classList.add('avatar');
    return expert_avatar;
 }
 
@@ -356,7 +358,6 @@ function getResultCallback (drop_area) {
          callback = getAssignedSectionsJSON;
          break;
       default:
-         
    }
 
    return callback;

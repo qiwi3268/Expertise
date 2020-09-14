@@ -4,17 +4,22 @@
 namespace Lib\Responsible;
 
 use Lib\Exceptions\Responsible as SelfEx;
-use Lib\Singles\Helpers\PageAddress as PageAddressHelper;
 
 
-// Предназначен для работы с ответственными
-//
+/**
+ * Предназначен для работы с ответственными
+ *
+ */
 class Responsible
 {
 
-    // Виды групп доступа заявлителей к документу (Заявление / ...)
-    // Ключ   - название группы доступа заявителя к заявлению
-    // Значен - id группы доступа из БД
+    /**
+     * Виды групп доступа заявлителей к документу (Заявление / ...)
+     *
+     * <i>Ключ</i> - название группы доступа заявителя к заявлению<br>
+     * <i>Значен</i> - id группы доступа из БД
+     *
+     */
     private const APPLICANT_ACCESS_GROUP = [
         'full_access'                 => 1,
         'signing_financial_documents' => 2,
@@ -24,7 +29,10 @@ class Responsible
 
     static private XMLReader $XMLReader;
 
-    // Кеширование ответственных
+    /**
+     * Кеширование ответственных
+     *
+     */
     static private array $cacheResponsible = [
         'application' => [
             'type_2' => null,
@@ -33,33 +41,36 @@ class Responsible
         ]
     ];
 
-    private string $currentResponsibleType; // Текущий тип ответственных
-    private int $documentId;                // id документа
-    private string $currentDocumentType;    // Текущий тип документа
+    /**
+     * Текущий тип ответственных
+     *
+     */
+    private string $currentResponsibleType;
+
+    /**
+     * id документа
+     *
+     */
+    private int $documentId;
+
+    /**
+     * Текущий тип документа
+     *
+     */
+    private string $currentDocumentType;
 
 
-    // Принимает параметры------------------------------------
-    // documentId       int : id документа
-    // documentType ?string : тип документа, согласно константе DOCUMENT_TYPE. Если тип документа не
-    //                        передан, то определяется тип по умолчанию для открытого документа
-    // Выбрасывает исключения---------------------------------
-    // Classes\Exceptions\Responsible :
-    // code:
-    //  1  - передан некорректный тип документа
-    //  2  - методу Lib\Singles\Helpers\PageAddress::getDocumentType не удалось определить тип документа
-    //
-    public function __construct(int $documentId, ?string $documentType = null)
+    /**
+     * Конструктор класса
+     *
+     * @param int $documentId id документа
+     * @param string $documentType тип документа, согласно константе DOCUMENT_TYPE
+     * @throws SelfEx
+     */
+    public function __construct(int $documentId, string $documentType)
     {
-        if (!is_null($documentType)) {
-
-            if (!isset(DOCUMENT_TYPE[$documentType])) {
-                throw new SelfEx("Передан некорректный тип документа: '{$documentType}'", 1);
-            }
-        } else {
-
-            if (is_null($documentType = PageAddressHelper::getDocumentType())) {
-                throw new SelfEx('Методу Lib\Singles\Helpers\PageAddress::getDocumentType не удалось определить тип документа', 2);
-            }
+        if (!isset(DOCUMENT_TYPE[$documentType])) {
+            throw new SelfEx("Передан некорректный тип документа: '{$documentType}'", 1);
         }
 
         if (!isset(self::$XMLReader)) {
@@ -75,12 +86,14 @@ class Responsible
     }
 
 
-    // Предназначен для получения текущих ответственных
-    // Возвращает параметры------------------------------------
-    // array : массив формата:
-    //    'type'  => тип ответственных
-    //    'users' => ?array : null / ассоциативные массивы ответственных пользователей
-    //
+    /**
+     * Предназначен для получения текущих ответственных
+     *
+     *
+     * @return array массив формата:<br>
+     * 'type'  => тип ответственных<br>
+     * 'users' => ?array : null / ассоциативные массивы ответственных пользователей
+     */
     public function getCurrentResponsible(): array
     {
         if ($this->currentResponsibleType == 'type_1') {
@@ -114,14 +127,11 @@ class Responsible
     }
     
 
-    // Предназначен для удаления текущих ответственных
-    // Принимает параметры------------------------------------
-    // needUpdateResponsibleType bool : нужно ли обновлять тип ответственных в текущем документе на type_1
-    // Возвращает параметры-----------------------------------
-    // array : массив формата:
-    //    'type'  => тип ответственных
-    //    'users' => ?array : null / ассоциативные массивы ответственных пользователей
-    //
+    /**
+     * Предназначен для удаления текущих ответственных
+     *
+     * @param bool $needUpdateResponsibleType нужно ли обновлять тип ответственных в текущем документе на type_1
+     */
     public function deleteCurrentResponsible(bool $needUpdateResponsibleType = true): void
     {
         if ($this->currentResponsibleType == 'type_1') {
@@ -148,18 +158,16 @@ class Responsible
         $this->currentResponsibleType = 'type_1';
     }
 
-    
-    // Предназначен для создания новых ответственных "Ответственные группы заявителей"
-    // * Перед использованием метода не требуется вручную удалять текущих ответственных
-    // Принимает параметры------------------------------------
-    // accessGroupNames string : перечисление названий групп заявителей (согласно константе APPLICANT_ACCESS_GROUP)
-    // Возвращает параметры-----------------------------------
-    // array : индексный массив id созданных записей ответственных групп заявителей
-    // Выбрасывает исключения---------------------------------
-    // Classes\Exceptions\Responsible :
-    // code:
-    //  3  - не существует указанного названия группы доступа заявителя к заявлению
-    //
+
+    /**
+     * Предназначен для создания новых ответственных "Ответственные группы заявителей"
+     *
+     * <b>*</b> Перед использованием метода не требуется вручную удалять текущих ответственных
+     *
+     * @param string ...$accessGroupNames <i>перечисление</i> названий групп заявителей (согласно константе APPLICANT_ACCESS_GROUP)
+     * @return array индексный массив id созданных записей ответственных групп заявителей
+     * @throws SelfEx
+     */
     public function createNewResponsibleType3(string ...$accessGroupNames): array
     {
         // Удаляем текущие ответственные группы заявителей
@@ -202,13 +210,12 @@ class Responsible
     }
 
 
-    // Предназначен для проверки пользователя на принадлежность к ответственным
-    // Принимает параметры------------------------------------
-    // userId int : id пользователя
-    // Возвращает параметры-----------------------------------
-    // bool : true  - пользователь является ответственным
-    //        false - в противном случае
-    //
+    /**
+     * Предназначен для проверки пользователя на принадлежность к ответственным
+     *
+     * @param int $userId id пользователя
+     * @return bool <b>true</b> пользователь является ответственным<br><b>false</b> в противном случае
+     */
     public function isUserResponsible(int $userId): bool
     {
         list('type' => $type, 'users' => $users) = $this->getCurrentResponsible();

@@ -9,6 +9,7 @@ class SignHandler extends SignView{
    overlay;
 
    is_plugin_initialized = false;
+   is_signing = false;
 
    // Блок с информацией о версии плагина
    plugin_info;
@@ -253,7 +254,11 @@ class SignHandler extends SignView{
    handleUploadSignButton () {
       this.upload_sign_btn = document.getElementById('sign_upload');
       this.upload_sign_btn.addEventListener('click', () => {
-         this.external_sign_input.click();
+
+         if (!this.is_signing) {
+            this.external_sign_input.click();
+         }
+
       });
 
       this.external_sign_input = document.getElementById('external_sign');
@@ -261,6 +266,7 @@ class SignHandler extends SignView{
 
          if (this.external_sign_input.files.length > 0) {
             let sign_files = Array.from(this.external_sign_input.files);
+            this.is_signing = true;
             this.sendSigns(sign_files);
          }
 
@@ -318,9 +324,11 @@ class SignHandler extends SignView{
             this.upload_sign_btn.dataset.active = 'false';
             this.delete_sign_btn.dataset.active = 'true';
 
+            this.is_signing = false;
          })
          .catch(exc => {
-            console.error('Ошибка при загрузке файла открепленной подписи:\n' + exc);
+            this.is_signing = false;
+            ErrorModal.open('Ошибка при загрузке файла открепленной подписи', exc);
          });
 
 
@@ -339,60 +347,6 @@ class SignHandler extends SignView{
       this.fillSignsInfo(results_json);
    }
 
-/*
-   fillSignsInfo (validate_results_json) {
-      this.validate_info.dataset.active = 'true';
-      this.validate_info.innerHTML = '';
-
-      let results = JSON.parse(validate_results_json);
-      results.forEach(result => {
-         this.validate_info.appendChild(this.createSignInfo(result));
-      });
-   }
-*/
-
-/*   createSignInfo (result) {
-      let sign = document.createElement('DIV');
-      sign.classList.add('sign-modal__sign');
-
-      let cert_state = result.certificate_verify;
-      let cert_row = this.createInfoRow('Сертификат: ', cert_state.user_message, cert_state.result);
-
-      let sign_state = result.signature_verify;
-      let sign_row = this.createInfoRow('Подпись: ', sign_state.user_message, sign_state.result);
-
-      let name_row = this.createInfoRow('Подписант: ', result.fio);
-      let info_row = this.createInfoRow('Информация: ', result.certificate);
-
-      sign.appendChild(cert_row);
-      sign.appendChild(sign_row);
-      sign.appendChild(name_row);
-      sign.appendChild(info_row);
-
-      return sign;
-   }*/
-/*
-   createInfoRow (label, text, state = null) {
-      let row = document.createElement('DIV');
-      row.classList.add('sign-modal__sign-row');
-
-      let label_span = document.createElement('SPAN');
-      label_span.classList.add('sign-modal__label');
-      label_span.innerHTML = label;
-
-      let text_span = document.createElement('SPAN');
-      text_span.classList.add('sign-modal__text');
-      text_span.innerHTML = text;
-      //asd
-      if (state !== null) {
-         text_span.dataset.state = state;
-      }
-
-      row.appendChild(label_span);
-      row.appendChild(text_span);
-
-      return row;
-   }*/
 
    handleDeleteSignButton () {
       this.delete_sign_btn = document.getElementById('signature_delete');
@@ -425,12 +379,15 @@ class SignHandler extends SignView{
    handleSignButton () {
       this.sign_btn = document.getElementById('signature_button');
       this.sign_btn.addEventListener('click', () => {
-         if (GeCades.getSelectedCertificateFromGlobalMap()) {
-            this.createSign();
-         } else {
-            alert('Выберите сертификат');
-         }
+         if (!this.is_signing) {
 
+            if (GeCades.getSelectedCertificateFromGlobalMap()) {
+               this.createSign();
+            } else {
+               ErrorModal.open('Ошибка при подписании файла', 'Не выбран сертификат');
+            }
+
+         }
       });
 
    }
@@ -439,6 +396,8 @@ class SignHandler extends SignView{
       let selected_algorithm;
       let file_name;
       let fs_name_data;
+
+      this.is_signing = true;
 
       API.checkFile(this.id_file, this.mapping_level_1, this.mapping_level_2)
          .then(file_check_response => {
@@ -468,7 +427,8 @@ class SignHandler extends SignView{
 
          })
          .catch(exc => {
-            console.error('Произошла ошибка при создании открепленной подписи:\n' + exc);
+            this.is_signing = false;
+            ErrorModal.open('Ошибка при создании открепленной подписи', exc);
          });
 
    }

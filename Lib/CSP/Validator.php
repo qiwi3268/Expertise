@@ -7,20 +7,29 @@ use Lib\Exceptions\CSPValidator as SelfEx;
 use Lib\CSP\Interfaces\SignatureValidationShell;
 
 
+/**
+ * Предназначен для формирования массива результатов на основе вывода исполняемой команды
+ *
+ */
 class Validator
 {
 
     private MessageParser $Parser;
     private SignatureValidationShell $Shell;
 
-    // Код последней ошибки
+    /**
+     * Код последней ошибки
+     *
+     */
     private ?string $lastErrorCode = null;
 
 
-    // Принимает параметры-----------------------------------
-    // Parser MessageParser           : экземпляр класса парсинга вывода cmd-сообщения
-    // Shell SignatureValidationShell : экземпляр класса для выполения shell-команд (ExternalSignature / InternalSignature)
-    //
+    /**
+     * Конструктор класса
+     *
+     * @param MessageParser $Parser экземпляр класса парсинга вывода cmd-сообщения
+     * @param SignatureValidationShell $Shell экземпляр класса для выполения shell-команд (ExternalSignature / InternalSignature)
+     */
     public function __construct(MessageParser $Parser, SignatureValidationShell $Shell)
     {
         $this->Parser = $Parser;
@@ -28,33 +37,31 @@ class Validator
     }
 
 
-    // Предназначен для формирования массива с результатами валидации ЭЦП файла
-    // Принимает параметры-----------------------------------
-    // paths string: перечисление путей к файлам
-    //  В случае Shell = InternalSignature передается 1 параметр - абсолютный путь в ФС сервера к файлу со встроенной подписью
-    //  В случае Shell = ExternalSignature передается 2 параметра - абсолютный путь в ФС сервера к файлу, абсолютный путь в ФС сервера к файлу открепленной подписи
-    // Возвращает параметры----------------------------------
-    // array : массив формата:
-    //      0 : array
-    //          fio         string : Фамилия Имя Отчество
-    //          certificate string : данные сертификата
-    //          signature_verify : array
-    //              result         bool : true - подпись верна / false - в противном случае
-    //              message      string : вывод исполняемой команды результата проверки подписи
-    //              user_message string : пользовательское сообщение на основе результата проверки подписи
-    //          certificate_verify : array
-    //              result         bool : true - сертификат действителен / false - в противном случае
-    //              message      string : вывод исполняемой команды результата проверки подписи (сертификата)
-    //              user_message string : пользовательское сообщение на основе результата проверки подписи (сертификата)
-    //          1 : array...
-    // Выбрасывает исключения--------------------------------
-    // Lib\Exceptions\CSPValidator :
-    // code:
-    //  6 - в результате проверки БЕЗ цепочки сертификатов не был найден подписант из результатов проверки С цепочкой сертификатов
-    //
+    /**
+     * Предназначен для формирования массива с результатами валидации ЭЦП файла
+     *
+     * @param string ...$paths <i>перечисление</i> путей к файлам:<br>
+     * В случае <b>Shell = InternalSignature</b> передается 1 параметр - абсолютный путь в ФС сервера к файлу со встроенной подписью<br>
+     * В случае <b>Shell = ExternalSignature</b> передается 2 параметра - абсолютный путь в ФС сервера к файлу, абсолютный путь в ФС сервера к файлу открепленной подписи
+     * @return array массив формата:<br>
+     * 0 : <i>array</i><br>
+     *          fio         <i>string</i> : Фамилия Имя Отчество<br>
+     *          certificate <i>string</i> : данные сертификата<br>
+     *          signature_verify : <i>array</i><br>
+     *              result         <i>bool</i> : <b>true</b> подпись верна, <b>false</b> в противном случае <br>
+     *              message      <i>string</i> : вывод исполняемой команды результата проверки подписи<br>
+     *              user_message <i>string</i> : пользовательское сообщение на основе результата проверки подписи<br>
+     *          certificate_verify : <i>array</i><br>
+     *              result         <i>bool</i> : <b>true</b> сертификат действителен, <b>false</b> в противном случае <br>
+     *              message      <i>string</i> : вывод исполняемой команды результата проверки подписи (сертификата)<br>
+     *              user_message <i>string</i> : пользовательское сообщение на основе результата проверки подписи (сертификата)<br>
+     * 1 : <i>array</i>...<br>
+     *
+     * @throws SelfEx
+     * @throws \Classes\Exceptions\PregMatch
+     */
     public function validate(string ...$paths): array
     {
-
         // Получение результатов валидации подписи С проверкой цепочки сертификатов
         $errChain_message = $this->Shell->execErrChain($paths);
         $errChain_messageParts = $this->Parser->getMessagePartsWithoutTechnicalPart($errChain_message);
@@ -130,26 +137,24 @@ class Validator
     }
 
 
-    // Предназначен для формирования массива с результатами проверки частей сообщения
-    // Возвращает параметры----------------------------------
-    // array : массив формата:
-    //      signers
-    //          0 : array
-    //              fio         string : Фамилия Имя Отчество
-    //              certificate string : данные сертификата
-    //              result        bool : результат проверки подписи
-    //              message     string : сообщение результата проверки подписи
-    //          1 : array...
-    //      errorCode:
-    //          код ошибки : string
-    // Выбрасывает исключения--------------------------------
-    // Lib\Exceptions\CSPValidator :
-    // code:
-    //  2 - неизвестный формат блока, следующий за Signer
-    //  3 - неизвестная часть сообщения
-    //  4 - в частях сообщения отсустсвует(ют) Signer
-    //  5 - получено некорректное количество блоков ErrorCode
-    //
+    /**
+     * Предназначен для формирования массива с результатами проверки частей сообщения
+     *
+     * @param array $messageParts
+     * @return array массив формата:<br>
+     * signers<br>
+     *       0 : <i>array</i><br>
+     *           fio         <i>string</i> : Фамилия Имя Отчество<br>
+     *           certificate <i>string</i> : данные сертификата<br>
+     *           result        <i>bool</i> : результат проверки подписи<br>
+     *           message     <i>string</i> : сообщение результата проверки подписи<br>
+     *       1 : <i>array</i>...<br>
+     * errorCode:<br>
+     *          код ошибки : <i>string</i><br>
+     * @throws SelfEx
+     * @throws \Classes\Exceptions\PregMatch
+     * @throws \Lib\Exceptions\CSPMessageParser
+     */
     private function getValidateResults(array $messageParts): array
     {
         $signers = [];
@@ -232,16 +237,13 @@ class Validator
     }
 
 
-    // Преднажначен для полученя пользовательского сообщения на основе результата проверки подписи
-    // Принимает параметры-----------------------------------
-    // verifyMessage string : результат проверки подписи
-    // Возвращает параметры----------------------------------
-    // string : пользовательское сообщение
-    // Выбрасывает исключения--------------------------------
-    // Lib\Exceptions\CSPValidator :
-    // code:
-    //  1 - получен неизвестный результат проверки подписи
-    //
+    /**
+     * Преднажначен для полученя пользовательского сообщения на основе результата проверки подписи
+     *
+     * @param string $verifyMessage результат проверки подписи
+     * @return string пользовательское сообщение
+     * @throws SelfEx
+     */
     private function getSignatureUserMessage(string $verifyMessage): string
     {
         switch ($verifyMessage) {
@@ -260,16 +262,13 @@ class Validator
     }
 
 
-    // Преднажначен для полученя пользовательского сообщения на основе результата проверки подписи (сертификата)
-    // Принимает параметры-----------------------------------
-    // verifyMessage string : результат проверки подписи (сертификата)
-    // Возвращает параметры----------------------------------
-    // string : пользовательское сообщение
-    // Выбрасывает исключения--------------------------------
-    // Lib\Exceptions\CSPValidator :
-    // code:
-    //  1 - получен неизвестный результат проверки подписи (сертификата)
-    //
+    /**
+     * Преднажначен для полученя пользовательского сообщения на основе результата проверки подписи (сертификата)
+     *
+     * @param string $verifyMessage результат проверки подписи (сертификата)
+     * @return string пользовательское сообщение
+     * @throws SelfEx
+     */
     private function getCertificateUserMessage(string $verifyMessage): string
     {
 
@@ -293,8 +292,12 @@ class Validator
     }
 
 
-    // Предназначен для получения debug-строки о имеющихся частях сообщения
-    //
+    /**
+     * Предназначен для получения debug-строки о имеющихся частях сообщения
+     *
+     * @param array $messageParts
+     * @return string
+     */
     private function getDebugMessageParts(array $messageParts): string
     {
         $tmp = implode(' || ', $messageParts);
@@ -302,12 +305,12 @@ class Validator
     }
 
 
-    // Предназначен для проверки последнего errorCode на тип ошибки, соответствующий
-    // недействительному типу криптографичесого сообщения
-    // Возвращает параметры----------------------------------
-    // true  : последняя ошибка соответствует недействительному типу криптографичесого сообщения
-    // false : в противном случае
-    //
+    /**
+     * Предназначен для проверки <i>lastErrorCode</i> на тип ошибки, соответствующий недействительному типу криптографичесого сообщения
+     *
+     * @return bool <b>true</b> последняя ошибка соответствует недействительному типу криптографичесого сообщения<br>
+     * <b>false</b> в противном случае
+     */
     public function isInvalidMessageType(): bool
     {
         $errorCode = $this->lastErrorCode;
@@ -318,9 +321,13 @@ class Validator
     }
 
 
-    // Передан некорректный параметр
-    // Для встроенной подписи ошибка означает:
-    //    - проверяется файл открепленной подписи
+    /**
+     * Проверка на "Передан некорректный параметр"
+     *
+     * Для встроенной подписи ошибка означает: проверяется файл открепленной подписи
+     *
+     * @return bool
+     */
     public function isIncorrectParameter(): bool
     {
         $errorCode = $this->lastErrorCode;
@@ -330,9 +337,14 @@ class Validator
         return false;
     }
 
-    // Проверка подписи не началась
-    // Для открепленной подписи ошибка означает:
-    //    - проверяется файл без подписи и файл без подписи
+
+    /**
+     * Проверка на "Проверка подписи не началась"
+     *
+     * Для открепленной подписи ошибка означает: проверяется файл без подписи и файл без подписи
+     *
+     * @return bool
+     */
     public function isSignatureVerifyingNotStarted(): bool
     {
         $errorCode = $this->lastErrorCode;

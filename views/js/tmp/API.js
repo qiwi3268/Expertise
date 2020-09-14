@@ -26,14 +26,18 @@ class API {
                      reject('Отсутствуют загруженные файлы');
                      break;
 
-                  default:
-                     reject(`Ошибка при загрузке файла на сервер:\n${response.error_message || response}`);
+                  case 11:
+                     // todo получить из сообщения
+                     reject('Слишком длинное название файла');
+                     break;
 
+                  default:
+                     reject(response.error_message || response.message);
                }
 
             })
             .catch(exc => {
-               reject('Ошибка при загрузке файла на сервер: ' + exc);
+               reject(exc);
             });
       });
 
@@ -82,7 +86,7 @@ class API {
                      break;
 
                   default:
-                     reject(`Ошибка при проверке файла:\n${response.error_message || response}`);
+                     reject(`Ошибка при проверке файла:\n${response.error_message || response.message}`);
 
                }
 
@@ -136,12 +140,11 @@ class API {
                      break;
 
                   case 6.1:
-                     alert(response.error_message);
                      reject('Загружен файл без открепленной подписи');
                      break;
 
                   default:
-                     reject(`Ошибка при проверке открепленной подписи:\n${response.error_message || response}`);
+                     reject(`Ошибка при проверке открепленной подписи:\n${response.error_message || response.message}`);
 
                }
 
@@ -185,7 +188,7 @@ class API {
                      break;
 
                   default:
-                     reject(`Ошибка при получении хэша файла: \n${response.error_message || response}`);
+                     reject(`Ошибка при получении хэша файла: \n${response.error_message || response.message}`);
 
                }
 
@@ -237,7 +240,7 @@ class API {
                      break;
 
                   default:
-                     reject(`Ошибка при проверке встроенной подписи: \n${response.error_message || response}`);
+                     reject(`Ошибка при проверке встроенной подписи: \n${response.error_message || response.message}`);
 
                }
 
@@ -254,6 +257,44 @@ class API {
       form_data.append('fs_name_sign', fs_name);
       form_data.append('mapping_level_1', mapping_1);
       form_data.append('mapping_level_2', mapping_2);
+      return form_data;
+   }
+
+   static updateFileNeeds () {
+      let form_data = this.getFilesNeedsFormData();
+
+      console.log(FileNeeds.getFileNeedsJSON());
+
+      XHR(
+         'post',
+         '/home/API_file_needs_setter',
+         form_data,
+         null,
+         'json',
+         null,
+         null
+      )
+         .then(response => {
+
+            switch (response.result) {
+               case 9:
+                  console.log(response);
+                  FileNeeds.clear();
+                  break;
+               default:
+                  console.log(response);
+            }
+
+         })
+         .catch(error => {
+            ErrorModal.open('Ошибка при обновлении file needs', error.message);
+         });
+   }
+
+   static getFilesNeedsFormData () {
+      let form_data = new FormData();
+      form_data.append('id_application', getIdDocument());
+      form_data.append('file_needs_json', FileNeeds.getFileNeedsJSON());
       return form_data;
    }
 

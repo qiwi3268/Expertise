@@ -4,8 +4,10 @@
 namespace Lib\Files\Mappings;
 
 
-// Класс проверки маппинга файловых таблиц
-//
+/**
+ * Класс проверки маппинга файловых таблиц
+ *
+ */
 class FilesTableMapping
 {
     private const NEEDED_INTERFACE = 'Tables\Files\Interfaces\FileTable';
@@ -14,10 +16,12 @@ class FilesTableMapping
     protected string $class;
 
 
-    // Принимает параметры-----------------------------------
-    // mappingLevel1 string : маппинг 1-го уровня константного массива FILE_TABLE_MAPPING
-    // mappingLevel2 string : маппинг 2-го уровня константного массива FILE_TABLE_MAPPING
-    //
+    /**
+     * Конструктор класса
+     *
+     * @param string $mappingLevel1 маппинг 1-го уровня константного массива FILE_TABLE_MAPPING
+     * @param string $mappingLevel2 маппинг 2-го уровня константного массива FILE_TABLE_MAPPING
+     */
     public function __construct(string $mappingLevel1, string $mappingLevel2)
     {
         // Проверка существования маппинга
@@ -51,31 +55,33 @@ class FilesTableMapping
     }
 
 
-    // Предназначен для получения кода ошибки при проверке маппинга
-    // Возвращает параметры-----------------------------------
-    // null  : нет ошибок
-    // int   : есть ошибки (код)
-    //
+    /**
+     * Предназначен для получения кода ошибки при проверке маппинга
+     *
+     * @return int|null <b>int</b> есть ошибки (код)<br><b>null</b> нет ошибок
+     */
     public function getErrorCode(): ?int
     {
         return $this->errorCode;
     }
 
 
-    // Предназначен для получения текста ошибки при проверке маппинга
-    // Возвращает параметры-----------------------------------
-    // string : текст ошибки
-    //
+    /**
+     * Предназначен для получения текста ошибки при проверке маппинга
+     *
+     * @return string текст ошибки
+     */
     public function getErrorText(): string
     {
         return $this->errorText;
     }
 
 
-    // Предназначен для получения названия класса из маппинга
-    // Возвращает параметры-----------------------------------
-    // string : имя класса
-    //
+    /**
+     * Предназначен для получения названия класса из маппинга
+     *
+     * @return string имя класса
+     */
     public function getClassName(): string
     {
         return $this->class;

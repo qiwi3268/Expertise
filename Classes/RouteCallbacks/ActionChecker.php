@@ -29,6 +29,8 @@ class ActionChecker
     }
 
 
+    // Предназначен для проверки пользователя к текущему действию
+    //
     public function checkAccess(): void
     {
         if (!$this->accessActions->checkAccessFromActionByPageName(URN)) {
@@ -39,6 +41,8 @@ class ActionChecker
     }
 
 
+    // Предназначен для проверки реализации callback'а исполнения действия
+    //
     public function checkIssetExecutionCallback(): void
     {
         $this->executionActions->checkIssetCallbackByPageName(URN);

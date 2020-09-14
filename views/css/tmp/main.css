@@ -40,6 +40,10 @@ button {
    background-color: #ffffff;
 }
 
+a {
+   color: #343a40;
+}
+
 .stop-scrolling {
    height: 100%;
    overflow: hidden;
@@ -51,16 +55,13 @@ button {
    flex-direction: column;
    min-width: 1024px;
    max-width: 1655px;
-   /*height: 100%;*/
    min-height: 100%;
    margin: 0 auto;
-
-   /*todo брать везде*/
    font-family: 'Roboto Condensed', sans-serif;
    color: #343a40;
-
-
 }
+
+
 
 [data-active='false'] {
    display: none;
@@ -71,15 +72,17 @@ button {
    font-family: 'Roboto Condensed', sans-serif;
    font-size: 14px;
    font-weight: 400;
+   color: #343a40;
    border: 1px solid #cccccc;
    border-radius: 4px;
-   color: #343a40;
    transition: .10s;
 }
 
 textarea.application-input {
    min-height: 60px;
    padding: 8px;
+   font-family: 'Roboto Condensed', sans-serif;
+   color: #343a40;
    resize: vertical;
    transition: box-shadow .10s;
 }
@@ -125,7 +128,6 @@ textarea.application-input {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-   /*background: #EFC64F;*/
    background: #FFC828;
 }
 
@@ -139,25 +141,21 @@ textarea.application-input {
    position: fixed;
    top: 45%;
    left: 50%;
-   z-index: 50;
+   z-index: 100;
    width: 100%;
    max-width: 500px;
+   font-family: 'Roboto Condensed', sans-serif;
    border-radius: 3px;
    box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
    background-color: #ffffff;
    transform: translate(-50%, -50%);
    transition: 0.3s all;
-   font-family: 'Roboto Condensed', sans-serif;
-   color: #343a40;
-
 }
 
 .alert-modal {
    flex-direction: row;
    align-items: center;
    justify-content: flex-start;
-   font-family: 'Roboto Condensed', sans-serif;
-   color: #343a40;
 }
 
 .modal-overlay,
@@ -172,7 +170,7 @@ textarea.application-input {
    left: 0;
    width: 100%;
    height: 100%;
-   z-index: 20;
+   z-index: 50;
    background-color: rgba(0, 0, 0, .5);
    transition: .3s all;
 }
@@ -201,7 +199,6 @@ textarea.application-input {
    border-radius: 3px;
    box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
    background-color: #ffffff;
-   color: #343a40;
    cursor: pointer;
 }
 
@@ -211,10 +208,12 @@ textarea.application-input {
    display: flex;
 }
 
-/*tmp*/
-
 .error-modal {
+   z-index: 1000;
+}
 
+.error-overlay {
+   z-index: 500;
 }
 
 .error-modal__header {
@@ -239,11 +238,8 @@ textarea.application-input {
 
 .card-body {
    max-height: 0;
-   /*height: 0;*/
    overflow: hidden;
-   /*transition: .3s;*/
-
-   /*transition: height .3s;*/
+   transition: max-height .3s;
 }
 
 .arrow-up {
@@ -255,10 +251,6 @@ textarea.application-input {
    transform: rotate(0);
    transition: .3s;
 }
-
-/*.card-body.active {
-   height: auto;
-}*/
 
 
 

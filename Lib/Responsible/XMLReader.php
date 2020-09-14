@@ -7,24 +7,32 @@ use Lib\Exceptions\Responsible as SelfEx;
 use SimpleXMLElement;
 
 
-// Предназначен для получения названий классов и методов из XML-схемы ответственных
-//
+/**
+ * Предназначен для получения названий классов и методов из XML-схемы ответственных
+ *
+ */
 class XMLReader
 {
 
-    // XPath шаблон для "плоского" пути, т.е. без type
+    /**
+     * XPath шаблон для "плоского" пути, т.е. без type
+     *
+     */
     private const XPATH_FLAT = "/responsible/document[@name='%s']/queries/%s";
-    // XPath шаблон для пути с type
+
+    /**
+     * XPath шаблон для пути с type
+     *
+     */
     private const XPATH_BY_TYPE = "/responsible/document[@name='%s']/queries/%s/%s";
 
     private SimpleXMLElement $data;
 
-
-    // Выбрасывает исключения---------------------------------
-    // Classes\Exceptions\Responsible :
-    // code:
-    //  4  - ошибка при инициализации XML-схемы ответственных
-    //
+    /**
+     * Конструктор класса
+     *
+     * @throws SelfEx
+     */
     public function __construct()
     {
         if (($data = simplexml_load_file(SETTINGS . '/responsible.xml')) === false) {
@@ -34,6 +42,11 @@ class XMLReader
     }
 
 
+    /**
+     * @param string $document тип документа, согласно константе DOCUMENT_TYPE
+     * @return array
+     * @throws SelfEx
+     */
     public function getResponsibleType(string $document): array
     {
         $path = sprintf(self::XPATH_FLAT, $document, 'getResponsibleType');
@@ -41,6 +54,11 @@ class XMLReader
     }
 
 
+    /**
+     * @param string $document тип документа, согласно константе DOCUMENT_TYPE
+     * @return array
+     * @throws SelfEx
+     */
     public function updateResponsibleType(string $document): array
     {
         $path = sprintf(self::XPATH_FLAT, $document, 'updateResponsibleType');
@@ -48,6 +66,12 @@ class XMLReader
     }
 
 
+    /**
+     * @param string $document тип документа, согласно константе DOCUMENT_TYPE
+     * @param string $type вид ответственных
+     * @return array
+     * @throws SelfEx
+     */
     public function createResponsible(string $document, string $type): array
     {
         $path = sprintf(self::XPATH_BY_TYPE, $document, 'createResponsible', $type);
@@ -55,6 +79,12 @@ class XMLReader
     }
 
 
+    /**
+     * @param string $document тип документа, согласно константе DOCUMENT_TYPE
+     * @param string $type вид ответственных
+     * @return array
+     * @throws SelfEx
+     */
     public function getResponsible(string $document, string $type): array
     {
         $path = sprintf(self::XPATH_BY_TYPE, $document, 'getResponsible', $type);
@@ -62,6 +92,12 @@ class XMLReader
     }
 
 
+    /**
+     * @param string $document тип документа, согласно константе DOCUMENT_TYPE
+     * @param string $type вид ответственных
+     * @return array
+     * @throws SelfEx
+     */
     public function deleteResponsible(string $document, string $type): array
     {
         $path = sprintf(self::XPATH_BY_TYPE, $document, 'deleteResponsible', $type);
@@ -69,20 +105,15 @@ class XMLReader
     }
 
 
-    // Предназначен для получения проверенного названия класса и метода в требуемом путь в XML-схеме
-    // Принимает параметры------------------------------------
-    // path string : XPath путь
-    // Возвращает параметры-----------------------------------
-    // array : массив формата:
-    //    'class'  => название класса
-    //    'method' => название метода
-    // Выбрасывает исключения---------------------------------
-    // Classes\Exceptions\Responsible :
-    // code:
-    //  5  - ошибка при получении XML-пути в схеме ответственных
-    //  6  - класс в XML-схеме ответственных не существует
-    //  7  - метод в XML-схеме ответственных не существует
-    //
+    /**
+     * Предназначен для получения проверенного названия класса и метода в требуемом путь в XML-схеме
+     *
+     * @param string $path XPath путь
+     * @return array массив формата:<br>
+     * 'class'  => название класса<br>
+     * 'method' => название метода
+     * @throws SelfEx
+     */
     private function getValidatedResults(string $path): array
     {
         $XMLElement = $this->data->xpath($path);
@@ -111,5 +142,4 @@ class XMLReader
             'method' => $method
         ];
     }
-
 }

@@ -6,25 +6,33 @@ namespace Lib\CSP;
 use Lib\Exceptions\CSPMessageParser as SelfEx;
 
 
+/**
+ * Предназначен для парсинга вывода исполняемой команды по валидации подписи
+ *
+ */
 class MessageParser
 {
 
-    // Код, соответствующий успешному выполнению команды
+    /**
+     * Код, соответствующий успешному выполнению команды
+     *
+     */
     public const OK_ERROR_CODE = '0x00000000';
 
-    // Хэш-массив популярных имен из БД
+    /**
+     * Хэш-массив популярных имен из БД
+     *
+     */
     private array $hashNames;
 
-
-    // Принимает параметры-----------------------------------
-    // needNames bool: флаг необходимости инициализировать массив имен. Не нужен, если класс
-    //                 используется не для получения ФИО
-    //
+    /**
+     * Конструктор класса
+     *
+     * @param bool $needNames флаг необходимости инициализировать массив имен. Не нужен, если класс используется не для получения ФИО
+     */
     public function __construct(bool $needNames)
     {
-
         if ($needNames) {
-            //todo ВАЖНОЕ перенести это на вызывающую сторону
             $names = \Tables\people_name::getNames();
             // Перевод выборки в формат хэш-массива
             foreach ($names as $name) $this->hashNames[$name] = true;
@@ -32,20 +40,22 @@ class MessageParser
     }
 
 
-    // Предназначен для получения сообщения без технической его части:
-    //      CryptCP 4.0 (c) "Crypto-Pro", 2002-2020.
-    //      Command prompt Utility for File signature and encryption.
-    //      Folder '/var/www...'
-    //      Signature verifying...
-    //      ../../../../CSPbuild/CSP/samples/CPCrypt/DSign.cpp
-    // Принимает параметры-----------------------------------
-    // message string: вывод исполняемой команды по валидации подписи
-    // Возвращает параметры----------------------------------
-    // array : массив частей сообщения без технической части, разбитый по символам-переносам строк
-    //
+    /**
+     * Предназначен для получения сообщения без технической его части:
+     *
+     * CryptCP 4.0 (c) "Crypto-Pro", 2002-2020.
+     * <br>CryptCP 5.0 (c) "Crypto-Pro", 2002-2019.
+     * <br>Command prompt Utility for File signature and encryption.
+     * <br>Folder '/var/www...'
+     * <br>Signature verifying...
+     * <br>../../../../CSPbuild/CSP/samples/CPCrypt/DSign.cpp
+     *
+     * @param string $message вывод исполняемой команды по валидации подписи
+     * @return array массив частей сообщения без технической части, разбитый по символам-переносам строк
+     * @throws \Classes\Exceptions\PregMatch
+     */
     public function getMessagePartsWithoutTechnicalPart(string $message): array
     {
-
         $result = [];
 
         $parts = explode(PHP_EOL, $message);
@@ -89,17 +99,14 @@ class MessageParser
     }
 
 
-    // Предназначен для получения ФИО из строки вида - 'Signer: ...'
-    // Принимает параметры-----------------------------------
-    // Signer string: строка с подписантом
-    // Возвращает параметры----------------------------------
-    // string : ФИО подписанта
-    // Выбрасывает исключения--------------------------------
-    // Lib\Exceptions\CSPMessageParser :
-    // code:
-    //  1 - в БД не нашлось имени из ФИО
-    //  2 - в одном Signer нашлось больше одного ФИО
-    //
+    /**
+     * Предназначен для получения ФИО из строки вида - 'Signer: ...'
+     *
+     * @param string $Signer строка с подписантом
+     * @return string ФИО подписанта
+     * @throws SelfEx
+     * @throws \Classes\Exceptions\PregMatch
+     */
     public function getFIO(string $Signer): string
     {
 
@@ -157,12 +164,13 @@ class MessageParser
     }
 
 
-    // Предназначен для получения данных о сертификате из строки вида - 'Signer: ...'
-    // Принимает параметры-----------------------------------
-    // Signer string: строка с подписантом
-    // Возвращает параметры----------------------------------
-    // string : данные сертификата
-    //
+    /**
+     * Предназначен для получения данных о сертификате из строки вида - 'Signer: ...'
+     *
+     * @param string $Signer строка с подписантом
+     * @return string данные сертификата
+     * @throws \Classes\Exceptions\PregMatch
+     */
     public function getCertificateInfo(string $Signer): string
     {
 
@@ -177,12 +185,13 @@ class MessageParser
     }
 
 
-    // Предназначен для получения кода ошибки из в
-    // Принимает параметры-----------------------------------
-    // message string: вывод исполняемой cryptcp команды
-    // Возвращает параметры----------------------------------
-    // string : код ошибки
-    //
+    /**
+     * Предназначен для получения кода ошибки из строки вида - '[ErrorCode: ... ]'
+     *
+     * @param string $message вывод исполняемой cryptcp команды
+     * @return string код ошибки
+     * @throws \Classes\Exceptions\PregMatch
+     */
     public function getErrorCode(string $message): string
     {
 

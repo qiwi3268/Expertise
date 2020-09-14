@@ -1,9 +1,15 @@
 <?php
 
+use Classes\Exceptions\PregMatch as PregMatchEx;
 
-// Предназначен для включения пользовательской автозагрузки
-//
-function enableAutoloadRegister() {
+
+/**
+ * Предназначен для включения пользовательской автозагрузки
+ *
+ * @throws PregMatchEx
+ */
+function enableAutoloadRegister(): void
+{
 
     spl_autoload_register(function (string $className) {
 
@@ -25,13 +31,12 @@ function enableAutoloadRegister() {
 }
 
 
-// Предназначен для проверки наличия требуемых параметров в POST запросе
-// Принимает параметры-----------------------------------
-// params string: перечисление необходимых параметров
-// Возвращает параметры-----------------------------------
-// true : все принятые параметры присутствуют в массиве POST (на первом уровне вложенности)
-// false : в противном случае
-//
+/**
+ * Предназначен для проверки наличия требуемых параметров в <b>POST</b> запросе
+ *
+ * @param string ...$params <i>перечисление</i> необходимых параметров
+ * @return bool <b>true</b> все принятые параметры присутствуют в массиве POST (на первом уровне вложенности)<br/><b>false</b> в противном случае
+ */
 function checkParamsPOST(string ...$params): bool
 {
     foreach ($params as $param) {
@@ -42,7 +47,13 @@ function checkParamsPOST(string ...$params): bool
     return true;
 }
 
-// Предназначен для проверки наличия требуемых параметров в GET запросе
+
+/**
+ * Предназначен для проверки наличия требуемых параметров в <b>GET</b> запросе
+ *
+ * @param string ...$params <i>перечисление</i> необходимых параметров
+ * @return bool <b>true</b> все принятые параметры присутствуют в массиве GET (на первом уровне вложенности)<br/><b>false</b> в противном случае
+ */
 function checkParamsGET(string ...$params): bool
 {
     foreach ($params as $param) {
@@ -54,12 +65,12 @@ function checkParamsGET(string ...$params): bool
 }
 
 
-// Предназначен для очистки массива от html тегов (на первых двух уровнях вложенности)
-// Принимает параметры-----------------------------------
-// arr array: массив для очистки
-// Возвращает параметры-----------------------------------
-// array : очищенный массив
-//
+/**
+ * Предназначен для очистки массива от html тегов (на первых двух уровнях вложенности)
+ *
+ * @param array $arr массив для очистки
+ * @return array очищенный массив
+ */
 function clearHtmlArr(array $arr): array
 {
     $clearArr = [];
@@ -95,11 +106,12 @@ function getDdMmYyyyDate(int $timestamp): string
 }
 
 
-// Предназначен для перезаписи дат в ассоциативном массиве из timestamp в 'dd.mm.yyyy'
-// Принимает параметры-----------------------------------
-// &assocArray       array : ссылка на ассоциативный массив
-// datePropertyNames string: перечисление названий свойств, в которых находятся даты в формате timestamp
-//
+/**
+ * Предназначен для перезаписи дат в ассоциативном массиве из timestamp в 'dd.mm.yyyy'
+ *
+ * @param array $assocArray <i>ссылка</i> на ассоциативный массив
+ * @param string ...$datePropertyNames <i>перечисление</i> названий свойств, в которых находятся даты в формате timestamp
+ */
 function updateDatesTimestampToDdMmYyyy(array &$assocArray, string ...$datePropertyNames): void
 {
     foreach ($datePropertyNames as $propertyName) {
@@ -113,16 +125,16 @@ function updateDatesTimestampToDdMmYyyy(array &$assocArray, string ...$datePrope
 }
 
 
-// *** Регистрозависимый поиск
-// Предназначен для поиска вхождения подстроки в строку. Если передано несколько подсрок needles,
-// то true будет в случае вхождения всех подстрок
-// Принимает параметры-----------------------------------
-// haystack string : строка, в которой производится поиск
-// needles  string : перечисление подстрок
-// Возвращает параметры----------------------------------
-// true  : все подстроки присутствуют в строке
-// false : в противном случае
-//
+/**
+ * Предназначен для поиска вхождения подстроки в строку
+ *
+ * <b>Регистрозависимый поиск</b><br>
+ * Если передано несколько подсрок needles, то <b>true</b> будет в случае вхождения всех подстрок
+ *
+ * @param string $haystack строка, в которой производится поиск
+ * @param string ...$needles <i>перечисление</i> подстрок
+ * @return bool <b>true</b> все подстроки присутствуют в строке<br/><b>false</b> в противном случае
+ */
 function containsAll(string $haystack, string ...$needles): bool
 {
     foreach ($needles as $needle) {
@@ -131,7 +143,17 @@ function containsAll(string $haystack, string ...$needles): bool
     return true;
 }
 
-// *** РегистроНЕзависимый поиск
+
+/**
+ * Предназначен для поиска вхождения подстроки в строку
+ *
+ * <b>Регистронезависимый поиск</b><br>
+ * Если передано несколько подсрок needles, то <b>true</b> будет в случае вхождения всех подстрок
+ *
+ * @param string $haystack строка, в которой производится поиск
+ * @param string ...$needles <i>перечисление</i> подстрок
+ * @return bool <b>true</b> все подстроки присутствуют в строке<br/><b>false</b> в противном случае
+ */
 function icontainsAll(string $haystack, string ...$needles): bool
 {
     foreach ($needles as $needle) {
@@ -140,9 +162,17 @@ function icontainsAll(string $haystack, string ...$needles): bool
     return true;
 }
 
-// *** Регистрозависимый поиск
-// Предназначен для поиска вхождения подстроки в строку. Если передано несколько подсрок needles,
-// то true будет в случае хотя бы одной подстроки
+
+/**
+ * Предназначен для поиска вхождения подстроки в строку
+ *
+ * <b>Регистрозависимый поиск</b><br>
+ * Если передано несколько подсрок needles, то <b>true</b> будет в случае хотя бы одной подстроки
+ *
+ * @param string $haystack строка, в которой производится поиск
+ * @param string ...$needles <i>перечисление</i> подстрок
+ * @return bool <b>true</b> все подстроки присутствуют в строке<br/><b>false</b> в противном случае
+ */
 function containsAny(string $haystack, string ...$needles): bool
 {
     foreach ($needles as $needle) {
@@ -152,19 +182,17 @@ function containsAny(string $haystack, string ...$needles): bool
 }
 
 
-// Предназначен для получения массива совпавших значений с учетом обработки результата работы функции
-// Результатом работы функции обязательно должно быть вхождение шаблона
-// Принимает параметры-----------------------------------
-// pattern string         : искомый шаблон
-// subject string         : входная строка
-// is_preg_match_all bool : в ходе работы метода будет выполняться функция:
-//      true  - preg_match_all
-//      false - preg_match
-// Возвращает параметры----------------------------------
-// array : массив совпавших значений
-// Выбрасывает исключения--------------------------------
-// Classes\Exceptions\PregMatch : во время выполнения функции произошла ошибка или нет вхождений шаблона
-//
+/**
+ * Предназначен для получения массива совпавших значений с учетом обработки результата работы функции
+ *
+ * Результатом работы функции обязательно должно быть вхождение шаблона
+ *
+ * @param string $pattern искомый шаблон
+ * @param string $subject входная строка
+ * @param bool $is_preg_match_all в ходе работы метода будет выполняться функция:<br><b>true</b> preg_match_all<br/><b>false</b> preg_match
+ * @return array массив совпавших значений
+ * @throws PregMatchEx
+ */
 function getHandlePregMatch(string $pattern, string $subject, bool $is_preg_match_all): array
 {
     $functionName = $is_preg_match_all ? 'preg_match_all' : 'preg_match';
@@ -173,19 +201,19 @@ function getHandlePregMatch(string $pattern, string $subject, bool $is_preg_matc
 
     // Во время выполнения произошли ошибки или нет вхождений шаблона
     if ($result === false || $result === 0) {
-        throw new \Classes\Exceptions\PregMatch("Во время выполнения функции: '{$functionName}' произошла ошибка или нет вхождений шаблона: '{$pattern}' в строку: '{$subject}'", 1);
+        throw new PregMatchEx("Во время выполнения функции: '{$functionName}' произошла ошибка или нет вхождений шаблона: '{$pattern}' в строку: '{$subject}'", 1);
     }
 
     return $matches;
 }
 
 
-// Предназначен для перевода байт в человекопонятный формат
-// Принимает параметры-----------------------------------
-// bytes int : размер файла в байтах
-// Возвращает параметры----------------------------------
-// string : строка формата 20,65 Мб
-//
+/**
+ * Предназначен для перевода байт в человекопонятный формат
+ *
+ * @param int $bytes размер файла в байтах
+ * @return string строка формата: <i>20,65 Мб</i>
+ */
 function getHumanFileSize(int $bytes): string
 {
     if ($bytes == 0) return '0 Б';
@@ -199,13 +227,14 @@ function getHumanFileSize(int $bytes): string
 }
 
 
-// Предназначен для получения ФИО из ассоциативного массива пользователя
-// Принимает параметры-----------------------------------
-// userInfo array : ассоциативный массив, в котором есть ключи: last_name, first_name, middle_name
-// needShort bool : возвращать короткую или полную версию ФИО
-// Возвращает параметры----------------------------------
-// string : ФИО в нужном формате
-//
+/**
+ * Предназначен для получения ФИО из ассоциативного массива пользователя
+ *
+ * @param array $userInfo ассоциативный массив, в котором есть ключи: last_name, first_name, middle_name
+ * @param bool $needShort <b>true</b> возвращать короткую версию ФИО<br/><b>false</b> возвращать полную версию ФИО
+ * @return string ФИО в нужном формате
+ * @throws PregMatchEx
+ */
 function getFIO(array $userInfo, bool $needShort = true): string
 {
     list('last_name' => $F, 'first_name' => $I, 'middle_name' => $O) = $userInfo;
@@ -241,13 +270,14 @@ function getFIO(array $userInfo, bool $needShort = true): string
 }
 
 
-// Возвращает хэш-массив на основе входного индексного массива
-// [0 => 'a', 1 => 'b', 2 => 'c'] трансформирует в ['a' => true, 'b' => true, 'c' => true]
-// Принимает параметры-----------------------------------
-// array array : индексный массив
-// Возвращает параметры----------------------------------
-// array : хэш-массив
-//
+/**
+ * Возвращает хэш-массив на основе входного индексного массива
+ *
+ * [0 => 'a', 1 => 'b', 2 => 'c'] трансформирует в ['a' => true, 'b' => true, 'c' => true]
+ *
+ * @param array $array индексный массив
+ * @return array хэш-массив
+ */
 function getHashArray(array $array): array
 {
     $result = [];
@@ -258,10 +288,13 @@ function getHashArray(array $array): array
 }
 
 
-// Предназначена для вывода var_dump только у тех пользователей, где в
-// get-параметре присутствует debug=1
-//
-function p($arg)
+/**
+ * Предназначен для форматированного вывода var_dump
+ *
+ * Вывод виден только тем пользователем, у которых в <b>get</b>-параметре присутствует <i>debug=1</i>
+ * @param $arg
+ */
+function p($arg): void
 {
     if (isset($_GET['debug']) && $_GET['debug'] == 1) {
         var_dump($arg);

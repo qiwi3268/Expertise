@@ -10,14 +10,15 @@ use Tables\application;
 use Tables\Responsible\type_3\application as resp_application_type_3;
 use Tables\applicant_access_group;
 use Tables\Actions\application as ApplicationActions;
-use core\Classes\XMLHandler;
+use core\Classes\RoutesXMLHandler;
 
-$handler = new XMLHandler();
+$handler = new RoutesXMLHandler();
 
 $page = $handler->getPage('home/application/create22');
 
 $handler->validatePagesStructure();
 $handler->handleValidatedPageValues($page);
+
 
 
 

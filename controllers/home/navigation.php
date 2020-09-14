@@ -95,6 +95,7 @@ $Pagination = new Pagination($className::getCountByIdUser($userId), $dataPerPage
 // Флаги существования предыдущей/следующей страницы
 $issetPreviousPage = $Pagination->checkIssetPreviousPage();
 $issetNextPage = $Pagination->checkIssetNextPage();
+
 $variablesTV->setExistenceFlag('pagination_PreviousPage', $issetPreviousPage);
 $variablesTV->setExistenceFlag('pagination_NextPage', $issetNextPage);
 
@@ -110,8 +111,8 @@ $variablesTV->setValue('pagination_CurrentPage', "{$currentPage} из {$Paginati
 // Запрос в БД c учётом сортировки и пагинации ---------------------------------------------
 //
 
-    $SORT_name = $NavigationParameters->getSortName();
-    $SORT_type = $NavigationParameters->getSortType();
+$SORT_name = $NavigationParameters->getSortName();
+$SORT_type = $NavigationParameters->getSortType();
 
     //todo среднее переделать эту логику и если нет данных, то не отображать пагинацию и сделать через setExistanceflag в трансфере
 if ($Pagination->getPageCount() > 0) {

@@ -3,23 +3,39 @@
 
 namespace core\Classes;
 
-use core\Classes\Exceptions\XMLHandler as RouteHandlerEx;
-use core\Classes\XMLHandler as RouteHandler;
+use Lib\Exceptions\XMLValidator as XMLValidatorEx;
+use core\Classes\RoutesXMLHandler as RoutesXMLHandler;
 use SimpleXMLElement;
 
 
+/**
+ * Предназначен маршрутизации запроса
+ *
+ */
 final class Route
 {
 
-    private RouteHandler $routeHandler;
+    private RoutesXMLHandler $routesHandler;
+
+    /**
+     * XML-узел page входящего запроса
+     *
+     */
     private SimpleXMLElement $page;
 
+    /**
+     * Флаг существования страницы по входящему запросу
+     *
+     */
     private bool $routeExist;
 
 
-    // Принимает параметры-----------------------------------
-    // requestURI string : URI входящего на сервер запроса
-    //
+    /**
+     * Конструктор класса.
+     *
+     * @param string $requestURI URI входящего на сервер запроса
+     * @throws XMLValidatorEx
+     */
     public function __construct(string $requestURI)
     {
         // Полный запрос с первым '/' и get-параметрами
@@ -27,42 +43,56 @@ final class Route
         // Запрос в формате без первого '/' и get-параметров
         define('URN', mb_substr(parse_url($requestURI, PHP_URL_PATH), 1));
 
-        $this->routeHandler = new RouteHandler();
+        $this->routesHandler = new RoutesXMLHandler();
 
         try {
 
-            $this->page = $this->routeHandler->getPage(URN);
+            $this->page = $this->routesHandler->getPage(URN);
             $this->routeExist = true;
-        } catch (RouteHandlerEx $e) {
+        } catch (XMLValidatorEx $e) {
 
             $e_message = $e->getMessage();
             $e_code = $e->getCode();
 
             // Не найдено узлов по XML-пути
-            if ($e_code == 3) {
+            if ($e_code == 6) {
                 $this->routeExist = false;
             } else {
-                throw new RouteHandlerEx($e_message, $e_code);
+                throw new XMLValidatorEx($e_message, $e_code);
             }
         }
     }
 
 
+    /**
+     * Предназначен для проверки существования маршрута
+     *
+     * @return bool
+     */
     public function isRouteExist(): bool
     {
         return $this->routeExist;
     }
 
 
+    /**
+     * @uses RoutesXMLHandler::validatePageStructure()
+     * @return $this объект класса для построения цепочки вызовов
+     * @throws XMLValidatorEx
+     */
     public function validatePageStructure(): self
     {
-        $this->routeHandler->validatePageStructure($this->page);
+        $this->routesHandler->validatePageStructure($this->page);
         return $this;
     }
 
 
+    /**
+     * @uses RoutesXMLHandler::handleValidatedPageValues()
+     * @throws Exceptions\RoutesXMLHandler
+     */
     public function handleValidatedPageValues(): void
     {
-        $this->routeHandler->handleValidatedPageValues($this->page);
+        $this->routesHandler->handleValidatedPageValues($this->page);
     }
 }

@@ -69,7 +69,7 @@ function expandCard (card) {
 function changeParentCardMaxHeight (inner_element, value = null) {
    let card_body = inner_element.closest('.card-body');
 
-   card_body.style.transition = `${card_body.scrollHeight / 2500 + 0.2}s`;
+   // card_body.style.transition = `${card_body.scrollHeight / 2500 + 0.2}s`;
    // card_body.style.transition = `${card_body.scrollHeight / 2500 + 0.2}s cubic-bezier(0.65, 0, 0.35, 1)`;
 
    if (!value) {

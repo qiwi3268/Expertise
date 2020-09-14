@@ -5,6 +5,7 @@ namespace Classes\Navigation;
 
 use Lib\Exceptions\PrimitiveValidator as  PrimitiveValidatorEx;
 use Classes\Exceptions\Navigation as SelfEx;
+use Lib\Singles\XMLValidator;
 use Lib\Singles\PrimitiveValidator;
 use SimpleXMLElement;
 
@@ -15,10 +16,11 @@ use SimpleXMLElement;
 class Navigation
 {
 
+    private XMLValidator $XMLValidator;
     private PrimitiveValidator $PrimitiveValidator;
 
     private const ABSTRACT_CLASS_NAME = '\Classes\Navigation\NavigationTable';
-    public const NAMESPACE_CLASSES = '\Classes\Navigation\Classes';
+    public const NAMESPACE_CLASSES = '\Classes\Navigation\BlockClasses';
     public const VIEWS_PATH = ROOT . '/views/home/navigation';
 
 
@@ -38,14 +40,15 @@ class Navigation
     //  2  - пользователю c ролями не определен ни один навигационный блок
     //  3  - в XML-схеме навигации отсутствуют блоки
     //
-    function __construct(array $userRoles)
+    public function __construct(array $userRoles)
     {
+        $this->XMLValidator = new XMLValidator();
         $this->PrimitiveValidator = new PrimitiveValidator();
 
-        // Ошибка при инициализации объекта
         if (($data = simplexml_load_file(SETTINGS . '/navigation.xml')) === false) {
             throw new SelfEx("Ошибка при инициализации XML-схемы навигации", 1);
         }
+
 
         // Валидации структуры схемы
         $this->validateNavigationXML($data);
@@ -61,7 +64,6 @@ class Navigation
 
         foreach ($userRoles as $role) {
 
-            // Есть соответствующий блок для роли пользователя
             if (isset(self::BLOCKS[$role])) {
                 $requiredBlocks = [...$requiredBlocks, ...self::BLOCKS[$role]];
             }
@@ -152,43 +154,25 @@ class Navigation
     //    value ссылка для перехода на указанную страницу
     // Принимает параметры-----------------------------------
     // XML SimpleXMLElement : XML-схема навигации
-    // Выбрасывает исключения--------------------------------
-    // Classes\Exceptions\Navigation :
-    // code:
-    //  4  - в узле <block /> присутствуют дочерние элементы помимо <view /> и <ref />
-    //  5  - в XML-схеме навигации присутствуют узлы помимо <block>
     //
     private function validateNavigationXML(SimpleXMLElement $XML): void
     {
-
-        $blockCount = 0;
-
         foreach ($XML->block as $block) {
 
-            $viewCount = 0;
-            $refCount = 0;
-
-            $this->validateAttributes($block, true, '<block>', 'name', 'label');
-            $blockCount++;
+            $this->XMLValidator->validateAttributes($block, '<block />', ['name', 'label']);
+            $this->XMLValidator->validateChildren($block, '<block />', ['view', 'ref']);
 
             foreach ($block->view as $view) {
-                $this->validateAttributes($view, true, '<view />', 'name', 'label', 'class_name', 'view_name', 'show_counter');
-                $viewCount++;
+
+                $this->XMLValidator->validateAttributes($view, '<view />', ['name', 'label', 'class_name', 'view_name', 'show_counter']);
+                $this->XMLValidator->validateChildren($view, '<view />', []);
             }
 
             foreach ($block->ref as $ref) {
-                $this->validateAttributes($ref, true, '<ref />', 'label', 'value');
-                $refCount++;
-            }
 
-            if (($viewCount + $refCount) < $block->count()) {
-                throw new SelfEx("В узле <block /> name='{$block['name']}' присутствуют дочерние элементы помимо <view /> и <ref />", 4);
+                $this->XMLValidator->validateAttributes($ref, '<ref />', ['label', 'value']);
+                $this->XMLValidator->validateChildren($ref, '<ref />', []);
             }
-        }
-
-        // В схеме имеются элементы кроме <block />
-        if ($blockCount < $XML->count()) {
-            throw new SelfEx('В XML-схеме навигации присутствуют узлы помимо <block>', 5);
         }
     }
 
@@ -201,13 +185,13 @@ class Navigation
     // Выбрасывает исключения--------------------------------
     // Classes\Exceptions\Navigation :
     // code:
-    //  6  - в узле <block /> присутствуют узлы <view /> с одинаковыми атрибутами name
-    //  7  - присутствуют узлы <block /> с одинаковыми аттрибутами name
+    //  4  - в узле <block /> присутствуют узлы <view /> с одинаковыми атрибутами name
+    //  5  - присутствуют узлы <block /> с одинаковыми аттрибутами name
     //
     private function checkNameUniqueness(SimpleXMLElement $XML): void
     {
-
         $blockNames = [];
+
         foreach ($XML->block as $block) {
 
             $blockName = (string)$block['name'];
@@ -219,71 +203,17 @@ class Navigation
             }
 
             foreach (array_count_values($viewNames) as $name => $count) {
-                if ($count > 1) throw new SelfEx("В узле <block /> name: '{$blockName}' присутствуют узлы <view /> с одинаковыми атрибутами name: '{$name}'", 6);
+                if ($count > 1) throw new SelfEx("В узле <block /> name: '{$blockName}' присутствуют узлы <view /> с одинаковыми атрибутами name: '{$name}'", 4);
             }
         }
 
         foreach (array_count_values($blockNames) as $name => $count) {
-            if ($count > 1) throw new SelfEx("Присутствуют узлы <block /> с одинаковыми аттрибутами name: '{$name}'", 7);
+            if ($count > 1) throw new SelfEx("Присутствуют узлы <block /> с одинаковыми аттрибутами name: '{$name}'", 5);
         }
     }
+    
 
-
-    // Предназначен для проверки наличия обязательных аттрибутов в узле
-    // Принимает параметры-----------------------------------
-    // node     SimpleXMLElement : проверяемый узел
-    // onlyRequired         bool : true - вызовет исключение, если в узле имеются аттрибуты помимо требуемых
-    // debugName          string : имя узла для его вывода в дамп ошибки
-    // requiredAttributes string : перечисление требуемых аттрибутов
-    // Выбрасывает исключения--------------------------------
-    // Classes\Exceptions\Navigation :
-    // code:
-    //  8  - в узле среди аттрибутов ... не найден обязательный аттрибут
-    //  9  - в узле имеются аттрибуты помимо ...
-    //
-    private function validateAttributes(SimpleXMLElement $node, bool $onlyRequired, string $debugName, string ...$requiredAttributes): void
-    {
-
-        // Получение массива аттрибутов узла из XML-объекта
-        $tmp = (array)$node->attributes();
-        $nodeAttributes = $tmp['@attributes'];
-
-        // Берем только названия аттрибутов
-        $nodeAttributes = array_keys($nodeAttributes);
-        // Строка для дампа ошибок берется сейчас, т.к. в цикле удаляются элементы массива
-        $string_nodeAttributes = implode(', ', $nodeAttributes);
-
-        $entryCount = 0;                               // Счетчик требуемых аттрибутов среди имеющихся в узле
-        $countNodeAttributes = count($nodeAttributes); // Счетчик аттрибутов в узле
-
-        foreach ($requiredAttributes as $requiredAttribute) {
-
-            $entryFlag = false; // Флаг того, что требуемый аттрибут присутствует среди узловых
-
-            foreach ($nodeAttributes as $index => $nodeAttribute) {
-
-                if ($requiredAttribute == $nodeAttribute) {
-
-                    $entryCount++;
-                    $entryFlag = true;
-                    unset($nodeAttributes[$index]);
-                    break;
-                }
-            }
-
-            if (!$entryFlag) {
-                throw new SelfEx("В узле: '{$debugName}' среди аттрибутов: '{$string_nodeAttributes}' не найден обязательный аттрибут '{$requiredAttribute}'", 8);
-            }
-        }
-
-        if ($onlyRequired && ($entryCount != $countNodeAttributes)) {
-            $msg = implode(', ', $requiredAttributes);
-            throw new SelfEx("В узле: '{$debugName}' имеются аттрибуты помимо: '{$msg}'", 9);
-        }
-    }
-
-
-    // Предназначен для валидации ЗНАЧЕНИЙ навигационного массива пользователя согласно принятым правилам:
+    // Предназначен для валидации ЗНАЧЕНИЙ навигационного массива пользователя согласно правилам:
     // <view />
     //    class_name класс, располагаемый в пакете self::NAMESPACE_CLASSES\{class_name}
     //               класс должен быть наследником абстрактного класса NavigationTable
@@ -295,17 +225,17 @@ class Navigation
     // Выбрасывает исключения--------------------------------
     // Classes\Exceptions\Navigation :
     // code:
-    //  10 - абстрактный класс навигационной страницы не существует
-    //  11 - требуемый класс не существует
-    //  12 - файл view по пути не существует
-    //  13 - аттрибут show_counter не равен 0 или 1
-    //  14 - внутренняя ссылка на внутренний ресурс должна начинаться с символа '/'
+    //  6  - абстрактный класс навигационной страницы не существует
+    //  7  - требуемый класс не существует
+    //  8  - файл view по пути не существует
+    //  9  - аттрибут show_counter не равен 0 или 1
+    //  10 - внутренняя ссылка на внутренний ресурс должна начинаться с символа '/'
     //
     private function validateUserNavigation(): void
     {
 
         if (!class_exists(self::ABSTRACT_CLASS_NAME)) {
-            throw new SelfEx("Абстрактный класс навигационной страницы: '" . self::ABSTRACT_CLASS_NAME . "' не существует", 10);
+            throw new SelfEx("Абстрактный класс навигационной страницы: '" . self::ABSTRACT_CLASS_NAME . "' не существует", 6);
         }
 
         foreach ($this->userNavigation as $block) {
@@ -325,7 +255,7 @@ class Navigation
 
                     // Проверка существования класса
                     if (!class_exists($class_name)) {
-                        throw new SelfEx("Требуемый класс: '{$class_name}' в узле: '{$nodeName}' не существует", 11);
+                        throw new SelfEx("Требуемый класс: '{$class_name}' в узле: '{$nodeName}' не существует", 7);
                     }
 
                     // Валидация подключаемой view -------------------------------------------------------------
@@ -333,14 +263,14 @@ class Navigation
 
                     // Проверка существования файла view
                     if (!file_exists($view_path)) {
-                        throw new SelfEx("Файл view в узле: '{$nodeName}' по пути: '{$view_path}' не существует", 12);
+                        throw new SelfEx("Файл view в узле: '{$nodeName}' по пути: '{$view_path}' не существует", 8);
                     }
 
                     // Валидация флага отображения счетчика ----------------------------------------------------
                     try {
                         $this->PrimitiveValidator->validateSomeInclusions($show_counter, '0', '1');
                     } catch (PrimitiveValidatorEx $e) {
-                        throw new SelfEx("Аттрибут show_counter со значением: '{$show_counter}' в узле: '{$nodeName}' не равен 0 или 1", 13);
+                        throw new SelfEx("Аттрибут show_counter со значением: '{$show_counter}' в узле: '{$nodeName}' не равен 0 или 1", 9);
                     }
                 }
             }
@@ -350,7 +280,7 @@ class Navigation
                 foreach ($block['refs'] as ['value' => $value]) {
                     // Валидация ссылки на указанную страницу --------------------------------------------------
                     if (!containsAll($value, 'http') && ($value[0] != '/')) {
-                        throw new SelfEx("Внутренняя ссылка: '{$value}' в блоке: '{$block['label']}' на внутренний ресурс должна начинаться с символа '/'", 14);
+                        throw new SelfEx("Внутренняя ссылка: '{$value}' в блоке: '{$block['label']}' на внутренний ресурс должна начинаться с символа '/'", 10);
                     }
                 }
             }
@@ -363,13 +293,13 @@ class Navigation
     //
     private function validateNavigationSorting(): void
     {
-
         // Формирование списка уникальных (не повторяющихся view пользователя)
         $uniqueViews = [];
 
         foreach ($this->userNavigation as $block) {
 
             if (isset($block['views'])) {
+
                 foreach ($block['views'] as ['view_name' => $view_name]) {
                     $uniqueViews[$view_name] = $view_name;
                 }
@@ -378,6 +308,7 @@ class Navigation
 
         // Проверка существования каждой view в константном массиве
         foreach ($uniqueViews as $view_name) {
+
             if (!isset(NAVIGATION_SORTING[$view_name])) {
                 throw new SelfEx("В константном массиве NAVIGATION_SORTING отсутствует объявление view: '{$view_name}'");
             }

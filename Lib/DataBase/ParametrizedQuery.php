@@ -4,17 +4,21 @@
 namespace Lib\DataBase;
 
 
+/**
+ * Предназначен для работы с параметризованными запросами к базе данных
+ *
+ */
 final class ParametrizedQuery extends DataBase
 {
 
-
-    // Предназначен для выполнения запросов типа SELECT
-    // Принимает параметры-----------------------------------
-    // query     string : параметризованный запрос к БД
-    // bindParams array : параметры запроса
-    // Возвращает параметры-----------------------------------
-    // array : ассоциативный массив
-    //
+    /**
+     * Предназначен для выполнения запросов типа SELECT
+     *
+     * @param string $query параметризованный запрос к БД
+     * @param array $bindParams параметры запроса
+     * @return array ассоциативный массив результата запроса
+     * @throws \Lib\Exceptions\DataBase
+     */
     static public function getFetchAssoc(string $query, array $bindParams): array
     {
         $result = parent::executeParametrizedQuery($query, $bindParams);
@@ -27,13 +31,16 @@ final class ParametrizedQuery extends DataBase
     }
 
 
-    // Используется, когда результат выборки данных содержит одно поле
-    // Предназначен для выполнения запросов типа SELECT
-    // query     string : параметризованный запрос к БД
-    // bindParams array : параметры запроса
-    // Возвращает параметры-----------------------------------
-    // array : индексный массив (без подмассивов)
-    //
+    /**
+     * Предназначен для выполнения запросов типа SELECT
+     *
+     * Используется, когда результат выборки данных содержит одно поле
+     *
+     * @param string $query параметризованный запрос к БД
+     * @param array $bindParams параметры запроса
+     * @return array индексный массив результата запроса (без подмассивов)
+     * @throws \Lib\Exceptions\DataBase
+     */
     static public function getSimpleArray(string $query, array $bindParams): array
     {
         $result = parent::executeParametrizedQuery($query, $bindParams);
@@ -46,13 +53,16 @@ final class ParametrizedQuery extends DataBase
     }
 
 
-    // Используется для внесения изменений в БД
-    // Предназначен для выполнения запросов типа INSERT UPDATE DELETE
-    // query     string : параметризованный запрос к БД
-    // bindParams array : параметры запроса
-    // Возвращает параметры-----------------------------------
-    // int : id только созданной записи
-    //
+    /**
+     * Используется для внесения изменений в БД
+     *
+     * Предназначен для выполнения запросов типа INSERT UPDATE DELETE
+     *
+     * @param string $query параметризованный запрос к БД
+     * @param array $bindParams параметры запроса
+     * @return int id созданной записи
+     * @throws \Lib\Exceptions\DataBase
+     */
     static public function set(string $query, array $bindParams): int
     {
         parent::executeParametrizedQuery($query, $bindParams);

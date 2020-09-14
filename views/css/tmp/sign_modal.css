@@ -1,0 +1,209 @@
+.sign-modal {
+    height: 500px;
+    min-width: 800px;
+    font-size: 16px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.sign-modal__button:first-child {
+    border-radius: 0px 0px 0px 3px;
+}
+
+.sign-modal__button:last-child {
+    border-radius: 0px 0px 3px 0px;
+}
+
+.sign-modal__button:hover {
+    background-color: #f2f2f2;
+}
+
+.sign-modal__header {
+    border-bottom: 2px solid #ffd354;
+    padding: 2px 10px;
+}
+
+.sign-modal__cert-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.sign-modal__cert-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 3px 10px;
+    border-top: 1px solid #cccccc;
+    max-height: 140px;
+    font-size: 16px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.sign-modal__title {
+    padding: 5px;
+    font-weight: 700;
+}
+
+.sign-modal__cert-text {
+    padding: 3px 5px;
+    border-radius: 3px;
+}
+
+.sign-modal__cert {
+    margin: 4px 0px;
+    transition: .1s;
+    cursor: pointer;
+}
+
+.sign-modal__cert[data-selected='true'][data-state='true'] > .sign-modal__cert-text {
+    background-color: #ddfad9;
+}
+
+.sign-modal__cert[data-selected='true'][data-state='false'] > .sign-modal__cert-text {
+    background-color: #FFE3E3;
+}
+
+.sign-modal__cert:hover > .sign-modal__cert-text {
+    background-color: #E3EFFF;
+}
+
+.sign-modal__sign {
+    padding: 5px 7px;
+    border-top: 1px solid #cccccc;
+}
+
+.sign-modal__label {
+    font-weight: 700;
+}
+
+.sign-modal__label[data-state='true'] {
+    color: #6cb37e;
+}
+
+.sign-modal__label[data-state='true']:hover {
+    color: #6cb37e;
+}
+
+.sign-modal__label[data-state='true'] {
+    color: #db5151;
+}
+
+.sign-modal__file {
+    display: flex;
+    align-items: center;
+    padding: 6px 8px 6px 10px;
+    margin: 10px 5px;
+    cursor: default;
+    transition: .15s;
+    border-radius: 4px;
+}
+
+.sign-modal__file:hover {
+    background-color: #f2f2f2;
+}
+
+.sign-modal__cert-info {
+    padding: 3px 10px;
+    border-top: 1px solid #cccccc;
+}
+
+.sign-modal__row {
+    padding: 1px;
+}
+
+.sign-modal__cert-row {
+    padding: 3px 5px;
+}
+
+.sign-modal__sign-row {
+    line-height: 1.5;
+}
+
+.sign-modal__file-body {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sign-modal__buttons > .application-button {
+    min-width: 200px;
+    min-height: 50px;
+    text-align: center;
+    margin: 0px 0px 5px 0px;
+}
+
+.sign-modal__actions {
+    width: 800px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid #ffd354;
+}
+
+.sign-modal__text[data-state='true'] {
+    color: #6cb37e;
+}
+
+.sign-modal__text[data-state='false'] {
+    color: #db5151;
+}
+
+.sign-modal__buttons {
+    margin: 10px;
+}
+
+.sign-modal__btn {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    width: 250px;
+    margin: 0px 0px 8px 0px;
+    padding: 6px 8px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    transition: .10s;
+    cursor: pointer;
+}
+
+.sign-modal__icon-button {
+    font-size: 18px;
+}
+
+.sign-modal__btn:hover {
+    box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
+    border-color: #80bdff;
+}
+
+.sign-modal__file-info {
+    overflow: hidden;
+}
+
+.sign-modal__empty {
+    flex-grow: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

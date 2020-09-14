@@ -9,9 +9,6 @@ let overlay;
 document.addEventListener('DOMContentLoaded', () => {
    modals = new Map();
 
-   // Поля для заполнения
-   // let modal_selects = document.querySelectorAll('.modal-select');
-
    // Фон модального окна
    overlay = document.querySelector('.modal-overlay');
 
@@ -21,20 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
    initializeModalSelects(document);
 
-   /*   modal_selects.forEach(select => {
-         select.addEventListener('click', () => {
-            modal = getModalBySelect(select);
-
-            if (!modal.is_empty) {
-               modal.show();
-            } else {
-               createAlert(modal.alert_message);
-               modal.alert_message = '';
-            }
-            disableScroll();
-
-         });
-      });*/
 });
 
 function initializeModalSelects (block) {
@@ -64,19 +47,21 @@ function initializeModalSelects (block) {
 //
 function getModalBySelect (select) {
    let modal;
-   let modal_name;
-   let parent_row = select.closest('.field');
+   // let modal_name;
+   // let parent_row = select.closest('.field');
 
-   modal_name = parent_row.dataset.field_name;
+   // let modal_name = parent_row.dataset.field_name;
+   let id_modal = select.dataset.id_modal;
+   modal = id_modal ? modals.get(parseInt(id_modal)) : new Modal(select);
 
-   //TODO одинаковые модалки в разных блоках
+/*   //TODO одинаковые модалки в разных блоках
    if (modals.has(modal_name)) {
       modal = new Modal(select);
       // modal = modals.get(modal_name);
    } else {
       modal = new Modal(select);
-      modals.set(modal.name, modal);
-   }
+      modals.set(modal.id, modal);
+   }*/
 
    // Если страниц больше 1 отображаем пагинацию
    if (modal.pages.length > 1) {
@@ -110,7 +95,6 @@ function createAlert (message) {
    modal.classList.add('active');
    overlay.classList.add('active');
 
-   //TODO создавать сразу
    createModalCloseButton(modal);
 }
 
@@ -131,6 +115,9 @@ function createModalCloseButton (modal) {
 
 //Modal--------------------------------------------------------------------------------------------
 class Modal {
+   static modals_counter = 0;
+   id;
+
    // Родительское поле
    parent_row;
 
@@ -161,7 +148,9 @@ class Modal {
    // Принимает параметры-------------------------------------------
    // select     Element : поле, для которого вызывается модальное окно
    constructor (select) {
+      this.id = Modal.modals_counter++;
       this.select = select;
+      this.select.dataset.id_modal = this.id;
 
       this.parent_row = this.select.closest('.field');
 
@@ -181,6 +170,7 @@ class Modal {
       //добавляем событие для выбора элемента
       this.initItems();
 
+      modals.set(this.id, this);
    }
 
    // Предназначен для инициализации страниц с элементами из справочника модального окна
@@ -291,7 +281,6 @@ class Modal {
                this.clearRelatedModals();
                this.close();
 
-
             });
          });
       });
@@ -321,13 +310,10 @@ class Modal {
       modal.result_input.value = '';
       modal.select.classList.remove('filled');
 
-      // Убираем сообщение с ошибкой
-      let error = modal.parent_row.querySelector('.field-error');
-      error.classList.remove('active');
-
       let select_value = modal.select.querySelector('.field-value');
       select_value.innerHTML = 'Выберите значение';
-      modals.delete(modal.name);
+      modal.select.removeAttribute('data-id_modal');
+      modals.delete(modal.id);
    }
 
    // Предназначен для получения массива зависимых модальных окон
@@ -336,15 +322,18 @@ class Modal {
    //
    getDependentModals () {
       let dependent_modals = [];
-      let dependent_inputs = document.querySelectorAll(`[data-when_change="${this.name}"]`);
-      let dependent_modal;
+      let scope = this.element.closest('[data-dependency_scope]') || document;
+      let dependent_inputs = document.querySelectorAll(`[data-when_change='${this.name}']`);
 
       dependent_inputs.forEach(input => {
-         dependent_modal = modals.get(input.dataset.target_change);
+         let dependent_field = scope.querySelector(`.field[data-name='${input.dataset.target_change}']`);
+         let modal_select = dependent_field.querySelector('[data-id_modal]');
 
-         if (dependent_modal) {
+         if (modal_select) {
+            let dependent_modal = modals.get(parseInt(modal_select.dataset.id_modal));
             dependent_modals.push(dependent_modal);
          }
+
       });
 
       return dependent_modals;

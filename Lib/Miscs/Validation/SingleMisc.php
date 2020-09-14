@@ -3,17 +3,25 @@
 
 namespace Lib\Miscs\Validation;
 
+use Lib\Exceptions\MiscValidator as SelfEx;
 
-// Предназначен для валидации одиночных справочников
+
+/**
+ * Предназначен для валидации одиночных справочников
+ *
+ */
 class SingleMisc extends Validator
 {
     private const INTERFACE = 'Tables\Miscs\Interfaces\SingleMiscValidate';
     private const METHOD = 'checkExistById';
 
 
-    // Принимает параметры-----------------------------------
-    // form_value string : значение из формы
-    // class      string : название класса справочника
+    /**
+     * Конструктор класса
+     *
+     * @param string $form_value значение из формы
+     * @param string $class название класса справочника
+     */
     public function __construct(string $form_value, string $class)
     {
         $this->form_value = $form_value;
@@ -21,9 +29,12 @@ class SingleMisc extends Validator
     }
 
 
-    // Предназначен для комплексной проверки справочника
-    //
-    public function validate()
+    /**
+     * Предназначен для комплексной проверки справочника
+     *
+     * @throws SelfEx
+     */
+    public function validate(): void
     {
         if ($this->form_value !== '') {
 

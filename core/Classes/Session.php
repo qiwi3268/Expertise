@@ -4,16 +4,22 @@
 namespace core\Classes;
 
 
+/**
+ * Предназначен работы с <b>$_SESSION</b>
+ *
+ * Любая работа с сессией должна производиться через методы этого класса<br>
+ * Работать напрямую с глобальным массивом $_SESSION <b>запрещено</b>
+ *
+ */
 class Session
 {
 
-    // ------------------------------------- Блок сессии в контексте пользователя -------------------------------------
-
-    // Предназначен для создания сессии пользователя при авторизации
-    // Принимает параметры-----------------------------------
-    // userAssoc array : данные о пользователе
-    // userRole  array : данные о ролях пользователя
-    //
+    /**
+     * Предназначен для создания сессии пользователя
+     *
+     * @param array $userAssoc ассоциативный массив пользователя
+     * @param array $userRoles ассоциативный массив ролей пользователя
+     */
     static public function createUser(array $userAssoc, array $userRoles): void
     {
         $_SESSION['user_info'] = [
@@ -39,42 +45,65 @@ class Session
     }
 
 
-    // Предназначен для удаления данных о пользователе из сессии
-    //
+    /**
+     * Предназначен для удаления данных о пользователе из сессии
+     *
+     */
     static public function deleteUser(): void
     {
         unset($_SESSION['user_info'], $_SESSION['flags'], $_SESSION['role_in_application']);
     }
 
 
+    /**
+     * Предназначен для получения user_info
+     *
+     * @return array ассоциативный массив user_info
+     */
     static public function getUserInfo(): array
     {
         return $_SESSION['user_info'];
     }
 
+
+    /**
+     * Предназначен для получения id пользователя
+     *
+     * @return int id пользователя
+     */
     static public function getUserId(): int
     {
         return $_SESSION['user_info']['id'];
     }
 
+
+    /**
+     * Предназначен для получения полного ФИО пользователя
+     *
+     * @return string полное ФИО пользователя
+     */
     static public function getUserFullFIO(): string
     {
-        list('last_name' => $F, 'first_name' => $I, 'middle_name' => $O) = $_SESSION['user_info'];
-        return "{$F} {$I} {$O}";
+        return getFIO($_SESSION['user_info'], false);
     }
 
-    // Предназначен получения для получения ролей пользователя
-    //
+
+    /**
+     * Предназначен получения для получения ролей пользователя
+     *
+     * @return array индексный массив ролей. Является значение system_value из БД
+     */
     static public function getUserRoles(): array
     {
         return $_SESSION['user_info']['roles'];
     }
 
-    // Предназначен для проверки пользователя на заявителя
-    // Возвращает параметры-----------------------------------
-    // true  : пользователь заявитель
-    // false : пользователь не заявитель
-    //
+
+    /**
+     * Предназначен для проверки пользователя на заявителя
+     *
+     * @return bool
+     */
     static public function isApplicant(): bool
     {
         if (
@@ -87,11 +116,11 @@ class Session
     }
 
 
-    // Предназначен для проверки авторизации пользователя
-    // Возвращает параметры-----------------------------------
-    // true  : пользователь авторизован
-    // false : пользователь не авторизован
-    //
+    /**
+     * Предназначен для проверки авторизации пользователя
+     *
+     * @return bool
+     */
     static protected function isAuthorized(): bool
     {
         if (
@@ -104,10 +133,11 @@ class Session
     }
 
 
-    // Предназначен для установки сообщения об ошибке
-    // Принимает параметры-----------------------------------
-    // text string : текст ошибки
-    //
+    /**
+     * Предназначен для установки сообщения об ошибке
+     *
+     * @param string $text текст ошибки
+     */
     static public function setErrorMessage(string $text): void
     {
         $_SESSION['error_message'] = [
@@ -117,12 +147,13 @@ class Session
     }
 
 
-    // Предназначен для получения сообщения об ошибке
-    // После получения сообщения, оно помечается как "прочитанное", а в следующий заход удаляется
-    // Возвращает параметры-----------------------------------
-    // string : текст сообщения
-    // null   : сообщение не существует, либо было уже прочитано
-    //
+    /**
+     * Предназначен для получения сообщения об ошибке
+     *
+     * После получения сообщения, оно помечается как "прочитанное", а в следующий заход удаляется
+     *
+     * @return string|null <b>string</b> текст сообщения<br><b>null</b> сообщение не существует, либо было уже прочитано
+     */
     static public function getErrorMessage(): ?string
     {
         if (isset($_SESSION['error_message'])) {
@@ -138,5 +169,4 @@ class Session
         }
         return null;
     }
-
 }

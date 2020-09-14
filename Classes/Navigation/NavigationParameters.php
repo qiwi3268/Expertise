@@ -30,7 +30,6 @@ class NavigationParameters
     //
     public function __construct(string $viewName)
     {
-
         $cookie = Cookie::getNavigationView($viewName);
         $key = array_key_first(NAVIGATION_SORTING[$viewName]); // По умолчанию sort_name берется как первый элемент для viewName
 

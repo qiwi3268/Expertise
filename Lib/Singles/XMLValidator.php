@@ -129,4 +129,68 @@ class XMLValidator
             throw new SelfEx($message, 4);
         }
     }
+
+
+    // Предназначен для получения уникального узла XPath пути
+    // Принимает параметры-----------------------------------
+    // data SimpleXMLElement : элемент данных, в котором производится поиск
+    // path           string : путь XPath
+    // checkExist       bool : необходима ли проверка на существование найденных узлов
+    // Возвращает параметры----------------------------------
+    // SimpleXMLElement : найденный узел
+    // Выбрасывает исключения--------------------------------
+    // Lib\Exceptions\XMLValidator :
+    // code:
+    //  5 - ошибка при получении XML-пути
+    //  6 - не найден узел по XML-пути
+    //  7 - найдено более одного узла по XML-пути
+    //
+    public function getUniquenessNode(SimpleXMLElement $data, string $path, bool $checkExist = true): SimpleXMLElement
+    {
+        $node = $data->xpath($path);
+
+        if ($node === false) {
+            throw new SelfEx("Ошибка при получении XML-пути: {$path}", 5);
+        }
+
+        if ($checkExist && empty($node)) {
+            throw new SelfEx("Не найден узел по XML-пути: {$path}", 6);
+        }
+
+        if (count($node) > 1) {
+            throw new SelfEx("Найдено более одного узла по XML-пути: {$path}", 7);
+        }
+
+        return array_shift($node);
+    }
+
+
+    // todo низкое непроверено
+    // Предназначен для получения узлов XPath пути
+    // Принимает параметры-----------------------------------
+    // data SimpleXMLElement : элемент данных, в котором производится поиск
+    // path           string : путь XPath
+    // checkExist       bool : необходима ли проверка на существование найденных узлов
+    // Возвращает параметры----------------------------------
+    // array : массив объектов SimpleXMLElement
+    // Выбрасывает исключения--------------------------------
+    // Lib\Exceptions\XMLValidator :
+    // code:
+    //  5 - ошибка при получении XML-пути
+    //  6 - не найдены узлы по XML-пути
+    //
+    public function getNodes(SimpleXMLElement $data, string $path, bool $checkExist = true): array
+    {
+        $nodes = $data->xpath($path);
+
+        if ($nodes === false) {
+            throw new SelfEx("Ошибка при получении XML-пути: {$path}", 5);
+        }
+
+        if ($checkExist && empty($nodes)) {
+            throw new SelfEx("Не найдены узлы по XML-пути: {$path}", 6);
+        }
+
+        return $nodes;
+    }
 }

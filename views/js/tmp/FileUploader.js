@@ -28,10 +28,10 @@ class FileUploader {
    progress_bar;
 
    is_uploading = false;
+   is_opened = false;
 
    parent_field;
    parent_node;
-   // result_input;
 
    static getInstance () {
 
@@ -176,7 +176,7 @@ class FileUploader {
       let upload_button = this.modal.querySelector('.file-modal__upload');
 
       upload_button.addEventListener('click', () => {
-         if (!this.is_uploading) {
+         if (!this.is_uploading && this.is_opened) {
             // Вызываем событие для выбора файла у стандартного инпута
             this.file_input.click();
             this.clearModal();
@@ -192,7 +192,7 @@ class FileUploader {
    handleSubmitButton () {
       let submit_button = this.modal.querySelector('.file-modal__submit');
       submit_button.addEventListener('click', () => {
-         if (!this.is_uploading) {
+         if (!this.is_uploading && this.file_input.files.length > 0) {
             this.sendFiles();
          }
       });
@@ -214,10 +214,6 @@ class FileUploader {
       )
          .then(uploaded_files => {
 
-            /*if (this.result_input) {
-               this.result_input.value = '1';
-            }*/
-
             return this.putFilesToRow(uploaded_files);
 
          })
@@ -232,10 +228,7 @@ class FileUploader {
             this.is_uploading = false;
 
             this.closeModal();
-            ErrorModal.open('Ошибка при загрузке файлов на сервер', exc);
-
-            // console.error('Ошибка при загрузке файлов на сервер:\n' + exc);
-
+            ErrorModal.open('Ошибка при загрузке файлов', exc);
          });
 
    }
@@ -304,7 +297,6 @@ class FileUploader {
          })
          .catch(exc => {
             console.error('Ошибка при проверке подписи файла:\n' + exc);
-            // FileNeeds.putFileToDelete(id_file, this.mapping_1, this.mapping_2, file_item);
             let ge_file = new GeFile(file_item, files_body);
             ge_file.removeElement();
          });
@@ -316,10 +308,10 @@ class FileUploader {
 
    closeModal () {
       if (!this.is_uploading) {
-
          this.modal.classList.remove('active');
          this.overlay.classList.remove('active');
          this.parent_node = null;
+         this.is_opened = false;
          this.clearModal();
          enableScroll();
       }
@@ -335,9 +327,7 @@ class FileUploader {
       // Если блок с документацией
       if (this.parent_node) {
          this.id_structure_node = this.parent_node.dataset.id_structure_node;
-      } /*else {
-         this.result_input = this.parent_field.querySelector('.field-result');
-      }*/
+      }
 
       if (this.parent_field.dataset.multiple !== 'false') {
          this.file_input.setAttribute('multiple', '');
@@ -352,6 +342,7 @@ class FileUploader {
       this.clearModalTitle();
       this.modal.classList.add('active');
       this.overlay.classList.add('active');
+      this.is_opened = true;
       disableScroll();
    }
 

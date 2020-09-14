@@ -7,24 +7,31 @@ use Lib\Exceptions\Actions as SelfEx;
 use Classes\Application\Actions\Actions as ApplicationActions;
 
 
-// Паттерн: ServiceLocator
-// Предназначен для получения экземпляра класса действий
-//
+/**
+ * Предназначен для получения экземпляра класса действий в зависимости от нужного типа документа
+ *
+ * Паттерн: ServiceLocator
+ *
+ */
 class Locator
 {
-
-    // Сущность (единственный возможный экземпляр) класса
+    /**
+     * Сущность класса
+     *
+     */
     private static self $instance;
 
     private Actions $actions;
 
 
-    // Выполняется единожды
-    // Выбрасывает исключения--------------------------------
-    // Lib\Exceptions\Actions :
-    // code:
-    //  1 - ошибка при распознании типа документа
-    //
+    /**
+     * Констркутор класса
+     *
+     * Вызывается единожды
+     *
+     * @param string $documentType тип документа
+     * @throws SelfEx
+     */
     private function __construct(string $documentType)
     {
         switch ($documentType) {
@@ -39,10 +46,13 @@ class Locator
     }
 
 
-    // Предназначен для получения сущности класса
-    // Возвращает параметры----------------------------------
-    // Locator : сущность класса
-    //
+    /**
+     * Предназначен для получения сущности класса
+     *
+     * @param string $documentType
+     * @return static сущность класса
+     * @throws SelfEx
+     */
     static public function getInstance(string $documentType): self
     {
         if (empty(self::$instance)) {
@@ -52,10 +62,11 @@ class Locator
     }
 
 
-    // Предназначен для получения класса действий в зависимости от того, какой тип документа открыт
-    // Возвращает параметры----------------------------------
-    // Actions : экземпляр класса
-    //
+    /**
+     * Предназначен для получения класса действий
+     *
+     * @return Actions экземпляр класса действий
+     */
     public function getActions(): Actions
     {
         return $this->actions;

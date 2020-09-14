@@ -6,20 +6,31 @@ namespace Lib\Miscs\Validation;
 use Lib\Exceptions\MiscValidator as SelfEx;
 
 
-// Предназначен для валидации зависимых справочников
-// *** При валидации зависимого справочника предполагается, что главный справочник был провалидирован ранее
+/**
+ * Предназначен для валидации зависимых справочников
+ *
+ * <b>***</b> При валидации зависимого справочника предполагается, что главный справочник был провалидирован ранее
+ */
 class DependentMisc extends Validator
 {
+
     private const INTERFACE = 'Tables\Miscs\Interfaces\DependentMiscValidate';
     private const METHOD = 'checkExistCorrByIds';
 
-    private Validator $MainValidator; // Объект главного справочника
+    /**
+     * Объект главного справочника
+     *
+     */
+    private Validator $MainValidator;
 
 
-    // Принимает параметры-----------------------------------
-    // MainValidator Validator : полученный ранее объект валидатора главного справочника
-    // form_value       string : значение из формы
-    // class            string : название класса справочника
+    /**
+     * Конструктор класса
+     *
+     * @param Validator $MainValidator полученный ранее объект валидатора главного справочника
+     * @param string $form_value значение из формы
+     * @param string $class название класса справочника
+     */
     public function __construct(Validator $MainValidator, string $form_value, string $class)
     {
         $this->MainValidator = $MainValidator;
@@ -28,13 +39,12 @@ class DependentMisc extends Validator
     }
 
 
-    // Предназначен для комплексной проверки справочника
-    // Выбрасывает исключения--------------------------------
-    // Lib\Exceptions\MiscValidator :
-    // code:
-    //  5 - при наличии значения зависимого справочника, флаг наличия проверенных данных главного справочника отрицательный
-    //
-    public function validate()
+    /**
+     * Предназначен для комплексной проверки справочника
+     *
+     * @throws SelfEx
+     */
+    public function validate(): void
     {
         if ($this->form_value !== '') {
 

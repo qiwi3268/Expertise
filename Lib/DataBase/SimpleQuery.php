@@ -4,16 +4,20 @@
 namespace Lib\DataBase;
 
 
+/**
+ * Предназначен для работы с простыми запросами к базе данных
+ *
+ */
 final class SimpleQuery extends DataBase
 {
 
-
-    // Предназначен для выполнения запросов типа SELECT
-    // Принимает параметры------------------------------------
-    // query string : простой запрос к БД
-    // Возвращает параметры-----------------------------------
-    // array : ассоциативный массив
-    //
+    /**
+     * Предназначен для выполнения запросов типа SELECT
+     *
+     * @param string $query простой запрос к БД
+     * @return array ассоциативный массив результата запроса
+     * @throws \Lib\Exceptions\DataBase
+     */
     static public function getFetchAssoc(string $query): array
     {
         $result = parent::executeSimpleQuery($query);
@@ -26,13 +30,15 @@ final class SimpleQuery extends DataBase
     }
 
 
-    // Используется, когда результат выборки данных содержит одно поле
-    // Предназначен для выполнения запросов типа SELECT
-    // Принимает параметры------------------------------------
-    // query string : простой запрос к БД
-    // Возвращает параметры-----------------------------------
-    // array : индексный массив (без подмассивов)
-    //
+    /**
+     * Предназначен для выполнения запросов типа SELECT
+     *
+     * Используется, когда результат выборки данных содержит одно поле
+     *
+     * @param string $query простой запрос к БД
+     * @return array индексный массив результата запроса (без подмассивов)
+     * @throws \Lib\Exceptions\DataBase
+     */
     static public function getSimpleArray(string $query): array
     {
         $result = parent::executeSimpleQuery($query);
@@ -45,13 +51,15 @@ final class SimpleQuery extends DataBase
     }
 
 
-    // Используется для внесения изменений в БД
-    // Предназначен для выполнения запросов типа INSERT UPDATE DELETE
-    // Принимает параметры------------------------------------
-    // query string : простой запрос к БД
-    // Возвращает параметры-----------------------------------
-    // int : id только созданной записи
-    //
+    /**
+     * Используется для внесения изменений в БД
+     *
+     * Предназначен для выполнения запросов типа INSERT UPDATE DELETE
+     *
+     * @param string $query простой запрос к БД
+     * @return int id созданной записи
+     * @throws \Lib\Exceptions\DataBase
+     */
     static public function set(string $query): int
     {
         parent::executeSimpleQuery($query);

@@ -6,20 +6,26 @@ namespace Lib\Signs\Mappings;
 use Lib\Files\Mappings\FilesTableMapping;
 
 
+/**
+ * Класс проверки маппинга таблиц подписей
+ *
+ */
 class SignsTableMapping extends FilesTableMapping
 {
-
 
     private const NEEDED_INTERFACE = 'Tables\Signs\Interfaces\SignTable';
     private string $fileClass;
 
 
-    // *** Предполагается, что перед использованием данного класса маппинги были проверены классом FilesTableMapping,
-    //     поэтому здесь считается, что они полностью корректны
-    // Принимает параметры-----------------------------------
-    // mappingLevel1 string : маппинг 1-го уровня константного массива FILE_TABLE_MAPPING
-    // mappingLevel2 string : маппинг 2-го уровня константного массива FILE_TABLE_MAPPING
-    //
+    /**
+     * Конструктор класса
+     *
+     * <b>***</b> Предполагается, что перед использованием данного класса маппинги были проверены классом FilesTableMapping,
+     * поэтому здесь считается, что они полностью корректны
+     *
+     * @param string $mappingLevel1 маппинг 1-го уровня константного массива FILE_TABLE_MAPPING
+     * @param string $mappingLevel2 маппинг 2-го уровня константного массива FILE_TABLE_MAPPING
+     */
     public function __construct(string $mappingLevel1, string $mappingLevel2)
     {
         // Получение названия класса таблицы файлов
@@ -57,10 +63,11 @@ class SignsTableMapping extends FilesTableMapping
     }
 
 
-    // Предназначен для получения названия класса из таблицы файлов
-    // Возвращает параметры-----------------------------------
-    // string : имя таблицы файлов
-    //
+    /**
+     * Предназначен для получения названия класса из таблицы файлов
+     *
+     * @return string имя таблицы файлов
+     */
     public function getFileClassName(): string
     {
         return $this->fileClass;

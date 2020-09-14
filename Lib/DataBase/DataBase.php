@@ -8,21 +8,25 @@ use Exception;
 use mysqli;
 
 
+/**
+ * Предназначен для работы с mysqli базой данных
+ *
+ */
 class DataBase
 {
 
     static protected mysqli $mysqli;
 
 
-    // Предназначен для создания объекта подключения к БД
-    // В случае успеха перезаписывает статическую переменную mysqli
-    // Принимает параметры-----------------------------------
-    // dbName string: имя базы данных, к которой создается подключение
-    // Выбрасывает исключения--------------------------------
-    // Lib\Exceptions\DataBase:
-    //   ошибка подключения к базе данных
-    //
-    static public function constructDB(string $dbName)
+    /**
+     * Предназначен для создания объекта подключения к БД
+     *
+     * В случае успеха перезаписывает статическую переменную <i>mysqli</i>
+     *
+     * @param string $dbName имя базы данных, к которой создается подключение
+     * @throws SelfEx
+     */
+    static public function constructDB(string $dbName): void
     {
 
         $allConfig = require_once('/var/www/dbConfig.php');
@@ -41,30 +45,27 @@ class DataBase
     }
 
 
-    // Предназначен для закрытия созданного подключения к БД
-    //
-    static public function closeDB()
+    /**
+     * Предназначен для закрытия созданного подключения к БД
+     *
+     * @throws SelfEx
+     */
+    static public function closeDB(): void
     {
-        self::$mysqli->close();
+        if (self::$mysqli->close() === false) {
+            throw new SelfEx('Ошибка при закрытии созданного подключения к БД: ' . self::$mysqli->connect_errno, self::$mysqli->connect_error);
+        }
     }
 
 
-    // Предназначен для выполнения параметризованного запроса
-    // Принимает параметры-----------------------------------
-    // query     string : параметризованный запрос к БД
-    // bindParams array : параметры запроса
-    // Возвращает параметры-----------------------------------
-    // объект mysqli_result для запросов типа SELECT
-    // false для любых запросов DML (INSERT, UPDATE, DELETE)
-    // Выбрасывает исключения--------------------------------
-    // Lib\Exceptions\DataBase:
-    //   1 - переданный параметр не подходит под указанные типы
-    //   ошибка в формировании параметризованного запроса
-    //   ошибка при привязке привязке переменных
-    //   ошибка при выполнении параметризованного запроса
-    //   ошибка при получении результата параметризованного запроса
-    //   ошибка при закрытии параметризованного запроса
-    //
+    /**
+     * Предназначен для выполнения параметризованного запроса
+     *
+     * @param string $query параметризованный запрос к БД
+     * @param array $bindParams параметры запроса
+     * @return false|\mysqli_result <b>false</b> для любых запросов DML (INSERT, UPDATE, DELETE)<br><b>mysqli_result</b> для запросов типа SELECT
+     * @throws SelfEx
+     */
     static protected function executeParametrizedQuery(string $query, array $bindParams)
     {
         // Формирования строки с сокращенными типами, для
@@ -149,13 +150,13 @@ class DataBase
     }
 
 
-    // Предназначен для выполнения простого запроса
-    // Принимает параметры-----------------------------------
-    // query string : простой запрос к БД
-    // Выбрасывает исключения--------------------------------
-    // Lib\Exceptions\DataBase:
-    //   ошибка при выполнении простого запроса
-    //
+    /**
+     * Предназначен для выполнения простого запроса
+     *
+     * @param string $query простой запрос к БД
+     * @return true|\mysqli_result <b>mysqli_result</b> для запросов типа SELECT, SHOW, DESCRIBE или EXPLAIN<br> <b>true</b> для остальных успешных запросов
+     * @throws SelfEx
+     */
     static protected function executeSimpleQuery(string $query)
     {
         $result = self::$mysqli->query($query);
@@ -169,16 +170,13 @@ class DataBase
     }
 
 
-    // Предназначен для выполнения транзакции
-    // Принимает параметры-----------------------------------
-    // Transaction Transaction : экземпляр класса, содержащий в себе запросы,
-    // которые необходимо выполнить в рамках транзакции
-    // Выбрасывает исключения--------------------------------
-    // Lib\Exceptions\DataBase:
-    //   ошибка при старте транзакции
-    //   ошибка при откате текущей транзакции
-    //   ошибка при фиксации текущей транзакции
-    //
+    /**
+     * Предназначен для выполнения транзакции
+     *
+     * @param Transaction $transaction экземпляр класса, содержащий в себе запросы,
+     * которые необходимо выполнить в рамках транзакции
+     * @throws SelfEx
+     */
     static protected function executeTransaction(Transaction $transaction): void
     {
         if (self::$mysqli->begin_transaction() === false) {
@@ -188,7 +186,6 @@ class DataBase
         try {
 
             $transaction->executeQueries();
-
         } catch (SelfEx $e) {
 
             if (self::$mysqli->rollback() === false) {
@@ -202,7 +199,6 @@ class DataBase
             }
             throw new Exception($e->getMessage(), $e->getCode());
         }
-
         if (self::$mysqli->commit() === false) {
             throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
         }

@@ -7,18 +7,33 @@ use Lib\Singles\PrimitiveValidator;
 use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
 
 
-// Предназначен для проверки доступа пользователя к действиям
-//
+
+/**
+ * Предоставляет интерфейс для дочерних классов проверки доступа пользователя к действиям
+ *
+ */
 abstract class AccessActions
 {
 
-    private string $childClassName; // Имя вызывающего дочернего класса для отладки
+    /**
+     * Имя вызывающего дочернего класса для отладки
+     *
+     */
+    private string $childClassName;
+
+    /**
+     * Объект дочернего класса документа, унаследованного от библиотчечного класса
+     *
+     */
     private Actions $actions;
 
 
-    // Принимает параметры-----------------------------------
-    // actions Actions : объект дочернего класса документа, унаследованного от библиотчечного класса Lib\Actions\Actions
-    //
+    /**
+     * Конструктор класса
+     *
+     * @param Actions $actions
+     *
+     */
     public function __construct(Actions $actions)
     {
         $this->childClassName = static::class;
@@ -26,11 +41,14 @@ abstract class AccessActions
     }
 
 
-    // Предназначен для получения ассоциативных массивов доступных действий
-    // То есть тех действий, для которых callback вернул true
-    // Возвращает параметры----------------------------------
-    // array : ассоциативные массивы доступных действий
-    //
+    /**
+     * Предназначен для получения ассоциативных массивов доступных действий
+     *
+     * То есть тех действий, для которых callback вернул true
+     *
+     * @return array ассоциативные массивы доступных действий
+     * @throws SelfEx
+     */
     public function getAvailableActions(): array
     {
         $result = [];
@@ -45,13 +63,13 @@ abstract class AccessActions
     }
 
 
-    // Предназначен для проверки доступа к действию по имени страницы
-    // Принимает параметры-----------------------------------
-    // pageName string : URN требуемой страницы
-    // Возвращает параметры----------------------------------
-    // true  : есть доступ к действию
-    // false : нет доступа к действию
-    //
+    /**
+     * Предназначен для проверки доступа к действию по имени страницы
+     *
+     * @param string $pageName URN требуемой страницы
+     * @return bool <b>true</b> есть доступ к действию<br/><b>false</b> нет доступа к действию
+     * @throws SelfEx
+     */
     public function checkAccessFromActionByPageName(string $pageName): bool
     {
         $action = $this->actions->getAssocActiveActionByPageName($pageName);
@@ -60,19 +78,14 @@ abstract class AccessActions
     }
 
 
-    // Предназначен для получения проверенного результата callback'а
-    // Принимает параметры-----------------------------------
-    // action   ?array : массив действия, если оно существует
-    // pageName string : имя страницы для вывода в сообщение об ошибке
-    // Возвращает параметры----------------------------------
-    // bool : результат callback'а
-    // Выбрасывает исключения--------------------------------
-    // Lib\Exceptions\Actions :
-    // code:
-    //  2 - попытка получить доступ к несуществующему действию для страницы
-    //  3 - метод доступа к действию не реализован в дочернем классе
-    //  4 - ошибка метода доступа к действию для страницы (объявленный тип возвращаемого значения не bool)
-    //
+    /**
+     * Предназначен для получения проверенного результата callback'а
+     *
+     * @param array|null $action <b>array</b> ассоциативный массив действия<br/><b>null</b> действие не существует
+     * @param string $pageName имя страницы для вывода в сообщение об ошибке
+     * @return bool результат callback'а
+     * @throws SelfEx
+     */
     public function getValidatedCallbackResult(?array $action, string $pageName): bool
     {
         if (is_null($action)) {
