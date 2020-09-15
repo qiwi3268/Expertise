@@ -11,15 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let form_data = new FormData();
       form_data.append('path_name', action_path);
       form_data.append('id_document', id_document);
-
-
-      getAssignedExpertsJSON();
-
-      let leading_expert;
-      let general_part_experts;
-
-      console.log(new Map(form_data));
-      // console.log(getAssignedExpertsJSON());
+      form_data.append('experts', getAssignedExpertsJSON());
 
       XHR(
          'post',
@@ -30,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
       )
          .then(response => {
 
+            console.log(response);
 
             // console.log('qwe');
             // console.log(response);
@@ -84,15 +77,34 @@ function createSection (section_container) {
 function getAssignedExpertsJSON () {
    let experts = new Map();
 
+   let sections = document.querySelectorAll('.section[data-drop_area]');
+   sections.forEach(section => {
+      let id_section = parseInt(section.dataset.id);
+
+      let section_experts = section.querySelectorAll('.section__expert[data-drop_element]');
+      section_experts.forEach(expert_elem => {
+         let id_expert = parseInt(expert_elem.dataset.id);
+         let expert;
+
+         if (experts.has(id_expert)) {
+            expert = experts.get(id_expert)
+         } else {
+            expert = new Expert(expert_elem);
+            experts.set(expert.id_expert, expert);
+         }
+
+         expert.ids_main_block_341.push(id_section);
+
+      });
+   });
 
 
-   DropArea.drop_areas.forEach(area => {
-      let section_assignment = area.getResult();
+   return JSON.stringify(Array.from(experts.values()));
+}
 
-      if (section_assignment.id === '') {
-         ErrorModal.open('Ошибка при назначении экспертов', 'Отсутствует id раздела');
-      }
-
-      console.log(area.getResult());
-   })
+function Expert (expert) {
+   this.id_expert = parseInt(expert.dataset.id);
+   this.lead = expert.dataset.leading === 'true';
+   this.common_part = expert.dataset.general === 'true';
+   this.ids_main_block_341 = [];
 }

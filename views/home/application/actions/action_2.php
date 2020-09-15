@@ -127,7 +127,7 @@
                     <div id="section_template" class="assignment__section section field"
                          data-active="false"
                          data-drop_area
-                         data-id_main_block_341=""
+                         data-id
                          data-result_callback="experts_json"
                          data-add_element_callback="add_expert"
                     >

@@ -492,6 +492,6 @@ function getModalResultCallback (modal) {
 }
 
 function setAdditionalAction (selected_item, modal) {
-   modal.parent_field.dataset.id_main_block_341 = selected_item.dataset.id;
+   modal.parent_field.dataset.id = selected_item.dataset.id;
    modal.select.innerHTML = selected_item.innerHTML;
 }

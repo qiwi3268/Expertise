@@ -397,8 +397,6 @@ function getAssignedSectionsJSON (drop_area) {
    let section = {};
    if (drop_area.area.hasAttribute('data-id')) {
       section.id = drop_area.area.dataset.id;
-   } else if (drop_area.area.hasAttribute('data-id_main_block_341')) {
-      section.id = drop_area.area.dataset.id_main_block_341;
    }
 
    section.experts = drop_area.elements.map(expert => expert.dataset.id);
