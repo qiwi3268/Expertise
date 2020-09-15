@@ -17,7 +17,7 @@ class Responsible
      * Виды групп доступа заявлителей к документу (Заявление / ...)
      *
      * <i>Ключ</i> - название группы доступа заявителя к заявлению<br>
-     * <i>Значен</i> - id группы доступа из БД
+     * <i>Значение</i> - id группы доступа из БД
      *
      */
     private const APPLICANT_ACCESS_GROUP = [
@@ -181,7 +181,7 @@ class Responsible
         foreach ($accessGroupNames as $accessGroupName) {
 
             if (!isset(self::APPLICANT_ACCESS_GROUP[$accessGroupName])) {
-                throw new SelfEx("Не существует указанного названия группы доступа заявителя к заявлению: '{$accessGroupName}'", 3);
+                throw new SelfEx("Не существует указанного названия группы доступа заявителя к заявлению: '{$accessGroupName}'", 2);
             }
             $accessGroupIds[] = self::APPLICANT_ACCESS_GROUP[$accessGroupName];
         }
@@ -224,11 +224,11 @@ class Responsible
         list('type' => $type, 'users' => $users) = $this->getCurrentResponsible();
 
         switch ($type) {
-            case 'type_1':
+            case 'type_1' :
                 return false;
-            case 'type_2':
+            case 'type_2' :
                 //todo
-            case 'type_3':
+            case 'type_3' :
 
                 if (is_null($users)) {
 
@@ -238,7 +238,7 @@ class Responsible
                     foreach ($users as $user) if ($user['user_id'] == $userId) return true;
                     return false;
                 }
-            case 'type_4':
+            case 'type_4' :
                 //todo
         }
     }

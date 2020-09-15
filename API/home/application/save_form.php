@@ -11,7 +11,7 @@ use Classes\Application\Miscs\Validation\DependentMisc as DependentMiscValidator
 
 use core\Classes\Session;
 use Tables\expertise_subject;
-use Tables\application;
+use Tables\Docs\application;
 
 
 // API предназначен для динамической сохранения анкеты заявления
@@ -394,10 +394,10 @@ try {
 
             switch ($code) {
                 // Технические ошибки (со сторны клиенского js)
-                case 1:  // ошибка при декодировании json-строки
-                case 13: // во входном массиве отсутствует обязательное поле
-                case 14: // значение входного массива по ключу не прошло проверку
-                case 15: // значение не подходит ни под одно из перечисленных
+                case 1 :  // ошибка при декодировании json-строки
+                case 13 : // во входном массиве отсутствует обязательное поле
+                case 14 : // значение входного массива по ключу не прошло проверку
+                case 15 : // значение не подходит ни под одно из перечисленных
                     exit(json_encode([
                         'result'  => 'finance_sources_1',
                         'message' => $message,
@@ -405,18 +405,18 @@ try {
                     ]));
 
                 // Ошибки со стороны пользователя (введены некорректные данные)
-                case 7:  // введенный ИНН является некорректным
-                case 8:  // введенный КПП является некорректным
-                case 9:  // введенный ОГРН является некорректным
-                case 10: // введенный email является некорректным
-                case 11: // введенный процент является некорректным
+                case 7 :  // введенный ИНН является некорректным
+                case 8 :  // введенный КПП является некорректным
+                case 9 :  // введенный ОГРН является некорректным
+                case 10 : // введенный email является некорректным
+                case 11 : // введенный процент является некорректным
                     exit(json_encode([
                         'result'  => 'finance_sources_2',
                         'message' => $message,
                         'code'    => $code
                     ]));
 
-                default:
+                default :
                     throw new PrimitiveValidatorEx($message, $code);
             }
 
@@ -431,10 +431,10 @@ try {
         }
 
         // Удаляем все источники финансирования, относящиеся к этому заявлению
-        $Transaction->add('\Tables\FinancingSources\type_1', 'deleteAllByIdApplication', [$form_applicationID]);
-        $Transaction->add('\Tables\FinancingSources\type_2', 'deleteAllByIdApplication', [$form_applicationID]);
-        $Transaction->add('\Tables\FinancingSources\type_3', 'deleteAllByIdApplication', [$form_applicationID]);
-        $Transaction->add('\Tables\FinancingSources\type_4', 'deleteAllByIdApplication', [$form_applicationID]);
+        $Transaction->add('\Tables\FinancingSources\type_1', 'deleteAllByIdApplication', false, [$form_applicationID]);
+        $Transaction->add('\Tables\FinancingSources\type_2', 'deleteAllByIdApplication', false,[$form_applicationID]);
+        $Transaction->add('\Tables\FinancingSources\type_3', 'deleteAllByIdApplication', false,[$form_applicationID]);
+        $Transaction->add('\Tables\FinancingSources\type_4', 'deleteAllByIdApplication', false,[$form_applicationID]);
 
         foreach ($FinancingSources as $source) {
 
@@ -443,7 +443,7 @@ try {
             switch ($source['type']) {
 
                 case '1' :
-                    $Transaction->add('\Tables\FinancingSources\type_1', 'create', [
+                    $Transaction->add('\Tables\FinancingSources\type_1', 'create', false,[
                         $form_applicationID,
                         $source['budget_level'],
                         $no_data,
@@ -452,7 +452,7 @@ try {
                     break;
 
                 case '2' :
-                    $Transaction->add('\Tables\FinancingSources\type_2', 'create', [
+                    $Transaction->add('\Tables\FinancingSources\type_2', 'create', false,[
                         $form_applicationID,
                         $source['full_name'],
                         $source['INN'],
@@ -468,7 +468,7 @@ try {
                     break;
 
                 case '3' :
-                    $Transaction->add('\Tables\FinancingSources\type_3', 'create', [
+                    $Transaction->add('\Tables\FinancingSources\type_3', 'create', false,[
                         $form_applicationID,
                         $no_data,
                         $source['percent']]
@@ -476,7 +476,7 @@ try {
                     break;
 
                 case '4' :
-                    $Transaction->add('\Tables\FinancingSources\type_4', 'create', [
+                    $Transaction->add('\Tables\FinancingSources\type_4', 'create', false,[
                         $form_applicationID,
                         $no_data,
                         $source['percent']]

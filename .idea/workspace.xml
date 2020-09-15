@@ -3,8 +3,62 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/home/action_executor.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/action_executor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/home/application/save_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/application/save_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/home/file_checker.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/file_checker.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/home/file_uploader.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/file_uploader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Application/Actions/ExecutionActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Actions/ExecutionActions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Application/Miscs/Initialization/CreateFormInitializer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Miscs/Initialization/CreateFormInitializer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Application/Miscs/Validation/DependentMisc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Miscs/Validation/DependentMisc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Application/Miscs/Validation/SingleMisc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Miscs/Validation/SingleMisc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Navigation/BlockClasses/block_1_type_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Navigation/BlockClasses/block_1_type_1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Navigation/BlockClasses/block_1_type_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Navigation/BlockClasses/block_1_type_2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/RouteCallbacks/DocumentParameters/APIActionExecutor.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/RouteCallbacks/DocumentParameters/APIActionExecutor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Actions/ExecutionActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Actions/ExecutionActions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Actions/Locator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Actions/Locator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/CSP/MessageParser.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/CSP/MessageParser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/CSP/Validator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/CSP/Validator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/DataBase/DataBase.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/DataBase/DataBase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/DataBase/Transaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/DataBase/Transaction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/Actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/Actions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/CSPMessageParser.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/CSPMessageParser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/CSPValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/CSPValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/DataBase.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/DataBase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/File.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/Logger.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/Logger.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/MiscValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/MiscValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/NodeStructure.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/NodeStructure.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/PrimitiveValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/PrimitiveValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/Responsible.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/Responsible.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/Shell.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/Shell.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/Traits/MainTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/Traits/MainTrait.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/Transaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/Transaction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/XMLValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/XMLValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Files/Uploader.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Files/Uploader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Responsible/Responsible.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Responsible/Responsible.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Responsible/XMLReader.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Responsible/XMLReader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Singles/Helpers/FileHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/Helpers/FileHandler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Singles/Helpers/FontAwesome5.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/Helpers/FontAwesome5.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Singles/Helpers/PageAddress.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/Helpers/PageAddress.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Singles/NodeStructure.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/NodeStructure.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Singles/PHPSpreadSheetAddon.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/PHPSpreadSheetAddon.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Singles/PrimitiveValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/PrimitiveValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Singles/VariableTransfer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/VariableTransfer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Singles/XMLValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/XMLValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Actions/application.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Actions/application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Exceptions/Exception.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Exceptions/Exception.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Structures/documentation_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Structures/documentation_1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/actions/action_2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/create_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/edit_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/edit_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/view_application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/Exceptions/RoutesXMLHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/Exceptions/RoutesXMLHandler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/Route.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/Route.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/RoutesXMLHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/RoutesXMLHandler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cron/deleteUnsavedApps.php" beforeDir="false" afterPath="$PROJECT_DIR$/cron/deleteUnsavedApps.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/action_2.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_2.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/actions/action_2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/Drag&amp;Drop.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/Drag&amp;Drop.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/action_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/action_2.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/modal.js" afterDir="false" />
     </list>
@@ -102,13 +156,6 @@
       <workItem from="1599582890447" duration="117000" />
       <workItem from="1599583021238" duration="1603000" />
       <workItem from="1599708732884" duration="21428000" />
-    </task>
-    <task id="LOCAL-00053" summary="26.08.2020">
-      <created>1598421692742</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1598421692742</updated>
     </task>
     <task id="LOCAL-00054" summary="26.08.2020_1">
       <created>1598424897826</created>
@@ -446,7 +493,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600149250898</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="15.09.2020_2">
+      <created>1600152058459</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1600152058459</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -463,7 +517,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="07.09.2020" />
     <MESSAGE value="07.09.2020_1" />
     <MESSAGE value="07.09.2020_2" />
     <MESSAGE value="06.09.2020_3" />
@@ -488,7 +541,8 @@
     <MESSAGE value="14.09.2020_4" />
     <MESSAGE value="15.09.2020" />
     <MESSAGE value="15.09.2020_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="15.09.2020_1" />
+    <MESSAGE value="15.09.2020_2" />
+    <option name="LAST_COMMIT_MESSAGE" value="15.09.2020_2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="872" y="358" key="#Deployment" timestamp="1599583061353">
@@ -507,10 +561,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1600149249176">
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1600152056718">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600149249176" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600152056718" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598788293599" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog" timestamp="1598853557262">

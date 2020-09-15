@@ -126,28 +126,28 @@ class Uploader
 
                     // Определение типа ошибки к файлу
                     switch ($files['error'][$l]) {
-                        case 1:
+                        case 1 :
                             $errorText = 'Размер принятого файла превысил максимально допустимый размер, который задан директивой upload_max_filesize';
                             break;
-                        case 2:
+                        case 2 :
                             $errorText = 'Размер загружаемого файла превысил значение MAX_FILE_SIZE, указанное в HTML-форме';
                             break;
-                        case 3:
+                        case 3 :
                             $errorText = 'Загружаемый файл был получен только частично';
                             break;
-                        case 4:
+                        case 4 :
                             $errorText = 'Файл не был загружен';
                             break;
-                        case 6:
+                        case 6 :
                             $errorText = 'Отсутствует временная папка';
                             break;
-                        case 7:
+                        case 7 :
                             $errorText = 'Не удалось записать файл на диск';
                             break;
-                        case 8:
+                        case 8 :
                             $errorText = 'PHP-расширение остановило загрузку файла';
                             break;
-                        default:
+                        default :
                             $errorText = 'Не найден код ошибки: ' . $files['error'][$l];
                             break;
                     }

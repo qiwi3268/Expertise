@@ -3,8 +3,10 @@
 
 namespace Lib\Actions;
 use Lib\Exceptions\Actions as SelfEx;
-use Lib\Singles\PrimitiveValidator;
 use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
+use ReflectionException;
+use Lib\Singles\PrimitiveValidator;
+use Tables\Exceptions\Exception;
 
 
 /**
@@ -13,6 +15,11 @@ use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
  */
 abstract class ExecutionActions
 {
+
+    protected array $clearPOST;
+    protected array $clearGET;
+    protected PrimitiveValidator $primitiveValidator;
+
 
     /**
      * Имя вызывающего дочернего класса для отладки
@@ -34,6 +41,10 @@ abstract class ExecutionActions
      */
     public function __construct(Actions $actions)
     {
+        $this->clearPOST = clearHtmlArr($_POST);
+        $this->clearGET = clearHtmlArr($_GET);
+        $this->primitiveValidator = new PrimitiveValidator();
+
         $this->childClassName = static::class;
         $this->actions = $actions;
     }
@@ -44,6 +55,7 @@ abstract class ExecutionActions
      *
      * @param string $pageName URN требуемой страницы
      * @throws SelfEx
+     * @throws ReflectionException
      */
     public function checkIssetCallbackByPageName(string $pageName): void
     {
@@ -59,6 +71,7 @@ abstract class ExecutionActions
      * @param string $pageName URN требуемой страницы
      * @return string URN страницы, на которую необходимо перенаправить пользователя после действия
      * @throws SelfEx
+     * @throws ReflectionException
      */
     public function executeCallbackByPageName(string $pageName): string
     {
@@ -79,6 +92,7 @@ abstract class ExecutionActions
      * @param string $pageName имя страницы для вывода в сообщение об ошибке
      * @return string название метода действия
      * @throws SelfEx
+     * @throws ReflectionException
      */
     private function getValidatedCallback(?array $action, string $pageName): string
     {
@@ -101,5 +115,21 @@ abstract class ExecutionActions
         }
 
         return $method;
+    }
+
+
+    /**
+     * Предназначен для получения значения обязательного параметра POST запроса
+     *
+     * @param string $key ключ параметра из суперглобального массива POST
+     * @return mixed
+     * @throws SelfEx
+     */
+    protected function getRequiredPOSTParameter(string $key)
+    {
+        if (!isset($this->clearPOST[$key])) {
+            throw new SelfEx("Нет обязательного параметра POST запроса: '{$key}'", 5);
+        }
+        return $this->clearPOST[$key];
     }
 }

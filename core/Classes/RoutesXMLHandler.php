@@ -18,9 +18,16 @@ use SimpleXMLElement;
 final class RoutesXMLHandler
 {
 
-    // XPath шаблон для получения page
+    /**
+     * XPath шаблон для получения page
+     *
+     */
     private const XPATH_PAGE = "/routes/pages/page[@urn='%s']";
-    // XPath шаблон для получения template
+
+    /**
+     * XPath шаблон для получения template
+     *
+     */
     private const XPATH_CALLBACK_TEMPLATE = "/routes/callback_templates/template[@id='%s']";
 
 

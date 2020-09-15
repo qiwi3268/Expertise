@@ -23,10 +23,10 @@ final class application implements Interfaces\ActionTable
     //
     static public function getAssocBusinessProcessById(int $id): array
     {
-        $query = "SELECT `application`.`is_saved`,
-                         `application`.`id_stage`
-                  FROM `application`
-                  WHERE `application`.`id`=?";
+        $query = "SELECT `doc_application`.`is_saved`,
+                         `doc_application`.`id_stage`
+                  FROM `doc_application`
+                  WHERE `doc_application`.`id`=?";
         return ParametrizedQuery::getFetchAssoc($query, [$id])[0];
     }
 }

@@ -80,16 +80,16 @@ class DataBase
 
             $type = gettype($value);
             switch ($type) {
-                case 'string':
+                case 'string' :
                     $bindParamsTypes .= 's';
                     break;
-                case 'integer':
+                case 'integer' :
                     $bindParamsTypes .= 'i';
                     break;
-                case 'double':
+                case 'double' :
                     $bindParamsTypes .= 'd';
                     break;
-                default:
+                default :
                     $message = "Переданный параметр со значением значением: '{$value}', с индексом (в рамках перебора входного массива): '{$index}', имеет тип: '{$type}', и не подходит под указанные типы";
                     throw new SelfEx($message, 1);
             }

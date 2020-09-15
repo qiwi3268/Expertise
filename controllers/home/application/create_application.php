@@ -6,7 +6,7 @@ use Lib\Responsible\Responsible;
 use Lib\Singles\VariableTransfer;
 use Classes\Application\Miscs\Initialization\CreateFormInitializer;
 use Classes\Application\Helpers\Helper as ApplicationHelper;
-use Tables\application;
+use Tables\Docs\application;
 use Tables\application_counter;
 use Tables\Responsible\type_3\application as resp_application_type_3;
 use Tables\applicant_access_group;

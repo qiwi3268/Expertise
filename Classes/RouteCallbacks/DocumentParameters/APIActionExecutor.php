@@ -63,25 +63,25 @@ class APIActionExecutor extends DocumentParameters
                 $e_code = $e->getCode();
 
                 switch ($e_code) {
-                    case 2:
+                    case 2 :
                         // Произошла ошибка при определении типа открытого документа
                         exit(json_encode([
                             'result'        => $e_code,
                             'error_message' => $e_message
                         ]));
-                    case 3:
+                    case 3 :
                         // Открытый тип документа не определен в константе DOCUMENT_TYPE
                         exit(json_encode([
                             'result'        => $e_code,
                             'error_message' => $e_message
                         ]));
-                    case 4:
+                    case 4 :
                         // id открытого документа не является целочисленным значением
                         exit(json_encode([
                             'result'        => $e_code,
                             'error_message' => $e_message
                         ]));
-                    default:
+                    default :
                         exit(json_encode([
                             'result'        => 5,
                             'error_message' => "Неизвестная ошибка Classes\Exceptions\DocumentParameters. message: '{$e_message}', code: '{$e_code}'"

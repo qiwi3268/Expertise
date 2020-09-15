@@ -10,7 +10,7 @@ use Classes\Application\Actions\Actions as ApplicationActions;
 /**
  * Предназначен для получения экземпляра класса действий в зависимости от нужного типа документа
  *
- * Паттерн: ServiceLocator
+ * Паттерн: <i>ServiceLocator</i>
  *
  */
 class Locator
@@ -36,11 +36,11 @@ class Locator
     {
         switch ($documentType) {
 
-            case DOCUMENT_TYPE['application']:
+            case DOCUMENT_TYPE['application'] :
                 $this->actions = new ApplicationActions();
                 break;
 
-            default:
+            default :
                 throw new SelfEx('Методу Lib\Actions\Locator::__construct не удалось распознать тип документа', 1);
         }
     }

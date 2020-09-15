@@ -7,6 +7,10 @@ use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\DataBase\SimpleQuery;
 
 
+/**
+ * Таблица: <i>'structure_documentation_1'</i>
+ *
+ */
 class documentation_1
 {
 
@@ -29,8 +33,7 @@ class documentation_1
     /**
      * Предназначен для получения ассоциативных массивов стркутуры документации
      *
-     * <i>is_active</i> = 1<br>
-     * <i>id_341_main_block</i> IS NOT NULL
+     * Возвращает данные по возрастанию столбца <i>sort</i>
      *
      * @return array ассоциативные массивы структуры документации
      * @throws DataBaseEx
@@ -39,8 +42,8 @@ class documentation_1
     {
         $query = "SELECT *
                   FROM `structure_documentation_1`
-                  WHERE `is_active`=1 AND `id_341_main_block` IS NOT NULL
-                  ORDER BY `sort` ASC";
+                  WHERE `is_active`=1 AND `id_main_block_341` IS NOT NULL
+                  ORDER BY `sort`";
 
         return SimpleQuery::getFetchAssoc($query);
     }

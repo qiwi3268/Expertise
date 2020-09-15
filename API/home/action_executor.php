@@ -30,11 +30,16 @@ use Lib\Actions\Locator;
 //  10 - Ошибка при получении проверенного результата callback'а
 //       {result, message : текст ошибки, code: код ошибки}
 //  11 - Ошибка при получении проверенного метода действия
+//       {result, error_message : текст ошибки}
+//  12 - Нет обязательного параметра POST / GET запроса
+//       {result, error_message : текст ошибки}
+//  13 - Ошибка во время исполнения действия
+//       {result, error_message : текст ошибки}
+//  14 - Неизвестная ошибка во время работы с классом действий
 //       {result, message : текст ошибки, code: код ошибки}
-//  12 - todo ошибка при выполнении действия
-//  13 - Все операции прошли усешно
+//  15 - Все операции прошли усешно
 //       {result, ref : ссылка на страницу, на которую необходимо перенаправить пользователя}
-//  14 - Непредвиденная ошибка
+//  16 - Непредвиденная ошибка
 //       {result, message : текст ошибки, code: код ошибки}
 //
 
@@ -77,25 +82,49 @@ try {
         $ref = $actions->getExecutionActions()->executeCallbackByPageName(CURRENT_PAGE_NAME);
     } catch (ActionsEx $e) {
 
-        // Ошибка при получении проверенного метода действия
-        exit(json_encode([
-            'result'  => 11,
-            'message' => $e->getMessage(),
-            'code'    => $e->getCode()
-        ]));
+        $e_message = $e->getMessage();
+        $e_code = $e->getCode();
 
-        //todo ошибка при выполнении действия
+        // Ошибка при получении проверенного метода действия
+        switch ($e_code) {
+            case 2 : // попытка получить доступ к несуществующему действию для страницы
+            case 3 : // метод исполнения действия не реализован в дочернем классе
+            case 4 : // ошибка метода исполнения действия для страницы
+                exit(json_encode([
+                    'result'        => 11,
+                    'error_message' => $e->getMessage(),
+                ]));
+
+            case 5 : // Нет обязательного параметра POST / GET запроса
+                exit(json_encode([
+                    'result'        => 12,
+                    'error_message' => $e->getMessage(),
+                ]));
+
+            case 6 : // Ошибка во время исполнения действия
+                exit(json_encode([
+                    'result'  => 13,
+                    'error_message' => $e->getMessage(),
+                ]));
+
+            default : // Неизвестная ошибка во время работы с классом действий
+                exit(json_encode([
+                    'result'  => 14,
+                    'message' => $e->getMessage(),
+                    'code'    => $e->getCode()
+                ]));
+        }
     }
 
     exit(json_encode([
-        'result'  => 13,
+        'result'  => 15,
         'ref'     => $ref,
     ]));
 
 } catch (Exception $e) {
 
     exit(json_encode([
-        'result'  => 14,
+        'result'  => 16,
         'message' => $e->getMessage(),
         'code'    => $e->getCode()
     ]));

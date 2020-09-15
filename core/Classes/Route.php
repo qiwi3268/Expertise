@@ -35,6 +35,7 @@ final class Route
      *
      * @param string $requestURI URI входящего на сервер запроса
      * @throws XMLValidatorEx
+     * @throws Exceptions\RoutesXMLHandler
      */
     public function __construct(string $requestURI)
     {
@@ -90,6 +91,7 @@ final class Route
     /**
      * @uses RoutesXMLHandler::handleValidatedPageValues()
      * @throws Exceptions\RoutesXMLHandler
+     * @throws XMLValidatorEx
      */
     public function handleValidatedPageValues(): void
     {

@@ -4,6 +4,7 @@
 namespace Lib\CSP;
 
 use Lib\Exceptions\CSPMessageParser as SelfEx;
+use Classes\Exceptions\PregMatch as PregMatchEx;
 
 
 /**
@@ -52,7 +53,7 @@ class MessageParser
      *
      * @param string $message вывод исполняемой команды по валидации подписи
      * @return array массив частей сообщения без технической части, разбитый по символам-переносам строк
-     * @throws \Classes\Exceptions\PregMatch
+     * @throws PregMatchEx
      */
     public function getMessagePartsWithoutTechnicalPart(string $message): array
     {
@@ -105,7 +106,7 @@ class MessageParser
      * @param string $Signer строка с подписантом
      * @return string ФИО подписанта
      * @throws SelfEx
-     * @throws \Classes\Exceptions\PregMatch
+     * @throws PregMatchEx
      */
     public function getFIO(string $Signer): string
     {
@@ -169,7 +170,7 @@ class MessageParser
      *
      * @param string $Signer строка с подписантом
      * @return string данные сертификата
-     * @throws \Classes\Exceptions\PregMatch
+     * @throws PregMatchEx
      */
     public function getCertificateInfo(string $Signer): string
     {
@@ -190,7 +191,7 @@ class MessageParser
      *
      * @param string $message вывод исполняемой cryptcp команды
      * @return string код ошибки
-     * @throws \Classes\Exceptions\PregMatch
+     * @throws PregMatchEx
      */
     public function getErrorCode(string $message): string
     {

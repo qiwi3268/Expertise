@@ -64,9 +64,9 @@ try {
 
         switch ($mappingErrorCode) {
 
-            case 1: exit(json_encode(['result' => 3, 'error_message' => $errorMessage]));
-            case 2: exit(json_encode(['result' => 4, 'error_message' => $errorMessage]));
-            case 3: exit(json_encode(['result' => 5, 'error_message' => $errorMessage]));
+            case 1 : exit(json_encode(['result' => 3, 'error_message' => $errorMessage]));
+            case 2 : exit(json_encode(['result' => 4, 'error_message' => $errorMessage]));
+            case 3 : exit(json_encode(['result' => 5, 'error_message' => $errorMessage]));
         }
     }
 

@@ -12,7 +12,7 @@ use Lib\Singles\Helpers\FileHandler;
 use Lib\Singles\NodeStructure;
 use Classes\Application\Files\Initialization\Initializer as FilesInitializer;
 use Classes\Application\Actions\Miscs\Initialization\action_2 as MiscInitializer;
-use Tables\application;
+use Tables\Docs\application;
 use Tables\user;
 
 
@@ -33,19 +33,19 @@ $variablesTV->setValue('experts', $activeExperts);
 // Получение данных о выбранном Виде объекта для выбора нужных классов
 //
 switch (application::getFlatAssocById(CURRENT_DOCUMENT_ID)['id_type_of_object']) {
-    case 1: // Производственные/непроизводственные
+    case 1 : // Производственные/непроизводственные
         $mapping_level_1 = 2;
         $mapping_level_2 = 1;
         $structureDocumentationClassName = '\Tables\Structures\documentation_1';
         $mainBlocks341DocumentationClassName = '\Tables\order_341\main_block_documentation_1';
         break;
-    case 2: // Линейные
+    case 2 : // Линейные
         $mapping_level_1 = 2;
         $mapping_level_2 = 2;
         $structureDocumentationClassName = '\Tables\Structures\documentation_2';
         //todo $mainBlocks341DocumentationClassName = '\Tables\order_341\main_block_documentation_1';
         break;
-    default:
+    default :
         throw new Exception('Указан Вид объекта, при котором не определены действия для отображения загруженных файлов');
 }
 
@@ -76,9 +76,9 @@ $ids = []; // Индексный массив id подошедших блоко
 
 foreach ($filesInStructure as $index => $node) {
 
-    if (isset($node['files']) && !is_null($node['id_341_main_block'])) {
+    if (isset($node['files']) && !is_null($node['id_main_block_341'])) {
 
-        $ids[] = (int)$node['id_341_main_block'];
+        $ids[] = (int)$node['id_main_block_341'];
     } else {
 
         unset($filesInStructure[$index]);
@@ -96,3 +96,29 @@ $miscInitializer = new MiscInitializer($mainBlocks341);
 foreach ($miscInitializer->getPaginationSingleMiscs() as $miscName => $misc) {
     $variablesTV->setValue($miscName, $misc);
 }
+
+$test = [
+    [
+        'id_expert'   => 1,
+        'lead'        => true,
+        'common_part' => false,
+        'ids_main_block_341' => [1, 2, 3, 4]
+    ],
+
+    [
+        'id_expert'   => 2,
+        'lead'        => false,
+        'common_part' => false,
+        'ids_main_block_341' => [5]
+    ],
+
+    [
+        'id_expert'   => 6,
+        'lead'        => false,
+        'common_part' => true,
+        'ids_main_block_341' => [3, 4]
+    ],
+];
+
+var_dump($test);
+var_dump(json_encode($test));

@@ -46,7 +46,7 @@ class PHPSpreadSheetAddon
     {
         $this->activeSheet->fromArray(
             $array,
-            $nullValue,   //
+            $nullValue,
             $startCell
         );
     }

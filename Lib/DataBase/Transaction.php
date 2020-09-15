@@ -4,6 +4,8 @@
 namespace Lib\DataBase;
 
 use Lib\Exceptions\Transaction as SelfEx;
+use Lib\Exceptions\DataBase as DataBaseEx;
+use ReflectionException;
 use ReflectionMethod;
 
 
@@ -32,10 +34,13 @@ final class Transaction extends DataBase
      *
      * @param string $class название класса по работе с таблицами
      * @param string $method название метода класса
+     * @param bool $getPreviousResult <b>true</b> результат вызова предыдущего метода будет передан как первый аргумент<br>
+     * <b>false</b> предыдущий результат не будет передан как первый аргумент
      * @param array $params массив параметров, каждый из которых будет передан как аргумент метода method
      * @throws SelfEx
+     * @throws ReflectionException
      */
-    public function add(string $class, string $method, array $params): void
+    public function add(string $class, string $method, bool $getPreviousResult, array $params): void
     {
         if (!class_exists($class)) {
             throw new SelfEx("Переданный класс: '{$class}' не существует", 1);
@@ -58,9 +63,10 @@ final class Transaction extends DataBase
         }
 
         $this->queries[] = [
-            'class'  => $class,
-            'method' => $method,
-            'params' => $params
+            'class'      => $class,
+            'method'     => $method,
+            'params'     => $params,
+            'get_result' => $getPreviousResult
         ];
     }
 
@@ -69,7 +75,7 @@ final class Transaction extends DataBase
      * Предназначен для старта транзакции (выполнения добавленных запросов)
      *
      * @return $this объект текущего класса для последующей цепочки вызовов
-     * @throws \Lib\Exceptions\DataBase
+     * @throws DataBaseEx
      */
     public function start(): self
     {
@@ -83,6 +89,7 @@ final class Transaction extends DataBase
      *
      * Вызывается в классе DataBase внутри обертки транзакции. Записывает результаты запросов в массив lastResults
      *
+     * @throws SelfEx
      */
     protected function executeQueries(): void
     {
@@ -92,9 +99,19 @@ final class Transaction extends DataBase
 
         foreach ($this->queries as $query) {
 
-            $results[] = call_user_func_array([$query['class'], $query['method']], [...$query['params']]);
-        }
+            // Установка последнего результата, как первого переданного аргумента в текущий метод
+            if ($query['get_result']) {
 
-        $this->lastResults = $results;
+                if (empty($this->lastResults)) {
+                    throw new SelfEx("В метод: '{$query['class']}::{$query['method']}' не удалось передать результат вызова предыдущего метода, т.к. массив lastResults пуст", 5);
+                }
+                $previousResult = [$this->lastResults[array_key_last($this->lastResults)]];
+            } else {
+
+                $previousResult = [];
+            }
+
+            $this->lastResults[] = call_user_func_array([$query['class'], $query['method']], [...$previousResult, ...$query['params']]);
+        }
     }
 }

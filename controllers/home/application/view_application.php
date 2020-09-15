@@ -7,7 +7,7 @@ use Lib\Singles\VariableTransfer;
 use Lib\Singles\NodeStructure;
 use Lib\Singles\Helpers\FileHandler;
 use Classes\Application\Files\Initialization\Initializer as FilesInitializer;
-use Tables\application;
+use Tables\Docs\application;
 
 
 $variablesTV = VariableTransfer::getInstance();
@@ -70,17 +70,17 @@ if ($variablesTV->getExistenceFlag('type_of_object')) {
 
     // В зависимости от Вида объекта выбираем нужную таблицу
     switch ($variablesTV->getValue('type_of_object')['id']) {
-        case 1: // Производственные/непроизводственные
+        case 1 : // Производственные/непроизводственные
             $mapping_level_1 = 2;
             $mapping_level_2 = 1;
             $className = '\Tables\Structures\documentation_1';
             break;
-        case 2: // Линейные
+        case 2 : // Линейные
             $mapping_level_1 = 2;
             $mapping_level_2 = 2;
             $className = '\Tables\Structures\documentation_2';
             break;
-        default:
+        default :
             throw new Exception('Указан Вид объекта, при котором не определены действия для отображения загруженных файлов');
     }
 

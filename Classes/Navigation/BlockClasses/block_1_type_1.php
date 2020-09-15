@@ -15,8 +15,8 @@ class block_1_type_1 extends NavigationTable
     //заглушка
     static protected function getSection(): string
     {
-        $section = "FROM `application`
-                    WHERE `is_saved`='0' AND `application`.`id_author`=?";
+        $section = "FROM `doc_application`
+                    WHERE `is_saved`='0' AND `doc_application`.`id_author`=?";
         return $section;
     }
 }

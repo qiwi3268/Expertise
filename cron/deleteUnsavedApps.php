@@ -8,7 +8,7 @@ file_put_contents(ROOT.'/logs/cron/deleteUnsavedApps.log', 'я работаю'."
 
 //-------------------------------------------------------------
 
-$unsavedApps = \Tables\application::getAllUnsaved();
+$unsavedApps = \Tables\Docs\application::getAllUnsaved();
 
 if(empty($unsavedApps)){
 
@@ -22,7 +22,7 @@ if(empty($unsavedApps)){
         $appsIds[] = $app['id'];
     }
 
-    \Tables\application::deleteFromIdsArray($appsIds);
+    \Tables\Docs\application::deleteFromIdsArray($appsIds);
 
     $deletedCounts = count($appsIds);
     $strIds = implode(',', $appsIds);

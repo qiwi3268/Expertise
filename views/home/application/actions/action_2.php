@@ -35,12 +35,12 @@
                          data-transform_callback="expert"
                     >
                         <?php foreach ($variablesTV->getValue('experts') as $index => $expert): ?>
-                            <div class="assignment__expert"
+                            <span class="assignment__expert"
                                  data-drag_element
                                  data-id="<?= $expert['id'] ?>"
                                  data-drag_callback="expert"
                                  style="order: <?= -$index ?>"
-                            ><?= $expert['fio'] ?></div>
+                            ><?= $expert['fio'] ?></span>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -78,7 +78,9 @@
                              data-result_callback="experts_json"
                              data-add_element_callback="add_expert"
                         >
-                            <span class="section__title"><?= $section['name'] ?></span>
+                            <div class="section__header">
+                                <span class="section__title"><?= $section['name'] ?></span>
+                            </div>
                             <div class="section__body">
                                 <div class="section__experts" data-active="false">
                                     <div class="section__experts-title">Назначенные эксперты:</div>
@@ -119,45 +121,46 @@
             </div>
            
             <div id="additional_sections" class="assignment__additional" data-active="false">
-                    <div class="assignment__header">
-                        <div class="assignment__title">Дополнительные разделы</div>
-                    </div>
-                    <div class="assignment__body-sections"></div>
-    
-                    <div id="section_template" class="assignment__section section field"
-                         data-active="false"
-                         data-drop_area
-                         data-id
-                         data-result_callback="experts_json"
-                         data-add_element_callback="add_expert"
-                    >
-                        <span class="section__title modal-select">Выберите значение</span>
-                        <div class="section__body">
-                            <div class="section__experts" data-active="false">
-                                <div class="section__experts-title">Назначенные эксперты:</div>
-                                <div class="section__expert-list"
-                                     data-drop_container
-                                     data-drop_multiple="false"
-                                     data-drag_container
-                                     data-drag_multiple="false"
-                                ></div>
-                            </div>
-                        </div>
-                        <div class="modal" data-result_callback="additional_section">
-                            <i class="modal__close fas fa-times"></i>
-                            <div class="modal__items">
-                                <?php foreach ($variablesTV->getValue('main_block_341') as $pageNumber => $page): ?>
-                                    <div class="modal__page" data-page="<?= $pageNumber ?>">
-                                        <?php foreach ($page as $item): ?>
-                                            <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="assignment__header">
+                    <div class="assignment__title">Дополнительные разделы</div>
                 </div>
+                <div class="assignment__body-sections"></div>
+
+                <div id="section_template" class="assignment__section section field"
+                     data-active="false"
+                     data-id
+                     data-result_callback="experts_json"
+                     data-add_element_callback="add_expert"
+                >
+                    <div class="section__header">
+                        <span class="section__title empty modal-select">Выберите значение</span>
+                        <i class="section__remove fas fa-minus"></i>
+                    </div>
+                    <div class="section__body">
+                        <div class="section__experts" data-active="false">
+                            <div class="section__experts-title">Назначенные эксперты:</div>
+                            <div class="section__expert-list"
+                                 data-drop_container
+                                 data-drop_multiple="false"
+                                 data-drag_container
+                                 data-drag_multiple="false"
+                            ></div>
+                        </div>
+                    </div>
+                    <div class="modal" data-result_callback="additional_section">
+                        <i class="modal__close fas fa-times"></i>
+                        <div class="modal__items">
+                            <?php foreach ($variablesTV->getValue('main_block_341') as $pageNumber => $page): ?>
+                                <div class="modal__page" data-page="<?= $pageNumber ?>">
+                                    <?php foreach ($page as $item): ?>
+                                        <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div id="add_section" class="assignment__add">
                 <span class="assignment__add-text">Добавить раздел из 341 приказа</span>
                 <i class="assignment__add-icon fas fa-plus"></i>

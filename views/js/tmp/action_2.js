@@ -24,9 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             console.log(response);
 
-            // console.log('qwe');
-            // console.log(response);
-
          })
          .catch(exc => {
 
@@ -35,21 +32,18 @@ document.addEventListener('DOMContentLoaded', () => {
          });
    });
 
-   // let add_section_btn = document.querySelector('.assignment__add');
    let add_section_btn = document.getElementById('add_section');
-   // let additional_sections = document.querySelector('.assignment__additional');
    let additional_sections = document.getElementById('additional_sections');
    let section_container = additional_sections.querySelector('.assignment__body-sections');
 
    add_section_btn.addEventListener('click', () => {
       additional_sections.dataset.active = 'true';
-
-      createSection(section_container);
+      createSection(section_container, additional_sections);
    });
 
 });
 
-function createSection (section_container) {
+function createSection (section_container, additional_sections) {
    let section_template = document.getElementById('section_template');
    let new_section = section_template.cloneNode(true);
    new_section.removeAttribute('id');
@@ -72,6 +66,15 @@ function createSection (section_container) {
 
    });
 
+   let remove_btn = new_section.querySelector('.section__remove');
+   remove_btn.addEventListener('click', () => {
+      new_section.remove();
+
+      if (!additional_sections.querySelector('.section[data-active="true"]')) {
+         additional_sections.dataset.active = 'false';
+      }
+
+   });
 }
 
 function getAssignedExpertsJSON () {
@@ -97,7 +100,6 @@ function getAssignedExpertsJSON () {
 
       });
    });
-
 
    return JSON.stringify(Array.from(experts.values()));
 }

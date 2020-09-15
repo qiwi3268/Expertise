@@ -4,7 +4,7 @@
 $variablesTV = \Lib\Singles\VariableTransfer::getInstance();
 
 $applicationId = $_GET['id_document'];
-$applicationAssoc = \Tables\application::getAssocById($applicationId);
+$applicationAssoc = \Tables\Docs\application::getAssocById($applicationId);
 
 //var_dump($applicationAssoc);
 

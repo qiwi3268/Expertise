@@ -4,16 +4,20 @@
 namespace Lib\Singles\Helpers;
 
 
+/**
+ * Вспомогательный класс для обработки файлов
+ *
+ */
 class FileHandler
 {
 
-    // Предназначен для установки файловой иконки FontAwesome5 в свойство file_icon
-    // Принимает параметры-----------------------------------
-    // &files array : ссылка на массив с файлами
-    //
+    /**
+     * Предназначен для установки файловой иконки FontAwesome5 в свойство <i>file_icon</i>
+     *
+     * @param array $files <i>ссылка</i> на массив с файлами
+     */
     static public function setFileIconClass(array &$files): void
     {
-
         foreach ($files as &$file) {
 
             $name = $file['file_name'];
@@ -30,15 +34,17 @@ class FileHandler
     }
 
 
-    // Предназначен для установки файловой иконки FontAwesome5 в свойство file_icon
-    // Предназначен для установки результов валидации подписей в виде json'а в свойство validate_results
-    // Если подпись не прдусмотрена для данного файла впринципе, то validate_results = null;
-    // Если подписей нет, то validate_results = '';
-    // Если подписи есть, то json с результатами.
-    // Открепленные и встроенные подписи находятся в одном месте
-    // Принимает параметры-----------------------------------
-    // &files array : ссылка на массив с файлами
-    //
+    /**
+     * Предназначен для установки результов валидации подписей в виде json'а в свойство <i>validate_results</i>
+     *
+     * Если подпись не предусмотрена для данного файла впринципе
+     * (отсутствует класс в SIGN_TABLE_MAPPING), то validate_results = <i>null</i><br>
+     * Если подписей нет, то validate_results = ''<br>
+     * Если подписи есть, то json с результатами<br>
+     * Открепленные и встроенные подписи находятся в одном месте<br>
+     *
+     * @param array $files <i>ссылка</i> на массив с файлами
+     */
     static public function setValidateResultJSON(array &$files): void
     {
         foreach ($files as &$file) {
@@ -71,10 +77,11 @@ class FileHandler
     }
 
 
-    // Предназначен для установки человекопонятного размера файла в свойство human_file_size
-    // Принимает параметры-----------------------------------
-    // &files array : ссылка на массив с файлами
-    //
+    /**
+     * Предназначен для установки человекопонятного размера файла в свойство <i>human_file_size</i>
+     *
+     * @param array $files <i>ссылка</i> на массив с файлами
+     */
     static public function setHumanFileSize(array &$files): void
     {
         foreach ($files as &$file) {

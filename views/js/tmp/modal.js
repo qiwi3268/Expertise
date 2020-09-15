@@ -269,6 +269,8 @@ class Modal {
 
                   // Очищаем зависимые поля
                   this.clearRelatedModals();
+                  validateModal(this);
+
                } else {
                   this.result_callback(item, this);
                }
@@ -346,8 +348,6 @@ class Modal {
       this.close_button.classList.remove('active');
 
       overlay.classList.remove('active');
-
-      validateModal(this);
    }
 
    // Предназначен для отображения на странице модального окна
@@ -481,9 +481,13 @@ function getModalResultCallback (modal) {
    let callback;
 
    switch (modal.element.dataset.result_callback) {
+      case 'application_field':
+         callback = setApplicationFieldValue;
+         break;
       case 'additional_section':
          callback = setAdditionalAction;
          break;
+         
       default:
 
    }
@@ -491,7 +495,25 @@ function getModalResultCallback (modal) {
    return callback;
 }
 
+function setApplicationFieldValue (selected_item, modal) {
+   // В результат записываем id элемента из справочника
+   modal.result_input.value = selected_item.dataset.id;
+
+   // В поле для выбора записываем значение
+   modal.select.classList.add('filled');
+   modal.select.querySelector('.field-value').innerHTML = selected_item.innerHTML;
+
+   // Показывает или скрывает поля, зависящие от выбранного значения
+   DependenciesHandler.handleDependencies(modal.result_input);
+
+   // Очищаем зависимые поля
+   modal.clearRelatedModals();
+   validateModal(modal);
+}
+
 function setAdditionalAction (selected_item, modal) {
    modal.parent_field.dataset.id = selected_item.dataset.id;
+   modal.parent_field.dataset.drop_area = '';
+   modal.select.classList.remove('empty');
    modal.select.innerHTML = selected_item.innerHTML;
 }

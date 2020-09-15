@@ -4,6 +4,8 @@
 namespace Lib\CSP;
 
 use Lib\Exceptions\CSPValidator as SelfEx;
+use Lib\Exceptions\CSPMessageParser as CSPMessageParserEx;
+use Classes\Exceptions\PregMatch as PregMatchEx;
 use Lib\CSP\Interfaces\SignatureValidationShell;
 
 
@@ -58,7 +60,8 @@ class Validator
      * 1 : <i>array</i>...<br>
      *
      * @throws SelfEx
-     * @throws \Classes\Exceptions\PregMatch
+     * @throws CSPMessageParserEx
+     * @throws PregMatchEx
      */
     public function validate(string ...$paths): array
     {
@@ -152,8 +155,8 @@ class Validator
      * errorCode:<br>
      *          код ошибки : <i>string</i><br>
      * @throws SelfEx
-     * @throws \Classes\Exceptions\PregMatch
-     * @throws \Lib\Exceptions\CSPMessageParser
+     * @throws PregMatchEx
+     * @throws CSPMessageParserEx
      */
     private function getValidateResults(array $messageParts): array
     {
@@ -247,16 +250,16 @@ class Validator
     private function getSignatureUserMessage(string $verifyMessage): string
     {
         switch ($verifyMessage) {
-            case "Signature's verified.":
+            case "Signature's verified." :
                 return "Подпись действительна";
 
-            case "Error: Invalid algorithm specified.":
+            case "Error: Invalid algorithm specified." :
                 return "Подпись имеет недействительный алгоритм";
 
-            case "Error: Invalid Signature.":
+            case "Error: Invalid Signature." :
                 return "Подпись не соответствует файлу";
 
-            default:
+            default :
                 throw new SelfEx("Получен неизвестный результат проверки подписи: '{$verifyMessage}'", 1);
         }
     }
@@ -273,20 +276,20 @@ class Validator
     {
 
         switch ($verifyMessage) {
-            case "Signature's verified.":
+            case "Signature's verified." :
                 return "Сертификат действителен";
 
-            case "This certificate or one of the certificates in the certificate chain is not time valid.":
+            case "This certificate or one of the certificates in the certificate chain is not time valid." :
                 return "Срок действия одного из сертификатов цепочки истек или еще не наступил";
 
-            case "Trust for this certificate or one of the certificates in the certificate chain has been revoked.":
+            case "Trust for this certificate or one of the certificates in the certificate chain has been revoked." :
                 return "Один из сертификатов цепочки аннулирован";
 
-            case "Error: Invalid algorithm specified.":
-            case "Error: Invalid Signature.":
+            case "Error: Invalid algorithm specified." :
+            case "Error: Invalid Signature." :
                 return "Сертификат не проверялся";
 
-            default:
+            default :
                 throw new SelfEx("Получен неизвестный результат проверки сертификата: '{$verifyMessage}'", 1);
         }
     }

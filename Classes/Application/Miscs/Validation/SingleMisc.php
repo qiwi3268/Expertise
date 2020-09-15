@@ -32,12 +32,12 @@ class SingleMisc extends MainSingleMisc
             $code = $e->getCode();
             // Конвертируем значения MiscValidatorEx к значениям API_save_form result
             switch ($code) {
-                case 1:
+                case 1 :
                     throw new ApplicationFormMiscValidatorEx($msg, 4);
-                case 4:
+                case 4 :
                     throw new ApplicationFormMiscValidatorEx($msg, 5);
-                case 2:
-                case 3:
+                case 2 :
+                case 3 :
                     throw new MiscValidatorEx($msg, $code);
             }
         }

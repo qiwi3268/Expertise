@@ -85,7 +85,7 @@ class NodeStructure
 
             $result[] = [
                 'id'                => $node['id'],
-                'id_341_main_block' => $node['id_341_main_block'],
+                'id_main_block_341' => $node['id_main_block_341'],
                 'name'              => $node['name'],
                 'is_header'         => (bool)$node['is_header'],
                 'depth'             => $depth
