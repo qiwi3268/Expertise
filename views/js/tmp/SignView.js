@@ -60,7 +60,6 @@ class SignView {
       this.modal.classList.remove('active');
       this.overlay.classList.remove('active');
       this.validate_info.dataset.active = 'false';
-
    }
 
    open (file) {

@@ -64,14 +64,15 @@ $nodeStructure = new NodeStructure($className::getAllActive());
 $filesInStructure = FilesInitializer::getFilesInDepthStructure($needsFiles, $nodeStructure);
 
 // Отображаем только те разделы, к которым есть файлы и которые привязаны к 341 приказу
-$ids = [];
 
+$ids = []; // Индексный массив id подошедших блоков  в бланке заключения по 341 приказу
 
 foreach ($filesInStructure as $index => $node) {
 
     if (isset($node['files']) && !is_null($node['id_341_main_block'])) {
 
-        $ids[] = (int)$node['id'];
+        $ids[] = (int)$node['id_341_main_block'];
+
     } else {
 
         unset($filesInStructure[$index]);
