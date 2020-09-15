@@ -141,7 +141,7 @@ textarea.application-input {
    position: fixed;
    top: 45%;
    left: 50%;
-   z-index: 100;
+   z-index: 1000;
    width: 100%;
    max-width: 500px;
    font-family: 'Roboto Condensed', sans-serif;
@@ -170,7 +170,7 @@ textarea.application-input {
    left: 0;
    width: 100%;
    height: 100%;
-   z-index: 50;
+   z-index: 500;
    background-color: rgba(0, 0, 0, .5);
    transition: .3s all;
 }
@@ -209,11 +209,11 @@ textarea.application-input {
 }
 
 .error-modal {
-   z-index: 1000;
+   z-index: 10000;
 }
 
 .error-overlay {
-   z-index: 500;
+   z-index: 9000;
 }
 
 .error-modal__header {

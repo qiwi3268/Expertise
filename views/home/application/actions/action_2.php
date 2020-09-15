@@ -4,6 +4,7 @@
 
 <?php //var_dump($variablesTV->getValue('documentation_files_in_structure')); ?>
 <?php //var_dump($variablesTV->getValue('experts')); ?>
+<?php //var_dump($variablesTV->getValue('main_block_341')); ?>
 
 <div class="action__info">
     <span class="action__description">Капитальный ремонт здания школы в пос. Увельский, ул. Советская, 38 Увельского муниципального района Челябинской области (смета)Капитальный ремонт здания школы в пос. Увельский, ул. Советская, 38 Увельского муниципального района Челябинской области (смета)Капитальный ремонт здания школы в пос. Увельский, ул. Советская, 38 Увельского муниципального района Челябинской области (смета)</span>
@@ -63,11 +64,11 @@
         <div class="assignment__sections">
             <div class="assignment__main">
                 <div class="assignment__header">
-                    <div class="assignment__title">Разделы ПД</div>
-                    <div class="assignment__add">
+                    <div class="assignment__title">Представленные на экспертизу разделы</div>
+                    <!--<div class="assignment__add">
                         <div class="assignment__add-text">Добавить раздел</div>
                         <i class="assignment__add-icon fas fa-plus"></i>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="assignment__body-sections">
                     <?php foreach ($variablesTV->getValue('documentation_files_in_structure') as $section): ?>
@@ -116,14 +117,55 @@
                     <?php endforeach; ?>
                 </div>
             </div>
-            <div class="assignment__additional" data-active="false">
-                <div class="assignment__header">
-                    <div class="assignment__title">Дополнительные разделы</div>
+           
+            <div id="additional_sections" class="assignment__additional" data-active="false">
+                    <div class="assignment__header">
+                        <div class="assignment__title">Дополнительные разделы</div>
+                    </div>
+                    <div class="assignment__body-sections"></div>
+    
+                    <div id="section_template" class="assignment__section section field"
+                         data-active="false"
+                         data-drop_area
+                         data-id_main_block_341=""
+                         data-result_callback="experts_json"
+                         data-add_element_callback="add_expert"
+                    >
+                        <span class="section__title modal-select">Выберите значение</span>
+                        <div class="section__body">
+                            <div class="section__experts" data-active="false">
+                                <div class="section__experts-title">Назначенные эксперты:</div>
+                                <div class="section__expert-list"
+                                     data-drop_container
+                                     data-drop_multiple="false"
+                                     data-drag_container
+                                     data-drag_multiple="false"
+                                ></div>
+                            </div>
+                        </div>
+                        <div class="modal" data-result_callback="additional_section">
+                            <i class="modal__close fas fa-times"></i>
+                            <div class="modal__items">
+                                <?php foreach ($variablesTV->getValue('main_block_341') as $pageNumber => $page): ?>
+                                    <div class="modal__page" data-page="<?= $pageNumber ?>">
+                                        <?php foreach ($page as $item): ?>
+                                            <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="assignment__body-sections"></div>
+            <div id="add_section" class="assignment__add">
+                <span class="assignment__add-text">Добавить раздел из 341 приказа</span>
+                <i class="assignment__add-icon fas fa-plus"></i>
             </div>
         </div>
 
 </div>
+
+<div class="modal-overlay"></div>
 
 

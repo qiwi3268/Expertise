@@ -42,27 +42,57 @@ document.addEventListener('DOMContentLoaded', () => {
          });
    });
 
-   let add_section_btn = document.querySelector('.assignment__add');
-   let additional_sections = document.querySelector('.assignment__additional');
+   // let add_section_btn = document.querySelector('.assignment__add');
+   let add_section_btn = document.getElementById('add_section');
+   // let additional_sections = document.querySelector('.assignment__additional');
+   let additional_sections = document.getElementById('additional_sections');
+   let section_container = additional_sections.querySelector('.assignment__body-sections');
 
    add_section_btn.addEventListener('click', () => {
+      additional_sections.dataset.active = 'true';
 
-      if (additional_sections.dataset.active !== 'true') {
-         additional_sections.dataset.active = 'true';
-         let header = additional_sections.querySelector('.assignment__header');
-         header.appendChild(add_section_btn);
-      }
-
+      createSection(section_container);
    });
 
 });
 
-function createSection () {
+function createSection (section_container) {
+   let section_template = document.getElementById('section_template');
+   let new_section = section_template.cloneNode(true);
+   new_section.removeAttribute('id');
+   new_section.dataset.active = 'true';
+   section_container.appendChild(new_section);
+
+   let modal_select = new_section.querySelector('.modal-select');
+   modal_select.addEventListener('click', () => {
+
+      // todo вынести в отдельный метод
+      modal = getModalBySelect(modal_select);
+
+      if (!modal.is_empty) {
+         modal.show();
+      } else {
+         createAlert(modal.alert_message);
+         modal.alert_message = '';
+      }
+      disableScroll();
+
+   });
 
 }
 
 function getAssignedExpertsJSON () {
+   let experts = new Map();
+
+
+
    DropArea.drop_areas.forEach(area => {
+      let section_assignment = area.getResult();
+
+      if (section_assignment.id === '') {
+         ErrorModal.open('Ошибка при назначении экспертов', 'Отсутствует id раздела');
+      }
+
       console.log(area.getResult());
    })
 }

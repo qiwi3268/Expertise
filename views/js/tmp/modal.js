@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initializeModalSelects (block) {
    let modal_selects = block.querySelectorAll('.modal-select');
-
    modal_selects.forEach(select => {
+
       select.addEventListener('click', () => {
          modal = getModalBySelect(select);
 
@@ -46,22 +46,8 @@ function initializeModalSelects (block) {
 // modal      Modal : объект модального окна
 //
 function getModalBySelect (select) {
-   let modal;
-   // let modal_name;
-   // let parent_row = select.closest('.field');
-
-   // let modal_name = parent_row.dataset.field_name;
    let id_modal = select.dataset.id_modal;
-   modal = id_modal ? modals.get(parseInt(id_modal)) : new Modal(select);
-
-/*   //TODO одинаковые модалки в разных блоках
-   if (modals.has(modal_name)) {
-      modal = new Modal(select);
-      // modal = modals.get(modal_name);
-   } else {
-      modal = new Modal(select);
-      modals.set(modal.id, modal);
-   }*/
+   let modal = id_modal ? modals.get(parseInt(id_modal)) : new Modal(select);
 
    // Если страниц больше 1 отображаем пагинацию
    if (modal.pages.length > 1) {
@@ -119,7 +105,7 @@ class Modal {
    id;
 
    // Родительское поле
-   parent_row;
+   parent_field;
 
    // Element модального окна
    element;
@@ -137,6 +123,8 @@ class Modal {
    // Скрытый инпут с id выбранного элемента
    result_input;
 
+   result_callback;
+
    // Блок, в который подставляется имя элемента
    select;
 
@@ -152,12 +140,14 @@ class Modal {
       this.select = select;
       this.select.dataset.id_modal = this.id;
 
-      this.parent_row = this.select.closest('.field');
+      this.parent_field = this.select.closest('.field');
 
-      this.name = this.parent_row.dataset.name;
-      this.element = this.parent_row.querySelector('.modal');
+      this.name = this.parent_field.dataset.name;
+      this.element = this.parent_field.querySelector('.modal');
       this.content = this.element.querySelector('.modal__items');
-      this.result_input = this.parent_row.querySelector('.field-result');
+      this.result_input = this.parent_field.querySelector('.field-result');
+
+      this.result_callback = getModalResultCallback(this);
 
       this.close_button = this.element.querySelector('.modal__close');
       this.close_button.addEventListener('click', () => {
@@ -266,19 +256,23 @@ class Modal {
          items = page.querySelectorAll('.modal__item');
          items.forEach(item => {
             item.addEventListener('click', () => {
-               // В результат записываем id элемента из справочника
-               this.result_input.value = item.dataset.id;
+               if (this.result_input) {
+                  // В результат записываем id элемента из справочника
+                  this.result_input.value = item.dataset.id;
 
-               // В поле для выбора записываем значение
-               this.select.classList.add('filled');
-               this.select.querySelector('.field-value').innerHTML = item.innerHTML;
+                  // В поле для выбора записываем значение
+                  this.select.classList.add('filled');
+                  this.select.querySelector('.field-value').innerHTML = item.innerHTML;
 
-               // Показывает или скрывает поля, зависящие от выбранного значения
-               // handleDependentBlocks(this.result_input);
-               DependenciesHandler.handleDependencies(this.result_input);
+                  // Показывает или скрывает поля, зависящие от выбранного значения
+                  DependenciesHandler.handleDependencies(this.result_input);
 
-               // Очищаем зависимые поля
-               this.clearRelatedModals();
+                  // Очищаем зависимые поля
+                  this.clearRelatedModals();
+               } else {
+                  this.result_callback(item, this);
+               }
+
                this.close();
 
             });
@@ -295,10 +289,7 @@ class Modal {
       dependent_modals.forEach(modal => {
          modal.clearRelatedModals();
          this.clearModal(modal);
-
-         if (modal.parent_row.dataset.required === 'true' && modal.result_input.value) {
-            validateModal(modal);
-         }
+         validateModal(modal);
       });
    }
 
@@ -485,3 +476,22 @@ class Pagination {
 }
 
 //Pagination----------------------------------------------------------------------------------------
+
+function getModalResultCallback (modal) {
+   let callback;
+
+   switch (modal.element.dataset.result_callback) {
+      case 'additional_section':
+         callback = setAdditionalAction;
+         break;
+      default:
+
+   }
+
+   return callback;
+}
+
+function setAdditionalAction (selected_item, modal) {
+   modal.parent_field.dataset.id_main_block_341 = selected_item.dataset.id;
+   modal.select.innerHTML = selected_item.innerHTML;
+}

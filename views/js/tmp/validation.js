@@ -29,22 +29,21 @@ document.addEventListener('DOMContentLoaded', () => {
 // Принимает параметры-------------------------------
 // modal         Modal : объект модального окна
 function validateModal (modal) {
-   let parent_field = modal.element.closest('.field');
-   let field_value = parent_field.querySelector('.modal-select');
-   let error = parent_field.querySelector('.field-error');
+   if (modal.parent_field.dataset.required === 'true') {
+      //todo определить в класса
+      let error = modal.parent_field.querySelector('.field-error');
 
-   if (parent_field.dataset.required === 'true') {
       // Если не выбрано значение
       if (!modal.result_input.value) {
-         field_value.classList.add('invalid');
+         modal.select.classList.add('invalid');
          error.classList.add('active');
-         resizeCard(parent_field);
+         resizeCard(modal.parent_field);
       } else {
-         field_value.classList.remove('invalid');
+         modal.select.classList.remove('invalid');
          error.classList.remove('active');
       }
 
-      let parent_card = field_value.closest('.card-form');
+      let parent_card = modal.select.closest('.card-form');
       if (parent_card) {
          validateCard(parent_card);
       }
