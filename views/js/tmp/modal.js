@@ -137,6 +137,7 @@ class Modal {
    // Принимает параметры-------------------------------------------
    // select     Element : поле, для которого вызывается модальное окно
    constructor (select) {
+      console.log('tua');
       this.id = Modal.modals_counter++;
       this.select = select;
       this.select.dataset.id_modal = this.id;
@@ -147,6 +148,7 @@ class Modal {
       this.element = this.parent_field.querySelector('.modal');
       this.content = this.element.querySelector('.modal__items');
 
+      this.result_input = this.parent_field.querySelector('.field-result');
       this.result_callback = getModalResultCallback(this);
 
       this.close_button = this.element.querySelector('.modal__close');
@@ -166,10 +168,12 @@ class Modal {
    // Предназначен для инициализации страниц с элементами из справочника модального окна
    //
    initPages () {
+
       this.pages = this.content.querySelectorAll('.modal__page');
 
       if (this.pages.length === 0) {
-         this.is_empty = this.createNewPages()
+
+         this.is_empty = this.createNewPages();
       }
    }
 
@@ -256,6 +260,7 @@ class Modal {
          items = page.querySelectorAll('.modal__item');
          items.forEach(item => {
             item.addEventListener('click', () => {
+
                if (this.result_input) {
                   // В результат записываем id элемента из справочника
                   this.result_input.value = item.dataset.id;

@@ -63,30 +63,30 @@
                 </div>
                 <div class="card-form__body body-card card-body">
                     <!--Цель обращения-->
-                    <div class="body-card__row field" data-name="expertise_purpose" data-required="true">
+                    <div class="body-card__row field" data-misc-field data-name="expertise_purpose" data-required="true">
                         <span class="body-card__title field-title">Цель обращения</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
-                                <div class="body-card__select field-select modal-select">
-                                    <span class="body-card__value field-value">Выберите значение</span>
+                                <div class="body-card__select field-select modal-select" data-misc-select>
+                                    <span class="body-card__value field-value" data-misc-value>Выберите значение</span>
                                 </div>
                             </div>
                             <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                         </div>
 
-                        <div class="modal">
-                            <i class="modal__close fas fa-times"></i>
-                            <div class="modal__items">
+                        <div class="modal" data-misc_modal data-result_callback="application_field">
+                            <i class="modal__close fas fa-times" data-misc_close></i>
+                            <div class="modal__items" data-misc_items>
                                 <?php foreach ($variablesTV->getValue('expertise_purpose') as $pageNumber => $page): ?>
-                                    <div class="modal__page" data-page="<?= $pageNumber ?>">
+                                    <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
                                         <?php foreach ($page as $item): ?>
-                                            <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                            <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
                                         <?php endforeach; ?>
                                     </div>
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <input data-form="application" class="body-card__result field-result" type="hidden" name="expertise_purpose">
+                        <input data-form="application" class="body-card__result field-result" type="hidden" data-misc_result name="expertise_purpose">
                     </div>
                     <!--//Цель обращения//-->
 
@@ -917,7 +917,7 @@
     </form>
 </div>
 
-<div class="modal-overlay"></div>
+<div id="misc_overlay" class="modal-overlay"></div>
 <div class="save-overlay"></div>
 
 <div class="modal alert-modal">

@@ -130,13 +130,13 @@ function validateInput (input, regex, message) {
 function validateCard (card) {
    let card_name = card.dataset.type;
    // let is_valid = isValidCard(card);
-   let is_valid = !findInvalidField(card);
+   // let is_valid = !findInvalidField(card);
 
    let sidebar_item = document.querySelector(`.sidebar-form__row[data-card=${card_name}]`);
 
    // Отображаем состояние проверки в связанном элементе сайдбара
    if (sidebar_item) {
-      setSidebarItemState(sidebar_item, is_valid);
+      // setSidebarItemState(sidebar_item, is_valid);
    }
 }
 

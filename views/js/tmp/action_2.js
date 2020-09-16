@@ -22,6 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
                ErrorModal.open('Ошибка при назначении экспертов', exc);
 
             });
+      } else if (!has_common_part) {
+         ErrorModal.open('Ошибка при назначении экспертов', 'Нет назначенных экспертов на общую часть');
+      } else {
+         ErrorModal.open('Ошибка при назначении экспертов', 'Должен быть назначен ведущий эксперт');
       }
 
    });
