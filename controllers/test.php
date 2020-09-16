@@ -13,7 +13,10 @@ use Tables\Actions\application as ApplicationActions;
 use core\Classes\RoutesXMLHandler;
 use Tables\Structures\documentation_1;
 
-$test = documentation_1::getAllAssocWhereActiveAndId341NN();
+$doc = documentation_1::getAllAssocWhereActiveAndId341NN();
+
+$test = arrayEntry($doc, 'is_header', '1');
+
 var_dump($test);
 
 

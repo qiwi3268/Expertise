@@ -209,6 +209,34 @@ function getHandlePregMatch(string $pattern, string $subject, bool $is_preg_matc
 
 
 /**
+ * Предназначен для подсчета количества элементов в ассоцивтивном массиве
+ *
+ * @param array $array индексный массив с ассоциативными массивами внутри
+ * @param string $key
+ * @param mixed $value
+ * @return array
+ */
+function arrayEntry(array $array, string $key, $value): array
+{
+    $count = 0;
+    $indexes = null;
+
+    foreach ($array as $k => $v) {
+
+        if ($v[$key] === $value) {
+            $count++;
+            $indexes[$count] = $k;
+        }
+    }
+    return [
+        'count'   => $count,
+        'indexes' => $indexes
+    ];
+}
+
+
+
+/**
  * Предназначен для перевода байт в человекопонятный формат
  *
  * @param int $bytes размер файла в байтах

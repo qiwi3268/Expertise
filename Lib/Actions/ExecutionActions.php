@@ -6,7 +6,6 @@ use Lib\Exceptions\Actions as SelfEx;
 use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
 use ReflectionException;
 use Lib\Singles\PrimitiveValidator;
-use Tables\Exceptions\Exception;
 
 
 /**

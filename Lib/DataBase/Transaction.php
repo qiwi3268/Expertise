@@ -23,6 +23,13 @@ final class Transaction extends DataBase
     private array $queries = [];
 
     /**
+     * Результат, передающися по цепочке вызовов
+     *
+     * @var mixed
+     */
+    private $chainResult = 'not_initialized';
+
+    /**
      * Массив результатов последней транзации
      *
      */
@@ -34,14 +41,23 @@ final class Transaction extends DataBase
      *
      * @param string $class название класса по работе с таблицами
      * @param string $method название метода класса
-     * @param bool $getPreviousResult <b>true</b> результат вызова предыдущего метода будет передан как первый аргумент<br>
-     * <b>false</b> предыдущий результат не будет передан как первый аргумент
      * @param array $params массив параметров, каждый из которых будет передан как аргумент метода method
+     * @param bool $setChainResult <b>true</b> результат вызова текущего метода будет записан в значение, передающееся по цепочке<br>
+     * <b>false</b> не будет записан
+     * @param bool $getChainResult <b>true</b> результат вызова предыдущего метода, в котором было установлено
+     * <b>setChainResult = true</b> будет передан как первый аргумент в текущий метод<br>
+     * <b>false</b> не будет передан
      * @throws SelfEx
      * @throws ReflectionException
      */
-    public function add(string $class, string $method, bool $getPreviousResult, array $params): void
-    {
+    public function add(
+        string $class,
+        string $method,
+        array $params,
+        bool $setChainResult = false,
+        bool $getChainResult = false
+    ): void {
+
         if (!class_exists($class)) {
             throw new SelfEx("Переданный класс: '{$class}' не существует", 1);
         }
@@ -52,6 +68,8 @@ final class Transaction extends DataBase
 
         $reflection = new ReflectionMethod($class, $method);
         $min = $reflection->getNumberOfRequiredParameters();
+        if ($getChainResult) $min--;
+
         $max = $reflection->getNumberOfParameters();
 
         $N = count($params);
@@ -63,10 +81,11 @@ final class Transaction extends DataBase
         }
 
         $this->queries[] = [
-            'class'      => $class,
-            'method'     => $method,
-            'params'     => $params,
-            'get_result' => $getPreviousResult
+            'class'            => $class,
+            'method'           => $method,
+            'params'           => $params,
+            'set_chain_result' => $setChainResult,
+            'get_chain_result' => $getChainResult
         ];
     }
 
@@ -95,23 +114,25 @@ final class Transaction extends DataBase
     {
         $this->lastResults = [];
 
-        $results = [];
-
         foreach ($this->queries as $query) {
 
             // Установка последнего результата, как первого переданного аргумента в текущий метод
-            if ($query['get_result']) {
+            if ($query['get_chain_result']) {
 
-                if (empty($this->lastResults)) {
-                    throw new SelfEx("В метод: '{$query['class']}::{$query['method']}' не удалось передать результат вызова предыдущего метода, т.к. массив lastResults пуст", 5);
+                if ($this->chainResult === 'not_initialized') {
+                    throw new SelfEx("В метод: '{$query['class']}::{$query['method']}' не удалось передать результат по цепочке, т.к. chainResult не инициализирован", 5);
                 }
-                $previousResult = [$this->lastResults[array_key_last($this->lastResults)]];
+                $chainResult = [$this->chainResult];
             } else {
 
-                $previousResult = [];
+                $chainResult = [];
             }
 
-            $this->lastResults[] = call_user_func_array([$query['class'], $query['method']], [...$previousResult, ...$query['params']]);
+            $lastResult = call_user_func_array([$query['class'], $query['method']], [...$chainResult, ...$query['params']]);
+
+            $this->lastResults[] = $lastResult;
+
+            if ($query['set_chain_result']) $this->chainResult = $lastResult;
         }
     }
 }

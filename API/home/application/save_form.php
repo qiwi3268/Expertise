@@ -431,10 +431,10 @@ try {
         }
 
         // Удаляем все источники финансирования, относящиеся к этому заявлению
-        $Transaction->add('\Tables\FinancingSources\type_1', 'deleteAllByIdApplication', false, [$form_applicationID]);
-        $Transaction->add('\Tables\FinancingSources\type_2', 'deleteAllByIdApplication', false,[$form_applicationID]);
-        $Transaction->add('\Tables\FinancingSources\type_3', 'deleteAllByIdApplication', false,[$form_applicationID]);
-        $Transaction->add('\Tables\FinancingSources\type_4', 'deleteAllByIdApplication', false,[$form_applicationID]);
+        $Transaction->add('\Tables\FinancingSources\type_1', 'deleteAllByIdApplication', [$form_applicationID]);
+        $Transaction->add('\Tables\FinancingSources\type_2', 'deleteAllByIdApplication', [$form_applicationID]);
+        $Transaction->add('\Tables\FinancingSources\type_3', 'deleteAllByIdApplication', [$form_applicationID]);
+        $Transaction->add('\Tables\FinancingSources\type_4', 'deleteAllByIdApplication', [$form_applicationID]);
 
         foreach ($FinancingSources as $source) {
 
@@ -443,7 +443,7 @@ try {
             switch ($source['type']) {
 
                 case '1' :
-                    $Transaction->add('\Tables\FinancingSources\type_1', 'create', false,[
+                    $Transaction->add('\Tables\FinancingSources\type_1', 'create', [
                         $form_applicationID,
                         $source['budget_level'],
                         $no_data,
@@ -452,7 +452,7 @@ try {
                     break;
 
                 case '2' :
-                    $Transaction->add('\Tables\FinancingSources\type_2', 'create', false,[
+                    $Transaction->add('\Tables\FinancingSources\type_2', 'create', [
                         $form_applicationID,
                         $source['full_name'],
                         $source['INN'],
@@ -468,7 +468,7 @@ try {
                     break;
 
                 case '3' :
-                    $Transaction->add('\Tables\FinancingSources\type_3', 'create', false,[
+                    $Transaction->add('\Tables\FinancingSources\type_3', 'create', [
                         $form_applicationID,
                         $no_data,
                         $source['percent']]
@@ -476,7 +476,7 @@ try {
                     break;
 
                 case '4' :
-                    $Transaction->add('\Tables\FinancingSources\type_4', 'create', false,[
+                    $Transaction->add('\Tables\FinancingSources\type_4', 'create', [
                         $form_applicationID,
                         $no_data,
                         $source['percent']]
