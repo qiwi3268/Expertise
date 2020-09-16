@@ -30,8 +30,9 @@ function initializeModalSelects (block) {
          if (!modal.is_empty) {
             modal.show();
          } else {
-            createAlert(modal.alert_message);
-            modal.alert_message = '';
+            ErrorModal.open('Ошибка при получении значений справочника', modal.alert_message);
+            // createAlert(modal.alert_message);
+            // modal.alert_message = '';
          }
          disableScroll();
 
@@ -145,7 +146,6 @@ class Modal {
       this.name = this.parent_field.dataset.name;
       this.element = this.parent_field.querySelector('.modal');
       this.content = this.element.querySelector('.modal__items');
-      this.result_input = this.parent_field.querySelector('.field-result');
 
       this.result_callback = getModalResultCallback(this);
 
@@ -496,6 +496,8 @@ function getModalResultCallback (modal) {
 }
 
 function setApplicationFieldValue (selected_item, modal) {
+   this.result_input = this.parent_field.querySelector('.field-result');
+
    // В результат записываем id элемента из справочника
    modal.result_input.value = selected_item.dataset.id;
 

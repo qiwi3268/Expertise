@@ -3,13 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/home/application/save_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/application/save_form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/Actions/ExecutionActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Actions/ExecutionActions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Actions/ExecutionActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Actions/ExecutionActions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/DataBase/Transaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/DataBase/Transaction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Docs/total_cc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Docs/total_cc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/API.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/action_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/action_2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/modal.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,13 +102,6 @@
       <workItem from="1599582890447" duration="117000" />
       <workItem from="1599583021238" duration="1603000" />
       <workItem from="1599708732884" duration="21428000" />
-    </task>
-    <task id="LOCAL-00055" summary="26.08.2020_2">
-      <created>1598444137875</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1598444137875</updated>
     </task>
     <task id="LOCAL-00056" summary="26.08.2020_3">
       <created>1598444947930</created>
@@ -450,7 +439,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600158459546</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="16.09.2020">
+      <created>1600227566792</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1600227566792</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -467,7 +463,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="07.09.2020_2" />
     <MESSAGE value="06.09.2020_3" />
     <MESSAGE value="08.09.2020" />
     <MESSAGE value="08.09.2020_1" />
@@ -492,7 +487,8 @@
     <MESSAGE value="15.09.2020_1" />
     <MESSAGE value="15.09.2020_2" />
     <MESSAGE value="15.09.2020_3" />
-    <option name="LAST_COMMIT_MESSAGE" value="15.09.2020_3" />
+    <MESSAGE value="16.09.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="16.09.2020" />
   </component>
   <component name="WindowStateProjectService">
     <state x="872" y="358" key="#Deployment" timestamp="1599583061353">
@@ -511,10 +507,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1600158450969">
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1600227561963">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600158450969" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600227561963" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1598788293599" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog" timestamp="1598853557262">

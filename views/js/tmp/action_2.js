@@ -4,32 +4,26 @@ document.addEventListener('DOMContentLoaded', () => {
    let submit_btn = document.querySelector('[data-action_submit]');
    submit_btn.addEventListener('click', () => {
 
-      let action_path = window.location.pathname;
-      let url = new URL(window.location.href);
-      let id_document = url.searchParams.get('id_document');
+      let assigned_experts = getAssignedExperts();
+      let lead = assigned_experts.filter(expert => expert.lead === true);
+      let has_common_part = assigned_experts.find(expert => expert.common_part === true);
 
-      let form_data = new FormData();
-      form_data.append('path_name', action_path);
-      form_data.append('id_document', id_document);
-      form_data.append('experts', getAssignedExpertsJSON());
+      if (lead.length === 1 && has_common_part) {
 
-      XHR(
-         'post',
-         '/home/API_action_executor',
-         form_data,
-         null,
-         'json'
-      )
-         .then(response => {
+         let form_data = new FormData();
+         form_data.append('experts', JSON.stringify(assigned_experts));
+         API.executeAction(form_data)
+            .then(response => {
 
-            console.log(response);
+               console.log(response);
 
-         })
-         .catch(exc => {
+            })
+            .catch(exc => {
+               ErrorModal.open('Ошибка при назначении экспертов', exc);
 
-            console.log('ошибка' + exc);
+            });
+      }
 
-         });
    });
 
    let add_section_btn = document.getElementById('add_section');
@@ -77,7 +71,7 @@ function createSection (section_container, additional_sections) {
    });
 }
 
-function getAssignedExpertsJSON () {
+function getAssignedExperts () {
    let experts = new Map();
 
    let sections = document.querySelectorAll('.section[data-drop_area]');
@@ -101,7 +95,7 @@ function getAssignedExpertsJSON () {
       });
    });
 
-   return JSON.stringify(Array.from(experts.values()));
+   return Array.from(experts.values());
 }
 
 function Expert (expert) {
