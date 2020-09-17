@@ -468,7 +468,7 @@
                                     <?php endforeach; ?>
                                 </div>
                             </div>
-                            <input data-form="application" class="body-card__result field-result" type="hidden" name="national_project">
+                            <input data-form="application" class="body-card__result field-result" data-misc_result type="hidden" name="national_project">
                         </div>
                         <!--//Название национального проекта//-->
                         

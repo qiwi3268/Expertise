@@ -23,7 +23,6 @@
 
 
 <div class="assignment">
-    
     <div class="assignment__experts">
         <div class="assignment__experts-header">Эксперты</div>
         <div class="assignment__body-experts">
@@ -60,15 +59,10 @@
             </div>
         </div>
     </div>
-    
     <div class="assignment__sections">
         <div class="assignment__main">
             <div class="assignment__header">
-                <div class="assignment__title">Представленные на экспертизу разделы</div>
-                <!--<div class="assignment__add">
-                    <div class="assignment__add-text">Добавить раздел</div>
-                    <i class="assignment__add-icon fas fa-plus"></i>
-                </div>-->
+                <span class="assignment__title">Представленные на экспертизу разделы</span>
             </div>
             <div class="assignment__body-sections">
                 <?php foreach ($variablesTV->getValue('documentation_files_in_structure') as $section): ?>
@@ -119,13 +113,11 @@
                 <?php endforeach; ?>
             </div>
         </div>
-        
         <div id="additional_sections" class="assignment__additional" data-active="false">
             <div class="assignment__header">
                 <div class="assignment__title">Дополнительные разделы</div>
             </div>
             <div class="assignment__body-sections"></div>
-            
             <div id="section_template" class="assignment__section section field"
                  data-misc_field
                  data-active="false"

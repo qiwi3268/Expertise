@@ -1,34 +1,7 @@
-
 document.addEventListener('DOMContentLoaded', () => {
 
    let submit_btn = document.querySelector('[data-action_submit]');
-   submit_btn.addEventListener('click', () => {
-
-      let assigned_experts = getAssignedExperts();
-      let lead = assigned_experts.filter(expert => expert.lead === true);
-      let has_common_part = assigned_experts.find(expert => expert.common_part === true);
-
-      if (lead.length === 1 && has_common_part) {
-
-         let form_data = new FormData();
-         form_data.append('experts', JSON.stringify(assigned_experts));
-         API.executeAction(form_data)
-            .then(response => {
-
-               console.log(response);
-
-            })
-            .catch(exc => {
-               ErrorModal.open('Ошибка при назначении экспертов', exc);
-
-            });
-      } else if (!has_common_part) {
-         ErrorModal.open('Ошибка при назначении экспертов', 'Нет назначенных экспертов на общую часть');
-      } else {
-         ErrorModal.open('Ошибка при назначении экспертов', 'Должен быть назначен ведущий эксперт');
-      }
-
-   });
+   submit_btn.addEventListener('click', assignExperts);
 
    let add_section_btn = document.getElementById('add_section');
    let additional_sections = document.getElementById('additional_sections');
@@ -41,6 +14,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+function assignExperts () {
+
+   let assigned_experts = getAssignedExperts();
+   let lead = assigned_experts.filter(expert => expert.lead === true);
+   let has_common_part = assigned_experts.find(expert => expert.common_part === true);
+
+   if (lead.length === 1 && has_common_part) {
+
+      let form_data = new FormData();
+      form_data.append('experts', JSON.stringify(assigned_experts));
+      API.executeAction(form_data)
+         .then(response => {
+
+            console.log(response);
+
+         })
+         .catch(exc => {
+            ErrorModal.open('Ошибка при назначении экспертов', exc);
+
+         });
+   } else if (!has_common_part) {
+      ErrorModal.open('Ошибка при назначении экспертов', 'Нет назначенных экспертов на общую часть');
+   } else {
+      ErrorModal.open('Ошибка при назначении экспертов', 'Должен быть назначен ведущий эксперт');
+   }
+
+}
+
 function createSection (section_container, additional_sections) {
    let section_template = document.getElementById('section_template');
    let new_section = section_template.cloneNode(true);
@@ -49,8 +50,6 @@ function createSection (section_container, additional_sections) {
    section_container.appendChild(new_section);
 
    let modal_select = new_section.querySelector('[data-misc_select]');
-   Misc.handleMiscSelect(modal_select);
-
    modal_select.addEventListener('click', event => {
       if (!event.target.classList.contains('section__remove')) {
          Misc.instance = Misc.getMiscBySelect(modal_select);
@@ -99,7 +98,7 @@ function getAssignedExperts () {
 
 function Expert (expert) {
    this.id_expert = parseInt(expert.dataset.id);
-   this.lead = expert.dataset.leading === 'true';
-   this.common_part = expert.dataset.general === 'true';
+   this.lead = expert.dataset.lead === 'true';
+   this.common_part = expert.dataset.common_part === 'true';
    this.ids_main_block_341 = [];
 }

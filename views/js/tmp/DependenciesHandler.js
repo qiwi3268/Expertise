@@ -199,6 +199,7 @@ class DependenciesHandler {
 
       clear_buttons.forEach(button => {
          button.addEventListener('click', () => {
+
             let parent_field = button.closest('.field');
 
             let field_result = parent_field.querySelector('.field-result');
@@ -209,12 +210,13 @@ class DependenciesHandler {
 
                this.removeRowValue(parent_field);
 
-               let related_modal = parent_field.querySelector('[data-misc]');
+               let related_modal = parent_field.querySelector('[data-misc_modal]');
                if (related_modal) {
                   let misc = Misc.getMiscBySelect(parent_select);
                   misc.clearRelatedMiscs();
                   validateMisc(misc);
                }
+
 
                validateCard(parent_field.closest('.card-form'));
             }

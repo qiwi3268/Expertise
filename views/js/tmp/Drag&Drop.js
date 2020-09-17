@@ -117,8 +117,6 @@ function dropElement (event) {
 
       document.body.style.userSelect = null;
 
-      // this.avatar.hidden = true;
-
       let drop_area = findDropArea(event);
       if (drop_area) {
 
@@ -224,7 +222,7 @@ class DragContainer {
    handleElement (element) {
       element.addEventListener('mousedown', (event) => {
          if (
-            !event.target.hasAttribute('data-drop_remove')
+            !event.target.hasAttribute('data-drag_inactive')
             && event.button === 0
          ) {
             new DragElement(element, event, this);
@@ -276,17 +274,19 @@ function transformExpert (expert) {
    new_expert.dataset.drop_element = '';
    new_expert.dataset.drag_callback = 'section_expert';
 
-   let leading_icon = document.createElement('I');
-   leading_icon.classList.add('section__leading', 'fas', 'fa-crown');
-   leading_icon.addEventListener('click', () => setLeadingExpert(new_expert));
-   new_expert.dataset.leading = !!isLeadingExpert(new_expert);
-   new_expert.appendChild(leading_icon);
+   let lead_icon = document.createElement('I');
+   lead_icon.classList.add('section__lead', 'fas', 'fa-crown');
+   lead_icon.dataset.drag_inactive = 'true';
+   lead_icon.addEventListener('click', () => setLeadExpert(new_expert));
+   new_expert.dataset.lead = !!isLeadExpert(new_expert);
+   new_expert.appendChild(lead_icon);
 
-   let general_icon = document.createElement('I');
-   general_icon.classList.add('section__general', 'fas', 'fa-file-signature');
-   general_icon.addEventListener('click', () => toggleGeneralPart(new_expert));
-   new_expert.dataset.general = !!isGeneralPartExpert(new_expert);
-   new_expert.appendChild(general_icon);
+   let common_icon = document.createElement('I');
+   common_icon.classList.add('section__common_part', 'fas', 'fa-file-signature');
+   common_icon.dataset.drag_inactive = 'true';
+   common_icon.addEventListener('click', () => toggleCommonPart(new_expert));
+   new_expert.dataset.common_part = !!isCommonPartExpert(new_expert);
+   new_expert.appendChild(common_icon);
 
    let expert_name = document.createElement('SPAN');
    expert_name.classList.add('section__name');
@@ -295,6 +295,7 @@ function transformExpert (expert) {
 
    let remove_btn = document.createElement('SPAN');
    remove_btn.classList.add('section__icon-remove', 'fas', 'fa-minus');
+   remove_btn.dataset.drag_inactive = '';
    remove_btn.dataset.drop_remove = '';
    remove_btn.dataset.remove_callback = 'remove_expert';
    new_expert.appendChild(remove_btn);
@@ -302,36 +303,35 @@ function transformExpert (expert) {
    return new_expert;
 }
 
-function setLeadingExpert (expert) {
-   let leading_experts = document.querySelectorAll('.section__expert[data-leading="true"]');
-   leading_experts.forEach(leading_expert => {
-      if (leading_expert.dataset.id !== expert.dataset.id) {
-         leading_expert.dataset.leading = 'false';
+function setLeadExpert (expert) {
+   let lead_experts = document.querySelectorAll('.section__expert[data-lead="true"]');
+   lead_experts.forEach(lead_expert => {
+      if (lead_expert.dataset.id !== expert.dataset.id) {
+         lead_expert.dataset.lead = 'false';
       }
    });
 
    let current_expert = document.querySelectorAll(`.section__expert[data-id='${expert.dataset.id}']`);
    current_expert.forEach(expert_copy => {
-      expert_copy.dataset.leading = 'true';
+      expert_copy.dataset.lead = 'true';
    });
 }
 
-function isLeadingExpert (expert) {
-   let leading_expert = document.querySelector('.section__expert[data-leading="true"]');
-   return leading_expert && expert.dataset.id === leading_expert.dataset.id;
+function isLeadExpert (expert) {
+   let lead_expert = document.querySelector('.section__expert[data-lead="true"]');
+   return lead_expert && expert.dataset.id === lead_expert.dataset.id;
 }
 
-function isGeneralPartExpert (expert) {
-   let general_part_expert = document.querySelector('.section__expert[data-general="true"]');
-   return general_part_expert && expert.dataset.id === general_part_expert.dataset.id;
-   // return general_part_expert && expert.dataset.id === general_part_expert.dataset.id;
+function isCommonPartExpert (expert) {
+   let common_part_expert = document.querySelector('.section__expert[data-common_part="true"]');
+   return common_part_expert && expert.dataset.id === common_part_expert.dataset.id;
 }
 
-function toggleGeneralPart (expert) {
-   let is_general = (expert.dataset.general !== 'true').toString();
+function toggleCommonPart (expert) {
+   let is_common_part = (expert.dataset.common_part !== 'true').toString();
    let current_expert = document.querySelectorAll(`.section__expert[data-id='${expert.dataset.id}']`);
    current_expert.forEach(expert_copy => {
-      expert_copy.dataset.general = is_general;
+      expert_copy.dataset.common_part = is_common_part;
    });
 }
 

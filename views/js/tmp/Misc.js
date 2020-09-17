@@ -61,6 +61,7 @@ class Misc {
    pagination;
 
    constructor (select) {
+
       this.select = select;
       this.field = this.select.closest('[data-misc_field]');
 
@@ -90,12 +91,18 @@ class Misc {
 
    handleCloseButton () {
       let close_btn = this.modal.querySelector('[data-misc_close]');
-      close_btn.addEventListener('click', this.close);
+      close_btn.addEventListener('click', () => this.close());
    }
 
    close () {
+
       this.modal.classList.remove('active');
       Misc.overlay.classList.remove('active');
+
+      /*if (this.pagination) {
+         this.pagination.element.style.display = 'none';
+      }*/
+
    }
 
    initPages () {
@@ -189,8 +196,15 @@ class Misc {
    open () {
       if (!this.is_empty) {
          this.modal.classList.add('active');
+
+         if (this.active_page) {
+            this.active_page.classList.remove('active');
+         }
+
          this.active_page = this.pages[0];
          this.active_page.classList.add('active');
+
+
          Misc.overlay.classList.add('active');
       } else {
          ErrorModal.open('Ошибка справочника', this.error_message);
@@ -241,6 +255,8 @@ class Misc {
       // Если страниц больше 1 отображаем пагинацию
       if (misc.pages.length > 1) {
          misc.handlePagination();
+      } else {
+         console.log(misc.pagination);
       }
 
       return misc;
@@ -264,6 +280,8 @@ class Misc {
    // modal         Modal : объект модального окна
    clearModal (misc) {
       misc.body.innerHTML = '';
+
+      misc.result_input = misc.field.querySelector('[data-misc_result]');
       misc.result_input.value = '';
       misc.select.classList.remove('filled');
 
