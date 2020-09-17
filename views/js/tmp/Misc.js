@@ -2,19 +2,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
    Misc.initializeMiscSelects(document);
 
-   Misc.overlay.addEventListener('click', Misc.instance.close);
+   Misc.overlay = document.getElementById('misc_overlay');
+   Misc.overlay.addEventListener('click', () => {
+      Misc.instance.close();
+   });
 
 });
 
+
 class Misc {
+
+   /**
+    * Созданные модальные окна справочников
+    *
+    * @type {Map<number, Misc>}
+    */
    static miscs = new Map();
+
+   /**
+    * Счетчик созданных модальный окон справочников
+    *
+    * @type {number}
+    */
    static active_miscs_counter = 0;
 
    /**
+    * Объект текущего справочника
+    *
     * @type {Misc}
     */
    static instance;
-   static overlay = document.getElementById('misc_overlay');
+
+   /**
+    * Фон модального окна справочника
+    *
+    * @type {Element}
+    */
+   static overlay;
 
 
    id;
@@ -163,13 +187,11 @@ class Misc {
    }
 
    open () {
-
       if (!this.is_empty) {
          this.modal.classList.add('active');
          this.active_page = this.pages[0];
          this.active_page.classList.add('active');
-         // this.close_button.classList.add('active');
-         this.overlay.classList.add('active');
+         Misc.overlay.classList.add('active');
       } else {
          ErrorModal.open('Ошибка справочника', this.error_message);
       }
@@ -206,10 +228,9 @@ class Misc {
 
    static handleMiscSelect (select) {
       select.addEventListener('click', () => {
-         this.instance = this.getMiscBySelect(select);
-         this.instance.open();
+         Misc.instance = Misc.getMiscBySelect(select);
+         Misc.instance.open();
          disableScroll();
-
       });
    }
 
@@ -229,12 +250,12 @@ class Misc {
    //
    clearRelatedMiscs () {
       // Берем объекты модальных окон всех зависимых полей
-      let dependent_modals = this.getDependentMiscs();
+      let dependent_miscs = this.getDependentMiscs();
 
-      dependent_modals.forEach(modal => {
-         modal.clearRelatedMiscs();
-         this.clearModal(modal);
-         validateModal(modal);
+      dependent_miscs.forEach(misc => {
+         misc.clearRelatedMiscs();
+         this.clearModal(misc);
+         validateMisc(misc);
       });
    }
 
@@ -246,7 +267,7 @@ class Misc {
       misc.result_input.value = '';
       misc.select.classList.remove('filled');
 
-      let select_value = misc.select.querySelector('[data-misc_select]');
+      let select_value = misc.select.querySelector('[data-misc_value]');
       select_value.innerHTML = 'Выберите значение';
       misc.select.removeAttribute('data-id_misc');
       Misc.miscs.delete(misc.id);
@@ -262,7 +283,7 @@ class Misc {
       let dependent_inputs = document.querySelectorAll(`[data-when_change='${this.name}']`);
 
       dependent_inputs.forEach(input => {
-         let dependent_field = scope.querySelector(`[data-misc_field][data-name='${input.dataset.target_change}']`);
+         let dependent_field = scope.querySelector(`.field[data-name='${input.dataset.target_change}']`);
          let misc_select = dependent_field.querySelector('[data-id_misc]');
 
          if (misc_select) {
@@ -314,7 +335,7 @@ class Pagination {
       this.arrow_right = Pagination.createPaginationArrow('right');
 
       this.arrow_left.addEventListener('click', () => {
-         let new_page_num = parseInt(this.misc.active_page.dataset.page) - 1;
+         let new_page_num = parseInt(this.misc.active_page.dataset.misc_page) - 1;
          this.misc.changeActivePage(new_page_num);
 
          this.page_label.innerHTML = `${1 + new_page_num}/${this.misc.pages.length}`;
@@ -331,7 +352,7 @@ class Pagination {
       });
 
       this.arrow_right.addEventListener('click', () => {
-         let new_page_num = parseInt(this.misc.active_page.dataset.page) + 1;
+         let new_page_num = parseInt(this.misc.active_page.dataset.misc_page) + 1;
          this.misc.changeActivePage(new_page_num);
 
          this.page_label.innerHTML = `${1 + new_page_num}/${this.misc.pages.length}`;
@@ -385,18 +406,18 @@ function getMiscResultCallback (misc) {
 }
 
 function setApplicationFieldValue (selected_item, misc) {
-   let result_input = misc.field.querySelector('[data-misc_result]');
+   misc.result_input = misc.field.querySelector('[data-misc_result]');
    // В результат записываем id элемента из справочника
-   result_input.value = selected_item.dataset.id;
+   misc.result_input.value = selected_item.dataset.id;
 
    // В поле для выбора записываем значение
    misc.select.classList.add('filled');
 
-   let misc_value = misc.select.querySelector('.field-value');
+   let misc_value = misc.select.querySelector('[data-misc_value]');
    misc_value.innerHTML = selected_item.innerHTML;
 
    // Показывает или скрывает поля, зависящие от выбранного значения
-   DependenciesHandler.handleDependencies(result_input);
+   DependenciesHandler.handleDependencies(misc.result_input);
 
    // Очищаем зависимые поля
    misc.clearRelatedMiscs();
@@ -407,5 +428,8 @@ function setAdditionalAction (selected_item, misc) {
    misc.field.dataset.id = selected_item.dataset.id;
    misc.field.dataset.drop_area = '';
    misc.select.classList.remove('empty');
-   misc.select.innerHTML = selected_item.innerHTML;
+
+   let misc_value = misc.select.querySelector('[data-misc_value]');
+   // misc.select.innerHTML = selected_item.innerHTML;
+   misc_value.innerHTML = selected_item.innerHTML;
 }

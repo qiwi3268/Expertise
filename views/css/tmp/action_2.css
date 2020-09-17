@@ -61,7 +61,11 @@
    align-items: center;
    justify-content: space-between;
    padding: 0px 10px 0px 15px;
+   cursor: pointer;
+}
 
+.section__header.empty {
+   color: #6e6e6e;
 }
 
 .section__title {
@@ -69,9 +73,6 @@
    padding: 10px 0px;
 }
 
-.section__title.empty {
-   color: #6e6e6e;
-}
 
 .section__body {
    display: flex;

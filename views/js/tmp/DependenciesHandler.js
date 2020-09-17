@@ -149,7 +149,6 @@ class DependenciesHandler {
    static handleRadioDependencies () {
       let dependency_inputs = this.radio_dependency.querySelectorAll(`input[data-when_change=${this.result_input.name}]`);
 
-
       dependency_inputs.forEach(input => {
 
          // Все возможные значения для блока с переключателями
@@ -205,16 +204,16 @@ class DependenciesHandler {
             let field_result = parent_field.querySelector('.field-result');
             this.handleDependencies(field_result);
 
-            let parent_select = parent_field.querySelector('.modal-select');
+            let parent_select = parent_field.querySelector('[data-misc_select]');
             if (field_result.value) {
 
                this.removeRowValue(parent_field);
 
-               let related_modal = parent_field.querySelector('.modal');
+               let related_modal = parent_field.querySelector('[data-misc]');
                if (related_modal) {
-                  let modal = getModalBySelect(parent_select);
-                  modal.clearRelatedModals();
-                  validateModal(modal);
+                  let misc = Misc.getMiscBySelect(parent_select);
+                  misc.clearRelatedMiscs();
+                  validateMisc(misc);
                }
 
                validateCard(parent_field.closest('.card-form'));
@@ -240,17 +239,5 @@ class DependenciesHandler {
          }
       }
    }
-/*
-   clearBlock (block) {
-      let dependent_fields = block.querySelectorAll('.field');
-      dependent_fields.forEach(field => {
-         removeRowValue(field);
-      });
 
-
-      let parent_card_body = block.closest('.card-form__body');
-      if (parent_card_body.style.maxHeight) {
-         resizeCard(block);
-      }
-   }*/
 }

@@ -20,7 +20,7 @@ function mQS (element, selector, error_code) {
    if (result) {
       return result;
    } else {
-      ErrorHandler.createError(error_code)
+      // ErrorHandler.createError(error_code)
       // throw new Error();
    }
 }
@@ -31,7 +31,7 @@ function mClosest (element, selector, error_code) {
    if (result) {
       return result;
    } else {
-      ErrorHandler.createError(error_code)
+      // ErrorHandler.createError(error_code)
       // throw new Error();
    }
 }

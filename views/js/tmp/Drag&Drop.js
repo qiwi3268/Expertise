@@ -225,7 +225,7 @@ class DragContainer {
       element.addEventListener('mousedown', (event) => {
          if (
             !event.target.hasAttribute('data-drop_remove')
-            && event.which === 1
+            && event.button === 0
          ) {
             new DragElement(element, event, this);
          }

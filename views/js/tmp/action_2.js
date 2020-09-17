@@ -48,19 +48,14 @@ function createSection (section_container, additional_sections) {
    new_section.dataset.active = 'true';
    section_container.appendChild(new_section);
 
-   let modal_select = new_section.querySelector('.modal-select');
-   modal_select.addEventListener('click', () => {
+   let modal_select = new_section.querySelector('[data-misc_select]');
+   Misc.handleMiscSelect(modal_select);
 
-      // todo вынести в отдельный метод
-      modal = getModalBySelect(modal_select);
-
-      if (!modal.is_empty) {
-         modal.show();
-      } else {
-         createAlert(modal.alert_message);
-         modal.alert_message = '';
+   modal_select.addEventListener('click', event => {
+      if (!event.target.classList.contains('section__remove')) {
+         Misc.instance = Misc.getMiscBySelect(modal_select);
+         Misc.instance.open();
       }
-      disableScroll();
 
    });
 

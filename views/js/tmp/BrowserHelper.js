@@ -22,9 +22,6 @@ class BrowserHelper {
 
    // Проверка браузера на наличие promise
    static canPromise () {
-      console.log(!window.Promise);
-      console.log(!!window.Promise);
-      console.log('qwe');
       if (!window.Promise) {
 
       }

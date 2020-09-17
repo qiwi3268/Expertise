@@ -67,7 +67,7 @@
                         <span class="body-card__title field-title">Цель обращения</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
-                                <div class="body-card__select field-select modal-select" data-misc_select>
+                                <div class="body-card__select field-select" data-misc_select>
                                     <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input data-form="application" class="body-card__result field-result" type="hidden" name="expertise_subjects" value="">
+                        <input data-form="application" class="body-card__result field-result" type="hidden" data-misc_result name="expertise_subjects" value="">
                     </div>
                     <!--//Предмет экспертизы//-->
                     
@@ -139,102 +139,102 @@
                     <!--//Наименование объекта//-->
                     
                     <!--Вид объекта-->
-                    <div class="body-card__row field" data-name="type_of_object" data-required="true">
+                    <div class="body-card__row field" data-misc_field data-name="type_of_object" data-required="true">
                         <span class="body-card__title field-title">Вид объекта</span>
                         
                         <div class="body-card__item">
                             <div class="body-card__field">
-                                <div class="body-card__select field-select modal-select">
-                                    <span class="body-card__value field-value">Выберите значение</span>
+                                <div class="body-card__select field-select" data-misc_select>
+                                    <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                     <i class="body-card__icon fas fa-bars"></i>
                                 </div>
                             </div>
                             <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                         </div>
                         
-                        <div class="modal">
-                            <i class="modal__close fas fa-times"></i>
-                            <div class="modal__items">
+                        <div class="modal" data-misc_modal data-result_callback="application_field">
+                            <i class="modal__close fas fa-times" data-misc_close></i>
+                            <div class="modal__items" data-misc_body>
                                 <?php foreach ($variablesTV->getValue('type_of_object') as $pageNumber => $page): ?>
-                                    <div class="modal__page" data-page="<?= $pageNumber ?>">
+                                    <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
                                         <?php foreach ($page as $item): ?>
-                                            <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                            <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
                                         <?php endforeach; ?>
                                     </div>
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <input data-form="application" class="body-card__result field-result" type="hidden" name="type_of_object">
+                        <input data-form="application" class="body-card__result field-result" type="hidden" data-misc_result name="type_of_object">
                     </div>
                     <!--//Вид объекта//-->
                     
                     <!--Функциональное назначение-->
-                    <div class="body-card__row field" data-name="functional_purpose" data-required="true">
+                    <div class="body-card__row field" data-misc_field data-name="functional_purpose" data-required="true">
                         <span class="body-card__title field-title">Функциональное назначение</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
-                                <div class="body-card__select field-select modal-select">
-                                    <span class="body-card__value field-value">Выберите значение</span>
+                                <div class="body-card__select field-select" data-misc_select>
+                                    <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                     <i class="body-card__icon fas fa-bars"></i>
                                 </div>
                             </div>
                             <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                         </div>
-                        <div class="modal">
-                            <i class="modal__close fas fa-times"></i>
-                            <div class="modal__items">
+                        <div class="modal" data-misc_modal data-result_callback="application_field">
+                            <i class="modal__close fas fa-times" data-misc_close></i>
+                            <div class="modal__items" data-misc_body>
                                 <?php foreach ($variablesTV->getValue('functional_purpose') as $pageNumber => $page): ?>
-                                    <div class="modal__page" data-page="<?= $pageNumber ?>">
+                                    <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
                                         <?php foreach ($page as $item): ?>
-                                            <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                            <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
                                         <?php endforeach; ?>
                                     </div>
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <input data-form="application" class="body-card__result field-result" type="hidden" name="functional_purpose">
+                        <input data-form="application" class="body-card__result field-result" type="hidden" data-misc_result name="functional_purpose">
                     </div>
                     <!--//Функциональное назначение//-->
                     
                     <!--Функциональное назначение. Подотрасль-->
-                    <div class="body-card__row field" data-name="functional_purpose_subsector" data-required="true">
+                    <div class="body-card__row field" data-misc_field data-name="functional_purpose_subsector" data-required="true">
                         <span class="body-card__title field-title">Функциональное назначение. Подотрасль</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
-                                <div class="body-card__select field-select modal-select">
-                                    <span class="body-card__value field-value">Выберите значение</span>
+                                <div class="body-card__select field-select" data-misc_select>
+                                    <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                     <i class="body-card__icon fas fa-bars"></i>
                                 </div>
                                 <i class="body-card__icon-clear fas fa-trash"></i>
                             </div>
                             <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                         </div>
-                        <div class="modal">
-                            <i class="modal__close fas fa-times"></i>
-                            <div class="modal__items"></div>
+                        <div class="modal" data-misc_modal data-result_callback="application_field">
+                            <i class="modal__close fas fa-times" data-misc_close></i>
+                            <div class="modal__items" data-misc_body></div>
                         </div>
-                        <input data-form="application" class="body-card__result field-result" type="hidden" name="functional_purpose_subsector">
+                        <input data-form="application" class="body-card__result field-result" type="hidden" data-misc_result name="functional_purpose_subsector">
                     </div>
                     <!--//Функциональное назначение. Подотрасль//-->
                     
                     <!--Функциональное назначение. Группа-->
-                    <div class="body-card__row field" data-name="functional_purpose_group" data-required="true">
+                    <div class="body-card__row field" data-misc_field data-name="functional_purpose_group" data-required="true">
                         <span class="body-card__title field-title">Функциональное назначение. Группа</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
-                                <div class="body-card__select field-select modal-select">
-                                    <span class="body-card__value field-value">Выберите значение</span>
+                                <div class="body-card__select field-select" data-misc_select>
+                                    <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                     <i class="body-card__icon fas fa-bars"></i>
                                 </div>
                                 <i class="body-card__icon-clear fas fa-trash"></i>
                             </div>
                             <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                         </div>
-                        <div class="modal">
-                            <i class="modal__close fas fa-times"></i>
-                            <div class="modal__items"></div>
+                        <div class="modal" data-misc_modal data-result_callback="application_field">
+                            <i class="modal__close fas fa-times" data-misc_close></i>
+                            <div class="modal__items" data-misc_body></div>
                         </div>
-                        <input data-form="application" class="body-card__result field-result" type="hidden" name="functional_purpose_group">
+                        <input data-form="application" class="body-card__result field-result" type="hidden" data-misc_result name="functional_purpose_group">
                     </div>
                     <!--//Функциональное назначение. Группа//-->
                     
@@ -301,23 +301,23 @@
                     <!--//Блок линейные объекты капитального строительства//-->
                     
                     <!--Вид работ-->
-                    <div class="body-card__row field" data-name="type_of_work" data-required="true">
+                    <div class="body-card__row field" data-misc_field data-name="type_of_work" data-required="true">
                         <span class="body-card__title field-title">Вид работ</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
-                                <div class="body-card__select field-select modal-select">
-                                    <span class="body-card__value field-value">Выберите значение</span>
+                                <div class="body-card__select field-select" data-misc_select>
+                                    <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                     <i class="body-card__icon fas fa-bars"></i>
                                 </div>
                                 <i class="body-card__icon-clear fas fa-trash"></i>
                             </div>
                             <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                         </div>
-                        <div class="modal">
-                            <i class="modal__close fas fa-times"></i>
-                            <div class="modal__items"></div>
+                        <div class="modal" data-misc_modal data-result_callback="application_field">
+                            <i class="modal__close fas fa-times" data-misc_close></i>
+                            <div class="modal__items" data-misc_body></div>
                         </div>
-                        <input data-form="application" class="body-card__result field-result" type="hidden" name="type_of_work">
+                        <input data-form="application" class="body-card__result field-result" type="hidden" data-misc_result name="type_of_work">
                     </div>
                     <!--//Вид работ//-->
                     
@@ -390,31 +390,31 @@
                     <!--Блок культурное наследие-->
                     <div class="body-card__block block" data-name="cultural_object_type" data-active="false">
                         <!--Тип объекта культурного наследия-->
-                        <div class="body-card__row field" data-name="cultural_object_type" data-required="true">
+                        <div class="body-card__row field" data-misc_field data-name="cultural_object_type" data-required="true">
                             <span class="body-card__title field-title">Тип объекта культурного наследия</span>
                             <div class="body-card__item">
                                 <div class="body-card__field">
-                                    <div class="body-card__select field-select modal-select">
-                                        <span class="body-card__value field-value">Выберите значение</span>
+                                    <div class="body-card__select field-select" data-misc_select>
+                                        <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                         <i class="body-card__icon fas fa-bars"></i>
                                     </div>
                                     <i class="body-card__icon-clear fas fa-trash"></i>
                                 </div>
                                 <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                             </div>
-                            <div class="modal">
-                                <i class="modal__close fas fa-times"></i>
-                                <div class="modal__items">
+                            <div class="modal" data-misc_modal data-result_callback="application_field">
+                                <i class="modal__close fas fa-times" data-misc_close></i>
+                                <div class="modal__items" data-misc_body>
                                     <?php foreach ($variablesTV->getValue('cultural_object_type') as $pageNumber => $page): ?>
-                                        <div class="modal__page" data-page="<?= $pageNumber ?>">
+                                        <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
                                             <?php foreach ($page as $item): ?>
-                                                <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                                <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
                                             <?php endforeach; ?>
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
                             </div>
-                            <input data-form="application" class="body-card__result field-result" type="hidden" name="cultural_object_type">
+                            <input data-form="application" class="body-card__result field-result" type="hidden" data-misc_result name="cultural_object_type">
                         </div>
                         <!--//Тип объекта культурного наследия//-->
                     </div>
@@ -444,25 +444,25 @@
                     <!--Блок национальный проект-->
                     <div class="body-card__block block" data-name="national_project" data-active="false">
                         <!--Название национального проекта-->
-                        <div class="body-card__row field" data-name="national_project" data-required="true">
+                        <div class="body-card__row field" data-misc_field data-name="national_project" data-required="true">
                             <span class="body-card__title field-title">Название национального проекта</span>
                             <div class="body-card__item">
                                 <div class="body-card__field">
-                                    <div class="body-card__select field-select modal-select">
-                                        <span class="body-card__value field-value">Выберите значение</span>
+                                    <div class="body-card__select field-select" data-misc_select>
+                                        <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                         <i class="body-card__icon fas fa-bars"></i>
                                     </div>
                                     <i class="body-card__icon-clear fas fa-trash"></i>
                                 </div>
                                 <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                             </div>
-                            <div class="modal">
-                                <i class="modal__close fas fa-times"></i>
-                                <div class="modal__items">
+                            <div class="modal" data-misc_modal data-result_callback="application_field">
+                                <i class="modal__close fas fa-times" data-misc_close></i>
+                                <div class="modal__items" data-misc_body>
                                     <?php foreach ($variablesTV->getValue('national_project') as $pageNumber => $page): ?>
-                                        <div class="modal__page" data-page="<?= $pageNumber ?>">
+                                        <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
                                             <?php foreach ($page as $item): ?>
-                                                <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                                <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
                                             <?php endforeach; ?>
                                         </div>
                                     <?php endforeach; ?>
@@ -473,21 +473,21 @@
                         <!--//Название национального проекта//-->
                         
                         <!--Название федерального проекта-->
-                        <div class="body-card__row field" data-name="federal_project" data-required="true">
+                        <div class="body-card__row field" data-misc_field data-name="federal_project" data-required="true">
                             <span class="body-card__title field-title">Название федерального проекта</span>
                             <div class="body-card__item">
                                 <div class="body-card__field">
-                                    <div class="body-card__select field-select modal-select">
-                                        <span class="body-card__value field-value">Выберите значение</span>
+                                    <div class="body-card__select field-select" data-misc_select>
+                                        <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                         <i class="body-card__icon fas fa-bars"></i>
                                     </div>
                                     <i class="body-card__icon-clear fas fa-trash"></i>
                                 </div>
                                 <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                             </div>
-                            <div class="modal">
-                                <i class="modal__close fas fa-times"></i>
-                                <div class="modal__items"></div>
+                            <div class="modal" data-misc_modal data-result_callback="application_field">
+                                <i class="modal__close fas fa-times" data-misc_close></i>
+                                <div class="modal__items" data-misc_body></div>
                             </div>
                             <input data-form="application" class="body-card__result field-result" type="hidden" name="federal_project">
                         </div>
@@ -512,30 +512,30 @@
                     <!--//Блок национальный проект//-->
                     
                     <!--Куратор-->
-                    <div class="body-card__row field" data-name="curator" data-required="true">
+                    <div class="body-card__row field" data-misc_field data-name="curator" data-required="true">
                         <span class="body-card__title field-title">Куратор</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
-                                <div class="body-card__select field-select modal-select">
-                                    <span class="body-card__value field-value">Выберите значение</span>
+                                <div class="body-card__select field-select" data-misc_select>
+                                    <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                     <i class="body-card__icon fas fa-bars"></i>
                                 </div>
                             </div>
                             <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                         </div>
-                        <div class="modal">
-                            <i class="modal__close fas fa-times"></i>
-                            <div class="modal__items">
+                        <div class="modal" data-misc_modal data-result_callback="application_field">
+                            <i class="modal__close fas fa-times" data-misc_close></i>
+                            <div class="modal__items" data-misc_body>
                                 <?php foreach ($variablesTV->getValue('curator') as $pageNumber => $page): ?>
-                                    <div class="modal__page" data-page="<?= $pageNumber ?>">
+                                    <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
                                         <?php foreach ($page as $item): ?>
-                                            <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                            <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
                                         <?php endforeach; ?>
                                     </div>
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <input data-form="application" class="body-card__result field-result" type="hidden" name="curator">
+                        <input data-form="application" class="body-card__result field-result" type="hidden" data-misc_result name="curator">
                     </div>
                     <!--//Куратор//-->
                 </div>
@@ -594,24 +594,24 @@
                             <!--//Шаблон "Вид финансирования"//-->
                             <!--Шаблон "Бюджетные средства"-->
                             <div class="body-card__block block" data-type="part" data-name="budget" data-active="false">
-                                <div class="body-card__row field" data-name="budget_level" data-required="true">
+                                <div class="body-card__row field" data-misc_field data-name="budget_level" data-required="true">
                                     <span class="body-card__title field-title">Уровень бюджета</span>
                                     <div class="body-card__item">
                                         <div class="body-card__field">
-                                            <div class="body-card__select field-select modal-select">
-                                                <span class="body-card__value field-value">Выберите значение</span>
+                                            <div class="body-card__select field-select" data-misc_select>
+                                                <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                                 <i class="body-card__icon fas fa-bars"></i>
                                             </div>
                                         </div>
                                         <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                                     </div>
-                                    <div class="modal">
-                                        <i class="modal__close fas fa-times"></i>
-                                        <div class="modal__items">
+                                    <div class="modal" data-misc_modal data-result_callback="application_field">
+                                        <i class="modal__close fas fa-times" data-misc_close></i>
+                                        <div class="modal__items" data-misc_body>
                                             <?php foreach ($variablesTV->getValue('budget_level') as $pageNumber => $page): ?>
-                                                <div class="modal__page" data-page="<?= $pageNumber ?>">
+                                                <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
                                                     <?php foreach ($page as $item): ?>
-                                                        <div class="modal__item" data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                                        <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
                                                     <?php endforeach; ?>
                                                 </div>
                                             <?php endforeach; ?>

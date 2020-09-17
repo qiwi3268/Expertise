@@ -58,7 +58,7 @@ class MultipleBlock {
    }
 
    addEventListeners (new_block) {
-      initializeModalSelects(new_block);
+      Misc.initializeMiscSelects(new_block);
       initializeRadio(new_block);
    }
 

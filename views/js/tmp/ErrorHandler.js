@@ -16,7 +16,6 @@ class ErrorModal {
    static title;
    static message;
 
-
    static init () {
       this.modal = document.querySelector('.error-modal');
 
@@ -33,7 +32,6 @@ class ErrorModal {
       this.message = this.modal.querySelector('.error-modal__message');
 
    }
-
 
    static close () {
       ErrorModal.modal.classList.remove('active');
