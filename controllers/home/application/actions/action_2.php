@@ -35,7 +35,7 @@ $variablesTV->setValue('experts', $activeExperts);
 $typeOfObjectId = application::getIdTypeOfObjectById(CURRENT_DOCUMENT_ID);
 
 switch ($typeOfObjectId) {
-    case 1 : // Производственные/непроизводственные
+    case 1 : // Производственные / непроизводственные
         $mapping_level_1 = 2;
         $mapping_level_2 = 1;
         $structureDocumentationClassName = '\Tables\Structures\documentation_1';
@@ -48,12 +48,12 @@ switch ($typeOfObjectId) {
         //todo $mainBlocks341DocumentationClassName = '\Tables\order_341\documentation_2\main_block';
         break;
     default :
-        throw new Exception("Заявление имеет неопределенный Вид работ: '{$typeOfObjectId}'");
+        throw new Exception("Заявление имеет неопределенный вид работ: '{$typeOfObjectId}'");
 }
 
 // Формирование разделов и загруженной к ним документации
 //
-// Объект нужных маппингов (только документация выбранного Вида объекта)
+// Объект нужных маппингов (только документация выбранного вида объекта)
 $requiredMappings = new RequiredMappingsSetter();
 
 $requiredMappings->setMappingLevel2($mapping_level_1, $mapping_level_2);

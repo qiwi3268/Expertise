@@ -10,17 +10,21 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+/**
+ * Представляет собой модальное окно со значениями справочника
+ *
+ */
 class Misc {
 
    /**
-    * Созданные модальные окна справочников
+    * Проинициализированные справочники
     *
     * @type {Map<number, Misc>}
     */
    static miscs = new Map();
 
    /**
-    * Счетчик созданных модальный окон справочников
+    * Счетчик проинициализированных справочников
     *
     * @type {number}
     */
@@ -36,36 +40,98 @@ class Misc {
    /**
     * Фон модального окна справочника
     *
-    * @type {Element}
+    * @type {HTMLElement}
     */
    static overlay;
 
-
+   /**
+    * id справочника, для получения объекта
+    *
+    * @type {number}
+    */
    id;
+
+   /**
+    * Блок, при нажатии на который открывается модальное окно
+    *
+    * @type {HTMLElement}
+    */
    select;
+
+   /**
+    * Поле, к которому относится справочник
+    *
+    * @type {HTMLElement}
+    */
    field;
 
+   /**
+    * Элемент модального окна справочника
+    *
+    * @type {HTMLElement}
+    */
    modal;
-   overlay;
 
+
+   /**
+    * Имя поля, к которому относится справочник
+    *
+    * @type {string}
+    */
    name;
 
+   /**
+    * функция обработки результата выбора элемента
+    *
+    * @type {function}
+    */
    result_callback;
 
-
+   /**
+    * Блок со страницами значений справочника
+    *
+    * @type {HTMLElement}
+    */
    body;
+
+   /**
+    * Коллекция страниц значений справочника
+    *
+    * @type {NodeList}
+    */
    pages;
+
+   /**
+    * Флаг, указывающий есть ли значения справочника для выбора
+    *
+    * @type {boolean}
+    */
    is_empty = false;
+
+
+   /**
+    * Сообщении с ошибкой при инициализации справочника
+    *
+    * @type {string}
+    */
    error_message;
 
+   /**
+    * Объект пагинации справочника
+    *
+    * @type {Pagination}
+    */
    pagination;
 
+   /**
+    * Создает модальное окно справочника
+    *
+    * @param {HTMLElement} select - Блок, при нажатии на который открывается модальное окно
+    */
    constructor (select) {
       this.select = select;
       this.field = this.select.closest('[data-misc_field]');
-
       this.modal = this.field.querySelector('[data-misc_modal]');
-
       this.name = this.field.dataset.name;
 
       this.result_callback = getMiscResultCallback(this);
