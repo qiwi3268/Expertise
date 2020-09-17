@@ -1,13 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-   // Фон модального окна
-   // overlay = document.querySelector('.modal-overlay');
-
-   // overlay.addEventListener('click', () => {
-   //    closeModal(modal);
-   // });
-
    Misc.initializeMiscSelects(document);
+
+   Misc.overlay.addEventListener('click', Misc.instance.close);
 
 });
 
@@ -33,15 +28,16 @@ class Misc {
 
    result_callback;
 
-   // close_btn;
 
+   body;
    pages;
-   is_empty;
+   is_empty = false;
+   error_message;
+
+   pagination;
 
    constructor (select) {
-      this.id = Misc.active_miscs_counter++;
       this.select = select;
-      this.select.dataset.id_misc = this.id;
       this.field = this.select.closest('[data-misc_field]');
 
       this.modal = this.field.querySelector('[data-misc_modal]');
@@ -50,9 +46,21 @@ class Misc {
 
       this.result_callback = getMiscResultCallback(this);
 
+
       this.handleCloseButton();
 
+
       this.initPages();
+
+      if (!this.is_empty) {
+
+         this.handleItems();
+         this.id = Misc.active_miscs_counter++;
+         this.select.dataset.id_misc = this.id;
+         Misc.miscs.set(this.id, this);
+
+      }
+
 
    }
 
@@ -67,14 +75,11 @@ class Misc {
    }
 
    initPages () {
-      this.pages = this.modal.querySelectorAll('[data-misc_page]');
+      this.body = this.modal.querySelector('[data-misc_body]');
+      this.pages = this.body.querySelectorAll('[data-misc_page]');
 
       if (this.pages.length === 0) {
-         let is_empty = this.createNewPages();
-
-         if (is_empty) {
-            ErrorModal.open('Ошибка справочника', `Не найден input со значениями справочника`);
-         }
+         this.createNewPages();
       }
 
    }
@@ -83,14 +88,9 @@ class Misc {
       // Контейнер со значениями для текущего справочника в зависимости от значения родительского справочника
       let misc_values = document.querySelector(`[data-target_change="${this.name}"]`);
 
-      // let related_modal_input;
-      let is_empty = false;
-
       if (misc_values) {
          // Инпут со значением родительского справочника
-         let parent_misc_result = document.querySelector(`[data-misc_result][name='${related_input.dataset.when_change}']`);
-
-         // related_modal_input = document.querySelector(`.field-result[name="${related_input.dataset.when_change}"]`);
+         let parent_misc_result = document.querySelector(`[data-misc_result][name='${misc_values.dataset.when_change}']`);
 
          if (parent_misc_result) {
             // Массив массивов всех значений
@@ -100,35 +100,107 @@ class Misc {
 
             // Если родительское поле заполнено, добавляем значения, иначе создаем оповещение
             if (new_pages) {
-               this.putItemsToModal(new_pages);
+               this.putMiscValues(new_pages);
             } else {
                // Создаем сообщение, в котором записываем поле, которое нужно заполнить
-               is_empty = true;
 
-               // if (related_modal_input.closest) {
-               let related_modal_card = related_modal_input.closest('.field');
-               let related_modal_title = related_modal_card.querySelector('.field-title').innerHTML;
-               this.alert_message = `Выберите ${related_modal_title.toLowerCase()}`;
-               // }
+               this.is_empty = true;
+               let related_field = parent_misc_result.closest('.field');
+               let related_field_name = related_field.querySelector('.field-title').innerHTML;
+               this.error_message = `Выберите ${related_field_name.toLowerCase()}`;
+
             }
          }
       } else {
          // Если из базы пришел пустой справочник и нет связанного инпута
-         is_empty = true;
+         this.is_empty = true;
+         this.error_message = `Не найден input со значениями справочника, либо справочник не заполнен`;
 
-         this.alert_message = `Заполните справочник`;
       }
 
-      return is_empty;
+   }
+
+   putMiscValues (pages) {
+      let modal_page;
+      let modal_item;
+
+      pages.forEach((page, index) => {
+         modal_page = document.createElement('DIV');
+         modal_page.dataset.misc_page = index;
+         modal_page.classList.add('modal__page');
+
+         page.forEach(item => {
+            modal_item = document.createElement('SPAN');
+            modal_item.dataset.id = item.id;
+            modal_item.dataset.misc_item = item.id;
+            modal_item.classList.add('modal__item');
+            modal_item.innerHTML = item.name;
+
+            modal_page.appendChild(modal_item);
+         });
+
+         this.body.appendChild(modal_page);
+         this.pages = this.body.querySelectorAll('.modal__page');
+      });
+   }
+
+   // Предназначен для добавления события каждому элементу страниц
+   //
+   handleItems () {
+      let items;
+
+      this.pages.forEach(page => {
+         items = page.querySelectorAll('.modal__item');
+         items.forEach(item => {
+            item.addEventListener('click', () => {
+
+               this.result_callback(item, this);
+               this.close();
+
+            });
+         });
+      });
    }
 
    open () {
 
+      if (!this.is_empty) {
+         this.modal.classList.add('active');
+         this.active_page = this.pages[0];
+         this.active_page.classList.add('active');
+         // this.close_button.classList.add('active');
+         this.overlay.classList.add('active');
+      } else {
+         ErrorModal.open('Ошибка справочника', this.error_message);
+      }
+
    }
 
+   // Предназначени для добавления в модальное окно блока с пагинацией
+   //
+   handlePagination () {
+      if (!this.pagination) {
+         this.pagination = new Pagination(this);
+      }
+
+      this.pagination.page_label.innerHTML = `1/${this.pages.length}`;
+      this.pagination.arrow_left.style.visibility = 'hidden';
+      this.pagination.arrow_right.style.visibility = 'visible';
+      this.pagination.element.style.display = 'flex';
+   }
+
+   // Предназначен для смены отображаемой страницы модального окна
+   // Принимает параметры-------------------------------------------
+   // new_page_num  number : номер новой страницы
+   //
+   changeActivePage (new_page_num) {
+      this.active_page.classList.remove('active');
+      this.active_page = this.body.querySelector(`[data-misc_page='${new_page_num}']`);
+      this.active_page.classList.add('active');
+   }
 
    static initializeMiscSelects (block) {
-      let misc_selects = block.querySelectorAll('.modal-select');
+      let misc_selects = block.querySelectorAll('[data-misc_select]');
       misc_selects.forEach(this.handleMiscSelect);
    }
 
@@ -136,22 +208,14 @@ class Misc {
       select.addEventListener('click', () => {
          this.instance = this.getMiscBySelect(select);
          this.instance.open();
-
-         /*
-                  if (!this.instance.is_empty) {
-                     this.instance.open();
-                  } else {
-                     ErrorModal.open('Ошибка при получении значений справочника', this.instance.error_message);
-                  }
-         */
          disableScroll();
 
       });
    }
 
    static getMiscBySelect (select) {
-      let id_modal = parseInt(select.dataset.id_modal);
-      let misc = !isNaN(id_modal) ? this.miscs.get(id_modal) : new Misc(select);
+      let id_misc = parseInt(select.dataset.id_misc);
+      let misc = !isNaN(id_misc) ? this.miscs.get(id_misc) : new Misc(select);
 
       // Если страниц больше 1 отображаем пагинацию
       if (misc.pages.length > 1) {
@@ -161,7 +225,144 @@ class Misc {
       return misc;
    }
 
+   // Предназначен для удаления элементов и выбранных значений зависимых модальных окон
+   //
+   clearRelatedMiscs () {
+      // Берем объекты модальных окон всех зависимых полей
+      let dependent_modals = this.getDependentMiscs();
 
+      dependent_modals.forEach(modal => {
+         modal.clearRelatedMiscs();
+         this.clearModal(modal);
+         validateModal(modal);
+      });
+   }
+
+   // Предназначен для удаления выбранного значения из родительского поля
+   // Принимает параметры-------------------------------
+   // modal         Modal : объект модального окна
+   clearModal (misc) {
+      misc.body.innerHTML = '';
+      misc.result_input.value = '';
+      misc.select.classList.remove('filled');
+
+      let select_value = misc.select.querySelector('[data-misc_select]');
+      select_value.innerHTML = 'Выберите значение';
+      misc.select.removeAttribute('data-id_misc');
+      Misc.miscs.delete(misc.id);
+   }
+
+   // Предназначен для получения массива зависимых модальных окон
+   // Возвращает параметры------------------------------------------
+   // dependent_modals  Array[Modal] : массив с объектами зависимых модальных окон
+   //
+   getDependentMiscs () {
+      let dependent_miscs = [];
+      let scope = this.field.closest('[data-dependency_scope]') || document;
+      let dependent_inputs = document.querySelectorAll(`[data-when_change='${this.name}']`);
+
+      dependent_inputs.forEach(input => {
+         let dependent_field = scope.querySelector(`[data-misc_field][data-name='${input.dataset.target_change}']`);
+         let misc_select = dependent_field.querySelector('[data-id_misc]');
+
+         if (misc_select) {
+            let dependent_misc = Misc.miscs.get(parseInt(misc_select.dataset.id_misc));
+            dependent_miscs.push(dependent_misc);
+         }
+
+      });
+
+      return dependent_miscs;
+   }
+
+}
+
+class Pagination {
+   // Element пагинации
+   element;
+
+   // Родительский объект модального окна
+   misc;
+
+   arrow_left;
+   arrow_right;
+
+   // Номер текущей страницы
+   page_label;
+
+   constructor (misc) {
+      this.element = document.createElement('DIV');
+      this.element.classList.add('modal__pagination', 'pagination');
+      this.misc = misc;
+
+      // Создаем стрелки и добавляем им события
+      this.initArrows();
+
+      this.page_label = document.createElement('SPAN');
+      this.page_label.classList.add('pagination__item', 'pagination__current-page');
+
+      this.element.appendChild(this.arrow_left);
+      this.element.appendChild(this.page_label);
+      this.element.appendChild(this.arrow_right);
+      this.misc.modal.appendChild(this.element);
+   }
+
+   // Предназначен для создания стрелок переключения страниц и добавления им событий
+   //
+   initArrows () {
+      this.arrow_left = Pagination.createPaginationArrow('left');
+      this.arrow_right = Pagination.createPaginationArrow('right');
+
+      this.arrow_left.addEventListener('click', () => {
+         let new_page_num = parseInt(this.misc.active_page.dataset.page) - 1;
+         this.misc.changeActivePage(new_page_num);
+
+         this.page_label.innerHTML = `${1 + new_page_num}/${this.misc.pages.length}`;
+
+         // Прячем стрелку на первой странице
+         if (new_page_num === 0) {
+            this.arrow_left.style.visibility = 'hidden';
+         }
+
+         // Показываем противоположную стрелку, если она была скрыта
+         if (this.arrow_right.style.visibility !== 'visible') {
+            this.arrow_right.style.visibility = 'visible';
+         }
+      });
+
+      this.arrow_right.addEventListener('click', () => {
+         let new_page_num = parseInt(this.misc.active_page.dataset.page) + 1;
+         this.misc.changeActivePage(new_page_num);
+
+         this.page_label.innerHTML = `${1 + new_page_num}/${this.misc.pages.length}`;
+
+         // Прячем стрелку на последней странице
+         if (new_page_num === this.misc.pages.length - 1) {
+            this.arrow_right.style.visibility = 'hidden';
+         }
+
+         // Показываем противоположную стрелку, если она была скрыта
+         if (this.arrow_left.style.visibility !== 'visible') {
+            this.arrow_left.style.visibility = 'visible';
+         }
+      });
+   }
+
+   // Предназначен для создания элемента переключения страниц
+   // Принимает параметры-------------------------------------------
+   // class_name    string : направление стрелки
+   //
+   static createPaginationArrow (class_name) {
+      let arrow = document.createElement('I');
+      arrow.classList.add(
+         'pagination__item',
+         `pagination__arrow-${class_name}`,
+         'fa',
+         `fa-chevron-${class_name}`
+      );
+
+      return arrow;
+   }
 }
 
 function getMiscResultCallback (misc) {
@@ -198,7 +399,7 @@ function setApplicationFieldValue (selected_item, misc) {
    DependenciesHandler.handleDependencies(result_input);
 
    // Очищаем зависимые поля
-   misc.clearRelatedModals();
+   misc.clearRelatedMiscs();
    validateMisc(misc);
 }
 

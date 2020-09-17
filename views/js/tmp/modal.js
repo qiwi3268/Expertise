@@ -1,3 +1,4 @@
+/*
 // Хранит объекты модальных окон заполненных полей
 let modals;
 // Текущее модальное окно
@@ -523,4 +524,4 @@ function setAdditionalAction (selected_item, modal) {
    modal.parent_field.dataset.drop_area = '';
    modal.select.classList.remove('empty');
    modal.select.innerHTML = selected_item.innerHTML;
-}
+}*/

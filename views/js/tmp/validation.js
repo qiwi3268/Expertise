@@ -28,22 +28,22 @@ document.addEventListener('DOMContentLoaded', () => {
 // Предназначен для валидации модального окна
 // Принимает параметры-------------------------------
 // modal         Modal : объект модального окна
-function validateModal (modal) {
-   if (modal.parent_field.dataset.required === 'true') {
+function validateMisc (misc) {
+   if (misc.field.dataset.required === 'true') {
       //todo определить в класса
-      let error = modal.parent_field.querySelector('.field-error');
+      let error = misc.field.querySelector('.field-error');
 
       // Если не выбрано значение
-      if (!modal.result_input.value) {
-         modal.select.classList.add('invalid');
+      if (!misc.result_input.value) {
+         misc.select.classList.add('invalid');
          error.classList.add('active');
-         resizeCard(modal.parent_field);
+         resizeCard(misc.field);
       } else {
-         modal.select.classList.remove('invalid');
+         misc.select.classList.remove('invalid');
          error.classList.remove('active');
       }
 
-      let parent_card = modal.select.closest('.card-form');
+      let parent_card = misc.select.closest('.card-form');
       if (parent_card) {
          validateCard(parent_card);
       }

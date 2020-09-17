@@ -63,12 +63,12 @@
                 </div>
                 <div class="card-form__body body-card card-body">
                     <!--Цель обращения-->
-                    <div class="body-card__row field" data-misc-field data-name="expertise_purpose" data-required="true">
+                    <div class="body-card__row field" data-misc_field data-name="expertise_purpose" data-required="true">
                         <span class="body-card__title field-title">Цель обращения</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
-                                <div class="body-card__select field-select modal-select" data-misc-select>
-                                    <span class="body-card__value field-value" data-misc-value>Выберите значение</span>
+                                <div class="body-card__select field-select modal-select" data-misc_select>
+                                    <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                 </div>
                             </div>
                             <span class="body-card__error field-error">Поле обязательно для заполнения</span>
@@ -76,7 +76,7 @@
                         
                         <div class="modal" data-misc_modal data-result_callback="application_field">
                             <i class="modal__close fas fa-times" data-misc_close></i>
-                            <div class="modal__items" data-misc_items>
+                            <div class="modal__items" data-misc_body>
                                 <?php foreach ($variablesTV->getValue('expertise_purpose') as $pageNumber => $page): ?>
                                     <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
                                         <?php foreach ($page as $item): ?>
