@@ -61,7 +61,6 @@ class Misc {
    pagination;
 
    constructor (select) {
-
       this.select = select;
       this.field = this.select.closest('[data-misc_field]');
 

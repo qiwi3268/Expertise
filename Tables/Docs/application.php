@@ -3,14 +3,21 @@
 
 namespace Tables\Docs;
 
-use Lib\DataBase\SimpleQuery;
-use Lib\DataBase\ParametrizedQuery;
 use Tables\Exceptions\Exception as SelfEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
+use Tables\Docs\Interfaces\Responsible;
+use Tables\Docs\Traits\Responsible as ResponsibleTrait;
+use Lib\DataBase\SimpleQuery;
+use Lib\DataBase\ParametrizedQuery;
 
 
-final class application
+final class application implements Responsible
 {
+
+    static private string $tableName = 'doc_application';
+
+    use ResponsibleTrait;
+
 
     // Предназначен для создания временной записи заявления
     // - стадия: "Оформление заявления"
@@ -28,24 +35,6 @@ final class application
                   VALUES
                     (NULL, 0, ?, 1, ?, UNIX_TIMESTAMP())";
         return ParametrizedQuery::set($query, [$id_author, $numerical_name]);
-    }
-
-
-    static public function getResponsibleTypeById(int $id): string
-    {
-        $query = "SELECT `responsible_type`
-                  FROM `doc_application`
-                  WHERE `id`=?";
-        return ParametrizedQuery::getSimpleArray($query, [$id])[0];
-    }
-
-
-    static public function updateResponsibleTypeById(int $id, string $responsible_type): void
-    {
-        $query = "UPDATE `doc_application`
-                  SET `responsible_type`=?
-                  WHERE `id`=?";
-        ParametrizedQuery::set($query, [$responsible_type, $id]);
     }
 
 
@@ -85,7 +74,7 @@ final class application
     }
 
     /**
-     * Предназначен для получения id Вида работ по id заявления
+     * Предназначен для получения id вида работ по id заявления
      *
      * @param int $id <b>int</b> если Вид работ существует<br>
      * <b>null</b> в противном случае

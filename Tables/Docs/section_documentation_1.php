@@ -10,13 +10,13 @@ use Lib\DataBase\ParametrizedQuery;
 
 
 /**
- * Таблица: <i>'doc_total_cc'</i>
+ * Таблица: <i>'doc_section_documentation_1'</i>
  *
  */
-final class total_cc implements Responsible
+final class section_documentation_1 implements Responsible
 {
 
-    static private string $tableName = 'doc_total_cc';
+    static private string $tableName = 'doc_section_documentation_1';
 
     use ResponsibleTrait;
 
@@ -25,16 +25,16 @@ final class total_cc implements Responsible
      * Предназначен для создания записи в таблице
      *
      * @param int $id_main_document
-     * @param int $id_author
+     * @param int $id_main_block
      * @return int id созданной записи
      * @throws DataBaseEx
      */
-    static public function create(int $id_main_document, int $id_author): int
+    static public function create(int $id_main_document, int $id_main_block): int
     {
-        $query = "INSERT INTO `doc_total_cc`
-                    (`id_main_document`, `id_author`, `date_creation`)
+        $query = "INSERT INTO `doc_section_documentation_1`
+                    (`id_main_document`, `id_main_block`, `date_creation`)
                   VALUES
                     (?, ?, UNIX_TIMESTAMP())";
-        return ParametrizedQuery::set($query, [$id_main_document, $id_author]);
+        return ParametrizedQuery::set($query, [$id_main_document, $id_main_block]);
     }
 }

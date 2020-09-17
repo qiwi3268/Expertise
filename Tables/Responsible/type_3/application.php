@@ -3,21 +3,28 @@
 
 namespace Tables\Responsible\type_3;
 
-use Tables\Responsible\Interfaces\Responsible;
+use Lib\Exceptions\DataBase as DataBaseEx;
 use Tables\Responsible\type_3\Interfaces\ResponsibleType3;
 use Lib\DataBase\ParametrizedQuery;
 
 
-// Ответственные группы заявителей к Заявлению
-//
-final class application implements Responsible, ResponsibleType3
+/**
+ * Ответственные группы заявителей к заявлению
+ *
+ */
+final class application implements ResponsibleType3
 {
 
     static private string $tableName = 'resp_application_type_3';
 
 
-    // Предназначен для удаления всех ответственных
-    //
+    /**
+     * Реализация метода интерфейса
+     *
+     * @see \Tables\Responsible\type_3\Interfaces\ResponsibleType3::deleteResponsibleByIdMainDocument()
+     * @param int $id_main_document
+     * @throws DataBaseEx
+     */
     static public function deleteResponsibleByIdMainDocument(int $id_main_document): void
     {
         $table = self::$tableName;
@@ -28,6 +35,14 @@ final class application implements Responsible, ResponsibleType3
     }
 
 
+    /**
+     * Реализация метода интерфейса
+     *
+     * @see \Tables\Responsible\type_3\Interfaces\ResponsibleType3::getResponsibleByIdMainDocument()
+     * @param int $id_main_document
+     * @return array|null
+     * @throws DataBaseEx
+     */
     public static function getResponsibleByIdMainDocument(int $id_main_document): ?array
     {
         $table = self::$tableName;
@@ -50,13 +65,15 @@ final class application implements Responsible, ResponsibleType3
     }
 
 
-    // Предназначен для создания записи в таблице
-    // Принимает параметры-----------------------------------
-    // id_main_document               int : id главного документа (заявления)
-    // id_applicant_access_group_type int : id из applicant_access_group_type
-    // Возвращает параметры-----------------------------------
-    // int : id созданной записи
-    //
+    /**
+     * Реализация метода интерфейса
+     *
+     * @see \Tables\Responsible\type_3\Interfaces\ResponsibleType3::create()
+     * @param int $id_main_document
+     * @param int $id_applicant_access_group_type
+     * @return int
+     * @throws DataBaseEx
+     */
     static public function create(int $id_main_document, int $id_applicant_access_group_type): int
     {
         $table = self::$tableName;

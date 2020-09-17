@@ -35,7 +35,7 @@ $applicationId = application::createTemporary($userId, $appNumName);
 applicant_access_group::createFullAccess($applicationId, $userId);
 // Устанавливаем ответственную группу доступа "Полный доступ"
 $responsible = new Responsible($applicationId, DOCUMENT_TYPE['application']);
-$responsible->createNewResponsibleType3('full_access');
+$responsible->createNewResponsibleType3(['full_access']);
 
 
 p($_SESSION);
@@ -68,7 +68,7 @@ foreach ($miscInitializer->getPaginationDependentMiscs() as $miscName => $mainMi
 
 
 // Структура документации
-$structureDocumentation1 = documentation_1::getAllActive();  // Производственные/непроизводственные
+$structureDocumentation1 = documentation_1::getAllActive();  // Производственные / непроизводственные
 $NodeStructure1 = new NodeStructure($structureDocumentation1);
 
 $structureDocumentation2 = documentation_2::getAllActive();  // Линейные

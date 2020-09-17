@@ -55,7 +55,7 @@ function GetSignColor(array $sign): string
 <?php foreach ($structureWithFiles as $documentationType => $structure): ?>
     <div style="margin-top: 30px; margin-bottom: 30px;">
         <?php if ($documentationType === 0): ?>
-            <span style="font-weight: bold;">Производственные/Непроизводственные</span>
+            <span style="font-weight: bold;">Производственные / непроизводственные</span>
         <?php else: ?>
             <span style="font-weight: bold;">Линейные</span>
         <?php endif; ?>

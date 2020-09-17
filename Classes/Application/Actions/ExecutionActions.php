@@ -5,14 +5,17 @@ namespace Classes\Application\Actions;
 
 use Lib\Exceptions\Actions as SelfEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
+use Lib\Exceptions\Responsible as ResponsibleEx;
 use Lib\Exceptions\Transaction as TransactionEx;
 use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
 use ReflectionException;
 
 use core\Classes\Session;
 use Lib\Actions\ExecutionActions as MainExecutionActions;
+use Lib\Responsible\Responsible;
 use Lib\DataBase\Transaction;
 use Tables\Docs\application;
+use Tables\user;
 
 
 /**
@@ -39,6 +42,7 @@ class ExecutionActions extends MainExecutionActions
      * @throws TransactionEx
      * @throws DataBaseEx
      * @throws ReflectionException
+     * @throws ResponsibleEx
      */
     public function action_2(): string
     {
@@ -56,9 +60,9 @@ class ExecutionActions extends MainExecutionActions
             try {
 
                 $this->primitiveValidator->validateAssociativeArray($expert, [
-                    'id_expert' => [[$this->primitiveValidator, 'validateInt']],
-                    'lead' => ['is_bool'],
-                    'common_part' => ['is_bool'],
+                    'id_expert'          => [[$this->primitiveValidator, 'validateInt']],
+                    'lead'               => ['is_bool'],
+                    'common_part'        => ['is_bool'],
                     'ids_main_block_341' => ['is_array']
                 ]);
 
@@ -84,59 +88,124 @@ class ExecutionActions extends MainExecutionActions
 
         // Создание сводного замечания / заключения
         // Устанавливаем id созданного документа в передачу по цепочке
-        $transaction->add('\Tables\Docs\total_cc', 'create', [CURRENT_DOCUMENT_ID, Session::getUserId()], true);
+        $transaction->add(
+            '\Tables\Docs\total_cc',
+            'create',
+            [CURRENT_DOCUMENT_ID, Session::getUserId()],
+            'id_total_cc'
+        );
 
-        // Создание назначенных экспертов к созданному ранее сводному замечанию / заключению
-        foreach ($experts as $expert) {
 
-            $transaction->add('\Tables\assigned_expert_total_tc', 'create', [
-                $expert['id_expert'],
-                $expert['lead'] ? 1 : 0,
-                $expert['common_part'] ? 1 : 0
-            ], false, true);
-        }
-
-        // Определение Вида работ
+        // Определение вида объекта
         $typeOfObjectId = application::getIdTypeOfObjectById(CURRENT_DOCUMENT_ID);
 
         switch ($typeOfObjectId) {
-            case 1 : // Производственные/непроизводственные
-                $tableName = '\Tables\order_341\documentation_1\assigned_expert';
+            case 1 : // Производственные / непроизводственные
+                $assignedExpertTableName = '\Tables\order_341\documentation_1\assigned_expert';
+                $sectionTableName = '\Tables\Docs\section_documentation_1';
+                $responsibleSectionType4TableName = '\Tables\Responsible\type_4\section_documentation_1';
                 break;
             case 2 : // Линейные
-                $tableName = '\Tables\order_341\documentation_2\assigned_expert';
+                $assignedExpertTableName = '\Tables\order_341\documentation_2\assigned_expert';
+                $sectionTableName = '\Tables\Docs\section_documentation_2';
+                $responsibleSectionType4TableName = '\Tables\Responsible\type_4\section_documentation_2';
                 break;
             default :
-                throw new SelfEx("Заявление имеет неопределенный Вид работ: '{$typeOfObjectId}'", 6);
+                throw new SelfEx("Заявление имеет неопределенный вид работ: '{$typeOfObjectId}'", 6);
         }
 
-        // Создание записей на какие разделы из 341 приказа были назначены эксперты
+        // Индексный массив с id экспертов
+        $expertsId = [];
+
+        // Создание массива, по которому будут создаваться разделы и назначаться эксперты
+        // Индексный массив формата:
+        // Ключ - id блока из 341 приказа
+        // Значение - индексный массив формата:
+        //    Ключ - простой порядковый индекс
+        //    значение - id эксперта
+        $mainBlocks = [];
+
         foreach ($experts as $expert) {
+
+            $expertsId[] = $expert['id_expert'];
+
+            // Создание назначенных экспертов к созданному ранее сводному замечанию / заключению
+            $transaction->add(
+                '\Tables\assigned_expert_total_tc',
+                'create',
+                [
+                    $expert['id_expert'],
+                    $expert['lead'] ? 1 : 0,
+                    $expert['common_part'] ? 1 : 0
+                ],
+                null,
+                'id_total_cc'
+            );
 
             foreach ($expert['ids_main_block_341'] as $id_main_block) {
 
+                // Создание записей на какие блоки из 341 приказа был назначен итерируемый эксперт
                 $transaction->add(
-                    $tableName,
+                    $assignedExpertTableName,
                     'create',
                     [$id_main_block, $expert['id_expert']],
-                    false,
-                    true
+                    null,
+                    'id_total_cc'
                 );
+
+                $mainBlocks[$id_main_block][] = $expert['id_expert'];
             }
         }
 
+        // Назначение всех экспертов ответственными на сводное замечание / заключение
+        foreach ($expertsId as $id) {
+            
+            $transaction->add(
+                '\Tables\Responsible\type_4\total_cc',
+                'create',
+                [$id],
+                null,
+                'id_total_cc'
+            );
+        }
 
-        // todo поменять стадию на заявлении
+        $sectionCount = 1;
 
-        // todo ???КД на заявлении
-        // todo ??? ответственные на заявлении
-        // todo ???КД на сводном
+        foreach ($mainBlocks as $id_main_block => $assignedExpertsId) {
 
-        // todo ответственные на сводном
+            // Создание разделов
+            $transaction->add(
+                $sectionTableName,
+                'create',
+                [$id_main_block],
+                "id_section_{$sectionCount}",
+                'id_total_cc'
+            );
+
+            // Назначение определенных экспертов ответственными на раздел
+            foreach ($assignedExpertsId as $expertId) {
+
+                $transaction->add(
+                    $responsibleSectionType4TableName,
+                    'create',
+                    [$expertId],
+                    null,
+                    "id_section_{$sectionCount}"
+                );
+            }
+
+            $sectionCount++;
+        }
 
         $transaction->start();
 
 
+
         return 'todo';
+        // todo поменять стадию на заявлении
+        // todo ???КД на заявлении
+        // todo ??? ответственные на заявлении
+        // todo ???КД на сводном
+        
     }
 }

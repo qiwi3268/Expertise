@@ -23,17 +23,21 @@ final class Transaction extends DataBase
     private array $queries = [];
 
     /**
-     * Результат, передающися по цепочке вызовов
+     * Результаты, передающися по цепочке вызовов
      *
-     * @var mixed
      */
-    private $chainResult = 'not_initialized';
+    private array $chainResults = [];
 
     /**
-     * Массив результатов последней транзации
+     * Ассоциативный <b>массив_1</b> результатов последней транзации формата:
+     *
+     * <i>Ключ_1</i> - название класса<br>
+     * <i>Значение_1</i> - ассоциавтивный <b>массив_2</b> формата:<br>
+     * <i>Ключ_2</i> - название метода<br>
+     * <i>Значение_2</i> - возвращенный методом результат
      *
      */
-    public array $lastResults = [];
+    private array $lastResults = [];
 
 
     /**
@@ -42,11 +46,11 @@ final class Transaction extends DataBase
      * @param string $class название класса по работе с таблицами
      * @param string $method название метода класса
      * @param array $params массив параметров, каждый из которых будет передан как аргумент метода method
-     * @param bool $setChainResult <b>true</b> результат вызова текущего метода будет записан в значение, передающееся по цепочке<br>
-     * <b>false</b> не будет записан
-     * @param bool $getChainResult <b>true</b> результат вызова предыдущего метода, в котором было установлено
-     * <b>setChainResult = true</b> будет передан как первый аргумент в текущий метод<br>
-     * <b>false</b> не будет передан
+     * @param string|null $setterKey <b>string</b> результат вызова текущего метода будет записан в значение по ключу setterKey, передающееся по цепочке<br>
+     * <b>null</b> не будет записан
+     * @param string|null $getterKey <b>string</b> результат вызова предыдущего метода по ключу getterKey,<br>
+     * будет передан как первый аргумент в текущий метод<br>
+     * <b>null</b> не будет передан
      * @throws SelfEx
      * @throws ReflectionException
      */
@@ -54,8 +58,8 @@ final class Transaction extends DataBase
         string $class,
         string $method,
         array $params,
-        bool $setChainResult = false,
-        bool $getChainResult = false
+        ?string $setterKey = null,
+        ?string $getterKey = null
     ): void {
 
         if (!class_exists($class)) {
@@ -68,7 +72,7 @@ final class Transaction extends DataBase
 
         $reflection = new ReflectionMethod($class, $method);
         $min = $reflection->getNumberOfRequiredParameters();
-        if ($getChainResult) $min--;
+        if (!is_null($getterKey)) $min--;
 
         $max = $reflection->getNumberOfParameters();
 
@@ -81,11 +85,11 @@ final class Transaction extends DataBase
         }
 
         $this->queries[] = [
-            'class'            => $class,
-            'method'           => $method,
-            'params'           => $params,
-            'set_chain_result' => $setChainResult,
-            'get_chain_result' => $getChainResult
+            'class'      => $class,
+            'method'     => $method,
+            'params'     => $params,
+            'setter_key' => $setterKey,
+            'getter_key' => $getterKey
         ];
     }
 
@@ -104,6 +108,17 @@ final class Transaction extends DataBase
 
 
     /**
+     * Предназначен для получения массива результатов последней транзакции
+     *
+     * @return array
+     */
+    public function getLastResults(): array
+    {
+        return $this->lastResults;
+    }
+
+
+    /**
      * Предназначен для выполнения всех добавленных запросов
      *
      * Вызывается в классе DataBase внутри обертки транзакции. Записывает результаты запросов в массив lastResults
@@ -116,13 +131,15 @@ final class Transaction extends DataBase
 
         foreach ($this->queries as $query) {
 
-            // Установка последнего результата, как первого переданного аргумента в текущий метод
-            if ($query['get_chain_result']) {
+            // Установка нужного предыдущего результата, как первого переданного аргумента в текущий метод
+            if (isset($query['getter_key'])) {
 
-                if ($this->chainResult === 'not_initialized') {
-                    throw new SelfEx("В метод: '{$query['class']}::{$query['method']}' не удалось передать результат по цепочке, т.к. chainResult не инициализирован", 5);
+                if (!isset($this->chainResults[$query['getter_key']])) {
+
+                    throw new SelfEx("В метод: '{$query['class']}::{$query['method']}' не удалось передать результат по цепочке, т.к. в значение  chainResults['{$query['getter_key']}']  не инициализировано", 5);
                 }
-                $chainResult = [$this->chainResult];
+
+                $chainResult = [$this->chainResults[$query['getter_key']]];
             } else {
 
                 $chainResult = [];
@@ -130,9 +147,9 @@ final class Transaction extends DataBase
 
             $lastResult = call_user_func_array([$query['class'], $query['method']], [...$chainResult, ...$query['params']]);
 
-            $this->lastResults[] = $lastResult;
+            $this->lastResults[$query['class']][$query['method']][] = $lastResult;
 
-            if ($query['set_chain_result']) $this->chainResult = $lastResult;
+            if (!is_null($query['setter_key'])) $this->chainResults[$query['setter_key']] = $lastResult;
         }
     }
 }

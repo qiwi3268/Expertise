@@ -13,47 +13,93 @@
             </updateResponsibleType>
 
             <createResponsible>
-                <type_2>
-                    <class name="" />
-                    <method name="" />
-                </type_2>
                 <type_3>
                     <class name="\Tables\Responsible\type_3\application" />
                     <method name="create" />
                 </type_3>
-                <type_4>
-                    <class name="" />
-                    <method name="" />
-                </type_4>
             </createResponsible>
 
             <getResponsible>
-                <type_2>
-                    <class name="" />
-                    <method name="" />
-                </type_2>
                 <type_3>
                     <class name="\Tables\Responsible\type_3\application" />
                     <method name="getResponsibleByIdMainDocument" />
                 </type_3>
-                <type_4>
-                    <class name="" />
-                    <method name="" />
-                </type_4>
             </getResponsible>
 
             <deleteResponsible>
-                <type_2>
-                    <class name="" />
-                    <method name="" />
-                </type_2>
                 <type_3>
                     <class name="\Tables\Responsible\type_3\application" />
                     <method name="deleteResponsibleByIdMainDocument" />
                 </type_3>
+            </deleteResponsible>
+        </queries>
+    </document>
+
+    <document name="total_cc">
+        <queries>
+            <getResponsibleType>
+                <class name="\Tables\Docs\total_cc" />
+                <method name="getResponsibleTypeById" />
+            </getResponsibleType>
+
+            <updateResponsibleType>
+                <class name="\Tables\Docs\total_cc" />
+                <method name="updateResponsibleTypeById" />
+            </updateResponsibleType>
+
+            <createResponsible>
                 <type_4>
-                    <class name="" />
-                    <method name="" />
+                    <class name="\Tables\Responsible\type_4\total_cc" />
+                    <method name="create" />
+                </type_4>
+            </createResponsible>
+
+            <getResponsible>
+                <type_4>
+                    <class name="\Tables\Responsible\type_4\total_cc" />
+                    <method name="getResponsibleByIdMainDocument" />
+                </type_4>
+            </getResponsible>
+
+            <deleteResponsible>
+                <type_4>
+                    <class name="\Tables\Responsible\type_4\total_cc" />
+                    <method name="deleteResponsibleByIdMainDocument" />
+                </type_4>
+            </deleteResponsible>
+        </queries>
+    </document>
+
+    <document name="section_documentation_1">
+        <queries>
+            <getResponsibleType>
+                <class name="\Tables\Docs\section_documentation_1" />
+                <method name="getResponsibleTypeById" />
+            </getResponsibleType>
+
+            <updateResponsibleType>
+                <class name="\Tables\Docs\section_documentation_1" />
+                <method name="updateResponsibleTypeById" />
+            </updateResponsibleType>
+
+            <createResponsible>
+                <type_4>
+                    <class name="\Tables\Responsible\type_4\section_documentation_1" />
+                    <method name="create" />
+                </type_4>
+            </createResponsible>
+
+            <getResponsible>
+                <type_4>
+                    <class name="\Tables\Responsible\type_4\section_documentation_1" />
+                    <method name="getResponsibleByIdMainDocument" />
+                </type_4>
+            </getResponsible>
+
+            <deleteResponsible>
+                <type_4>
+                    <class name="\Tables\Responsible\type_4\section_documentation_1" />
+                    <method name="deleteResponsibleByIdMainDocument" />
                 </type_4>
             </deleteResponsible>
         </queries>

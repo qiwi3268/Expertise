@@ -10,12 +10,12 @@ namespace Tables\Responsible\Interfaces;
  */
 interface Responsible
 {
-    //todo важное удалить одного ответственного
+    //todo ??? удалить одного ответственного
 
     /**
-     * Предназначен для удаления всех ответственных
+     * Предназначен для удаления всех ответственных с документа
      *
-     * @param int $id_main_document
+     * @param int $id_main_document id главного документа
      */
     static public function deleteResponsibleByIdMainDocument(int $id_main_document): void;
 
@@ -24,10 +24,14 @@ interface Responsible
      * Предназначен для получения ассоциативных массивов с ответственными пользователями
      *
      * Ассоциативный массив пользователя должен включать в себя поля:<br>
-     * id, last_name, first_name, middle_name
+     * user_id,<br>
+     * last_name,<br>
+     * first_name,<br>
+     * middle_name
      *
-     * @param int $id_main_document
-     * @return array|null
+     * @param int $id_main_document id главного документа
+     * @return array|null <b>array</b> ассоциатиные массивы ответственных, если записи существуют<br>
+     * <b>null</b> в противном случае
      */
     static public function getResponsibleByIdMainDocument(int $id_main_document): ?array;
 }

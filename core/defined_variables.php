@@ -33,8 +33,11 @@ define('ROLE', [
 
 // Обозначения типов документов
 define('DOCUMENT_TYPE', [
-    'application' => 'application',    // Заявление
-    'contract'    => 'contract'        // Договор
+    'application'             => 'application', // Заявление
+    'contract'                => 'contract',    // Договор
+    'total_cc'                => 'total_cc',     // Сводное замечание / заключение
+    'section_documentation_1' => 'section_documentation_1', // Раздел для вида объекта "Производственные / непроизводстсвенные"
+    'section_documentation_2' => 'section_documentation_2'  // Раздел для вида объекта "Линейные"
 ]);
 
 

@@ -68,9 +68,9 @@ if ($variablesTV->getExistenceFlag('type_of_object')) {
     // Удаление переменных, служивших выше
     unset($requiredMappings, $filesInitializer, $needsFiles);
 
-    // В зависимости от Вида объекта выбираем нужную таблицу
+    // В зависимости от вида объекта выбираем нужную таблицу
     switch ($variablesTV->getValue('type_of_object')['id']) {
-        case 1 : // Производственные/непроизводственные
+        case 1 : // Производственные / непроизводственные
             $mapping_level_1 = 2;
             $mapping_level_2 = 1;
             $className = '\Tables\Structures\documentation_1';
@@ -88,7 +88,7 @@ if ($variablesTV->getExistenceFlag('type_of_object')) {
     $variablesTV->setValue('documentation_mapping_level_1', $mapping_level_1);
     $variablesTV->setValue('documentation_mapping_level_2', $mapping_level_2);
 
-    // Объект нужных маппингов (только документация выбранного Вида объекта)
+    // Объект нужных маппингов (только документация выбранного вида объекта)
     $requiredMappings = new RequiredMappingsSetter();
 
     $requiredMappings->setMappingLevel2($mapping_level_1, $mapping_level_2);

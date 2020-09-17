@@ -25,6 +25,7 @@ class Actions extends MainActions
         return ActionTable::getAllActive();
     }
 
+
     /**
      * Реализация абстрактного метода
      *
@@ -35,6 +36,7 @@ class Actions extends MainActions
     {
         return ActionTable::getAssocActiveByPageName($pageName);
     }
+
 
     /**
      * Реализация абстрактного метода
@@ -47,6 +49,7 @@ class Actions extends MainActions
         return ActionTable::getAssocByPageName($pageName);
     }
 
+
     /**
      * Реализация абстрактного метода
      *
@@ -56,6 +59,7 @@ class Actions extends MainActions
     {
         return new AccessActions($this);
     }
+
 
     /**
      * Реализация абстрактного метода

@@ -12,14 +12,14 @@ $variablesTV = \Lib\Singles\VariableTransfer::getInstance();
 // JSON_FALSE_AND (значения разделяются символом #) - зависимый блок отработает в том случае, если в input'е одновремено все перечисленные значения FALSE
 $blockDependencies = [
 
-    // Зависимость от выбранного "Предмета экспертизы"
+    // Зависимость от выбранного предмета экспертизы
     'expertise_subjects' => [
         ''                   => ['estimate' => false],
         'JSON_TRUE_OR:2#3'   => ['estimate' => true],
         'JSON_FALSE_AND:2#3' => ['estimate' => false],
     ],
 
-    // Зависимость от выбранного "Вида объекта"
+    // Зависимость от выбранного вида объекта
     'type_of_object' => [
         1 => ['planning_documentation_approval' => false,
             'GPZU'                            => true,
@@ -36,13 +36,13 @@ $blockDependencies = [
         ]
     ],
 
-    // Зависимость от ЧЕКБОКСА "Объект культурного наследия"
+    // Зависимость от ЧЕКБОКСА объект культурного наследия
     'cultural_object_type_checkbox' => [
         0 => ['cultural_object_type' => false],
         1 => ['cultural_object_type' => true]
     ],
 
-    // Зависимость от ЧЕКБОКСА "Национальный проект"
+    // Зависимость от ЧЕКБОКСА национальный проект
     'national_project_checkbox' => [
         0 => ['national_project'     => false],
         1 => ['national_project'     => true]
@@ -100,7 +100,7 @@ $variablesTV->setValue('blockDependencies', json_encode($blockDependencies));
 
 $requireDependencies = [
 
-    // Зависимость от выбранного "Вида работ"
+    // Зависимость от выбранного вида работ
     'type_of_work' => [
         1 => ['file_grbs' => false],
         2 => ['file_grbs' => true],

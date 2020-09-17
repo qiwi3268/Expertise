@@ -13,15 +13,37 @@ use Tables\Actions\application as ApplicationActions;
 use core\Classes\RoutesXMLHandler;
 use Tables\Structures\documentation_1;
 
-$doc = documentation_1::getAllAssocWhereActiveAndId341NN();
 
-$test = arrayEntry($doc, 'is_active', '1');
+$experts = [
+    [
+        'id' => 1,
+        'ids_main_block_341' => [1,2,3]
+    ],
+    [
+        'id' => 2,
+        'ids_main_block_341' => [3,4]
+    ],
+    [
+        'id' => 3,
+        'ids_main_block_341' => [1]
+    ],
+    [
+        'id' => 4,
+        'ids_main_block_341' => [1, 3, 5]
+    ]
+];
 
-$a = [1,2,3];
+$blocks = [];
 
+foreach ($experts as $expert) {
 
+    foreach ($expert['ids_main_block_341'] as $id_block) {
 
-var_dump($a === [1,2,3]);
+        $blocks[$id_block][] = $expert['id'];
+    }
+}
+
+var_dump($blocks);
 
 
 
