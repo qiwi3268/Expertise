@@ -29,21 +29,22 @@ document.addEventListener('DOMContentLoaded', () => {
 // Принимает параметры-------------------------------
 // modal         Modal : объект модального окна
 function validateModal (modal) {
-   if (modal.parent_field.dataset.required === 'true') {
-      //todo определить в класса
-      let error = modal.parent_field.querySelector('.field-error');
+   let parent_field = modal.element.closest('.field');
+   let field_value = parent_field.querySelector('.modal-select');
+   let error = parent_field.querySelector('.field-error');
 
+   if (parent_field.dataset.required === 'true') {
       // Если не выбрано значение
       if (!modal.result_input.value) {
-         modal.select.classList.add('invalid');
+         field_value.classList.add('invalid');
          error.classList.add('active');
-         resizeCard(modal.parent_field);
+         resizeCard(parent_field);
       } else {
-         modal.select.classList.remove('invalid');
+         field_value.classList.remove('invalid');
          error.classList.remove('active');
       }
 
-      let parent_card = modal.select.closest('.card-form');
+      let parent_card = field_value.closest('.card-form');
       if (parent_card) {
          validateCard(parent_card);
       }
@@ -130,13 +131,13 @@ function validateInput (input, regex, message) {
 function validateCard (card) {
    let card_name = card.dataset.type;
    // let is_valid = isValidCard(card);
-   // let is_valid = !findInvalidField(card);
+   let is_valid = !findInvalidField(card);
 
    let sidebar_item = document.querySelector(`.sidebar-form__row[data-card=${card_name}]`);
 
    // Отображаем состояние проверки в связанном элементе сайдбара
    if (sidebar_item) {
-      // setSidebarItemState(sidebar_item, is_valid);
+      setSidebarItemState(sidebar_item, is_valid);
    }
 }
 

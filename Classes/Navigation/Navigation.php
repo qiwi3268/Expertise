@@ -3,16 +3,19 @@
 
 namespace Classes\Navigation;
 
-use Lib\Exceptions\PrimitiveValidator as  PrimitiveValidatorEx;
+
 use Classes\Exceptions\Navigation as SelfEx;
+use Lib\Exceptions\XMLValidator as XMLValidatorEx;
+use Lib\Exceptions\PrimitiveValidator as  PrimitiveValidatorEx;
 use Lib\Singles\XMLValidator;
 use Lib\Singles\PrimitiveValidator;
 use SimpleXMLElement;
 
 
-
-// Предназначен для работы с навигацией пользователя по XML схеме
-//
+/**
+ *  Предназначен для работы с навигацией пользователя по XML схеме
+ *
+ */
 class Navigation
 {
 
@@ -23,34 +26,42 @@ class Navigation
     public const NAMESPACE_CLASSES = '\Classes\Navigation\BlockClasses';
     public const VIEWS_PATH = ROOT . '/views/home/navigation';
 
-
-    // Соответствие Ключ = роль => Значение = перечисление блоков из XML-схемы навигации
+    /**
+     * Массив соответствия ролей и выбранных для них блоков навигации
+     *
+     * Ключ - роль
+     * Значение - перечисление блоков из XML схемы навигации
+     *
+     */
     private const BLOCKS = [
         ROLE['APP'] => ['block_1', 'block_2', 'block_3'],
     ];
 
-    // Навигационный массив пользователя, аналогичный по структуре XML-схеме
+    /**
+     * Навигационный массив пользователя, аналогичный по структуре XML схеме
+     *
+     */
     private array $userNavigation = [];
 
 
-    // Выбрасывает исключения--------------------------------
-    // Classes\Exceptions\Navigation :
-    // code:
-    //  1  - ошибка при инициализации XML-схемы навигации
-    //  2  - пользователю c ролями не определен ни один навигационный блок
-    //  3  - в XML-схеме навигации отсутствуют блоки
-    //
+    /**
+     * Конструктор класса
+     *
+     * @param array $userRoles индексный массив ролей пользователя
+     * @throws SelfEx
+     * @throws XMLValidatorEx
+     */
     public function __construct(array $userRoles)
     {
         $this->XMLValidator = new XMLValidator();
         $this->PrimitiveValidator = new PrimitiveValidator();
 
         if (($data = simplexml_load_file(SETTINGS . '/navigation.xml')) === false) {
-            throw new SelfEx("Ошибка при инициализации XML-схемы навигации", 1);
+            throw new SelfEx("Ошибка при инициализации XML схемы навигации", 1);
         }
 
 
-        // Валидации структуры схемы
+        // Валидация структуры схемы
         $this->validateNavigationXML($data);
 
         // Проверка уникальности значения аттрибута name
@@ -94,7 +105,7 @@ class Navigation
         // Остались нужные блоки пользователю, которых нет в xml
         if (!empty($requiredBlocks)) {
             $msg = implode(', ', $requiredBlocks);
-            throw new SelfEx("В XML-схеме навигации отсутствуют блоки: '{$msg}'", 3);
+            throw new SelfEx("В XML схеме навигации отсутствуют блоки: '{$msg}'", 3);
         }
 
         // Валидация значений схемы
@@ -105,20 +116,22 @@ class Navigation
     }
 
 
-    // Предназначен для получения навигационного массива пользовалеля
-    // Возвращает--------------------------------------------
-    // array : навигационный массив пользователя
-    //
+    /**
+     * Предназначен для получения навигационного массива пользовалеля
+     *
+     * @return array навигационный массив пользователя
+     */
     public function getUserNavigation(): array
     {
         return $this->userNavigation;
     }
 
 
-    // Предназначен для добавления XML блока в обычный массив навигации пользователя
-    // Принимает параметры-----------------------------------
-    // block SimpleXMLElement : <block> из XML-схемы навигации
-    //
+    /**
+     * Предназначен для добавления XML блока в обычный массив навигации пользователя
+     *
+     * @param SimpleXMLElement $block <block> из XML схемы навигации
+     */
     private function addBlockToNavigation(SimpleXMLElement $block): void
     {
 
@@ -139,22 +152,27 @@ class Navigation
     }
 
 
-    // Предназначен для валидации СТРКУТУРЫ XML-схемы согласно правилам:
-    // <block />
-    //    name get-параметр b
-    //    label имя для отображения блока
-    // <view />
-    //    name get-параметр v
-    //    label имя для отображения строки в блоке
-    //    class_name имя класса, в котором реализован интерефейс навигации
-    //    view_name подключаемое к странице view
-    //    show_counter флаг отображажения счетчика входящих во вью записей
-    // <ref />
-    //    label имя для отображения строки в блоке
-    //    value ссылка для перехода на указанную страницу
-    // Принимает параметры-----------------------------------
-    // XML SimpleXMLElement : XML-схема навигации
-    //
+    /**
+     * Предназначен для валидации <b>структуры</b> XML схемы согласно правилам
+     *
+     * Узел block:<br>
+     * аттрибут <i>name</i> - get-параметр b<br>
+     * аттрибут <i>label</i> - имя для отображения блока<br>
+     *
+     * Узел view:<br>
+     * аттрибут <i>name</i> - get-параметр v<br>
+     * аттрибут <i>label</i> - имя для отображения строки в блоке<br>
+     * аттрибут <i>class_name</i> - имя класса, в котором реализован интерефейс навигации<br>
+     * аттрибут <i>view_name</i> - подключаемое к странице view<br>
+     * аттрибут <i>show_counter</i> - флаг отображажения счетчика входящих во вью записей<br>
+     *
+     * Узел ref:<br>
+     * аттрибут <i>label</i> - имя для отображения строки в блоке<br>
+     * аттрибут <i>value</i> - ссылка для перехода на указанную страницу
+     *
+     * @param SimpleXMLElement $XML XML схема навигации
+     * @throws XMLValidatorEx
+     */
     private function validateNavigationXML(SimpleXMLElement $XML): void
     {
         foreach ($XML->block as $block) {
@@ -177,17 +195,15 @@ class Navigation
     }
 
 
-    // Предназначен для проверки уникальности имен в XML схеме согласно правилам:
-    // name всех <block /> должны быть уникальны
-    // name всех <view /> внутри <block /> должны быть уникальны
-    // Принимает параметры-----------------------------------
-    // XML SimpleXMLElement : XML-схема навигации
-    // Выбрасывает исключения--------------------------------
-    // Classes\Exceptions\Navigation :
-    // code:
-    //  4  - в узле <block /> присутствуют узлы <view /> с одинаковыми атрибутами name
-    //  5  - присутствуют узлы <block /> с одинаковыми аттрибутами name
-    //
+    /**
+     * Предназначен для проверки уникальности имен в XML схеме согласно правилам
+     *
+     * аттрибут name всех узлов block должны быть уникальными<br>
+     * аттрибут name всех узлов view внутри узла block должны быть уникальными
+     *
+     * @param SimpleXMLElement $XML XML схема навигации
+     * @throws SelfEx
+     */
     private function checkNameUniqueness(SimpleXMLElement $XML): void
     {
         $blockNames = [];
@@ -213,24 +229,20 @@ class Navigation
     }
     
 
-    // Предназначен для валидации ЗНАЧЕНИЙ навигационного массива пользователя согласно правилам:
-    // <view />
-    //    class_name класс, располагаемый в пакете self::NAMESPACE_CLASSES\{class_name}
-    //               класс должен быть наследником абстрактного класса NavigationTable
-    //    view_name view, располагаемое по пути self::VIEWS_PATH/{view_name}.php
-    //    show_counter принимает значение 0 или 1
-    // <ref />
-    //    value внутрение ссылки должны начинаться с '/'
-    //          внешние ссылки начинаюся с 'http'
-    // Выбрасывает исключения--------------------------------
-    // Classes\Exceptions\Navigation :
-    // code:
-    //  6  - абстрактный класс навигационной страницы не существует
-    //  7  - требуемый класс не существует
-    //  8  - файл view по пути не существует
-    //  9  - аттрибут show_counter не равен 0 или 1
-    //  10 - внутренняя ссылка на внутренний ресурс должна начинаться с символа '/'
-    //
+    /**
+     * Предназначен для валидации <b>значений</b> навигационного массива пользователя согласно правилам
+     *
+     * Значения аттрибутов узла view:<br>
+     * <i>class_name</i> - класс, располагающийся в пакете self::NAMESPACE_CLASSES\{class_name}<br>
+     * класс должен быть наследником абстрактного класса NavigationTable<br>
+     * <i>view_name</i> - view, располагаемое по пути self::VIEWS_PATH/{view_name}.php<br>
+     * <i>show_counter</i> - принимает значение 0 или 1<br>
+     *
+     * Значения аттрибутов узла ref:<br>
+     * <i>value</i> - внутренние ссылки должны начинаться с '/', а внешние ссылки начинаюся с 'http'
+     *
+     * @throws SelfEx
+     */
     private function validateUserNavigation(): void
     {
 
@@ -280,7 +292,7 @@ class Navigation
                 foreach ($block['refs'] as ['value' => $value]) {
                     // Валидация ссылки на указанную страницу --------------------------------------------------
                     if (!containsAll($value, 'http') && ($value[0] != '/')) {
-                        throw new SelfEx("Внутренняя ссылка: '{$value}' в блоке: '{$block['label']}' на внутренний ресурс должна начинаться с символа '/'", 10);
+                        throw new SelfEx("Ссылка: '{$value}' в блоке: '{$block['label']}' на внутренний ресурс должна начинаться с символа '/'", 10);
                     }
                 }
             }
@@ -288,9 +300,13 @@ class Navigation
     }
 
 
-    // Предназначен для валидации константного массива NAVIGATION_SORTING
-    // Все view, имеющиеся в навигационном массиве пользователя должны быть объявлены в массиве NAVIGATION_SORTING
-    //
+    /**
+     * Предназначен для валидации константного массива NAVIGATION_SORTING
+     *
+     * Все view, имеющиеся в навигационном массиве пользователя должны быть объявлены в массиве NAVIGATION_SORTING
+     *
+     * @throws SelfEx
+     */
     private function validateNavigationSorting(): void
     {
         // Формирование списка уникальных (не повторяющихся view пользователя)

@@ -8,7 +8,7 @@ use SimpleXMLElement;
 
 
 /**
- * Предназначен для получения названий классов и методов из XML-схемы ответственных
+ * Предназначен для получения названий классов и методов из XML схемы ответственных
  *
  */
 class XMLReader
@@ -36,7 +36,7 @@ class XMLReader
     public function __construct()
     {
         if (($data = simplexml_load_file(SETTINGS . '/responsible.xml')) === false) {
-            throw new SelfEx("Ошибка при инициализации XML-схемы ответственных", 3);
+            throw new SelfEx("Ошибка при инициализации XML схемы ответственных", 3);
         }
         $this->data = $data;
     }
@@ -108,7 +108,7 @@ class XMLReader
 
 
     /**
-     * Предназначен для получения проверенного названия класса и метода в требуемом путь в XML-схеме
+     * Предназначен для получения проверенного названия класса и метода в требуемом путь в XML схеме
      *
      * @param string $path XPath путь
      * @return array массив формата:<br>
@@ -126,17 +126,17 @@ class XMLReader
             || (count($XMLElement) != 1)
             || (count($XMLElement[0]) != 2)
         ) {
-            throw new SelfEx("Ошибка при получении XML-пути: '{$path}' в схеме ответственных", 4);
+            throw new SelfEx("Ошибка при получении XML пути: '{$path}' в схеме ответственных", 4);
         }
 
         $XMLElement = $XMLElement[0];
 
         if (!class_exists($class = (string)$XMLElement->class['name'])) {
-            throw new SelfEx("Класс: '{$class}' в XML-схеме ответственных не существует", 5);
+            throw new SelfEx("Класс: '{$class}' в XML схеме ответственных не существует", 5);
         }
 
         if (!method_exists($class, $method = (string)$XMLElement->method['name'])) {
-            throw new SelfEx("Метод: '{$class}:{$method}' в XML-схеме ответственных не существует", 6);
+            throw new SelfEx("Метод: '{$class}:{$method}' в XML схеме ответственных не существует", 6);
         }
 
         return [

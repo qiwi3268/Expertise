@@ -29,8 +29,6 @@ class Misc {
    modal;
    overlay;
 
-   name;
-
    result_callback;
 
    // close_btn;
@@ -45,8 +43,6 @@ class Misc {
       this.field = this.select.closest('[data-misc_field]');
 
       this.modal = this.field.querySelector('[data-misc_modal]');
-
-      this.name = this.field.dataset.name;
 
       this.result_callback = getMiscResultCallback(this);
 
@@ -68,35 +64,32 @@ class Misc {
 
    initPages () {
       this.pages = this.modal.querySelectorAll('[data-misc_page]');
-
       if (this.pages.length === 0) {
-         let is_empty = this.createNewPages();
-
-         if (is_empty) {
-            ErrorModal.open('Ошибка справочника', `Не найден input со значениями справочника`);
-         }
+         this.is_empty = this.createNewPages();
       }
 
+      if (this.is_empty) {
+         ErrorModal.open('')
+      }
    }
 
    createNewPages () {
-      // Контейнер со значениями для текущего справочника в зависимости от значения родительского справочника
-      let misc_values = document.querySelector(`[data-target_change="${this.name}"]`);
-
-      // let related_modal_input;
+      // Инпут, в котором хранятся все элементы для текущего модального окна
+      let related_input = document.querySelector(`[data-target_change="${this.name}"]`);
+      let related_modal_input;
       let is_empty = false;
 
-      if (misc_values) {
-         // Инпут со значением родительского справочника
-         let parent_misc_result = document.querySelector(`[data-misc_result][name='${related_input.dataset.when_change}']`);
+      if (related_input) {
+         // Инпут со значением поля, от которого зависит модальное окно
+         related_modal_input = document.querySelector(
+            `.field-result[name="${related_input.dataset.when_change}"]`
+         );
 
-         // related_modal_input = document.querySelector(`.field-result[name="${related_input.dataset.when_change}"]`);
-
-         if (parent_misc_result) {
+         if (related_modal_input) {
             // Массив массивов всех значений
-            let related_items = JSON.parse(misc_values.value);
-            // По значению родительского справочника берем нужный массив со страницами
-            let new_pages = related_items[parent_misc_result.value];
+            let related_items = JSON.parse(related_input.value);
+            // По значению родительского поля берем нужный массив со страницами
+            let new_pages = related_items[related_modal_input.value];
 
             // Если родительское поле заполнено, добавляем значения, иначе создаем оповещение
             if (new_pages) {

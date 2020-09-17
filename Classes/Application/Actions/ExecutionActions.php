@@ -12,17 +12,24 @@ use ReflectionException;
 use core\Classes\Session;
 use Lib\Actions\ExecutionActions as MainExecutionActions;
 use Lib\DataBase\Transaction;
+use Tables\Docs\application;
 
 
+/**
+ *  Предназначен для исполнения действий для типа документа <i>Заявление</i>
+ *
+ */
 class ExecutionActions extends MainExecutionActions
 {
-
+    // Реализация callback'ов исполнения действий из БД
     // Ошибкам во время исполнения действия необходимо присваивать code 6
+
 
     public function action_1(): string
     {
         return true;
     }
+
 
     /**
      * Действие <i>"Назначить экспертов"</i>
@@ -37,7 +44,6 @@ class ExecutionActions extends MainExecutionActions
     {
 
         // Декодирование json'а
-        //
         try {
             $experts = $this->primitiveValidator->getAssocArrayFromJson($this->getRequiredPOSTParameter('experts'));
         } catch (PrimitiveValidatorEx $e) {
@@ -45,15 +51,14 @@ class ExecutionActions extends MainExecutionActions
         }
 
         // Валидация входного массива
-        //
         foreach ($experts as $expert) {
 
             try {
 
                 $this->primitiveValidator->validateAssociativeArray($expert, [
-                    'id_expert'          => [[$this->primitiveValidator, 'validateInt']],
-                    'lead'               => ['is_bool'],
-                    'common_part'        => ['is_bool'],
+                    'id_expert' => [[$this->primitiveValidator, 'validateInt']],
+                    'lead' => ['is_bool'],
+                    'common_part' => ['is_bool'],
                     'ids_main_block_341' => ['is_array']
                 ]);
 
@@ -66,11 +71,22 @@ class ExecutionActions extends MainExecutionActions
             }
         }
 
-        // Проверка на то, что есть ведущий и он один. Проверка на то, что есть назначенный на общую часть
+        // Проверка назначенных экспертов
+        $leadCount = arrayEntry($experts, 'lead', true)['count'];
+        if ($leadCount != 1) {
+            throw new SelfEx("Количество ведущих экспертов: {$leadCount}, в то время как должно быть 1", 6);
+        }
+        if (arrayEntry($experts, 'common_part', true)['count'] == 0) {
+            throw new SelfEx("Количество экспертов на общую часть равно 0", 6);
+        }
 
         $transaction = new Transaction();
+
+        // Создание сводного замечания / заключения
+        // Устанавливаем id созданного документа в передачу по цепочке
         $transaction->add('\Tables\Docs\total_cc', 'create', [CURRENT_DOCUMENT_ID, Session::getUserId()], true);
 
+        // Создание назначенных экспертов к созданному ранее сводному замечанию / заключению
         foreach ($experts as $expert) {
 
             $transaction->add('\Tables\assigned_expert_total_tc', 'create', [
@@ -80,8 +96,36 @@ class ExecutionActions extends MainExecutionActions
             ], false, true);
         }
 
+        // Определение Вида работ
+        $typeOfObjectId = application::getIdTypeOfObjectById(CURRENT_DOCUMENT_ID);
 
-        // todo привязать экспертов к разделам
+        switch ($typeOfObjectId) {
+            case 1 : // Производственные/непроизводственные
+                $tableName = '\Tables\order_341\documentation_1\assigned_expert';
+                break;
+            case 2 : // Линейные
+                $tableName = '\Tables\order_341\documentation_2\assigned_expert';
+                break;
+            default :
+                throw new SelfEx("Заявление имеет неопределенный Вид работ: '{$typeOfObjectId}'", 6);
+        }
+
+        // Создание записей на какие разделы из 341 приказа были назначены эксперты
+        foreach ($experts as $expert) {
+
+            foreach ($expert['ids_main_block_341'] as $id_main_block) {
+
+                $transaction->add(
+                    $tableName,
+                    'create',
+                    [$id_main_block, $expert['id_expert']],
+                    false,
+                    true
+                );
+            }
+        }
+
+
         // todo поменять стадию на заявлении
 
         // todo ???КД на заявлении

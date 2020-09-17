@@ -6,6 +6,7 @@ namespace Tables\Docs;
 use Lib\DataBase\SimpleQuery;
 use Lib\DataBase\ParametrizedQuery;
 use Tables\Exceptions\Exception as SelfEx;
+use Lib\Exceptions\DataBase as DataBaseEx;
 
 
 final class application
@@ -66,7 +67,7 @@ final class application
     }
 
 
-    // Предназначен для получения плоского ассоциативного массива заявления по его id
+    // Предназначен для получения "плоского" ассоциативного массива заявления по его id
     // * плоский - не содержащий подмассивов. Результирующий массив содержит данные только из таблицы с заявлениями
     // Принимает параметры-----------------------------------
     // id int : id заявления
@@ -80,6 +81,23 @@ final class application
 				  FROM `doc_application`
                   WHERE `doc_application`.`id`=?";
         $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
+        return $result ? $result[0] : null;
+    }
+
+    /**
+     * Предназначен для получения id Вида работ по id заявления
+     *
+     * @param int $id <b>int</b> если Вид работ существует<br>
+     * <b>null</b> в противном случае
+     * @return int|null
+     * @throws DataBaseEx
+     */
+    static public function getIdTypeOfObjectById(int $id): ?int
+    {
+        $query = "SELECT `id_type_of_object`
+				  FROM `doc_application`
+                  WHERE `doc_application`.`id`=?";
+        $result = ParametrizedQuery::getSimpleArray($query, [$id]);
         return $result ? $result[0] : null;
     }
 
@@ -291,6 +309,8 @@ final class application
 
         ParametrizedQuery::set($query, [...$bindParams, $id]);
     }
+
+
 
 
     // todo тестовый метод для работы крона

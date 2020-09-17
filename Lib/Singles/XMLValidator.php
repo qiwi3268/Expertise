@@ -15,12 +15,12 @@ class XMLValidator
 {
 
     /**
-     * Предназначен для валидации аттрибутов проверяемого XML-узла
+     * Предназначен для валидации аттрибутов проверяемого XML узла
      *
      * Проверяет, что у узла есть все из перечисленных обязательных аттрибутов и при этом нет лишних
      * Опциональные аттрибутов могут присутствовать или отсутствовать
      *
-     * @param SimpleXMLElement $node проверяемый XML-узел
+     * @param SimpleXMLElement $node проверяемый XML узел
      * @param string $debugName имя узла для его вывода в дамп ошибки
      * @param array $requiredAttributes индексный массив с перечислением названий обязательных аттрибутов
      * @param array $optionalAttributes индексный массив с перечислением названий опциональных аттрибутов
@@ -28,7 +28,7 @@ class XMLValidator
      */
     public function validateAttributes(SimpleXMLElement $node, string $debugName, array $requiredAttributes, array $optionalAttributes = []): void
     {
-        // Получение массива аттрибутов узла из XML-объекта
+        // Получение массива аттрибутов узла из XML объекта
         $arr_attributes = (array)$node->attributes() ?? [];
         $attributes = isset($arr_attributes['@attributes']) ? array_keys($arr_attributes['@attributes']) : [];
 
@@ -74,12 +74,12 @@ class XMLValidator
 
 
     /**
-     * Предназначен для валидации дочерних узлов проверяемого XML-узла
+     * Предназначен для валидации дочерних узлов проверяемого XML узла
      *
      * Проверяет, что у узла есть все из перечисленных обязательных дочерних узлов и при этом нет лишних
      * Опциональные дочерние узлы могут присутствовать или отсутствовать
      *
-     * @param SimpleXMLElement $node проверяемый XML-узел
+     * @param SimpleXMLElement $node проверяемый XML узел
      * @param string $debugName имя узла для его вывода в дамп ошибки
      * @param array $requiredChildren индексный массив с перечислением названий обязательных дочерних узлов
      * @param array $optionalChildren индексный массив с перечислением названий опциональных дочерних узлов
@@ -145,15 +145,15 @@ class XMLValidator
         $node = $data->xpath($path);
 
         if ($node === false) {
-            throw new SelfEx("Ошибка при получении XML-пути: {$path}", 5);
+            throw new SelfEx("Ошибка при получении XML пути: {$path}", 5);
         }
 
         if ($checkExist && empty($node)) {
-            throw new SelfEx("Не найден узел по XML-пути: {$path}", 6);
+            throw new SelfEx("Не найден узел по XML пути: {$path}", 6);
         }
 
         if (count($node) > 1) {
-            throw new SelfEx("Найдено более одного узла по XML-пути: {$path}", 7);
+            throw new SelfEx("Найдено более одного узла по XML пути: {$path}", 7);
         }
 
         return array_shift($node);
@@ -175,11 +175,11 @@ class XMLValidator
         $nodes = $data->xpath($path);
 
         if ($nodes === false) {
-            throw new SelfEx("Ошибка при получении XML-пути: {$path}", 5);
+            throw new SelfEx("Ошибка при получении XML пути: {$path}", 5);
         }
 
         if ($checkExist && empty($nodes)) {
-            throw new SelfEx("Не найдены узлы по XML-пути: {$path}", 6);
+            throw new SelfEx("Не найдены узлы по XML пути: {$path}", 6);
         }
 
         return $nodes;

@@ -18,7 +18,7 @@ final class Route
     private RoutesXMLHandler $routesHandler;
 
     /**
-     * XML-узел page входящего запроса
+     * XML узел page входящего запроса
      *
      */
     private SimpleXMLElement $page;
@@ -55,7 +55,7 @@ final class Route
             $e_message = $e->getMessage();
             $e_code = $e->getCode();
 
-            // Не найдено узлов по XML-пути
+            // Не найдено узлов по XML пути
             if ($e_code == 6) {
                 $this->routeExist = false;
             } else {

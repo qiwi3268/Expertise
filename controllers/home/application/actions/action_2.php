@@ -32,21 +32,23 @@ $variablesTV->setValue('experts', $activeExperts);
 
 // Получение данных о выбранном Виде объекта для выбора нужных классов
 //
-switch (application::getFlatAssocById(CURRENT_DOCUMENT_ID)['id_type_of_object']) {
+$typeOfObjectId = application::getIdTypeOfObjectById(CURRENT_DOCUMENT_ID);
+
+switch ($typeOfObjectId) {
     case 1 : // Производственные/непроизводственные
         $mapping_level_1 = 2;
         $mapping_level_2 = 1;
         $structureDocumentationClassName = '\Tables\Structures\documentation_1';
-        $mainBlocks341DocumentationClassName = '\Tables\order_341\main_block_documentation_1';
+        $mainBlocks341DocumentationClassName = '\Tables\order_341\documentation_1\main_block';
         break;
     case 2 : // Линейные
         $mapping_level_1 = 2;
         $mapping_level_2 = 2;
         $structureDocumentationClassName = '\Tables\Structures\documentation_2';
-        //todo $mainBlocks341DocumentationClassName = '\Tables\order_341\main_block_documentation_1';
+        //todo $mainBlocks341DocumentationClassName = '\Tables\order_341\documentation_2\main_block';
         break;
     default :
-        throw new Exception('Указан Вид объекта, при котором не определены действия для отображения загруженных файлов');
+        throw new Exception("Заявление имеет неопределенный Вид работ: '{$typeOfObjectId}'");
 }
 
 // Формирование разделов и загруженной к ним документации

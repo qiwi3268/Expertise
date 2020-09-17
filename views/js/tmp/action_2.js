@@ -4,107 +4,65 @@ document.addEventListener('DOMContentLoaded', () => {
    let submit_btn = document.querySelector('[data-action_submit]');
    submit_btn.addEventListener('click', () => {
 
-      let assigned_experts = getAssignedExperts();
-      let lead = assigned_experts.filter(expert => expert.lead === true);
-      let has_common_part = assigned_experts.find(expert => expert.common_part === true);
+      let action_path = window.location.pathname;
+      let url = new URL(window.location.href);
+      let id_document = url.searchParams.get('id_document');
 
-      if (lead.length === 1 && has_common_part) {
+      let form_data = new FormData();
+      form_data.append('path_name', action_path);
+      form_data.append('id_document', id_document);
 
-         let form_data = new FormData();
-         form_data.append('experts', JSON.stringify(assigned_experts));
-         API.executeAction(form_data)
-            .then(response => {
 
-               console.log(response);
+      getAssignedExpertsJSON();
 
-            })
-            .catch(exc => {
-               ErrorModal.open('Ошибка при назначении экспертов', exc);
+      let leading_expert;
+      let general_part_experts;
 
-            });
-      } else if (!has_common_part) {
-         ErrorModal.open('Ошибка при назначении экспертов', 'Нет назначенных экспертов на общую часть');
-      } else {
-         ErrorModal.open('Ошибка при назначении экспертов', 'Должен быть назначен ведущий эксперт');
-      }
+      console.log(new Map(form_data));
+      // console.log(getAssignedExpertsJSON());
 
+      XHR(
+         'post',
+         '/home/API_action_executor',
+         form_data,
+         null,
+         'json'
+      )
+         .then(response => {
+
+
+            // console.log('qwe');
+            // console.log(response);
+
+         })
+         .catch(exc => {
+
+            console.log('ошибка' + exc);
+
+         });
    });
 
-   let add_section_btn = document.getElementById('add_section');
-   let additional_sections = document.getElementById('additional_sections');
-   let section_container = additional_sections.querySelector('.assignment__body-sections');
+   let add_section_btn = document.querySelector('.assignment__add');
+   let additional_sections = document.querySelector('.assignment__additional');
 
    add_section_btn.addEventListener('click', () => {
-      additional_sections.dataset.active = 'true';
-      createSection(section_container, additional_sections);
+
+      if (additional_sections.dataset.active !== 'true') {
+         additional_sections.dataset.active = 'true';
+         let header = additional_sections.querySelector('.assignment__header');
+         header.appendChild(add_section_btn);
+      }
+
    });
 
 });
 
-function createSection (section_container, additional_sections) {
-   let section_template = document.getElementById('section_template');
-   let new_section = section_template.cloneNode(true);
-   new_section.removeAttribute('id');
-   new_section.dataset.active = 'true';
-   section_container.appendChild(new_section);
+function createSection () {
 
-   let modal_select = new_section.querySelector('.modal-select');
-   modal_select.addEventListener('click', () => {
-
-      // todo вынести в отдельный метод
-      modal = getModalBySelect(modal_select);
-
-      if (!modal.is_empty) {
-         modal.show();
-      } else {
-         createAlert(modal.alert_message);
-         modal.alert_message = '';
-      }
-      disableScroll();
-
-   });
-
-   let remove_btn = new_section.querySelector('.section__remove');
-   remove_btn.addEventListener('click', () => {
-      new_section.remove();
-
-      if (!additional_sections.querySelector('.section[data-active="true"]')) {
-         additional_sections.dataset.active = 'false';
-      }
-
-   });
 }
 
-function getAssignedExperts () {
-   let experts = new Map();
-
-   let sections = document.querySelectorAll('.section[data-drop_area]');
-   sections.forEach(section => {
-      let id_section = parseInt(section.dataset.id);
-
-      let section_experts = section.querySelectorAll('.section__expert[data-drop_element]');
-      section_experts.forEach(expert_elem => {
-         let id_expert = parseInt(expert_elem.dataset.id);
-         let expert;
-
-         if (experts.has(id_expert)) {
-            expert = experts.get(id_expert)
-         } else {
-            expert = new Expert(expert_elem);
-            experts.set(expert.id_expert, expert);
-         }
-
-         expert.ids_main_block_341.push(id_section);
-
-      });
-   });
-
-   return Array.from(experts.values());
-}
-
-function Expert (expert) {
-   this.id_expert = parseInt(expert.dataset.id);
-   this.lead = expert.dataset.leading === 'true';
-   this.common_part = expert.dataset.general === 'true';
-   this.ids_main_block_341 = [];
+function getAssignedExpertsJSON () {
+   DropArea.drop_areas.forEach(area => {
+      console.log(area.getResult());
+   })
 }

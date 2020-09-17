@@ -3,12 +3,12 @@
     <document name="application">
         <queries>
             <getResponsibleType>
-                <class name="\Tables\application" />
+                <class name="\Tables\Docs\application" />
                 <method name="getResponsibleTypeById" />
             </getResponsibleType>
 
             <updateResponsibleType>
-                <class name="\Tables\application" />
+                <class name="\Tables\Docs\application" />
                 <method name="updateResponsibleTypeById" />
             </updateResponsibleType>
 

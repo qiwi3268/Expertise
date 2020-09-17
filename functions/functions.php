@@ -189,7 +189,8 @@ function containsAny(string $haystack, string ...$needles): bool
  *
  * @param string $pattern искомый шаблон
  * @param string $subject входная строка
- * @param bool $is_preg_match_all в ходе работы метода будет выполняться функция:<br><b>true</b> preg_match_all<br/><b>false</b> preg_match
+ * @param bool $is_preg_match_all в ходе работы метода будет выполняться функция:<br>
+ * <b>true</b> preg_match_all<br/><b>false</b> preg_match
  * @return array массив совпавших значений
  * @throws PregMatchEx
  */
@@ -209,12 +210,19 @@ function getHandlePregMatch(string $pattern, string $subject, bool $is_preg_matc
 
 
 /**
- * Предназначен для подсчета количества элементов в ассоцивтивном массиве
+ * Предназначен для поиска в исходном массиве элементов по ключу key со значением value
  *
  * @param array $array индексный массив с ассоциативными массивами внутри
- * @param string $key
- * @param mixed $value
- * @return array
+ * @param string $key ключ ассоциативного массива
+ * @param mixed $value значение ассоциативного массива
+ * @return array массив формата:<br>
+ * <i>int</i> 'count'  => количество вхождений<br>
+ * <i>array|null</i> 'indexes' => если были вхождения (count > 0), то:<br>
+ * <i>int</i> ключ - номер вхождения<br>
+ * <i>int</i> значение - индекс исходного массива, при котором было вхождение<br>
+ * <b>ключ начинается минимум с 1, т.к. первое вхождение count = 1</b><br>
+ * <i>int|null</i> 'first_key' => если были вхождения, то представляет собой индекс исходного массива,
+ * при котором было первое вхождение
  */
 function arrayEntry(array $array, string $key, $value): array
 {
@@ -223,14 +231,15 @@ function arrayEntry(array $array, string $key, $value): array
 
     foreach ($array as $k => $v) {
 
-        if ($v[$key] === $value) {
+        if (isset($v[$key]) && $v[$key] === $value) {
             $count++;
             $indexes[$count] = $k;
         }
     }
     return [
-        'count'   => $count,
-        'indexes' => $indexes
+        'count'     => $count,
+        'indexes'   => $indexes,
+        'first_key' => $indexes ? $indexes[array_key_first($indexes)] : null
     ];
 }
 

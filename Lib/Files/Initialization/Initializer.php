@@ -244,4 +244,12 @@ abstract class Initializer
         }
         return $structure;
     }
+
+
+    /**
+     * Предназначен для получения id главного документа
+     *
+     * @return int id главного документа
+     */
+    abstract protected function getMainDocumentId(): int;
 }

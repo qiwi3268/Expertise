@@ -298,39 +298,6 @@ class API {
       return form_data;
    }
 
-   static executeAction (form_data) {
-      this.appendActionData(form_data);
-
-      // console.log(new Map(form_data));
-
-      return new Promise((resolve, reject) => {
-
-         XHR(
-            'post',
-            '/home/API_action_executor',
-            form_data,
-            null,
-            'json'
-         )
-            .then(response => {
-               resolve(response);
-            })
-            .catch(exc => {
-               reject(exc);
-            });
-
-      });
-
-   }
-
-   static appendActionData (form_data) {
-      let action_path = window.location.pathname;
-      let url = new URL(window.location.href);
-      let id_document = url.searchParams.get('id_document');
-
-      form_data.append('path_name', action_path);
-      form_data.append('id_document', id_document);
-   }
 
 }
 

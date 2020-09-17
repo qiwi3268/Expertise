@@ -3,9 +3,14 @@
 
 namespace Tables\Responsible\type_3\Interfaces;
 
-// Интерфейс для работы с таблицами "ответственные группы заявителей к заявлению"
-//
-interface ResponsibleType3
+use Tables\Responsible\Interfaces\Responsible;
+
+
+/**
+ * Интерфейс для работы с таблицами "ответственные группы заявителей к заявлению"
+ *
+ */
+interface ResponsibleType3 extends Responsible
 {
     // Предназначен для создания записи в таблице
     //

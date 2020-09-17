@@ -4,15 +4,33 @@
 namespace Classes\Application\Miscs\Validation;
 
 use Lib\Exceptions\MiscValidator as MiscValidatorEx;
-use Lib\Miscs\Validation\SingleMisc as MainSingleMisc;
 use Classes\Exceptions\ApplicationFormMiscValidator as ApplicationFormMiscValidatorEx;
+use LogicException;
+use Lib\Miscs\Validation\SingleMisc as MainSingleMisc;
 use Classes\Application\DataToUpdate;
 
 
+/**
+ * Предназначен для валидации одиночных справочников формы анкеты документа <i>Заявление</i>
+ *
+ */
 class SingleMisc extends MainSingleMisc
 {
-    private ?string $columnName; // Имя столбца справочника в БД
 
+    /**
+     * Имя столбца справочника в БД
+     *
+     */
+    private ?string $columnName;
+
+    /**
+     * Конструктор класса
+     *
+     * @param string $form_value
+     * @param string $class
+     * @param string|null $columnName <b>string</b> имя столбца справочнка в БД, если требуется добавление к массиву обновлений<br>
+     * <b>null</b> добавление в массив обновлений не требудется, только валидация
+     */
     public function __construct(string $form_value, string $class, ?string $columnName = null)
     {
         parent::__construct($form_value, $class);
@@ -21,6 +39,13 @@ class SingleMisc extends MainSingleMisc
     }
 
 
+    /**
+     * Предназначен для комплексной проверки одиночного справочника
+     *
+     * @return $this
+     * @throws ApplicationFormMiscValidatorEx
+     * @throws MiscValidatorEx
+     */
     public function validate(): self
     {
         try {
@@ -45,8 +70,10 @@ class SingleMisc extends MainSingleMisc
     }
 
 
-    // Предназначен для добавления значения справочника к массиву обновлений
-    //
+    /**
+     * Предназначен для добавления значения справочника к массиву обновлений
+     *
+     */
     public function addToUpdate(): void
     {
         if (is_null($this->columnName)) {

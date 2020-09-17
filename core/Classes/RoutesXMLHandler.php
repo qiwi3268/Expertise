@@ -12,7 +12,7 @@ use SimpleXMLElement;
 
 
 /**
- * Предназначен для обработки xml-схемы routes
+ * Предназначен для обработки XML схемы routes
  *
  */
 final class RoutesXMLHandler
@@ -37,13 +37,14 @@ final class RoutesXMLHandler
 
 
     /**
-     * RoutesXMLHandler constructor.
+     * Конструктор класса
+     *
      * @throws SelfEx
      */
     public function __construct()
     {
         if (($data = simplexml_load_file(SETTINGS . '/routes.xml')) === false) {
-            throw new SelfEx("Ошибка при инициализации XML-схемы маршрутизации", 1);
+            throw new SelfEx("Ошибка при инициализации XML схемы маршрутизации", 1);
         }
         $this->data = $data;
         $this->XMLValidator = new XMLValidator();
@@ -80,7 +81,7 @@ final class RoutesXMLHandler
 
 
     /**
-     * Предназначен для валидации структуры узла page, без проверки конкретных значений
+     * Предназначен для валидации <b>структуры</b> узла page, без проверки конкретных значений
      *
      * @param SimpleXMLElement $page узел page
      * @throws XMLValidatorEx
@@ -108,7 +109,7 @@ final class RoutesXMLHandler
 
 
     /**
-     * Предназначен для валидации структуры узла files, без проверки конкретных значений
+     * Предназначен для валидации <b>структуры</b> узла files, без проверки конкретных значений
      *
      * @param SimpleXMLElement $files узел files
      * @throws XMLValidatorEx
@@ -133,7 +134,7 @@ final class RoutesXMLHandler
 
 
     /**
-     * Предназначен для валидации структуры узла callbacks, без проверки конкретных значений
+     * Предназначен для валидации <b>структуры</b> узла callbacks, без проверки конкретных значений
      *
      * @param SimpleXMLElement $callbacks узел callbacks
      * @throws XMLValidatorEx
@@ -164,7 +165,7 @@ final class RoutesXMLHandler
 
 
     /**
-     * Предназначен для валидации структуры узла callback_template, без проверки конкретных значений
+     * Предназначен для валидации <b>структуры</b> узла callback_template, без проверки конкретных значений
      *
      * Проверяет в том числе узел template, на который ссылается в аттрибуте id
      *
@@ -238,7 +239,7 @@ final class RoutesXMLHandler
 
 
     /**
-     * Предназначен для обработки значений узла files
+     * Предназначен для обработки <b>значений</b> узла files
      *
      * После обработки добавляет значения в результирующий массив
      *
@@ -280,7 +281,7 @@ final class RoutesXMLHandler
 
 
     /**
-     * Предназначен для обработки значений узла callbacks
+     * Предназначен для обработки <b>значений</b> узла callbacks
      *
      * После обработки добавляет значения в результирующий массив
      *
@@ -344,7 +345,7 @@ final class RoutesXMLHandler
 
 
     /**
-     * Предназначен для обработки значений узла callback_template
+     * Предназначен для обработки <b>значений</b> узла callback_template
      *
      * Обрабатывает в том числе узел template, на который ссылается в аттрибуте id<br>
      * После обработки добавляет значения в результирующий массив

@@ -6,13 +6,24 @@ namespace Classes\Navigation\BlockClasses;
 use Classes\Navigation\NavigationTable;
 
 
-// block1  - "Мои документы" для Заявителя
-// type1   - ""
-
+/**
+ * Реализация класса XML схемы навигации пользователя
+ *
+ * block1 - "Мои документы" для Заявителя<br>
+ * type1 - ""
+ *
+ * Параметры запроса:<br>
+ *
+ */
 class block_1_type_1 extends NavigationTable
 {
 
-    //заглушка
+    /**
+     * @todo заглушка
+     * Реализация абстрактного метода
+     *
+     * @return string
+     */
     static protected function getSection(): string
     {
         $section = "FROM `doc_application`

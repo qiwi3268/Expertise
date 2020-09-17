@@ -15,9 +15,14 @@ use Tables\Structures\documentation_1;
 
 $doc = documentation_1::getAllAssocWhereActiveAndId341NN();
 
-$test = arrayEntry($doc, 'is_header', '1');
+$test = arrayEntry($doc, 'is_active', '1');
 
-var_dump($test);
+$a = [1,2,3];
+
+
+
+var_dump($a === [1,2,3]);
+
 
 
 

@@ -56,24 +56,14 @@
 
 }
 
-.section__header {
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   padding: 0px 10px 0px 15px;
-
-}
-
 .section__title {
+   display: flex;
+   padding: 10px 15px;
    cursor: pointer;
-   padding: 10px 0px;
-}
-
-.section__title.empty {
-   color: #6e6e6e;
 }
 
 .section__body {
+   /*padding: 10px 15px;*/
    display: flex;
    border-top: 1px solid #e0e0e0;
    /*border-top: 2px solid #ffd354;*/
@@ -117,8 +107,7 @@
    background-color: #F6F6F6;
 }
 
-.section__icon-remove,
-.section__remove {
+.section__icon-remove {
    color: #bd4949;
    transition: 0.15s;
    border-radius: 3px;
@@ -126,8 +115,7 @@
    cursor: pointer;
 }
 
-.section__icon-remove:hover,
-.section__remove:hover {
+.section__icon-remove:hover {
    background-color: #ffb0b0;
    color: #a93d3d;
 
@@ -271,7 +259,7 @@
 
    position: sticky;
    top: 0;
-   z-index: 200;
+   z-index: 2000;
 
    background-color: #ffffff;
    border-radius: 4px;
@@ -347,16 +335,29 @@
    padding: 10px;
 }
 
-.assignment__main,
+.assignment__main {
+   background-color: #ffffff;
+   border-radius: 4px;
+   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+
+   margin: 0px 0px 10px 0px;
+
+}
+
 .assignment__additional {
    background-color: #ffffff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
-   margin: 0px 0px 10px 0px;
+
+
 }
 
 .assignment__header {
    display: flex;
+
+   /*font-size: 16px;*/
+
+
    border-bottom: 1px solid #e0e0e0;
    /*border-left: 4px solid #ffd354;*/
    border-radius: 4px 0px 0px 0px;
@@ -373,16 +374,13 @@
 
 .assignment__add {
    display: flex;
-   justify-content: space-between;
    align-items: center;
-   width: 250px;
-   padding: 10px 15px;
-   border: 1px solid #ffffff;
-   border-radius: 4px;
-   background-color: #ffffff;
-   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.2);
-   transition: .10s;
+   border-bottom: 2px solid #ffffff;
    cursor: pointer;
+   transition: 0.15s;
+   padding: 0px 15px;
+   border-radius: 0px 4px 0px 0px;
+
 }
 
 .assignment__add-text {
@@ -391,8 +389,8 @@
 }
 
 .assignment__add:hover {
-   box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
-   border-color: #80bdff;
+   border-bottom: 2px solid #ffd354;
+   background-color: #f2f2f2;
 }
 
 [data-active='false'] {
@@ -402,7 +400,7 @@
 
 .avatar {
    position: absolute;
-   z-index: 100000;
+   z-index: 9999;
    box-sizing: border-box;
    align-items: center;
    flex-grow: 1;

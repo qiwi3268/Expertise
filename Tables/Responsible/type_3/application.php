@@ -8,7 +8,7 @@ use Tables\Responsible\type_3\Interfaces\ResponsibleType3;
 use Lib\DataBase\ParametrizedQuery;
 
 
-// Ответственные группы заявителей к заявлению
+// Ответственные группы заявителей к Заявлению
 //
 final class application implements Responsible, ResponsibleType3
 {
