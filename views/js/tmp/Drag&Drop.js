@@ -39,7 +39,7 @@ class DropArea {
       this.add_element_callback = getAddElementCallback(this);
       this.elements = [];
 
-      this.area.dataset.id = DropArea.areas_counter.toString();
+      this.area.dataset.id_area = DropArea.areas_counter.toString();
       DropArea.drop_areas.set(DropArea.areas_counter++, this);
 
    }
@@ -70,7 +70,7 @@ class DropArea {
    }
 
    static getDropArea (area) {
-      let id = parseInt(area.dataset.id);
+      let id = parseInt(area.dataset.id_area);
       return this.drop_areas.has(id) ? this.drop_areas.get(id) : new DropArea(area);
    }
 
@@ -146,7 +146,6 @@ function findDropArea (event) {
    // Получаем самый вложенный элемент под курсором мыши
    let deepest_elem = document.elementFromPoint(event.clientX, event.clientY);
    let drop_area = deepest_elem.closest('[data-drop_area]');
-
    return drop_area ? DropArea.getDropArea(drop_area) : null;
 }
 
@@ -280,13 +279,13 @@ function transformExpert (expert) {
    let leading_icon = document.createElement('I');
    leading_icon.classList.add('section__leading', 'fas', 'fa-crown');
    leading_icon.addEventListener('click', () => setLeadingExpert(new_expert));
-   new_expert.dataset.leading = isLeadingExpert(new_expert);
+   new_expert.dataset.leading = !!isLeadingExpert(new_expert);
    new_expert.appendChild(leading_icon);
 
    let general_icon = document.createElement('I');
    general_icon.classList.add('section__general', 'fas', 'fa-file-signature');
    general_icon.addEventListener('click', () => toggleGeneralPart(new_expert));
-   new_expert.dataset.general = isGeneralPartExpert(new_expert);
+   new_expert.dataset.general = !!isGeneralPartExpert(new_expert);
    new_expert.appendChild(general_icon);
 
    let expert_name = document.createElement('SPAN');
@@ -325,6 +324,7 @@ function isLeadingExpert (expert) {
 function isGeneralPartExpert (expert) {
    let general_part_expert = document.querySelector('.section__expert[data-general="true"]');
    return general_part_expert && expert.dataset.id === general_part_expert.dataset.id;
+   // return general_part_expert && expert.dataset.id === general_part_expert.dataset.id;
 }
 
 function toggleGeneralPart (expert) {
@@ -398,6 +398,7 @@ function getAssignedSectionsJSON (drop_area) {
    if (drop_area.area.hasAttribute('data-id')) {
       section.id = drop_area.area.dataset.id;
    }
+
    section.experts = drop_area.elements.map(expert => expert.dataset.id);
    return section;
 }

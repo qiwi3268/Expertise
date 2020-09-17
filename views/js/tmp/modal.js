@@ -22,16 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initializeModalSelects (block) {
    let modal_selects = block.querySelectorAll('.modal-select');
-
    modal_selects.forEach(select => {
+
       select.addEventListener('click', () => {
          modal = getModalBySelect(select);
 
          if (!modal.is_empty) {
             modal.show();
          } else {
-            createAlert(modal.alert_message);
-            modal.alert_message = '';
+            ErrorModal.open('Ошибка при получении значений справочника', modal.alert_message);
+            // createAlert(modal.alert_message);
+            // modal.alert_message = '';
          }
          disableScroll();
 
@@ -46,22 +47,8 @@ function initializeModalSelects (block) {
 // modal      Modal : объект модального окна
 //
 function getModalBySelect (select) {
-   let modal;
-   // let modal_name;
-   // let parent_row = select.closest('.field');
-
-   // let modal_name = parent_row.dataset.field_name;
    let id_modal = select.dataset.id_modal;
-   modal = id_modal ? modals.get(parseInt(id_modal)) : new Modal(select);
-
-/*   //TODO одинаковые модалки в разных блоках
-   if (modals.has(modal_name)) {
-      modal = new Modal(select);
-      // modal = modals.get(modal_name);
-   } else {
-      modal = new Modal(select);
-      modals.set(modal.id, modal);
-   }*/
+   let modal = id_modal ? modals.get(parseInt(id_modal)) : new Modal(select);
 
    // Если страниц больше 1 отображаем пагинацию
    if (modal.pages.length > 1) {
@@ -119,7 +106,7 @@ class Modal {
    id;
 
    // Родительское поле
-   parent_row;
+   parent_field;
 
    // Element модального окна
    element;
@@ -137,6 +124,8 @@ class Modal {
    // Скрытый инпут с id выбранного элемента
    result_input;
 
+   result_callback;
+
    // Блок, в который подставляется имя элемента
    select;
 
@@ -148,16 +137,19 @@ class Modal {
    // Принимает параметры-------------------------------------------
    // select     Element : поле, для которого вызывается модальное окно
    constructor (select) {
+      console.log('tua');
       this.id = Modal.modals_counter++;
       this.select = select;
       this.select.dataset.id_modal = this.id;
 
-      this.parent_row = this.select.closest('.field');
+      this.parent_field = this.select.closest('.field');
 
-      this.name = this.parent_row.dataset.name;
-      this.element = this.parent_row.querySelector('.modal');
+      this.name = this.parent_field.dataset.name;
+      this.element = this.parent_field.querySelector('.modal');
       this.content = this.element.querySelector('.modal__items');
-      this.result_input = this.parent_row.querySelector('.field-result');
+
+      this.result_input = this.parent_field.querySelector('.field-result');
+      this.result_callback = getModalResultCallback(this);
 
       this.close_button = this.element.querySelector('.modal__close');
       this.close_button.addEventListener('click', () => {
@@ -176,10 +168,12 @@ class Modal {
    // Предназначен для инициализации страниц с элементами из справочника модального окна
    //
    initPages () {
+
       this.pages = this.content.querySelectorAll('.modal__page');
 
       if (this.pages.length === 0) {
-         this.is_empty = this.createNewPages()
+
+         this.is_empty = this.createNewPages();
       }
    }
 
@@ -266,19 +260,26 @@ class Modal {
          items = page.querySelectorAll('.modal__item');
          items.forEach(item => {
             item.addEventListener('click', () => {
-               // В результат записываем id элемента из справочника
-               this.result_input.value = item.dataset.id;
 
-               // В поле для выбора записываем значение
-               this.select.classList.add('filled');
-               this.select.querySelector('.field-value').innerHTML = item.innerHTML;
+               if (this.result_input) {
+                  // В результат записываем id элемента из справочника
+                  this.result_input.value = item.dataset.id;
 
-               // Показывает или скрывает поля, зависящие от выбранного значения
-               // handleDependentBlocks(this.result_input);
-               DependenciesHandler.handleDependencies(this.result_input);
+                  // В поле для выбора записываем значение
+                  this.select.classList.add('filled');
+                  this.select.querySelector('.field-value').innerHTML = item.innerHTML;
 
-               // Очищаем зависимые поля
-               this.clearRelatedModals();
+                  // Показывает или скрывает поля, зависящие от выбранного значения
+                  DependenciesHandler.handleDependencies(this.result_input);
+
+                  // Очищаем зависимые поля
+                  this.clearRelatedModals();
+                  validateModal(this);
+
+               } else {
+                  this.result_callback(item, this);
+               }
+
                this.close();
 
             });
@@ -295,10 +296,7 @@ class Modal {
       dependent_modals.forEach(modal => {
          modal.clearRelatedModals();
          this.clearModal(modal);
-
-         if (modal.parent_row.dataset.required === 'true' && modal.result_input.value) {
-            validateModal(modal);
-         }
+         validateModal(modal);
       });
    }
 
@@ -355,8 +353,6 @@ class Modal {
       this.close_button.classList.remove('active');
 
       overlay.classList.remove('active');
-
-      validateModal(this);
    }
 
    // Предназначен для отображения на странице модального окна
@@ -485,3 +481,46 @@ class Pagination {
 }
 
 //Pagination----------------------------------------------------------------------------------------
+
+function getModalResultCallback (modal) {
+   let callback;
+
+   switch (modal.element.dataset.result_callback) {
+      case 'application_field':
+         callback = setApplicationFieldValue;
+         break;
+      case 'additional_section':
+         callback = setAdditionalAction;
+         break;
+
+      default:
+
+   }
+
+   return callback;
+}
+
+function setApplicationFieldValue (selected_item, modal) {
+   this.result_input = this.parent_field.querySelector('.field-result');
+
+   // В результат записываем id элемента из справочника
+   modal.result_input.value = selected_item.dataset.id;
+
+   // В поле для выбора записываем значение
+   modal.select.classList.add('filled');
+   modal.select.querySelector('.field-value').innerHTML = selected_item.innerHTML;
+
+   // Показывает или скрывает поля, зависящие от выбранного значения
+   DependenciesHandler.handleDependencies(modal.result_input);
+
+   // Очищаем зависимые поля
+   modal.clearRelatedModals();
+   validateModal(modal);
+}
+
+function setAdditionalAction (selected_item, modal) {
+   modal.parent_field.dataset.id = selected_item.dataset.id;
+   modal.parent_field.dataset.drop_area = '';
+   modal.select.classList.remove('empty');
+   modal.select.innerHTML = selected_item.innerHTML;
+}
