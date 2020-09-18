@@ -2,7 +2,7 @@
 
 <?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
-<?php //var_dump($variablesTV->getValue('documentation_files_in_structure')); ?>
+<?php var_dump($variablesTV->getValue('documentation_files_in_structure')); ?>
 <?php //var_dump($variablesTV->getValue('experts')); ?>
 <?php //var_dump($variablesTV->getValue('main_block_341')); ?>
 
