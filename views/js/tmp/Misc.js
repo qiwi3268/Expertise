@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /**
  * Представляет собой модальное окно со значениями справочника
- *
  */
 class Misc {
 
@@ -72,7 +71,6 @@ class Misc {
     */
    modal;
 
-
    /**
     * Имя поля, к которому относится справочник
     *
@@ -81,7 +79,7 @@ class Misc {
    name;
 
    /**
-    * функция обработки результата выбора элемента
+    * функция обработки выбора элемента справочника
     *
     * @type {function}
     */
@@ -107,7 +105,6 @@ class Misc {
     * @type {boolean}
     */
    is_empty = false;
-
 
    /**
     * Сообщении с ошибкой при инициализации справочника
@@ -136,9 +133,7 @@ class Misc {
 
       this.result_callback = getMiscResultCallback(this);
 
-
       this.handleCloseButton();
-
 
       this.initPages();
 
@@ -151,14 +146,19 @@ class Misc {
 
       }
 
-
    }
 
+   /**
+    * Добавляет обработчик кнопки закрытия справочника
+    */
    handleCloseButton () {
       let close_btn = this.modal.querySelector('[data-misc_close]');
       close_btn.addEventListener('click', () => this.close());
    }
 
+   /**
+    * Закрывает модальное окно справочника
+    */
    close () {
 
       this.modal.classList.remove('active');
@@ -170,22 +170,29 @@ class Misc {
 
    }
 
+   /**
+    * Инициализирует страницы с элементами справочника
+    */
    initPages () {
       this.body = this.modal.querySelector('[data-misc_body]');
       this.pages = this.body.querySelectorAll('[data-misc_page]');
 
+      // Если справочник зависит от значения другого поля создаем страницы
       if (this.pages.length === 0) {
          this.createNewPages();
       }
-
    }
 
+   /**
+    * Создает страницы справочника в зависимости от значения другого поля
+    *
+    */
    createNewPages () {
-      // Контейнер со значениями для текущего справочника в зависимости от значения родительского справочника
+      // Контейнер, в котором хранятся все возможные значения
       let misc_values = document.querySelector(`[data-target_change="${this.name}"]`);
 
       if (misc_values) {
-         // Инпут со значением родительского справочника
+         // Инпут со значением родительского поля
          let parent_misc_result = document.querySelector(`[data-misc_result][name='${misc_values.dataset.when_change}']`);
 
          if (parent_misc_result) {
@@ -194,28 +201,31 @@ class Misc {
             // По значению родительского справочника берем нужный массив со страницами
             let new_pages = related_items[parent_misc_result.value];
 
-            // Если родительское поле заполнено, добавляем значения, иначе создаем оповещение
+            // Если родительское поле заполнено, добавляем значения, иначе ошибка
             if (new_pages) {
+               console.log(new_pages);
                this.putMiscValues(new_pages);
             } else {
                // Создаем сообщение, в котором записываем поле, которое нужно заполнить
-
                this.is_empty = true;
                let related_field = parent_misc_result.closest('.field');
                let related_field_name = related_field.querySelector('.field-title').innerHTML;
                this.error_message = `Выберите ${related_field_name.toLowerCase()}`;
-
             }
          }
       } else {
-         // Если из базы пришел пустой справочник и нет связанного инпута
+         // Если справочник пустой и нет связанного инпута
          this.is_empty = true;
          this.error_message = `Не найден input со значениями справочника, либо справочник не заполнен`;
-
       }
 
    }
 
+   /**
+    * Создает элементы значений справочника и добавляет новые страницы в модальное окно
+    *
+    * @param {Array.<Object[]>} pages - массив страниц со значениями
+    */
    putMiscValues (pages) {
       let modal_page;
       let modal_item;
@@ -240,8 +250,9 @@ class Misc {
       });
    }
 
-   // Предназначен для добавления события каждому элементу страниц
-   //
+   /**
+    * Добавляет обработчики для значений справочника
+    */
    handleItems () {
       let items;
 
@@ -258,6 +269,9 @@ class Misc {
       });
    }
 
+   /**
+    * Отображает модальное окно справочника или выводит ошибку заполнения
+    */
    open () {
       if (!this.is_empty) {
          this.modal.classList.add('active');
@@ -269,7 +283,6 @@ class Misc {
          this.active_page = this.pages[0];
          this.active_page.classList.add('active');
 
-
          Misc.overlay.classList.add('active');
       } else {
          ErrorModal.open('Ошибка справочника', this.error_message);
@@ -277,8 +290,9 @@ class Misc {
 
    }
 
-   // Предназначени для добавления в модальное окно блока с пагинацией
-   //
+   /**
+    * Добавляет в модальное окно блок с пагинацией
+    */
    handlePagination () {
       if (!this.pagination) {
          this.pagination = new Pagination(this);
@@ -290,16 +304,22 @@ class Misc {
       this.pagination.element.style.display = 'flex';
    }
 
-   // Предназначен для смены отображаемой страницы модального окна
-   // Принимает параметры-------------------------------------------
-   // new_page_num  number : номер новой страницы
-   //
+   /**
+    * Меняет отображаемую страницу модального окна
+    *
+    * @param {number} new_page_num
+    */
    changeActivePage (new_page_num) {
       this.active_page.classList.remove('active');
       this.active_page = this.body.querySelector(`[data-misc_page='${new_page_num}']`);
       this.active_page.classList.add('active');
    }
 
+   /**
+    * Инициализирует поля справочников
+    *
+    * @param {(Document|HTMLElement)} block - Блок, внутри которого инициализируются поля справочников
+    */
    static initializeMiscSelects (block) {
       let misc_selects = block.querySelectorAll('[data-misc_select]');
       misc_selects.forEach(this.handleMiscSelect);

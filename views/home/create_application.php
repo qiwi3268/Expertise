@@ -1,5 +1,7 @@
 <?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
+<?php var_dump($variablesTV->getValue('structureDocumentation1')); ?>
+
 <div class="application-form__header header-form">
     <div class="header-form__title">Заявление на экспертизу <?= $variablesTV->getValue('numerical_name') ?></div>
     <div class="header-form__actions">
@@ -888,26 +890,30 @@
                 </div>
                 <div class="body-card__block block" data-name="structureDocumentation1" data-active="false">
                     <div class="documentation field" data-mapping_level_1="2" data-mapping_level_2="1">
-                        <?php foreach ($variablesTV->getValue('structureDocumentation1') as ['id' => $id_structure_node, 'name' => $name, 'depth' => $depth]): ?>
-                            <div class="documentation__node" data-id_structure_node="<?= $id_structure_node ?>">
-                                <div class="documentation__header">
-                                    <span class="documentation__name" style="padding-left: <?= $depth*25 + 15 ?>px"><?= $name ?></span>
-                                    <i class="documentation__icon modal-file fas fa-plus"></i>
+                        <?php foreach ($variablesTV->getValue('structureDocumentation1') as $node): ?>
+                            <div class="documentation__node" data-id_structure_node="<?= $node['id'] ?>">
+                                <div class="documentation__header" data-title="<?= $node['is_header'] ? 'true' : 'false' ?>">
+                                    <span class="documentation__name" style="padding-left: <?= $node['depth']*25 + 15 ?>px"><?= $node['name'] ?></span>
+                                    <?php if (!$node['is_header']): ?>
+                                        <i class="documentation__icon modal-file fas fa-plus"></i>
+                                    <?php endif; ?>
                                 </div>
-                                <div class="documentation__files files" data-depth="<?= $depth ?>"></div>
+                                <div class="documentation__files files" data-depth="<?= $node['depth'] ?>"></div>
                             </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
                 <div class="body-card__block block" data-name="structureDocumentation2" data-active="false">
                     <div class="documentation field" data-mapping_level_1="2" data-mapping_level_2="2">
-                        <?php foreach ($variablesTV->getValue('structureDocumentation2') as ['id' => $id_structure_node, 'name' => $name, 'depth' => $depth]): ?>
-                            <div class="documentation__node" data-id_structure_node="<?= $id_structure_node ?>">
-                                <div class="documentation__header">
-                                    <span class="documentation__name" style="padding-left: <?= $depth*25 + 15 ?>px"><?= $name ?></span>
-                                    <i class="documentation__icon modal-file fas fa-plus"></i>
+                        <?php foreach ($variablesTV->getValue('structureDocumentation2') as $node): ?>
+                            <div class="documentation__node" data-id_structure_node="<?= $node['id'] ?>">
+                                <div class="documentation__header" data-title="<?= $node['is_header'] ? 'true' : 'false' ?>">
+                                    <span class="documentation__name" style="padding-left: <?= $node['depth']*25 + 15 ?>px"><?= $node['name'] ?></span>
+                                    <?php if (!$node['is_header']): ?>
+                                        <i class="documentation__icon modal-file fas fa-plus"></i>
+                                    <?php endif; ?>
                                 </div>
-                                <div class="documentation__files files" data-depth="<?= $depth ?>"></div>
+                                <div class="documentation__files files" data-depth="<?= $node['depth'] ?>"></div>
                             </div>
                         <?php endforeach; ?>
                     </div>

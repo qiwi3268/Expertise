@@ -18,6 +18,10 @@
    display: flex;
 }
 
+.documentation__header[data-title='true'] {
+   background-color: #F3F5F6;
+}
+
 .documentation__name {
    flex-grow: 1;
    padding: 13px 7px 13px 0px;
