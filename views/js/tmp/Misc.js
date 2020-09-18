@@ -1,3 +1,7 @@
+/**
+ * @typedef {Element | HTMLElement} HTMLElement
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
 
    Misc.initializeMiscSelects(document);
@@ -8,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
    });
 
 });
-
 
 /**
  * Представляет собой модальное окно со значениями справочника
@@ -79,11 +82,18 @@ class Misc {
    name;
 
    /**
-    * функция обработки выбора элемента справочника
+    * Функция обработки выбора элемента справочника
     *
     * @type {function}
     */
    result_callback;
+
+   /**
+    * Скрытый инпут, в который записывается id выбранного элемента справочника
+    *
+    * @type {HTMLElement}
+    */
+   result_input;
 
    /**
     * Блок со страницами значений справочника
@@ -119,6 +129,13 @@ class Misc {
     * @type {Pagination}
     */
    pagination;
+
+   /**
+    * Текущая страница справочника
+    *
+    * @type {HTMLElement}
+    */
+   active_page;
 
    /**
     * Создает модальное окно справочника
@@ -318,26 +335,41 @@ class Misc {
    /**
     * Инициализирует поля справочников
     *
-    * @param {(Document|HTMLElement)} block - Блок, внутри которого инициализируются поля справочников
+    * @param {(Document | HTMLElement)} block - Блок, внутри которого инициализируются поля справочников
+    * @static
     */
    static initializeMiscSelects (block) {
       let misc_selects = block.querySelectorAll('[data-misc_select]');
       misc_selects.forEach(this.handleMiscSelect);
    }
 
+   /**
+    * Добавляет обработку вызова справочника
+    *
+    * @param {HTMLElement} select
+    * @static
+    */
    static handleMiscSelect (select) {
       select.addEventListener('click', () => {
          Misc.instance = Misc.getMiscBySelect(select);
          Misc.instance.open();
+        
          disableScroll();
       });
    }
 
+   /**
+    * Получает ранее созданный справочник, либо создает новый
+    *
+    * @param {HTMLElement} select - блок, для которого вызывается справочник
+    * @returns {Misc} - проинициализированный справочник
+    * @static
+    */
    static getMiscBySelect (select) {
+      // Если справочник уже создан, в поле записан его id;
       let id_misc = parseInt(select.dataset.id_misc);
       let misc = !isNaN(id_misc) ? this.miscs.get(id_misc) : new Misc(select);
 
-      // Если страниц больше 1 отображаем пагинацию
       if (misc.pages.length > 1) {
          misc.handlePagination();
       } else {
@@ -347,10 +379,10 @@ class Misc {
       return misc;
    }
 
-   // Предназначен для удаления элементов и выбранных значений зависимых модальных окон
-   //
+   /**
+    * Удаляет значения в зависимых справочниках
+    */
    clearRelatedMiscs () {
-      // Берем объекты модальных окон всех зависимых полей
       let dependent_miscs = this.getDependentMiscs();
 
       dependent_miscs.forEach(misc => {
@@ -360,28 +392,14 @@ class Misc {
       });
    }
 
-   // Предназначен для удаления выбранного значения из родительского поля
-   // Принимает параметры-------------------------------
-   // modal         Modal : объект модального окна
-   clearModal (misc) {
-      misc.body.innerHTML = '';
-
-      misc.result_input = misc.field.querySelector('[data-misc_result]');
-      misc.result_input.value = '';
-      misc.select.classList.remove('filled');
-
-      let select_value = misc.select.querySelector('[data-misc_value]');
-      select_value.innerHTML = 'Выберите значение';
-      misc.select.removeAttribute('data-id_misc');
-      Misc.miscs.delete(misc.id);
-   }
-
-   // Предназначен для получения массива зависимых модальных окон
-   // Возвращает параметры------------------------------------------
-   // dependent_modals  Array[Modal] : массив с объектами зависимых модальных окон
-   //
+   /**
+    * Получает массив зависимых справочников
+    *
+    * @returns {Misc[]} зависимые справочники
+    */
    getDependentMiscs () {
       let dependent_miscs = [];
+      // Если есть блоки с одинаковыми справочниками, берем только из текущего блока
       let scope = this.field.closest('[data-dependency_scope]') || document;
       let dependent_inputs = document.querySelectorAll(`[data-when_change='${this.name}']`);
 
@@ -399,27 +417,78 @@ class Misc {
       return dependent_miscs;
    }
 
+   /**
+    * Удаляет объект справочника, значения в модальном окне,
+    * очищает поле справочника
+    *
+    * @param {Misc} misc
+    */
+   clearModal (misc) {
+      misc.body.innerHTML = '';
+
+      misc.result_input = misc.field.querySelector('[data-misc_result]');
+      misc.result_input.value = '';
+      misc.select.classList.remove('filled');
+
+      let select_value = misc.select.querySelector('[data-misc_value]');
+      select_value.innerHTML = 'Выберите значение';
+      misc.select.removeAttribute('data-id_misc');
+      Misc.miscs.delete(misc.id);
+   }
+
+
 }
 
+/**
+ * Представляет собой блок с пагинацией в модальном окне
+ */
 class Pagination {
-   // Element пагинации
+
+   /**
+    * Элемент пагинации
+    *
+    * @type {HTMLElement}
+    */
    element;
 
-   // Родительский объект модального окна
+   /**
+    * Родительский справочник
+    *
+    * @type {Misc}
+    */
    misc;
 
+   /**
+    * Левая стрелка
+    *
+    * @type {HTMLElement}
+    */
    arrow_left;
+
+   /**
+    * Правая стрелка
+    *
+    * @type {HTMLElement}
+    */
    arrow_right;
 
-   // Номер текущей страницы
+   /**
+    * Номер текущей страницы
+    *
+    * @type {HTMLElement}
+    */
    page_label;
 
+   /**
+    * Создает объект пагинации
+    *
+    * @param {Misc} misc - родительский справочник
+    */
    constructor (misc) {
       this.element = document.createElement('DIV');
       this.element.classList.add('modal__pagination', 'pagination');
       this.misc = misc;
 
-      // Создаем стрелки и добавляем им события
       this.initArrows();
 
       this.page_label = document.createElement('SPAN');
@@ -431,8 +500,9 @@ class Pagination {
       this.misc.modal.appendChild(this.element);
    }
 
-   // Предназначен для создания стрелок переключения страниц и добавления им событий
-   //
+   /**
+    * Создает стрелки переключения страниц справочника
+    */
    initArrows () {
       this.arrow_left = Pagination.createPaginationArrow('left');
       this.arrow_right = Pagination.createPaginationArrow('right');
@@ -476,6 +546,15 @@ class Pagination {
    // Принимает параметры-------------------------------------------
    // class_name    string : направление стрелки
    //
+
+
+   /**
+    * Создает элемент стрелки переключения страниц справочника
+    *
+    * @param {string} class_name - класс, указывающий направление стрелки
+    * @returns {HTMLElement} элемент стрелки
+    * @static
+    */
    static createPaginationArrow (class_name) {
       let arrow = document.createElement('I');
       arrow.classList.add(
@@ -489,6 +568,13 @@ class Pagination {
    }
 }
 
+
+/**
+ * Получает функцию выбора элемента справочника в зависимости
+ *
+ * @param {Misc} misc - объект справочника
+ * @returns {function} функция выбора элемента справочника
+ */
 function getMiscResultCallback (misc) {
    let callback;
 
