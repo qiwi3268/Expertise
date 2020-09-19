@@ -1,3 +1,8 @@
+/**
+ * @typedef {Element | HTMLElement} HTMLElement
+ */
+
+
 document.addEventListener('DOMContentLoaded', () => {
 
    // Меняем размер раскрытых блоков при изменении размера страницы

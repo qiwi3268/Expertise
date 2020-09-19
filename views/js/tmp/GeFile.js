@@ -1,48 +1,104 @@
 document.addEventListener('DOMContentLoaded', () => {
    let file_blocks = document.querySelectorAll('.files');
-
    file_blocks.forEach(block => {
 
+      // На просмотре отображаем блоки с файлами
       let files = block.querySelectorAll('.files__item');
-
       if (files.length > 0) {
          block.classList.add('filled');
       }
 
+      // Добавляем результаты проверок подписей и обрабатки кнопкой действий
       files.forEach(file_element => {
-
-
          let file = new GeFile(file_element, block);
-
-       /*  let signs = file_element.querySelector('.files__signs');
-         if (signs) {
-            file.handleSigns(signs.innerHTML);
-            signs.remove();
-         }*/
-
          SignView.validateFileField(file.element);
-
-
          file.handleActionButtons();
       });
    });
 
 });
 
+/**
+ * Представляет собой загруженный на страницу файл
+ */
 class GeFile {
 
+   /**
+    * Блок с файлами
+    *
+    * @type {HTMLElement}
+    */
    container;
+
+   /**
+    * Блок файла на странице
+    *
+    * @type {HTMLElement}
+    */
    element;
 
+   /**
+    * Блок с кнопками действий файла
+    *
+    * @type {HTMLElement}
+    */
+   actions
+
+   /**
+    * Кнопка для скачивания файла
+    *
+    * @type {HTMLElement}
+    */
    unload_button;
+
+   /**
+    * Кнопка для удаления
+    *
+    * @type {HTMLElement}
+    */
    delete_button;
+
+   /**
+    * Кнопка для перехода в окно просмотра или создания подписи,
+    * содержит статус подписания файла
+    *
+    * @type {HTMLElement}
+    */
    sign_button;
 
+   /**
+    * Поле, к которому относится файл
+    */
    field;
+
+   /**
+    * HTMLElement - раздел документации к которому относится файл
+    *
+    * null - если файл не относится к документации
+    *
+    * @type {HTMLElement}
+    */
    node;
 
+   /**
+    * Первый маппинг
+    *
+    * @type {string}
+    */
    mapping_1;
+
+   /**
+    * Второй маппинг
+    *
+    * @type {string}
+    */
    mapping_2;
+
+   /**
+    * id раздела документации
+    *
+    * @type {string}
+    */
    id_structure_node;
 
    constructor (file_element, files_block) {
@@ -63,45 +119,9 @@ class GeFile {
 
    }
 
-   handleSigns(signs_json) {
-      let validate_results = [];
-
-      let signs = JSON.parse(signs_json);
-
-      for (let sign_type in signs) {
-
-         signs[sign_type].forEach(sign => {
-            validate_results.push(this.getSignData(sign));
-         });
-
-      }
-
-      if (validate_results.length > 0) {
-         this.element.dataset.validate_results = JSON.stringify(validate_results);
-      }
-
-   }
-
-   getSignData(sign) {
-      let sign_data = {};
-
-      sign_data.fio = sign.fio;
-      sign_data.certificate = sign.certificate;
-
-      sign_data.signature_verify = {
-         result: sign.signature_result,
-         user_message: sign.signature_user_message
-      };
-
-      sign_data.certificate_verify = {
-         result: sign.certificate_result,
-         user_message: sign.certificate_user_message
-      };
-
-      return sign_data;
-   }
-
-   // Предназначен для добавления обработчиков кнопок действий с файлами
+   /**
+    * Добавляет обработчики кнопок действий с файлом
+    */
    handleActionButtons () {
       this.actions = this.element.querySelector('.files__actions');
 
@@ -122,7 +142,9 @@ class GeFile {
 
    }
 
-   // Предназначен для добавления действия для скачивания файла
+   /**
+    * Обрабатывает действие скачивания файла
+    */
    handleUnloadButton () {
 
       this.unload_button.addEventListener('click', () => {
@@ -143,7 +165,9 @@ class GeFile {
 
    }
 
-   // Предназначен для добавления действия удаления файла
+   /**
+    * Обрабатывает действие удаления
+    */
    handleDeleteButton () {
       this.delete_button.addEventListener('click', () => {
 
@@ -207,7 +231,7 @@ class GeFile {
       file.addState();
       file.addActions(actions);
 
-      return file_item;
+      return file;
    }
 
    addState() {

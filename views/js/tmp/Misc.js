@@ -1,7 +1,3 @@
-/**
- * @typedef {Element | HTMLElement} HTMLElement
- */
-
 document.addEventListener('DOMContentLoaded', () => {
 
    Misc.initializeMiscSelects(document);
@@ -353,7 +349,7 @@ class Misc {
       select.addEventListener('click', () => {
          Misc.instance = Misc.getMiscBySelect(select);
          Misc.instance.open();
-        
+
          disableScroll();
       });
    }
@@ -435,7 +431,6 @@ class Misc {
       misc.select.removeAttribute('data-id_misc');
       Misc.miscs.delete(misc.id);
    }
-
 
 }
 
@@ -542,15 +537,9 @@ class Pagination {
       });
    }
 
-   // Предназначен для создания элемента переключения страниц
-   // Принимает параметры-------------------------------------------
-   // class_name    string : направление стрелки
-   //
-
-
    /**
     * Создает элемент стрелки переключения страниц справочника
-    * 
+    *
     * @param {string} class_name - класс, указывающий направление стрелки
     * @returns {HTMLElement} элемент стрелки
     * @static
@@ -568,6 +557,15 @@ class Pagination {
    }
 }
 
+
+/**
+ * Получает функцию обработки выбора элемента справочника
+ *
+ * @param {Misc} misc - объект справочника, в котором выбран элемент
+ * @returns {function} одна из следующих функций:
+ * {@link setApplicationFieldValue} - добавить значение в поле формы анкеты
+ * {@link setAdditionalAction} - установить название дополнительного раздела при назначении экспертов
+ */
 function getMiscResultCallback (misc) {
    let callback;
 
@@ -587,18 +585,23 @@ function getMiscResultCallback (misc) {
    return callback;
 }
 
+
+/**
+ * Добавляет значение справочника в поле формы анкеты
+ *
+ * @param {HTMLElement} selected_item - выбранный элемент справочника
+ * @param {Misc} misc - объект справочника, к которому отностится элемент
+ */
 function setApplicationFieldValue (selected_item, misc) {
    misc.result_input = misc.field.querySelector('[data-misc_result]');
    // В результат записываем id элемента из справочника
    misc.result_input.value = selected_item.dataset.id;
 
-   // В поле для выбора записываем значение
    misc.select.classList.add('filled');
-
    let misc_value = misc.select.querySelector('[data-misc_value]');
    misc_value.innerHTML = selected_item.innerHTML;
 
-   // Показывает или скрывает поля, зависящие от выбранного значения
+   // Показываем или скрываем блоки, зависящие от выбранного значения
    DependenciesHandler.handleDependencies(misc.result_input);
 
    // Очищаем зависимые поля
@@ -606,12 +609,19 @@ function setApplicationFieldValue (selected_item, misc) {
    validateMisc(misc);
 }
 
+
+/**
+ * Устанавливает название дополнительного раздела при назначении экспертов
+ * и добавляет возможность перекинуть в него экспертов
+ *
+ * @param {HTMLElement} selected_item - выбранный элемент справочника
+ * @param {Misc} misc - объект справочника, к которому отностится элемент
+ */
 function setAdditionalAction (selected_item, misc) {
    misc.field.dataset.id = selected_item.dataset.id;
    misc.field.dataset.drop_area = '';
    misc.select.classList.remove('empty');
 
    let misc_value = misc.select.querySelector('[data-misc_value]');
-   // misc.select.innerHTML = selected_item.innerHTML;
    misc_value.innerHTML = selected_item.innerHTML;
 }

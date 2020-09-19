@@ -55,8 +55,8 @@ function createSection (section_container, additional_sections) {
          Misc.instance = Misc.getMiscBySelect(modal_select);
          Misc.instance.open();
       }
-
    });
+
 
    let remove_btn = new_section.querySelector('.section__remove');
    remove_btn.addEventListener('click', () => {
@@ -67,6 +67,8 @@ function createSection (section_container, additional_sections) {
       }
 
    });
+
+   modal_select.click();
 }
 
 function getAssignedExperts () {
