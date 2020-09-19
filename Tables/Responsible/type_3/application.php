@@ -9,6 +9,8 @@ use Lib\DataBase\ParametrizedQuery;
 
 
 /**
+ * Таблица: <i>'resp_application_type_3'</i>
+ *
  * Ответственные группы заявителей к заявлению
  *
  */

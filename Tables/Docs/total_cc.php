@@ -32,9 +32,9 @@ final class total_cc implements Responsible
     static public function create(int $id_main_document, int $id_author): int
     {
         $query = "INSERT INTO `doc_total_cc`
-                    (`id_main_document`, `id_author`, `date_creation`)
+                    (`id_main_document`, `id_author`, `responsible_type`, `date_creation`)
                   VALUES
-                    (?, ?, UNIX_TIMESTAMP())";
+                    (?, ?, 'type_4', UNIX_TIMESTAMP())";
         return ParametrizedQuery::set($query, [$id_main_document, $id_author]);
     }
 }

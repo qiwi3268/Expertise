@@ -31,9 +31,9 @@ final class application implements Responsible
     static public function createTemporary(int $id_author, string $numerical_name): int
     {
         $query = "INSERT INTO `doc_application`
-                    (`id`, `is_saved`, `id_author`, `id_stage`, `numerical_name`, `date_creation`)
+                    (`id`, `is_saved`, `id_author`, `id_stage`, `responsible_type`, `numerical_name`, `date_creation`)
                   VALUES
-                    (NULL, 0, ?, 1, ?, UNIX_TIMESTAMP())";
+                    (NULL, 0, ?, 1, 'type_3', ?, UNIX_TIMESTAMP())";
         return ParametrizedQuery::set($query, [$id_author, $numerical_name]);
     }
 
@@ -76,7 +76,7 @@ final class application implements Responsible
     /**
      * Предназначен для получения id вида работ по id заявления
      *
-     * @param int $id <b>int</b> если Вид работ существует<br>
+     * @param int $id <b>int</b> если вид работ существует<br>
      * <b>null</b> в противном случае
      * @return int|null
      * @throws DataBaseEx

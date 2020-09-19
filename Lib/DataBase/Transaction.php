@@ -151,5 +151,9 @@ final class Transaction extends DataBase
 
             if (!is_null($query['setter_key'])) $this->chainResults[$query['setter_key']] = $lastResult;
         }
+
+        // Удаление данных текущей транзакции
+        $this->queries = [];
+        $this->chainResults = [];
     }
 }

@@ -48,7 +48,7 @@ switch ($typeOfObjectId) {
         //todo $mainBlocks341DocumentationClassName = '\Tables\order_341\documentation_2\main_block';
         break;
     default :
-        throw new Exception("Заявление имеет неопределенный вид работ: '{$typeOfObjectId}'");
+        throw new Exception("Заявление имеет неопределенный вид объекта: '{$typeOfObjectId}'");
 }
 
 // Формирование разделов и загруженной к ним документации
@@ -122,5 +122,5 @@ $test = [
     ],
 ];
 
-var_dump($test);
-var_dump(json_encode($test));
+//var_dump($test);
+//var_dump(json_encode($test));

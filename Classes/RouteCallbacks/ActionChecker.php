@@ -2,35 +2,49 @@
 
 
 namespace Classes\RouteCallbacks;
+
+use Lib\Exceptions\Actions as ActionsEx;
+use ReflectionException;
 use core\Classes\Session;
 use Lib\Actions\Locator;
-use Lib\Actions\Actions;
 use Lib\Actions\AccessActions;
 use Lib\Actions\ExecutionActions;
 
 
-
+/**
+ *  Предназначен для проверки действия, на которое переходит пользователь
+ *
+ */
 class ActionChecker
 {
 
-    private Actions $actions;
     private AccessActions $accessActions;
     private ExecutionActions $executionActions;
 
 
-    // Явный конструктор, т.к. класс создается до того, как будет вызван метод,
-    // объявляющий константы
+    /**
+     * Явный конструктор класса
+     *
+     * Класс создается до того, как будет вызван метод, объявляющий константы
+     *
+     * @throws ActionsEx
+     */
     public function construct(): void
     {
         $actions = Locator::getInstance(CURRENT_DOCUMENT_TYPE)->getActions();
-        $this->actions = $actions;
         $this->accessActions = $actions->getAccessActions();
         $this->executionActions = $actions->getExecutionActions();
     }
 
 
-    // Предназначен для проверки пользователя к текущему действию
-    //
+    /**
+     * Предназначен для проверки пользователя к текущему действию
+     *
+     * В случае отсутствия доступа - перенаправляет на навигационную страницу
+     * с сообщением об ошибке
+     *
+     * @throws ActionsEx
+     */
     public function checkAccess(): void
     {
         if (!$this->accessActions->checkAccessFromActionByPageName(URN)) {
@@ -41,8 +55,12 @@ class ActionChecker
     }
 
 
-    // Предназначен для проверки реализации callback'а исполнения действия
-    //
+    /**
+     * Предназначен для проверки реализации callback'а исполнения действия
+     *
+     * @throws ActionsEx
+     * @throws ReflectionException
+     */
     public function checkIssetExecutionCallback(): void
     {
         $this->executionActions->checkIssetCallbackByPageName(URN);

@@ -1,6 +1,6 @@
 <?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
-<?php var_dump($variablesTV->getValue('structureDocumentation1')); ?>
+<?php //var_dump($variablesTV->getValue('structureDocumentation1')); ?>
 
 <div class="application-form__header header-form">
     <div class="header-form__title">Заявление на экспертизу <?= $variablesTV->getValue('numerical_name') ?></div>
@@ -56,7 +56,7 @@
     </div>
     <form id="application" class="application-form__cards" action="" method="POST">
         <input type="hidden" name="id_application" value="<?= $variablesTV->getValue('id_application') ?>">
-        
+
         <div class="application-form__block block" data-dependency_scope>
             <div class="application-form__card card-form card" data-type="purpose">
                 <div class="card-form__header card-expand">
@@ -75,7 +75,7 @@
                             </div>
                             <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                         </div>
-                        
+
                         <div class="modal" data-misc_modal data-result_callback="application_field">
                             <i class="modal__close fas fa-times" data-misc_close></i>
                             <div class="modal__items" data-misc_body>
@@ -91,7 +91,7 @@
                         <input data-form="application" class="body-card__result field-result" type="hidden" data-misc_result name="expertise_purpose">
                     </div>
                     <!--//Цель обращения//-->
-                    
+
                     <!--Предмет экспертизы-->
                     <div class="body-card__row field center" data-name="expertise_subjects" data-required="true">
                         <span class="body-card__title">Предмет экспертизы</span>
@@ -105,7 +105,7 @@
                         <input data-form="application" class="body-card__result field-result" type="hidden" data-misc_result name="expertise_subjects" value="">
                     </div>
                     <!--//Предмет экспертизы//-->
-                    
+
                     <!--Дополнительная информация-->
                     <div class="body-card__row field" data-name="additional_information" data-pattern="text">
                         <span class="body-card__title">Дополнительная информация</span>
@@ -119,12 +119,10 @@
                     <!--//Дополнительная информация//-->
                 </div>
             </div>
-            
+
             <div class="application-form__card card-form card" data-type="object">
                 <div class="card-form__header card-expand">
-                <span class="card-form__title">
-                    СВЕДЕНИЯ ОБ ОБЪЕКТЕ
-                </span>
+                    <span class="card-form__title">СВЕДЕНИЯ ОБ ОБЪЕКТЕ</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
                 <div class="card-form__body body-card card-body">
@@ -139,11 +137,11 @@
                         </div>
                     </div>
                     <!--//Наименование объекта//-->
-                    
+
                     <!--Вид объекта-->
                     <div class="body-card__row field" data-misc_field data-name="type_of_object" data-required="true">
                         <span class="body-card__title field-title">Вид объекта</span>
-                        
+
                         <div class="body-card__item">
                             <div class="body-card__field">
                                 <div class="body-card__select field-select" data-misc_select>
@@ -153,7 +151,7 @@
                             </div>
                             <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                         </div>
-                        
+
                         <div class="modal" data-misc_modal data-result_callback="application_field">
                             <i class="modal__close fas fa-times" data-misc_close></i>
                             <div class="modal__items" data-misc_body>
@@ -169,7 +167,7 @@
                         <input data-form="application" class="body-card__result field-result" type="hidden" data-misc_result name="type_of_object">
                     </div>
                     <!--//Вид объекта//-->
-                    
+
                     <!--Функциональное назначение-->
                     <div class="body-card__row field" data-misc_field data-name="functional_purpose" data-required="true">
                         <span class="body-card__title field-title">Функциональное назначение</span>
@@ -197,7 +195,7 @@
                         <input data-form="application" class="body-card__result field-result" type="hidden" data-misc_result name="functional_purpose">
                     </div>
                     <!--//Функциональное назначение//-->
-                    
+
                     <!--Функциональное назначение. Подотрасль-->
                     <div class="body-card__row field" data-misc_field data-name="functional_purpose_subsector" data-required="true">
                         <span class="body-card__title field-title">Функциональное назначение. Подотрасль</span>
@@ -218,7 +216,7 @@
                         <input data-form="application" class="body-card__result field-result" type="hidden" data-misc_result name="functional_purpose_subsector">
                     </div>
                     <!--//Функциональное назначение. Подотрасль//-->
-                    
+
                     <!--Функциональное назначение. Группа-->
                     <div class="body-card__row field" data-misc_field data-name="functional_purpose_group" data-required="true">
                         <span class="body-card__title field-title">Функциональное назначение. Группа</span>
@@ -239,7 +237,7 @@
                         <input data-form="application" class="body-card__result field-result" type="hidden" data-misc_result name="functional_purpose_group">
                     </div>
                     <!--//Функциональное назначение. Группа//-->
-                    
+
                     <!--Блок производственные/непроизводственные объекты капитального строительства-->
                     <div class="body-card__block block" data-name="planning_documentation_approval" data-active="false">
                         <!--Номер утверждения документации по планировке территории-->
@@ -270,7 +268,7 @@
                         <!--//Дата утверждения документации по планировке территории//-->
                     </div>
                     <!--//Блок производственные/непроизводственные объекты капитального строительства//-->
-                    
+
                     <!--Блок линейные объекты капитального строительства-->
                     <div class="body-card__block block" data-name="GPZU" data-active="false">
                         <!--Номер ГПЗУ-->
@@ -301,7 +299,7 @@
                         <!--//Дата ГПЗУ//-->
                     </div>
                     <!--//Блок линейные объекты капитального строительства//-->
-                    
+
                     <!--Вид работ-->
                     <div class="body-card__row field" data-misc_field data-name="type_of_work" data-required="true">
                         <span class="body-card__title field-title">Вид работ</span>
@@ -322,7 +320,7 @@
                         <input data-form="application" class="body-card__result field-result" type="hidden" data-misc_result name="type_of_work">
                     </div>
                     <!--//Вид работ//-->
-                    
+
                     <!--Блок смета-->
                     <div class="body-card__block block" data-name="estimate" data-active="true">
                         <!--Сметная стоимость-->
@@ -355,7 +353,7 @@
                         <!--Файл ГРБС-->
                     </div>
                     <!--//Блок смета//-->
-                    
+
                     <!--Кадастровый номер земельного участка-->
                     <div class="body-card__row field" data-name="cadastral_number" data-pattern="number">
                         <span class="body-card__title">Кадастровый номер земельного участка</span>
@@ -367,7 +365,7 @@
                         </div>
                     </div>
                     <!--//Кадастровый номер земельного участка//-->
-                    
+
                     <!--CHECKBOX Объект культурного наследия-->
                     <div class="body-card__row field" data-name="cultural_object_type_checkbox" data-multiple="false">
                         <span class="body-card__title">Объект культурного наследия</span>
@@ -388,7 +386,7 @@
                         <input data-form="application" class="body-card__result field-result" type="hidden" name="cultural_object_type_checkbox">
                     </div>
                     <!--//CHECKBOX Объект культурного наследия//-->
-                    
+
                     <!--Блок культурное наследие-->
                     <div class="body-card__block block" data-name="cultural_object_type" data-active="false">
                         <!--Тип объекта культурного наследия-->
@@ -421,9 +419,9 @@
                         <!--//Тип объекта культурного наследия//-->
                     </div>
                     <!--//Блок культурное наследие//-->
-                    
+
                     <!--CHECKBOX Национальный проект-->
-                    <div class="body-card__row field center" data-name="national_project_checkbox">
+                    <div class="body-card__row field" data-name="national_project_checkbox">
                         <span class="body-card__title">Национальный проект</span>
                         <div class="body-card__item">
                             <div class="body-card__field radio" data-required="true">
@@ -442,7 +440,7 @@
                         <input data-form="application" class="body-card__result field-result" type="hidden" name="national_project_checkbox">
                     </div>
                     <!--//CHECKBOX Национальный проект//-->
-                    
+
                     <!--Блок национальный проект-->
                     <div class="body-card__block block" data-name="national_project" data-active="false">
                         <!--Название национального проекта-->
@@ -473,7 +471,7 @@
                             <input data-form="application" class="body-card__result field-result" data-misc_result type="hidden" name="national_project">
                         </div>
                         <!--//Название национального проекта//-->
-                        
+
                         <!--Название федерального проекта-->
                         <div class="body-card__row field" data-misc_field data-name="federal_project" data-required="true">
                             <span class="body-card__title field-title">Название федерального проекта</span>
@@ -494,7 +492,7 @@
                             <input data-form="application" class="body-card__result field-result" type="hidden" name="federal_project">
                         </div>
                         <!--//Название федерального проекта//-->
-                        
+
                         <!--Дата окончания строительства-->
                         <div class="body-card__row field" data-name="date_finish_building" data-pattern="date">
                             <span class="body-card__title">Дата окончания строительства</span>
@@ -512,7 +510,7 @@
                         <!--//Дата окончания строительства//-->
                     </div>
                     <!--//Блок национальный проект//-->
-                    
+
                     <!--Куратор-->
                     <div class="body-card__row field" data-misc_field data-name="curator" data-required="true">
                         <span class="body-card__title field-title">Куратор</span>
@@ -542,22 +540,22 @@
                     <!--//Куратор//-->
                 </div>
             </div>
-            
+
             <div class="application-form__card card-form card" data-type="finance_sources">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">СВЕДЕНИЯ ОБ ИСТОЧНИКАХ ФИНАНСИРОВАНИЯ</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
                 <div class="card-form__body body-card card-body">
-                    
+
                     <!--Источники финансирования-->
                     <div class="body-card__block multiple-block block" data-type="multiple" data-name="finance_sources">
-                        
+
                         <div class="multiple-block__add field-add">
                             <span class="multiple-block__text">Добавить источник финансирования</span>
                             <i class="multiple-block__icon fas fa-plus-square"></i>
                         </div>
-                        
+
                         <!--Шаблоны источников финансирования-->
                         <div class="body-card__block block" data-name="templates_container">
                             <!--Шаблон элемента множественного блока-->
@@ -868,14 +866,14 @@
                             </div>
                         </div>
                         <!--//Шаблоны источников финансирования//-->
-                        
+
                         <input data-form="application" class="multiple-block__result field-result" type="hidden" name="finance_sources">
                     </div>
                     <!--//Источники финансирования//-->
                 </div>
             </div>
         </div>
-        
+
         <div class="application-form__card card-form card" data-type="documentation">
             <div class="card-form__header card-expand">
                 <span class="card-form__title">ДОКУМЕНТАЦИЯ</span>

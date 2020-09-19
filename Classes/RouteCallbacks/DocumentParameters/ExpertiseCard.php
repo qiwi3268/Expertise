@@ -5,17 +5,18 @@ namespace Classes\RouteCallbacks\DocumentParameters;
 use Classes\Exceptions\DocumentParameters as SelfEx;
 
 
-// Предназначен для объявления констант открытого документа из карточек экспертизы
-//
+/**
+ *  Предназначен для объявления констант открытого документа из карточек экспертизы
+ *
+ */
 class ExpertiseCard extends DocumentParameters
 {
 
-    // Предназначен для объявления констант открытого документа
-    // Выбрасывает исключения--------------------------------
-    // Classes\Exceptions\DocumentParameters :
-    // code:
-    //  1  - id открытого документа не существует в GET параметрах
-    //
+    /**
+     * Реализация абстрактного метода
+     *
+     * @throws SelfEx
+     */
     public function defineDocumentParameters(): void
     {
         if (!checkParamsGET('id_document')) {

@@ -8,6 +8,8 @@ use Tables\Responsible\type_4\Traits\ResponsibleType4 as ResponsibleType4Trait;
 
 
 /**
+ * Таблица: <i>'resp_section_documentation_1_type_4'</i>
+ *
  * Ответственные пользователи к разделу для вида объекта "Производственные / непроизводственные"
  *
  */

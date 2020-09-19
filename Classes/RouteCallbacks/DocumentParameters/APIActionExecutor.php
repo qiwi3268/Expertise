@@ -2,35 +2,26 @@
 
 
 namespace Classes\RouteCallbacks\DocumentParameters;
+
 use Classes\Exceptions\DocumentParameters as SelfEx;
 use Classes\Exceptions\PregMatch as PregMatchEx;
 use Exception;
 
 
-// Предназначен для объявления констант открытого документа из API выполнений действий
-//
+/**
+ *  Предназначен для объявления констант открытого документа из API выполнений действий
+ *
+ */
 class APIActionExecutor extends DocumentParameters
 {
 
-    // Предназначен для объявления констант открытого документа
-    // *** Выполняется в контексте API_action_executor, в связи с чем используется exit
-    // * Дополнительно объявляет константу CURRENT_PAGE_NAME для работы API_action_executor
-    // Выходит с ошибкой-------------------------------------
-    //	1  - Нет обязательных параметров POST запроса
-    //       {result, error_message : текст ошибки}
-    //	2  - Произошла ошибка при определении типа открытого документа
-    //       {result, error_message : текст ошибки}
-    //	3  - Открытый тип документа не определен в константе DOCUMENT_TYPE
-    //       {result, error_message : текст ошибки}
-    //	4  - id открытого документа не является целочисленным значением
-    //       {result, error_message : текст ошибки}
-    //	5  - Неизвестная ошибка Classes\Exceptions\DocumentParameters
-    //       {result, error_message : текст ошибки}
-    //	6  - Произошла ошибка при определении CURRENT_PAGE_NAME
-    //       {result, error_message : текст ошибки}
-    //  7 -  Непредвиденная ошибка метода Classes\DocumentParameters\APIActionExecutor::defineDocumentParameters
-    //       {result, message : текст ошибки, code: код ошибки}
-    //
+    /**
+     * Реализация абстрактного метода
+     *
+     * <b>***</b> Выполняется в контексте API_action_executor, в связи с чем используется exit<br>
+     * Дополнительно объявляет константу CURRENT_PAGE_NAME для работы API_action_executor
+     *
+     */
     public function defineDocumentParameters(): void
     {
         try {
@@ -59,6 +50,7 @@ class APIActionExecutor extends DocumentParameters
 
                 $this->validateAndDefineParameters($clearDocumentId, $pattern, $path_name);
             } catch (SelfEx $e) {
+
                 $e_message = $e->getMessage();
                 $e_code = $e->getCode();
 
@@ -66,19 +58,19 @@ class APIActionExecutor extends DocumentParameters
                     case 2 :
                         // Произошла ошибка при определении типа открытого документа
                         exit(json_encode([
-                            'result'        => $e_code,
+                            'result'        => 2,
                             'error_message' => $e_message
                         ]));
                     case 3 :
                         // Открытый тип документа не определен в константе DOCUMENT_TYPE
                         exit(json_encode([
-                            'result'        => $e_code,
+                            'result'        => 3,
                             'error_message' => $e_message
                         ]));
                     case 4 :
                         // id открытого документа не является целочисленным значением
                         exit(json_encode([
-                            'result'        => $e_code,
+                            'result'        => 4,
                             'error_message' => $e_message
                         ]));
                     default :

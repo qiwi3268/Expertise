@@ -550,7 +550,7 @@ class Pagination {
 
    /**
     * Создает элемент стрелки переключения страниц справочника
-    *
+    * 
     * @param {string} class_name - класс, указывающий направление стрелки
     * @returns {HTMLElement} элемент стрелки
     * @static
@@ -568,13 +568,6 @@ class Pagination {
    }
 }
 
-
-/**
- * Получает функцию выбора элемента справочника в зависимости
- *
- * @param {Misc} misc - объект справочника
- * @returns {function} функция выбора элемента справочника
- */
 function getMiscResultCallback (misc) {
    let callback;
 

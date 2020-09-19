@@ -3,6 +3,28 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Application/Actions/ExecutionActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Actions/ExecutionActions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Exceptions/ApplicationFormMiscValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Exceptions/ApplicationFormMiscValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Exceptions/DocumentParameters.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Exceptions/DocumentParameters.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Pagination.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Pagination.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/RouteCallbacks/ActionChecker.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/RouteCallbacks/ActionChecker.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/RouteCallbacks/DocumentParameters/APIActionExecutor.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/RouteCallbacks/DocumentParameters/APIActionExecutor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/RouteCallbacks/DocumentParameters/ActionPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/RouteCallbacks/DocumentParameters/ActionPage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/RouteCallbacks/DocumentParameters/DocumentParameters.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/RouteCallbacks/DocumentParameters/DocumentParameters.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/RouteCallbacks/DocumentParameters/ExpertiseCard.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/RouteCallbacks/DocumentParameters/ExpertiseCard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/RouteCallbacks/readmy" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/RouteCallbacks/readmy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/DataBase/Transaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/DataBase/Transaction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Docs/application.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Docs/application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Docs/section_documentation_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Docs/section_documentation_1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Docs/total_cc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Docs/total_cc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Responsible/type_3/application.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Responsible/type_3/application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Responsible/type_4/section_documentation_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Responsible/type_4/section_documentation_1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Responsible/type_4/total_cc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Responsible/type_4/total_cc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/actions/action_2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/navigation.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/navigation.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/Misc.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/Misc.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -12,9 +34,7 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -29,9 +49,6 @@
     </option>
     <expand />
     <select />
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="Expertise_project" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -83,7 +100,7 @@
       <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\home\application\actions" />
     </key>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -122,6 +139,7 @@
       <workItem from="1600330336860" duration="15165000" />
       <workItem from="1600361487473" duration="1704000" />
       <workItem from="1600400074408" duration="16311000" />
+      <workItem from="1600493631689" duration="2588000" />
     </task>
     <task id="LOCAL-00064" summary="28.08.2020_1">
       <created>1598597060105</created>
@@ -470,7 +488,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -568,11 +586,12 @@
     </state>
     <state x="302" y="56" width="614" height="1035" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1598502743003" />
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597499951448" />
-    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1600420239651">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1180" y="531" width="555" height="534" key="find.popup" timestamp="1600502228601">
+      <screen x="-1920" y="209" width="1920" height="1040" />
     </state>
     <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600420239651" />
-    <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600362122489" />
+    <state x="-1180" y="531" width="555" height="534" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600502228601" />
+    <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600497695860" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
     <state x="1150" y="591" key="publish.login" timestamp="1599582915682">
       <screen x="0" y="0" width="2560" height="1400" />

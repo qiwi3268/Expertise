@@ -5,17 +5,18 @@ namespace Classes\RouteCallbacks\DocumentParameters;
 use Classes\Exceptions\DocumentParameters as SelfEx;
 
 
-// Предназначен для объявления констант открытого документа из страницы открытого действия
-//
+/**
+ *  Предназначен для объявления констант открытого документа из страницы открытого действия
+ *
+ */
 class ActionPage extends DocumentParameters
 {
 
-    // Предназначен для объявления констант открытого документа
-    // Выбрасывает исключения--------------------------------
-    // Classes\Exceptions\DocumentParameters :
-    // code:
-    //  1  - id открытого документа не существует в GET параметрах
-    //
+    /**
+     * Реализация абстрактного метода
+     *
+     * @throws SelfEx
+     */
     public function defineDocumentParameters(): void
     {
         if (!checkParamsGET('id_document')) {
@@ -33,7 +34,6 @@ class ActionPage extends DocumentParameters
         // конец текста
         // - регистронезависимые
         // - использование кодировки utf-8
-        //$pattern = "/\Ahome\/([a-z]+)\/actions\/action_\d+\z/iu";
         $pattern = "/\Ahome\/([a-z]+)\/actions\/action_\d+\z/iu";
 
         $this->validateAndDefineParameters($clearDocumentId, $pattern, URN);

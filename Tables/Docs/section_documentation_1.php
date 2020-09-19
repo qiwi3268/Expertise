@@ -32,9 +32,9 @@ final class section_documentation_1 implements Responsible
     static public function create(int $id_main_document, int $id_main_block): int
     {
         $query = "INSERT INTO `doc_section_documentation_1`
-                    (`id_main_document`, `id_main_block`, `date_creation`)
+                    (`id_main_document`, `id_main_block`, `responsible_type`,`date_creation`)
                   VALUES
-                    (?, ?, UNIX_TIMESTAMP())";
+                    (?, ?, 'type_4', UNIX_TIMESTAMP())";
         return ParametrizedQuery::set($query, [$id_main_document, $id_main_block]);
     }
 }

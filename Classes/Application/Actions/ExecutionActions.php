@@ -24,10 +24,9 @@ use Tables\user;
  */
 class ExecutionActions extends MainExecutionActions
 {
+
     // Реализация callback'ов исполнения действий из БД
     // Ошибкам во время исполнения действия необходимо присваивать code 6
-
-
     public function action_1(): string
     {
         return true;
@@ -84,35 +83,39 @@ class ExecutionActions extends MainExecutionActions
             throw new SelfEx("Количество экспертов на общую часть равно 0", 6);
         }
 
-        $transaction = new Transaction();
-
-        // Создание сводного замечания / заключения
-        // Устанавливаем id созданного документа в передачу по цепочке
-        $transaction->add(
-            '\Tables\Docs\total_cc',
-            'create',
-            [CURRENT_DOCUMENT_ID, Session::getUserId()],
-            'id_total_cc'
-        );
-
+        $tables = [
+            'doc_total_cc' => '\Tables\Docs\total_cc',
+            'assigned_expert_total_cc' => '\Tables\assigned_expert_total_cc',
+            'resp_total_cc' => '\Tables\Responsible\type_4\total_cc'
+        ];
 
         // Определение вида объекта
         $typeOfObjectId = application::getIdTypeOfObjectById(CURRENT_DOCUMENT_ID);
 
         switch ($typeOfObjectId) {
             case 1 : // Производственные / непроизводственные
-                $assignedExpertTableName = '\Tables\order_341\documentation_1\assigned_expert';
-                $sectionTableName = '\Tables\Docs\section_documentation_1';
-                $responsibleSectionType4TableName = '\Tables\Responsible\type_4\section_documentation_1';
+                $tables['assigned_expert_main_block_341'] = '\Tables\order_341\documentation_1\assigned_expert';
+                $tables['doc_section'] = '\Tables\Docs\section_documentation_1';
+                $tables['resp_section'] = '\Tables\Responsible\type_4\section_documentation_1';
                 break;
             case 2 : // Линейные
-                $assignedExpertTableName = '\Tables\order_341\documentation_2\assigned_expert';
-                $sectionTableName = '\Tables\Docs\section_documentation_2';
-                $responsibleSectionType4TableName = '\Tables\Responsible\type_4\section_documentation_2';
+                $tables['assigned_expert_main_block_341'] = '\Tables\order_341\documentation_2\assigned_expert';
+                $tables['doc_section'] = '\Tables\Docs\section_documentation_2';
+                $tables['resp_section'] = '\Tables\Responsible\type_4\section_documentation_2';
                 break;
             default :
-                throw new SelfEx("Заявление имеет неопределенный вид работ: '{$typeOfObjectId}'", 6);
+                throw new SelfEx("Заявление имеет неопределенный вид объекта: '{$typeOfObjectId}'", 6);
         }
+
+        $transaction = new Transaction();
+
+        // Создание сводного замечания / заключения
+        $transaction->add(
+            $tables['doc_total_cc'],
+            'create',
+            [CURRENT_DOCUMENT_ID, Session::getUserId()],
+            'id_total_cc'
+        );
 
         // Индексный массив с id экспертов
         $expertsId = [];
@@ -131,7 +134,7 @@ class ExecutionActions extends MainExecutionActions
 
             // Создание назначенных экспертов к созданному ранее сводному замечанию / заключению
             $transaction->add(
-                '\Tables\assigned_expert_total_tc',
+                $tables['assigned_expert_total_cc'],
                 'create',
                 [
                     $expert['id_expert'],
@@ -146,7 +149,7 @@ class ExecutionActions extends MainExecutionActions
 
                 // Создание записей на какие блоки из 341 приказа был назначен итерируемый эксперт
                 $transaction->add(
-                    $assignedExpertTableName,
+                    $tables['assigned_expert_main_block_341'],
                     'create',
                     [$id_main_block, $expert['id_expert']],
                     null,
@@ -161,7 +164,7 @@ class ExecutionActions extends MainExecutionActions
         foreach ($expertsId as $id) {
             
             $transaction->add(
-                '\Tables\Responsible\type_4\total_cc',
+                $tables['resp_total_cc'],
                 'create',
                 [$id],
                 null,
@@ -169,13 +172,13 @@ class ExecutionActions extends MainExecutionActions
             );
         }
 
-        $sectionCount = 1;
+        $sectionCount = 1; // Счетчик для динамического связывания разделов и ответственных экспертов
 
         foreach ($mainBlocks as $id_main_block => $assignedExpertsId) {
 
             // Создание разделов
             $transaction->add(
-                $sectionTableName,
+                $tables['doc_section'],
                 'create',
                 [$id_main_block],
                 "id_section_{$sectionCount}",
@@ -186,19 +189,17 @@ class ExecutionActions extends MainExecutionActions
             foreach ($assignedExpertsId as $expertId) {
 
                 $transaction->add(
-                    $responsibleSectionType4TableName,
+                    $tables['resp_section'],
                     'create',
                     [$expertId],
                     null,
                     "id_section_{$sectionCount}"
                 );
             }
-
             $sectionCount++;
         }
 
         $transaction->start();
-
 
 
         return 'todo';
