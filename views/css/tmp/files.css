@@ -4,7 +4,6 @@
 
 .field-select.modal-file.filled {
    border-radius: 4px 4px 0px 0px;
-   color: #6e6e6e;
 }
 
 .files__info {
@@ -23,10 +22,18 @@
 }
 
 .files__icon {
-   font-size: 18px;
+   font-size: 20px;
    margin: 0px 10px 0px 0px;
    cursor: pointer;
-   color: #6e6e6e;
+}
+
+.files__actions {
+   display: flex;
+   margin: 0px 0px 0px 10px;
+}
+
+.files__actions > .fas {
+   padding: 5px;
 }
 
 .files__delete,
@@ -39,6 +46,10 @@
    cursor: pointer;
    transition: 0.15s;
    font-size: 16px;
+}
+
+.files__delete {
+   color: #a33c3c;
 }
 
 .files__delete:hover {
@@ -61,16 +72,6 @@
    padding: 5px 8px;
 
    transition: 0.5s;
-}
-
-.files__actions {
-   display: flex;
-   margin: 0px 0px 0px 10px;
-}
-
-.files__actions > .fas {
-   font-size: 18px;
-   padding: 5px;
 }
 
 .files__name {
@@ -143,11 +144,6 @@
 
 .files__state-icon {
    margin: 0px 3px 0px 0px;
-}
-
-.files__icon {
-   font-size: 20px;
-   color: #254160;
 }
 
 .files[data-depth='0'] > .files__item {

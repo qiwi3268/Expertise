@@ -289,13 +289,13 @@ class GeFile {
 
    static unload (file) {
       let unload_button = document.createElement('I');
-      unload_button.classList.add('files__unload', 'fas', 'fa-file-download');
+      unload_button.classList.add('files__unload', 'fas', 'fa-download');
       file.actions.appendChild(unload_button);
    }
 
    static delete (file) {
       let delete_button = document.createElement('I');
-      delete_button.classList.add('files__delete', 'fas', 'fa-trash');
+      delete_button.classList.add('files__delete', 'fas', 'fa-minus');
       file.actions.appendChild(delete_button);
    }
 

@@ -71,6 +71,8 @@
                             <div class="body-card__field">
                                 <div class="body-card__select field-select" data-misc_select>
                                     <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
+                                    <i class="body-card__icon fas fa-bars"></i>
+                                    <i class="body-card__icon-filled fas fa-check"></i>
                                 </div>
                             </div>
                             <span class="body-card__error field-error">Поле обязательно для заполнения</span>
@@ -147,6 +149,7 @@
                                 <div class="body-card__select field-select" data-misc_select>
                                     <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                     <i class="body-card__icon fas fa-bars"></i>
+                                    <i class="body-card__icon-filled fas fa-check"></i>
                                 </div>
                             </div>
                             <span class="body-card__error field-error">Поле обязательно для заполнения</span>
@@ -176,6 +179,7 @@
                                 <div class="body-card__select field-select" data-misc_select>
                                     <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                     <i class="body-card__icon fas fa-bars"></i>
+                                    <i class="body-card__icon-filled fas fa-check"></i>
                                 </div>
                             </div>
                             <span class="body-card__error field-error">Поле обязательно для заполнения</span>
@@ -204,8 +208,9 @@
                                 <div class="body-card__select field-select" data-misc_select>
                                     <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                     <i class="body-card__icon fas fa-bars"></i>
+                                    <i class="body-card__icon-filled fas fa-check"></i>
                                 </div>
-                                <i class="body-card__icon-clear fas fa-trash"></i>
+                                <i class="body-card__icon-clear fas fa-times"></i>
                             </div>
                             <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                         </div>
@@ -225,8 +230,9 @@
                                 <div class="body-card__select field-select" data-misc_select>
                                     <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                     <i class="body-card__icon fas fa-bars"></i>
+                                    <i class="body-card__icon-filled fas fa-check"></i>
                                 </div>
-                                <i class="body-card__icon-clear fas fa-trash"></i>
+                                <i class="body-card__icon-clear fas fa-times"></i>
                             </div>
                             <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                         </div>
@@ -259,8 +265,9 @@
                                     <div class="body-card__select field-select modal-calendar">
                                         <span class="body-card__value field-value">Выберите дату</span>
                                         <i class="body-card__icon fas fa-calendar-alt"></i>
+                                        <i class="body-card__icon-filled fas fa-check"></i>
                                     </div>
-                                    <i class="body-card__icon-clear fas fa-calendar-times"></i>
+                                    <i class="body-card__icon-clear fas fa-times"></i>
                                 </div>
                             </div>
                             <input data-form="application" class="body-card__result field-result" type="hidden" name="date_planning_documentation_approval">
@@ -290,8 +297,9 @@
                                     <div class="body-card__select field-select modal-calendar">
                                         <span class="body-card__value field-value">Выберите дату</span>
                                         <i class="body-card__icon fas fa-calendar-alt"></i>
+                                        <i class="body-card__icon-filled fas fa-check"></i>
                                     </div>
-                                    <i class="body-card__icon-clear fas fa-calendar-times"></i>
+                                    <i class="body-card__icon-clear fas fa-times"></i>
                                 </div>
                             </div>
                             <input data-form="application" class="body-card__result field-result" type="hidden" name="date_GPZU">
@@ -308,8 +316,9 @@
                                 <div class="body-card__select field-select" data-misc_select>
                                     <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                     <i class="body-card__icon fas fa-bars"></i>
+                                    <i class="body-card__icon-filled fas fa-check"></i>
                                 </div>
-                                <i class="body-card__icon-clear fas fa-trash"></i>
+                                <i class="body-card__icon-clear fas fa-times"></i>
                             </div>
                             <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                         </div>
@@ -343,6 +352,7 @@
                                     <div class="body-card__select field-select modal-file">
                                         <span class="body-card__value">Загрузите файлы</span>
                                         <i class="body-card__icon fas fa-file"></i>
+                                        <i class="body-card__icon-filled fas fa-check"></i>
                                     </div>
                                     <div class="body-card__files files"></div>
                                 </div>
@@ -397,8 +407,9 @@
                                     <div class="body-card__select field-select" data-misc_select>
                                         <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                         <i class="body-card__icon fas fa-bars"></i>
+                                        <i class="body-card__icon-filled fas fa-check"></i>
                                     </div>
-                                    <i class="body-card__icon-clear fas fa-trash"></i>
+                                    <i class="body-card__icon-clear fas fa-times"></i>
                                 </div>
                                 <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                             </div>
@@ -451,8 +462,9 @@
                                     <div class="body-card__select field-select" data-misc_select>
                                         <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                         <i class="body-card__icon fas fa-bars"></i>
+                                        <i class="body-card__icon-filled fas fa-check"></i>
                                     </div>
-                                    <i class="body-card__icon-clear fas fa-trash"></i>
+                                    <i class="body-card__icon-clear fas fa-times"></i>
                                 </div>
                                 <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                             </div>
@@ -480,8 +492,9 @@
                                     <div class="body-card__select field-select" data-misc_select>
                                         <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                         <i class="body-card__icon fas fa-bars"></i>
+                                        <i class="body-card__icon-filled fas fa-check"></i>
                                     </div>
-                                    <i class="body-card__icon-clear fas fa-trash"></i>
+                                    <i class="body-card__icon-clear fas fa-times"></i>
                                 </div>
                                 <span class="body-card__error field-error">Поле обязательно для заполнения</span>
                             </div>
@@ -501,8 +514,9 @@
                                     <div class="body-card__select field-select modal-calendar">
                                         <span class="body-card__value field-value">Выберите дату</span>
                                         <i class="body-card__icon fas fa-calendar-alt"></i>
+                                        <i class="body-card__icon-filled fas fa-check"></i>
                                     </div>
-                                    <i class="body-card__icon-clear fas fa-calendar-times"></i>
+                                    <i class="body-card__icon-clear fas fa-times"></i>
                                 </div>
                             </div>
                             <input data-form="application" class="body-card__result field-result" type="hidden" name="date_finish_building">
@@ -519,6 +533,7 @@
                                 <div class="body-card__select field-select" data-misc_select>
                                     <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                     <i class="body-card__icon fas fa-bars"></i>
+                                    <i class="body-card__icon-filled fas fa-check"></i>
                                 </div>
                             </div>
                             <span class="body-card__error field-error">Поле обязательно для заполнения</span>
@@ -601,6 +616,7 @@
                                             <div class="body-card__select field-select" data-misc_select>
                                                 <span class="body-card__value field-value" data-misc_value>Выберите значение</span>
                                                 <i class="body-card__icon fas fa-bars"></i>
+                                                <i class="body-card__icon-filled fas fa-check"></i>
                                             </div>
                                         </div>
                                         <span class="body-card__error field-error">Поле обязательно для заполнения</span>
@@ -861,7 +877,7 @@
                             <div class="body-card__block block" data-name="part_short" data-active="false">
                                 <div class="multiple-block__short part-short">
                                     <span class="multiple-block__info part-info"></span>
-                                    <i class="multiple-block__delete fas fa-trash delete"></i>
+                                    <i class="multiple-block__delete fas fa-times delete"></i>
                                 </div>
                             </div>
                         </div>
