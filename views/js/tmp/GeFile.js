@@ -218,7 +218,7 @@ class GeFile {
          FileNeeds.putFileToDelete(this);
 
          if (this.element.dataset.id_sign) {
-            SignHandler.removeSign(this.element, this.mapping_1, this.mapping_2);
+            SignHandler.removeSign(this);
          }
 
          this.removeElement();

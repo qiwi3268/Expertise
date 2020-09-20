@@ -84,14 +84,14 @@ class FileNeeds {
    }
 
 
-   static putSignToSave (id_sign, ge_file) {
+   static putSignToSave (ge_file) {
       let file_data = {
-         id_file: id_sign,
+         id_file: ge_file.id_sign,
          mapping_level_1: ge_file.field.mapping_1,
          mapping_level_2: ge_file.field.mapping_2
       }
 
-      FileNeeds.sign_needs.to_save.set(id_sign, file_data);
+      FileNeeds.sign_needs.to_save.set(ge_file.id_sign, file_data);
    }
 
    // Предназначен для добавления файлов в массив для удаления
@@ -105,7 +105,7 @@ class FileNeeds {
 
          FileNeeds.putFileToDelete(ge_file);
 
-         if (ge_file.element.dataset.id_sign) {
+         if (ge_file.id_sign) {
             SignHandler.removeSign(ge_file);
          }
 
@@ -131,17 +131,17 @@ class FileNeeds {
    }
 
    static putSignToDelete (ge_file) {
-      if (FileNeeds.sign_needs.to_save.has(ge_file.element.dataset.id_sign)) {
-         FileNeeds.sign_needs.to_save.delete(ge_file.element.dataset.id_sign);
+      if (FileNeeds.sign_needs.to_save.has(ge_file.id_sign)) {
+         FileNeeds.sign_needs.to_save.delete(ge_file.id_sign);
       }
 
       let sign_data = {
-         id_file: parseInt(ge_file.element.dataset.id_sign),
+         id_file: ge_file.id_sign,
          mapping_level_1: ge_file.field.mapping_1,
          mapping_level_2: ge_file.field.mapping_2
       };
 
-      FileNeeds.sign_needs.to_delete.set(id_sign, sign_data);
+      FileNeeds.sign_needs.to_delete.set(ge_file.id_sign, sign_data);
    }
 
    static addSigns () {

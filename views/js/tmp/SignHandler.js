@@ -39,8 +39,6 @@ class SignHandler extends SignView{
 
    ge_file;
 
-   // id_sign;
-
    // Предназначен для получения объекта модуля подписания
    static getInstance () {
 
@@ -275,6 +273,7 @@ class SignHandler extends SignView{
    sendSigns (sign_files) {
       let fs_name_data;
       let fs_name_sign;
+      let id_sign;
 
       // Загружаем открепленную подпись на сервер
       API.uploadFiles(
@@ -286,7 +285,7 @@ class SignHandler extends SignView{
          // Проверяем подписываемый файл
          .then(uploaded_signs => {
 
-            this.id_sign = uploaded_signs[0].id;
+            id_sign = uploaded_signs[0].id;
             return API.checkFile(this.ge_file.id, this.ge_file);
 
          })
@@ -294,7 +293,7 @@ class SignHandler extends SignView{
          .then(file_check_response => {
 
             fs_name_data = file_check_response.fs_name;
-            return API.checkFile(this.id_sign, this.ge_file);
+            return API.checkFile(id_sign, this.ge_file);
 
          })
          // Валидируем открепленную подпись
@@ -312,7 +311,7 @@ class SignHandler extends SignView{
          // Обрабатываем результаты валидации
          .then(validate_results => {
 
-            this.handleValidateResults(validate_results);
+            this.handleValidateResults(id_sign, validate_results);
 
             this.certs.dataset.active = 'false';
             this.actions.dataset.active = 'false';
@@ -330,15 +329,16 @@ class SignHandler extends SignView{
 
    }
 
-   handleValidateResults (validate_results) {
+   handleValidateResults (id_sign, validate_results) {
       let results_json = JSON.stringify(validate_results);
 
-      this.ge_file.element.dataset.id_sign = this.id_sign;
+      this.ge_file.id_sign = id_sign;
+      this.ge_file.element.dataset.id_sign = id_sign;
       this.ge_file.element.dataset.validate_results = results_json;
 
       SignView.validateFileField(this.ge_file.element);
 
-      FileNeeds.putSignToSave(this.id_sign, this.ge_file);
+      FileNeeds.putSignToSave(this.ge_file);
 
       this.fillSignsInfo(results_json);
    }
@@ -348,14 +348,13 @@ class SignHandler extends SignView{
       this.delete_sign_btn = document.getElementById('signature_delete');
       this.delete_sign_btn.addEventListener('click', () => {
 
-         this.id_sign = this.ge_file.element.dataset.id_sign;
-
          SignHandler.removeSign(this.ge_file);
 
          this.validate_info.dataset.active = 'false';
          this.delete_sign_btn.dataset.active = 'false';
          this.create_sign_btn.dataset.active = 'true';
          this.upload_sign_btn.dataset.active = 'true';
+
       });
    }
 
