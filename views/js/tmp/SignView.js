@@ -137,8 +137,8 @@ class SignView {
    // Предназначен для отображения состояния проверки подписи в поле с файлом
    // Принимает параметры-------------------------------
    // file         Element : проверяемый файл
-   static validateFileField (file) {
-      let results_json = file.dataset.validate_results;
+   static validateFileField (ge_file) {
+      let results_json = ge_file.element.dataset.validate_results;
       let sign_state = 'not_signed';
 
       if (results_json) {
@@ -157,7 +157,7 @@ class SignView {
          }
 
       }
-      GeFile.setSignState(file, sign_state);
+      GeFile.setSignState(ge_file, sign_state);
 
    }
 }

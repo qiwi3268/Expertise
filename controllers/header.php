@@ -35,7 +35,7 @@ switch (URN) {
             ...CreateSource('css', TMP_CSS, 'null.css', 'header.css', 'footer.css', 'main.css', 'modal.css', 'radio.css', 'calendar.css', 'file_modal.css', 'files.css', 'documentation.css', 'multiple_block.css', 'sign_modal.css'),
             ...CreateSource('css', TMP_CSS, 'create_application.css'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js', 'cadesplugin_api.js'),
-            ...CreateSource('js', TMP_JS, 'ErrorHandler.js', 'main.js', 'API.js', 'modal.js', 'Misc.js', 'sidebar.js', 'section.js', 'validation.js', 'DependenciesHandler.js', 'Calendar.js', 'radio.js', 'checkbox.js', 'save_application.js', 'SignView.js', 'SignHandler.js', 'PerfectCades.js', 'BrowserHelper.js', 'FileChecker.js', 'file_needs.js', 'FileUploader.js', 'MultipleBlock.js', 'GeFile.js', 'PartBlock.js')
+            ...CreateSource('js', TMP_JS, 'ErrorHandler.js', 'main.js', 'API.js', 'modal.js', 'Misc.js', 'sidebar.js', 'section.js', 'validation.js', 'DependenciesHandler.js', 'Calendar.js', 'radio.js', 'checkbox.js', 'save_application.js', 'SignView.js', 'SignHandler.js', 'PerfectCades.js', 'BrowserHelper.js', 'FileChecker.js', 'FileNeeds.js', 'FileUploader.js', 'MultipleBlock.js', 'GeFile.js', 'PartBlock.js')
         ];
         break;
 

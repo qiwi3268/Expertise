@@ -336,7 +336,7 @@ class SignHandler extends SignView{
       this.ge_file.element.dataset.id_sign = id_sign;
       this.ge_file.element.dataset.validate_results = results_json;
 
-      SignView.validateFileField(this.ge_file.element);
+      SignView.validateFileField(this.ge_file);
 
       FileNeeds.putSignToSave(this.ge_file);
 

@@ -8,51 +8,106 @@ document.addEventListener('DOMContentLoaded', () => {
          block.classList.add('filled');
       }
 
-      // Добавляем результаты проверок подписей и обрабатки кнопкой действий
+      // Добавляем результаты проверок подписей и обработку кнопок действий
       files.forEach(file_element => {
-         let file = new GeFile(file_element, block);
-         SignView.validateFileField(file.element);
-         file.handleActionButtons();
+         let ge_file = new GeFile(file_element, block);
+         SignView.validateFileField(ge_file);
+         ge_file.handleActionButtons();
       });
    });
 
 });
 
+/**
+ * Представляет собой поле для файла, либо блок с документацией
+ */
 class FileField {
 
+   /**
+    * Поля с файлами
+    *
+    * @type {Map<number, FileField>}
+    */
    static file_fields = new Map();
+
+   /**
+    * Счетчик полей с файлами
+    *
+    * @type {number}
+    */
    static fields_counter = 0;
 
+   /**
+    * Блок поля с файлами
+    *
+    * @type {HTMLElement}
+    */
    element;
 
+   /**
+    * Маппинг 1-го уровня
+    *
+    * @type {number}
+    */
    mapping_1;
+
+   /**
+    * Маппинг 2-го уровня
+    *
+    * @type {number}
+    */
    mapping_2;
 
+   /**
+    * Файлы, которые относятся к полю
+    *
+    * @type {GeFile[]}
+    */
    files;
 
-   is_active;
-
+   /**
+    * Создает объект файлового поля
+    *
+    * @param {HTMLElement} element - блок файлового поля
+    */
    constructor (element) {
       this.element = element;
       this.mapping_1 = parseInt(this.element.dataset.mapping_level_1);
       this.mapping_2 = parseInt(this.element.dataset.mapping_level_2);
-      this.files = new Map();
+      this.files = [];
 
       let id = FileField.fields_counter++;
       this.element.dataset.id_file_field = id;
       FileField.file_fields.set(id, this);
    }
 
+   /**
+    * Получает объект файлового поля, к которому относится файл
+    *
+    * @param {GeFile} ge_file - файл, относящийся к полю
+    * @returns {FileField} file_field - объект файлового поля
+    */
    static getByFile(ge_file) {
       let field = ge_file.container.closest('[data-id_file_field]');
       let id = parseInt(field.dataset.id_file_field);
       return isNaN(id) ? new FileField(field) : this.file_fields.get(id);
    }
 
+   /**
+    * Добавляет файл в массив файлов поля
+    *
+    * @param {GeFile} ge_file - файл, относящийся к полю
+    */
    addFile (ge_file) {
-      this.files.set(ge_file.id, ge_file);
+      // this.files.set(ge_file.id, ge_file);
+      this.files.push(ge_file);
    }
 
+   /**
+    * Определяет скрыто ли файловое поле на странице
+    *
+    * @returns {boolean} активно ли файловое поле
+    */
    isActive () {
       return !this.element.closest('.block[data-active="false"]');
    }
@@ -64,10 +119,18 @@ class FileField {
  */
 class GeFile {
 
-   static file_blocks = new Map();
-
+   /**
+    * id файла
+    *
+    * @type {number}
+    */
    id;
 
+   /**
+    * id файла
+    *
+    * @type {number}
+    */
    id_sign;
 
    /**
@@ -121,29 +184,6 @@ class GeFile {
    field;
 
    /**
-    * HTMLElement - раздел документации к которому относится файл
-    *
-    * null - если файл не относится к документации
-    *
-    * @type {HTMLElement}
-    */
-   // node;
-
-   /**
-    * Первый маппинг
-    *
-    * @type {number}
-    */
-   // mapping_1;
-
-   /**
-    * Второй маппинг
-    *
-    * @type {number}
-    */
-   // mapping_2;
-
-   /**
     * id раздела документации
     *
     * @type {number}
@@ -151,6 +191,12 @@ class GeFile {
    id_structure_node;
 
 
+   /**
+    * Создает объект загруженного на страницу файла
+    *
+    * @param {HTMLElement} file_element - элемент файла на странице
+    * @param {HTMLElement} files_block - файловый блок, к которому относится файл
+    */
    constructor (file_element, files_block) {
       this.element = file_element;
       this.id = parseInt(this.element.dataset.id);
@@ -160,7 +206,7 @@ class GeFile {
       this.field = FileField.getByFile(this);
       this.field.addFile(this);
 
-
+      // Если файл относится к документации
       let node = this.container.closest('[data-id_structure_node]');
       if (node) {
          this.id_structure_node = parseInt(node.dataset.id_structure_node);
@@ -226,149 +272,67 @@ class GeFile {
       });
    }
 
-   // Предназначен для удалений блока с файлом
+   /**
+    * Удаляет файл со страницы
+    */
    removeElement () {
       this.element.remove();
 
       if (!this.container.querySelector('.files__item')) {
          this.container.classList.remove('filled');
 
-         // todo вынести выше
-         let parent_select = this.container.previousElementSibling;
-         if (parent_select && parent_select.classList.contains('modal-file')) {
+         let parent_select = this.field.element.querySelector('.modal-file');
+         if (parent_select) {
             parent_select.classList.remove('filled');
          }
       }
    }
 
+   /**
+    * Обрабатывает кнопку подписания файла
+    * Открывает при нажатии в зависимости от типа страницы
+    * модальное окно в режиме просмотра или в режиме создания подписи
+    */
    handleSignButton () {
       this.sign_button.addEventListener('click', () => {
          let sign_state = this.element.dataset.state;
 
          if (this.element.dataset.read_only && sign_state !== 'not_signed') {
-
-            //todo один класс в другой
             SignView.getInstance().open(this);
-
          } else if (!this.element.dataset.read_only && sign_state !== 'checking') {
-
             SignHandler.getInstance().open(this);
-
          }
 
       });
    }
 
-   static createElement (file_data, files_block, actions) {
+   /**
+    * Создает элемент и объект файла на странице
+    *
+    * @param file_data - данные файла, полученные с API file_uploader
+    * @param files_block - файловый блок, в который добавляется файл
+    * @returns {GeFile} ge_file - объект загруженного файла
+    */
+   static createElement (file_data, files_block) {
       let file_item = document.createElement('DIV');
       file_item.classList.add('files__item');
       file_item.dataset.id = file_data.id;
       files_block.appendChild(file_item);
 
-      let file = new GeFile(file_item, files_block);
+      let ge_file = new GeFile(file_item, files_block);
 
-      file.addInfo(file_data);
-      file.addState();
-      file.addActions(actions);
+      ge_file.addInfo(file_data);
+      ge_file.addState();
+      ge_file.addActions();
 
-      return file;
+      return ge_file;
    }
 
-   addState() {
-      let sign_state = document.createElement('DIV');
-      sign_state.classList.add('files__state');
-      this.element.appendChild(sign_state);
-      GeFile.setSignState(this.element, 'checking');
-      this.spinStateIcon(this);
-   }
-
-   spinStateIcon(file) {
-      let state_icon = file.element.querySelector('.files__state-icon');
-      let degrees = 0;
-
-      let spin = setInterval(() => {
-         degrees++;
-         state_icon.style.transform = 'rotate(' + degrees + 'deg)';
-
-         if (file.element.dataset.state !== 'checking') {
-            clearInterval(spin);
-         }
-
-      }, 5);
-
-   }
-
-
-   static setSignState(file, state) {
-      let file_state = file.querySelector('.files__state');
-      file_state.innerHTML = '';
-
-      let state_icon = document.createElement('I');
-      state_icon.classList.add('files__state-icon', 'fas');
-      file_state.appendChild(state_icon);
-
-      let state_text = document.createElement('SPAN');
-      state_text.classList.add('files__state-text');
-      file_state.appendChild(state_text);
-
-      switch (state) {
-         case 'checking':
-            state_icon.classList.add('fa-spinner');
-            state_text.innerHTML = 'Проверка';
-            file.dataset.state = 'checking';
-            break;
-         case 'valid':
-            state_icon.classList.add('fa-pen-alt');
-            state_text.innerHTML = 'Подписано';
-            file.dataset.state = 'valid';
-            break;
-         case 'invalid':
-            state_icon.classList.add('fa-times');
-            state_text.innerHTML = 'Подпись недействительна';
-            file.dataset.state = 'invalid';
-            break;
-         case 'not_signed':
-            state_icon.classList.add('fa-times');
-            state_text.innerHTML = 'Не подписано';
-            file.dataset.state = 'not_signed';
-            break;
-         case 'warning':
-            state_icon.classList.add('fa-exclamation');
-            state_text.innerHTML = 'Ошибка сертификата';
-            file.dataset.state = 'warning';
-            break;
-
-      }
-
-   }
-
-   addActions (actions) {
-      this.actions = document.createElement('DIV');
-      this.actions.classList.add('files__actions');
-      this.element.appendChild(this.actions);
-
-      actions.forEach(action => action(this));
-      this.handleActionButtons();
-   }
-
-   static unload (file) {
-      let unload_button = document.createElement('I');
-      unload_button.classList.add('files__unload', 'fas', 'fa-download');
-      file.actions.appendChild(unload_button);
-   }
-
-   static delete (file) {
-      let delete_button = document.createElement('I');
-      delete_button.classList.add('files__delete', 'fas', 'fa-minus');
-      file.actions.appendChild(delete_button);
-   }
-
-
-
-   // Предназначен для добавления информации о файле в его блок
-   // Принимает параметры-------------------------------
-   // file_item     Element : блок с файлом
-   // file           Object : объект, с информацией о файле
+   /**
+    * Добавляет имя, размер и иконку файла для отображения на странице
+    *
+    * @param file_data - данные файла, полученные с API file_uploader
+    */
    addInfo (file_data) {
       let file_info = document.createElement('DIV');
       file_info.classList.add('files__info');
@@ -393,6 +357,111 @@ class GeFile {
       file_description.appendChild(file_size);
    }
 
+   /**
+    * Добавляет блок со статусом подписи файла
+    */
+   addState() {
+      let sign_state = document.createElement('DIV');
+      sign_state.classList.add('files__state');
+      this.element.appendChild(sign_state);
+      GeFile.setSignState(this.element, 'checking');
+      this.spinStateIcon(this);
+   }
+
+   /**
+    * Крутит иконку статуса подписи во время проверки
+    *
+    * @param {GeFile} file - файл к которому относится иконка
+    */
+   spinStateIcon(file) {
+      let state_icon = file.element.querySelector('.files__state-icon');
+      let degrees = 0;
+
+      let spin = setInterval(() => {
+         degrees++;
+         state_icon.style.transform = 'rotate(' + degrees + 'deg)';
+
+         if (file.element.dataset.state !== 'checking') {
+            clearInterval(spin);
+         }
+
+      }, 5);
+
+   }
+
+   /**
+    * Устанавливает статус подписи файла
+    *
+    * @param {GeFile} ge_file - файл, которому устанавливается статус подписи
+    * @param {string} state - строковое значение статуса подписи
+    */
+   static setSignState(ge_file, state) {
+      let file_state = ge_file.element.querySelector('.files__state');
+      file_state.innerHTML = '';
+
+      let state_icon = document.createElement('I');
+      state_icon.classList.add('files__state-icon', 'fas');
+      file_state.appendChild(state_icon);
+
+      let state_text = document.createElement('SPAN');
+      state_text.classList.add('files__state-text');
+      file_state.appendChild(state_text);
+
+      switch (state) {
+         case 'checking':
+            state_icon.classList.add('fa-spinner');
+            state_text.innerHTML = 'Проверка';
+            ge_file.element.dataset.state = 'checking';
+            break;
+         case 'valid':
+            state_icon.classList.add('fa-pen-alt');
+            state_text.innerHTML = 'Подписано';
+            ge_file.element.dataset.state = 'valid';
+            break;
+         case 'invalid':
+            state_icon.classList.add('fa-times');
+            state_text.innerHTML = 'Подпись недействительна';
+            ge_file.element.dataset.state = 'invalid';
+            break;
+         case 'not_signed':
+            state_icon.classList.add('fa-times');
+            state_text.innerHTML = 'Не подписано';
+            ge_file.element.dataset.state = 'not_signed';
+            break;
+         case 'warning':
+            state_icon.classList.add('fa-exclamation');
+            state_text.innerHTML = 'Ошибка сертификата';
+            ge_file.element.dataset.state = 'warning';
+            break;
+      }
+
+   }
+
+   /**
+    * Добавляет файлу блок с кнопками действий
+    */
+   addActions () {
+      this.actions = document.createElement('DIV');
+      this.actions.classList.add('files__actions');
+      this.element.appendChild(this.actions);
+
+      let unload_button = document.createElement('I');
+      unload_button.classList.add('files__unload', 'fas', 'fa-download');
+      this.actions.appendChild(unload_button);
+
+      let delete_button = document.createElement('I');
+      delete_button.classList.add('files__delete', 'fas', 'fa-minus');
+      this.actions.appendChild(delete_button);
+
+      this.handleActionButtons();
+   }
+
+   /**
+    * Получает строку с размером файла по размеру в байтах
+    *
+    * @param {number} file_size - размер файла в байтах
+    * @returns {string} размер файла с единицой измерения
+    */
    static getFileSizeString (file_size) {
       let size;
       let kb = file_size / 1024;
@@ -406,6 +475,12 @@ class GeFile {
       return size;
    }
 
+   /**
+    * Возвращает строку с классом иконки файла в зависимости от его типа
+    *
+    * @param {string} file_name - имя файла
+    * @returns {string} класс иконки файла
+    */
    static getFileIconClass (file_name) {
       let icon_class = 'fa-file-alt';
 
