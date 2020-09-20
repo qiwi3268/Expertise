@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 class GeFile {
 
+   static file_blocks = new Map();
+
    /**
     * Блок с файлами
     *
@@ -83,21 +85,21 @@ class GeFile {
    /**
     * Первый маппинг
     *
-    * @type {string}
+    * @type {number}
     */
    mapping_1;
 
    /**
     * Второй маппинг
     *
-    * @type {string}
+    * @type {number}
     */
    mapping_2;
 
    /**
     * id раздела документации
     *
-    * @type {string}
+    * @type {number}
     */
    id_structure_node;
 
@@ -109,12 +111,12 @@ class GeFile {
       this.node = this.container.closest('[data-id_structure_node]');
 
       if (this.field) {
-         this.mapping_1 = this.field.dataset.mapping_level_1;
-         this.mapping_2 = this.field.dataset.mapping_level_2;
+         this.mapping_1 = parseInt(this.field.dataset.mapping_level_1);
+         this.mapping_2 = parseInt(this.field.dataset.mapping_level_2);
       }
 
       if (this.node) {
-         this.id_structure_node = this.node.dataset.id_structure_node;
+         this.id_structure_node = parseInt(this.node.dataset.id_structure_node);
       }
 
    }

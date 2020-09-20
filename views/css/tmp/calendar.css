@@ -9,7 +9,7 @@
    border-radius: 3px;
    box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
    background-color: #fff;
-   transition: .15s;
+   transition: opacity .15s;
 }
 
 .calendar-overlay {
@@ -84,6 +84,7 @@
    text-align: center;
    border-radius: 3px;
    cursor: pointer;
+   transition: 0.1s;
 }
 
 .calendar__item[data-type='day'] {
@@ -104,6 +105,7 @@
 
 .calendar__item:hover {
    background-color: #cccccc;
+   color: #343a40;
 }
 
 .calendar__item.selected {

@@ -265,9 +265,9 @@ class FileUploader {
       for (let file of files) {
 
          let actions = [GeFile.unload, GeFile.delete];
-         let file = GeFile.createElement(file, files_body, actions);
+         let ge_file = GeFile.createElement(file, files_body, actions);
 
-         this.putFile(file, files_body);
+         this.putFile(ge_file, files_body);
          resizeCard(this.parent_field);
 
       }
@@ -275,8 +275,8 @@ class FileUploader {
 
    }
 
-   putFile (file) {
-      let id_file = parseInt(file.element.dataset.id);
+   putFile (ge_file) {
+      let id_file = parseInt(ge_file.element.dataset.id);
 
       API.checkFile(id_file, this.mapping_1, this.mapping_2)
          .then(check_response => {
@@ -286,12 +286,12 @@ class FileUploader {
 
             if (validate_results) {
 
-               file.element.dataset.validate_results = JSON.stringify(validate_results);
-               file.element.dataset.is_internal = 'true';
-               SignView.validateFileField(file.element);
+               ge_file.element.dataset.validate_results = JSON.stringify(validate_results);
+               ge_file.element.dataset.is_internal = 'true';
+               SignView.validateFileField(ge_file.element);
 
             } else {
-               GeFile.setSignState(file.element, 'not_signed');
+               GeFile.setSignState(ge_file.element, 'not_signed');
             }
 
          })
@@ -299,7 +299,7 @@ class FileUploader {
             console.error('Ошибка при проверке подписи файла:\n' + exc);
             // let ge_file = new GeFile(file_item, files_body);
             // ge_file.removeElement();
-            file.removeElement();
+            ge_file.removeElement();
          });
    }
 
