@@ -1,5 +1,7 @@
 <?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
+<?php var_dump($variablesTV->getValue('form_files')[1][1]) ?>
+
 <div class="application-form__header header-form">
     <div class="header-form__title">Заявление на экспертизу <?= $variablesTV->getValue('numerical_name') ?></div>
 </div>
@@ -257,7 +259,7 @@
 
                 <!--ГРБС-->
                 <?php if (!is_null($variablesTV->getValue('form_files')[1][1])): ?>
-                    <div class="body-card__row" data-mapping_level_1="1" data-mapping_level_2="1">
+                    <div class="body-card__row" data-id_file_field data-mapping_level_1="1" data-mapping_level_2="1">
                         <span class="body-card__title">Файл ГРБС</span>
                         <div class="body-card__files files">
                             <?php foreach ($variablesTV->getValue('form_files')[1][1] as $file): ?>
@@ -357,7 +359,7 @@
                         <span class="body-card__message-text">Для отображения структуры разделов документации выберите вид объекта</span>
                     </div>
                 <?php else: ?>
-                <div class="documentation" data-mapping_level_1="<?= $variablesTV->getValue('documentation_mapping_level_1') ?>" data-mapping_level_2="<?= $variablesTV->getValue('documentation_mapping_level_2') ?>">
+                <div class="documentation" data-id_file_field data-mapping_level_1="<?= $variablesTV->getValue('documentation_mapping_level_1') ?>" data-mapping_level_2="<?= $variablesTV->getValue('documentation_mapping_level_2') ?>">
                 <?php foreach ($variablesTV->getValue('documentation_files_in_structure') as $node): ?>
                     <div class="documentation__node">
                         <span class="documentation__name" style="padding-left: <?= $node['depth']*25 + 15 ?>px"><?= $node['name'] ?></span>
@@ -405,7 +407,7 @@
 
         <div class="sign-modal__empty"></div>
     </div>
-    
+
     <div class="error-overlay"></div>
     <div class="modal error-modal">
         <div class="error-modal__header">

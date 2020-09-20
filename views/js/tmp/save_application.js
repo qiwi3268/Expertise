@@ -23,9 +23,7 @@ function closeSaveModal (save_overlay) {
 }
 
 function saveApplication () {
-   console.log('----');
    FileNeeds.putFilesToFileNeeds();
-   console.log('----');
 
    let form_data = getSaveApplicationFormData();
 

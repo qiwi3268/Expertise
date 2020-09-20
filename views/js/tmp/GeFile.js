@@ -68,6 +68,7 @@ class GeFile {
 
    id;
 
+   id_sign;
 
    /**
     * Блок с файлами
@@ -217,7 +218,7 @@ class GeFile {
 
          FileNeeds.putFileToDelete(this);
 
-         if (this.element.dataset.id_sign) {
+         if (this.id_sign) {
             SignHandler.removeSign(this);
          }
 
