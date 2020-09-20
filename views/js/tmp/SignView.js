@@ -1,18 +1,34 @@
 /**
- * Представляет собой модальное окно для просмотра подписей файла
- * @class
- * @property {SignView} instance - статический объект модального окна просмотра подписей
- * @property {Element} modal - элемент модального окна
- * @property {Element} validate_info - блок с результатами проверки подписей
- *
- * @property {Function} handleOverlay {@link handleOverlay}
- *
+ * Представляет собой модуль просмотра подписей файла
  */
 class SignView {
 
+   /**
+    * Объект модуля просмотра подписей
+    *
+    * @type {SignView}
+    */
    static instance;
+
+   /**
+    * Модальное окно просмотра подписей
+    *
+    * @type {HTMLElement}
+    */
    modal;
+
+   /**
+    * Блок с результатами проверки подписей
+    *
+    * @type {HTMLElement}
+    */
    validate_info;
+
+   /**
+    * Фон модального окна
+    *
+    * @type {HTMLElement}
+    */
    overlay;
 
    /**
@@ -30,7 +46,6 @@ class SignView {
       return this.instance;
    }
 
-
    /**
     * Создает объект модального окна просмотра подписей файла
     */
@@ -41,42 +56,45 @@ class SignView {
       this.handleOverlay();
    }
 
-
    /**
-    * This method does...Предназначен для обработки нажатия на фон модального окна
-    *
-    * @method
-    * @name handleOverlay
-    * @method
-    * asdasd
+    * Обрабатывает нажатие на фон модального окна
     */
    handleOverlay () {
       this.overlay = mQS(document, '.sign-overlay', 17);
       this.overlay.addEventListener('click', () => this.closeModal());
    }
 
-   // Предназначен для закрытия модуля подписания
+
+   /**
+    * Закрывает модальное окно просмотра подписей
+    */
    closeModal () {
       this.modal.classList.remove('active');
       this.overlay.classList.remove('active');
       this.validate_info.dataset.active = 'false';
-
    }
 
-   open (file) {
+
+   /**
+    * Добавляет файл и результаты проверки подписей и
+    * открывает модальное окно просмотра подписей
+    *
+    * @param {GeFile} ge_file - файл, для которого
+    */
+   open (ge_file) {
       this.modal.classList.add('active');
       this.overlay.classList.add('active');
 
-      this.addFileElement(file);
+      this.addFileElement(ge_file);
 
-      if (file.dataset.validate_results) {
-         this.fillSignsInfo(file.dataset.validate_results);
+      if (ge_file.element.dataset.validate_results) {
+         this.fillSignsInfo(ge_file.element.dataset.validate_results);
       }
 
    }
 
    addFileElement (file) {
-      let file_info = file.querySelector('.files__info');
+      let file_info = file.element.querySelector('.files__info');
       let sign_file = this.modal.querySelector('.sign-modal__file');
       sign_file.innerHTML = file_info.innerHTML;
    }
