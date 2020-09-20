@@ -37,14 +37,9 @@ class SignHandler extends SignView{
    // Инпут, в который загружается файл открепленной подписи
    external_sign_input;
 
-   // Данные файла, для которого открыт модуль подписания
-   file_element;
-   id_file;
-   id_sign;
-   mapping_level_1;
-   mapping_level_2;
-   id_structure_node;
-   //------------------
+   ge_file;
+
+   // id_sign;
 
    // Предназначен для получения объекта модуля подписания
    static getInstance () {
@@ -61,18 +56,14 @@ class SignHandler extends SignView{
    // file         Element : файл, у которого удаляется подпись
    // mapping_1     string : первый маппинг
    // mapping_2     string : второй маппинг
-   static removeSign (file, mapping_1, mapping_2) {
+   static removeSign (ge_file) {
 
-      FileNeeds.putSignToDelete(
-         parseInt(file.dataset.id_sign),
-         mapping_1,
-         mapping_2
-      );
+      FileNeeds.putSignToDelete(ge_file);
 
-      file.removeAttribute('data-id_sign');
-      file.removeAttribute('data-validate_results');
+      ge_file.element.removeAttribute('data-id_sign');
+      ge_file.element.removeAttribute('data-validate_results');
 
-      GeFile.setSignState(file, 'not_signed');
+      GeFile.setSignState(ge_file.element, 'not_signed');
    }
 
    // Предназначен для инициализации модуля подписания
@@ -286,19 +277,24 @@ class SignHandler extends SignView{
       let fs_name_sign;
 
       // Загружаем открепленную подпись на сервер
-      API.uploadFiles(sign_files, this.mapping_level_1, this.mapping_level_2, this.id_structure_node)
+      API.uploadFiles(
+         sign_files,
+         this.ge_file.field.mapping_1,
+         this.ge_file.field.mapping_2,
+         this.ge_file.id_structure_node
+      )
          // Проверяем подписываемый файл
          .then(uploaded_signs => {
 
             this.id_sign = uploaded_signs[0].id;
-            return API.checkFile(this.id_file, this.mapping_level_1, this.mapping_level_2);
+            return API.checkFile(this.ge_file.id, this.ge_file);
 
          })
          // Проверяем файл подписи
          .then(file_check_response => {
 
             fs_name_data = file_check_response.fs_name;
-            return API.checkFile(this.id_sign, this.mapping_level_1, this.mapping_level_2);
+            return API.checkFile(this.id_sign, this.ge_file);
 
          })
          // Валидируем открепленную подпись
@@ -308,8 +304,8 @@ class SignHandler extends SignView{
             return API.externalSignatureVerify(
                fs_name_data,
                fs_name_sign,
-               this.mapping_level_1,
-               this.mapping_level_2
+               this.ge_file.field.mapping_1,
+               this.ge_file.field.mapping_2
             );
 
          })
@@ -337,12 +333,12 @@ class SignHandler extends SignView{
    handleValidateResults (validate_results) {
       let results_json = JSON.stringify(validate_results);
 
-      this.file_element.dataset.id_sign = this.id_sign;
-      this.file_element.dataset.validate_results = results_json;
+      this.ge_file.element.dataset.id_sign = this.id_sign;
+      this.ge_file.element.dataset.validate_results = results_json;
 
-      SignView.validateFileField(this.file_element);
+      SignView.validateFileField(this.ge_file.element);
 
-      FileNeeds.putSignToSave(this.id_sign, this.mapping_level_1, this.mapping_level_2);
+      FileNeeds.putSignToSave(this.id_sign, this.ge_file);
 
       this.fillSignsInfo(results_json);
    }
@@ -352,9 +348,9 @@ class SignHandler extends SignView{
       this.delete_sign_btn = document.getElementById('signature_delete');
       this.delete_sign_btn.addEventListener('click', () => {
 
-         this.id_sign = this.file_element.dataset.id_sign;
+         this.id_sign = this.ge_file.element.dataset.id_sign;
 
-         SignHandler.removeSign(this.file_element, this.mapping_level_1, this.mapping_level_2);
+         SignHandler.removeSign(this.ge_file);
 
          this.validate_info.dataset.active = 'false';
          this.delete_sign_btn.dataset.active = 'false';
@@ -399,7 +395,7 @@ class SignHandler extends SignView{
 
       this.is_signing = true;
 
-      API.checkFile(this.id_file, this.mapping_level_1, this.mapping_level_2)
+      API.checkFile(this.ge_file.id, this.ge_file)
          .then(file_check_response => {
 
             fs_name_data = file_check_response.fs_name;
@@ -433,23 +429,23 @@ class SignHandler extends SignView{
 
    }
 
-   open (file) {
+   open (ge_file) {
       this.modal.classList.add('active');
       this.overlay.classList.add('active');
 
-      this.putFileData(file);
-      this.addFileElement(file);
+      this.ge_file = ge_file;
+      this.addFileElement(ge_file.element);
 
-      if (!file.dataset.validate_results) {
+      if (!ge_file.element.dataset.validate_results) {
 
          this.create_sign_btn.dataset.active = 'true';
          this.upload_sign_btn.dataset.active = 'true';
 
       } else {
 
-         this.fillSignsInfo(file.dataset.validate_results);
+         this.fillSignsInfo(ge_file.element.dataset.validate_results);
 
-         if (file.dataset.is_internal !== 'true') {
+         if (ge_file.element.dataset.is_internal !== 'true') {
             this.delete_sign_btn.dataset.active = 'true';
          }
 
@@ -457,25 +453,4 @@ class SignHandler extends SignView{
 
    }
 
-   putFileData (file) {
-      let parent_field = file.closest('[data-mapping_level_1]');
-      this.file_element = file;
-      this.id_file = file.dataset.id;
-      this.id_sign = file.dataset.id_sign;
-      this.mapping_level_1 = parent_field.dataset.mapping_level_1;
-      this.mapping_level_2 = parent_field.dataset.mapping_level_2;
-
-      let parent_node = file.closest('[data-id_structure_node]');
-      if (parent_node) {
-         this.id_structure_node = parent_node.dataset.id_structure_node;
-      }
-
-   }
-
-
- /*  addFileElement (file) {
-      let file_info = file.querySelector('.files__info');
-      let sign_file = this.modal.querySelector('.sign-modal__file');
-      sign_file.innerHTML = file_info.innerHTML;
-   }*/
 }

@@ -10,7 +10,7 @@ class FileNeeds {
       to_delete: new Map()
    };
 
-   // Предназначен для добавления файлов в массивы для сохранения и удаления
+/*   // Предназначен для добавления файлов в массивы для сохранения и удаления
    // во всех блоках с файлами
    static putFilesToFileNeeds () {
       let file_blocks = document.querySelectorAll('.files');
@@ -38,19 +38,23 @@ class FileNeeds {
       });
 
       FileNeeds.addSigns();
-   }
+   }*/
 
-   static putFilesToFileNeeds_1 () {
+   static putFilesToFileNeeds () {
 
-      GeFile.file_blocks.forEach((block_name, files) => {
+      console.log(FileField.file_fields);
 
+      FileField.file_fields.forEach(file_field => {
 
-
-         console.log(block_name);
-         console.log(files);
-
+         if (file_field.isActive()) {
+            FileNeeds.saveFiles(file_field);
+         } else {
+            FileNeeds.deleteFiles(file_field);
+         }
 
       });
+
+      FileNeeds.addSigns();
 
    }
 
@@ -58,16 +62,8 @@ class FileNeeds {
    // Принимает параметры-------------------------------
    // files            Array[Element] : массив с элементами файлов
    // parent_field            Element : родительское поле блока с файлами
-   static saveFiles (files, parent_field) {
-      files.forEach(file => {
-         FileNeeds.putFileToSave(
-            file.dataset.id,
-            parent_field.dataset.mapping_level_1,
-            parent_field.dataset.mapping_level_2,
-            file
-         );
-         file.dataset.saved = 'true';
-      });
+   static saveFiles (file_field) {
+      file_field.files.forEach(ge_file => FileNeeds.putFileToSave(ge_file));
    }
 
    // Предназначен для добавления файла в массив для сохранения
@@ -76,33 +72,26 @@ class FileNeeds {
    // mapping_level_1     string : первый маппинг
    // mapping_level_2     string : второй маппинг
    // file_item          Element : элемент файла
-   static putFileToSave (id_file, mapping_level_1, mapping_level_2, file_item) {
-      let is_file_saved = file_item.dataset.saved === 'true';
+   static putFileToSave (ge_file) {
+      let is_file_saved = ge_file.element.dataset.saved === 'true';
+
       if (!is_file_saved) {
          let to_save = FileNeeds.file_needs.to_save;
-         let file_data = FileNeeds.getFileData(id_file, mapping_level_1, mapping_level_2);
-         to_save.push(file_data);
+         to_save.push(new FileData(ge_file));
+
+         ge_file.element.dataset.saved = 'true';
       }
    }
 
-   static putSignToSave (id_sign, mapping_level_1, mapping_level_2) {
-      let file_data = FileNeeds.getFileData(id_sign, mapping_level_1, mapping_level_2);
+
+   static putSignToSave (id_sign, ge_file) {
+      let file_data = {
+         id_file: id_sign,
+         mapping_level_1: ge_file.field.mapping_1,
+         mapping_level_2: ge_file.field.mapping_2
+      }
+
       FileNeeds.sign_needs.to_save.set(id_sign, file_data);
-   }
-
-   // Предназначен для получения объект с данными файла
-   // Принимает параметры-------------------------------
-   // id_file             string : id файла
-   // mapping_level_1     string : первый маппинг
-   // mapping_level_2     string : второй маппинг
-   // Возвращает параметры------------------------------
-   // file_data           Object : объект с данными файла
-   static getFileData (id_file, mapping_level_1, mapping_level_2) {
-      return {
-         id_file: parseInt(id_file),
-         mapping_level_1: parseInt(mapping_level_1),
-         mapping_level_2: parseInt(mapping_level_2)
-      }
    }
 
    // Предназначен для добавления файлов в массив для удаления
@@ -110,27 +99,20 @@ class FileNeeds {
    // files            Array[Element] : массив с элементами файлов
    // parent_field            Element : родительское поле блока с файлами
    // file_block              Element : родительский блок с файлами
-   static deleteFiles (files, parent_field, file_block) {
-      files.forEach(file => {
-         FileNeeds.putFileToDelete(
-            file.dataset.id,
-            parent_field.dataset.mapping_level_1,
-            parent_field.dataset.mapping_level_2,
-            file
-         );
+   static deleteFiles (file_field) {
 
-         if (file.dataset.id_sign) {
-            SignHandler.removeSign(
-               file,
-               parent_field.dataset.mapping_level_1,
-               parent_field.dataset.mapping_level_2
-            );
+      file_field.files.forEach(ge_file => {
+
+         FileNeeds.putFileToDelete(ge_file);
+
+         if (ge_file.element.dataset.id_sign) {
+            SignHandler.removeSign(ge_file);
          }
 
-         let ge_file = new GeFile(file, file_block);
          ge_file.removeElement();
 
       });
+
    }
 
    // Предназначен для добавления файла в массив для удаления
@@ -139,25 +121,29 @@ class FileNeeds {
    // mapping_level_1     string : первый маппинг
    // mapping_level_2     string : второй маппинг
    // file_item          Element : элемент файла
-   static putFileToDelete (id_file, mapping_level_1, mapping_level_2, file_item) {
+   static putFileToDelete (ge_file) {
 
-      let is_file_saved = file_item.dataset.saved === 'true';
+      let is_file_saved = ge_file.element.dataset.saved === 'true';
       if (is_file_saved) {
          let to_delete = FileNeeds.file_needs.to_delete;
-         let file_data = FileNeeds.getFileData(id_file, mapping_level_1, mapping_level_2);
-         to_delete.push(file_data);
+         to_delete.push(new FileData(ge_file));
       }
    }
 
-   static putSignToDelete (id_sign, mapping_level_1, mapping_level_2) {
-      if (FileNeeds.sign_needs.to_save.has(id_sign)) {
-         FileNeeds.sign_needs.to_save.delete(id_sign);
+   static putSignToDelete (ge_file) {
+      if (FileNeeds.sign_needs.to_save.has(ge_file.element.dataset.id_sign)) {
+         FileNeeds.sign_needs.to_save.delete(ge_file.element.dataset.id_sign);
       }
-      let sign_data = FileNeeds.getFileData(id_sign, mapping_level_1, mapping_level_2);
+
+      let sign_data = {
+         id_file: parseInt(ge_file.element.dataset.id_sign),
+         mapping_level_1: ge_file.field.mapping_1,
+         mapping_level_2: ge_file.field.mapping_2
+      };
+
       FileNeeds.sign_needs.to_delete.set(id_sign, sign_data);
    }
 
-   //TODO делать по-другому
    static addSigns () {
       FileNeeds.file_needs.to_save = FileNeeds.file_needs.to_save.concat(Array.from(FileNeeds.sign_needs.to_save.values()));
       FileNeeds.file_needs.to_delete = FileNeeds.file_needs.to_delete.concat(Array.from(FileNeeds.sign_needs.to_delete.values()));
@@ -192,4 +178,10 @@ class FileNeeds {
          || FileNeeds.sign_needs.to_delete.size !== 0
       );
    }
+}
+
+function FileData (ge_file) {
+   this.id_file = ge_file.id;
+   this.mapping_level_1 = ge_file.field.mapping_1;
+   this.mapping_level_2 = ge_file.field.mapping_2;
 }

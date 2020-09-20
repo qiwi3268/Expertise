@@ -126,21 +126,21 @@ class GeFile {
     *
     * @type {HTMLElement}
     */
-   node;
+   // node;
 
    /**
     * Первый маппинг
     *
     * @type {number}
     */
-   mapping_1;
+   // mapping_1;
 
    /**
     * Второй маппинг
     *
     * @type {number}
     */
-   mapping_2;
+   // mapping_2;
 
    /**
     * id раздела документации
@@ -154,18 +154,15 @@ class GeFile {
       this.element = file_element;
       this.id = parseInt(this.element.dataset.id);
 
-
       this.container = files_block || file_element.closest('.files');
-
-      this.node = this.container.closest('[data-id_structure_node]');
-
 
       this.field = FileField.getByFile(this);
       this.field.addFile(this);
 
 
-      if (this.node) {
-         this.id_structure_node = parseInt(this.node.dataset.id_structure_node);
+      let node = this.container.closest('[data-id_structure_node]');
+      if (node) {
+         this.id_structure_node = parseInt(node.dataset.id_structure_node);
       }
 
    }
@@ -200,11 +197,7 @@ class GeFile {
 
       this.unload_button.addEventListener('click', () => {
 
-         API.checkFile(
-            this.id,
-            this.field.mapping_1,
-            this.field.mapping_2
-         )
+         API.checkFile(this.id, this)
             .then(check_result => {
                location.href = API.getUnloadFileURN(check_result);
             })
@@ -222,12 +215,7 @@ class GeFile {
    handleDeleteButton () {
       this.delete_button.addEventListener('click', () => {
 
-         FileNeeds.putFileToDelete(
-            this.id,
-            this.field.mapping_1,
-            this.field.mapping_2,
-            this.element
-         );
+         FileNeeds.putFileToDelete(this);
 
          if (this.element.dataset.id_sign) {
             SignHandler.removeSign(this.element, this.mapping_1, this.mapping_2);
@@ -259,11 +247,11 @@ class GeFile {
          if (this.element.dataset.read_only && sign_state !== 'not_signed') {
 
             //todo один класс в другой
-            SignView.getInstance().open(this.element);
+            SignView.getInstance().open(this);
 
          } else if (!this.element.dataset.read_only && sign_state !== 'checking') {
 
-            SignHandler.getInstance().open(this.element);
+            SignHandler.getInstance().open(this);
 
          }
 
@@ -306,8 +294,8 @@ class GeFile {
          }
 
       }, 5);
-   }
 
+   }
 
 
    static setSignState(file, state) {

@@ -276,11 +276,10 @@ class FileUploader {
    }
 
    putFile (ge_file) {
-      let id_file = parseInt(ge_file.element.dataset.id);
 
-      API.checkFile(id_file, this.mapping_1, this.mapping_2)
+      API.checkFile(ge_file.id, ge_file)
          .then(check_response => {
-            return API.internalSignatureVerify(check_response.fs_name, this.mapping_1, this.mapping_2, id_file);
+            return API.internalSignatureVerify(check_response.fs_name, ge_file);
          })
          .then(validate_results => {
 

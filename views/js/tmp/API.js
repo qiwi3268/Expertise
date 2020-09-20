@@ -65,10 +65,10 @@ class API {
       return form_data;
    }
 
-   static checkFile (id_file, mapping_1, mapping_2) {
+   static checkFile (id_file, ge_file) {
 
       return new Promise((resolve, reject) => {
-         let form_data = this.getFileCheckFormData(id_file, mapping_1, mapping_2);
+         let form_data = this.getFileCheckFormData(id_file, ge_file);
 
          XHR(
             'post',
@@ -99,12 +99,12 @@ class API {
 
    }
 
-   static getFileCheckFormData (id_file, mapping_1, mapping_2) {
+   static getFileCheckFormData (id_file, ge_file) {
       let form_data = new FormData();
       form_data.append('id_application', getIdDocument());
       form_data.append('id_file', id_file);
-      form_data.append('mapping_level_1', mapping_1);
-      form_data.append('mapping_level_2', mapping_2);
+      form_data.append('mapping_level_1', ge_file.field.mapping_1);
+      form_data.append('mapping_level_2', ge_file.field.mapping_2);
       return form_data;
    }
 
@@ -209,10 +209,10 @@ class API {
       return form_data;
    }
 
-   static internalSignatureVerify (fs_name, mapping_1, mapping_2, id_file, verify_callback = null) {
+   static internalSignatureVerify (fs_name, ge_file, verify_callback = null) {
 
       return new Promise((resolve, reject) => {
-         let form_data = this.getInternalVerifyFormData(fs_name, mapping_1, mapping_2);
+         let form_data = this.getInternalVerifyFormData(fs_name, ge_file);
 
          XHR(
             'post',
@@ -252,11 +252,11 @@ class API {
       });
    }
 
-   static getInternalVerifyFormData (fs_name, mapping_1, mapping_2) {
+   static getInternalVerifyFormData (fs_name, ge_file) {
       let form_data = new FormData();
       form_data.append('fs_name_sign', fs_name);
-      form_data.append('mapping_level_1', mapping_1);
-      form_data.append('mapping_level_2', mapping_2);
+      form_data.append('mapping_level_1', ge_file.field.mapping_1);
+      form_data.append('mapping_level_2', ge_file.field.mapping_2);
       return form_data;
    }
 
