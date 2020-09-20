@@ -18,12 +18,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+class FileField {
+
+   static file_fields = new Map();
+   static fields_counter = 0;
+
+   element;
+
+   mapping_1;
+   mapping_2;
+
+   files;
+
+   is_active;
+
+   constructor (element) {
+      this.element = element;
+      this.mapping_1 = parseInt(this.element.dataset.mapping_level_1);
+      this.mapping_2 = parseInt(this.element.dataset.mapping_level_2);
+      this.files = new Map();
+
+      let id = FileField.fields_counter++;
+      this.element.dataset.id_file_field = id;
+      FileField.file_fields.set(id, this);
+   }
+
+   static getByFile(ge_file) {
+      let field = ge_file.container.closest('[data-id_file_field]');
+      let id = parseInt(field.dataset.id_file_field);
+      return isNaN(id) ? new FileField(field) : this.file_fields.get(id);
+   }
+
+   addFile (ge_file) {
+      this.files.set(ge_file.id, ge_file);
+   }
+
+   isActive () {
+      return !this.element.closest('.block[data-active="false"]');
+   }
+
+}
+
 /**
  * Представляет собой загруженный на страницу файл
  */
 class GeFile {
 
    static file_blocks = new Map();
+
+   id;
+
 
    /**
     * Блок с файлами
@@ -70,6 +114,8 @@ class GeFile {
 
    /**
     * Поле, к которому относится файл
+    *
+    * @type {FileField}
     */
    field;
 
@@ -103,17 +149,20 @@ class GeFile {
     */
    id_structure_node;
 
+
    constructor (file_element, files_block) {
       this.element = file_element;
+      this.id = parseInt(this.element.dataset.id);
+
 
       this.container = files_block || file_element.closest('.files');
-      this.field = this.container.closest('[data-mapping_level_1]');
+
       this.node = this.container.closest('[data-id_structure_node]');
 
-      if (this.field) {
-         this.mapping_1 = parseInt(this.field.dataset.mapping_level_1);
-         this.mapping_2 = parseInt(this.field.dataset.mapping_level_2);
-      }
+
+      this.field = FileField.getByFile(this);
+      this.field.addFile(this);
+
 
       if (this.node) {
          this.id_structure_node = parseInt(this.node.dataset.id_structure_node);
@@ -152,9 +201,9 @@ class GeFile {
       this.unload_button.addEventListener('click', () => {
 
          API.checkFile(
-            this.element.dataset.id,
-            this.mapping_1,
-            this.mapping_2,
+            this.id,
+            this.field.mapping_1,
+            this.field.mapping_2
          )
             .then(check_result => {
                location.href = API.getUnloadFileURN(check_result);
@@ -174,9 +223,9 @@ class GeFile {
       this.delete_button.addEventListener('click', () => {
 
          FileNeeds.putFileToDelete(
-            this.element.dataset.id,
-            this.mapping_1,
-            this.mapping_2,
+            this.id,
+            this.field.mapping_1,
+            this.field.mapping_2,
             this.element
          );
 

@@ -40,6 +40,20 @@ class FileNeeds {
       FileNeeds.addSigns();
    }
 
+   static putFilesToFileNeeds_1 () {
+
+      GeFile.file_blocks.forEach((block_name, files) => {
+
+
+
+         console.log(block_name);
+         console.log(files);
+
+
+      });
+
+   }
+
    // Предназначен для добавления файлов в массив для сохранения
    // Принимает параметры-------------------------------
    // files            Array[Element] : массив с элементами файлов

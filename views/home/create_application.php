@@ -345,7 +345,7 @@
                         <!--//Сметная стоимость//-->
                         <!--Файл ГРБС-->
                         <!--TODO проверка на обязательность-->
-                        <div class="body-card__row field" data-name='file_grbs' data-required="false" data-multiple="true" data-mapping_level_1="1" data-mapping_level_2="1">
+                        <div class="body-card__row field" data-id_file_field data-name="file_grbs" data-required="false" data-multiple="true" data-mapping_level_1="1" data-mapping_level_2="1">
                             <span class="body-card__title">Файл ГРБС</span>
                             <div class="body-card__item">
                                 <div class="body-card__file-field">
@@ -903,7 +903,7 @@
                     </div>
                 </div>
                 <div class="body-card__block block" data-name="structureDocumentation1" data-active="false">
-                    <div class="documentation field" data-mapping_level_1="2" data-mapping_level_2="1">
+                    <div class="documentation field" data-id_file_field data-mapping_level_1="2" data-mapping_level_2="1">
                         <?php foreach ($variablesTV->getValue('structureDocumentation1') as $node): ?>
                             <div class="documentation__node" data-id_structure_node="<?= $node['id'] ?>">
                                 <div class="documentation__header" data-title="<?= $node['is_header'] ? 'true' : 'false' ?>">
@@ -918,7 +918,7 @@
                     </div>
                 </div>
                 <div class="body-card__block block" data-name="structureDocumentation2" data-active="false">
-                    <div class="documentation field" data-mapping_level_1="2" data-mapping_level_2="2">
+                    <div class="documentation field" data-id_file_field data-mapping_level_1="2" data-mapping_level_2="2">
                         <?php foreach ($variablesTV->getValue('structureDocumentation2') as $node): ?>
                             <div class="documentation__node" data-id_structure_node="<?= $node['id'] ?>">
                                 <div class="documentation__header" data-title="<?= $node['is_header'] ? 'true' : 'false' ?>">

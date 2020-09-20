@@ -265,6 +265,8 @@ class API {
 
       console.log(FileNeeds.getFileNeedsJSON());
 
+      console.log(JSON.parse(FileNeeds.getFileNeedsJSON()));
+
       XHR(
          'post',
          '/home/API_file_needs_setter',
