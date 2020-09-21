@@ -633,7 +633,7 @@
                                             <?php endforeach; ?>
                                         </div>
                                     </div>
-                                    <input class="body-card__result field-result" type="hidden" data-field="budget_level" name="budget_level">
+                                    <input class="body-card__result field-result" data-misc_result type="hidden" data-field="budget_level" name="budget_level">
                                 </div>
                                 <div class="body-card__block block" data-type="part" data-name="no_data" data-active="false">
                                     <div class="body-card__row field center" data-name="no_data">

@@ -368,7 +368,7 @@ class Misc {
       if (misc.pages.length > 1) {
          misc.handlePagination();
       } else {
-         console.log(misc.pagination);
+         // todo убирать пагинацию
       }
 
       return misc;

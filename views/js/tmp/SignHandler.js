@@ -61,7 +61,7 @@ class SignHandler extends SignView{
       ge_file.element.removeAttribute('data-id_sign');
       ge_file.element.removeAttribute('data-validate_results');
 
-      GeFile.setSignState(ge_file.element, 'not_signed');
+      GeFile.setSignState(ge_file, 'not_signed');
    }
 
    // Предназначен для инициализации модуля подписания
@@ -433,7 +433,7 @@ class SignHandler extends SignView{
       this.overlay.classList.add('active');
 
       this.ge_file = ge_file;
-      this.addFileElement(ge_file.element);
+      this.addFileElement(ge_file);
 
       if (!ge_file.element.dataset.validate_results) {
 

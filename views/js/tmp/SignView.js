@@ -93,8 +93,11 @@ class SignView {
 
    }
 
-   addFileElement (file) {
-      let file_info = file.element.querySelector('.files__info');
+   addFileElement (ge_file) {
+      console.log('addElem');
+      console.log(ge_file);
+
+      let file_info = ge_file.element.querySelector('.files__info');
       let sign_file = this.modal.querySelector('.sign-modal__file');
       sign_file.innerHTML = file_info.innerHTML;
    }

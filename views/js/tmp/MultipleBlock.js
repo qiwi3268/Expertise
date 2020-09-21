@@ -14,7 +14,7 @@ class MultipleBlock {
 
    element;
 
-   parts = [];
+   parts;
 
    templates_container;
    is_changed = false;
@@ -25,12 +25,12 @@ class MultipleBlock {
       MultipleBlock.multiple_blocks.set(this.element.dataset.name, this);
 
       this.templates_container = this.element.querySelector('.block[data-name="templates_container"]');
+      this.parts = new Map();
 
       this.add_btn = this.element.querySelector('.field-add');
       this.add_btn.addEventListener('click', () => {
 
          let part = new PartBlock(this);
-         this.parts.push(part);
          this.element.appendChild(part.element);
 
       });
@@ -63,7 +63,9 @@ class MultipleBlock {
    }
 
    getPartsDataJSON () {
-      return JSON.stringify(this.parts.map(part => part.data));
+      let parts = [];
+      this.parts.forEach(part => parts.push(part.data));
+      return JSON.stringify(parts);
    }
 
 }

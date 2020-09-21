@@ -1,4 +1,8 @@
 class PartBlock {
+   static parts_counter = 0;
+
+   id;
+
    parent;
 
    element;
@@ -9,6 +13,8 @@ class PartBlock {
    short_block;
 
    data;
+
+   is_saved = false;
 
    constructor (multiple_block) {
       this.parent = multiple_block;
@@ -29,6 +35,8 @@ class PartBlock {
 
          if (part_data.type) {
             this.savePart(part_data);
+
+            console.log(this.parent.parts);
          } else {
             //todo validate block
          }
@@ -37,7 +45,14 @@ class PartBlock {
    }
 
    savePart (part_data) {
-      this.parent.is_changed = 'true';
+      this.parent.is_changed = true;
+
+      if (!this.is_saved) {
+         this.id = PartBlock.parts_counter++;
+         this.parent.parts.set(this.id, this);
+         this.is_saved = true;
+      }
+
       this.data = part_data;
 
       this.cancel_btn.remove();
@@ -58,6 +73,7 @@ class PartBlock {
       let delete_btn = this.short_block.querySelector('.delete');
       delete_btn.addEventListener('click', () => {
          this.parent.is_changed = true;
+         this.parent.parts.delete(this.id);
          this.element.remove();
       });
 
@@ -80,6 +96,7 @@ class PartBlock {
       this.cancel_btn = this.actions.querySelector('.cancel');
       this.cancel_btn.addEventListener('click', () => {
          this.element.remove();
+         this.parent.parts.delete(this.id);
          resizeCard(this.parent.element);
       });
    }

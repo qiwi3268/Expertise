@@ -184,22 +184,34 @@
                 <dir path="/controllers/home/" ext=".php">
                     <file name="main_header" />
                 </dir>
+
+                <dir path="/controllers/home/actions/" ext=".php">
+                    <file name="hierarchy_sidebar" />
+                </dir>
                 <dir path="/controllers/home/application/" ext=".php">
-                    <file name="action_sidebar" />
                     <file name="view_application" />
                     <file name="validation_block_application_form" />
                 </dir>
+                <dir path="/controllers/home/actions/" ext=".php">
+                    <file name="action_sidebar" />
+                </dir>
+
                 <dir path="/views/" ext=".php">
                     <file name="header" />
                 </dir>
                 <dir path="/views/home/" ext=".php">
                     <file name="main_header" />
                 </dir>
-                <dir path="/views/home/application/" ext=".php">
+                <dir path="/views/home/actions/" ext=".php">
                     <file name="hierarchy_sidebar" />
+                </dir>
+                <dir path="/views/home/application/" ext=".php">
                     <file name="view_application" />
+                </dir>
+                <dir path="/views/home/actions/" ext=".php">
                     <file name="action_sidebar" />
                 </dir>
+
                 <dir path="/views/home/modals/" ext=".php">
                     <file name="view_sign" />
                     <file name="error" />

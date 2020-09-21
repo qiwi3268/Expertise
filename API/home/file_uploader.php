@@ -34,7 +34,7 @@ use Lib\DataBase\Transaction;
 //       {result, error_message : текст ошибки}
 //  12 - Загрузка файлов прошла успешно, НО не получилось обновить флаги загрузки файла на сервер в таблице
 //       {result, message : текст ошибки, code: код ошибки}
-//  13 - Все операции прошли усешно
+//  13 - Все прошло успешно
 //       {result, uploaded_files = [{id : id записи в таблице,
 //                                   name : имя файла,
 //                                   hash : хэш файла,
@@ -119,13 +119,11 @@ try {
         $forbiddenSymbols = [','];
 
         if (!$files->checkFilesName($forbiddenSymbols, false)) {
-
-            $errorArr = $files->getErrors();
             
             exit(json_encode([
                 'result'        => 6,
                 'error_message' => 'Не пройдены проверки на запрещенные символы',
-                'error'         => $errorArr
+                'error'         => $files->getErrors()
             ]));
         }
 
@@ -133,13 +131,11 @@ try {
         $maxFileSize = 80;
 
         if (!$files->checkMaxFilesSize($maxFileSize)) {
-
-            $errorArr = $files->getErrors();
             
             exit(json_encode([
                 'result'        => 7,
                 'error_message' => 'Не пройдены проверки на максимально допустимый размер файлов',
-                'error'         => $errorArr
+                'error'         => $files->getErrors()
             ]));
         }
     }
@@ -275,6 +271,7 @@ try {
         ];
     }
 
+    // Все прошло успешно
     exit(json_encode([
         'result'         => 13,
         'uploaded_files' => $uploadedFiles

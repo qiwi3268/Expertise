@@ -290,7 +290,7 @@ class FileUploader {
                SignView.validateFileField(ge_file);
 
             } else {
-               GeFile.setSignState(ge_file.element, 'not_signed');
+               GeFile.setSignState(ge_file, 'not_signed');
             }
 
          })

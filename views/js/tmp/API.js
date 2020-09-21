@@ -18,7 +18,7 @@ class API {
 
                switch (response.result) {
 
-                  case 16:
+                  case 13:
                      resolve(response.uploaded_files);
                      break;
 
@@ -26,12 +26,18 @@ class API {
                      reject('Отсутствуют загруженные файлы');
                      break;
 
-                  case 11:
-                     // todo получить из сообщения
-                     reject('Слишком длинное название файла');
+                  case 9:
+                     // 1046 - Ошибка базы данных, если слишком длинное название у файла
+                     if (response.code === 1046) {
+                        reject('Слишком длинное название файла');
+                     } else {
+                        reject(`message: ${response.message}, code: ${response.code}`);
+                     }
+
                      break;
 
                   default:
+
                      reject(response.error_message || response.message);
                }
 
@@ -81,7 +87,7 @@ class API {
 
                switch (response.result) {
 
-                  case 9:
+                  case 7:
                      resolve(response);
                      break;
 
@@ -264,8 +270,6 @@ class API {
       let form_data = this.getFilesNeedsFormData();
 
       console.log(FileNeeds.getFileNeedsJSON());
-
-      console.log(JSON.parse(FileNeeds.getFileNeedsJSON()));
 
       XHR(
          'post',

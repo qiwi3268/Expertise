@@ -296,6 +296,9 @@ class GeFile {
       this.sign_button.addEventListener('click', () => {
          let sign_state = this.element.dataset.state;
 
+         // console.log('sign');
+         // console.log(this);
+
          if (this.element.dataset.read_only && sign_state !== 'not_signed') {
             SignView.getInstance().open(this);
          } else if (!this.element.dataset.read_only && sign_state !== 'checking') {
@@ -363,7 +366,7 @@ class GeFile {
       let sign_state = document.createElement('DIV');
       sign_state.classList.add('files__state');
       this.element.appendChild(sign_state);
-      GeFile.setSignState(this.element, 'checking');
+      GeFile.setSignState(this, 'checking');
       this.spinStateIcon(this);
    }
 

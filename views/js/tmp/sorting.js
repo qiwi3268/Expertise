@@ -25,10 +25,24 @@ document.addEventListener('DOMContentLoaded', () => {
    function changeTableSize (button, size_header) {
       let form_data = getNavigationTableSizeFormData(button);
 
-      XHR('post', request_urn, form_data, null, 'json', null, null)
+      console.log(new Map(form_data));
+
+      XHR(
+         'post',
+         request_urn,
+         form_data,
+         null,
+         'json',
+         null,
+         null
+      )
          .then(response => {
+            console.log(response);
+
             switch (response.result) {
                case 5:
+
+
                   changeSelectedSize(size_header, button);
                   window.location.reload();
                   break;
