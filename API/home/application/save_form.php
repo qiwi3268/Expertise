@@ -103,6 +103,7 @@ try {
     /** @var string $P_federal_project Федеральный проект */
     /** @var string $P_date_finish_building Дата окончания строительства */
     /** @var string $P_curator Куратор */
+    /** @var string $P_finance_sources_exist_flag Флаг переданных источников финансирования */
     /** @var string $P_finance_sources Истичник(и) финансирования JSON */
     extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
 
@@ -351,7 +352,7 @@ try {
     // Проверка Источников финансирования --------------------------------------------------------------
     //
     // В источники финансирования было внесено изменение
-    if (false) {
+    if ($P_finance_sources_exist_flag == '1') {
 
         try {
 
@@ -575,7 +576,7 @@ try {
 
         // Обновляем флаг сохраненности заявления для новых заявлений
         //todo проверить эту ветку
-        if ($applicationAssoc['is_saved'] == 1) {
+        if ($applicationAssoc['is_saved'] == 0) {
             DataToUpdate::addInt(1, 'is_saved');
         }
 

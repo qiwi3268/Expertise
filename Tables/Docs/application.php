@@ -3,10 +3,16 @@
 
 namespace Tables\Docs;
 
-use Tables\Exceptions\Exception as SelfEx;
+use Tables\Exceptions\Tables as SelfEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
+
 use Tables\Docs\Interfaces\Responsible;
+use Tables\CommonInterfaces\Existent;
+
+
 use Tables\Docs\Traits\Responsible as ResponsibleTrait;
+use Tables\CommonTraits\Existent as ExistentTrait;
+
 use Lib\DataBase\SimpleQuery;
 use Lib\DataBase\ParametrizedQuery;
 
@@ -15,11 +21,12 @@ use Lib\DataBase\ParametrizedQuery;
  * Таблица: <i>'doc_application'</i>
  *
  */
-final class application implements Responsible
+final class application implements Existent, Responsible
 {
 
     static private string $tableName = 'doc_application';
 
+    use ExistentTrait;
     use ResponsibleTrait;
 
 
@@ -241,7 +248,7 @@ final class application implements Responsible
     ): void {
 
         if (!array_key_exists($id_misc, $result) || !array_key_exists($name_misc, $result)) {
-            throw new SelfEx("В массиве result отсутствует(ют) свойства: '{$id_misc}' и/или '{$name_misc}'");
+            throw new SelfEx("В массиве result отсутствует(ют) свойства: '{$id_misc}' и/или '{$name_misc}'", 1);
         }
 
         if (is_null($result[$id_misc])) {
@@ -253,24 +260,6 @@ final class application implements Responsible
             $result[$restructuredName]['name'] = $result[$name_misc];
         }
         unset($result[$id_misc], $result[$name_misc]);
-    }
-
-
-    /**
-     * Предназначен для проверки существования заявления по его id
-     *
-     * @param int $id id заявления
-     * @return bool <b>true</b> запись существует<br>
-     * <b>false</b> в противном случае
-     * @throws DataBaseEx
-     */
-    static public function checkExistById(int $id): bool
-    {
-        $query = "SELECT count(*)>0
-                  FROM `doc_application`
-                  WHERE `id`=?";
-        // Автоматическое преобразование к bool типу
-        return ParametrizedQuery::getSimpleArray($query, [$id])[0];
     }
 
 

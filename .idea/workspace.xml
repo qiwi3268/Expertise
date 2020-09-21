@@ -2,26 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/views/css/tmp/test_1.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/home/test_1.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/home/action_executor.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/action_executor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/home/file_uploader.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/file_uploader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/home/application/save_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/application/save_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/home/internal_signature_verifier.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/internal_signature_verifier.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/home/navigation_cookie.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/navigation_cookie.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/RouteCallbacks/ActionChecker.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/RouteCallbacks/ActionChecker.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/RouteCallbacks/DocumentParameters/DocumentParameters.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/RouteCallbacks/DocumentParameters/DocumentParameters.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Docs/Relations/application.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Docs/Relations/application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Docs/Relations/section_documentation_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Docs/Relations/section_documentation_1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Docs/Relations/total_cc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Docs/Relations/total_cc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Docs/application.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Docs/application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Docs/section_documentation_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Docs/section_documentation_1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Docs/total_cc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Docs/total_cc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/readmy" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/readmy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/view_application.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings/routes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/settings/routes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/multiple_block.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/multiple_block.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/action_sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/actions/action_sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/hierarchy_sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/actions/hierarchy_sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/view_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/create_application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/API.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/FileUploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/FileUploader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/GeFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/GeFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/Misc.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/Misc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/MultipleBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/MultipleBlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/PartBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/PartBlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/SignView.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/SignView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/save_application.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/save_application.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/sorting.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/sorting.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +52,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript File" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -140,14 +140,7 @@
       <workItem from="1600400074408" duration="16311000" />
       <workItem from="1600493631689" duration="13046000" />
       <workItem from="1600579840812" duration="27749000" />
-      <workItem from="1600659199409" duration="9964000" />
-    </task>
-    <task id="LOCAL-00073" summary="01.09.2020_1">
-      <created>1598935576379</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1598935576379</updated>
+      <workItem from="1600659199409" duration="14556000" />
     </task>
     <task id="LOCAL-00074" summary="01.09.2020_2">
       <created>1598936905311</created>
@@ -485,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600659764350</updated>
     </task>
-    <option name="localTasksCounter" value="122" />
+    <task id="LOCAL-00122" summary="21.09.2020_1">
+      <created>1600670934509</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1600670934510</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,7 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="14.09.2020_3" />
     <MESSAGE value="14.09.2020_4" />
     <MESSAGE value="15.09.2020" />
     <MESSAGE value="15.09.2020_1" />
@@ -527,7 +526,8 @@
     <MESSAGE value="20.09.2020_4" />
     <MESSAGE value="20.09.2020_5" />
     <MESSAGE value="21.09.2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="21.09.2020" />
+    <MESSAGE value="21.09.2020_1" />
+    <option name="LAST_COMMIT_MESSAGE" value="21.09.2020_1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="872" y="358" key="#Deployment" timestamp="1599583061353">
@@ -546,10 +546,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1600659753800">
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1600670930100">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600659753800" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600670930100" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600519766620" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600621933946" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
@@ -562,10 +562,10 @@
     </state>
     <state x="186" y="90" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600659246037" />
     <state x="248" y="121" key="MergeDialog/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596186835322" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1599566568501">
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1600687401569">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1599566568501" />
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600687401569" />
     <state x="735" y="231" key="RollbackChangesDialog" timestamp="1598853548198">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -589,10 +589,10 @@
     </state>
     <state x="302" y="56" width="614" height="1035" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1598502743003" />
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597499951448" />
-    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1600667015495">
+    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1600688711918">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600667015495" />
+    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600688711918" />
     <state x="-1180" y="531" width="555" height="534" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600519237625" />
     <state x="571" y="185" width="1495" height="1020" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600609806307" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />

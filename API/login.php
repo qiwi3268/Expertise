@@ -1,6 +1,6 @@
 <?php
 
-use Lib\Exceptions\DataBase as DataBaseEx;
+
 use core\Classes\Session;
 use Tables\user;
 

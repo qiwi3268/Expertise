@@ -68,7 +68,7 @@ try {
     if (isset($P_data_per_page)) {
 
         try {
-            $primitiveValidator->validateSomeInclusions($P_data_per_page, 25, 50, 75);
+            $primitiveValidator->validateSomeInclusions($P_data_per_page, '25', '50', '75');
         } catch (PrimitiveValidatorEx $e) {
             exit_incorrectValue('data_per_page', $P_data_per_page);
         }

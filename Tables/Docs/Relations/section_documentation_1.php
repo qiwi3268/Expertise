@@ -51,4 +51,19 @@ final class section_documentation_1
         return $children;
     }
 
+
+    /**
+     * Предназначен для получения id главного документа (сводного замечания / заключения)
+     *
+     * @param int $id
+     * @return int id главного документа
+     * @throws DataBaseEx
+     */
+    static public function getIdMainDocumentById(int $id): int
+    {
+        $query = "SELECT `id_main_document`
+				  FROM `doc_section_documentation_1`
+                  WHERE `id`=?";
+        return ParametrizedQuery::getSimpleArray($query, [$id])[0];
+    }
 }

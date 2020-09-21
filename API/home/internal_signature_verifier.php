@@ -95,7 +95,7 @@ try {
         $logger->write($errorMessage);
 
         exit(json_encode([
-            'result'  => 3,
+            'result'        => 3,
             'error_message' => $errorMessage
         ]));
     }

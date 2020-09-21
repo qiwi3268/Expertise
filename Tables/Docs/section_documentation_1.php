@@ -4,8 +4,13 @@
 namespace Tables\Docs;
 
 use Lib\Exceptions\DataBase as DataBaseEx;
+
 use Tables\Docs\Interfaces\Responsible;
+use Tables\CommonInterfaces\Existent;
+
 use Tables\Docs\Traits\Responsible as ResponsibleTrait;
+use Tables\CommonTraits\Existent as ExistentTrait;
+
 use Lib\DataBase\ParametrizedQuery;
 
 
@@ -13,11 +18,12 @@ use Lib\DataBase\ParametrizedQuery;
  * Таблица: <i>'doc_section_documentation_1'</i>
  *
  */
-final class section_documentation_1 implements Responsible
+final class section_documentation_1 implements Existent, Responsible
 {
 
     static private string $tableName = 'doc_section_documentation_1';
 
+    use ExistentTrait;
     use ResponsibleTrait;
 
 

@@ -1,0 +1,22 @@
+.view {
+    flex-grow: 1;
+}
+
+.view__header {
+    background-color: #ffffff;
+    border-radius: 4px;
+    display: flex;
+    /*min-height: 70px;*/
+    align-items: center;
+
+    padding: 10px 10px 10px 20px;
+
+}
+
+.view__document {
+    margin: 0px 20px 0px 0px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    /*width: 30%;*/
+
+}

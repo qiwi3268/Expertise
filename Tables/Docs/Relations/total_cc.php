@@ -6,6 +6,7 @@ namespace Tables\Docs\Relations;
 use Lib\Exceptions\DataBase as DataBaseEx;
 use Exception;
 use Lib\DataBase\ParametrizedQuery;
+use Tables\Docs\Relations\application;
 
 
 /**
@@ -81,5 +82,21 @@ final class total_cc
             'id'       => $id_total_cc,
             'children' => $sections
         ];
+    }
+
+
+    /**
+     * Предназначен для получения id главного документа (заявления)
+     *
+     * @param int $id
+     * @return int id главного документа
+     * @throws DataBaseEx
+     */
+    static public function getIdMainDocumentById(int $id): int
+    {
+        $query = "SELECT `id_main_document`
+				  FROM `doc_total_cc`
+                  WHERE `id`=?";
+        return ParametrizedQuery::getSimpleArray($query, [$id])[0];
     }
 }

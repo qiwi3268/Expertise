@@ -170,13 +170,10 @@
         </page>
 
         <page urn="home/application/view">
-            <callbacks>
-                <namespace name="\Classes\RouteCallbacks\DocumentParameters">
-                    <class name="ExpertiseCard" type="instance">
-                        <method name="defineDocumentParameters" />
-                    </class>
-                </namespace>
-            </callbacks>
+
+            <callback_template id="DocumentParameters_ExpertiseCard" />
+            <callback_template id="DocumentExistChecker" />
+
             <files>
                 <dir path="/controllers/" ext=".php">
                     <file name="header" />
@@ -296,6 +293,29 @@
             <callback_template id="3" />
         </page>
 
+        <page urn="home/test_1">
+            <files>
+                <dir path="/controllers/" ext=".php">
+                    <file name="header" />
+                </dir>
+                <dir path="/views/" ext=".php">
+                    <file name="header" />
+                </dir>
+                <dir path="/controllers/home/" ext=".php">
+                    <file name="main_header" />
+                </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="main_header" />
+                </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="test_1" />
+                </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="main_footer" />
+                </dir>
+            </files>
+        </page>
+
     </pages>
 
 
@@ -323,6 +343,30 @@
                         <method name="construct"/>
                         <method name="checkAccess"/>
                         <method name="checkIssetExecutionCallback"/>
+                    </class>
+                </namespace>
+            </callbacks>
+        </template>
+
+
+
+
+        <template id="DocumentParameters_ExpertiseCard">
+            <callbacks>
+                <namespace name="\Classes\RouteCallbacks\DocumentParameters">
+                    <class name="ExpertiseCard" type="instance">
+                        <method name="defineDocumentParameters" />
+                    </class>
+                </namespace>
+            </callbacks>
+        </template>
+
+        <template id="DocumentExistChecker">
+            <callbacks>
+                <namespace name="\Classes\RouteCallbacks">
+                    <class name="DocumentExistChecker" type="instance">
+                        <method name="construct"/>
+                        <method name="checkDocumentExist"/>
                     </class>
                 </namespace>
             </callbacks>

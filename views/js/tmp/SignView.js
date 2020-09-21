@@ -77,9 +77,9 @@ class SignView {
 
    /**
     * Добавляет файл и результаты проверки подписей и
-    * открывает модальное окно просмотра подписей
+    * открывает модуль просмотра подписей
     *
-    * @param {GeFile} ge_file - файл, для которого
+    * @param {GeFile} ge_file - файл, для которого проматриваются результаты проверок
     */
    open (ge_file) {
       this.modal.classList.add('active');
@@ -93,15 +93,24 @@ class SignView {
 
    }
 
+   /**
+    * Добвляет файл в модальное окно модуля просмотра подписей
+    *
+    * @param {GeFile} ge_file - файл, который добавляется в модальное окно
+    */
    addFileElement (ge_file) {
-      console.log('addElem');
-      console.log(ge_file);
-
       let file_info = ge_file.element.querySelector('.files__info');
       let sign_file = this.modal.querySelector('.sign-modal__file');
       sign_file.innerHTML = file_info.innerHTML;
    }
 
+   /**
+    * Добавляет результаты проверки подписей в модальное окно
+    * просмотра подписей
+    *
+    * @param {string} validate_results_json - результаты проверки подписей
+    * файла в формате json
+    */
    fillSignsInfo (validate_results_json) {
       this.validate_info.dataset.active = 'true';
       this.validate_info.innerHTML = '';
@@ -112,6 +121,12 @@ class SignView {
       });
    }
 
+   /**
+    * Создает блок в с информацией о подписи
+    *
+    * @param {Object} result -
+    * @returns {HTMLElement}
+    */
    createSignInfo (result) {
       let sign = document.createElement('DIV');
       sign.classList.add('sign-modal__sign');
