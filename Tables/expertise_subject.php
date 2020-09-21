@@ -3,17 +3,24 @@
 
 namespace Tables;
 
+use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\DataBase\ParametrizedQuery;
 
 
+/**
+ * Таблица: <i>'expertise_subject'</i>
+ *
+ */
 final class expertise_subject
 {
 
-    // Предназначен для создания записи Предмета экспертизы к заявлению
-    // Принимает параметры-----------------------------------
-    // id_application       int : id заявления
-    // id_expertise_subject int : id Предмета экспертизы из справочника
-    //
+    /**
+     * Предназначен для создания записи предмета экспертизы к заявлению
+     *
+     * @param int $id_application id заявления
+     * @param int $id_expertise_subject id предмета экспертизы из справочника
+     * @throws DataBaseEx
+     */
     static public function create(int $id_application, int $id_expertise_subject): void
     {
         $query = "INSERT INTO `expertise_subject`
@@ -24,14 +31,14 @@ final class expertise_subject
     }
 
 
-    // Предназначен для получения простого массива id Предметов экспертизы,
-    // принадлежащим заявлению
-    // Принимает параметры-----------------------------------
-    // id_application  int : id заявления
-    // Возвращает параметры----------------------------------
-    // array : в случае, если к заявлению прикреплек Предмет
-    // null  : в противном случае
-    //
+    /**
+     * Предназначен для получения простого массива id предметов экспертизы по id заявления
+     *
+     * @param int $id_application id заявления
+     * @return array|null <b>array</b> индексный массив, если записи существуют<br>
+     * <b>null</b> в противном случае
+     * @throws DataBaseEx
+     */
     static public function getIdsByIdApplication(int $id_application): ?array
     {
         $query = "SELECT `id_expertise_subject` AS `id`
@@ -42,11 +49,13 @@ final class expertise_subject
     }
 
 
-    // Предназначен для удаления записи Предмета экспертизы к заявлению
-    // Принимает параметры-----------------------------------
-    // id_application       int : id заявления
-    // id_expertise_subject int : id Предмета экспертизы из справочника
-    //
+    /**
+     * Предназначен для удаления записи предмета экспертизы по id заявления
+     *
+     * @param int $id_application id заявления
+     * @param int $id_expertise_subject id предмета экспертизы из справочника
+     * @throws DataBaseEx
+     */
     static public function delete(int $id_application, int $id_expertise_subject): void
     {
         $query = "DELETE

@@ -13,7 +13,7 @@ use Lib\DataBase\ParametrizedQuery;
  * родительскими элементами
  *
  */
-class section_documentation_1
+final class section_documentation_1
 {
 
     /**
@@ -37,7 +37,7 @@ class section_documentation_1
 
     // Метод документа как родительского
     // todo documentation
-    static public function getChildrenByIds(array $ids_section)
+    static public function getChildrenByIds(array $ids_section): array
     {
         $children = [];
         //todo обращение к документам замечаний

@@ -19,8 +19,8 @@ trait Responsible
 
     /**
      * Реализация метода интерфейса
+     * {@see \Tables\Docs\Interfaces\Responsible::getResponsibleTypeById()}
      *
-     * @see \Tables\Docs\Interfaces\Responsible::getResponsibleTypeById()
      * @param int $id_main_document
      * @return string
      * @throws DataBaseEx
@@ -38,8 +38,8 @@ trait Responsible
 
     /**
      * Реализация метода интерфейса
+     * {@see \Tables\Docs\Interfaces\Responsible::updateResponsibleTypeById()}
      *
-     * @see \Tables\Docs\Interfaces\Responsible::updateResponsibleTypeById()
      * @param int $id_main_document
      * @param string $responsible_type
      * @throws DataBaseEx

@@ -3,21 +3,29 @@
 
 namespace Tables\Files\Traits;
 
+use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\DataBase\SimpleQuery;
 use Lib\DataBase\ParametrizedQuery;
 
 
-// Трейт, реализующий интерфейс Tables\Files\Interfaces\FileTable
-// Для использования трейта необходимо, чтобы перед его включением было объявлено
-// статическое свойство tableName с соответствующим именем таблицы
-//
+
+/**
+ * Реализует интерфейс {@see \Tables\Files\Interfaces\FileTable}
+ *
+ * <b>*</b> Для использования трейта необходимо, чтобы перед его включением было объявлено
+ * статическое свойство <i>tableName</i> с соответствующим именем таблицы
+ *
+ */
 trait FileTable
 {
 
-    // Предназначен для удаления записи из файловой таблицы
-    // Принимает параметры-----------------------------------
-    // id int : id записи
-    //
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Files\Interfaces\FileTable::deleteById()}
+     *
+     * @param int $id
+     * @throws DataBaseEx
+     */
     static public function deleteById(int $id): void
     {
         $table = self::$tableName;
@@ -29,10 +37,13 @@ trait FileTable
     }
 
 
-    // Предназначен для установки флага загрузки файла на сервер
-    // Принимает параметры-----------------------------------
-    // id int : id записи
-    //
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Files\Interfaces\FileTable::setUploadedById()}
+     *
+     * @param int $id
+     * @throws DataBaseEx
+     */
     static public function setUploadedById(int $id): void
     {
         $table = self::$tableName;
@@ -44,13 +55,14 @@ trait FileTable
     }
 
 
-    // Предназначен для получения ассоциативного массива записи по id
-    // Принимает параметры-----------------------------------
-    // id int : id записи
-    // Возвращает параметры-----------------------------------
-    // array : в случае, если запись существует
-    // null  : в противном случае
-    //
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Files\Interfaces\FileTable::getAssocById()}
+     *
+     * @param int $id
+     * @return array|null
+     * @throws DataBaseEx
+     */
     static public function getAssocById(int $id): ?array
     {
         $table = self::$tableName;
@@ -63,14 +75,15 @@ trait FileTable
     }
 
 
-    // Предназначен для получения ассоциативного массива записи по по id главного документа и её hash'у
-    // Принимает параметры-----------------------------------
-    // id_main_document int : id главного документа
-    // hash          string : hash файла
-    // Возвращает параметры-----------------------------------
-    // array : в случае, если запись существует
-    // null  : в противном случае
-    //
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Files\Interfaces\FileTable::getAssocByIdMainDocumentAndHash()}
+     *
+     * @param int $id_main_document
+     * @param string $hash
+     * @return array|null
+     * @throws DataBaseEx
+     */
     static public function getAssocByIdMainDocumentAndHash(int $id_main_document, string $hash): ?array
     {
         $table = self::$tableName;
@@ -83,14 +96,15 @@ trait FileTable
     }
 
 
-    // Предназначен для получения id записи по id главного документа и её hash'у
-    // Принимает параметры-----------------------------------
-    // id_main_document int : id главного документа
-    // hash          string : hash записи
-    // Возвращает параметры-----------------------------------
-    // int  : в случае, если запись существует
-    // null : в противном случае
-    //
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Files\Interfaces\FileTable::getIdByIdMainDocumentAndHash()}
+     *
+     * @param int $id_main_document
+     * @param string $hash
+     * @return int|null
+     * @throws DataBaseEx
+     */
     static public function getIdByIdMainDocumentAndHash(int $id_main_document, string $hash): ?int
     {
         $table = self::$tableName;
@@ -103,13 +117,14 @@ trait FileTable
     }
 
 
-    // Предназначен для проверки существования записи по id
-    // Принимает параметры-----------------------------------
-    // id  int : id записи
-    // Возвращает параметры----------------------------------
-    // true   : запись существует
-    // false  : запись не существует
-    //
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Files\Interfaces\FileTable::checkExistById()}
+     *
+     * @param int $id
+     * @return bool
+     * @throws DataBaseEx
+     */
     static public function checkExistById(int $id): bool
     {
         $table = self::$tableName;
@@ -122,14 +137,15 @@ trait FileTable
     }
 
 
-    // Предназначен для получения ассоциативных массивов нужных файлов к главному документу по его id
-    // Принимает параметры-----------------------------------
-    // id_main_document int : id главного документа
-    // Возвращает параметры----------------------------------
-    // array : в случае, если запись сущестует(ют)
-    // null  : в противном случае
-    //
-    static public function getNeedsAssocByIdMainDocument(int $id_main_document): ?array
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Files\Interfaces\FileTable::getAllAssocWhereNeedsByIdMainDocument()}
+     *
+     * @param int $id_main_document
+     * @return array|null
+     * @throws DataBaseEx
+     */
+    static public function getAllAssocWhereNeedsByIdMainDocument(int $id_main_document): ?array
     {
         $table = self::$tableName;
 
@@ -141,12 +157,14 @@ trait FileTable
     }
 
 
-    // Предназнчен для получения ассоциативного массива ненужных файлов
-    // Возвращает параметры-----------------------------------
-    // array : в случае, если записи существуют
-    // null  : в противном случае
-    //
-    static public function getNoNeedsAssoc(): ?array
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Files\Interfaces\FileTable::getAllAssocWhereNoNeeds()}
+     *
+     * @return array|null
+     * @throws DataBaseEx
+     */
+    static public function getAllAssocWhereNoNeeds(): ?array
     {
         $table = self::$tableName;
 
@@ -159,12 +177,14 @@ trait FileTable
     }
 
 
-    // Предназначен для установки поля 'is_needs' в 1 по id записи
-    // Помимо установки флага is_needs - удаляем флаг cron_deleted_flag и date_cron_deleted_flag
-    // Принимает параметры-----------------------------------
-    // id int : id записи
-    //
-    static public function setIsNeedsToTrueById(int $id): void
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Files\Interfaces\FileTable::setNeedsToTrueById()}
+     *
+     * @param int $id
+     * @throws DataBaseEx
+     */
+    static public function setNeedsToTrueById(int $id): void
     {
         $table = self::$tableName;
 
@@ -175,11 +195,14 @@ trait FileTable
     }
 
 
-    // Предназначен для установки поля 'is_needs' в 0 по id записи
-    // Принимает параметры-----------------------------------
-    // id int : id записи
-    //
-    static public function setIsNeedsToFalseById(int $id): void
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Files\Interfaces\FileTable::setNeedsToFalseById()}
+     *
+     * @param int $id
+     * @throws DataBaseEx
+     */
+    static public function setNeedsToFalseById(int $id): void
     {
         $table = self::$tableName;
 
@@ -190,10 +213,13 @@ trait FileTable
     }
 
 
-    // Предназначен для установки флага удаления крона по id
-    // Принимает параметры-----------------------------------
-    // id int : id записи
-    //
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Files\Interfaces\FileTable::setCronDeletedFlagById()}
+     *
+     * @param int $id
+     * @throws DataBaseEx
+     */
     static public function setCronDeletedFlagById(int $id): void
     {
         $table = self::$tableName;

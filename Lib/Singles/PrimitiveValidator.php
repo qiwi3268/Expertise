@@ -68,14 +68,15 @@ class PrimitiveValidator
      * Предназначен для получения ассоциативного массива, полученного декодированием входной json-строки
      *
      * @param string $json входной json
+     * @param int $depth глубина рекурсии
      * @return array декодированный массив из json-строки
      * @throws SelfEx
      */
-    public function getAssocArrayFromJson(string $json): array
+    public function getAssocArrayFromJson(string $json, int $depth = 512): array
     {
         try {
 
-            return json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+            return json_decode($json, true, $depth, JSON_THROW_ON_ERROR);
         } catch (jsonException $e) {
 
             $msg = "jsonException message: '{$e->getMessage()}', code: '{$e->getCode()}'";

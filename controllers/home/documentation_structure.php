@@ -4,7 +4,7 @@ use Lib\Singles\NodeStructure;
 use Tables\Structures\documentation_1;
 
 
-$nodeStructure = new NodeStructure(documentation_1::getAllActive());
+$nodeStructure = new NodeStructure(documentation_1::getAllAssocWhereActive());
 $depthNodeStructure = $nodeStructure->getDepthStructure();
 
 //var_dump($depthNodeStructure);

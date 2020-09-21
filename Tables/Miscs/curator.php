@@ -4,8 +4,12 @@
 namespace Tables\Miscs;
 
 
-// Справочник "Куратор"
-//
+/**
+ * Таблица: <i>'misc_curator'</i>
+ *
+ * Справочник "Куратор"
+ *
+ */
 final class curator implements Interfaces\SingleMiscValidate
 {
 

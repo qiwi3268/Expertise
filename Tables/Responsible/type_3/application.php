@@ -22,8 +22,8 @@ final class application implements ResponsibleType3
 
     /**
      * Реализация метода интерфейса
+     * {@see \Tables\Responsible\type_3\Interfaces\ResponsibleType3::deleteResponsibleByIdMainDocument()}
      *
-     * @see \Tables\Responsible\type_3\Interfaces\ResponsibleType3::deleteResponsibleByIdMainDocument()
      * @param int $id_main_document
      * @throws DataBaseEx
      */
@@ -39,8 +39,8 @@ final class application implements ResponsibleType3
 
     /**
      * Реализация метода интерфейса
+     * {@see \Tables\Responsible\type_3\Interfaces\ResponsibleType3::getResponsibleByIdMainDocument()}
      *
-     * @see \Tables\Responsible\type_3\Interfaces\ResponsibleType3::getResponsibleByIdMainDocument()
      * @param int $id_main_document
      * @return array|null
      * @throws DataBaseEx
@@ -69,8 +69,8 @@ final class application implements ResponsibleType3
 
     /**
      * Реализация метода интерфейса
+     * {@see \Tables\Responsible\type_3\Interfaces\ResponsibleType3::create()}
      *
-     * @see \Tables\Responsible\type_3\Interfaces\ResponsibleType3::create()
      * @param int $id_main_document
      * @param int $id_applicant_access_group_type
      * @return int

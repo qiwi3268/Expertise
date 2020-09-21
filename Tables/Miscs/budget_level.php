@@ -4,8 +4,12 @@
 namespace Tables\Miscs;
 
 
-// Справочник "Уровень бюджета"
-//
+/**
+ * Таблица: <i>'misc_budget_level'</i>
+ *
+ * Справочник "Уровень бюджета"
+ *
+ */
 final class budget_level implements Interfaces\SingleMiscValidate
 {
 

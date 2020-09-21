@@ -24,7 +24,7 @@ final class section_documentation_1 implements Responsible
     /**
      * Предназначен для создания записи в таблице
      *
-     * @param int $id_main_document
+     * @param int $id_main_document id главного документа
      * @param int $id_main_block
      * @return int id созданной записи
      * @throws DataBaseEx

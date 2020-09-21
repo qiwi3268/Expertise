@@ -2,7 +2,7 @@
 
 
 use core\Classes\Session;
-
+use Lib\Files\Mappings\FilesTableMapping;
 
 // API предназначен для проверки возможности выгрузить указанный файл в констекте заявления
 //
@@ -10,36 +10,30 @@ use core\Classes\Session;
 //	1  - Нет обязательных параметров POST запроса
 //       {result, error_message : текст ошибки}
 //  2  - todo забронировано под проверку на доступ к заявлению
-//  3  - Запрашиваемого маппинга не существует
+//  3  - Ошибка в указанном маппинге
 //       {result, error_message : текст ошибки}
-//  4  - Указанного в маппинге класса не существует
+//  4  - Запрашиваемой записи файла не существует в БД
 //       {result, error_message : текст ошибки}
-//  5  - Указанный в маппинге класс не реализует требуемый интерфейс
+//  5  - У запрашиваемой записи файла в БД не проставлен флаг загрузки на сервер
 //       {result, error_message : текст ошибки}
-//  6  - Запрашиваемой записи файла не существует в БД
+//  6  - Файл физически отсутствует на сервере
 //       {result, error_message : текст ошибки}
-//  7  - У запрашиваемой записи файла в БД не проставлен флаг загрузки на сервер
-//       {result, error_message : текст ошибки}
-//  8  - Файл физически отсутствует на сервере
-//       {result, error_message : текст ошибки}
-//  9  - Все проверки прошли успешно
+//  7  - Все прошло успешно
 //       {result, fs_name, file_name}
 //       * fs_name - полный путь к файлу на сервере
-//  10 - Непредвиденная ошибка
+//  8  - Непредвиденная ошибка
 //       {result, message : текст ошибки, code: код ошибки}
 
 // Проверка наличия обязательных параметров
 if (!checkParamsPOST('id_application', 'id_file', 'mapping_level_1', 'mapping_level_2')) {
+
     exit(json_encode([
-        'result' => 1,
+        'result'        => 1,
         'error_message' => 'Нет обязательных параметров POST запроса'
     ]));
 }
 
 try {
-
-    $_POST['id_application'];
-
 
     /** @var string $P_id_application */
     /** @var string $P_id_file */
@@ -54,38 +48,34 @@ try {
     }
 
     // Блок проверки маппинга
-    $Mapping = new \Lib\Files\Mappings\FilesTableMapping($P_mapping_level_1, $P_mapping_level_2);
+    $mapping = new FilesTableMapping($P_mapping_level_1, $P_mapping_level_2);
 
-    $mappingErrorCode = $Mapping->getErrorCode();
+    if (!is_null($mapping->getErrorCode())) {
 
-    if (!is_null($mappingErrorCode)) {
-
-        $errorMessage = $Mapping->getErrorText();
-
-        switch ($mappingErrorCode) {
-
-            case 1 : exit(json_encode(['result' => 3, 'error_message' => $errorMessage]));
-            case 2 : exit(json_encode(['result' => 4, 'error_message' => $errorMessage]));
-            case 3 : exit(json_encode(['result' => 5, 'error_message' => $errorMessage]));
-        }
+        exit(json_encode([
+            'result'        => 3,
+            'error_message' => $mapping->getErrorText()
+        ]));
     }
 
-    $Class = $Mapping->getClassName();
+    $class = $mapping->getClassName();
 
-    $fileAssoc = $Class::getAssocById($P_id_file);
+    $fileAssoc = $class::getAssocById($P_id_file);
 
     // Проверка на существование записи в таблице
     if (is_null($fileAssoc)) {
+
         exit(json_encode([
-            'result'        => 6,
+            'result'        => 4,
             'error_message' => 'Запрашиваемой записи файла не существует в БД'
         ]));
     }
 
     // Проверка на успешную загрузку файла на сервер
     if ($fileAssoc['is_uploaded'] == 0) {
+
         exit(json_encode([
-            'result'        => 7,
+            'result'        => 5,
             'error_message' => 'У запрашиваемой записи файла в БД не проставлен флаг загрузки на сервер'
         ]));
     }
@@ -95,15 +85,16 @@ try {
 
     // Проверка файла на физическое существование
     if (!file_exists($filePath)) {
+
         exit(json_encode([
-            'result'        => 8,
+            'result'        => 6,
             'error_message' => 'Файл физически отсутствует на сервере'
         ]));
     }
 
-    // Все проверки прошли успешно
+    // Все прошло успешно
     exit(json_encode([
-        'result'    => 9,
+        'result'    => 7,
         'fs_name'   => $filePath,
         'file_name' => $fileAssoc['file_name']
     ]));
@@ -112,7 +103,7 @@ try {
 } catch (Exception $e) {
 
     exit(json_encode([
-        'result'  => 10,
+        'result'  => 8,
         'message' => $e->getMessage(),
         'code'    => $e->getCode()
     ]));

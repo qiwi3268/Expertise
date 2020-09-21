@@ -3,31 +3,40 @@
 
 namespace Tables;
 
+use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\DataBase\ParametrizedQuery;
 use Lib\DataBase\SimpleQuery;
-use Tables\Exceptions\Exception as SelfEx;
 use Tables\Helpers\Helper as TableHelper;
 
 
+/**
+ * Таблица: <i>'user'</i>
+ *
+ */
 final class user
 {
 
-
-    // Предназначен для создания записи пользователя
-    // Принимает параметры-----------------------------------
-    // Все параметры, согласно таблице `user`
-    // За исключением:
-    // id_user_info_department int/NULL : для заявителя NULL
-    // id_user_info_position   int/NULL : для заявителя NULL
-    // Возвращает параметры-----------------------------------
-    // id int : id созданной записи
-    //
+    /**
+     * Предназначен для создания записи пользователя
+     *
+     * @param string $last_name
+     * @param string $first_name
+     * @param string $middle_name
+     * @param int|null $id_user_info_department для заявителя NULL
+     * @param int|null $id_user_info_position для заявителя NULL
+     * @param string $email
+     * @param string $login
+     * @param string $password
+     * @param string $hash
+     * @return int
+     * @throws DataBaseEx
+     */
     static public function create(
         string $last_name,
         string $first_name,
         string $middle_name,
-        ?int $id_sys_department,
-        ?int $id_sys_position,
+        ?int $id_user_info_department,
+        ?int $id_user_info_position,
         string $email,
         string $login,
         string $password,
@@ -38,8 +47,8 @@ final class user
             $last_name,
             $first_name,
             $middle_name,
-            $id_sys_department,
-            $id_sys_position,
+            $id_user_info_department,
+            $id_user_info_position,
             $email,
             $login,
             $password,
@@ -55,13 +64,14 @@ final class user
     }
 
 
-    // Предназначен для получения ассициативного массива пользователя по логину
-    // Принимает параметры-----------------------------------
-    // login string : логин пользователя
-    // Возвращает параметры-----------------------------------
-    // array : в случае, если пользователь существует
-    // null  : в противном случае
-    //
+    /**
+     * Предназначен для получения ассоциативного массива пользователя по его логину
+     *
+     * @param string $login логин пользователя
+     * @return array|null <b>array</b> ассоциативный массив, если запись существует<br>
+     * <b>null</b> в противном случае
+     * @throws DataBaseEx
+     */
     static public function getAssocByLogin(string $login): ?array
     {
         $query = "SELECT `user`.`id`,
@@ -87,15 +97,15 @@ final class user
     }
 
 
-    // Предназначен для получения ассициативного массива ролей пользователя по его id
-    // Принимает параметры-----------------------------------
-    // id int : id пользователя
-    // Возвращает параметры-----------------------------------
-    // array : в случае, если роли пользователя существуют
-    // null  : в противном случае
-    //
-    //todo среднее пересмотреть запрос
-    static public function getRolesById(int $id): ?array
+    /**
+     * Предназначен для получения ассоциативных массивов ролей пользователя по его id
+     *
+     * @param int $id id пользователя
+     * @return array|null <b>array</b> индексный массив с ассоциативными массива внутри, если записи существуют<br>
+     * <b>null</b> в противном случае
+     * @throws DataBaseEx
+     */
+    static public function getAllRolesAssocByUserId(int $id): ?array
     {
         $query = "SELECT `user_info_role`.`name`,
                          `user_info_role`.`system_value`
@@ -109,10 +119,12 @@ final class user
     }
 
 
-    // Предназначен для инкрементирования счетчика неверно введенных паролей пользователя по его id
-    // Принимает параметры-----------------------------------
-    // id int : id пользователя
-    //
+    /**
+     * Предназначен для инкрементирования счетчика неверно введенных паролей пользователя по его id
+     *
+     * @param int $id id пользователя
+     * @throws DataBaseEx
+     */
     static public function incrementIncorrectPasswordInputById(int $id): void
     {
         $query = "UPDATE `user`
@@ -123,10 +135,12 @@ final class user
     }
 
 
-    // Предназначен для обнуления счетчика неверно введенных паролей пользователя по его id
-    // Принимает параметры-----------------------------------
-    // id int : id пользователя
-    //
+    /**
+     * Предназначен для обнуления счетчика неверно введенных паролей пользователя по его id
+     *
+     * @param int $id id пользователя
+     * @throws DataBaseEx
+     */
     static public function zeroingIncorrectPasswordInputById(int $id): void
     {
         $query = "UPDATE `user`
@@ -137,11 +151,13 @@ final class user
     }
 
 
-    // Предназначен для бана пользователя по его id
-    // Принимает параметры-----------------------------------
-    // id int : id пользователя
-    //
-    static public function banById(int $id): void
+    /**
+     * Предназначен для бана пользователя по его id
+     *
+     * @param int $id id пользователя
+     * @throws DataBaseEx
+     */
+    static public function setBanById(int $id): void
     {
         $query = "UPDATE `user`
                   SET `is_banned`=1

@@ -8,26 +8,31 @@ use Lib\DataBase\ParametrizedQuery;
 
 
 /**
+ * Реализует интерфейс {@see \Tables\FinancingSources\Interfaces\FinancingSourceTable}
+ *
  * <b>*</b> Для использования трейта необходимо, чтобы перед его включением было объявлено
  * статическое свойство <i>tableName</i> с соответствующим именем таблицы
  *
  */
-trait Deleter
+trait FinancingSourceTable
 {
 
     /**
-     * Предназначен для удаления всех записей источников финансирования, относящихся к заявлению по его id
+     * Реализация метода интерфейса
+     * {@see \Tables\FinancingSources\Interfaces\FinancingSourceTable::getAllAssocByIdApplication()}
      *
-     * @param int $id_application id заявления
+     * @param int $id_application
+     * @return array|null
      * @throws DataBaseEx
      */
-    static public function deleteAllByIdApplication(int $id_application): void
+    static public function getAllAssocByIdApplication(int $id_application): ?array
     {
         $table = self::$tableName;
 
-        $query = "DELETE
+        $query = "SELECT *
                   FROM `{$table}`
                   WHERE `id_application`=?";
-        ParametrizedQuery::set($query, [$id_application]);
+        $result = ParametrizedQuery::getFetchAssoc($query, [$id_application]);
+        return $result ? $result : null;
     }
 }

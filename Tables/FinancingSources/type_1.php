@@ -3,13 +3,18 @@
 
 namespace Tables\FinancingSources;
 
+use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\DataBase\ParametrizedQuery;
 use Tables\Helpers\Helper as TableHelper;
 
 
-// Источники финансирования
-// Бюджетные средства
-class type_1
+/**
+ * Таблица: <i>'financing_source_type_1'</i>
+ *
+ * Бюджетные средства
+ *
+ */
+final class type_1 implements Interfaces\FinancingSourceTable
 {
 
     static private string $tableName = 'financing_source_type_1';
@@ -17,14 +22,15 @@ class type_1
     use Traits\Deleter;
 
 
-    // Предназначен для получения ассоциативного массива источников финансирования по id заявления
-    // Принимает параметры-----------------------------------
-    // id_application int : id заявления
-    // Возвращает параметры----------------------------------
-    // array : в случае, если источники финансирования существуют
-    // null  : в противном случае
-    //
-    static public function getAssocByIdApplication(int $id_application): ?array
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\FinancingSources\Interfaces\FinancingSourceTable::getAllAssocByIdApplication()}
+     *
+     * @param int $id_application
+     * @return array|null
+     * @throws DataBaseEx
+     */
+    static public function getAllAssocByIdApplication(int $id_application): ?array
     {
         $query = "SELECT `financing_source_type_1`.`id`,
                          `misc_budget_level`.`name` AS `name_budget_level`,
@@ -39,14 +45,22 @@ class type_1
     }
 
 
-    // Предназначен для создания записи инсточника финансирования
-    // Принимает параметры-----------------------------------
-    // * согласно таблице financing_source_type_1
-    // Возвращает параметры----------------------------------
-    // id int : id созданной записи
-    //
-    static public function create(int $id_application, ?int $id_budget_level, int $no_data, ?int $percent): int
-    {
+    /**
+     * Предназначен для создания записи источника финансирования
+     *
+     * @param int $id_application
+     * @param int|null $id_budget_level
+     * @param int $no_data
+     * @param int|null $percent
+     * @return int id созданной записи
+     * @throws DataBaseEx
+     */
+    static public function create(
+        int $id_application,
+        ?int $id_budget_level,
+        int $no_data,
+        ?int $percent
+    ): int {
         $bindParams = [$id_application, $id_budget_level, $no_data, $percent];
         $values =TableHelper::getValuesWithoutNull($bindParams);
 

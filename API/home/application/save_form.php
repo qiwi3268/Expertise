@@ -1,15 +1,17 @@
 <?php
 
 
+use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
 use Lib\Exceptions\MiscValidator as MiscValidatorEx;
 use Classes\Exceptions\ApplicationFormMiscValidator as ApplicationFormMiscValidatorEx;
 
+use core\Classes\Session;
+use Lib\DataBase\Transaction;
+use Lib\Singles\PrimitiveValidator;
 use Classes\Application\DataToUpdate;
 use Classes\Application\Miscs\Validation\SingleMisc as SingleMiscValidator;
 use Classes\Application\Miscs\Validation\DependentMisc as DependentMiscValidator;
-
-use core\Classes\Session;
 use Tables\expertise_subject;
 use Tables\Docs\application;
 
@@ -129,110 +131,124 @@ try {
         // чтобы не могли через html проверять заявления
         if (!$applicationExist || !$canSaveApplication) {
 
-            exit(json_encode(['result' => 2, 'error_message' => "У заявителя отсуствуют права на сохранение заявления id: $form_applicationID"]));
+            exit(json_encode([
+                'result'        => 2,
+                'error_message' => "У заявителя отсуствуют права на сохранение заявления id: {$form_applicationID}"
+            ]));
         }
 
-        // Сотрудник
+   // Сотрудник
     } else {
 
         if (!$applicationExist) {
 
-            exit(json_encode(['result' => 3, 'error_message' => "Заявление id: $form_applicationID не существует"]));
+            exit(json_encode([
+                'result'        => 3,
+                'error_message' => "Заявление id: {$form_applicationID} не существует"]));
         }
     }
 
-    $Transaction = new \Lib\DataBase\Transaction();
-    $PrimitiveValidator = new \Lib\Singles\PrimitiveValidator();
+    $transaction = new Transaction();
+    $primitiveValidator = new PrimitiveValidator();
     DataToUpdate::setFlatAssoc($applicationAssoc);
 
 
     try {
 
         // Проверка Цели обращения (и добавление к массиву обновлений) -----------------------------
-        $ExpertisePurpose = new SingleMiscValidator($P_expertise_purpose, '\Tables\Miscs\expertise_purpose', 'id_expertise_purpose');
-        $ExpertisePurpose->validate()->addToUpdate();
+        $expertisePurpose = new SingleMiscValidator($P_expertise_purpose, '\Tables\Miscs\expertise_purpose', 'id_expertise_purpose');
+        $expertisePurpose->validate()->addToUpdate();
 
 
         // Проверка Предметов экспертизы -----------------------------------------------------------
-        if ($P_expertise_subjects !== '') {
-            $ExpertiseSubjects = $PrimitiveValidator->getValidatedArrayFromNumericalJson($P_expertise_subjects, true);
-            foreach ($ExpertiseSubjects as $id) (new DependentMiscValidator($ExpertisePurpose, $id, '\Tables\Miscs\expertise_subject'))->validate();
+        if ($P_expertise_subjects != '') {
+            $expertiseSubjects = $primitiveValidator->getValidatedArrayFromNumericalJson($P_expertise_subjects, true);
+            foreach ($expertiseSubjects as $id) (new DependentMiscValidator($expertisePurpose, $id, '\Tables\Miscs\expertise_subject'))->validate();
         }
 
 
         // Проверка Вида объекта (и добавление к массиву обновлений) -------------------------------
-        $TypeOfObject = new SingleMiscValidator($P_type_of_object, '\Tables\Miscs\type_of_object', 'id_type_of_object');
-        $TypeOfObject->validate()->addToUpdate();
+        $typeOfObject = new SingleMiscValidator($P_type_of_object, '\Tables\Miscs\type_of_object', 'id_type_of_object');
+        $typeOfObject->validate()->addToUpdate();
 
 
         // Проверка Функционального назначения (и добавление к массиву обновлений) -----------------
-        $FunctionalPurpose = new SingleMiscValidator($P_functional_purpose, '\Tables\Miscs\functional_purpose', 'id_functional_purpose');
-        $FunctionalPurpose->validate()->addToUpdate();
+        $functionalPurpose = new SingleMiscValidator($P_functional_purpose, '\Tables\Miscs\functional_purpose', 'id_functional_purpose');
+        $functionalPurpose->validate()->addToUpdate();
 
 
         // Проверка Функциональное назначение. Подотрасль (и добавление к массиву обновлений) ------
-        $FunctionalPurposeSubsector = new DependentMiscValidator($FunctionalPurpose, $P_functional_purpose_subsector, '\Tables\Miscs\functional_purpose_subsector', 'id_functional_purpose_subsector');
-        $FunctionalPurposeSubsector->validate()->addToUpdate();
+        $functionalPurposeSubsector = new DependentMiscValidator($functionalPurpose, $P_functional_purpose_subsector, '\Tables\Miscs\functional_purpose_subsector', 'id_functional_purpose_subsector');
+        $functionalPurposeSubsector->validate()->addToUpdate();
 
 
         // Проверка Функциональное назначение. Группа (и добавление к массиву обновлений) ----------
-        $FunctionalPurposeGroup = new DependentMiscValidator($FunctionalPurposeSubsector, $P_functional_purpose_group, '\Tables\Miscs\functional_purpose_group', 'id_functional_purpose_group');
-        $FunctionalPurposeGroup->validate()->addToUpdate();
+        $functionalPurposeGroup = new DependentMiscValidator($functionalPurposeSubsector, $P_functional_purpose_group, '\Tables\Miscs\functional_purpose_group', 'id_functional_purpose_group');
+        $functionalPurposeGroup->validate()->addToUpdate();
 
 
         // Проверка Вида работ (и добавление к массиву обновлений) ---------------------------------
-        $TypeOfWork = new DependentMiscValidator($ExpertisePurpose, $P_type_of_work, '\Tables\Miscs\type_of_work', 'id_type_of_work');
-        $TypeOfWork->validate()->addToUpdate();
+        $typeOfWork = new DependentMiscValidator($expertisePurpose, $P_type_of_work, '\Tables\Miscs\type_of_work', 'id_type_of_work');
+        $typeOfWork->validate()->addToUpdate();
 
 
         // Проверка Типа объекта культурного наследия (и добавление к массиву обновлений) ----------
-        if ($P_cultural_object_type !== '' && $P_cultural_object_type_checkbox !== '1') {
+        if ($P_cultural_object_type != '' && $P_cultural_object_type_checkbox != '1') {
             exit(json_encode([
                 'result'        => 7,
                 'error_message' => 'Тип объекта культурного наследия не может быть заполнен при невыбраном чекбоксе Объект культурного наследия (Да)'
             ]));
         }
-        $CulturalObjectType = new SingleMiscValidator($P_cultural_object_type, '\Tables\Miscs\cultural_object_type', 'id_cultural_object_type');
-        $CulturalObjectType->validate()->addToUpdate();
+        $culturalObjectType = new SingleMiscValidator($P_cultural_object_type, '\Tables\Miscs\cultural_object_type', 'id_cultural_object_type');
+        $culturalObjectType->validate()->addToUpdate();
 
 
         // Проверка Национального проекта (и добавление к массиву обновлений) ----------------------
-        if ($P_national_project !== '' && $P_national_project_checkbox !== '1') {
+        if ($P_national_project != '' && $P_national_project_checkbox != '1') {
             exit(json_encode([
                 'result'        => 7,
                 'error_message' => 'Название национального проекта не может быть заполнено при невыбраном чекбоксе Национальный проект (Да)'
             ]));
         }
-        $NationalProject = new SingleMiscValidator($P_national_project, '\Tables\Miscs\national_project', 'id_national_project');
-        $NationalProject->validate()->addToUpdate();
+        $nationalProject = new SingleMiscValidator($P_national_project, '\Tables\Miscs\national_project', 'id_national_project');
+        $nationalProject->validate()->addToUpdate();
 
 
         // Проверка Федерального проекта (и добавление к массиву обновлений) -----------------------
-        $FederalProject = new DependentMiscValidator($NationalProject, $P_federal_project, '\Tables\Miscs\federal_project', 'id_federal_project');
-        $FederalProject->validate()->addToUpdate();
+        $federalProject = new DependentMiscValidator($nationalProject, $P_federal_project, '\Tables\Miscs\federal_project', 'id_federal_project');
+        $federalProject->validate()->addToUpdate();
 
 
         // Проверка Куратора (и добавление к массиву обновлений) -----------------------------------
-        $Curator = new SingleMiscValidator($P_curator, '\Tables\Miscs\curator', 'id_curator');
-        $Curator->validate()->addToUpdate();
+        $curator = new SingleMiscValidator($P_curator, '\Tables\Miscs\curator', 'id_curator');
+        $curator->validate()->addToUpdate();
 
 
     } catch (ApplicationFormMiscValidatorEx $e) {
         //  4 - передано некорректное значение справочника
         //  5 - запрашиваемое значение справочника не существует
         //  7 - при наличии значения зависимого справочника, флаг наличия проверенных данных главного справочника отрицательный
-        exit(json_encode(['result' => $e->getCode(), 'error_message' => $e->getMessage()]));
+        exit(json_encode([
+            'result'        => $e->getCode(),
+            'error_message' => $e->getMessage()
+        ]));
     } catch (PrimitiveValidatorEx $e) {
         // (валидация предметов экспертизы)
         // result 4
-        exit(json_encode(['result' => 4, 'error_message' => $e->getMessage()]));
+        exit(json_encode([
+            'result'        => 4,
+            'error_message' => $e->getMessage()
+        ]));
     }
 
 
     // Проверка блока Номера и Даты ------------------------------------------------------------
     //
     // Из формы одновременное пришли данные из блока Утверждения документации по планировке территории и ГПЗУ
-    if (($P_number_planning_documentation_approval !== '' || $P_date_planning_documentation_approval !== '') && ($P_number_GPZU !== '' || $P_date_GPZU !== '')) {
+    if (
+        ($P_number_planning_documentation_approval != '' || $P_date_planning_documentation_approval != '')
+        && ($P_number_GPZU != '' || $P_date_GPZU != '')
+    ) {
 
         exit(json_encode([
             'result'        => 6,
@@ -240,10 +256,10 @@ try {
         ]));
     }
 
-    if ($P_number_planning_documentation_approval !== '' || $P_date_planning_documentation_approval !== '') {
+    if ($P_number_planning_documentation_approval != '' || $P_date_planning_documentation_approval != '') {
 
         // Заполнены данные при невыбранном Виде объекта или Вид объекта не того типа
-        if (!$TypeOfObject->isExist() || $TypeOfObject->getIntValue() !== 1) {
+        if (!$typeOfObject->isExist() || $typeOfObject->getIntValue() != 1) {
 
             exit(json_encode([
                 'result'        => 7,
@@ -253,7 +269,7 @@ try {
 
         // Валидация Даты
         try {
-            if ($P_date_planning_documentation_approval !== '') $PrimitiveValidator->validateStringDate($P_date_planning_documentation_approval);
+            if ($P_date_planning_documentation_approval != '') $primitiveValidator->validateStringDate($P_date_planning_documentation_approval);
         } catch (PrimitiveValidatorEx $e) {
 
             exit(json_encode([
@@ -262,10 +278,10 @@ try {
             ]));
         }
 
-    } elseif ($P_number_GPZU !== '' || $P_date_GPZU !== '') {
+    } elseif ($P_number_GPZU != '' || $P_date_GPZU != '') {
 
         // Заполнены данные при невыбранном Виде объекта или Вид объекта не того типа
-        if (!$TypeOfObject->isExist() || !$TypeOfObject->getIntValue() !== 2) {
+        if (!$typeOfObject->isExist() || !$typeOfObject->getIntValue() != 2) {
 
             exit(json_encode([
                 'result'        => 7,
@@ -275,7 +291,7 @@ try {
 
         // Валидация Даты
         try {
-            if ($P_date_GPZU !== '') $PrimitiveValidator->validateStringDate($P_date_GPZU);
+            if ($P_date_GPZU != '') $primitiveValidator->validateStringDate($P_date_GPZU);
         } catch (PrimitiveValidatorEx $e) {
 
             exit(json_encode([
@@ -286,10 +302,10 @@ try {
     }
 
     // Проверка Сведений о сметной или предполагаемой (предельной) стоимости объекта -------------------
-    if ($P_estimate_cost !== '') {
+    if ($P_estimate_cost != '') {
 
         // Предмет экспертизы должен включать в себя: Проверка достоверности определения сметной стоимости...
-        if ($P_expertise_subjects === '' || !in_array(3, $ExpertiseSubjects, true)) {
+        if ($P_expertise_subjects === '' || !in_array(3, $expertiseSubjects, true)) {
 
             exit(json_encode([
                 'result'        => 7,
@@ -298,7 +314,7 @@ try {
         }
 
         try {
-            $PrimitiveValidator->validateInt($P_estimate_cost);
+            $primitiveValidator->validateInt($P_estimate_cost);
         } catch (PrimitiveValidatorEx $e) {
             exit(json_encode([
                 'result'        => 4,
@@ -310,9 +326,9 @@ try {
 
     // Проверка Даты окончания строительства -----------------------------------------------------------
     //
-    if ($P_date_finish_building !== '') {
+    if ($P_date_finish_building != '') {
 
-        if ($P_national_project_checkbox !== '1') {
+        if ($P_national_project_checkbox != '1') {
 
             exit(json_encode([
                 'result'        => 7,
@@ -321,7 +337,7 @@ try {
         }
 
         try {
-            $PrimitiveValidator->validateStringDate($P_date_finish_building);
+            $primitiveValidator->validateStringDate($P_date_finish_building);
         } catch (PrimitiveValidatorEx $e) {
 
             exit(json_encode([
@@ -340,22 +356,22 @@ try {
         try {
 
             // Получаем массив из входного json'а
-            $FinancingSources = $PrimitiveValidator->getAssocArrayFromJson($P_finance_sources);
+            $financingSources = $primitiveValidator->getAssocArrayFromJson($P_finance_sources);
 
             // Проверяем структуру массива и валидируем его
-            foreach ($FinancingSources as $source) {
+            foreach ($financingSources as $source) {
 
-                $PrimitiveValidator->validateSomeInclusions($source['type'], '1', '2', '3', '4');
+                $primitiveValidator->validateSomeInclusions($source['type'], '1', '2', '3', '4');
 
                 switch ($source['type']) {
                     case '1' :
 
-                        $BudgetLevel = new SingleMiscValidator((is_null($source['budget_level']) ? '' : $source['budget_level']), '\Tables\Miscs\budget_level');
+                        $budgetLevel = new SingleMiscValidator((is_null($source['budget_level']) ? '' : $source['budget_level']), '\Tables\Miscs\budget_level');
 
                         $settings = [
-                            'budget_level' => ['is_null', [$BudgetLevel, 'validate']],
-                            'no_data'      => [[$PrimitiveValidator, 'validateSomeInclusions', null, '1']],
-                            'percent'      => ['is_null', [$PrimitiveValidator, 'validatePercent']]
+                            'budget_level' => ['is_null', [$budgetLevel, 'validate']],
+                            'no_data'      => [[$primitiveValidator, 'validateSomeInclusions', null, '1']],
+                            'percent'      => ['is_null', [$primitiveValidator, 'validatePercent']]
                         ];
                         break;
 
@@ -363,15 +379,15 @@ try {
 
                         $settings = [
                             'full_name' => ['is_null', 'is_string'],
-                            'INN'       => ['is_null', [$PrimitiveValidator, 'validateINN']],
-                            'KPP'       => ['is_null', [$PrimitiveValidator, 'validateKPP']],
-                            'OGRN'      => ['is_null', [$PrimitiveValidator, 'validateOGRN']],
+                            'INN'       => ['is_null', [$primitiveValidator, 'validateINN']],
+                            'KPP'       => ['is_null', [$primitiveValidator, 'validateKPP']],
+                            'OGRN'      => ['is_null', [$primitiveValidator, 'validateOGRN']],
                             'address'   => ['is_null', 'is_string'],
                             'location'  => ['is_null', 'is_string'],
                             'telephone' => ['is_null', 'is_string'],
-                            'email'     => ['is_null', [$PrimitiveValidator, 'validateEmail']],
-                            'no_data'   => [[$PrimitiveValidator, 'validateSomeInclusions', null, '1']],
-                            'percent'   => ['is_null', [$PrimitiveValidator, 'validatePercent']]
+                            'email'     => ['is_null', [$primitiveValidator, 'validateEmail']],
+                            'no_data'   => [[$primitiveValidator, 'validateSomeInclusions', null, '1']],
+                            'percent'   => ['is_null', [$primitiveValidator, 'validatePercent']]
                         ];
                         break;
 
@@ -379,13 +395,13 @@ try {
                     case '4' :
 
                         $settings = [
-                            'no_data' => [[$PrimitiveValidator, 'validateSomeInclusions', null, '1']],
-                            'percent' => ['is_null', [$PrimitiveValidator, 'validatePercent']]
+                            'no_data' => [[$primitiveValidator, 'validateSomeInclusions', null, '1']],
+                            'percent' => ['is_null', [$primitiveValidator, 'validatePercent']]
                         ];
                         break;
                 }
 
-                $PrimitiveValidator->validateAssociativeArray($source, $settings);
+                $primitiveValidator->validateAssociativeArray($source, $settings);
             }
         } catch (PrimitiveValidatorEx $e) {
 
@@ -431,19 +447,19 @@ try {
         }
 
         // Удаляем все источники финансирования, относящиеся к этому заявлению
-        $Transaction->add('\Tables\FinancingSources\type_1', 'deleteAllByIdApplication', [$form_applicationID]);
-        $Transaction->add('\Tables\FinancingSources\type_2', 'deleteAllByIdApplication', [$form_applicationID]);
-        $Transaction->add('\Tables\FinancingSources\type_3', 'deleteAllByIdApplication', [$form_applicationID]);
-        $Transaction->add('\Tables\FinancingSources\type_4', 'deleteAllByIdApplication', [$form_applicationID]);
+        $transaction->add('\Tables\FinancingSources\type_1', 'deleteAllByIdApplication', [$form_applicationID]);
+        $transaction->add('\Tables\FinancingSources\type_2', 'deleteAllByIdApplication', [$form_applicationID]);
+        $transaction->add('\Tables\FinancingSources\type_3', 'deleteAllByIdApplication', [$form_applicationID]);
+        $transaction->add('\Tables\FinancingSources\type_4', 'deleteAllByIdApplication', [$form_applicationID]);
 
-        foreach ($FinancingSources as $source) {
+        foreach ($financingSources as $source) {
 
             $no_data = is_null($source['no_data']) ? 0 : 1;
 
             switch ($source['type']) {
 
                 case '1' :
-                    $Transaction->add('\Tables\FinancingSources\type_1', 'create', [
+                    $transaction->add('\Tables\FinancingSources\type_1', 'create', [
                         $form_applicationID,
                         $source['budget_level'],
                         $no_data,
@@ -452,7 +468,7 @@ try {
                     break;
 
                 case '2' :
-                    $Transaction->add('\Tables\FinancingSources\type_2', 'create', [
+                    $transaction->add('\Tables\FinancingSources\type_2', 'create', [
                         $form_applicationID,
                         $source['full_name'],
                         $source['INN'],
@@ -468,7 +484,7 @@ try {
                     break;
 
                 case '3' :
-                    $Transaction->add('\Tables\FinancingSources\type_3', 'create', [
+                    $transaction->add('\Tables\FinancingSources\type_3', 'create', [
                         $form_applicationID,
                         $no_data,
                         $source['percent']]
@@ -476,7 +492,7 @@ try {
                     break;
 
                 case '4' :
-                    $Transaction->add('\Tables\FinancingSources\type_4', 'create', [
+                    $transaction->add('\Tables\FinancingSources\type_4', 'create', [
                         $form_applicationID,
                         $no_data,
                         $source['percent']]
@@ -484,8 +500,6 @@ try {
                     break;
             }
         }
-        //todo убрать вконец файла
-        $Transaction->start();
     }
 
 
@@ -504,13 +518,13 @@ try {
     $expertiseSubjectsToDelete = []; // Массив с id Предметов экспертизы, которые нужно удалить
     $expertiseSubjectsToCreate = []; // Массив с id Предметов экспертизы, которые нужно создать к заявлению
 
-    if ($P_expertise_subjects !== '') {
+    if ($P_expertise_subjects != '') {
 
         // id Предметов, которые есть в БД, но нет в пришедшей форме
-        $expertiseSubjectsToDelete = array_diff($db_expertiseSubjects, $ExpertiseSubjects);
+        $expertiseSubjectsToDelete = array_diff($db_expertiseSubjects, $expertiseSubjects);
 
         // id Предметов, которые есть в пришедшей форме, но нет в БД
-        $expertiseSubjectsToCreate = array_diff($ExpertiseSubjects, $db_expertiseSubjects);
+        $expertiseSubjectsToCreate = array_diff($expertiseSubjects, $db_expertiseSubjects);
 
         // Из формы пришло пустое значение, удаляем все Предметы экспертизы
     } else {
@@ -518,8 +532,12 @@ try {
     }
 
     // Удаляем и записываем в БД новые записи о Предмете экспертизы
-    foreach ($expertiseSubjectsToDelete as $id) expertise_subject::delete($form_applicationID, $id);
-    foreach ($expertiseSubjectsToCreate as $id) expertise_subject::create($form_applicationID, $id);
+    foreach ($expertiseSubjectsToDelete as $id) {
+        $transaction->add('\Tables\expertise_subject', 'delete', [$form_applicationID, $id]);
+    }
+    foreach ($expertiseSubjectsToCreate as $id) {
+        $transaction->add('\Tables\expertise_subject', 'create', [$form_applicationID, $id]);
+    }
 
 
     // Дополнительная информация (текстовое поле) ----------------------------------------------
@@ -555,13 +573,21 @@ try {
     // Вызываем умное сохранение, если данные в заявлении поменялись
     if (!DataToUpdate::isEmpty()) {
 
-        $test = DataToUpdate::get();
-
         // Обновляем флаг сохраненности заявления для новых заявлений
-        DataToUpdate::addInt(1, 'is_saved');
+        //todo проверить эту ветку
+        if ($applicationAssoc['is_saved'] == 1) {
+            DataToUpdate::addInt(1, 'is_saved');
+        }
 
-        application::smartUpdateById(DataToUpdate::get(), $form_applicationID);
+        $transaction->add(
+            '\Tables\Docs\application',
+            'smartUpdateById',
+            [DataToUpdate::get(), $form_applicationID]
+        );
     }
+
+    //todo обернуть все в DataBaseEx?
+    $transaction->start();
 
     // Успешное сохранение
     exit(json_encode(['result' => 8]));

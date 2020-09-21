@@ -52,7 +52,8 @@ function checkParamsPOST(string ...$params): bool
  * Предназначен для проверки наличия требуемых параметров в <b>GET</b> запросе
  *
  * @param string ...$params <i>перечисление</i> необходимых параметров
- * @return bool <b>true</b> все принятые параметры присутствуют в массиве GET (на первом уровне вложенности)<br/><b>false</b> в противном случае
+ * @return bool <b>true</b> все принятые параметры присутствуют в массиве GET (на первом уровне вложенности)<br/>
+ * <b>false</b> в противном случае
  */
 function checkParamsGET(string ...$params): bool
 {
@@ -133,7 +134,8 @@ function updateDatesTimestampToDdMmYyyy(array &$assocArray, string ...$datePrope
  *
  * @param string $haystack строка, в которой производится поиск
  * @param string ...$needles <i>перечисление</i> подстрок
- * @return bool <b>true</b> все подстроки присутствуют в строке<br/><b>false</b> в противном случае
+ * @return bool <b>true</b> все подстроки присутствуют в строке<br/>
+ * <b>false</b> в противном случае
  */
 function containsAll(string $haystack, string ...$needles): bool
 {
@@ -152,7 +154,8 @@ function containsAll(string $haystack, string ...$needles): bool
  *
  * @param string $haystack строка, в которой производится поиск
  * @param string ...$needles <i>перечисление</i> подстрок
- * @return bool <b>true</b> все подстроки присутствуют в строке<br/><b>false</b> в противном случае
+ * @return bool <b>true</b> все подстроки присутствуют в строке<br/>
+ * <b>false</b> в противном случае
  */
 function icontainsAll(string $haystack, string ...$needles): bool
 {
@@ -171,7 +174,8 @@ function icontainsAll(string $haystack, string ...$needles): bool
  *
  * @param string $haystack строка, в которой производится поиск
  * @param string ...$needles <i>перечисление</i> подстрок
- * @return bool <b>true</b> все подстроки присутствуют в строке<br/><b>false</b> в противном случае
+ * @return bool <b>true</b> все подстроки присутствуют в строке<br/>
+ * <b>false</b> в противном случае
  */
 function containsAny(string $haystack, string ...$needles): bool
 {
@@ -190,7 +194,8 @@ function containsAny(string $haystack, string ...$needles): bool
  * @param string $pattern искомый шаблон
  * @param string $subject входная строка
  * @param bool $is_preg_match_all в ходе работы метода будет выполняться функция:<br>
- * <b>true</b> preg_match_all<br/><b>false</b> preg_match
+ * <b>true</b> preg_match_all<br/>
+ * <b>false</b> preg_match
  * @return array массив совпавших значений
  * @throws PregMatchEx
  */
@@ -216,11 +221,14 @@ function getHandlePregMatch(string $pattern, string $subject, bool $is_preg_matc
  * @param string $key ключ ассоциативного массива
  * @param mixed $value значение ассоциативного массива
  * @return array массив формата:<br>
+ * <br>
  * <i>int</i> 'count'  => количество вхождений<br>
+ * <br>
  * <i>array|null</i> 'indexes' => если были вхождения (count > 0), то:<br>
  * <i>int</i> ключ - номер вхождения<br>
  * <i>int</i> значение - индекс исходного массива, при котором было вхождение<br>
  * <b>ключ начинается минимум с 1, т.к. первое вхождение count = 1</b><br>
+ * <br>
  * <i>int|null</i> 'first_key' => если были вхождения, то представляет собой индекс исходного массива,
  * при котором было первое вхождение
  */
@@ -268,7 +276,8 @@ function getHumanFileSize(int $bytes): string
  * Предназначен для получения ФИО из ассоциативного массива пользователя
  *
  * @param array $userInfo ассоциативный массив, в котором есть ключи: last_name, first_name, middle_name
- * @param bool $needShort <b>true</b> возвращать короткую версию ФИО<br/><b>false</b> возвращать полную версию ФИО
+ * @param bool $needShort <b>true</b> возвращать короткую версию ФИО<br/>
+ * <b>false</b> возвращать полную версию ФИО
  * @return string ФИО в нужном формате
  * @throws PregMatchEx
  */
@@ -337,13 +346,3 @@ function p($arg): void
         var_dump($arg);
     }
 }
-
-
-
-
-
-
-
-
-
-

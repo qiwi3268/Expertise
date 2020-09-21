@@ -2,6 +2,8 @@
 
 
 namespace Classes\Application\Actions;
+
+use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Actions\Actions as MainActions;
 use Lib\Actions\AccessActions as MainAccessActions;
 use Lib\Actions\ExecutionActions as MainExecutionActions;
@@ -19,10 +21,11 @@ class Actions extends MainActions
      * Реализация абстрактного метода
      *
      * @return array
+     * @throws DataBaseEx
      */
     public function getAssocActiveActions(): array
     {
-        return ActionTable::getAllActive();
+        return ActionTable::getAllAssocWhereActive();
     }
 
 
@@ -31,10 +34,11 @@ class Actions extends MainActions
      *
      * @param string $pageName
      * @return array|null
+     * @throws DataBaseEx
      */
     public function getAssocActiveActionByPageName(string $pageName): ?array
     {
-        return ActionTable::getAssocActiveByPageName($pageName);
+        return ActionTable::getAssocWhereActiveByPageName($pageName);
     }
 
 
@@ -43,6 +47,7 @@ class Actions extends MainActions
      *
      * @param string $pageName
      * @return array|null
+     * @throws DataBaseEx
      */
     public function getAssocActionByPageName(string $pageName): ?array
     {

@@ -24,7 +24,7 @@ foreach(FILE_TABLE_MAPPING as $mapping_level_1_code => $mapping_level_2){
         unset($Mapping);
         
         // Ассоциативный массив ненужных файлов
-        $noNeedsAssoc = $className::getNoNeedsAssoc();
+        $noNeedsAssoc = $className::getAllAssocWhereNoNeeds();
         
         if(is_null($noNeedsAssoc)){
             continue;

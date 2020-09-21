@@ -17,9 +17,9 @@ final class assigned_expert
     /**
      * Предназначен для создания записи в таблице
      *
-     * @param int $id_total_cc
-     * @param int $id_main_block
-     * @param int $id_expert
+     * @param int $id_total_cc id сводного замечания / заключения
+     * @param int $id_main_block id блока из 341 приказа
+     * @param int $id_expert id эксперта
      * @return int id созданной записи
      * @throws DataBaseEx
      */

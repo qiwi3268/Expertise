@@ -4,8 +4,12 @@
 namespace Tables\Miscs;
 
 
-// Справочник "Предмет экспертизы"
-//
+/**
+ * Таблица: <i>'misc_expertise_subject'</i>
+ *
+ * Справочник "Предмет экспертизы"
+ *
+ */
 final class expertise_subject implements Interfaces\DependentMiscValidate
 {
 

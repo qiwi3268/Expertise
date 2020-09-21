@@ -11,6 +11,10 @@ use Lib\DataBase\SimpleQuery;
 use Lib\DataBase\ParametrizedQuery;
 
 
+/**
+ * Таблица: <i>'doc_application'</i>
+ *
+ */
 final class application implements Responsible
 {
 
@@ -19,15 +23,17 @@ final class application implements Responsible
     use ResponsibleTrait;
 
 
-    // Предназначен для создания временной записи заявления
-    // - стадия: "Оформление заявления"
-    // - ответственные: группы заявителей к заявлению
-    // Принимает параметры-----------------------------------
-    // id_author         int : id текущего пользователя
-    // numerical_name string : числовое имя заявления
-    // Возвращает параметры----------------------------------
-    // id int : id созданной записи
-    //
+    /**
+     * Предназначен для создлания записи в таблице
+     *
+     * Создается временная запись, т.к. is_saved = 0<br>
+     * Стадия: "Оформление заявления"
+     *
+     * @param int $id_author id автора записи
+     * @param string $numerical_name числовое имя заявления
+     * @return int id созданной записи
+     * @throws DataBaseEx
+     */
     static public function createTemporary(int $id_author, string $numerical_name): int
     {
         $query = "INSERT INTO `doc_application`
@@ -38,13 +44,14 @@ final class application implements Responsible
     }
 
 
-    // Предназначен для получения простого массива id заявлений, где пользователь является автором
-    // Принимает параметры-----------------------------------
-    // id_author         int : id текущего пользователя
-    // Возвращает параметры----------------------------------
-    // array : в случае, если заявления существуют
-    // null  : в противном случае
-    //
+    /**
+     * Предназначен для получения простого массива id заявлений, где пользователь является автором
+     *
+     * @param int $id_author id автора записи
+     * @return array|null <b>array</b> индексный массив, если записи существуют<br>
+     * <b>null</b> в противном случае
+     * @throws DataBaseEx
+     */
     static public function getIdsWhereAuthorById(int $id_author): ?array
     {
         $query = "SELECT `id`
@@ -56,14 +63,17 @@ final class application implements Responsible
     }
 
 
-    // Предназначен для получения "плоского" ассоциативного массива заявления по его id
-    // * плоский - не содержащий подмассивов. Результирующий массив содержит данные только из таблицы с заявлениями
-    // Принимает параметры-----------------------------------
-    // id int : id заявления
-    // Возвращает параметры----------------------------------
-    // array : в случае, если заявление существует
-    // null  : в противном случае
-    //
+    /**
+     * Предназначен для получения "плоского" ассоциативного массива заявления по его id
+     *
+     * <b>*</b> Плоский - не содержащий подмассивов<br>
+     * Результирующий массив содержит данные только из таблицы с заявлениями
+     *
+     * @param int $id id заявления
+     * @return array|null <b>array</b> ассоциативный массив, если запись существует<br>
+     * <b>null</b> в противном случае
+     * @throws DataBaseEx
+     */
     static public function getFlatAssocById(int $id): ?array
     {
         $query = "SELECT *
@@ -76,9 +86,9 @@ final class application implements Responsible
     /**
      * Предназначен для получения id вида работ по id заявления
      *
-     * @param int $id <b>int</b> если вид работ существует<br>
+     * @param int $id id заявления
+     * @return int|null <b>int</b> если вид работ существует<br>
      * <b>null</b> в противном случае
-     * @return int|null
      * @throws DataBaseEx
      */
     static public function getIdTypeOfObjectById(int $id): ?int
@@ -91,11 +101,15 @@ final class application implements Responsible
     }
 
 
-    // Предназначен для получения ассоциативного массива заявления по его id для редактирования заявления
-    // Возвращает параметры----------------------------------
-    // array : в случае, если заявление существует
-    // null  : в противном случае
-    //
+    /**
+     * Предназначен для получения ассоциативного массива заявления по его id
+     *
+     * @param int $id id заявления
+     * @return array|null <b>array</b> ассоциативный массив, если запись существует<br>
+     * <b>null</b> в противном случае
+     * @throws DataBaseEx
+     * @throws SelfEx
+     */
     static public function getAssocById(int $id): ?array
     {
         $query = "SELECT `doc_application`.`id` as `id_application`,
@@ -191,7 +205,7 @@ final class application implements Responsible
                                          WHERE `id_application`=?) AS `expertise_subject`
                                    LEFT JOIN `misc_expertise_subject`
                                          ON (`expertise_subject`.`id_expertise_subject`=`misc_expertise_subject`.`id`)
-                                   ORDER BY `misc_expertise_subject`.`sort` ASC";
+                                   ORDER BY `misc_expertise_subject`.`sort`";
 
         $expertiseSubjects = ParametrizedQuery::getFetchAssoc($queryExpertiseSubjects, [$id]);
 
@@ -206,19 +220,19 @@ final class application implements Responsible
     }
 
 
-    // Предназначен для реструктуризации ассоциативного массива заявления
-    // Перекладывает полученные данные о справочнике в отдельный подмассив. В случае, если данные null, то
-    // новое свойство также null
-    // Полученные данные id_misc и name_misc вырезаются из массива
-    // Принимает параметры-----------------------------------
-    // &result           array : ссылка на результирующий запрос в БД
-    // id_misc          string : id справочника из запроса в БД
-    // name_misc        string : имя справочника из запроса в БД
-    // restructuredName string : имя нового свойства, в которое будет записаны 'id' и 'name'
-    // Выбрасывает исключения--------------------------------
-    // Tables\Exceptions\Exception :
-    //    в массиве result отсутствует(ют) свойства id_misc и/или name_misc
-    //
+    /**
+     * Предназначен для реструктуризации ассоциативного массива заявления
+     *
+     * Перекладывает полученные данные о справочнике в отдельный подмассив<br>
+     * В случае, если данные null, то новое свойство также null<br>
+     * Полученные данные id_misc и name_misc вырезаются из массива
+     *
+     * @param array $result <i>ссылка</i> на результирующий запрос в БД
+     * @param string $id_misc id справочника из запроса в БД
+     * @param string $name_misc имя справочника из запроса в БД
+     * @param string $restructuredName имя нового свойства, в которое будет записаны 'id' и 'name'
+     * @throws SelfEx
+     */
     static private function restructureMiscToSubarray(
         array &$result,
         string $id_misc,
@@ -242,13 +256,14 @@ final class application implements Responsible
     }
 
 
-    // Предназначен для проверки существования заявления по его id
-    // Принимает параметры-----------------------------------
-    // id  int : id заявления
-    // Возвращает параметры----------------------------------
-    // true   : заявление существует
-    // false  : заявление не существует
-    //
+    /**
+     * Предназначен для проверки существования заявления по его id
+     *
+     * @param int $id id заявления
+     * @return bool <b>true</b> запись существует<br>
+     * <b>false</b> в противном случае
+     * @throws DataBaseEx
+     */
     static public function checkExistById(int $id): bool
     {
         $query = "SELECT count(*)>0
@@ -259,15 +274,17 @@ final class application implements Responsible
     }
 
 
-    // Предназначен для умного обновления заявления по его id
-    // Метод выполняет update только тех столбцов, которые ему переданы
-    // Принимает параметры-----------------------------------
-    // data array : ассоциативный массив формата:
-    //              ключ     - название столбца в таблице
-    //              значение - новое значение, которое будет установлено
-    // id     int : id заявления
-    // Возвращает параметры----------------------------------
-    //
+    /**
+     * Предназначен для умного обновления заявления по его id
+     *
+     * Метод выполняет update только тех столбцов, которые ему переданы
+     *
+     * @param array $data ассоциативный массив формата:<br>
+     * <i>Ключ</i> - название столбца в таблице<br>
+     * <i>Значение</i> - новое значение, которое будет установлено
+     * @param int $id id заявления
+     * @throws DataBaseEx
+     */
     static public function smartUpdateById(array $data, int $id): void
     {
         // Предварительный массив для склейки запроса
@@ -300,14 +317,14 @@ final class application implements Responsible
     }
 
 
-
-
-    // todo тестовый метод для работы крона
-    // Предназначен для получения всех несохраненных заявлений
-    // Возвращает параметры-----------------------------------
-    // array : несохраненные заявления
-    //
-    static public function getAllUnsaved(): array
+    /**
+     * Предназначен для получения ассоциативных массивов несохраненных заявлений
+     *
+     * @return array|null <b>array</b> индексный массив с ассоциативными массива внутри, если записи существуют<br>
+     * <b>null</b> в противном случае
+     * @throws DataBaseEx
+     */
+    static public function getAllAssocWhereUnsaved(): ?array
     {
         $query = "SELECT *
                   FROM `doc_application`
@@ -317,7 +334,13 @@ final class application implements Responsible
     }
 
 
-    // todo тестовый метод для работы крона
+    /**
+     * Предназначен для удаления записей в таблице, имеющих id, как в принятом
+     * индексном массиве с id заявлений
+     *
+     * @param array $ids индексный массив с id заявлений
+     * @throws DataBaseEx
+     */
     static public function deleteFromIdsArray(array $ids): void
     {
         $condition = implode(',', $ids);
@@ -325,7 +348,6 @@ final class application implements Responsible
         $query = "DELETE
                   FROM `doc_application`
                   WHERE `id` IN ($condition)";
-
         SimpleQuery::set($query);
     }
 

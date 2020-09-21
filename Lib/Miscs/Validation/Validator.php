@@ -4,7 +4,10 @@
 namespace Lib\Miscs\Validation;
 
 use Lib\Exceptions\MiscValidator as SelfEx;
+use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
+use LogicException;
+
 use Lib\Singles\PrimitiveValidator;
 
 
@@ -90,6 +93,7 @@ abstract class Validator
      * @param string $method метод для проверки существования класса
      * @param array $params параметры запроса
      * @throws SelfEx
+     * @throws DataBaseEx
      */
     protected function checkMiscExist(string $class, string $method, array $params): void
     {
@@ -105,12 +109,12 @@ abstract class Validator
      * Предназначен для получения флага наличия проверенных введенных данных справочника
      *
      * @return bool флаг наличия проверенных введенных данных справочника
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function isExist(): bool
     {
         if (is_null($this->isExist)) {
-            throw new \LogicException("Попытка вызвать метод Lib\Miscs\Validation\Validator::isExist при значении свойства isExist = null. Название класса справочника: '{$this->class}'");
+            throw new LogicException("Попытка вызвать метод Lib\Miscs\Validation\Validator::isExist при значении свойства isExist = null. Название класса справочника: '{$this->class}'");
         }
         return $this->isExist;
     }
@@ -120,12 +124,12 @@ abstract class Validator
      * Предназначен для получения int'ового значения справочника
      *
      * @return int преобразованное к int значение справочника
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function getIntValue(): int
     {
         if (is_null($this->int_value)) {
-            throw new \LogicException("Попытка вызвать метод Lib\Miscs\Validation\Validator::getIntValue при значении свойства int_value = null. Название класса справочника: '{$this->class}'");
+            throw new LogicException("Попытка вызвать метод Lib\Miscs\Validation\Validator::getIntValue при значении свойства int_value = null. Название класса справочника: '{$this->class}'");
         }
         return $this->int_value;
     }

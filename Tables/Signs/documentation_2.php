@@ -4,6 +4,10 @@
 namespace Tables\Signs;
 
 
+/**
+ * Таблица: <i>'sign_documentation_2'</i>
+ *
+ */
 class documentation_2 implements Interfaces\SignTable
 {
 

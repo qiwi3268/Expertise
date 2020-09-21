@@ -19,8 +19,8 @@ trait ResponsibleType4
 
     /**
      * Реализация метода интерфейса
+     * {@see \Tables\Responsible\type_4\Interfaces\ResponsibleType4::deleteResponsibleByIdMainDocument()}
      *
-     * @see \Tables\Responsible\type_4\Interfaces\ResponsibleType4::deleteResponsibleByIdMainDocument()
      * @param int $id_main_document
      * @throws DataBaseEx
      */
@@ -36,8 +36,8 @@ trait ResponsibleType4
 
     /**
      * Реализация метода интерфейса
+     * {@see \Tables\Responsible\type_4\Interfaces\ResponsibleType4::getResponsibleByIdMainDocument()}
      *
-     * @see \Tables\Responsible\type_4\Interfaces\ResponsibleType4::getResponsibleByIdMainDocument()
      * @param int $id_main_document
      * @return array|null
      * @throws DataBaseEx
@@ -61,8 +61,8 @@ trait ResponsibleType4
 
     /**
      * Реализация метода интерфейса
+     * {@see \Tables\Responsible\type_4\Interfaces\ResponsibleType4::create()}
      *
-     * @see \Tables\Responsible\type_4\Interfaces\ResponsibleType4::create()
      * @param int $id_main_document
      * @param int $id_user
      * @return int

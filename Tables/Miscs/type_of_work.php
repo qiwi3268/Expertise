@@ -4,8 +4,12 @@
 namespace Tables\Miscs;
 
 
-// Справочник "Вид работ"
-//
+/**
+ * Таблица: <i>'misc_type_of_work'</i>
+ *
+ * Справочник "Вид работ"
+ *
+ */
 final class type_of_work implements Interfaces\DependentMiscValidate
 {
 

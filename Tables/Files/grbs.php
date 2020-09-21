@@ -4,7 +4,11 @@
 namespace Tables\Files;
 
 
-class grbs implements Interfaces\FileTableType1
+/**
+ * Таблица: <i>'file_grbs'</i>
+ *
+ */
+final class grbs implements Interfaces\FileTableType1
 {
 
     static private string $tableName = 'file_grbs';

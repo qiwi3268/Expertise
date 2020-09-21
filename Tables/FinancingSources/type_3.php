@@ -3,45 +3,40 @@
 
 namespace Tables\FinancingSources;
 
+use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\DataBase\ParametrizedQuery;
 use Tables\Helpers\Helper as TableHelper;
 
 
-// Источники финансирования
-// Собственные средства застройщика
-class type_3
+/**
+ * Таблица: <i>'financing_source_type_3'</i>
+ *
+ * Собственные средства застройщика
+ *
+ */
+final class type_3 implements Interfaces\FinancingSourceTable
 {
 
     static private string $tableName = 'financing_source_type_3';
 
     use Traits\Deleter;
+    use Traits\FinancingSourceTable;
 
 
-    // Предназначен для получения ассоциативного массива источников финансирования по id заявления
-    // Принимает параметры-----------------------------------
-    // id_application int : id заявления
-    // Возвращает параметры----------------------------------
-    // array : в случае, если источники финансирования существуют
-    // null  : в противном случае
-    //
-    static public function getAssocByIdApplication(int $id_application): ?array
-    {
-        $query = "SELECT *
-                  FROM `financing_source_type_3`
-                  WHERE `id_application`=?";
-        $result = ParametrizedQuery::getFetchAssoc($query, [$id_application]);
-        return $result ? $result : null;
-    }
-
-
-    // Предназначен для создания записи инсточника финансирования
-    // Принимает параметры-----------------------------------
-    // * согласно таблице financing_source_type_3
-    // Возвращает параметры----------------------------------
-    // id int : id созданной записи
-    //
-    static public function create(int $id_application, int $no_data, ?int $percent): int
-    {
+    /**
+     * Предназначен для создания записи источника финансирования
+     *
+     * @param int $id_application
+     * @param int $no_data
+     * @param int|null $percent
+     * @return int id созданной записи
+     * @throws DataBaseEx
+     */
+    static public function create(
+        int $id_application,
+        int $no_data,
+        ?int $percent
+    ): int {
         $bindParams = [$id_application, $no_data, $percent];
         $values = TableHelper::getValuesWithoutNull($bindParams);
 

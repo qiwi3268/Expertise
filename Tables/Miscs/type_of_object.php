@@ -4,8 +4,12 @@
 namespace Tables\Miscs;
 
 
-// Справочник "Вид объекта"
-//
+/**
+ * Таблица: <i>'misc_type_of_object'</i>
+ *
+ * Справочник "Вид объекта"
+ *
+ */
 final class type_of_object implements Interfaces\SingleMiscValidate
 {
 

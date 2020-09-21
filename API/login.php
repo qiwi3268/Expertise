@@ -7,93 +7,99 @@ use Tables\user;
 
 //API result:
 //	1 - Нет обязательных параметров POST запроса
-//      {result}
-//	2 - Не подходит логин/пароль
-//      {result}
-//  3 - Учетная запись забанена
-//      {result}
-//  4 - Пользователь не имеет роль в системе
-//      {result}
+//      {result, error_message : текст ошибки}
+//	2 - Не подходит логин / пароль
+//      {result, error_message : текст ошибки}
+//  3 - Учетная запись заблокирована
+//      {result, error_message : текст ошибки}
+//  4 - Пользователь не имеет ролей в системе
+//      {result, error_message : текст ошибки}
 //	5 - Авторизация и создание сессии прошло успешно
 //      {result, ref : ссылка на домашнюю страницу}
-//	6 - Ошибка при запросе в БД
-//      {result, message : текст ошибки, code: код ошибки}
-//	7 - Непредвиденная ошибка
+//	6 - Непредвиденная ошибка
 //      {result, message : текст ошибки, code: код ошибки}
 //
-if (checkParamsPOST('login', 'password')) {
 
-    try {
+// Проверка наличия обязательных параметров
+if (!checkParamsPOST('login', 'password')) {
 
-        /** @var string $P_login логин */
-        /** @var string $P_password пароль */
-        extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
+    exit(json_encode([
+        'result'        => 1,
+        'error_message' => 'Нет обязательных параметров POST запроса'
+    ]));
+}
 
-        $userAssoc = user::getAssocByLogin($P_login);
+try {
 
-        // Пользователь сущесвует
-        if (!is_null($userAssoc)) {
+    /** @var string $P_login логин */
+    /** @var string $P_password пароль */
+    extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
 
-            // Пароль введен верно
-            if (password_verify($P_password, $userAssoc['password'])) {
+    $userAssoc = user::getAssocByLogin($P_login);
 
-                // Учетная запись пользователя забанена
-                if ($userAssoc['is_banned']) {
+    // Пользователь существует
+    if (!is_null($userAssoc)) {
 
-                    exit(json_encode(['result' => 3]));
-                } else {
+        // Пароль введен верно
+        if (password_verify($P_password, $userAssoc['password'])) {
 
-                    // Обнуляем счетчик неверно введенных паролей
-                    user::zeroingIncorrectPasswordInputById($userAssoc['id']);
-                }
+            // Учетная запись пользователя заблокирована
+            if ($userAssoc['is_banned']) {
 
-                $userRoles = user::getRolesById($userAssoc['id']);
-
-                // Пользователь не имеет ролей
-                if (is_null($userRoles)) {
-
-                    exit(json_encode(['result' => 4]));
-                }
-
-                // Создание сессии пользователя
-                Session::createUser($userAssoc, $userRoles);
-
-                // Авторизация прошла успешно
                 exit(json_encode([
-                    'result' => 5,
-                    'ref'    => '/home/navigation'
+                    'result'        => 3,
+                    'error_message' => 'Учетная запись заблокирована'
                 ]));
             }
 
-            // Инкрементируем счетчик неверно введенных паролей
-            user::incrementIncorrectPasswordInputById($userAssoc['id']);
+            // Обнуляем счетчик неверно введенных паролей
+            user::zeroingIncorrectPasswordInputById($userAssoc['id']);
 
-            // Максимально допустимое количество неверно введенных паролей
-            $maxCountIncorrectPassword = 4;
+            $userRoles = user::getAllRolesAssocByUserId($userAssoc['id']);
 
-            if ($userAssoc['num_incorrect_password_input'] + 1 > $maxCountIncorrectPassword) {
+            // Пользователь не имеет ролей
+            if (is_null($userRoles)) {
 
-                // Баним пользователя
-                user::banById($userAssoc['id']);
+                exit(json_encode([
+                    'result'        => 4,
+                    'error_message' => 'Пользователь не имеет ролей в системе'
+                ]));
             }
+
+            // Создание сессии пользователя
+            Session::createUser($userAssoc, $userRoles);
+
+            // Авторизация прошла успешно
+            exit(json_encode([
+                'result' => 5,
+                'ref'    => '/home/navigation'
+            ]));
         }
 
-        exit(json_encode(['result' => 2]));
+        // Инкрементируем счетчик неверно введенных паролей
+        user::incrementIncorrectPasswordInputById($userAssoc['id']);
 
-    } catch (DataBaseEx $e) {
+        // Максимально допустимое количество неверно введенных паролей
+        $maxCountIncorrectPassword = 4;
 
-        exit(json_encode([
-            'result'  => 6,
-            'message' => $e->getMessage(),
-            'code'    => $e->getCode()
-        ]));
-    } catch (Exception $e) {
+        if ($userAssoc['num_incorrect_password_input'] + 1 > $maxCountIncorrectPassword) {
 
-        exit(json_encode([
-            'result'  => 7,
-            'message' => $e->getMessage(),
-            'code'    => $e->getCode()
-        ]));
+            // Блокируем пользователя
+            user::setBanById($userAssoc['id']);
+        }
     }
+
+    exit(json_encode([
+        'result'        => 2,
+        'error_message' => 'Не подходит логин / пароль'
+    ]));
+
+} catch (Exception $e) {
+
+    exit(json_encode([
+        'result'  => 6,
+        'message' => $e->getMessage(),
+        'code'    => $e->getCode()
+    ]));
 }
-exit(json_encode(['result' => 1]));
+

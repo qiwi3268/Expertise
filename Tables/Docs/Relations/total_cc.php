@@ -15,7 +15,7 @@ use Lib\DataBase\ParametrizedQuery;
  * и родильскими элементами
  *
  */
-class total_cc
+final class total_cc
 {
 
     /**

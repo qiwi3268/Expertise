@@ -8,7 +8,7 @@ file_put_contents(ROOT.'/logs/cron/deleteUnsavedApps.log', 'я работаю'."
 
 //-------------------------------------------------------------
 
-$unsavedApps = \Tables\Docs\application::getAllUnsaved();
+$unsavedApps = \Tables\Docs\application::getAllAssocWhereUnsaved();
 
 if(empty($unsavedApps)){
 

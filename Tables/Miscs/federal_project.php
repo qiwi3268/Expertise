@@ -4,8 +4,12 @@
 namespace Tables\Miscs;
 
 
-// Справочник "Федеральный проект"
-//
+/**
+ * Таблица: <i>'misc_federal_project'</i>
+ *
+ * Справочник "Федеральный проект"
+ *
+ */
 final class federal_project implements Interfaces\DependentMiscValidate
 {
 

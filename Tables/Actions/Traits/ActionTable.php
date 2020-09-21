@@ -3,24 +3,29 @@
 
 namespace Tables\Actions\Traits;
 
+use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\DataBase\SimpleQuery;
 use Lib\DataBase\ParametrizedQuery;
 
 
-// Трейт, частично реализующий интерфейс Tables\Actions\Interfaces\ActionTable
-// Для использования трейта необходимо, чтобы перед его включением было объявлено
-// статическое свойство tableName с соответствующим именем таблицы
-//
+/**
+ * Частично реализует интерфейс {@see \Tables\Actions\Interfaces\ActionTable}
+ *
+ * <b>*</b> Для использования трейта необходимо, чтобы перед его включением было объявлено
+ * статическое свойство <i>tableName</i> с соответствующим именем таблицы
+ *
+ */
 trait ActionTable
 {
 
-    // Предназначен для получения ассициативных массивов дейсивий,
-    // возвращает активные записи
-    // возвращает данные по возрастанию столбца sort
-    // Возвращает параметры-----------------------------------
-    // array : ассоциативные массивы действий
-    //
-    static public function getAllActive(): array
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Actions\Interfaces\ActionTable::getAllAssocWhereActive()}
+     *
+     * @return array
+     * @throws DataBaseEx
+     */
+    static public function getAllAssocWhereActive(): array
     {
         $table = self::$tableName;
 
@@ -31,20 +36,20 @@ trait ActionTable
                          `description`
                   FROM `{$table}`
                   WHERE `is_active`=1
-                  ORDER BY `sort` ASC";
+                  ORDER BY `sort`";
         return SimpleQuery::getFetchAssoc($query);
     }
 
 
-    // Предназначен для получения ассоциативного массива активного действия по имени страницы
-    // возвращает активую запись
-    // Принимает параметры-----------------------------------
-    // pageName string : имя страницы
-    // Возвращает параметры----------------------------------
-    // array : в случае, если запись существует
-    // null  : в противном случае
-    //
-    static public function getAssocActiveByPageName(string $pageName): ?array
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Actions\Interfaces\ActionTable::getAssocWhereActiveByPageName()}
+     *
+     * @param string $pageName
+     * @return array|null
+     * @throws DataBaseEx
+     */
+    static public function getAssocWhereActiveByPageName(string $pageName): ?array
     {
         $table = self::$tableName;
 
@@ -59,8 +64,15 @@ trait ActionTable
         return $result ? $result[0] : null;
     }
 
-    // Предназначен для получения ассоциативного массива действия по имени страницы
-    //
+
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Actions\Interfaces\ActionTable::getAssocByPageName()}
+     *
+     * @param string $pageName
+     * @return array|null
+     * @throws DataBaseEx
+     */
     static public function getAssocByPageName(string $pageName): ?array
     {
         $table = self::$tableName;

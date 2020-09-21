@@ -1,0 +1,43 @@
+Правила и примеры наименования таблиц:
+
+getAllAssoc                      индексный массив с ассоциативными массивами внутри
+getAllAssocWhereActive
+getAllAssocWhereActiveByPageName
+getAssoc                         ассоциативный массив
+getAssocWhereActiveByPageName
+getAllSimple простой (индексный) массив
+
+getResponsibleTypeById
+updateResponsibleTypeById
+checkExistById
+
+
+
+Предназначен для создания записи в таблице
+id главного документа
+    id заявления
+id созданной записи
+id автора записи
+id пользователя
+
+* @return array|null <b>array</b> индексный массив с ассоциативными массива внутри, если записи существуют<br>
+     * <b>null</b> в противном случае
+
+
+     * @return array|null <b>array</b> индексный массив, если записи существуют<br>
+     * <b>null</b> в противном случае
+
+     * @return array|null <b>array</b> ассоциативный массив, если запись существует<br>
+          * <b>null</b> в противном случае
+
+     <b>true</b> запись существует<br>
+          * <b>false</b> в противном случае
+
+     * @return int|null <b>int</b> id записи, если она существует<br>
+          * <b>null</b> в противном случае
+
+     * @param array $data ассоциативный массив формата:<br>
+     * <i>Ключ</i> - название столбца в таблице<br>
+     * <i>Значение</i> - новое значение, которое будет установлено
+
+use Lib\Exceptions\DataBase as DataBaseEx;

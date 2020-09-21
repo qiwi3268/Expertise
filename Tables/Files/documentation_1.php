@@ -4,7 +4,11 @@
 namespace Tables\Files;
 
 
-class documentation_1 implements Interfaces\FileTableType2
+/**
+ * Таблица: <i>'file_documentation_1'</i>
+ *
+ */
+final class documentation_1 implements Interfaces\FileTableType2
 {
 
     static private string $tableName = 'file_documentation_1';

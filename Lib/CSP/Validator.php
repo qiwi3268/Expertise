@@ -4,6 +4,7 @@
 namespace Lib\CSP;
 
 use Lib\Exceptions\CSPValidator as SelfEx;
+use Lib\Exceptions\Shell as ShellEx;
 use Lib\Exceptions\CSPMessageParser as CSPMessageParserEx;
 use Classes\Exceptions\PregMatch as PregMatchEx;
 use Lib\CSP\Interfaces\SignatureValidationShell;
@@ -16,8 +17,8 @@ use Lib\CSP\Interfaces\SignatureValidationShell;
 class Validator
 {
 
-    private MessageParser $Parser;
-    private SignatureValidationShell $Shell;
+    private MessageParser $parser;
+    private SignatureValidationShell $shell;
 
     /**
      * Код последней ошибки
@@ -29,13 +30,13 @@ class Validator
     /**
      * Конструктор класса
      *
-     * @param MessageParser $Parser экземпляр класса парсинга вывода cmd-сообщения
-     * @param SignatureValidationShell $Shell экземпляр класса для выполения shell-команд (ExternalSignature / InternalSignature)
+     * @param MessageParser $parser экземпляр класса парсинга вывода cmd-сообщения
+     * @param SignatureValidationShell $shell экземпляр класса для выполения shell-команд (ExternalSignature / InternalSignature)
      */
-    public function __construct(MessageParser $Parser, SignatureValidationShell $Shell)
+    public function __construct(MessageParser $parser, SignatureValidationShell $shell)
     {
-        $this->Parser = $Parser;
-        $this->Shell = $Shell;
+        $this->parser = $parser;
+        $this->shell = $shell;
     }
 
 
@@ -43,8 +44,8 @@ class Validator
      * Предназначен для формирования массива с результатами валидации ЭЦП файла
      *
      * @param string ...$paths <i>перечисление</i> путей к файлам:<br>
-     * В случае <b>Shell = InternalSignature</b> передается 1 параметр - абсолютный путь в ФС сервера к файлу со встроенной подписью<br>
-     * В случае <b>Shell = ExternalSignature</b> передается 2 параметра - абсолютный путь в ФС сервера к файлу, абсолютный путь в ФС сервера к файлу открепленной подписи
+     * В случае <b>shell = InternalSignature</b> передается 1 параметр - абсолютный путь в ФС сервера к файлу со встроенной подписью<br>
+     * В случае <b>shell = ExternalSignature</b> передается 2 параметра - абсолютный путь в ФС сервера к файлу, абсолютный путь в ФС сервера к файлу открепленной подписи
      * @return array массив формата:<br>
      * 0 : <i>array</i><br>
      *          fio         <i>string</i> : Фамилия Имя Отчество<br>
@@ -59,6 +60,7 @@ class Validator
      *              user_message <i>string</i> : пользовательское сообщение на основе результата проверки подписи (сертификата)<br>
      * 1 : <i>array</i>...<br>
      *
+     * @throws ShellEx
      * @throws SelfEx
      * @throws CSPMessageParserEx
      * @throws PregMatchEx
@@ -66,8 +68,8 @@ class Validator
     public function validate(string ...$paths): array
     {
         // Получение результатов валидации подписи С проверкой цепочки сертификатов
-        $errChain_message = $this->Shell->execErrChain($paths);
-        $errChain_messageParts = $this->Parser->getMessagePartsWithoutTechnicalPart($errChain_message);
+        $errChain_message = $this->shell->execErrChain($paths);
+        $errChain_messageParts = $this->parser->getMessagePartsWithoutTechnicalPart($errChain_message);
         $errChain_results = $this->getValidateResults($errChain_messageParts);
 
         $this->lastErrorCode = $errChain_results['errorCode']; // Запись последнего кода ошибки
@@ -99,8 +101,8 @@ class Validator
             } else {
 
                 // Получение результатов валидации подписи БЕЗ проверкой цепочки сертификатов
-                $noChain_message = $this->Shell->execNoChain($paths);
-                $noChain_messageParts = $this->Parser->getMessagePartsWithoutTechnicalPart($noChain_message);
+                $noChain_message = $this->shell->execNoChain($paths);
+                $noChain_messageParts = $this->parser->getMessagePartsWithoutTechnicalPart($noChain_message);
                 $noChain_results = $this->getValidateResults($noChain_messageParts);
 
                 $this->lastErrorCode = $noChain_results['errorCode']; // Запись последнего кода ошибки
@@ -163,9 +165,9 @@ class Validator
         $signers = [];
         $errorCodes = [];
 
-        for ($s = 0; $s < count($messageParts); $s++) {
+        for ($l = 0; $l < count($messageParts); $l++) {
 
-            $part = $messageParts[$s];
+            $part = $messageParts[$l];
 
             // Во входном массиве частей сообщения могут быть элементы:
             //      Signer: ...
@@ -179,20 +181,20 @@ class Validator
             //      Unknown error.
             if (containsAll($part, 'Signer:')) {
 
-                $FIO = $this->Parser->getFIO($part);
+                $FIO = $this->parser->getFIO($part);
 
                 // Получаем следующие элементы за Signer
-                $next_1_part = $messageParts[$s + 1]; // Signature's verified. ИЛИ Сообщение об ошибке
-                $next_2_part = $messageParts[$s + 2]; // Error: Signature. В случае если next_1_part - сообщение об ошибке
+                $next_1_part = $messageParts[$l + 1]; // Signature's verified. ИЛИ Сообщение об ошибке
+                $next_2_part = $messageParts[$l + 2]; // Error: Signature. В случае если next_1_part - сообщение об ошибке
 
                 if ($next_1_part == "Signature's verified.") {
 
                     $verifyResult = true;
-                    $s += 1; // Перескакиваем через Signature's verified.
+                    $l += 1; // Перескакиваем через Signature's verified.
                 } elseif ($next_2_part == "Error: Signature.") {
 
                     $verifyResult = false;
-                    $s += 2; // Перескакиваем через сообщение об ошибке и Error: Signature.
+                    $l += 2; // Перескакиваем через сообщение об ошибке и Error: Signature.
                 } else {
                     throw new SelfEx("Неизвестный формат частей сообщения, следующий за Signer: next_1_part='{$next_1_part}', next_2_part='{$next_2_part}'" . $this->getDebugMessageParts($messageParts), 2);
                 }
@@ -200,14 +202,14 @@ class Validator
                 // Временный массив с данными о подписи
                 $signers[] = [
                     'fio'         => $FIO,
-                    'certificate' => $this->Parser->getCertificateInfo($part),
+                    'certificate' => $this->parser->getCertificateInfo($part),
                     'result'      => $verifyResult,
                     'message'     => $next_1_part
                 ];
 
             } elseif (containsAll($part, 'ErrorCode:')) {
 
-                $errorCodes[] = $this->Parser->getErrorCode($part);
+                $errorCodes[] = $this->parser->getErrorCode($part);
 
             } elseif (containsAny($part,
                 'Error: Invalid cryptographic message type.',

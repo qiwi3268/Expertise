@@ -102,7 +102,7 @@ if ($variablesTV->getExistenceFlag('type_of_object')) {
     FileHandler::setValidateResultJSON($needsFiles);
     FileHandler::setHumanFileSize($needsFiles);
 
-    $nodeStructure = new NodeStructure($className::getAllActive());
+    $nodeStructure = new NodeStructure($className::getAllAssocWhereActive());
 
     $filesInStructure = FilesInitializer::getFilesInDepthStructure($needsFiles, $nodeStructure);
 

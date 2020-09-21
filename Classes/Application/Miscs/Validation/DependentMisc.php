@@ -4,8 +4,10 @@
 namespace Classes\Application\Miscs\Validation;
 
 use Lib\Exceptions\MiscValidator as MiscValidatorEx;
+use Lib\Exceptions\DataBase as DataBaseEx;
 use Classes\Exceptions\ApplicationFormMiscValidator as ApplicationFormMiscValidatorEx;
 use LogicException;
+
 use Lib\Miscs\Validation\Validator;
 use Lib\Miscs\Validation\DependentMisc as MainDependentMisc;
 use Classes\Application\DataToUpdate;
@@ -48,8 +50,9 @@ class DependentMisc extends MainDependentMisc
      *
      * @uses \Lib\Miscs\Validation\DependentMisc
      * @return $this
-     * @throws ApplicationFormMiscValidatorEx
      * @throws MiscValidatorEx
+     * @throws DataBaseEx
+     * @throws ApplicationFormMiscValidatorEx
      */
     public function validate(): self
     {
@@ -80,6 +83,7 @@ class DependentMisc extends MainDependentMisc
     /**
      * Предназначен для добавления значения справочника к массиву обновлений
      *
+     * @throws LogicException
      */
     public function addToUpdate(): void
     {

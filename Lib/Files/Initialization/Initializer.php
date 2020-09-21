@@ -94,7 +94,7 @@ abstract class Initializer
 
             foreach ($mapping_level_2 as $mapping_level_2_code => $fileClassName) {
 
-                $files = $fileClassName::getNeedsAssocByIdMainDocument($this->getMainDocumentId());
+                $files = $fileClassName::getAllAssocWhereNeedsByIdMainDocument($this->getMainDocumentId());
 
                 if (is_null($files)) {
                     $result[$mapping_level_1_code][$mapping_level_2_code] = null;
@@ -190,7 +190,7 @@ abstract class Initializer
                         $ids[] = $id;
                     }
                     $ids = implode(', ', $ids);
-                    // Вероятнее всего, требуемый файл не попал в выборку getNeedsAssocByIdMainDocument по причине is_needs=0
+                    // Вероятнее всего, требуемый файл не попал в выборку getAllAssocWhereNeedsByIdMainDocument по причине is_needs=0
                     throw new SelfEx("Осталась(лись) подпись с id: '{$ids}' из таблицы подписей: '{$signClassName}', которая не подошла ни к одному из файлов");
                 }
                 $result[$mapping_level_1_code][$mapping_level_2_code] = $files->getArrayCopy();

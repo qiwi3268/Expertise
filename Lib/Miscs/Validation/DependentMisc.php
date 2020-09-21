@@ -4,6 +4,7 @@
 namespace Lib\Miscs\Validation;
 
 use Lib\Exceptions\MiscValidator as SelfEx;
+use Lib\Exceptions\DataBase as DataBaseEx;
 
 
 /**
@@ -45,6 +46,7 @@ class DependentMisc extends Validator
      * <b>*</b> Возвращаемый тип не объявлен, чтобы дочерние классы при желании могли реализовать цепочки вызово
      *
      * @throws SelfEx
+     * @throws DataBaseEx
      */
     public function validate()
     {

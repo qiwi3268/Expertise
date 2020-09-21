@@ -4,8 +4,12 @@
 namespace Tables\Miscs;
 
 
-// Справочник "Национальный проект"
-//
+/**
+ * Таблица: <i>'misc_national_project'</i>
+ *
+ * Справочник "Национальный проект"
+ *
+ */
 final class national_project implements Interfaces\SingleMiscValidate
 {
 

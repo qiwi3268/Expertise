@@ -4,8 +4,12 @@
 namespace Tables\Miscs;
 
 
-// Справочник "Тип объекта культурного наследия"
-//
+/**
+ * Таблица: <i>'misc_cultural_object_type'</i>
+ *
+ * Справочник "Тип объекта культурного наследия"
+ *
+ */
 final class cultural_object_type implements Interfaces\SingleMiscValidate
 {
 

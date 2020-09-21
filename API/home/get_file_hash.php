@@ -21,7 +21,7 @@ use Lib\CSP\FileHash;
 //  2  - Получен неопределенный алгоритм подписи
 //       {result, error_message : текст ошибки}
 //  3  - Произошла ошибка при парсинге fs_name
-//       {result, message : текст ошибки, code: код ошибки}
+//       {result, error_message : текст ошибки}
 //  4  - Произошла ошибка при выполнении cmd-команды
 //       {result, message : текст ошибки, code: код ошибки}
 //  5  - Произошла ошибка при парсинге вывода исполняемой команды (нет ErrorCode)
@@ -80,21 +80,20 @@ try {
         $logger->write($errorMessage);
 
         exit(json_encode([
-            'result'  => 3,
-            'message' => $errorMessage,
-            'code'    => $e->getCode()
+            'result'        => 3,
+            'error_message' => $errorMessage,
         ]));
     }
 
     // Получаем алгоритм хэширования на основе алгоритма подписи
     $hashAlgorithm = HASH_ALGORITHMS[$P_sign_algorithm];
 
-    $FileHash = new FileHash();
+    $fileHash = new FileHash();
     try {
 
         // Выполняем команду, на основе которой сгенерируется hash-файл
-        $message = $FileHash->execHash(TMP_HASH_FILES, $hashAlgorithm, $P_fs_name);
-        unset($FileHash);
+        $message = $fileHash->execHash(TMP_HASH_FILES, $hashAlgorithm, $P_fs_name);
+        unset($fileHash);
     } catch (ShellEx $e) {
 
         $errorMessage = $e->getMessage();
@@ -108,11 +107,11 @@ try {
     }
 
     // Проверка вывода исполняемой команды
-    $MessageParser = new MessageParser(false);
+    $messageParser = new MessageParser(false);
 
     try {
 
-        $errorCode = $MessageParser->getErrorCode($message);
+        $errorCode = $messageParser->getErrorCode($message);
     } catch (PregMatchEx $e) {
 
         // Произошла ошибка или нет вхождений ErrorCode
@@ -126,8 +125,8 @@ try {
         ]));
     }
 
-    // ErrorCode не соответствует
-    if ($errorCode != $MessageParser::OK_ERROR_CODE) {
+    // ErrorCode не соответствует успешному выполнению команды
+    if ($errorCode != $messageParser::OK_ERROR_CODE) {
         $errorMessage = "Исполняемая команда по получению hash-файла завершилась с ошибкой. [ErrorCode: {$errorCode}]";
         $logger->write($errorMessage);
 

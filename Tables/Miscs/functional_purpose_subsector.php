@@ -4,8 +4,12 @@
 namespace Tables\Miscs;
 
 
-// Справочник "Функциональное назначение. Подотрасль"
-//
+/**
+ * Таблица: <i>'misc_functional_purpose_subsector'</i>
+ *
+ * Справочник "Функциональное назначение. Подотрасль"
+ *
+ */
 final class functional_purpose_subsector implements Interfaces\DependentMiscValidate
 {
 

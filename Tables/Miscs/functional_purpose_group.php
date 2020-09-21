@@ -4,8 +4,12 @@
 namespace Tables\Miscs;
 
 
-// Справочник "Функциональное назначение. Группа"
-//
+/**
+ * Таблица: <i>'misc_functional_purpose_group'</i>
+ *
+ * Справочник "Функциональное назначение. Группа"
+ *
+ */
 final class functional_purpose_group implements Interfaces\DependentMiscValidate
 {
 

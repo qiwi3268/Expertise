@@ -2,6 +2,7 @@
 
 
 namespace Lib\CSP;
+use Lib\Exceptions\Shell as ShellEx;
 
 
 /**
@@ -16,7 +17,7 @@ class ExternalSignature implements Interfaces\SignatureValidationShell
      *
      * @param array $filePaths массив с путями файлов, где:<br>filePaths[0] - абсолютный путь в ФС сервера к файлу<br>filePaths[1] - абсолютный путь в ФС сервера к файлу открепленной подписи
      * @return string вывод исполняемой команды
-     * @throws \Lib\Exceptions\Shell
+     * @throws ShellEx
      */
     public function execErrChain(array $filePaths): string
     {
@@ -34,7 +35,7 @@ class ExternalSignature implements Interfaces\SignatureValidationShell
      *
      * @param array $filePaths массив с путями файлов, где:<br>filePaths[0] - абсолютный путь в ФС сервера к файлу<br>filePaths[1] - абсолютный путь в ФС сервера к файлу открепленной подписи
      * @return string вывод исполняемой команды
-     * @throws \Lib\Exceptions\Shell
+     * @throws ShellEx
      */
     public function execNoChain(array $filePaths): string
     {

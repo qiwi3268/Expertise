@@ -4,8 +4,10 @@
 namespace Classes\Application\Miscs\Validation;
 
 use Lib\Exceptions\MiscValidator as MiscValidatorEx;
+use Lib\Exceptions\DataBase as DataBaseEx;
 use Classes\Exceptions\ApplicationFormMiscValidator as ApplicationFormMiscValidatorEx;
 use LogicException;
+
 use Lib\Miscs\Validation\SingleMisc as MainSingleMisc;
 use Classes\Application\DataToUpdate;
 
@@ -22,6 +24,7 @@ class SingleMisc extends MainSingleMisc
      *
      */
     private ?string $columnName;
+
 
     /**
      * Конструктор класса
@@ -43,8 +46,10 @@ class SingleMisc extends MainSingleMisc
      * Предназначен для комплексной проверки одиночного справочника
      *
      * @return $this
-     * @throws ApplicationFormMiscValidatorEx
      * @throws MiscValidatorEx
+     * @throws DataBaseEx
+     * @throws ApplicationFormMiscValidatorEx
+     *
      */
     public function validate(): self
     {
@@ -73,11 +78,12 @@ class SingleMisc extends MainSingleMisc
     /**
      * Предназначен для добавления значения справочника к массиву обновлений
      *
+     * @throws LogicException
      */
     public function addToUpdate(): void
     {
         if (is_null($this->columnName)) {
-            throw new \LogicException("Попытка вызвать метод Classes\Application\Miscs\Validation\SingleMiscValidator::addToUpdate при неуказанном в конструкторе columnName. Название класса справочника: '{$this->class}'");
+            throw new LogicException("Попытка вызвать метод Classes\Application\Miscs\Validation\SingleMiscValidator::addToUpdate при неуказанном в конструкторе columnName. Название класса справочника: '{$this->class}'");
         }
 
         DataToUpdate::addInt($this->form_value, $this->columnName);

@@ -68,7 +68,7 @@ FileHandler::setValidateResultJSON($needsFiles);
 FileHandler::setHumanFileSize($needsFiles);
 
 
-$nodeStructure = new NodeStructure($structureDocumentationClassName::getAllActive());
+$nodeStructure = new NodeStructure($structureDocumentationClassName::getAllAssocWhereActive());
 
 $filesInStructure = FilesInitializer::getFilesInDepthStructure($needsFiles, $nodeStructure);
 
@@ -122,5 +122,5 @@ $test = [
     ],
 ];
 
-//var_dump($test);
-//var_dump(json_encode($test));
+var_dump($test);
+var_dump(json_encode($test));

@@ -34,7 +34,7 @@ class MessageParser
     public function __construct(bool $needNames)
     {
         if ($needNames) {
-            $names = \Tables\people_name::getNames();
+            $names = \Tables\people_name::getAllSimple();
             // Перевод выборки в формат хэш-массива
             foreach ($names as $name) $this->hashNames[$name] = true;
         }

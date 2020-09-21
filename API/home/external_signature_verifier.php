@@ -9,6 +9,7 @@ use Lib\Exceptions\Logger as LoggerEx;
 
 use Lib\Singles\Logger;
 use Lib\Signs\Mappings\SignsTableMapping;
+use Lib\DataBase\Transaction;
 use Classes\Application\Helpers\Helper as ApplicationHelper;
 
 use Lib\CSP\MessageParser;
@@ -26,7 +27,7 @@ use Lib\CSP\Validator;
 //	2  - Ошибка в указанном маппинге таблицы подписей
 //       {result, error_message : текст ошибки}
 //  3  - Произошла ошибка при парсинге fs_name_data / fs_name_sign
-//       {result, message : текст ошибки, code: код ошибки}
+//       {result, error_message : текст ошибки}
 //  4  - id заявления исходного файла не равен id заявления файла подписи
 //       {result, error_message : текст ошибки}
 //	5  - Произошла внутренняя ошибка 'Lib\Exceptions\Shell'
@@ -51,7 +52,11 @@ use Lib\CSP\Validator;
 
 // Проверка наличия обязательных параметров
 if (!checkParamsPOST('fs_name_data', 'fs_name_sign', 'mapping_level_1', 'mapping_level_2')) {
-    exit(json_encode(['result' => 1, 'error_message' => 'Нет обязательных параметров POST запроса']));
+
+    exit(json_encode([
+        'result'        => 1,
+        'error_message' => 'Нет обязательных параметров POST запроса'
+    ]));
 }
 
 try {
@@ -65,11 +70,11 @@ try {
     $logger = new Logger(LOGS . '/csp/errors', 'API_external_signature_verifier.log');
 
     // Блок проверки маппинга
-    $Mapping = new SignsTableMapping($P_mapping_level_1, $P_mapping_level_2);
+    $mapping = new SignsTableMapping($P_mapping_level_1, $P_mapping_level_2);
 
-    if (!is_null($Mapping->getErrorCode())) {
+    if (!is_null($mapping->getErrorCode())) {
 
-        $errorMessage = $Mapping->getErrorText();
+        $errorMessage = $mapping->getErrorText();
         $logger->write($errorMessage);
 
         exit(json_encode([
@@ -81,8 +86,15 @@ try {
     try {
 
         // Получение id файлов
-        list('application_id' => $application_id, 'file_name' => $hash_data) = ApplicationHelper::parseApplicationFilePath($P_fs_name_data);
-        list('application_id' => $tmp_id, 'file_name' => $hash_sign) = ApplicationHelper::parseApplicationFilePath($P_fs_name_sign);
+        list(
+            'application_id' => $application_id,
+            'file_name'      => $hash_data
+            ) = ApplicationHelper::parseApplicationFilePath($P_fs_name_data);
+
+        list(
+            'application_id' => $tmp_id,
+            'file_name'      => $hash_sign
+            ) = ApplicationHelper::parseApplicationFilePath($P_fs_name_sign);
     } catch (PregMatchEx $e) {
 
         // Произошла ошибка при парсинге P_fs_name_data / P_fs_name_sign
@@ -90,9 +102,8 @@ try {
         $logger->write($errorMessage);
 
         exit(json_encode([
-            'result'  => 3,
-            'message' => $errorMessage,
-            'code'    => $e->getCode()
+            'result'        => 3,
+            'error_message' => $errorMessage,
         ]));
     }
 
@@ -108,19 +119,19 @@ try {
         ]));
     }
 
-    $FileClassName = $Mapping->getFileClassName();
+    $fileClassName = $mapping->getFileClassName();
 
     // *** Опускаем проверку на null по причине предшествующего API_file_checker
-    $dataFileAssoc = $FileClassName::getAssocByIdMainDocumentAndHash($application_id, $hash_data);
-    $signFileAssoc = $FileClassName::getAssocByIdMainDocumentAndHash($application_id, $hash_sign);
+    $dataFileAssoc = $fileClassName::getAssocByIdMainDocumentAndHash($application_id, $hash_data);
+    $signFileAssoc = $fileClassName::getAssocByIdMainDocumentAndHash($application_id, $hash_sign);
 
-    $Parser = new MessageParser(true);
-    $Shell = new ExternalSignature();
-    $Validator = new Validator($Parser, $Shell);
+    $parser = new MessageParser(true);
+    $shell = new ExternalSignature();
+    $validator = new Validator($parser, $shell);
 
     try {
 
-        $validateResults = $Validator->validate($P_fs_name_data, $P_fs_name_sign);
+        $validateResults = $validator->validate($P_fs_name_data, $P_fs_name_sign);
     } catch (ShellEx $e) {
 
         // Lib\CSP\Shell:exec
@@ -144,9 +155,6 @@ try {
     } catch (CSPMessageParserEx $e) {
 
         // Lib\CSP\MessageParser::getFIO
-        // code:
-        //  1 - в БД не нашлось имени из ФИО
-        //  2 - в одном Signer нашлось больше одного ФИО
         $date = $logger->write($e->getMessage());
         $code = $e->getCode();
 
@@ -157,13 +165,6 @@ try {
     } catch (CSPValidatorEx $e) {
 
         // Lib\CSP\Validator::validate
-        // code:
-        //  1 - получен неизвестный результат проверки подписи / сертификата (подписи)
-        //  2 - неизвестный формат блока, следующий за Signer
-        //  3 - неизвестная часть сообщения
-        //  4 - в частях сообщения отсустсвует(ют) Signer
-        //  5 - получено некорректное количество блоков ErrorCode
-        //  6 - в результате проверки БЕЗ цепочки сертификатов не был найден подписант из результатов проверки С цепочкой сертификатов
         $date = $logger->write($e->getMessage());
         $code = $e->getCode();
 
@@ -172,7 +173,7 @@ try {
         // Последняя ошибка связана с тем, что проверка подписи не началась
         // Для открепленной подписи ошибка означает:
         //    - проверяется файл без подписи и файл без подписи
-        if ($code == 4 && $Validator->isSignatureVerifyingNotStarted()) {
+        if ($code == 4 && $validator->isSignatureVerifyingNotStarted()) {
 
             exit(json_encode([
                 'result'        => 6.1,
@@ -197,51 +198,55 @@ try {
         ]));
     }
 
-    $ClassName = $Mapping->getClassName();
+    $className = $mapping->getClassName();
     $id_data = $dataFileAssoc['id'];
     $id_sign = $signFileAssoc['id'];
 
-    // Создаем запись в таблице подписей
+    $transaction = new Transaction();
+
+    // Заполняем транзакцию для создания записи в таблице подписей
     foreach ($validateResults as &$result) {
 
         // Изменяем сообщение для пользователя, если файл размером больше 20 КБ
         if ($result['signature_verify']['user_message'] == 'Подпись не соответствует файлу' && ($signFileAssoc['file_size'] / 1024 > 20)) {
-            $result['signature_verify']['user_message'] = 'Подпись не соответствует файлу. Вероятно, была загружена встроенная подпись вместо открепленной.';
+            $result['signature_verify']['user_message'] = 'Подпись не соответствует файлу. Вероятно, была загружена встроенная подпись вместо открепленной';
         }
 
-        try {
-
-            $ClassName::create(
-                $id_sign,
-                1,
-                $id_data,
-                $result['fio'],
-                $result['certificate'],
-                $result['signature_verify']['result'] ? 1 : 0,
-                $result['signature_verify']['message'],
-                $result['signature_verify']['user_message'],
-                $result['certificate_verify']['result'] ? 1 : 0,
-                $result['certificate_verify']['message'],
-                $result['certificate_verify']['user_message']
-            );
-        } catch (DataBaseEx $e) {
-
-            $errorMessage = $e->getMessage();
-            $errorCode = $e->getCode();
-            $logger->write("Произошла ошибка при добавлении записи в таблицу подписей: '{$ClassName}'. Message: '{$errorMessage}', Code: '{$errorCode}'");
-
-            exit(json_encode([
-                'result'  => 8,
-                'message' => $e->getMessage(),
-                'code'    => $e->getCode()
-            ]));
-        }
+        $transaction->add($className, 'create', [
+            $id_sign,
+            1,
+            $id_data,
+            $result['fio'],
+            $result['certificate'],
+            $result['signature_verify']['result'] ? 1 : 0,
+            $result['signature_verify']['message'],
+            $result['signature_verify']['user_message'],
+            $result['certificate_verify']['result'] ? 1 : 0,
+            $result['certificate_verify']['message'],
+            $result['certificate_verify']['user_message']
+        ]);
 
         // Удаляем результаты, которые не нужны на клиентской стороне
         unset($result['signature_verify']['message']);
         unset($result['certificate_verify']['message']);
     }
     unset($result);
+
+    try {
+
+       $transaction->start();
+    } catch (DataBaseEx $e) {
+
+        $errorMessage = $e->getMessage();
+        $errorCode = $e->getCode();
+        $logger->write("Произошла ошибка при добавлении записи в таблицу подписей: '{$className}'. Message: '{$errorMessage}', Code: '{$errorCode}'");
+
+        exit(json_encode([
+            'result'  => 8,
+            'message' => $errorMessage,
+            'code'    => $errorCode
+        ]));
+    }
 
     // Все прошло успешно
     exit(json_encode([

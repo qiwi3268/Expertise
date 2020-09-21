@@ -4,8 +4,12 @@
 namespace Tables\Miscs;
 
 
-// Справочник "Функциональное назначение"
-//
+/**
+ * Таблица: <i>'misc_functional_purpose'</i>
+ *
+ * Справочник "Функциональное назначение"
+ *
+ */
 final class functional_purpose implements Interfaces\SingleMiscValidate
 {
 

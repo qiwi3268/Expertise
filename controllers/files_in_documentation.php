@@ -22,7 +22,7 @@ $needsFiles = $Initializer->getNeedsFilesWithSigns()[2][1];
 
 if (!is_null($needsFiles)) {
 
-    $filesInStructure = Initializer::getFilesInDepthStructure($needsFiles, new NodeStructure(documentation_1::getAllActive()));
+    $filesInStructure = Initializer::getFilesInDepthStructure($needsFiles, new NodeStructure(documentation_1::getAllAssocWhereActive()));
 
     $structureWithFiles[0] = array_filter($filesInStructure, fn($node) => isset($node['files']));
 }
@@ -31,7 +31,7 @@ $needsFiles = $Initializer->getNeedsFilesWithSigns()[2][2];
 
 if (!is_null($needsFiles)) {
 
-    $filesInStructure = Initializer::getFilesInDepthStructure($needsFiles, new NodeStructure(documentation_2::getAllActive()));
+    $filesInStructure = Initializer::getFilesInDepthStructure($needsFiles, new NodeStructure(documentation_2::getAllAssocWhereActive()));
 
     $structureWithFiles[1] = array_filter($filesInStructure, fn($node) => isset($node['files']));
 }

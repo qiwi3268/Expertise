@@ -24,8 +24,8 @@ final class total_cc implements Responsible
     /**
      * Предназначен для создания записи в таблице
      *
-     * @param int $id_main_document
-     * @param int $id_author
+     * @param int $id_main_document id главного документа
+     * @param int $id_author id автора записи
      * @return int id созданной записи
      * @throws DataBaseEx
      */

@@ -14,18 +14,18 @@ use Lib\DataBase\SimpleQuery;
 class documentation_1
 {
 
-    // Предназначен для получения ассициативных массивов структуры документации,
-    // возвращает активные данные по возрастанию столбца sort
-    // Возвращает параметры-----------------------------------
-    // array : ассоциативные массивы структуры документации
-    //
-    static public function getAllActive(): array
+    /**
+     * Предназначен для получения ассициативных массивов структуры документации
+     *
+     * @return array индексный массив с ассоциативными массива внутри
+     * @throws DataBaseEx
+     */
+    static public function getAllAssocWhereActive(): array
     {
         $query = "SELECT *
                   FROM `structure_documentation_1`
                   WHERE `is_active`=1
-                  ORDER BY `sort` ASC";
-
+                  ORDER BY `sort`";
         return SimpleQuery::getFetchAssoc($query);
     }
 
@@ -33,9 +33,7 @@ class documentation_1
     /**
      * Предназначен для получения ассоциативных массивов стркутуры документации
      *
-     * Возвращает данные по возрастанию столбца <i>sort</i>
-     *
-     * @return array ассоциативные массивы структуры документации
+     * @return array индексный массив с ассоциативными массива внутри
      * @throws DataBaseEx
      */
     static public function getAllAssocWhereActiveAndId341NN(): array
@@ -44,7 +42,6 @@ class documentation_1
                   FROM `structure_documentation_1`
                   WHERE `is_active`=1 AND `id_main_block_341` IS NOT NULL
                   ORDER BY `sort`";
-
         return SimpleQuery::getFetchAssoc($query);
     }
 }

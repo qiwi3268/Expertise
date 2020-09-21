@@ -3,25 +3,34 @@
 
 namespace Tables\Miscs\Traits;
 
+use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\DataBase\SimpleQuery;
 use Lib\DataBase\ParametrizedQuery;
 
 
-// Трейт, реализующий интерфейс Tables\Miscs\Interfaces\DependentMiscValidate
-// Для использования трейта необходимо, чтобы перед его включением было объявлено
-// статические свойства: tableName, mainTableName, corrTableName с именеми соответсвующих таблиц
-//
+/**
+ * Реализует интерфейс {@see \Tables\Miscs\Interfaces\DependentMiscValidate}
+ *
+ * <b>*</b> Для использования трейта необходимо, чтобы перед его включением было объявлено
+ * статические свойства:
+ * - tableName
+ * - mainTableName
+ * - corrTableName<br>
+ * с именами соответсвующих таблиц
+ *
+ */
 trait DependentMiscValidate
 {
 
-    // Предназначен для проверки существования связи главного и зависимого справочника по их id
-    // Принимает параметры-----------------------------------
-    // id_main      int : id главного справочника
-    // id_dependent int : id зависимого справочника
-    // Возвращает параметры----------------------------------
-    // true  : зависимость существует
-    // false : зависимость не существует
-    //
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Miscs\Interfaces\DependentMiscValidate::checkExistCorrByIds()}
+     *
+     * @param int $id_main
+     * @param int $id_dependent
+     * @return bool
+     * @throws DataBaseEx
+     */
     static public function checkExistCorrByIds(int $id_main, int $id_dependent): bool
     {
         $table = self::$corrTableName;
@@ -34,11 +43,14 @@ trait DependentMiscValidate
     }
 
 
-    // Предназначен для получения ассоциативного массива зависимого справочника, упакованного по id главного справочника
-    // Возвращает параметры----------------------------------
-    // array : индексный массив (id главного справочника), в элементах которого находятся ассоциативные массивы зависимого справочника
-    //
-    static public function getAllActiveCorrMain(): array
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Miscs\Interfaces\DependentMiscValidate::getAllAssocWhereActiveCorrMain()}
+     *
+     * @return array
+     * @throws DataBaseEx
+     */
+    static public function getAllAssocWhereActiveCorrMain(): array
     {
         $table = self::$tableName;
         $mainTable = self::$mainTableName;
@@ -53,7 +65,7 @@ trait DependentMiscValidate
                   INNER JOIN `{$table}`
                           ON (`corr`.`id_dependent`=`{$table}`.`id`)
                   WHERE `{$mainTable}`.`is_active`=1 AND `{$table}`.`is_active`=1
-                  ORDER BY `{$table}`.`sort` ASC";
+                  ORDER BY `{$table}`.`sort`";
         $result = SimpleQuery::getFetchAssoc($query);
 
         // Укладываем зависимый справочник по id главного справочника

@@ -3,25 +3,24 @@
 
 namespace Tables;
 
-use Lib\DataBase\ParametrizedQuery;
 use Lib\Exceptions\DataBase as DataBaseEx;
+use Lib\DataBase\ParametrizedQuery;
 
 
 /**
  * Таблица: <i>'assigned_expert_total_cc'</i>
  *
  */
-class assigned_expert_total_cc
+final class assigned_expert_total_cc
 {
-
 
     /**
      * Предназначен для создания записи в таблице
      *
-     * @param int $id_total_cc
-     * @param int $id_expert
-     * @param int $is_lead
-     * @param int $is_common_part
+     * @param int $id_total_cc id сводного замечания / заключения
+     * @param int $id_expert id эксперта
+     * @param int $is_lead ведущий ли эксперт
+     * @param int $is_common_part назначен ли эксперт на общую часть
      * @return int id созданной записи
      * @throws DataBaseEx
      */

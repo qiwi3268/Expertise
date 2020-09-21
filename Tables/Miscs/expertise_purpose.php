@@ -4,8 +4,12 @@
 namespace Tables\Miscs;
 
 
-// Справочник "Цель обращения"
-//
+/**
+ * Таблица: <i>'misc_expertise_purpose'</i>
+ *
+ * Справочник "Цель обращения"
+ *
+ */
 final class expertise_purpose implements Interfaces\SingleMiscValidate
 {
 

@@ -4,6 +4,10 @@
 namespace Tables\Signs;
 
 
+/**
+ * Таблица: <i>'sign_grbs'</i>
+ *
+ */
 class grbs implements Interfaces\SignTable
 {
 

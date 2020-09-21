@@ -3,19 +3,25 @@
 
 namespace Tables;
 
+use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\DataBase\ParametrizedQuery;
 
 
+/**
+ * Таблица: <i>'user_role'</i>
+ *
+ */
 final class user_role
 {
 
-    // Предназначен для создания записи роли пользователя
-    // Принимает параметры-----------------------------------
-    // Все параметры, согласно таблице `user_role`
-    // Возвращает параметры-----------------------------------
-    // id int : id созданной записи
-    //
-    //todo среднее - посмотреть что возвращает. id записи в этой таблице нет
+    /**
+     * Предназначен для создания записи роли пользователя
+     *
+     * @param int $id_user id пользователя
+     * @param int $id_user_info_role id роли
+     * @return int id созданной записи
+     * @throws DataBaseEx
+     */
     static public function create(int $id_user, int $id_user_info_role): int
     {
         $query = "INSERT INTO `user_role`
