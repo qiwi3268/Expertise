@@ -6,7 +6,7 @@ use Lib\Singles\VariableTransfer;
 
 
 $availableActions = ActionLocator::getInstance(CURRENT_DOCUMENT_TYPE)
-    ->getActions()
+    ->getObject()
     ->getAccessActions()
     ->getAvailableActions();
 

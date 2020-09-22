@@ -8,6 +8,9 @@ use Lib\Actions\AccessActions as MainAccessActions;
 /**
  *  Предназначен для проверки доступа к действиям для типа документа <i>Заявление</i>
  *
+ * <b>**</b> В дочерних методах не надо реализовывать проверку на доступ к документу,
+ * т.к. она должна выполняться на уровне route callbacks
+ *
  */
 class AccessActions extends MainAccessActions
 {
@@ -20,6 +23,7 @@ class AccessActions extends MainAccessActions
 
     public function action_2(): bool
     {
+
         return true;
     }
 }

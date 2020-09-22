@@ -91,13 +91,9 @@
         </page>
 
         <page urn="home/API_action_executor">
-            <callbacks>
-                <namespace name="\Classes\RouteCallbacks\DocumentParameters">
-                    <class name="APIActionExecutor" type="instance">
-                        <method name="defineDocumentParameters"/>
-                    </class>
-                </namespace>
-            </callbacks>
+
+            <callback_template id="DocumentParameters_APIActionExecutor" />
+
             <files>
                 <dir path="/API/home/" ext=".php">
                     <file name="action_executor" />
@@ -173,6 +169,8 @@
 
             <callback_template id="DocumentParameters_ExpertiseCard" />
             <callback_template id="DocumentExistChecker" />
+            <callback_template id="AccessToDocumentChecker" />
+
 
             <files>
                 <dir path="/controllers/" ext=".php">
@@ -250,7 +248,11 @@
 
         <page urn="home/application/actions/action_2">
 
-            <callback_template id="3" />
+            <callback_template id="DocumentParameters_ActionPage" />
+            <callback_template id="DocumentExistChecker" />
+            <callback_template id="AccessToDocumentChecker" />
+            <callback_template id="ActionChecker" />
+
 
             <files>
                 <dir path="/controllers/" ext=".php">
@@ -331,13 +333,67 @@
             </callbacks>
         </template>
 
-        <template id="3">
+
+        <template id="DocumentParameters_ActionPage">
             <callbacks>
                 <namespace name="\Classes\RouteCallbacks\DocumentParameters">
                     <class name="ActionPage" type="instance">
+                        <method name="defineDocumentParameters" />
+                    </class>
+                </namespace>
+            </callbacks>
+        </template>
+
+
+        <template id="DocumentParameters_ExpertiseCard">
+            <callbacks>
+                <namespace name="\Classes\RouteCallbacks\DocumentParameters">
+                    <class name="ExpertiseCard" type="instance">
+                        <method name="defineDocumentParameters" />
+                    </class>
+                </namespace>
+            </callbacks>
+        </template>
+
+
+        <template id="DocumentParameters_APIActionExecutor">
+            <callbacks>
+                <namespace name="\Classes\RouteCallbacks\DocumentParameters">
+                    <class name="APIActionExecutor" type="instance">
                         <method name="defineDocumentParameters"/>
                     </class>
                 </namespace>
+            </callbacks>
+        </template>
+
+
+
+        <template id="DocumentExistChecker">
+            <callbacks>
+                <namespace name="\Classes\RouteCallbacks">
+                    <class name="DocumentExistChecker" type="instance">
+                        <method name="construct"/>
+                        <method name="checkDocumentExist"/>
+                    </class>
+                </namespace>
+            </callbacks>
+        </template>
+
+
+        <template id="AccessToDocumentChecker">
+            <callbacks>
+                <namespace name="\Classes\RouteCallbacks">
+                    <class name="AccessToDocumentChecker" type="instance">
+                        <method name="construct"/>
+                        <method name="checkAccessToDocument"/>
+                    </class>
+                </namespace>
+            </callbacks>
+        </template>
+
+
+        <template id="ActionChecker">
+            <callbacks>
                 <namespace name="\Classes\RouteCallbacks">
                     <class name="ActionChecker" type="instance">
                         <method name="construct"/>
@@ -351,26 +407,6 @@
 
 
 
-        <template id="DocumentParameters_ExpertiseCard">
-            <callbacks>
-                <namespace name="\Classes\RouteCallbacks\DocumentParameters">
-                    <class name="ExpertiseCard" type="instance">
-                        <method name="defineDocumentParameters" />
-                    </class>
-                </namespace>
-            </callbacks>
-        </template>
-
-        <template id="DocumentExistChecker">
-            <callbacks>
-                <namespace name="\Classes\RouteCallbacks">
-                    <class name="DocumentExistChecker" type="instance">
-                        <method name="construct"/>
-                        <method name="checkDocumentExist"/>
-                    </class>
-                </namespace>
-            </callbacks>
-        </template>
 
     </callback_templates>
 </routes>

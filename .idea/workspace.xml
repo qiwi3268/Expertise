@@ -3,10 +3,23 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/action_sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_sidebar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/home/action_executor.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/action_executor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Application/Actions/AccessActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Actions/AccessActions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/RouteCallbacks/ActionChecker.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/RouteCallbacks/ActionChecker.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Actions/AccessActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Actions/AccessActions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Actions/Locator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Actions/Locator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Singles/NodeStructure.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/NodeStructure.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Singles/VariableTransfer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/VariableTransfer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Docs/total_cc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Docs/total_cc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/applicant_access_group.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/applicant_access_group.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/assigned_expert_total_cc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/assigned_expert_total_cc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/actions/action_sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/actions/action_sidebar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/actions/hierarchy_sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/actions/hierarchy_sidebar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/Session.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/Session.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/defined_variables.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/defined_variables.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/routes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/settings/routes.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/test_1.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/test_1.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/actions/hierarchy_sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/actions/hierarchy_sidebar.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/test_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/test_1.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,14 +139,7 @@
       <workItem from="1600400074408" duration="16311000" />
       <workItem from="1600493631689" duration="13046000" />
       <workItem from="1600579840812" duration="27749000" />
-      <workItem from="1600659199409" duration="37729000" />
-    </task>
-    <task id="LOCAL-00078" summary="07.09.2020_1">
-      <created>1599456982723</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1599456982755</updated>
+      <workItem from="1600659199409" duration="40502000" />
     </task>
     <task id="LOCAL-00079" summary="07.09.2020_2">
       <created>1599476068505</created>
@@ -471,7 +477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600765550993</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="22.09.2020_3">
+      <created>1600774883867</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1600774883867</updated>
+    </task>
+    <option name="localTasksCounter" value="128" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -488,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="15.09.2020_3" />
     <MESSAGE value="16.09.2020" />
     <MESSAGE value="16.09.2020_1" />
     <MESSAGE value="17.09.2020" />
@@ -513,7 +525,8 @@
     <MESSAGE value="22.09.2020" />
     <MESSAGE value="22.09.2020_1" />
     <MESSAGE value="22.09.2020_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="22.09.2020_2" />
+    <MESSAGE value="22.09.2020_3" />
+    <option name="LAST_COMMIT_MESSAGE" value="22.09.2020_3" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -536,10 +549,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1600774866678">
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1600774880713">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600774866678" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600774880713" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600519766620" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600621933946" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />

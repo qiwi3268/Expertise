@@ -8,6 +8,7 @@ use Lib\Actions\Locator;
 // API предназначен для выполнения действий
 //
 // API result:
+// Classes\RouteCallbacks\DocumentParameters\APIActionExecutor----------
 //	1  - Нет обязательных параметров POST запроса
 //       {result, error_message : текст ошибки}
 //	2  - Произошла ошибка при определении типа открытого документа
@@ -22,7 +23,7 @@ use Lib\Actions\Locator;
 //       {result, error_message : текст ошибки}
 //  7  - Непредвиденная ошибка метода Classes\DocumentParameters\APIActionExecutor::defineDocumentParameters
 //       {result, message : текст ошибки, code: код ошибки}
-// --------------------------------------------------------
+// ---------------------------------------------------------------------
 //  8  - Ошибка при определении типа документа
 //       {result, error_message : текст ошибки}
 //  9  - Отсутствует доступ к выполняемому действию
@@ -48,7 +49,7 @@ try {
 
     try {
 
-        $actions = Locator::getInstance(CURRENT_DOCUMENT_TYPE)->getActions();
+        $actions = Locator::getInstance(CURRENT_DOCUMENT_TYPE)->getObject();
     } catch (ActionsEx $e) {
 
         exit(json_encode([

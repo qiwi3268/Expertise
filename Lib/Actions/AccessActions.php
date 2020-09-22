@@ -5,6 +5,7 @@ namespace Lib\Actions;
 use Lib\Exceptions\Actions as SelfEx;
 use Lib\Singles\PrimitiveValidator;
 use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
+use ReflectionException;
 
 
 
@@ -48,6 +49,7 @@ abstract class AccessActions
      *
      * @return array ассоциативные массивы доступных действий
      * @throws SelfEx
+     * @throws ReflectionException
      */
     public function getAvailableActions(): array
     {
@@ -70,6 +72,7 @@ abstract class AccessActions
      * @return bool <b>true</b> есть доступ к действию<br/><b>false</b> нет доступа к действию
      *
      * @throws SelfEx
+     * @throws ReflectionException
      */
     public function checkAccessFromActionByPageName(string $pageName): bool
     {
@@ -86,7 +89,7 @@ abstract class AccessActions
      * @param string $pageName имя страницы для вывода в сообщение об ошибке
      * @return bool результат callback'а
      * @throws SelfEx
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function getValidatedCallbackResult(?array $action, string $pageName): bool
     {

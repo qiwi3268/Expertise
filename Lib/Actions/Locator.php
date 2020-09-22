@@ -49,7 +49,7 @@ class Locator
     /**
      * Предназначен для получения сущности класса
      *
-     * @param string $documentType
+     * @param string $documentType тип документа
      * @return static сущность класса
      * @throws SelfEx
      */
@@ -63,11 +63,11 @@ class Locator
 
 
     /**
-     * Предназначен для получения класса действий
+     * Предназначен для получения экземпляра класса
      *
      * @return Actions экземпляр класса действий
      */
-    public function getActions(): Actions
+    public function getObject(): Actions
     {
         return $this->actions;
     }

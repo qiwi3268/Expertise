@@ -43,4 +43,20 @@ final class total_cc implements Existent, Responsible
                     (?, ?, 'type_4', UNIX_TIMESTAMP())";
         return ParametrizedQuery::set($query, [$id_main_document, $id_author]);
     }
+
+
+    /**
+     * Предназначен для получения id стадии по id сводного замечания / заключения
+     *
+     * @param int $id id сводного замечания / заключения
+     * @return int id стадии
+     * @throws DataBaseEx
+     */
+    static public function getIdStageById(int $id): int
+    {
+        $query = "SELECT `id_stage`
+				  FROM `doc_total_cc`
+                  WHERE `doc_total_cc`.`id`=?";
+        return ParametrizedQuery::getSimpleArray($query, [$id])[0];
+    }
 }

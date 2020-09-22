@@ -3,6 +3,8 @@
 
 namespace core\Classes;
 
+use Classes\Exceptions\PregMatch as PregMatchEx;
+
 
 /**
  * Предназначен работы с <b>$_SESSION</b>
@@ -38,9 +40,10 @@ class Session
         }
 
         $_SESSION['flags'] = [
-            'authorized' => !empty($_SESSION['user_info']['roles']),
-            'admin'      => in_array(ROLE['ADM'], $_SESSION['user_info']['roles'], true),
-            'applicant'  => in_array(ROLE['APP'], $_SESSION['user_info']['roles'], true)
+            'authorized'       => !empty($_SESSION['user_info']['roles']),
+            'admin'            => in_array(ROLE['ADM'], $_SESSION['user_info']['roles'], true),
+            'applicant'        => in_array(ROLE['APP'], $_SESSION['user_info']['roles'], true),
+            'freelance_expert' => in_array(ROLE['FRE_EXP'], $_SESSION['user_info']['roles'], true)
         ];
     }
 
@@ -81,6 +84,7 @@ class Session
      * Предназначен для получения полного ФИО пользователя
      *
      * @return string полное ФИО пользователя
+     * @throws PregMatchEx
      */
     static public function getUserFullFIO(): string
     {
@@ -114,6 +118,24 @@ class Session
         }
         return false;
     }
+
+
+    /**
+     * Предназначен для проверки пользователя на внештатного эксперта
+     *
+     * @return bool
+     */
+    static public function isFreelanceExpert(): bool
+    {
+        if (
+            isset($_SESSION['flags']['freelance_expert'])
+            && $_SESSION['flags']['freelance_expert'] === true
+        ) {
+            return true;
+        }
+        return false;
+    }
+
 
 
     /**

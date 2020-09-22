@@ -34,7 +34,7 @@ class ActionChecker
      */
     public function construct(): void
     {
-        $actions = Locator::getInstance(CURRENT_DOCUMENT_TYPE)->getActions();
+        $actions = Locator::getInstance(CURRENT_DOCUMENT_TYPE)->getObject();
         $this->accessActions = $actions->getAccessActions();
         $this->executionActions = $actions->getExecutionActions();
     }
@@ -51,6 +51,7 @@ class ActionChecker
      * злого усмысла или ошибки в этом нет
      *
      * @throws ActionsEx
+     * @throws ReflectionException
      */
     public function checkAccess(): void
     {

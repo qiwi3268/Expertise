@@ -83,7 +83,8 @@ class NodeStructure
                 } while ($issetParent);
             }
 
-            $result[] = [
+            // todo важное
+            @$result[] = [
                 'id'                => $node['id'],
                 'id_main_block_341' => $node['id_main_block_341'],
                 'name'              => $node['name'],

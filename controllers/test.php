@@ -14,10 +14,10 @@ use core\Classes\RoutesXMLHandler;
 use Tables\Structures\documentation_1;
 
 
+use Lib\AccessToDocument\AccessToDocumentTree;
 
-$ac = \Tables\Docs\Relations\application::getChildrenById(978);
+$test = new AccessToDocumentTree('total_cc', 19);
+$test->checkAccessToDocumentTree();
 
 
 
-
-var_dump($ac);

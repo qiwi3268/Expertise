@@ -3,6 +3,7 @@
 
 namespace Lib\Singles;
 
+use Exception;
 
 
 /**
@@ -95,7 +96,7 @@ class VariableTransfer
      *
      * @param array $container контейнер для хранения значений
      * @param string $key ключ массива. Из значения будет вырезан режим работы, если он указан
-     * @throws \Exception
+     * @throws Exception
      */
     private function checkIssetVariable(array $container, string &$key): void
     {
@@ -110,7 +111,7 @@ class VariableTransfer
         }
 
         if ($isHardMode && !isset($container[$key])) {
-            throw new \Exception("Ключ '{$key}' не существует в запрашиваемом контейнере");
+            throw new Exception("Ключ '{$key}' не существует в запрашиваемом контейнере");
         }
     }
 
@@ -132,7 +133,7 @@ class VariableTransfer
      * @param string $key
      * @return bool|null <b>bool</b> результат флага существования, если он был установлен<br>
      * <b>null</b> запращиваемый флаг не был установлен
-     * @throws \Exception
+     * @throws Exception
      */
     public function getExistenceFlag(string $key): ?bool
     {
@@ -159,7 +160,7 @@ class VariableTransfer
      * @param string $key
      * @return mixed|null <b>mixed</b> значение, если оно было установлено<br>
      * <b>null</b> запращиваемое значение не было установлено
-     * @throws \Exception
+     * @throws Exception
      */
     public function getValue(string $key)
     {

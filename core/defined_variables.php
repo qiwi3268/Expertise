@@ -18,8 +18,8 @@ define('SETTINGS', '/var/www/html/settings');
 define('ROLE', [
     'APP'     => 'APP',     // Заявитель
     'ADM'     => 'ADM',     // Администратор
-    'EXP'     => 'EXP',     // Эксперт
-    'EMP_EXP' => 'EMP_EXP', // EMP_EXP
+    'FRE_EXP' => 'FRE_EXP', // Внештатный эксперт
+    'EMP_EXP' => 'EMP_EXP', // Сотрудник экспертного отдела
     'EMP_EST' => 'EMP_EST', // Сотрудник сметного отдела
     'EMP_PTO' => 'EMP_PTO', // Сотрудник производственно-технического отдела
     'EMP_PKR' => 'EMP_PKR', // Сотрудник отдела правовой и кадровой работы
