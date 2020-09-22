@@ -40,7 +40,7 @@ $hash = bin2hex(random_bytes(25)); // Длина 50 символов
 $userId = \Tables\user::create($P_last_name, $P_first_name, $P_middle_name, $P_department, $P_position, $P_email, $P_login, $cryptPassword, $hash);
 
 // Создание ролей пользователя
-foreach($P_users_role as $role){
+foreach ($P_users_role as $role) {
     \Tables\user_role::create($userId, $role);
 }
 

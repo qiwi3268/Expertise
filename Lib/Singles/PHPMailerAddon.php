@@ -58,6 +58,8 @@ class PHPMailerAddon
 
 
     /**
+     * Предназначен для добавления вложения (файла) к письму
+     *
      * @param string $path путь к файлу
      * @param string $name имя файл, с которым он будет отправлен <b>(включая расширение)</b>
      * @param string $encoding тип кодировки вложения
@@ -89,6 +91,7 @@ class PHPMailerAddon
      * @param string $subject тема письма
      * @param string $body текст письма
      * @return bool <b>true</b> письмо отправлено<br><b>false</b> письмо неотправлено
+     * @throws PHPMailerEx
      */
     public function sendSimple(string $subject, string $body): bool
     {
@@ -105,7 +108,8 @@ class PHPMailerAddon
      * @param string $subject тема письма
      * @param string $body текст письма
      * @param string $altBody текст письма для почтовых клиентов, не использующих HTML
-     * @return bool <b>true</b> письмо отправлено<br><b>false</b> письмо неотправлено
+     * @return bool <b>true</b> письмо отправлено<br>
+     * <b>false</b> письмо неотправлено
      * @throws PHPMailerEx
      */
     public function sendHTML(string $subject, string $body, string $altBody): bool
@@ -122,7 +126,8 @@ class PHPMailerAddon
     /**
      * Предназначен для оправки письма и возврата результата отправки
      *
-     * @return bool <b>true</b> письмо отправлено<br><b>false</b> письмо неотправлено
+     * @return bool <b>true</b> письмо отправлено<br>
+     * <b>false</b> письмо неотправлено
      * @throws PHPMailerEx
      */
     private function send(): bool

@@ -2,21 +2,14 @@
 
 
 namespace Tables\Miscs\Interfaces;
+use Tables\CommonInterfaces\Existent;
 
 
 /**
  * Интерфейс для валидации независимых (одиночных) справочников
  *
  */
-interface SingleMiscValidate
+interface SingleMiscValidate extends Existent
 {
 
-    /**
-     * Предназначен для проверки существования записи справочника по его id
-     *
-     * @param int $id id справочника
-     * @return bool <b>true</b> запись существует<br>
-     * <b>false</b> в противном случае
-     */
-    static public function checkExistById(int $id): bool;
 }

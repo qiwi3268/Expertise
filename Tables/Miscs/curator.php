@@ -3,6 +3,9 @@
 
 namespace Tables\Miscs;
 
+use Tables\CommonTraits\Existent as ExistentTrait;
+
+
 
 /**
  * Таблица: <i>'misc_curator'</i>
@@ -16,5 +19,5 @@ final class curator implements Interfaces\SingleMiscValidate
     static private string $tableName = 'misc_curator';
 
     use Traits\SingleMisc;
-    use Traits\SingleMiscValidate;
+    use ExistentTrait;
 }

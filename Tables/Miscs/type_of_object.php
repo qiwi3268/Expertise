@@ -3,6 +3,8 @@
 
 namespace Tables\Miscs;
 
+use Tables\CommonTraits\Existent as ExistentTrait;
+
 
 /**
  * Таблица: <i>'misc_type_of_object'</i>
@@ -16,5 +18,5 @@ final class type_of_object implements Interfaces\SingleMiscValidate
     static private string $tableName = 'misc_type_of_object';
 
     use Traits\SingleMisc;
-    use Traits\SingleMiscValidate;
+    use ExistentTrait;
 }

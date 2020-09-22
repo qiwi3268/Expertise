@@ -5,11 +5,11 @@
             <files>
                 <dir path="/controllers/" ext=".php">
                     <file name="header" />
-                    <file name="entry" />
+                    <file name="login" />
                 </dir>
                 <dir path="/views/" ext=".php">
                     <file name="header" />
-                    <file name="entry" />
+                    <file name="login" />
                 </dir>
                 <dir path="/views/home/modals/" ext=".php">
                     <file name="error" />

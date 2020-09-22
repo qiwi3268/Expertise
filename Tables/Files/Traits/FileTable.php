@@ -119,26 +119,6 @@ trait FileTable
 
     /**
      * Реализация метода интерфейса
-     * {@see \Tables\Files\Interfaces\FileTable::checkExistById()}
-     *
-     * @param int $id
-     * @return bool
-     * @throws DataBaseEx
-     */
-    static public function checkExistById(int $id): bool
-    {
-        $table = self::$tableName;
-
-        $query = "SELECT count(*)>0
-                  FROM `{$table}`
-                  WHERE `id`=?";
-        // Автоматическое преобразование к bool типу
-        return ParametrizedQuery::getSimpleArray($query, [$id])[0];
-    }
-
-
-    /**
-     * Реализация метода интерфейса
      * {@see \Tables\Files\Interfaces\FileTable::getAllAssocWhereNeedsByIdMainDocument()}
      *
      * @param int $id_main_document

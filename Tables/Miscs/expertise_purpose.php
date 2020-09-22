@@ -3,6 +3,9 @@
 
 namespace Tables\Miscs;
 
+use Tables\CommonTraits\Existent as ExistentTrait;
+
+
 
 /**
  * Таблица: <i>'misc_expertise_purpose'</i>
@@ -16,5 +19,5 @@ final class expertise_purpose implements Interfaces\SingleMiscValidate
     static private string $tableName = 'misc_expertise_purpose';
 
     use Traits\SingleMisc;
-    use Traits\SingleMiscValidate;
+    use ExistentTrait;
 }

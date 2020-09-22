@@ -59,16 +59,6 @@ interface FileTable
 
 
     /**
-     * Предназначен для проверки существования записи по id
-     *
-     * @param int $id id записи
-     * @return bool <b>true</b> запись существует<br>
-     * <b>false</b> в противном случае
-     */
-    static public function checkExistById(int $id): bool;
-
-
-    /**
      * Предназначен для получения ассоциативных массивов нужных файлов к главному документу по его id
      *
      * @param int $id_main_document id главного документа

@@ -3,6 +3,8 @@
 
 namespace Tables\Miscs;
 
+use Tables\CommonTraits\Existent as ExistentTrait;
+
 
 /**
  * Таблица: <i>'misc_national_project'</i>
@@ -16,5 +18,5 @@ final class national_project implements Interfaces\SingleMiscValidate
     static private string $tableName = 'misc_national_project';
 
     use Traits\SingleMisc;
-    use Traits\SingleMiscValidate;
+    use ExistentTrait;
 }

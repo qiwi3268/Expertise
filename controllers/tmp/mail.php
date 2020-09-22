@@ -1,6 +1,9 @@
 <?php
 
 
+use Lib\Singles\PHPMailerAddon;
+
+
 $addresses = ['vam@ge74.ru'];
 
 $header = '
@@ -11,7 +14,7 @@ $header = '
 </div>
 ';
 
-try{
+try {
 
     $mailAddon = new PHPMailerAddon();
 
@@ -19,23 +22,23 @@ try{
 
     $mailAddon->addReplyTo('help@ge74.ru', 'Хэлп');
 
-    $mailAddon->addAttachment(ROOT.'/uploads/goods.xml');
-    $mailAddon->addAttachment(ROOT.'/uploads/goods1.xml');
+    $mailAddon->addAttachment(ROOT . '/uploads/goods.xml');
+    $mailAddon->addAttachment(ROOT . '/uploads/goods1.xml');
 
 
     $altBody = 'Текст этого письма....Хорошего дня!';
 
-    $body = $header.$altBody;
+    $body = $header . $altBody;
 
-    if($mailAddon->sendHtml('Тема', $body, $altBody)){
+    if ($mailAddon->sendHtml('Тема', $body, $altBody)) {
 
         echo 'Сообщения отправлены успешно!';
-    }else{
+    } else {
 
         echo 'Ошибка при отправке сообщения!';
     }
 
-}catch(Exception $e){
+} catch (Exception $e) {
 
     var_dump($e->getCode());
     var_dump($e->getMessage());
