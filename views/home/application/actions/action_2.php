@@ -73,6 +73,7 @@
                          data-add_element_callback="add_expert"
                     >
                         <div class="section__header">
+                            <i class="section__folder fas fa-book"></i>
                             <span class="section__title"><?= $section['name'] ?></span>
                         </div>
                         <div class="section__body">
@@ -126,7 +127,8 @@
                  data-add_element_callback="add_expert"
             >
                 <div class="section__header empty" data-misc_select>
-                    <span class="section__title" data-misc_value>Выберите значение</span>
+                    <i class="section__folder fas fa-book"></i>
+                    <span class="section__title" data-misc_value>Выберите раздел</span>
                     <i class="section__remove fas fa-minus"></i>
                 </div>
                 <div class="section__body">

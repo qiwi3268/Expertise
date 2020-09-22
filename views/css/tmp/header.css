@@ -29,6 +29,11 @@ header {
    padding: 0px 10px 0px 15px;
 }
 
+.header__home {
+   flex-grow: 0.15;
+   text-align: end;
+}
+
 .header__user {
    text-align: right;
    flex-grow: 1;

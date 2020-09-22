@@ -274,10 +274,15 @@ function transformExpert (expert) {
    new_expert.dataset.drop_element = '';
    new_expert.dataset.drag_callback = 'section_expert';
 
+   let expert_name = document.createElement('SPAN');
+   expert_name.classList.add('section__name');
+   expert_name.innerHTML = expert.innerHTML;
+   new_expert.appendChild(expert_name);
+
    let lead_icon = document.createElement('I');
    lead_icon.classList.add('section__lead', 'fas', 'fa-crown');
    lead_icon.dataset.drag_inactive = 'true';
-   lead_icon.addEventListener('click', () => setLeadExpert(new_expert));
+   lead_icon.addEventListener('click', () => changeLeadExpert(new_expert));
    new_expert.dataset.lead = !!isLeadExpert(new_expert);
    new_expert.appendChild(lead_icon);
 
@@ -287,11 +292,6 @@ function transformExpert (expert) {
    common_icon.addEventListener('click', () => toggleCommonPart(new_expert));
    new_expert.dataset.common_part = !!isCommonPartExpert(new_expert);
    new_expert.appendChild(common_icon);
-
-   let expert_name = document.createElement('SPAN');
-   expert_name.classList.add('section__name');
-   expert_name.innerHTML = expert.innerHTML;
-   new_expert.appendChild(expert_name);
 
    let remove_btn = document.createElement('SPAN');
    remove_btn.classList.add('section__icon-remove', 'fas', 'fa-minus');
@@ -303,23 +303,47 @@ function transformExpert (expert) {
    return new_expert;
 }
 
-function setLeadExpert (expert) {
-   let lead_experts = document.querySelectorAll('.section__expert[data-lead="true"]');
-   lead_experts.forEach(lead_expert => {
-      if (lead_expert.dataset.id !== expert.dataset.id) {
-         lead_expert.dataset.lead = 'false';
-      }
-   });
+function changeLeadExpert (expert) {
+   if (!isLeadExpert(expert)) {
+      removeLeadExpert();
+      setLeadExpert(expert);
+   } else {
+      removeLeadExpert();
+   }
 
-   let current_expert = document.querySelectorAll(`.section__expert[data-id='${expert.dataset.id}']`);
-   current_expert.forEach(expert_copy => {
-      expert_copy.dataset.lead = 'true';
-   });
+   // removeLeadExpert();
+   //
+   // if (!isLeadExpert(expert)) {
+   // }
 }
 
 function isLeadExpert (expert) {
    let lead_expert = document.querySelector('.section__expert[data-lead="true"]');
    return lead_expert && expert.dataset.id === lead_expert.dataset.id;
+}
+
+function removeLeadExpert (expert) {
+   /*let current_expert = document.querySelectorAll(`.section__expert[data-id='${expert.dataset.id}']`);
+   current_expert.forEach(expert_copy => {
+      expert_copy.dataset.lead = 'false';
+   });*/
+
+   let lead_experts = document.querySelectorAll('.section__expert[data-lead="true"]');
+   lead_experts.forEach(lead_expert => lead_expert.dataset.lead = 'false');
+}
+
+function setLeadExpert (expert) {
+  /* let lead_experts = document.querySelectorAll('.section__expert[data-lead="true"]');
+   lead_experts.forEach(lead_expert => {
+      if (lead_expert.dataset.id !== expert.dataset.id) {
+         lead_expert.dataset.lead = 'false';
+      }
+   });*/
+
+   let current_expert = document.querySelectorAll(`.section__expert[data-id='${expert.dataset.id}']`);
+   current_expert.forEach(expert_copy => {
+      expert_copy.dataset.lead = 'true';
+   });
 }
 
 function isCommonPartExpert (expert) {

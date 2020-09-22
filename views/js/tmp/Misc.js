@@ -295,6 +295,10 @@ class Misc {
          this.active_page = this.pages[0];
          this.active_page.classList.add('active');
 
+         // Устанавливаем максимальную высоту модального окна по высоте первой страницы
+         let body = this.modal.querySelector('.modal__items');
+         body.style.height = body.offsetHeight + 'px';
+
          Misc.overlay.classList.add('active');
       } else {
          ErrorModal.open('Ошибка справочника', this.error_message);

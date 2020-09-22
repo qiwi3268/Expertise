@@ -3,28 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Singles/PHPMailerAddon.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/PHPMailerAddon.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Files/Interfaces/FileTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Files/Interfaces/FileTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Files/Traits/FileTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Files/Traits/FileTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Files/documentation_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Files/documentation_1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Files/documentation_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Files/documentation_2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Files/grbs.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Files/grbs.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Miscs/Interfaces/SingleMiscValidate.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Miscs/Interfaces/SingleMiscValidate.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Miscs/budget_level.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Miscs/budget_level.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Miscs/cultural_object_type.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Miscs/cultural_object_type.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Miscs/curator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Miscs/curator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Miscs/expertise_purpose.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Miscs/expertise_purpose.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Miscs/functional_purpose.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Miscs/functional_purpose.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Miscs/national_project.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Miscs/national_project.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Miscs/type_of_object.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Miscs/type_of_object.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/actions/hierarchy_sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/actions/hierarchy_sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/tmp/mail.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/tmp/mail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/tmp/registration_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/tmp/registration_user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cron/deleteUnsavedApps.php" beforeDir="false" afterPath="$PROJECT_DIR$/cron/deleteUnsavedApps.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cron/fileCleaner.php" beforeDir="false" afterPath="$PROJECT_DIR$/cron/fileCleaner.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cron/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/cron/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings/routes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/settings/routes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/actions/action_2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/action_2.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/action_sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_sidebar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/test_1.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/test_1.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/entry.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/actions/action_2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/main_header.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/main_header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/test_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/test_1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/Drag&amp;Drop.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/Drag&amp;Drop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/Misc.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/Misc.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,14 +133,7 @@
       <workItem from="1600400074408" duration="16311000" />
       <workItem from="1600493631689" duration="13046000" />
       <workItem from="1600579840812" duration="27749000" />
-      <workItem from="1600659199409" duration="16112000" />
-    </task>
-    <task id="LOCAL-00076" summary="01.09.2020_4">
-      <created>1598947349009</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1598947349009</updated>
+      <workItem from="1600659199409" duration="31591000" />
     </task>
     <task id="LOCAL-00077" summary="07.09.2020">
       <created>1599450473576</created>
@@ -488,7 +471,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600746614207</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="22.09.2020_1">
+      <created>1600747056782</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1600747056782</updated>
+    </task>
+    <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -505,7 +495,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="15.09.2020_1" />
     <MESSAGE value="15.09.2020_2" />
     <MESSAGE value="15.09.2020_3" />
     <MESSAGE value="16.09.2020" />
@@ -530,9 +519,14 @@
     <MESSAGE value="21.09.2020_1" />
     <MESSAGE value="21.09.2020_2" />
     <MESSAGE value="22.09.2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="22.09.2020" />
+    <MESSAGE value="22.09.2020_1" />
+    <option name="LAST_COMMIT_MESSAGE" value="22.09.2020_1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="552" y="178" key="#CSS" timestamp="1600747274648">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" key="#CSS/0.0.1920.1040@0.0.1920.1040" timestamp="1600747274648" />
     <state x="872" y="358" key="#Deployment" timestamp="1599583061353">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -549,10 +543,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1600746611744">
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1600747052880">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600746611744" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600747052880" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600519766620" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600621933946" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
@@ -592,10 +586,10 @@
     </state>
     <state x="302" y="56" width="614" height="1035" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1598502743003" />
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597499951448" />
-    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1600747006032">
+    <state x="740" y="322" width="737" height="606" key="find.popup" timestamp="1600758462429">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600747006032" />
+    <state x="740" y="322" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600758462429" />
     <state x="-1180" y="531" width="555" height="534" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600519237625" />
     <state x="571" y="185" width="1495" height="1020" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600609806307" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
