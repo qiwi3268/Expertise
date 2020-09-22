@@ -1,3 +1,5 @@
+
+
 /**
  * Представляет собой модуль просмотра подписей файла
  */
@@ -121,11 +123,28 @@ class SignView {
       });
    }
 
+
+   /**
+    * @typedef ValidateResult
+    * @type {object}
+    * @property {object} signature_verify - результат проверки подписи
+    * @property {CertificateVerify} certificate_verify - результат проверки сертификата
+    * @property {string} fio - результат проверки сертификата
+    * @property {string} certificate - результат проверки сертификата
+    */
+
+   /**
+    * @typedef CertificateVerify
+    * @type {object}
+    * @property {string} user_message - результат проверки подписи
+    * @property {string} result - результат проверки сертификата
+    */
+
    /**
     * Создает блок в с информацией о подписи
     *
-    * @param {Object} result -
-    * @returns {HTMLElement}
+    * @param {ValidateResult} result - объект, содержащий информацию о подписи
+    * @returns {HTMLElement} блок, в который добавлена информация о подписи
     */
    createSignInfo (result) {
       let sign = document.createElement('DIV');
@@ -148,6 +167,14 @@ class SignView {
       return sign;
    }
 
+
+   /**
+    *
+    * @param label
+    * @param text
+    * @param state
+    * @returns {HTMLElement}
+    */
    createInfoRow (label, text, state = null) {
       let row = document.createElement('DIV');
       row.classList.add('sign-modal__sign-row');

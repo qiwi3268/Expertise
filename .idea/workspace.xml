@@ -3,24 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/home/action_executor.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/action_executor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/Actions/AccessActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Actions/AccessActions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/RouteCallbacks/ActionChecker.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/RouteCallbacks/ActionChecker.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Actions/AccessActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Actions/AccessActions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Actions/Locator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Actions/Locator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Singles/NodeStructure.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/NodeStructure.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Singles/VariableTransfer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/VariableTransfer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Docs/total_cc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Docs/total_cc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/applicant_access_group.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/applicant_access_group.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/assigned_expert_total_cc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/assigned_expert_total_cc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/actions/action_sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/actions/action_sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/actions/hierarchy_sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/actions/hierarchy_sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Classes/Session.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/Session.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/defined_variables.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/defined_variables.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings/routes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/settings/routes.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/test_1.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/test_1.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/test_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/test_1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/SignView.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/SignView.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,9 +14,7 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -98,7 +81,7 @@
       <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\home\application\actions" />
     </key>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -140,13 +123,7 @@
       <workItem from="1600493631689" duration="13046000" />
       <workItem from="1600579840812" duration="27749000" />
       <workItem from="1600659199409" duration="40502000" />
-    </task>
-    <task id="LOCAL-00079" summary="07.09.2020_2">
-      <created>1599476068505</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1599476068505</updated>
+      <workItem from="1600789163980" duration="4229000" />
     </task>
     <task id="LOCAL-00080" summary="06.09.2020_3">
       <created>1599485552126</created>
@@ -484,11 +461,18 @@
       <option name="project" value="LOCAL" />
       <updated>1600774883867</updated>
     </task>
-    <option name="localTasksCounter" value="128" />
+    <task id="LOCAL-00128" summary="22.09.2020">
+      <created>1600789452431</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1600789452431</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -522,11 +506,11 @@
     <MESSAGE value="21.09.2020" />
     <MESSAGE value="21.09.2020_1" />
     <MESSAGE value="21.09.2020_2" />
-    <MESSAGE value="22.09.2020" />
     <MESSAGE value="22.09.2020_1" />
     <MESSAGE value="22.09.2020_2" />
     <MESSAGE value="22.09.2020_3" />
-    <option name="LAST_COMMIT_MESSAGE" value="22.09.2020_3" />
+    <MESSAGE value="22.09.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="22.09.2020" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -549,12 +533,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1600774880713">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1600789451978">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600774880713" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600519766620" />
-    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600621933946" />
+    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600789451978" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog" timestamp="1598853557262">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -592,11 +576,11 @@
     </state>
     <state x="302" y="56" width="614" height="1035" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1598502743003" />
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597499951448" />
-    <state x="739" y="323" width="737" height="606" key="find.popup" timestamp="1600768495310">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1180" y="531" width="555" height="534" key="find.popup" timestamp="1600791294528">
+      <screen x="-1920" y="209" width="1920" height="1040" />
     </state>
     <state x="739" y="323" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600768495310" />
-    <state x="-1180" y="531" width="555" height="534" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600519237625" />
+    <state x="-1180" y="531" width="555" height="534" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600791294528" />
     <state x="571" y="185" width="1495" height="1020" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600609806307" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
     <state x="1150" y="591" key="publish.login" timestamp="1599582915682">
