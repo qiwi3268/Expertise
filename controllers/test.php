@@ -16,7 +16,7 @@ use Tables\Structures\documentation_1;
 
 use Lib\AccessToDocument\AccessToDocumentTree;
 
-$test = new AccessToDocumentTree('total_cc', 19);
+$test = new AccessToDocumentTree('application', 1126);
 $test->checkAccessToDocumentTree();
 
 
