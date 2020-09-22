@@ -51,4 +51,9 @@
                 <span class="sidebar-hierarchy__name">Сводное заключение</span>
             </div>
         </div>
+        <div class="sidebar-hierarchy__section">
+            <div class="sidebar-hierarchy__item" data-depth="1">
+                <span class="sidebar-hierarchy__name">Какой-то раздел</span>
+            </div>
+        </div>
     </div>

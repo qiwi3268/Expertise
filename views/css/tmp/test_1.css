@@ -18,29 +18,20 @@
    padding: 10px 10px 10px 20px;
    margin: 0px 0px 10px 0px;
 
-   display: flex;
+   /*display: flex;*/
    /*min-height: 70px;*/
-   align-items: center;
+   /*align-items: center;*/
+
+   text-align: center;
 
 }
 
 .view__document {
+   flex-grow: 1;
    margin: 0px 20px 0px 0px;
    font-family: 'Bebas Neue', sans-serif;
    font-size: 20px;
-   width: 20%;
 
-}
-
-.view__object {
-   width: 80%;
-   text-align: center;
-}
-
-.view__subheader {
-   display: flex;
-   padding: 10px 10px 10px 20px;
-   margin: 0px 0px 10px 0px;
 }
 
 .view__progress {
@@ -63,7 +54,7 @@
 .view__info {
    display: flex;
 
-   width: 30%;
+   /*width: 30%;*/
 }
 
 .expertise-card {
@@ -87,10 +78,9 @@
    color: #6e6e6e;
 }
 
-.view__icon,
-.view__icon-date {
+.view__icon {
    color: #6e6e6e;
-   margin: 0px 7px 0px 0px;
+   margin: 0px 10px 0px 0px;
    font-size: 18px;
 }
 
@@ -134,7 +124,7 @@
 }
 
 .view__icon-date {
-   margin: 0px 10px 0px;
+   /*margin: 0px 10px 0px;*/
 
 }
 
@@ -144,15 +134,65 @@
 }
 
 .view__stage,
-.view__dates,
+.view__date,
 .view__responsible {
+   /*margin: 0px 0px 10px 0px;*/
    /*flex-grow: 0.333;*/
+}
+
+.view__stage,
+.view__date {
+   margin: 0px 20px 0px 0px;
 }
 
 .view__state {
    display: flex;
    flex-direction: column;
+   background-color: #ffffff;
+   border-radius: 4px;
+   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+   margin: 0px 10px 10px 0px;
+   padding: 10px;
+
 }
+
+.view__sidebar {
+   width: 15%;
+}
+
+.view__subheader {
+   display: flex;
+   align-items: center;
+   padding: 10px 20px;
+   margin: 0px 0px 10px 0px;
+}
+
+
+.view__item {
+   display: flex;
+   align-items: center;
+}
+
+.view__item:not(:last-child) {
+   margin: 0px 50px 0px 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -2,7 +2,7 @@
 .sidebar-actions {
    align-self: flex-start;
    margin: 0px 10px 0px 0px;
-   width: 22%;
+   /*width: 22%;*/
    min-width: 200px;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
@@ -19,11 +19,11 @@
 }
 
 .sidebar-actions__section:first-child {
-   border-radius: 0px 4px 0px 0px;
+   border-radius: 4px 4px 0px 0px;
 }
 
 .sidebar-actions__section:last-child {
-   border-radius: 0px 0px 4px 0px;
+   border-radius: 0px 0px 4px 4px;
 }
 
 .sidebar-actions__section:hover {
@@ -44,6 +44,14 @@
    border-left: 4px solid #ffffff;
    padding: 7px 10px;
    transition: .1s;
+}
+
+.sidebar-hierarchy__section:first-child {
+   border-radius: 4px 4px 0px 0px;
+}
+
+.sidebar-hierarchy__section:last-child {
+   border-radius: 0px 0px 4px 4px;
 }
 
 .sidebar-hierarchy__section:hover {
