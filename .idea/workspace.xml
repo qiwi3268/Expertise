@@ -4,7 +4,6 @@
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/action_sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_sidebar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/view_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/view_application.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/actions/hierarchy_sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/actions/hierarchy_sidebar.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,14 +125,7 @@
       <workItem from="1600579840812" duration="27749000" />
       <workItem from="1600659199409" duration="40502000" />
       <workItem from="1600789163980" duration="4229000" />
-      <workItem from="1600832243874" duration="20475000" />
-    </task>
-    <task id="LOCAL-00083" summary="08.09.2020_2">
-      <created>1599564440703</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1599564440703</updated>
+      <workItem from="1600832243874" duration="22601000" />
     </task>
     <task id="LOCAL-00084" summary="09.09.2020">
       <created>1599623456947</created>
@@ -471,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600859909283</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="23.09.2020_4">
+      <created>1600861788995</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1600861788995</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -488,7 +487,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="17.09.2020__1" />
     <MESSAGE value="17.09.2020_2" />
     <MESSAGE value="17.09.2020_3" />
     <MESSAGE value="17.09.2020_6" />
@@ -513,7 +511,8 @@
     <MESSAGE value="23.09.2020_1" />
     <MESSAGE value="23.09.2020_2" />
     <MESSAGE value="23.09.2020_3" />
-    <option name="LAST_COMMIT_MESSAGE" value="23.09.2020_3" />
+    <MESSAGE value="23.09.2020_4" />
+    <option name="LAST_COMMIT_MESSAGE" value="23.09.2020_4" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -536,10 +535,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1600861662605">
+    <state x="679" y="198" key="CommitChangelistDialog2" timestamp="1600861785043">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600861662605" />
+    <state x="679" y="198" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600861785043" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600519766620" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600789451978" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
@@ -579,10 +578,10 @@
     </state>
     <state x="302" y="56" width="614" height="1035" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1598502743003" />
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597499951448" />
-    <state x="739" y="323" width="737" height="606" key="find.popup" timestamp="1600861077427">
+    <state x="739" y="323" width="737" height="606" key="find.popup" timestamp="1600862533402">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="739" y="323" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600861077427" />
+    <state x="739" y="323" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600862533402" />
     <state x="-1180" y="531" width="555" height="534" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600791294528" />
     <state x="571" y="185" width="1495" height="1020" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600609806307" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />

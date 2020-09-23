@@ -90,63 +90,44 @@
 
 /*===*/
 
-.view {
-   flex-grow: 1;
-   display: flex;
-   flex-direction: column;
-   margin: 0px 0px 10px 0px;
-   font-size: 16px;
-}
-
-.view__header,
-.view__subheader,
-.expertise-card__body {
+.view__object,
+.view__header {
    background-color: #ffffff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
 }
 
-.view__header {
+.view__object {
    padding: 10px 10px 10px 20px;
    margin: 0px 0px 10px 0px;
-
-   /*display: flex;*/
-   /*min-height: 70px;*/
-   /*align-items: center;*/
-
    text-align: center;
-
 }
 
-.view__document {
-   flex-grow: 1;
-   margin: 0px 20px 0px 0px;
+.view__header {
+   padding: 15px 20px;
+   margin: 0px 0px 10px 0px;
+}
+
+.view__title {
    font-family: 'Bebas Neue', sans-serif;
    font-size: 20px;
-
 }
 
-.view__progress {
-   width: 70%;
+.view__container {
    display: flex;
-   align-items: center;
-   margin: 0px 15px 0px 0px;
-
 }
 
-.view__line {
-   border: 2px solid #87c596;
-   flex-grow: 1;
+.view__sidebar {
+   width: 15%;
 }
 
-.view__line:last-child {
-   border-color: #c2c2c2;
+.view__body {
+   width: 65%;
 }
 
-.view__info {
-   display: flex;
+.view__actions {
+   width: 20%;
 
-   /*width: 30%;*/
 }
 
 
