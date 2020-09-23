@@ -47,16 +47,19 @@ function createSection (section_container, additional_sections) {
    let new_section = section_template.cloneNode(true);
    new_section.removeAttribute('id');
    new_section.dataset.active = 'true';
-   section_container.appendChild(new_section);
 
    let modal_select = new_section.querySelector('[data-misc_select]');
    modal_select.addEventListener('click', event => {
+
       if (!event.target.classList.contains('section__remove')) {
+
          Misc.instance = Misc.getMiscBySelect(modal_select);
          Misc.instance.open();
+
       }
    });
 
+   section_container.appendChild(new_section);
 
    let remove_btn = new_section.querySelector('.section__remove');
    remove_btn.addEventListener('click', () => {

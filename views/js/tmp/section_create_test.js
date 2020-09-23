@@ -35,7 +35,4 @@ tinymce.init({
 
    skin: "CUSTOM",
    content_css: "CUSTOM"
-})
-   .then(() => {
-      console.log('tut');
-   });
+});

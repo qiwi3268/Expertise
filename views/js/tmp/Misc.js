@@ -177,9 +177,10 @@ class Misc {
       this.modal.classList.remove('active');
       Misc.overlay.classList.remove('active');
 
-      /*if (this.pagination) {
+      // todo убрать плавно и проверить, что нормально переключается
+      if (this.pagination) {
          this.pagination.element.style.display = 'none';
-      }*/
+      }
 
    }
 
@@ -375,6 +376,9 @@ class Misc {
       } else {
          // todo убирать пагинацию
       }
+
+      // console.log(select);
+      // console.log(misc);
 
       return misc;
    }
