@@ -112,7 +112,7 @@ $responsible = new Responsible(CURRENT_DOCUMENT_ID, CURRENT_DOCUMENT_TYPE);
 $responsible = $responsible->getCurrentResponsible();
 
 
-var_dump($responsible);
+//var_dump($responsible);
 
 
 

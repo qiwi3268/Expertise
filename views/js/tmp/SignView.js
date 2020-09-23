@@ -186,7 +186,7 @@ class SignView {
       let text_span = document.createElement('SPAN');
       text_span.classList.add('sign-modal__text');
       text_span.innerHTML = text;
-      //asd
+
       if (state !== null) {
          text_span.dataset.state = state;
       }

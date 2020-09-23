@@ -5,35 +5,6 @@
 
     <div class="view__subheader">
         <span class="view__document">Заявление на экспертизу 2020-09-4507</span>
-        <div class="view__item">
-            <i class="view__icon fas fa-file-alt"></i>
-            <div class="view__info">
-                <span class="view__label">Стадия</span>
-                <span class="view__text">Формирование сводного замечания</span>
-            </div>
-        </div>
-        <div class="view__item">
-            <i class="view__icon fas fa-calendar-week"></i>
-            <div class="view__info">
-                <span class="view__label">Контрольный срок заявления</span>
-                <span class="view__text">25.10.2020</span>
-            </div>
-        </div>
-        <div class="view__item">
-            <i class="view__icon fas fa-calendar-day"></i>
-            <div class="view__info">
-                <span class="view__label">Контрольный срок стадии</span>
-                <span class="view__text">20.09.2020</span>
-            </div>
-        </div>
-        <div class="view__item">
-            <i class="view__icon fas fa-user-edit"></i>
-            <div class="view__info">
-                <span class="view__label">Ответственные</span>
-                <span class="view__text">Заявитель</span>
-            </div>
-        </div>
-
     </div>
 
     <div class="expertise-card">
@@ -70,44 +41,7 @@
                     </div>
                 </div>
             </div>
-
-
-
-            <div class="info">
-
-                <div class="info__item">
-                    <div class="info__header">
-                        <div class="info__icon fas fa-file-alt"></div>
-                        <div class="info__title">Стадия</div>
-                    </div>
-                    <div class="info__text">Формирование сводного замечания</div>
-                </div>
-
-                <div class="info__item">
-                    <div class="info__header">
-                        <div class="info__icon fas fa-calendar-week"></div>
-                        <div class="info__title">Контрольный срок заявления</div>
-                    </div>
-                    <div class="info__text">25.10.2020</div>
-                </div>
-
-                <div class="info__item">
-                    <div class="info__header">
-                        <div class="info__icon fas fa-calendar-day"></div>
-                        <div class="info__title">Контрольный срок стадии</div>
-                    </div>
-                    <div class="info__text">25.10.2020</div>
-                </div>
-
-                <div class="info__item">
-                    <div class="info__header">
-                        <div class="info__icon fas fa-user-edit"></div>
-                        <div class="info__title">Ответственные</div>
-                    </div>
-                    <div class="info__text">Заявитель</div>
-                </div>
-            </div>
-
+            
             <div class="expertise-card__hierarchy sidebar-hierarchy">
                 <div class="sidebar-hierarchy__section">
                     <div class="sidebar-hierarchy__item" data-depth="0">

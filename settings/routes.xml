@@ -308,11 +308,26 @@
                 </dir>
                 <dir path="/views/home/" ext=".php">
                     <file name="main_header" />
-                </dir>
-                <dir path="/views/home/" ext=".php">
                     <file name="test_1" />
+                    <file name="main_footer" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="home/section_create_test">
+            <files>
+                <dir path="/controllers/" ext=".php">
+                    <file name="header" />
+                </dir>
+                <dir path="/views/" ext=".php">
+                    <file name="header" />
+                </dir>
+                <dir path="/controllers/home/" ext=".php">
+                    <file name="main_header" />
                 </dir>
                 <dir path="/views/home/" ext=".php">
+                    <file name="main_header" />
+                    <file name="section_create_test" />
                     <file name="main_footer" />
                 </dir>
             </files>

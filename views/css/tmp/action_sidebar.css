@@ -2,8 +2,8 @@
 .sidebar-actions {
    align-self: flex-start;
    margin: 0px 10px 0px 0px;
-   /*width: 22%;*/
-   min-width: 200px;
+   width: 22%;
+   /*min-width: 200px;*/
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
    background-color: #ffffff;
@@ -79,6 +79,8 @@
 .sidebar-hierarchy__text {
    font-size: 14px;
    color: #6e6e6e;
+   word-break: break-all;
+
 }
 
 .sidebar-hierarchy__section.expanded {

@@ -206,6 +206,7 @@ class Misc {
 
       if (misc_values) {
          // Инпут со значением родительского поля
+         //todo добавить scope
          let parent_misc_result = document.querySelector(`[data-misc_result][name='${misc_values.dataset.when_change}']`);
 
          if (parent_misc_result) {

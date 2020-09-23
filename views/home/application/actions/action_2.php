@@ -91,7 +91,7 @@
                                     <span class="section__button-name card-expand">Загруженные файлы</span>
                                     <i class="section__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                                 </div>
-                                <div class="section__files files filled block card-body">
+                                <div class="section__files files filled block card-body" data-id_file_field>
                                     <?php foreach ($section['files'] as $file): ?>
                                         <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" data-validate_results='<?= $file['validate_results'] ?>'>
                                             <div class="files__info">
