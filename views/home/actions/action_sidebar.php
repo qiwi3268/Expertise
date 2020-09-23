@@ -1,10 +1,15 @@
-<?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
-<div class="sidebar-actions">
+
+
+<div class="view__actions">
+
     <?php foreach($variablesTV->getValue('availableActions') as ['ref' => $ref, 'label' => $label]): ?>
-        <a href="<?= $ref ?>" class="sidebar-actions__section">
-            <div class="sidebar-actions__item"><?= $label ?></div>
+        <a href="<?= $ref ?>" class="view__action">
+            <div class="view__label"><?= $label ?></div>
         </a>
     <?php endforeach; ?>
+
 </div>
+
+
 </div>
