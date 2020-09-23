@@ -16,6 +16,10 @@ use Lib\Exceptions\Traits\MainTrait;
  * {@see \Tables\Docs\TableLocator}<br>
  * 3 - методу Tables\Docs\TableLocator::getDocTableByDocumentType не удалось определить таблицу документа<br>
  * 4 - методу Tables\Docs\TableLocator::getDocRelationTableByDocumentType не удалось определить таблицу отношений документа<br>
+ * {@see \Tables\DocumentationTypeTableLocator}<br>
+ * 5 - получен неопределенный вид объекта<br>
+ *
+ *
  *
  */
 class Tables extends \Exception

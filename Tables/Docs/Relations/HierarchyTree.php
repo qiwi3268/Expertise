@@ -5,6 +5,7 @@ namespace Tables\Docs\Relations;
 
 use Tables\Exceptions\Tables as SelfEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
+use Tables\Exceptions\Tables as TablesEx;
 
 
 /**
@@ -52,6 +53,7 @@ class HierarchyTree
      * @uses \Tables\Docs\Relations\application::getChildrenById()
      * @return array
      * @throws DataBaseEx
+     * @throws TablesEx
      */
     public function getTree(): array
     {

@@ -8,6 +8,7 @@ use Lib\Singles\NodeStructure;
 use Lib\Singles\Helpers\FileHandler;
 use Classes\Application\Files\Initialization\Initializer as FilesInitializer;
 use Tables\Docs\application;
+use Tables\DocumentationTypeTableLocator;
 
 
 $variablesTV = VariableTransfer::getInstance();
@@ -65,21 +66,19 @@ if ($variablesTV->getExistenceFlag('type_of_object')) {
     // Удаление переменных, служивших выше
     unset($requiredMappings, $filesInitializer, $needsFiles);
 
-    // В зависимости от вида объекта выбираем нужную таблицу
-    switch ($variablesTV->getValue('type_of_object')['id']) {
-        case 1 : // Производственные / непроизводственные
-            $mapping_level_1 = 2;
-            $mapping_level_2 = 1;
-            $className = '\Tables\Structures\documentation_1';
-            break;
-        case 2 : // Линейные
-            $mapping_level_1 = 2;
-            $mapping_level_2 = 2;
-            $className = '\Tables\Structures\documentation_2';
-            break;
-        default :
-            throw new Exception('Указан вид объекта, при котором не определены действия для отображения загруженных файлов');
+    $typeOfObjectId = $variablesTV->getValue('type_of_object')['id'];
+
+    $tableLocator = new DocumentationTypeTableLocator($typeOfObjectId);
+
+
+    if ($typeOfObjectId == 1) { // Производственные / непроизводственные
+        $mapping_level_1 = 2;
+        $mapping_level_2 = 1;
+    } else {                    // Линейные
+        $mapping_level_1 = 2;
+        $mapping_level_2 = 2;
     }
+
 
     // Устанавливаем маппинги для работы js по скачиванию файлов
     $variablesTV->setValue('documentation_mapping_level_1', $mapping_level_1);
@@ -99,7 +98,9 @@ if ($variablesTV->getExistenceFlag('type_of_object')) {
     FileHandler::setValidateResultJSON($needsFiles);
     FileHandler::setHumanFileSize($needsFiles);
 
-    $nodeStructure = new NodeStructure($className::getAllAssocWhereActive());
+    $nodeStructure = new NodeStructure(
+        call_user_func([$tableLocator->getStructures(), 'getAllAssocWhereActive'])
+    );
 
     $filesInStructure = FilesInitializer::getFilesInDepthStructure($needsFiles, $nodeStructure);
 

@@ -4,7 +4,6 @@
 namespace Classes\TotalCC\AccessToDocument;
 
 use Lib\Exceptions\AccessToDocument as SelfEx;
-use Lib\Exceptions\DataBase;
 use Lib\Exceptions\DataBase as DataBaseEx;
 
 use core\Classes\Session;
@@ -41,7 +40,8 @@ class AccessToTotalCC extends AccessToDocument
             $deniedStagesId = [1];
 
             if (in_array($stageId, $deniedStagesId)) {
-                throw new SelfEx('Отсутствует доступ к документу "Сводное замечание / заключение" для заявителя', 6);
+                //todo заглушка
+                //throw new SelfEx('Отсутствует доступ к документу "Сводное замечание / заключение" для заявителя', 6);
             }
 
         }

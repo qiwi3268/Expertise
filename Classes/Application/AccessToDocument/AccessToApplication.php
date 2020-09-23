@@ -4,7 +4,6 @@
 namespace Classes\Application\AccessToDocument;
 
 use Lib\Exceptions\AccessToDocument as SelfEx;
-use Lib\Exceptions\DataBase;
 use Lib\Exceptions\DataBase as DataBaseEx;
 
 use core\Classes\Session;

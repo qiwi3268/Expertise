@@ -14,6 +14,7 @@ use Classes\Application\Files\Initialization\Initializer as FilesInitializer;
 use Classes\Application\Actions\Miscs\Initialization\action_2 as MiscInitializer;
 use Tables\Docs\application;
 use Tables\user;
+use Tables\DocumentationTypeTableLocator;
 
 
 $variablesTV = VariableTransfer::getInstance();
@@ -33,23 +34,17 @@ $variablesTV->setValue('experts', $activeExperts);
 // Получение данных о выбранном виде объекта для выбора нужных классов
 //
 $typeOfObjectId = application::getIdTypeOfObjectById(CURRENT_DOCUMENT_ID);
+$tableLocator = new DocumentationTypeTableLocator($typeOfObjectId);
 
-switch ($typeOfObjectId) {
-    case 1 : // Производственные / непроизводственные
-        $mapping_level_1 = 2;
-        $mapping_level_2 = 1;
-        $structureDocumentationClassName = '\Tables\Structures\documentation_1';
-        $mainBlocks341DocumentationClassName = '\Tables\order_341\documentation_1\main_block';
-        break;
-    case 2 : // Линейные
-        $mapping_level_1 = 2;
-        $mapping_level_2 = 2;
-        $structureDocumentationClassName = '\Tables\Structures\documentation_2';
-        //todo $mainBlocks341DocumentationClassName = '\Tables\order_341\documentation_2\main_block';
-        break;
-    default :
-        throw new Exception("Заявление имеет неопределенный вид объекта: '{$typeOfObjectId}'");
+
+if ($typeOfObjectId == 1) { // Производственные / непроизводственные
+    $mapping_level_1 = 2;
+    $mapping_level_2 = 1;
+} else {                    // Линейные
+    $mapping_level_1 = 2;
+    $mapping_level_2 = 2;
 }
+
 
 // Формирование разделов и загруженной к ним документации
 //
@@ -68,7 +63,9 @@ FileHandler::setValidateResultJSON($needsFiles);
 FileHandler::setHumanFileSize($needsFiles);
 
 
-$nodeStructure = new NodeStructure($structureDocumentationClassName::getAllAssocWhereActive());
+$nodeStructure = new NodeStructure(
+    call_user_func([$tableLocator->getStructures(), 'getAllAssocWhereActive'])
+);
 
 $filesInStructure = FilesInitializer::getFilesInDepthStructure($needsFiles, $nodeStructure);
 
@@ -91,9 +88,9 @@ $variablesTV->setValue('documentation_files_in_structure', $filesInStructure);
 
 // Формирование справочников разделов из 341 приказа
 //
-$mainBlocks341 = $mainBlocks341DocumentationClassName::getAllAssocWhereIdNotInIds($ids);
-
-$miscInitializer = new MiscInitializer($mainBlocks341);
+$miscInitializer = new MiscInitializer(
+    call_user_func([$tableLocator->getOrder341MainBlock(), 'getAllAssocWhereIdNotInIds'], $ids)
+);
 
 foreach ($miscInitializer->getPaginationSingleMiscs() as $miscName => $misc) {
     $variablesTV->setValue($miscName, $misc);

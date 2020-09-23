@@ -4,6 +4,7 @@
 namespace Tables\Docs\Relations;
 
 use Lib\Exceptions\DataBase as DataBaseEx;
+use Tables\Exceptions\Tables as TablesEx;
 use Tables\Docs\application as doc_application;
 
 
@@ -40,6 +41,7 @@ final class application
      * <br>
      *
      * @throws DataBaseEx
+     * @throws TablesEx
      */
     static public function getChildrenById(int $id_application): array
     {

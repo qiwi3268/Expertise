@@ -67,5 +67,11 @@ class DocumentTreeHandler
         return $this->tree['children']['total_cc']['id'];
     }
 
+    public function getSections(): array
+    {
+        return $this->tree['children']['total_cc']['children'];
+    }
+
+
 
 }

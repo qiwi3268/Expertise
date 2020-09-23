@@ -36,6 +36,9 @@ class Factory
                 $class = '\Classes\TotalCC\AccessToDocument\AccessToTotalCC';
                 break;
 
+            case DOCUMENT_TYPE['section'] :
+                $class = '\Classes\Section\AccessToDocument\AccessToSection';
+                break;
             default :
                 throw new SelfEx('Методу Lib\AccessToDocument\Factory::getObject не удалось распознать тип документа', 1);
         }

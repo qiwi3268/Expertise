@@ -4,9 +4,11 @@
 namespace Tables\Docs\Relations;
 
 use Lib\Exceptions\DataBase as DataBaseEx;
+use Tables\Exceptions\Tables as TablesEx;
 use Exception;
+
+use Tables\DocumentationTypeTableLocator;
 use Lib\DataBase\ParametrizedQuery;
-use Tables\Docs\Relations\application;
 
 
 /**
@@ -54,21 +56,14 @@ final class total_cc
      * или {@see \Tables\Docs\Relations\section_documentation_2::getChildrenByIds()} в зависимости от вида объекта<br>
      * <b>null</b> дочерних разделов не существует<br>
      *
-     * @throws Exception
+     * @throws TablesEx
      * @throws DataBaseEx
      */
     static public function getChildrenById(int $id_total_cc, int $id_type_of_object): array
     {
-        switch ($id_type_of_object) {
-            case 1 :
-                $sectionTable = '\Tables\Docs\Relations\section_documentation_1';
-                break;
-            case 2 :
-                $sectionTable = '\Tables\Docs\Relations\section_documentation_2';
-                break;
-            default :
-                throw new Exception("Заявление имеет неопределенный вид объекта: '{$id_type_of_object}'");
-        }
+        $locator = new DocumentationTypeTableLocator($id_type_of_object);
+
+        $sectionTable = $locator->getDocsRelationsSection();
 
         if (!is_null($ids_section = $sectionTable::getIdsByIdMainDocument($id_total_cc))) {
 

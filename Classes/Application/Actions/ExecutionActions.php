@@ -5,17 +5,16 @@ namespace Classes\Application\Actions;
 
 use Lib\Exceptions\Actions as SelfEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
-use Lib\Exceptions\Responsible as ResponsibleEx;
 use Lib\Exceptions\Transaction as TransactionEx;
 use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
+use Tables\Exceptions\Tables as TablesEx;
 use ReflectionException;
 
 use core\Classes\Session;
 use Lib\Actions\ExecutionActions as MainExecutionActions;
-use Lib\Responsible\Responsible;
 use Lib\DataBase\Transaction;
 use Tables\Docs\application;
-use Tables\user;
+use Tables\DocumentationTypeTableLocator;
 
 
 /**
@@ -38,10 +37,10 @@ class ExecutionActions extends MainExecutionActions
      *
      * @return string
      * @throws SelfEx
+     * @throws TablesEx
      * @throws TransactionEx
      * @throws DataBaseEx
      * @throws ReflectionException
-     * @throws ResponsibleEx
      */
     public function action_2(): string
     {
@@ -83,29 +82,16 @@ class ExecutionActions extends MainExecutionActions
             throw new SelfEx("Количество экспертов на общую часть равно 0", 6);
         }
 
+        $tableLocator = new DocumentationTypeTableLocator(application::getIdTypeOfObjectById(CURRENT_DOCUMENT_ID));
+
         $tables = [
-            'doc_total_cc' => '\Tables\Docs\total_cc',
-            'assigned_expert_total_cc' => '\Tables\assigned_expert_total_cc',
-            'resp_total_cc' => '\Tables\Responsible\type_4\total_cc'
+            'doc_total_cc'                   => '\Tables\Docs\total_cc',
+            'assigned_expert_total_cc'       => '\Tables\assigned_expert_total_cc',
+            'resp_total_cc'                  => '\Tables\Responsible\type_4\total_cc',
+            'assigned_expert_main_block_341' => $tableLocator->getOrder341AssignedExpert(),
+            'doc_section'                    => $tableLocator->getDocsSection(),
+            'resp_section'                   => $tableLocator->getResponsibleType4Section()
         ];
-
-        // Определение вида объекта
-        $typeOfObjectId = application::getIdTypeOfObjectById(CURRENT_DOCUMENT_ID);
-
-        switch ($typeOfObjectId) {
-            case 1 : // Производственные / непроизводственные
-                $tables['assigned_expert_main_block_341'] = '\Tables\order_341\documentation_1\assigned_expert';
-                $tables['doc_section'] = '\Tables\Docs\section_documentation_1';
-                $tables['resp_section'] = '\Tables\Responsible\type_4\section_documentation_1';
-                break;
-            case 2 : // Линейные
-                $tables['assigned_expert_main_block_341'] = '\Tables\order_341\documentation_2\assigned_expert';
-                $tables['doc_section'] = '\Tables\Docs\section_documentation_2';
-                $tables['resp_section'] = '\Tables\Responsible\type_4\section_documentation_2';
-                break;
-            default :
-                throw new SelfEx("Заявление имеет неопределенный вид объекта: '{$typeOfObjectId}'", 6);
-        }
 
         $transaction = new Transaction();
 

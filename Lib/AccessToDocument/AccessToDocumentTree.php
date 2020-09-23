@@ -11,6 +11,7 @@ use Exception;
 
 use Tables\Docs\Relations\HierarchyTree;
 use Lib\Singles\VariableTransfer;
+use Classes\DocumentTreeHandler;
 
 
 /**
@@ -22,10 +23,19 @@ class AccessToDocumentTree
 {
 
     /**
-     * Массив иерархии документов
+     * Статический индексный массив проверенных документов формата:<br>
+     * ['doc' => (string)'application', (int)'id' => 7], [...], ...
      *
      */
-    private array $tree;
+    static private array $checkedDocuments = [];
+
+
+    /**
+     * Обработчик массива иерархии документов
+     *
+     */
+    private DocumentTreeHandler $treeHandler;
+
 
     /**
      * id документа, для которого определяется доступ
@@ -78,7 +88,7 @@ class AccessToDocumentTree
             throw new SelfEx("В классе Lib\AccessToDocument\AccessToDocumentTree не реализован метод типа документа: '{$documentType}'", 2);
         }
 
-        $this->tree = $tree;
+        $this->treeHandler = new DocumentTreeHandler($tree);
         $this->documentId = $documentId;
         $this->callbacks = call_user_func([$this, $documentType]);
         $this->factory = new Factory();
@@ -89,6 +99,9 @@ class AccessToDocumentTree
      * Предназначен для поочередного вызова метода проверки доступа к каждому документу,
      * определенному в массиве $callbacks
      *
+     * Записывает в статический массив данные о проверенных документах<br>
+     * <b>*</b> id документа идет как первый элемент из массива $params
+     *
      * @throws DataBaseEx
      * @throws SelfEx
      * @throws ReflectionException
@@ -98,7 +111,23 @@ class AccessToDocumentTree
         foreach ($this->callbacks as $documentType => $params) {
 
             $this->factory->getObject($documentType, $params)->checkAccess();
+
+            self::$checkedDocuments[] = [
+                'doc' => $documentType,
+                'id'  => (int)$params[0]
+            ];
         }
+    }
+
+
+    /**
+     * Предназначен для получения массива проверенных документов
+     *
+     * @return array
+     */
+    static public function getCheckedDocuments(): array
+    {
+        return self::$checkedDocuments;
     }
 
 
@@ -114,6 +143,9 @@ class AccessToDocumentTree
     //
     // Порядок в массиве первого уровня важен. В указанном порядке будут созданы объекты
     // соответствующих классов и вызваны методы проверки checkAccess.
+    //
+    // При работе с классом DocumentTreeHandler опускаются проверки на существование документов,
+    // т.к. существование документа было проверено предшествующем route callback DocumentExistChecker
     // -----------------------------------------------------------------------------------------
 
 
@@ -128,35 +160,34 @@ class AccessToDocumentTree
     }
 
 
-        private function total_cc(): array
-        {
-            return [
-                DOCUMENT_TYPE['application'] => [
-                    $this->tree['id'],
-                    $this->documentId
-                ],
-                DOCUMENT_TYPE['total_cc'] => [
-                    $this->documentId
-                ]
-            ];
-        }
+    private function total_cc(): array
+    {
+        return [
+            DOCUMENT_TYPE['application'] => [
+                $this->treeHandler->getApplicationId(),
+                $this->documentId
+            ],
+            DOCUMENT_TYPE['total_cc'] => [
+                $this->documentId
+            ]
+        ];
+    }
 
 
-            private function section_documentation_1(): array
-            {
-                $totalCCId = $this->tree['children']['total_cc']['id'];
-
-                return [
-                    DOCUMENT_TYPE['application'] => [
-                        $this->tree['id'],
-                        $totalCCId
-                    ],
-                    DOCUMENT_TYPE['total_cc'] => [
-                        $totalCCId
-                    ],
-                    DOCUMENT_TYPE['section_documentation_1'] => [
-                        $this->documentId
-                    ]
-                ];
-            }
+    private function section(): array
+    {
+        return [
+            DOCUMENT_TYPE['application'] => [
+                $this->treeHandler->getApplicationId(),
+                $this->treeHandler->getTotalCCId()
+            ],
+            DOCUMENT_TYPE['total_cc'] => [
+                $this->treeHandler->getTotalCCId()
+            ],
+            DOCUMENT_TYPE['section'] => [
+                $this->documentId,
+                $this->treeHandler->getTypeOfObjectId()
+            ]
+        ];
+    }
 }
