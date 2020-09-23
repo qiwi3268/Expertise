@@ -1,45 +1,149 @@
+/**
+ * @typedef {HTMLElement | HTMLInputElement} HTMLInputElement
+ */
+
+/**
+ * @typedef CertificateData
+ * @type {object}
+ * @property {string} subject_name - имя подписанта
+ * @property {string} issuer_name - имя издателя сертификата
+ * @property {Date} valid_from_date - дата начала действия
+ * @property {Date} valid_to_date - дата окончания действия
+ * @property {string} cert_message - описание состояния сертификата
+ * @property {boolean} cert_status - статус валидности сертификата
+ */
+
+/**
+ * Представляет собой модуль подписания файла,
+ * расширяет модуль просмотра подписи
+ */
 class SignHandler extends SignView{
 
-   // Объект модуля подписания
+   /**
+    * Объект модуля подписания
+    *
+    * @type {SignHandler}
+    */
    static instance;
 
-   // Модальное окно подписания
+   /**
+    * Модальное окно модуля подписания
+    *
+    * @type {HTMLElement}
+    */
    modal;
-   // Фон модального окна
+
+   /**
+    * Фон модального окна
+    *
+    * @type {HTMLElement}
+    */
    overlay;
 
+   /**
+    * Флаг указывающий проинициализирован ли плагин криптоПТО
+    *
+    * @type {boolean}
+    */
    is_plugin_initialized = false;
+
+   /**
+    * Флаг указывающий, что в данный момент идет процесс подписания
+    *
+    * @type {boolean}
+    */
    is_signing = false;
 
-   // Блок с информацией о версии плагина
+   /**
+    * Блок с информацией о версии плагина и криптопровайдера
+    *
+    * @type {HTMLElement}
+    */
    plugin_info;
-   // Блок с информацией о проверки подписей
+
+   /**
+    * Блок с результатами проверки подписей
+    *
+    * @type {HTMLElement}
+    */
    validate_info;
-   // Блок с сертификатами
+
+   /**
+    * Блок с сертификатами пользователя
+    *
+    * @type {HTMLElement}
+    */
    certs;
-   // Блок с информацией о выбранном сертификате
+
+   /**
+    * Блок с описанием выбранного сертификата
+    *
+    * @type {HTMLElement}
+    */
    cert_info;
 
-   // Кнопка загрузки файла открепленной подписи
+   /**
+    * Кнопка загрузки файла открепленной подписи
+    *
+    * @type {HTMLElement}
+    */
    upload_sign_btn;
-   // Кнопка создания открепленной подписи
+
+   /**
+    * Кнопка создания открепленной подписи
+    *
+    * @type {HTMLElement}
+    */
    create_sign_btn;
-   // Кнопка удаления открепленной подписи
+
+   /**
+    * Кнопка удаления открепленной подписи
+    *
+    * @type {HTMLElement}
+    */
    delete_sign_btn;
-   // Кнопка "Подписать" для создания открепленной подписи
-   // после выбора сертификата
+
+   /**
+    * Кнопка "Подписать" для создания открепленной подписи
+    * после выбора сертификата
+    *
+    * @type {HTMLElement}
+    */
    sign_btn;
-   // Кнопка отмены действия создания открепленной подписи
+
+   /**
+    * Кнопка отмены действия создания открепленной подписи
+    *
+    * @type {HTMLElement}
+    */
    cancel_btn;
-   // Блок с кнопками подписания и отмены
+
+   /**
+    * Блок с кнопками подписания и отмены создания подписи
+    *
+    * @type {HTMLElement}
+    */
    actions;
 
-   // Инпут, в который загружается файл открепленной подписи
+   /**
+    * Инпут, в который загружается файл открепленной подписи
+    *
+    * @type {HTMLInputElement}
+    */
    external_sign_input;
 
+   /**
+    * Файл, для которого открыт модуль подписания
+    *
+    * @type {GeFile}
+    */
    ge_file;
 
-   // Предназначен для получения объекта модуля подписания
+   /**
+    * Получает объект модуля подписания
+    *
+    * @returns {SignHandler}
+    */
    static getInstance () {
 
       if (!this.instance) {
@@ -49,11 +153,11 @@ class SignHandler extends SignView{
       return this.instance;
    }
 
-   // Предназначен для удаления подписи файла
-   // Принимает параметры-------------------------------
-   // file         Element : файл, у которого удаляется подпись
-   // mapping_1     string : первый маппинг
-   // mapping_2     string : второй маппинг
+   /**
+    * Удаляет открепленную подпись файла
+    *
+    * @param ge_file - файл, у которого удаляется подпись
+    */
    static removeSign (ge_file) {
 
       FileNeeds.putSignToDelete(ge_file);
@@ -64,7 +168,9 @@ class SignHandler extends SignView{
       GeFile.setSignState(ge_file, 'not_signed');
    }
 
-   // Предназначен для инициализации модуля подписания
+   /**
+    * Создает объект модуля подписания
+    */
    constructor () {
       super();
 
@@ -86,7 +192,9 @@ class SignHandler extends SignView{
       this.handleSignButton();
    }
 
-   // Предназначен для закрытия модуля подписания
+   /**
+    * Закрывает модальное окно модуля подписания
+    */
    closeModal () {
       this.modal.classList.remove('active');
       this.overlay.classList.remove('active');
@@ -98,7 +206,9 @@ class SignHandler extends SignView{
       this.closeInfoBlocks();
    }
 
-   // Предназначен для скрывания блоков с информацией модуля подписания
+   /**
+    * Скрывает информационные блоки модуля подписания
+    */
    closeInfoBlocks () {
       this.certs.dataset.active = 'false';
       this.plugin_info.dataset.active = 'false';
@@ -106,7 +216,10 @@ class SignHandler extends SignView{
       this.validate_info.dataset.active = 'false';
    }
 
-   // Предназначен для обработки кнопки создания открепленной подписи
+   /**
+    * Инициализирует плагин и отображает элементы для создания подписи
+    * при нажатии на кнопку "Создать открепленную подпись"
+    */
    handleCreateSignButton () {
       this.create_sign_btn = document.getElementById('sign_create');
       this.create_sign_btn.addEventListener('click', () => {
@@ -121,7 +234,9 @@ class SignHandler extends SignView{
 
    }
 
-   // Предназначен для инициализации плагина для подписания
+   /**
+    * Инициализирует плагин для подписания
+    */
    initializePlugin () {
 
       // Берем объект плагина
@@ -147,17 +262,21 @@ class SignHandler extends SignView{
          });
    }
 
-   // Добавляем в модальное окно версии плагина и криптопровайдера
-   // Принимает параметры-------------------------------
-   // plugin_data       Object : объект с версиями
+   /**
+    * Добавляет в модальное окно информацию о версии плагина и криптопровайдера
+    *
+    * @param {Object} plugin_data - объект с данными о плагине
+    */
    putPluginData (plugin_data) {
       document.getElementById('plugin_version').innerHTML = plugin_data.plugin_version;
       document.getElementById('csp_version').innerHTML = plugin_data.csp_version;
    }
 
-   // Предназначен для
-   // Принимает параметры-------------------------------
-   // certs        Array[Object] : массив с данными сертификатов
+   /**
+    * Обрабатывает список сертификаторв пользователя
+    *
+    * @param {Object[]} certs - массив объектов, содержащих имя и отпечаток сертификата
+    */
    handleCertListSelect (certs) {
       this.certs_select = document.getElementById('cert_list_select');
       this.cert_list = document.getElementById('cert_list');
@@ -168,9 +287,11 @@ class SignHandler extends SignView{
       GeCades.setCertificatesList(this.cert_list);
    }
 
-   // Предназначен для заполнения селекта выбора сертификатов
-   // Принимает параметры-------------------------------
-   // certs       Array[Object] : массив с сертификатами
+   /**
+    * Заполняет список сертификатов
+    *
+    * @param {Object[]} certs - массив объектов, содержащих имя и отпечаток сертификата
+    */
    fillCertList (certs) {
 
       certs.forEach(cert => {
@@ -189,9 +310,14 @@ class SignHandler extends SignView{
             this.selectCert(cert_item);
          });
       });
-
    }
 
+   /**
+    * Устанавливает выбранный сертификат,
+    * добаляет информацию о выбранном сертификате
+    *
+    * @param {HTMLElement} cert_item - элемент выбранного сертификата
+    */
    selectCert(cert_item) {
       let selected_cert = this.cert_list.querySelector('.sign-modal__cert[data-selected="true"]');
       if (selected_cert) {
@@ -211,7 +337,9 @@ class SignHandler extends SignView{
          });
    }
 
-   // Предназначен для отображения элементов для создания подписи
+   /**
+    * Показывает элементы для подписания файла
+    */
    showCreateSignElements () {
       this.certs.dataset.active = 'true';
       this.plugin_info.dataset.active = 'true';
@@ -222,9 +350,12 @@ class SignHandler extends SignView{
       this.create_sign_btn.dataset.active = 'false';
    }
 
-   // Предназначен для добавления информации о выбранном сертификате
-   // Принимает параметры-------------------------------
-   // cert_info         Object : объект с информацией о сертификате
+   /**
+    * Заполняет блок с информацией о выбранном сертификате
+    *
+    * @param {CertificateData} cert_info
+    * @param cert_item - элемент выбранного сертификата
+    */
    fillCertInfo (cert_info, cert_item) {
       document.getElementById('subject_name').innerHTML = cert_info.subject_name;
       document.getElementById('issuer_name').innerHTML = cert_info.issuer_name;
@@ -239,11 +370,15 @@ class SignHandler extends SignView{
       this.cert_info.dataset.active = 'true';
    }
 
-   // Предназначен для обработки кнопки загрузки файла открепленной подписи
+   /**
+    * Открывает окно загрузки файлов и загружает открепленные подписи
+    * при нажатии на кнопку "Загрузить открепленную подпись"
+    */
    handleUploadSignButton () {
       this.upload_sign_btn = document.getElementById('sign_upload');
       this.upload_sign_btn.addEventListener('click', () => {
 
+         // Если не подписывается в данный момент, открываем окно загрузки файла
          if (!this.is_signing) {
             this.external_sign_input.click();
          }
@@ -256,20 +391,21 @@ class SignHandler extends SignView{
          if (this.external_sign_input.files.length > 0) {
             let sign_files = Array.from(this.external_sign_input.files);
             this.is_signing = true;
+            // Загружаем и проверяем открепленные подписи
             this.sendSigns(sign_files);
          }
 
-         // Удаляем загруженные файлы
+         // Удаляем загруженные в инпут файлы
          this.external_sign_input.value = '';
-
       });
-
    }
 
-   // Предназначен для загрузки и валидации файла открепленной подписи
-   // Принимает параметры-------------------------------
-   // sign_files       Array[File] : загруженные файлы
-   // (пока что предусмотрена загрузка только одного файла)
+   /**
+    * Загружает и валидирует открепленные подписи
+    * (пока что предусмотрена загрузка только одного файла)
+    *
+    * @param {File[]} sign_files - файлы открепленных подписей
+    */
    sendSigns (sign_files) {
       let fs_name_data;
       let fs_name_sign;
@@ -325,10 +461,14 @@ class SignHandler extends SignView{
             this.is_signing = false;
             ErrorModal.open('Ошибка при загрузке файла открепленной подписи', exc);
          });
-
-
    }
 
+   /**
+    * Обрабатывает результаты проверки открепленной подписи
+    *
+    * @param {number} id_sign - id открпленной подписи, загруженной на сервер
+    * @param {ValidateResult} validate_results - результаты проверки подписи
+    */
    handleValidateResults (id_sign, validate_results) {
       let results_json = JSON.stringify(validate_results);
 
@@ -336,14 +476,18 @@ class SignHandler extends SignView{
       this.ge_file.element.dataset.id_sign = id_sign;
       this.ge_file.element.dataset.validate_results = results_json;
 
+      // Добавляем статус подписания в поле с файлом
       SignView.validateFileField(this.ge_file);
 
       FileNeeds.putSignToSave(this.ge_file);
 
+      // Добавляем результаты проверки в модальное окно
       this.fillSignsInfo(results_json);
    }
 
-
+   /**
+    * Удаляет открепленную подпись при нажатии на кнопку "Удалить подпись"
+    */
    handleDeleteSignButton () {
       this.delete_sign_btn = document.getElementById('signature_delete');
       this.delete_sign_btn.addEventListener('click', () => {
@@ -358,6 +502,9 @@ class SignHandler extends SignView{
       });
    }
 
+   /**
+    * Скрывает элементы для создания подписи при нажатии на кнопку "Отмена"
+    */
    handleCancelButton () {
       this.cancel_btn = document.getElementById('sign_cancel');
 
@@ -371,6 +518,9 @@ class SignHandler extends SignView{
 
    }
 
+   /**
+    * Создает открепленную подпись при нажатии на кнопку "Подписать"
+    */
    handleSignButton () {
       this.sign_btn = document.getElementById('signature_button');
       this.sign_btn.addEventListener('click', () => {
@@ -384,9 +534,11 @@ class SignHandler extends SignView{
 
          }
       });
-
    }
 
+   /**
+    * Создает файл открепленной подписи и загружает его на сервер
+    */
    createSign () {
       let selected_algorithm;
       let file_name;
@@ -394,6 +546,7 @@ class SignHandler extends SignView{
 
       this.is_signing = true;
 
+      // Проверяем файл, который подписываем
       API.checkFile(this.ge_file.id, this.ge_file)
          .then(file_check_response => {
 
@@ -402,17 +555,20 @@ class SignHandler extends SignView{
             return GeCades.getSelectedCertificateAlgorithm();
 
          })
+         // Получаем выбранный сертификат
          .then(algorithm => {
 
             selected_algorithm = algorithm;
             return API.getFileHash(algorithm, fs_name_data);
 
          })
+         // Получаем хэш файла
          .then(file_hash => {
 
             return GeCades.SignHash_Async(selected_algorithm, file_hash);
 
          })
+         // Преобразуем хэш
          .then(sign_hash => {
 
             let sign_blob = new Blob([sign_hash], {type: 'text/plain'});
