@@ -169,7 +169,7 @@
 
             <callback_template id="DocumentParameters_ExpertiseCard" />
             <callback_template id="DocumentExistChecker" />
-            <callback_template id="AccessToDocumentChecker" />
+            <callback_template id="AccessToDocumentTreeChecker" />
 
 
             <files>
@@ -250,7 +250,7 @@
 
             <callback_template id="DocumentParameters_ActionPage" />
             <callback_template id="DocumentExistChecker" />
-            <callback_template id="AccessToDocumentChecker" />
+            <callback_template id="AccessToDocumentTreeChecker" />
             <callback_template id="ActionChecker" />
 
 
@@ -308,11 +308,26 @@
                 </dir>
                 <dir path="/views/home/" ext=".php">
                     <file name="main_header" />
-                </dir>
-                <dir path="/views/home/" ext=".php">
                     <file name="test_1" />
+                    <file name="main_footer" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="home/section_create_test">
+            <files>
+                <dir path="/controllers/" ext=".php">
+                    <file name="header" />
+                </dir>
+                <dir path="/views/" ext=".php">
+                    <file name="header" />
+                </dir>
+                <dir path="/controllers/home/" ext=".php">
+                    <file name="main_header" />
                 </dir>
                 <dir path="/views/home/" ext=".php">
+                    <file name="main_header" />
+                    <file name="section_create_test" />
                     <file name="main_footer" />
                 </dir>
             </files>
@@ -380,12 +395,12 @@
         </template>
 
 
-        <template id="AccessToDocumentChecker">
+        <template id="AccessToDocumentTreeChecker">
             <callbacks>
                 <namespace name="\Classes\RouteCallbacks">
-                    <class name="AccessToDocumentChecker" type="instance">
+                    <class name="AccessToDocumentTreeChecker" type="instance">
                         <method name="construct"/>
-                        <method name="checkAccessToDocument"/>
+                        <method name="checkAccessToDocumentTree"/>
                     </class>
                 </namespace>
             </callbacks>

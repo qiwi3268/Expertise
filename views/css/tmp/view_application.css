@@ -31,14 +31,6 @@
     color: #87c596;
 }
 
-@media (max-width: 1024px) {
-    .sidebar-hierarchy,
-    .sidebar-actions {
-        width: 15%;
-    }
-}
-
-
 /*tmp================================*/
 
 

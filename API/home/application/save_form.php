@@ -138,14 +138,15 @@ try {
             ]));
         }
 
-   // Сотрудник
-    } else {
 
+    } else {
+        // Сотрудник
         if (!$applicationExist) {
 
             exit(json_encode([
                 'result'        => 3,
-                'error_message' => "Заявление id: {$form_applicationID} не существует"]));
+                'error_message' => "Заявление id: {$form_applicationID} не существует"
+            ]));
         }
     }
 
@@ -156,44 +157,44 @@ try {
 
     try {
 
-        // Проверка Цели обращения (и добавление к массиву обновлений) -----------------------------
+        // Проверка цели обращения (и добавление к массиву обновлений) -----------------------------
         $expertisePurpose = new SingleMiscValidator($P_expertise_purpose, '\Tables\Miscs\expertise_purpose', 'id_expertise_purpose');
         $expertisePurpose->validate()->addToUpdate();
 
 
-        // Проверка Предметов экспертизы -----------------------------------------------------------
+        // Проверка предметов экспертизы -----------------------------------------------------------
         if ($P_expertise_subjects != '') {
             $expertiseSubjects = $primitiveValidator->getValidatedArrayFromNumericalJson($P_expertise_subjects, true);
             foreach ($expertiseSubjects as $id) (new DependentMiscValidator($expertisePurpose, $id, '\Tables\Miscs\expertise_subject'))->validate();
         }
 
 
-        // Проверка Вида объекта (и добавление к массиву обновлений) -------------------------------
+        // Проверка вида объекта (и добавление к массиву обновлений) -------------------------------
         $typeOfObject = new SingleMiscValidator($P_type_of_object, '\Tables\Miscs\type_of_object', 'id_type_of_object');
         $typeOfObject->validate()->addToUpdate();
 
 
-        // Проверка Функционального назначения (и добавление к массиву обновлений) -----------------
+        // Проверка функционального назначения (и добавление к массиву обновлений) -----------------
         $functionalPurpose = new SingleMiscValidator($P_functional_purpose, '\Tables\Miscs\functional_purpose', 'id_functional_purpose');
         $functionalPurpose->validate()->addToUpdate();
 
 
-        // Проверка Функциональное назначение. Подотрасль (и добавление к массиву обновлений) ------
+        // Проверка функциональное назначение. Подотрасль (и добавление к массиву обновлений) ------
         $functionalPurposeSubsector = new DependentMiscValidator($functionalPurpose, $P_functional_purpose_subsector, '\Tables\Miscs\functional_purpose_subsector', 'id_functional_purpose_subsector');
         $functionalPurposeSubsector->validate()->addToUpdate();
 
 
-        // Проверка Функциональное назначение. Группа (и добавление к массиву обновлений) ----------
+        // Проверка функциональное назначение. Группа (и добавление к массиву обновлений) ----------
         $functionalPurposeGroup = new DependentMiscValidator($functionalPurposeSubsector, $P_functional_purpose_group, '\Tables\Miscs\functional_purpose_group', 'id_functional_purpose_group');
         $functionalPurposeGroup->validate()->addToUpdate();
 
 
-        // Проверка Вида работ (и добавление к массиву обновлений) ---------------------------------
+        // Проверка вида работ (и добавление к массиву обновлений) ---------------------------------
         $typeOfWork = new DependentMiscValidator($expertisePurpose, $P_type_of_work, '\Tables\Miscs\type_of_work', 'id_type_of_work');
         $typeOfWork->validate()->addToUpdate();
 
 
-        // Проверка Типа объекта культурного наследия (и добавление к массиву обновлений) ----------
+        // Проверка типа объекта культурного наследия (и добавление к массиву обновлений) ----------
         if ($P_cultural_object_type != '' && $P_cultural_object_type_checkbox != '1') {
             exit(json_encode([
                 'result'        => 7,
@@ -204,7 +205,7 @@ try {
         $culturalObjectType->validate()->addToUpdate();
 
 
-        // Проверка Национального проекта (и добавление к массиву обновлений) ----------------------
+        // Проверка национального проекта (и добавление к массиву обновлений) ----------------------
         if ($P_national_project != '' && $P_national_project_checkbox != '1') {
             exit(json_encode([
                 'result'        => 7,
@@ -215,12 +216,12 @@ try {
         $nationalProject->validate()->addToUpdate();
 
 
-        // Проверка Федерального проекта (и добавление к массиву обновлений) -----------------------
+        // Проверка федерального проекта (и добавление к массиву обновлений) -----------------------
         $federalProject = new DependentMiscValidator($nationalProject, $P_federal_project, '\Tables\Miscs\federal_project', 'id_federal_project');
         $federalProject->validate()->addToUpdate();
 
 
-        // Проверка Куратора (и добавление к массиву обновлений) -----------------------------------
+        // Проверка куратора (и добавление к массиву обновлений) -----------------------------------
         $curator = new SingleMiscValidator($P_curator, '\Tables\Miscs\curator', 'id_curator');
         $curator->validate()->addToUpdate();
 
@@ -245,7 +246,7 @@ try {
 
     // Проверка блока Номера и Даты ------------------------------------------------------------
     //
-    // Из формы одновременное пришли данные из блока Утверждения документации по планировке территории и ГПЗУ
+    // Из формы одновременное пришли данные из блока утверждения документации по планировке территории и ГПЗУ
     if (
         ($P_number_planning_documentation_approval != '' || $P_date_planning_documentation_approval != '')
         && ($P_number_GPZU != '' || $P_date_GPZU != '')
@@ -259,7 +260,7 @@ try {
 
     if ($P_number_planning_documentation_approval != '' || $P_date_planning_documentation_approval != '') {
 
-        // Заполнены данные при невыбранном Виде объекта или Вид объекта не того типа
+        // Заполнены данные при невыбранном виде объекта или вид объекта не того типа
         if (!$typeOfObject->isExist() || $typeOfObject->getIntValue() != 1) {
 
             exit(json_encode([
@@ -268,7 +269,7 @@ try {
             ]));
         }
 
-        // Валидация Даты
+        // Валидация даты
         try {
             if ($P_date_planning_documentation_approval != '') $primitiveValidator->validateStringDate($P_date_planning_documentation_approval);
         } catch (PrimitiveValidatorEx $e) {
@@ -281,7 +282,7 @@ try {
 
     } elseif ($P_number_GPZU != '' || $P_date_GPZU != '') {
 
-        // Заполнены данные при невыбранном Виде объекта или Вид объекта не того типа
+        // Заполнены данные при невыбранном виде объекта или вид объекта не того типа
         if (!$typeOfObject->isExist() || !$typeOfObject->getIntValue() != 2) {
 
             exit(json_encode([
@@ -290,7 +291,7 @@ try {
             ]));
         }
 
-        // Валидация Даты
+        // Валидация даты
         try {
             if ($P_date_GPZU != '') $primitiveValidator->validateStringDate($P_date_GPZU);
         } catch (PrimitiveValidatorEx $e) {
@@ -302,7 +303,7 @@ try {
         }
     }
 
-    // Проверка Сведений о сметной или предполагаемой (предельной) стоимости объекта -------------------
+    // Проверка сведений о сметной или предполагаемой (предельной) стоимости объекта -------------------
     if ($P_estimate_cost != '') {
 
         // Предмет экспертизы должен включать в себя: Проверка достоверности определения сметной стоимости...
@@ -325,7 +326,7 @@ try {
     }
 
 
-    // Проверка Даты окончания строительства -----------------------------------------------------------
+    // Проверка даты окончания строительства -----------------------------------------------------------
     //
     if ($P_date_finish_building != '') {
 
@@ -349,7 +350,7 @@ try {
     }
 
 
-    // Проверка Источников финансирования --------------------------------------------------------------
+    // Проверка источников финансирования --------------------------------------------------------------
     //
     // В источники финансирования было внесено изменение
     if ($P_finance_sources_exist_flag == '1') {
@@ -516,23 +517,23 @@ try {
     $db_expertiseSubjects = expertise_subject::getIdsByIdApplication($form_applicationID);
 
     $db_expertiseSubjects ??= [];    // Если с БД пришел null, то приравниваем к пустому массиву для array_diff
-    $expertiseSubjectsToDelete = []; // Массив с id Предметов экспертизы, которые нужно удалить
-    $expertiseSubjectsToCreate = []; // Массив с id Предметов экспертизы, которые нужно создать к заявлению
+    $expertiseSubjectsToDelete = []; // Массив с id предметов экспертизы, которые нужно удалить
+    $expertiseSubjectsToCreate = []; // Массив с id предметов экспертизы, которые нужно создать к заявлению
 
     if ($P_expertise_subjects != '') {
 
-        // id Предметов, которые есть в БД, но нет в пришедшей форме
+        // id предметов, которые есть в БД, но нет в пришедшей форме
         $expertiseSubjectsToDelete = array_diff($db_expertiseSubjects, $expertiseSubjects);
 
-        // id Предметов, которые есть в пришедшей форме, но нет в БД
+        // id предметов, которые есть в пришедшей форме, но нет в БД
         $expertiseSubjectsToCreate = array_diff($expertiseSubjects, $db_expertiseSubjects);
 
-        // Из формы пришло пустое значение, удаляем все Предметы экспертизы
+        // Из формы пришло пустое значение, удаляем все предметы экспертизы
     } else {
         $expertiseSubjectsToDelete = $db_expertiseSubjects;
     }
 
-    // Удаляем и записываем в БД новые записи о Предмете экспертизы
+    // Удаляем и записываем в БД новые записи о предмете экспертизы
     foreach ($expertiseSubjectsToDelete as $id) {
         $transaction->add('\Tables\expertise_subject', 'delete', [$form_applicationID, $id]);
     }

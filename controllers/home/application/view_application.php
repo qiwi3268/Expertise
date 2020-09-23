@@ -8,12 +8,12 @@ use Lib\Singles\NodeStructure;
 use Lib\Singles\Helpers\FileHandler;
 use Classes\Application\Files\Initialization\Initializer as FilesInitializer;
 use Tables\Docs\application;
+use Tables\DocumentationTypeTableLocator;
 
 
 $variablesTV = VariableTransfer::getInstance();
-$applicationId = $_GET['id_document'];
 
-$applicationAssoc = application::getAssocById($applicationId);
+$applicationAssoc = application::getAssocById(CURRENT_DOCUMENT_ID);
 
 // Преобразование дат к строкам
 updateDatesTimestampToDdMmYyyy(
@@ -40,7 +40,7 @@ foreach ($applicationAssoc as $property => $value) {
 $requiredMappings = new RequiredMappingsSetter();
 $requiredMappings->setMappingLevel1(1);
 
-$filesInitializer = new FilesInitializer($requiredMappings, $applicationId);
+$filesInitializer = new FilesInitializer($requiredMappings, CURRENT_DOCUMENT_ID);
 
 $needsFiles = $filesInitializer->getNeedsFilesWithSigns();
 
@@ -60,27 +60,25 @@ unset($mapping_level_2);
 
 $variablesTV->setValue('form_files', $needsFiles);
 
-// Сохранен Вид объекта, показываем документацию
+// Сохранен вид объекта, показываем документацию
 if ($variablesTV->getExistenceFlag('type_of_object')) {
 
     // Удаление переменных, служивших выше
     unset($requiredMappings, $filesInitializer, $needsFiles);
 
-    // В зависимости от вида объекта выбираем нужную таблицу
-    switch ($variablesTV->getValue('type_of_object')['id']) {
-        case 1 : // Производственные / непроизводственные
-            $mapping_level_1 = 2;
-            $mapping_level_2 = 1;
-            $className = '\Tables\Structures\documentation_1';
-            break;
-        case 2 : // Линейные
-            $mapping_level_1 = 2;
-            $mapping_level_2 = 2;
-            $className = '\Tables\Structures\documentation_2';
-            break;
-        default :
-            throw new Exception('Указан Вид объекта, при котором не определены действия для отображения загруженных файлов');
+    $typeOfObjectId = $variablesTV->getValue('type_of_object')['id'];
+
+    $tableLocator = new DocumentationTypeTableLocator($typeOfObjectId);
+
+
+    if ($typeOfObjectId == 1) { // Производственные / непроизводственные
+        $mapping_level_1 = 2;
+        $mapping_level_2 = 1;
+    } else {                    // Линейные
+        $mapping_level_1 = 2;
+        $mapping_level_2 = 2;
     }
+
 
     // Устанавливаем маппинги для работы js по скачиванию файлов
     $variablesTV->setValue('documentation_mapping_level_1', $mapping_level_1);
@@ -91,7 +89,7 @@ if ($variablesTV->getExistenceFlag('type_of_object')) {
 
     $requiredMappings->setMappingLevel2($mapping_level_1, $mapping_level_2);
 
-    $filesInitializer = new FilesInitializer($requiredMappings, $applicationId);
+    $filesInitializer = new FilesInitializer($requiredMappings, CURRENT_DOCUMENT_ID);
 
     $needsFiles = $filesInitializer->getNeedsFilesWithSigns()[$mapping_level_1][$mapping_level_2] ?? [];
 
@@ -100,7 +98,9 @@ if ($variablesTV->getExistenceFlag('type_of_object')) {
     FileHandler::setValidateResultJSON($needsFiles);
     FileHandler::setHumanFileSize($needsFiles);
 
-    $nodeStructure = new NodeStructure($className::getAllAssocWhereActive());
+    $nodeStructure = new NodeStructure(
+        call_user_func([$tableLocator->getStructures(), 'getAllAssocWhereActive'])
+    );
 
     $filesInStructure = FilesInitializer::getFilesInDepthStructure($needsFiles, $nodeStructure);
 
@@ -109,11 +109,11 @@ if ($variablesTV->getExistenceFlag('type_of_object')) {
 
 //todo перенести вместе с use в другое место
 
-$responsible = new Responsible($applicationId, CURRENT_DOCUMENT_TYPE);
+$responsible = new Responsible(CURRENT_DOCUMENT_ID, CURRENT_DOCUMENT_TYPE);
 $responsible = $responsible->getCurrentResponsible();
 
 
-var_dump($responsible);
+//var_dump($responsible);
 
 
 

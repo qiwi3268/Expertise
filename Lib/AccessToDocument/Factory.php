@@ -9,9 +9,8 @@ use ReflectionClass;
 
 
 /**
- * Предназначен для получения экземпляра класса для проверки доступа
+ * Фабрика получения экземпляров классов проверки доступа
  * пользователя к документу в зависимости от его типа
- *
  *
  */
 class Factory
@@ -37,6 +36,9 @@ class Factory
                 $class = '\Classes\TotalCC\AccessToDocument\AccessToTotalCC';
                 break;
 
+            case DOCUMENT_TYPE['section'] :
+                $class = '\Classes\Section\AccessToDocument\AccessToSection';
+                break;
             default :
                 throw new SelfEx('Методу Lib\AccessToDocument\Factory::getObject не удалось распознать тип документа', 1);
         }

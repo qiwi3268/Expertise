@@ -8,7 +8,6 @@ use Classes\Application\Miscs\Initialization\CreateFormInitializer;
 use Classes\Application\Helpers\Helper as ApplicationHelper;
 use Tables\Docs\application;
 use Tables\application_counter;
-use Tables\Responsible\type_3\application as resp_application_type_3;
 use Tables\applicant_access_group;
 use Tables\Structures\{
     documentation_1,
@@ -69,10 +68,10 @@ foreach ($miscInitializer->getPaginationDependentMiscs() as $miscName => $mainMi
 
 // Структура документации
 $structureDocumentation1 = documentation_1::getAllAssocWhereActive();  // Производственные / непроизводственные
-$NodeStructure1 = new NodeStructure($structureDocumentation1);
+$nodeStructure1 = new NodeStructure($structureDocumentation1);
 
 $structureDocumentation2 = documentation_2::getAllAssocWhereActive();  // Линейные
-$NodeStructure2 = new NodeStructure($structureDocumentation2);
+$nodeStructure2 = new NodeStructure($structureDocumentation2);
 
-$variablesTV->setValue('structureDocumentation1', $NodeStructure1->getDepthStructure());
-$variablesTV->setValue('structureDocumentation2', $NodeStructure2->getDepthStructure());
+$variablesTV->setValue('structureDocumentation1', $nodeStructure1->getDepthStructure());
+$variablesTV->setValue('structureDocumentation2', $nodeStructure2->getDepthStructure());

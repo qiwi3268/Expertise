@@ -5,6 +5,7 @@ namespace Tables\Docs\Relations;
 
 use Tables\Exceptions\Tables as SelfEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
+use Tables\Exceptions\Tables as TablesEx;
 
 
 /**
@@ -21,12 +22,12 @@ class HierarchyTree
      *
      * Получает id заявления из любого принятого типа документа
      *
-     * @param $documentType
-     * @param $documentId
+     * @param $documentType string тип документа
+     * @param $documentId int id документа
      * @throws SelfEx
      * @throws DataBaseEx
      */
-    public function __construct($documentType, $documentId)
+    public function __construct(string $documentType, int $documentId)
     {
         if ($documentType == DOCUMENT_TYPE['application']) {
 
@@ -52,6 +53,7 @@ class HierarchyTree
      * @uses \Tables\Docs\Relations\application::getChildrenById()
      * @return array
      * @throws DataBaseEx
+     * @throws TablesEx
      */
     public function getTree(): array
     {

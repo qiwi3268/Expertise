@@ -1,4 +1,7 @@
 <?php
 
 
-\core\Classes\Session::deleteUser();
+use core\Classes\Session;
+
+
+Session::deleteUser();

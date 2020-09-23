@@ -177,9 +177,10 @@ class Misc {
       this.modal.classList.remove('active');
       Misc.overlay.classList.remove('active');
 
-      /*if (this.pagination) {
+      // todo убрать плавно и проверить, что нормально переключается
+      if (this.pagination) {
          this.pagination.element.style.display = 'none';
-      }*/
+      }
 
    }
 
@@ -206,6 +207,7 @@ class Misc {
 
       if (misc_values) {
          // Инпут со значением родительского поля
+         //todo добавить scope
          let parent_misc_result = document.querySelector(`[data-misc_result][name='${misc_values.dataset.when_change}']`);
 
          if (parent_misc_result) {
@@ -374,6 +376,9 @@ class Misc {
       } else {
          // todo убирать пагинацию
       }
+
+      // console.log(select);
+      // console.log(misc);
 
       return misc;
    }

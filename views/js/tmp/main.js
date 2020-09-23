@@ -4,6 +4,7 @@
 
 
 document.addEventListener('DOMContentLoaded', () => {
+   //todo в отдельный файл
 
    // Меняем размер раскрытых блоков при изменении размера страницы
    window.addEventListener('resize', () => {

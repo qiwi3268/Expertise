@@ -35,7 +35,7 @@ switch (URN) {
             ...CreateSource('css', TMP_CSS, 'null.css', 'header.css', 'footer.css', 'main.css', 'modal.css', 'radio.css', 'calendar.css', 'file_modal.css', 'files.css', 'documentation.css', 'multiple_block.css', 'sign_modal.css'),
             ...CreateSource('css', TMP_CSS, 'create_application.css'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js', 'cadesplugin_api.js'),
-            ...CreateSource('js', TMP_JS, 'ErrorHandler.js', 'main.js', 'API.js', 'Misc.js', 'sidebar.js', 'section.js', 'validation.js', 'DependenciesHandler.js', 'Calendar.js', 'radio.js', 'checkbox.js', 'save_application.js', 'SignView.js', 'SignHandler.js', 'PerfectCades.js', 'BrowserHelper.js', 'FileChecker.js', 'FileNeeds.js', 'FileUploader.js', 'MultipleBlock.js', 'GeFile.js', 'PartBlock.js')
+            ...CreateSource('js', TMP_JS, 'ErrorHandler.js', 'main.js', 'API.js', 'Misc.js', 'sidebar.js', 'section.js', 'validation.js', 'DependenciesHandler.js', 'Calendar.js', 'radio.js', 'save_application.js', 'SignView.js', 'SignHandler.js', 'PerfectCades.js', 'BrowserHelper.js', 'FileChecker.js', 'FileNeeds.js', 'FileUploader.js', 'MultipleBlock.js', 'GeFile.js', 'PartBlock.js')
         ];
         break;
 
@@ -57,7 +57,7 @@ switch (URN) {
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'modal.css', 'calendar.css'),
             ...CreateSource('css', TMP_CSS, 'create_application.css'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
-            ...CreateSource('js', TMP_JS, 'sidebar.js', 'section.js', 'validation.js', 'cards.js', 'calendar.js', 'radio.js', 'checkbox.js', 'save_application.js', 'test.js')
+            ...CreateSource('js', TMP_JS, 'sidebar.js', 'section.js', 'validation.js', 'cards.js', 'calendar.js', 'radio.js', 'save_application.js', 'test.js')
         ];
         break;
 
@@ -107,6 +107,17 @@ switch (URN) {
             ...CreateSource('css', TMP_CSS, 'action_sidebar.css', 'test_1.css')
         ];
         break;
+    
+    case 'home/section_create_test' :
+        $pageName = 'Раздел';
+        $sourcesFiles = [...GetFontAwesome5Case(),
+            ...GetTinyMCECase(),
+            ...CreateSource('css', ROOT_CSS, 'entry.css'),
+            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css'),
+            ...CreateSource('css', TMP_CSS,'section_create_test.css'),
+            ...CreateSource('js', TMP_JS, 'section_create_test.js')
+        ];
+        break;
 }
 
 $variablesTV = \Lib\Singles\VariableTransfer::getInstance();
@@ -151,3 +162,9 @@ function GetFontAwesome5Case(): array
 {
     return CreateSource('css', ROOT_LIB_CSS . 'fontawesome-free-5.13.0-web/css/', 'all.min.css');
 }
+
+function GetTinyMCECase(): array
+{
+    return CreateSource('js', ROOT_LIB_JS. 'tinymce/js/tinymce/', 'tinymce.min.js');
+}
+

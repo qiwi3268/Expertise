@@ -3,6 +3,7 @@
 
 $variablesTV = \Lib\Singles\VariableTransfer::getInstance();
 
+//todo заменить на CURRENT_DOCUMENT_...
 $applicationId = $_GET['id_document'];
 $applicationAssoc = \Tables\Docs\application::getAssocById($applicationId);
 

@@ -16,8 +16,8 @@ $isNavigationPage = $variablesTV->getExistenceFlag('isNavigationPage%S');
 if ($isNavigationPage) {
     $userNavigation = $variablesTV->getValue('userNavigation');
 } else {
-    $Navigation = new Navigation(Session::getUserRoles());
-    $userNavigation = $Navigation->getUserNavigation();
+    $navigation = new Navigation(Session::getUserRoles());
+    $userNavigation = $navigation->getUserNavigation();
 }
 
 // Получение параметров навигационной страницы

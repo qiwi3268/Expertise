@@ -4,38 +4,72 @@
 namespace Lib\AccessToDocument;
 
 use Lib\Exceptions\DataBase as DataBaseEx;
-use Lib\Exceptions\AccessToDocument as AccessToDocumentEx;
+use Lib\Exceptions\AccessToDocument as SelfEx;
 use Tables\Exceptions\Tables as TablesEx;
 use ReflectionException;
+use Exception;
 
 use Tables\Docs\Relations\HierarchyTree;
 use Lib\Singles\VariableTransfer;
+use Classes\DocumentTreeHandler;
 
 
 /**
  * Предназначен для проверки доступа пользователя к документу
- * с учетом проверки доступа ко всему дереву наследования до нужного документа
+ * с учетом проверки доступа <b>ко всему дереву наследования</b> до нужного документа
  *
  */
 class AccessToDocumentTree
 {
 
-    private array $tree;
-    private string $documentType;
-    private int $documentId;
-    private Factory $factory;
+    /**
+     * Статический индексный массив проверенных документов формата:<br>
+     * ['doc' => (string)'application', (int)'id' => 7], [...], ...
+     *
+     */
+    static private array $checkedDocuments = [];
 
+
+    /**
+     * Обработчик массива иерархии документов
+     *
+     */
+    private DocumentTreeHandler $treeHandler;
+
+
+    /**
+     * id документа, для которого определяется доступ
+     *
+     */
+    private int $documentId;
+
+    /**
+     * Ассоциативный массив callback'ов для типа документа
+     *
+     */
+    private array $callbacks;
+
+    /**
+     * Фабрика для получения экземпляров классов проверки доступа
+     *
+     */
+    private Factory $factory;
 
 
     /**
      * Конструктор класса
      *
-     * Предназначен для определения линии проверок
+     * Предназначен для предва
      *
-     * @param string $documentType
-     * @param int $documentId
+     * Устанавливает массив иерархии документов в VariableTransfer
+     * в ключ <i>hierarchyTree</i>, если его там нет
+     *
+     * @param string $documentType тип документа
+     * @param int $documentId id документа
      * @throws DataBaseEx
      * @throws TablesEx
+     * @throws SelfEx
+     * @throws Exception
      */
     public function __construct(string $documentType, int $documentId)
     {
@@ -50,25 +84,69 @@ class AccessToDocumentTree
             $VT->setValue('hierarchyTree', $tree);
         }
 
-        $this->tree = $tree;
-        $this->documentType = $documentType;
+        if (!method_exists($this, $documentType)) {
+            throw new SelfEx("В классе Lib\AccessToDocument\AccessToDocumentTree не реализован метод типа документа: '{$documentType}'", 2);
+        }
+
+        $this->treeHandler = new DocumentTreeHandler($tree);
         $this->documentId = $documentId;
+        $this->callbacks = call_user_func([$this, $documentType]);
         $this->factory = new Factory();
     }
 
 
     /**
+     * Предназначен для поочередного вызова метода проверки доступа к каждому документу,
+     * определенному в массиве $callbacks
+     *
+     * Записывает в статический массив данные о проверенных документах<br>
+     * <b>*</b> id документа идет как первый элемент из массива $params
+     *
      * @throws DataBaseEx
-     * @throws AccessToDocumentEx
+     * @throws SelfEx
      * @throws ReflectionException
      */
     public function checkAccessToDocumentTree(): void
     {
-        foreach (call_user_func([$this, $this->documentType]) as $documentType => $params) {
+        foreach ($this->callbacks as $documentType => $params) {
 
             $this->factory->getObject($documentType, $params)->checkAccess();
+
+            self::$checkedDocuments[] = [
+                'doc' => $documentType,
+                'id'  => (int)$params[0]
+            ];
         }
     }
+
+
+    /**
+     * Предназначен для получения массива проверенных документов
+     *
+     * @return array
+     */
+    static public function getCheckedDocuments(): array
+    {
+        return self::$checkedDocuments;
+    }
+
+
+    // -----------------------------------------------------------------------------------------
+    // Блок методов для проверки доступа пользователя к документу с учетом дерева наследования
+    // до нужного документа. В этом блоке необходимо реализовать методы с названиями для
+    // каждого типа документа, в которых будут возвращены массивы определенного формата.
+    //
+    // Реализация закрытых методов для получения ассоциативного массива формата:
+    //    Ключ     - название типа документа
+    //    Значение - индексный массив с параметрами, которые будут переданы
+    //               в класс проверки доступа пользователя к документу
+    //
+    // Порядок в массиве первого уровня важен. В указанном порядке будут созданы объекты
+    // соответствующих классов и вызваны методы проверки checkAccess.
+    //
+    // При работе с классом DocumentTreeHandler опускаются проверки на существование документов,
+    // т.к. существование документа было проверено предшествующем route callback DocumentExistChecker
+    // -----------------------------------------------------------------------------------------
 
 
     private function application(): array
@@ -86,7 +164,7 @@ class AccessToDocumentTree
     {
         return [
             DOCUMENT_TYPE['application'] => [
-                $this->tree['id'],
+                $this->treeHandler->getApplicationId(),
                 $this->documentId
             ],
             DOCUMENT_TYPE['total_cc'] => [
@@ -96,22 +174,20 @@ class AccessToDocumentTree
     }
 
 
-    private function section_documentation_1(): array
+    private function section(): array
     {
-        $totalCCId = $this->tree['children']['total_cc']['id'];
-
         return [
             DOCUMENT_TYPE['application'] => [
-                $this->tree['id'],
-                $totalCCId
+                $this->treeHandler->getApplicationId(),
+                $this->treeHandler->getTotalCCId()
             ],
             DOCUMENT_TYPE['total_cc'] => [
-                $totalCCId
+                $this->treeHandler->getTotalCCId()
             ],
-            DOCUMENT_TYPE['section_documentation_1'] => [
-                $this->documentId
+            DOCUMENT_TYPE['section'] => [
+                $this->documentId,
+                $this->treeHandler->getTypeOfObjectId()
             ]
         ];
     }
-
 }

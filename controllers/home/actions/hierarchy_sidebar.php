@@ -1,81 +1,141 @@
 <?php
 
 
-use Tables\Docs\Relations\HierarchyTree;
+use Lib\Exceptions\AccessToDocument as AccessToDocumentEx;
+
 use Lib\Singles\VariableTransfer;
+use Lib\AccessToDocument\AccessToDocumentTree;
+use Classes\DocumentTreeHandler;
+use Lib\AccessToDocument\Factory;
 
 
-$hierarchyTree = new HierarchyTree(CURRENT_DOCUMENT_TYPE, CURRENT_DOCUMENT_ID);
-$fullTree = $hierarchyTree->getTree();
+$VT = VariableTransfer::getInstance();
 
-var_dump($fullTree);
+
+$checkedDocuments = AccessToDocumentTree::getCheckedDocuments();
+
+$isDocumentChecked = function(string $documentType, int $documentId) use ($checkedDocuments): bool {
+    foreach ($checkedDocuments as ['doc' => $doc, 'id' => $id]) {
+        if ($documentType == $doc && $documentId == $id) {
+            return true;
+        }
+    }
+    return false;
+};
 
 $availableDocumentsTV = [];
 
-//todo продумать как рпроверять доступ к текущему документу, с учетом того, что он уже проверен на уровне ядра
-//todo также на уровне ядра проверять доступ если от сводника - то и на заявление
-
-$checked = [
-    DOCUMENT_TYPE['application'] => false,
-    DOCUMENT_TYPE['total_cc'] => false,
-    DOCUMENT_TYPE['section_documentation_1'] => false,
-    DOCUMENT_TYPE['section_documentation_2'] => false
-];
-
-switch (CURRENT_DOCUMENT_TYPE) {
-    case DOCUMENT_TYPE['application'] :
-
-        $checked[DOCUMENT_TYPE['application']] = true;
-        break;
-    case DOCUMENT_TYPE['total_cc'] :
-
-        $checked[DOCUMENT_TYPE['application']] = true;
-        $checked[DOCUMENT_TYPE['total_cc']] = true;
-        break;
-}
-
-// Заявление
-// добавляем без дополнительных проверок, т.к. на уровне route callbacks был проверен текущий документ,
-// а значит заявление априори доступно
-addDocumentToArray(
-    $availableDocumentsTV,
-    'Заявление',
-    '/home/application/view?id_document=' . CURRENT_DOCUMENT_ID,
-    ['стадия', 'еще что-то'],
-    0
-);
-
-// todo договор
-
-// todo счет
-
-
-if (CURRENT_DOCUMENT_TYPE == DOCUMENT_TYPE['total_cc']) {
-
-}
-
-
-
-
-
-
-VariableTransfer::getInstance()->setValue('availableDocuments', $availableDocumentsTV);
-
-
-function addDocumentToArray(
-    array &$array,
+$addDocumentToArray = function (
     string $label,
     string $ref,
-    array $description,
-    int $depth
-): void {
+    array  $description,
+    int    $depth
+) use (&$availableDocumentsTV): void {
 
-    $array[] = [
-        'label' => $label,
-        'ref' => $ref,
-        'description' => $description,
-        'depth' => $depth
+    $availableDocumentsTV[] = [
+        'label'        => $label,
+        'ref'          => $ref,
+        'descriptions' => $description,
+        'depth'        => $depth
     ];
+};
+
+$treeHandler = new DocumentTreeHandler($VT->getValue('hierarchyTree'));
+
+$factory = new Factory();
+
+// Проверка заявления
+if ($treeHandler->ce_application()) {
+
+    if (!$isDocumentChecked(DOCUMENT_TYPE['application'], $treeHandler->getApplicationId())) {
+
+        $objectApplication = $factory->getObject(DOCUMENT_TYPE['application'], [
+            $treeHandler->getApplicationId(),
+            $treeHandler->ce_totalCC() ? $treeHandler->getTotalCCId() : null
+        ]);
+
+        $objectApplication->checkAccess();
+    }
+
+    $addDocumentToArray(
+        'Заявление',
+        '/home/application/view?id_document=' . $treeHandler->getApplicationId(),
+        ['стадия', 'еще что-то'],
+        0
+    );
 }
 
+// Проверка сводного замечания / заключения
+if ($treeHandler->ce_totalCC()) {
 
+    if (!$isDocumentChecked(DOCUMENT_TYPE['total_cc'], $treeHandler->getTotalCCId())) {
+
+        $objectTotalCC = $factory->getObject(DOCUMENT_TYPE['total_cc'], [$treeHandler->getTotalCCId()]);
+
+        try {
+            $objectTotalCC->checkAccess();
+
+            $addDocumentToArray(
+                'Сводное замечание',
+                '/home/application/view?id_document=' . $treeHandler->getTotalCCId(),
+                ['стадия', 'еще что-то'],
+                1
+            );
+
+            // Проверка разделов
+            if ($treeHandler->ce_sections()) {
+
+                // Флаг того, что отсутствует раздел, который был проверен в route callback
+                // Этим экономим вызовы замыкания $isDocumentChecked, поскольку одновременно только
+                // один раздел мог быть проверен
+                $checkedAbsent = true;
+
+                foreach ($treeHandler->getSections() as $section) {
+
+                    if (!$checkedAbsent || !$isDocumentChecked(DOCUMENT_TYPE['section'], $section['id'])) {
+
+                        $objectSection = $factory->getObject(DOCUMENT_TYPE['section'], [
+                            $section['id'],
+                            $treeHandler->getTypeOfObjectId()
+                        ]);
+
+                        try {
+
+                            $objectSection->checkAccess();
+
+                            $addDocumentToArray(
+                                'Раздел',
+                                '/home/application/view?id_document=' . $section['id'],
+                                ['стадия раздела', 'еще что-то'],
+                                2
+                            );
+
+                        } catch (AccessToDocumentEx $e) {
+                        }
+                    } else {
+
+                        $checkedAbsent = false;
+
+                        $addDocumentToArray(
+                            'Раздел',
+                            '/home/application/view?id_document=' . $section['id'],
+                            ['стадия раздела', 'еще что-то'],
+                            2
+                        );
+                    }
+                }
+            }
+        } catch (AccessToDocumentEx $e) {
+        }
+    } else {
+
+        $addDocumentToArray(
+            'Сводное замечание',
+            '/home/application/view?id_document=' . $treeHandler->getTotalCCId(),
+            ['стадия', 'еще что-то'],
+            1
+        );
+    }
+}
+
+$VT->setValue('availableDocuments', $availableDocumentsTV);
