@@ -30,7 +30,7 @@ unset($expert);
 
 $variablesTV->setValue('experts', $activeExperts);
 
-// Получение данных о выбранном Виде объекта для выбора нужных классов
+// Получение данных о выбранном виде объекта для выбора нужных классов
 //
 $typeOfObjectId = application::getIdTypeOfObjectById(CURRENT_DOCUMENT_ID);
 
@@ -87,7 +87,7 @@ foreach ($filesInStructure as $index => $node) {
     }
 }
 
-VariableTransfer::getInstance()->setValue('documentation_files_in_structure', $filesInStructure);
+$variablesTV->setValue('documentation_files_in_structure', $filesInStructure);
 
 // Формирование справочников разделов из 341 приказа
 //
@@ -98,29 +98,3 @@ $miscInitializer = new MiscInitializer($mainBlocks341);
 foreach ($miscInitializer->getPaginationSingleMiscs() as $miscName => $misc) {
     $variablesTV->setValue($miscName, $misc);
 }
-
-$test = [
-    [
-        'id_expert'   => 1,
-        'lead'        => true,
-        'common_part' => false,
-        'ids_main_block_341' => [1, 2, 3, 4]
-    ],
-
-    [
-        'id_expert'   => 2,
-        'lead'        => false,
-        'common_part' => false,
-        'ids_main_block_341' => [5]
-    ],
-
-    [
-        'id_expert'   => 6,
-        'lead'        => false,
-        'common_part' => true,
-        'ids_main_block_341' => [3, 4]
-    ],
-];
-
-//var_dump($test);
-//var_dump(json_encode($test));

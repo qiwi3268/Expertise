@@ -5,7 +5,6 @@ namespace Tables\Docs\Relations;
 
 use Lib\Exceptions\DataBase as DataBaseEx;
 use Tables\Docs\application as doc_application;
-use Lib\DataBase\ParametrizedQuery;
 
 
 /**
@@ -62,7 +61,6 @@ final class application
 
             $children['total_cc'] = null;
         }
-
 
         return [
             'id'                => $id_application,

@@ -53,7 +53,7 @@ class AccessToApplication extends AccessToDocument
 
             // Для заявителя происходит проверка, что он состоит в любой группе доступа к заявлению
             if (!applicant_access_group::checkExistByIdApplicationAndIdUser($this->documentId, Session::getUserId())) {
-                throw new SelfEx('Отсутствует доступ к документу "Заявление" для заявителя', 2);
+                throw new SelfEx('Отсутствует доступ к документу "Заявление" для заявителя', 3);
             }
 
         } elseif (Session::isFreelanceExpert()) {
@@ -68,11 +68,11 @@ class AccessToApplication extends AccessToDocument
                     && is_null($totalCCId = total_cc::getIdByIdMainDocument($this->documentId))
                 )
             ) {
-                throw new SelfEx('Отсутствует доступ к документу "Заявление" для внештатного эксперта', 3);
+                throw new SelfEx('Отсутствует доступ к документу "Заявление" для внештатного эксперта', 4);
             }
 
             if (!assigned_expert_total_cc::checkExistByIdTotalCCAndIdExpert($totalCCId, Session::getUserId())) {
-                throw new SelfEx('Отсутствует доступ к документу "Заявление" для внештатного эксперта', 4);
+                throw new SelfEx('Отсутствует доступ к документу "Заявление" для внештатного эксперта', 5);
             }
         }
         // Для остальных пользователей доступ к заявлению открыт

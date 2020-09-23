@@ -13,12 +13,12 @@ $requiredMappings = new RequiredMappingsSetter();
 
 $requiredMappings->setMappingLevel1(2);
 
-$Initializer = new Initializer($requiredMappings, $_GET['a']);
+$initializer = new Initializer($requiredMappings, $_GET['a']);
 
 $structureWithFiles[0] = [];
 $structureWithFiles[1] = [];
 
-$needsFiles = $Initializer->getNeedsFilesWithSigns()[2][1];
+$needsFiles = $initializer->getNeedsFilesWithSigns()[2][1];
 
 if (!is_null($needsFiles)) {
 
@@ -27,7 +27,7 @@ if (!is_null($needsFiles)) {
     $structureWithFiles[0] = array_filter($filesInStructure, fn($node) => isset($node['files']));
 }
 
-$needsFiles = $Initializer->getNeedsFilesWithSigns()[2][2];
+$needsFiles = $initializer->getNeedsFilesWithSigns()[2][2];
 
 if (!is_null($needsFiles)) {
 

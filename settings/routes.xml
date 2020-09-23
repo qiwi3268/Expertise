@@ -169,7 +169,7 @@
 
             <callback_template id="DocumentParameters_ExpertiseCard" />
             <callback_template id="DocumentExistChecker" />
-            <callback_template id="AccessToDocumentChecker" />
+            <callback_template id="AccessToDocumentTreeChecker" />
 
 
             <files>
@@ -250,7 +250,7 @@
 
             <callback_template id="DocumentParameters_ActionPage" />
             <callback_template id="DocumentExistChecker" />
-            <callback_template id="AccessToDocumentChecker" />
+            <callback_template id="AccessToDocumentTreeChecker" />
             <callback_template id="ActionChecker" />
 
 
@@ -380,12 +380,12 @@
         </template>
 
 
-        <template id="AccessToDocumentChecker">
+        <template id="AccessToDocumentTreeChecker">
             <callbacks>
                 <namespace name="\Classes\RouteCallbacks">
-                    <class name="AccessToDocumentChecker" type="instance">
+                    <class name="AccessToDocumentTreeChecker" type="instance">
                         <method name="construct"/>
-                        <method name="checkAccessToDocument"/>
+                        <method name="checkAccessToDocumentTree"/>
                     </class>
                 </namespace>
             </callbacks>

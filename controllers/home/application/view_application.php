@@ -11,9 +11,8 @@ use Tables\Docs\application;
 
 
 $variablesTV = VariableTransfer::getInstance();
-$applicationId = $_GET['id_document'];
 
-$applicationAssoc = application::getAssocById($applicationId);
+$applicationAssoc = application::getAssocById(CURRENT_DOCUMENT_ID);
 
 // Преобразование дат к строкам
 updateDatesTimestampToDdMmYyyy(
@@ -40,7 +39,7 @@ foreach ($applicationAssoc as $property => $value) {
 $requiredMappings = new RequiredMappingsSetter();
 $requiredMappings->setMappingLevel1(1);
 
-$filesInitializer = new FilesInitializer($requiredMappings, $applicationId);
+$filesInitializer = new FilesInitializer($requiredMappings, CURRENT_DOCUMENT_ID);
 
 $needsFiles = $filesInitializer->getNeedsFilesWithSigns();
 
@@ -60,7 +59,7 @@ unset($mapping_level_2);
 
 $variablesTV->setValue('form_files', $needsFiles);
 
-// Сохранен Вид объекта, показываем документацию
+// Сохранен вид объекта, показываем документацию
 if ($variablesTV->getExistenceFlag('type_of_object')) {
 
     // Удаление переменных, служивших выше
@@ -79,7 +78,7 @@ if ($variablesTV->getExistenceFlag('type_of_object')) {
             $className = '\Tables\Structures\documentation_2';
             break;
         default :
-            throw new Exception('Указан Вид объекта, при котором не определены действия для отображения загруженных файлов');
+            throw new Exception('Указан вид объекта, при котором не определены действия для отображения загруженных файлов');
     }
 
     // Устанавливаем маппинги для работы js по скачиванию файлов
@@ -91,7 +90,7 @@ if ($variablesTV->getExistenceFlag('type_of_object')) {
 
     $requiredMappings->setMappingLevel2($mapping_level_1, $mapping_level_2);
 
-    $filesInitializer = new FilesInitializer($requiredMappings, $applicationId);
+    $filesInitializer = new FilesInitializer($requiredMappings, CURRENT_DOCUMENT_ID);
 
     $needsFiles = $filesInitializer->getNeedsFilesWithSigns()[$mapping_level_1][$mapping_level_2] ?? [];
 
@@ -109,7 +108,7 @@ if ($variablesTV->getExistenceFlag('type_of_object')) {
 
 //todo перенести вместе с use в другое место
 
-$responsible = new Responsible($applicationId, CURRENT_DOCUMENT_TYPE);
+$responsible = new Responsible(CURRENT_DOCUMENT_ID, CURRENT_DOCUMENT_TYPE);
 $responsible = $responsible->getCurrentResponsible();
 
 

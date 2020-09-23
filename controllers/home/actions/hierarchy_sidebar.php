@@ -1,12 +1,13 @@
 <?php
 
 
-use Tables\Docs\Relations\HierarchyTree;
 use Lib\Singles\VariableTransfer;
 
 
-$hierarchyTree = new HierarchyTree(CURRENT_DOCUMENT_TYPE, CURRENT_DOCUMENT_ID);
-$fullTree = $hierarchyTree->getTree();
+$VT = VariableTransfer::getInstance();
+
+// Массив иерархии документов был получен в ходе работы AccessToDocumentTreeChecker
+$fullTree = $VT->getValue('hierarchyTree');
 
 var_dump($fullTree);
 

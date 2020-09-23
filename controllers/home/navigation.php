@@ -86,36 +86,36 @@ $className = Navigation::NAMESPACE_CLASSES . "\\{$className}";
 //
 $userId = Session::getUserId();
 
-$NavigationParameters = new NavigationParameters($viewName);
+$navigationParameters = new NavigationParameters($viewName);
 // Количество отображаемых элементов на странице
-$dataPerPage = $NavigationParameters->getDataPerPage();
+$dataPerPage = $navigationParameters->getDataPerPage();
 
-$Pagination = new Pagination($className::getCountByIdUser($userId), $dataPerPage, $G_page);
+$pagination = new Pagination($className::getCountByIdUser($userId), $dataPerPage, $G_page);
 
 // Флаги существования предыдущей/следующей страницы
-$issetPreviousPage = $Pagination->checkIssetPreviousPage();
-$issetNextPage = $Pagination->checkIssetNextPage();
+$issetPreviousPage = $pagination->checkIssetPreviousPage();
+$issetNextPage = $pagination->checkIssetNextPage();
 
 $variablesTV->setExistenceFlag('pagination_PreviousPage', $issetPreviousPage);
 $variablesTV->setExistenceFlag('pagination_NextPage', $issetNextPage);
 
 // Ссылки на предыдущую / следующую страницу
-$currentPage = $Pagination->getCurrentPage();
+$currentPage = $pagination->getCurrentPage();
 
 if ($issetPreviousPage) $variablesTV->setValue('pagination_PreviousPageRef', '/' . URN . "?b={$G_block}&v={$G_view}&page=" . ($currentPage - 1));
 if ($issetNextPage) $variablesTV->setValue('pagination_NextPageRef', '/' . URN . "?b={$G_block}&v={$G_view}&page=" . ($currentPage + 1));
 // Надпись текущая страницы / все страницы
-$variablesTV->setValue('pagination_CurrentPage', "{$currentPage} из {$Pagination->getPageCount()}");
+$variablesTV->setValue('pagination_CurrentPage', "{$currentPage} из {$pagination->getPageCount()}");
 
 
 // Запрос в БД c учётом сортировки и пагинации ---------------------------------------------
 //
 
-$SORT_name = $NavigationParameters->getSortName();
-$SORT_type = $NavigationParameters->getSortType();
+$SORT_name = $navigationParameters->getSortName();
+$SORT_type = $navigationParameters->getSortType();
 
     //todo среднее переделать эту логику и если нет данных, то не отображать пагинацию и сделать через setExistanceflag в трансфере
-if ($Pagination->getPageCount() > 0) {
+if ($pagination->getPageCount() > 0) {
 
     $LIMIT_offset = ($currentPage - 1) * $dataPerPage;
     $LIMIT_row_count = $dataPerPage;

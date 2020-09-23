@@ -21,12 +21,12 @@ class HierarchyTree
      *
      * Получает id заявления из любого принятого типа документа
      *
-     * @param $documentType
-     * @param $documentId
+     * @param $documentType string тип документа
+     * @param $documentId int id документа
      * @throws SelfEx
      * @throws DataBaseEx
      */
-    public function __construct($documentType, $documentId)
+    public function __construct(string $documentType, int $documentId)
     {
         if ($documentType == DOCUMENT_TYPE['application']) {
 

@@ -1,5 +1,6 @@
 <?php
 
+//todo не рефакторил, этот файл полностью в мусорку
 
 $variablesTV = \Lib\Singles\VariableTransfer::getInstance();
 

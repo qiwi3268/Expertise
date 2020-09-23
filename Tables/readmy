@@ -1,11 +1,11 @@
 Правила и примеры наименования таблиц:
 
-getAllAssoc                      индексный массив с ассоциативными массивами внутри
+getAllAssoc                       индексный массив с ассоциативными массивами внутри
 getAllAssocWhereActive
 getAllAssocWhereActiveByPageName
-getAssoc                         ассоциативный массив
+getAssoc                          ассоциативный массив
 getAssocWhereActiveByPageName
-getAllSimple простой (индексный) массив
+getAllSimple                      простой (индексный) массив
 
 getResponsibleTypeById
 updateResponsibleTypeById

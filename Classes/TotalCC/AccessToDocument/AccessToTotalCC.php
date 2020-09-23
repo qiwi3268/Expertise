@@ -41,7 +41,7 @@ class AccessToTotalCC extends AccessToDocument
             $deniedStagesId = [1];
 
             if (in_array($stageId, $deniedStagesId)) {
-                throw new SelfEx('Отсутствует доступ к документу "Сводное замечание / заключение" для заявителя', 5);
+                throw new SelfEx('Отсутствует доступ к документу "Сводное замечание / заключение" для заявителя', 6);
             }
 
         }
