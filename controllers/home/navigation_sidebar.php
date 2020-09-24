@@ -64,5 +64,5 @@ $variablesTV->setValue('navigationBlocks', $navigationBlocksTV);
 if ($isNavigationPage) {
 
     // Проверка на существование view файла была выполнена ранее
-    require_once Navigation::VIEWS_PATH . '/navigation_sidebar.php';
+    require_once Navigation::VIEWS_PATH . '/sidebar.php';
 }

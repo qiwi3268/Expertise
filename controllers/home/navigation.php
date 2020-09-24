@@ -58,8 +58,8 @@ if (!$blockIsset || !$viewIsset) {
 }
 
 
-$path_sidebar_controller = ROOT . '/controllers/home/navigation_sidebar.php';
-$path_sidebar_view = Navigation::VIEWS_PATH . '/navigation_sidebar.php';
+$path_sidebar_controller = ROOT . '/controllers/home/sidebar.php';
+$path_sidebar_view = Navigation::VIEWS_PATH . '/sidebar.php';
 
 if (!file_exists($path_sidebar_controller)) {
     throw new Exception("Отсутствует controller navigation_sidebar по пути: '{$path_sidebar_controller}'");
@@ -171,6 +171,6 @@ $variablesTV->setValue('navigationSorting', $navigationSortingTV);
 $variablesTV->setValue('viewName', $viewName);
 
 // Подключение view
-require_once Navigation::VIEWS_PATH . "/view_header.php";
+require_once Navigation::VIEWS_PATH . "/header.php";
 require_once Navigation::VIEWS_PATH . "/{$viewName}.php";
-require_once Navigation::VIEWS_PATH . "/view_footer.php";
+require_once Navigation::VIEWS_PATH . "/footer.php";
