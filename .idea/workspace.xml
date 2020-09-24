@@ -2,47 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/views/js/ErrorHandler.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/js/modals/ErrorModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/application/validation_block_application_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/expertise_cards/documents/application/validation_block_application_form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/expertise_cards/sidebars/hierarchy.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/expertise_cards/sidebars/hierarchy.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/home/navigation.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/navigation.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/html_head.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/html_head.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings/routes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/settings/routes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/application-form.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/application/create.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/html_head.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/expertise_card/documents/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/application/actions/action_2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/expertise_card/documents/application/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/application/view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/expertise_card/sidebars/actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/sidebars/actions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/expertise_card/sidebars/hierarchy.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/sidebars/hierarchy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/navigation/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/navigation/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/navigation/view_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/navigation/view_1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/API.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/BrowserHelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/BrowserHelper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/Calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/Calendar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/DependenciesHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/DependenciesHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/Drag&amp;Drop.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/Drag&amp;Drop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/ErrorHandler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/FileChecker.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/FileChecker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/FileNeeds.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/FileNeeds.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/FileUploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/FileUploader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/GeFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/GeFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/Misc.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/Misc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/MultipleBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/MultipleBlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/PartBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/PartBlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/PerfectCades.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/PerfectCades.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/SignHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/SignView.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/SignView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/action_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/application/actions/action_2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/radio.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/radio.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/save_application.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/application/save.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/section.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/section.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/application/sidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/sorting.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/sorting.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,13 +129,6 @@
       <workItem from="1600659199409" duration="40502000" />
       <workItem from="1600789163980" duration="4229000" />
       <workItem from="1600832243874" duration="22601000" />
-    </task>
-    <task id="LOCAL-00087" summary="09.09.2020_4">
-      <created>1599648742469</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1599648742469</updated>
     </task>
     <task id="LOCAL-00088" summary="10.09.2020">
       <created>1599708792937</created>
@@ -510,7 +466,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600920045181</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="24.09.2020_3">
+      <created>1600930905981</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1600930905982</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -527,7 +490,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="18.09.2020" />
     <MESSAGE value="18.09.2020_1" />
     <MESSAGE value="18.09.2020_2" />
     <MESSAGE value="19.09.2020" />
@@ -552,7 +514,8 @@
     <MESSAGE value="24.09.2020" />
     <MESSAGE value="24.09.2020_1" />
     <MESSAGE value="24.09.2020_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="24.09.2020_2" />
+    <MESSAGE value="24.09.2020_3" />
+    <option name="LAST_COMMIT_MESSAGE" value="24.09.2020_3" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -575,10 +538,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="679" y="51" key="CommitChangelistDialog2" timestamp="1600920042863">
+    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1600930902344">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600920042863" />
+    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600930902344" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600519766620" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600789451978" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />

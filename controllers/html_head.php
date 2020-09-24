@@ -88,7 +88,7 @@ switch (URN) {
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css'),
             ...CreateSource('css', TMP_CSS, 'navigation.css'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
-            ...CreateSource('js', TMP_JS, 'sorting.js')
+            ...CreateSource('js', ROOT_JS, 'sorting.js')
         ];
         break;
 
@@ -99,7 +99,9 @@ switch (URN) {
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css'),
             ...CreateSource('css', TMP_CSS, 'files.css', 'sign_modal.css', 'modal.css','action_2.css'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
-            ...CreateSource('js', TMP_JS, 'main.js', 'API.js', 'ErrorHandler.js', 'GeFile.js', 'SignView.js', 'Drag&Drop.js', 'action_2.js', 'section.js', 'Misc.js')
+            ...CreateSource('js', APPLICATION_JS . 'actions/', 'action_2.js'),
+            ...CreateSource('js', ROOT_JS, 'main.js', 'API.js', 'ErrorHandler.js', 'GeFile.js', 'Drag&Drop.js' , 'section.js'),
+            ...CreateSource('js', MODALS_JS,'SignView.js', 'Misc.js', 'ErrorModal.js')
         ];
         break;
     

@@ -12,12 +12,12 @@ use Tables\applicant_access_group;
 use Tables\Actions\application as ApplicationActions;
 use core\Classes\RoutesXMLHandler;
 use Tables\Structures\documentation_1;
+use Lib\Singles\Helpers\PageAddress;
 
 
-use Lib\AccessToDocument\AccessToDocumentTree;
+$a = PageAddress::createCardRef(50, 'application', 'actions', 'action_2');
 
-$test = new AccessToDocumentTree('application', 1126);
-$test->checkAccessToDocumentTree();
+var_dump($a);
 
 
 
