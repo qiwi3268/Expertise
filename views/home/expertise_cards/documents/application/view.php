@@ -286,7 +286,7 @@
             </div>
         </div>
 
-            <!-- todo data-type-->
+        <!-- todo data-type-->
         <div class="application-form__card card-form card" data-type="ещвщ">
             <div class="card-form__header card-expand">
                 <?php if ($variablesTV->getValue('block77_completed')): ?>
@@ -333,6 +333,5 @@
                 <?php endif; ?>
             </div>
         </div>
-        
     </div>
 </div>
