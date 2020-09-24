@@ -1,6 +1,4 @@
-/**
- * @typedef {HTMLElement | HTMLInputElement} HTMLInputElement
- */
+
 
 /**
  * @typedef CertificateData

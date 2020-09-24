@@ -2,6 +2,10 @@
  * @typedef {Element | HTMLElement} HTMLElement
  */
 
+/**
+ * @typedef {HTMLElement | HTMLInputElement} HTMLInputElement
+ */
+
 
 document.addEventListener('DOMContentLoaded', () => {
    //todo в отдельный файл

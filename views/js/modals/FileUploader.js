@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
 
    let file_selects = document.querySelectorAll('.modal-file');
@@ -10,26 +11,104 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+/**
+ * Представляет собой модуль загрузки файлов
+ */
 class FileUploader {
+
+   /**
+    * Объект модуля загрузки файлов
+    * @type {FileUploader}
+    */
    static instance;
 
-   form;
+   /**
+    * Инпут, в который загружаются файлы
+    *
+    * @type {HTMLInputElement}
+    */
    file_input;
+
+   /**
+    * Маппинг 1-го уровня файлового поля
+    *
+    * @type {number}
+    */
    mapping_1;
+
+   /**
+    * Маппинг 2-го уровня файлового поля
+    *
+    * @type {number}
+    */
    mapping_2;
+
+   /**
+    * id раздела документации файлового поля
+    *
+    * @type {number}
+    */
    id_structure_node;
 
+   /**
+    * Модальное окно модуля загрузки файлов
+    *
+    * @type {HTMLElement}
+    */
    modal;
+
+   /**
+    * Фон модального окна
+    *
+    * @type {HTMLElement}
+    */
    overlay;
 
+   /**
+    * Блок, в который можно перенести файлы
+    *
+    * @type {HTMLElement}
+    */
    drop_area;
+
+   /**
+    * Блок являющийся контейнером для файлов
+    *
+    * @type {HTMLElement}
+    */
    modal_body;
+
+   /**
+    * Блок с заголовком модального окна
+    *
+    * @type {HTMLElement}
+    */
    modal_title;
+
+   /**
+    * Индикатор процента загрузки файлов
+    *
+    * @type {HTMLElement}
+    */
    progress_bar;
 
+   /**
+    * Флаг, указывающий происходит ли загрузка файлов
+    *
+    * @type {boolean}
+    */
    is_uploading = false;
+
+   /**
+    * Флаг, указывающий открыт ли модуль загрузки файлов
+    *
+    * @type {boolean}
+    */
    is_opened = false;
 
+   /**
+    * Файловое поле, для которого открывается модуль загрузки файлов
+    */
    parent_field;
    parent_node;
 
@@ -48,8 +127,7 @@ class FileUploader {
    }
 
    initModalElements () {
-      this.form = document.getElementById('file_uploader');
-      this.file_input = this.form.querySelector('[name="download_files[]"]');
+      this.file_input = document.getElementById('file_uploader');
 
       this.modal = document.querySelector('.modal.file-modal');
       this.overlay = document.querySelector('.file-overlay');
@@ -317,12 +395,12 @@ class FileUploader {
       this.parent_node = select.closest('[data-id_structure_node]');
       this.parent_field = select.closest('[data-mapping_level_1]');
 
-      this.mapping_1 = this.parent_field.dataset.mapping_level_1;
-      this.mapping_2 = this.parent_field.dataset.mapping_level_2;
+      this.mapping_1 = parseInt(this.parent_field.dataset.mapping_level_1);
+      this.mapping_2 = parseInt(this.parent_field.dataset.mapping_level_2);
 
       // Если блок с документацией
       if (this.parent_node) {
-         this.id_structure_node = this.parent_node.dataset.id_structure_node;
+         this.id_structure_node = parseInt(this.parent_node.dataset.id_structure_node);
       }
 
       if (this.parent_field.dataset.multiple !== 'false') {

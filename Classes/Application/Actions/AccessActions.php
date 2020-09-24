@@ -14,6 +14,7 @@ use Lib\Actions\AccessActions as MainAccessActions;
  */
 class AccessActions extends MainAccessActions
 {
+
     // Реализация callback'ов доступа к действиям из БД
 
     public function action_1(): bool
@@ -23,7 +24,6 @@ class AccessActions extends MainAccessActions
 
     public function action_2(): bool
     {
-
         return true;
     }
 }
