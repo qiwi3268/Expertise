@@ -107,7 +107,6 @@ if ($pagination->checkIssetNextPage()) {
     $variablesTV->setExistenceFlag('pagination_NextPage', true);
     $variablesTV->setValue('pagination_NextPageRef', '/' . URN . "?b={$G_block}&v={$G_view}&page=" . ($currentPage + 1));
 } else {
-
     $variablesTV->setExistenceFlag('pagination_NextPage', false);
 }
 

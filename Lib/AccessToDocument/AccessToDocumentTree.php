@@ -174,7 +174,7 @@ class AccessToDocumentTree
     }
 
 
-    private function section(): array
+    private function section_documentation_1(): array
     {
         return [
             DOCUMENT_TYPE['application'] => [
@@ -184,10 +184,29 @@ class AccessToDocumentTree
             DOCUMENT_TYPE['total_cc'] => [
                 $this->treeHandler->getTotalCCId()
             ],
-            DOCUMENT_TYPE['section'] => [
+            DOCUMENT_TYPE['section_documentation_1'] => [
                 $this->documentId,
                 $this->treeHandler->getTypeOfObjectId()
             ]
         ];
     }
+
+
+    private function section_documentation_2(): array
+    {
+        return [
+            DOCUMENT_TYPE['application'] => [
+                $this->treeHandler->getApplicationId(),
+                $this->treeHandler->getTotalCCId()
+            ],
+            DOCUMENT_TYPE['total_cc'] => [
+                $this->treeHandler->getTotalCCId()
+            ],
+            DOCUMENT_TYPE['section_documentation_2'] => [
+                $this->documentId,
+                $this->treeHandler->getTypeOfObjectId()
+            ]
+        ];
+    }
+
 }

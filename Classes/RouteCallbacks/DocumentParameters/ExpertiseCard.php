@@ -26,7 +26,7 @@ class ExpertiseCard extends DocumentParameters
         $clearDocumentId = clearHtmlArr($_GET)['id_document'];
 
         // начало текста
-        // home/
+        // home/expertise_cards/
         // 1 группа:
         //   любой символ латиницы один и более раз
         // /
@@ -34,7 +34,7 @@ class ExpertiseCard extends DocumentParameters
         // конец текста
         // - регистронезависимые
         // - использование кодировки utf-8
-        $pattern = "/\Ahome\/([a-z]+)\/[a-z]+\z/iu";
+        $pattern = "/\Ahome\/expertise_cards\/([a-z]+)\/[a-z]+\z/iu";
 
         $this->validateAndDefineParameters($clearDocumentId, $pattern, URN);
     }

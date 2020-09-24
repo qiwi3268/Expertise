@@ -46,6 +46,7 @@ if($variablesTV->getExistenceFlag('object_name') &&
         
         if($variablesTV->getExistenceFlag('national_project') && $variablesTV->getExistenceFlag('federal_project')){
             $variablesTV->setValue('block2_completed', true);
+            $variablesTV->setValue('block2_completed', true);
         }else{
             $variablesTV->setValue('block2_completed', false);
         }

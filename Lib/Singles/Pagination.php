@@ -7,14 +7,21 @@ namespace Lib\Singles;
 /**
  *  Предназначен для полученя данных о пагинации:
  *
- * - количество страниц<br>
- * - текущую страницу<br>
- * - флаг существования предыдущей страницы<br>
+ * - количество страниц
+ * - текущую страницу
+ * - флаг существования данных
+ * - флаг существования предыдущей страницы
  * - флаг существования следующей страницы
  *
  */
 class Pagination
 {
+
+    /**
+     * Общее количество данных
+     *
+     */
+    private int $dataCount;
 
     /**
      * Колиство страниц
@@ -44,10 +51,12 @@ class Pagination
         $currentPage = abs($currentPage);
 
         // В случае, если указана страница больше существующих - показываем последнюю
+        // current_page может быть 0, если нет данных
         if ($currentPage > $pageCount) {
             $currentPage = $pageCount;
         }
 
+        $this->dataCount = $dataCount;
         $this->pageCount = $pageCount;
         $this->currentPage = $currentPage;
     }
@@ -61,6 +70,21 @@ class Pagination
     public function getPageCount(): int
     {
         return $this->pageCount;
+    }
+
+
+    /**
+     * Предназначен для проверки существования данных (выборки из БД)
+     *
+     * Метод имеет больше вспомогательный характер, поскольку общее количество
+     * данных передается с клиентского кода
+     *
+     * @return bool <b>true</b> данные существуют<br>
+     * <b>false</b> не существуют
+     */
+    public function checkDataExist(): bool
+    {
+        return $this->dataCount > 0;
     }
 
 

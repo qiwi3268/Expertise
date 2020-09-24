@@ -36,7 +36,8 @@ class Factory
                 $class = '\Classes\TotalCC\AccessToDocument\AccessToTotalCC';
                 break;
 
-            case DOCUMENT_TYPE['section'] :
+            case DOCUMENT_TYPE['section_documentation_1'] :
+            case DOCUMENT_TYPE['section_documentation_2'] :
                 $class = '\Classes\Section\AccessToDocument\AccessToSection';
                 break;
             default :

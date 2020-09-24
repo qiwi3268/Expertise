@@ -36,7 +36,7 @@ class APIActionExecutor extends DocumentParameters
             list('path_name' => $path_name, 'id_document' => $clearDocumentId) = clearHtmlArr($_POST);
 
             // начало текста
-            // /home/
+            // /home/expertise_cards/
             // 1 группа:
             //   любой символ латиницы один и более раз
             // /actions/action_
@@ -44,7 +44,7 @@ class APIActionExecutor extends DocumentParameters
             // конец текста
             // - регистронезависимые
             // - использование кодировки utf-8
-            $pattern = "/\A\/home\/([a-z]+)\/actions\/action_\d+\z/iu";
+            $pattern = "/\A\/home\/expertise_cards\/([a-z]+)\/actions\/action_\d+\z/iu";
 
             try {
 
