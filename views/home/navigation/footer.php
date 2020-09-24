@@ -21,9 +21,13 @@
     </div>
 <?php endif; ?>
 
+<!--<div class="navigation__table table-navigation">-->
 </div>
+
+<!--<div class="navigation__body">-->
 </div>
 
 <input name="navigation__view-name" type="hidden" value="<?= $variablesTV->getValue('viewName') ?>">
+<!--<div class="navigation">-->
 </div>
 <div class="empty-block"></div>

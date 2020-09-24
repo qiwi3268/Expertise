@@ -1,7 +1,6 @@
 
 
 <div class="view__body">
-
     <div class="application-form__cards">
         <div class="application-form__card card-form card" data-type="purpose">
             <div class="card-form__header card-expand">
@@ -284,8 +283,6 @@
                     </div>
                 <?php endif; ?>
                 <!--//Куратор//-->
-
-
             </div>
         </div>
 
@@ -307,37 +304,35 @@
                         <span class="body-card__message-text">Для отображения структуры разделов документации выберите вид объекта</span>
                     </div>
                 <?php else: ?>
-                <div class="documentation" data-id_file_field data-mapping_level_1="<?= $variablesTV->getValue('documentation_mapping_level_1') ?>" data-mapping_level_2="<?= $variablesTV->getValue('documentation_mapping_level_2') ?>">
-                <?php foreach ($variablesTV->getValue('documentation_files_in_structure') as $node): ?>
-                    <div class="documentation__node">
-                        <span class="documentation__name" style="padding-left: <?= $node['depth']*25 + 15 ?>px"><?= $node['name'] ?></span>
-                        <?php if (isset($node['files'])): ?>
-                            <div class="documentation__files files" >
-                                <?php foreach ($node['files'] as $file): ?>
-                                    <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" style="padding-left: <?= $node['depth']*25 + 7 ?>px" data-validate_results='<?= $file['validate_results'] ?>'>
-                                        <div class="files__info">
-                                            <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
-                                            <div class="files__description">
-                                                <span class="files__name"><?= $file['file_name'] ?></span>
-                                                <span class="files__size"><?= $file['human_file_size'] ?></span>
+                    <div class="documentation" data-id_file_field data-mapping_level_1="<?= $variablesTV->getValue('documentation_mapping_level_1') ?>" data-mapping_level_2="<?= $variablesTV->getValue('documentation_mapping_level_2') ?>">
+                        <?php foreach ($variablesTV->getValue('documentation_files_in_structure') as $node): ?>
+                            <div class="documentation__node">
+                                <span class="documentation__name" style="padding-left: <?= $node['depth']*25 + 15 ?>px"><?= $node['name'] ?></span>
+                                <?php if (isset($node['files'])): ?>
+                                    <div class="documentation__files files" >
+                                        <?php foreach ($node['files'] as $file): ?>
+                                            <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" style="padding-left: <?= $node['depth']*25 + 7 ?>px" data-validate_results='<?= $file['validate_results'] ?>'>
+                                                <div class="files__info">
+                                                    <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
+                                                    <div class="files__description">
+                                                        <span class="files__name"><?= $file['file_name'] ?></span>
+                                                        <span class="files__size"><?= $file['human_file_size'] ?></span>
+                                                    </div>
+                                                </div>
+                                                <div class="files__state"></div>
+                                                <div class="files__actions">
+                                                    <i class="files__unload fas fa-file-download"></i>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="files__state"></div>
-                                        <div class="files__actions">
-                                            <i class="files__unload fas fa-file-download"></i>
-                                        </div>
+                                        <?php endforeach; ?>
                                     </div>
-                                <?php endforeach; ?>
+                                <?php endif; ?>
                             </div>
-                        <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
-                <?php endforeach; ?>
+                <?php endif; ?>
             </div>
-            <?php endif; ?>
         </div>
-
-        </div>
-
+        
     </div>
-
 </div>

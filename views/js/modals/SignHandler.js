@@ -562,18 +562,19 @@ class SignHandler extends SignView{
             return API.getFileHash(algorithm, fs_name_data);
 
          })
-         // Получаем хэш файла
+         // Создаем хэш подписи
          .then(file_hash => {
 
             return GeCades.SignHash_Async(selected_algorithm, file_hash);
 
          })
-         // Преобразуем хэш
+         // Преобразуем хэш в файл
          .then(sign_hash => {
 
             let sign_blob = new Blob([sign_hash], {type: 'text/plain'});
             let file = new File([sign_blob], `${file_name}.sig`);
 
+            // Загружаем и проверяем открепленную подпись
             this.sendSigns([file]);
 
          })
@@ -584,6 +585,11 @@ class SignHandler extends SignView{
 
    }
 
+   /**
+    * Открывает модуль подписания
+    *
+    * @param {GeFile} ge_file - файл, для которого открывается модуль подписания
+    */
    open (ge_file) {
       this.modal.classList.add('active');
       this.overlay.classList.add('active');

@@ -152,7 +152,7 @@ class GeFile {
     *
     * @type {HTMLElement}
     */
-   actions
+   actions;
 
    /**
     * Кнопка для скачивания файла

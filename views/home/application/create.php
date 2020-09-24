@@ -54,7 +54,7 @@
             <i class="sidebar-form__icon fas"></i>
         </div>
     </div>
-    <form id="application" class="application-form__cards" action="" method="POST">
+    <div class="application-form__cards">
         <input type="hidden" name="id_application" value="<?= $variablesTV->getValue('id_application') ?>">
 
         <div class="application-form__block block" data-dependency_scope>
@@ -934,17 +934,12 @@
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 </div>
 
 <div id="misc_overlay" class="modal-overlay"></div>
+
 <div class="save-overlay"></div>
-
-<div class="modal alert-modal">
-    <i class="alert-modal__icon fas fa-exclamation"></i>
-    <span class="alert-modal__message"></span>
-</div>
-
 <div class="modal save-modal">
     <div class="save-modal__info">
         <i class="save-modal__icon fas fa-check"></i>

@@ -7,11 +7,15 @@
 <div class="section">
 
     <div class="section__common-part">
-        <form method="post">
-            <textarea id="common_part">
-            
-            </textarea>
-        </form>
+        
+        
+        <textarea id="common_part"></textarea>
+      
+    </div>
+    
+    <div class="section__indicator">
+        <div class="section__header">123</div>
+        <div class="section__body">d</div>
     </div>
 
 </div>

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 tinymce.init({
    selector: "textarea#common_part",
-   height: 500,
+   height: 200,
    elementpath: false,
    statusbar: false,
    language: 'ru',
