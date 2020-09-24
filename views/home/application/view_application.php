@@ -1,3 +1,6 @@
+
+<div class="view__body">
+
     <div class="application-form__cards">
         <div class="application-form__card card-form card" data-type="purpose">
             <div class="card-form__header card-expand">
@@ -360,3 +363,6 @@
         </div>
         <span class="error-modal__message"></span>
     </div>
+
+
+</div>

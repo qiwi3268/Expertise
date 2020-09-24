@@ -5,10 +5,10 @@ use core\Classes\Session;
 
 
 use Lib\Singles\VariableTransfer;
+use Lib\Singles\Pagination;
 use Lib\Singles\Helpers\PageAddress as PageAddressHelper;
 use Classes\Navigation\Navigation;
 use Classes\Navigation\NavigationParameters;
-use Classes\Pagination;
 
 
 // Данная страница представляет собой мини-движок по формированию навигационных страниц
@@ -19,8 +19,8 @@ $variablesTV = VariableTransfer::getInstance();
 list('b' => $G_block, 'v' => $G_view) = checkParamsGET('b', 'v') ? $_GET : PageAddressHelper::getDefaultNavigationPage();
 $G_page = checkParamsGET('page') ? clearHtmlArr($_GET)['page'] : 1;
 
-$Navigation = new Navigation(Session::getUserRoles());
-$userNavigation = $Navigation->getUserNavigation();
+$navigation = new Navigation(Session::getUserRoles());
+$userNavigation = $navigation->getUserNavigation();
 
 
 // Проверка на то, что указанная в GET-параметрах навигационная страница существует в навигации пользователя

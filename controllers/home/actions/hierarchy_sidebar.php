@@ -86,6 +86,8 @@ if ($treeHandler->ce_totalCC()) {
             if ($treeHandler->ce_sections()) {
 
                 // Флаг того, что отсутствует раздел, который был проверен в route callback
+                // Этим экономим вызовы замыкания $isDocumentChecked, поскольку одновременно только
+                // один раздел мог быть проверен
                 $checkedAbsent = true;
 
                 foreach ($treeHandler->getSections() as $section) {
@@ -136,24 +138,4 @@ if ($treeHandler->ce_totalCC()) {
     }
 }
 
-
-
-
-//todo сделать везде ссылки на настоящие контроллеры
-
-
-//var_dump($availableDocumentsTV);
-
-
-
-
-
 $VT->setValue('availableDocuments', $availableDocumentsTV);
-
-
-
-
-//var_dump($VT->getValue('hierarchyTree'));
-
-
-

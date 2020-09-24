@@ -1,4 +1,25 @@
+/**
+ * @typedef ValidateResult
+ * @type {object}
+ * @property {SignatureVerify} signature_verify - результат проверки подписи
+ * @property {CertificateVerify} certificate_verify - результат проверки сертификата
+ * @property {string} fio - результат проверки сертификата
+ * @property {string} certificate - результат проверки сертификата
+ */
 
+/**
+ * @typedef SignatureVerify
+ * @type {object}
+ * @property {string} user_message - сообщение о проверке подписи
+ * @property {boolean} result - результат проверки подписи
+ */
+
+/**
+ * @typedef CertificateVerify
+ * @type {object}
+ * @property {string} user_message - сообщение о проверке сертификата
+ * @property {boolean} result - результат проверки сертификата
+ */
 
 /**
  * Представляет собой модуль просмотра подписей файла
@@ -66,7 +87,6 @@ class SignView {
       this.overlay.addEventListener('click', () => this.closeModal());
    }
 
-
    /**
     * Закрывает модальное окно просмотра подписей
     */
@@ -75,7 +95,6 @@ class SignView {
       this.overlay.classList.remove('active');
       this.validate_info.dataset.active = 'false';
    }
-
 
    /**
     * Добавляет файл и результаты проверки подписей и
@@ -123,23 +142,6 @@ class SignView {
       });
    }
 
-
-   /**
-    * @typedef ValidateResult
-    * @type {object}
-    * @property {object} signature_verify - результат проверки подписи
-    * @property {CertificateVerify} certificate_verify - результат проверки сертификата
-    * @property {string} fio - результат проверки сертификата
-    * @property {string} certificate - результат проверки сертификата
-    */
-
-   /**
-    * @typedef CertificateVerify
-    * @type {object}
-    * @property {string} user_message - результат проверки подписи
-    * @property {string} result - результат проверки сертификата
-    */
-
    /**
     * Создает блок в с информацией о подписи
     *
@@ -167,13 +169,13 @@ class SignView {
       return sign;
    }
 
-
    /**
+    * Создает поле блока с информацией о подписи
     *
-    * @param label
-    * @param text
-    * @param state
-    * @returns {HTMLElement}
+    * @param {string} label - имя поля блока с информацией о подписи
+    * @param {string} text - содержимое поля блока с информацией о подписи
+    * @param {boolean|null} state - статус проверки подписи или сертификата
+    * @returns {HTMLElement} элемент строки блока с информацией о подписи
     */
    createInfoRow (label, text, state = null) {
       let row = document.createElement('DIV');
@@ -197,9 +199,11 @@ class SignView {
       return row;
    }
 
-   // Предназначен для отображения состояния проверки подписи в поле с файлом
-   // Принимает параметры-------------------------------
-   // file         Element : проверяемый файл
+   /**
+    * Отображает состояние проверки подписи в поле с файлом
+    *
+    * @param {GeFile} ge_file - файл, для которого отображается статус подписания
+    */
    static validateFileField (ge_file) {
       let results_json = ge_file.element.dataset.validate_results;
       let sign_state = 'not_signed';
@@ -221,7 +225,6 @@ class SignView {
 
       }
       GeFile.setSignState(ge_file, sign_state);
-
    }
 }
 
