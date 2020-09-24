@@ -3,6 +3,8 @@
 
 namespace Lib\DataBase;
 
+use Lib\Exceptions\DataBase as DataBaseEx;
+
 
 /**
  * Предназначен для работы с простыми запросами к базе данных
@@ -16,7 +18,7 @@ final class SimpleQuery extends DataBase
      *
      * @param string $query простой запрос к БД
      * @return array ассоциативный массив результата запроса
-     * @throws \Lib\Exceptions\DataBase
+     * @throws DataBaseEx
      */
     static public function getFetchAssoc(string $query): array
     {
@@ -37,7 +39,7 @@ final class SimpleQuery extends DataBase
      *
      * @param string $query простой запрос к БД
      * @return array индексный массив результата запроса (без подмассивов)
-     * @throws \Lib\Exceptions\DataBase
+     * @throws DataBaseEx
      */
     static public function getSimpleArray(string $query): array
     {
@@ -58,7 +60,7 @@ final class SimpleQuery extends DataBase
      *
      * @param string $query простой запрос к БД
      * @return int id созданной записи
-     * @throws \Lib\Exceptions\DataBase
+     * @throws DataBaseEx
      */
     static public function set(string $query): int
     {

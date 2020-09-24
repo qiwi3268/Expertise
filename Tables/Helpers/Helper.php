@@ -35,7 +35,6 @@ class Helper
                 $result[] = '?';
             }
         }
-
         return implode(', ', $result);
     }
 }

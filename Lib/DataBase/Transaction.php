@@ -124,6 +124,7 @@ final class Transaction extends DataBase
      * Вызывается в классе DataBase внутри обертки транзакции. Записывает результаты запросов в массив lastResults
      *
      * @throws SelfEx
+     * @throws DataBaseEx
      */
     protected function executeQueries(): void
     {

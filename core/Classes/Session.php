@@ -174,7 +174,8 @@ class Session
      *
      * После получения сообщения, оно помечается как "прочитанное", а в следующий заход удаляется
      *
-     * @return string|null <b>string</b> текст сообщения<br><b>null</b> сообщение не существует, либо было уже прочитано
+     * @return string|null <b>string</b> текст сообщения<br>
+     * <b>null</b> сообщение не существует, либо было уже прочитано
      */
     static public function getErrorMessage(): ?string
     {

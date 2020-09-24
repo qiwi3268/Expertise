@@ -3,6 +3,8 @@
 
 namespace Lib\Miscs\Initialization;
 
+use LogicException;
+
 
 /**
  * Абстрактный класс, предназначеный для инициализации справочников
@@ -32,11 +34,11 @@ abstract class Initializer
      * Предназначен для разбивки одиночных справочников по страницам
      *
      * @return array разбитые постранично справочники
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function getPaginationSingleMiscs(): array
     {
-        if (empty($this->singleMiscs)) throw new \LogicException("Вызван метод Initializer::getPaginationSingleMiscs при пустом массиве singleMiscs");
+        if (empty($this->singleMiscs)) throw new LogicException("Вызван метод Initializer::getPaginationSingleMiscs при пустом массиве singleMiscs");
 
         $result = [];
 
@@ -51,11 +53,11 @@ abstract class Initializer
      * Предназначен для разбивки зависимых справочников по страницам
      *
      * @return array разбитые постранично справочники
-     * @throws \LogicException
+     * @throws LogicException
      */
     public function getPaginationDependentMiscs(): array
     {
-        if (empty($this->dependentMiscs)) throw new \LogicException("Вызван метод Lib\Miscs\Initialization\Initializer::getPaginationDependentMiscs при пустом массиве dependentMiscs");
+        if (empty($this->dependentMiscs)) throw new LogicException("Вызван метод Lib\Miscs\Initialization\Initializer::getPaginationDependentMiscs при пустом массиве dependentMiscs");
 
         $result = [];
 
@@ -98,7 +100,8 @@ abstract class Initializer
     /**
      * Абстрактный конструктор класса
      *
-     * Предназначен для инициализации справочников через методы {@see Initializer::setSingleMisc()} и {@see Initializer::setDependentMisc()}
+     * Предназначен для инициализации справочников через методы
+     * {@see Initializer::setSingleMisc()} и {@see Initializer::setDependentMisc()}
      *
      */
     abstract public function __construct();

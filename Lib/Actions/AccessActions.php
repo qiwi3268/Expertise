@@ -69,7 +69,8 @@ abstract class AccessActions
      * Предназначен для проверки доступа к действию по имени страницы
      *
      * @param string $pageName URN требуемой страницы
-     * @return bool <b>true</b> есть доступ к действию<br/><b>false</b> нет доступа к действию
+     * @return bool <b>true</b> есть доступ к действию<br/>
+     * <b>false</b> нет доступа к действию
      *
      * @throws SelfEx
      * @throws ReflectionException
@@ -85,7 +86,8 @@ abstract class AccessActions
     /**
      * Предназначен для получения проверенного результата callback'а
      *
-     * @param array|null $action <b>array</b> ассоциативный массив действия<br/><b>null</b> действие не существует
+     * @param array|null $action <b>array</b> ассоциативный массив действия<br/>
+     * <b>null</b> действие не существует
      * @param string $pageName имя страницы для вывода в сообщение об ошибке
      * @return bool результат callback'а
      * @throws SelfEx

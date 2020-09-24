@@ -17,7 +17,7 @@ use Tables\Structures\{
 
 $variablesTV = VariableTransfer::getInstance();
 
-$userId = Session::getUserInfo()['id'];
+$userId = Session::getUserId();
 
 
 // Инкрементируем и получаем внутренний счетчик заявления
@@ -35,10 +35,6 @@ applicant_access_group::createFullAccess($applicationId, $userId);
 // Устанавливаем ответственную группу доступа "Полный доступ"
 $responsible = new Responsible($applicationId, DOCUMENT_TYPE['application']);
 $responsible->createNewResponsibleType3(['full_access']);
-
-
-p($_SESSION);
-var_dump($applicationId);
 
 // Создание директории заявления
 if (!mkdir(APPLICATIONS_FILES . "/$applicationId")) {
@@ -75,3 +71,5 @@ $nodeStructure2 = new NodeStructure($structureDocumentation2);
 
 $variablesTV->setValue('structureDocumentation1', $nodeStructure1->getDepthStructure());
 $variablesTV->setValue('structureDocumentation2', $nodeStructure2->getDepthStructure());
+
+var_dump($applicationId);

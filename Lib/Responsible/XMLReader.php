@@ -28,6 +28,7 @@ class XMLReader
 
     private SimpleXMLElement $data;
 
+
     /**
      * Конструктор класса
      *

@@ -65,7 +65,7 @@ abstract class ExecutionActions
 
 
     /**
-     * Предназначен для выполнения метода действия по имени страницы
+     * Предназначен для выполнения активного метода действия по имени страницы
      *
      * @param string $pageName URN требуемой страницы
      * @return string URN страницы, на которую необходимо перенаправить пользователя после действия
@@ -74,9 +74,7 @@ abstract class ExecutionActions
      */
     public function executeCallbackByPageName(string $pageName): string
     {
-        // Получаем любое действие, в т.ч. неактивное, т.к. до захода
-        // на страницу выполнения действия оно могло быть активным
-        $action = $this->actions->getAssocActionByPageName($pageName);
+        $action = $this->actions->getAssocActiveActionByPageName($pageName);
 
         $method = $this->getValidatedCallback($action, $pageName);
 
@@ -87,7 +85,8 @@ abstract class ExecutionActions
     /**
      * Предназначен для получения проверенного метода действия
      *
-     * @param array|null $action <b>array</b> ассоциативный массив действия<br/><b>null</b> действие не существует
+     * @param array|null $action <b>array</b> ассоциативный массив действия<br/>
+     * <b>null</b> действие не существует
      * @param string $pageName имя страницы для вывода в сообщение об ошибке
      * @return string название метода действия
      * @throws SelfEx

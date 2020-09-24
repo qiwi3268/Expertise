@@ -18,7 +18,8 @@ class Cookie
      * @param string $viewName название view
      * @param string $sortName имя столбца для сортировки
      * @param int $expiresDays
-     * @return bool <b>true</b> cookie успешно установились<br><b>false</b> в противном случае
+     * @return bool <b>true</b> cookie успешно установились<br>
+     * <b>false</b> в противном случае
      */
     static public function setNavigationSortName(string $viewName, string $sortName, int $expiresDays = 10): bool
     {
@@ -30,7 +31,8 @@ class Cookie
      * @param string $viewName название view
      * @param string $sortType тип сортировки <b>(ASC/DESC)</b>
      * @param int $expiresDays время жизни cookie. <i>По умолчанию - 10 дней</i>
-     * @return bool <b>true</b> cookie успешно установились<br><b>false</b> в противном случае
+     * @return bool <b>true</b> cookie успешно установились<br>
+     * <b>false</b> в противном случае
      */
     static public function setNavigationSortType(string $viewName, string $sortType, int $expiresDays = 10): bool
     {
@@ -42,7 +44,8 @@ class Cookie
      * @param string $viewName название view
      * @param int $dataPerPage количество отображаемых элементов на странице
      * @param int $expiresDays время жизни cookie. <i>По умолчанию - 10 дней</i>
-     * @return bool <b>true</b> cookie успешно установились<br><b>false</b> в противном случае
+     * @return bool <b>true</b> cookie успешно установились<br>
+     * <b>false</b> в противном случае
      */
     static public function setNavigationDataPerPage(string $viewName, int $dataPerPage, int $expiresDays = 10): bool
     {
@@ -54,7 +57,8 @@ class Cookie
      * Предназначен для получения ассоциативного массива данных для навигационной страницы
      *
      * @param string $viewName название view
-     * @return array|null <b>array</b> ассоциативный массив cookie навигационной страницы<br><b>null</b> cookie навигационной страницы не существуют
+     * @return array|null <b>array</b> ассоциативный массив cookie навигационной страницы<br>
+     * <b>null</b> cookie навигационной страницы не существуют
      */
     static public function getNavigationView(string $viewName): ?array
     {

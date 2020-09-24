@@ -6,15 +6,14 @@ namespace Tables\Docs;
 use Tables\Exceptions\Tables as SelfEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
 
+use Lib\DataBase\SimpleQuery;
+use Lib\DataBase\ParametrizedQuery;
+
 use Tables\Docs\Interfaces\Responsible;
 use Tables\CommonInterfaces\Existent;
 
-
 use Tables\Docs\Traits\Responsible as ResponsibleTrait;
 use Tables\CommonTraits\Existent as ExistentTrait;
-
-use Lib\DataBase\SimpleQuery;
-use Lib\DataBase\ParametrizedQuery;
 
 
 /**
@@ -89,6 +88,7 @@ final class application implements Existent, Responsible
         $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
         return $result ? $result[0] : null;
     }
+
 
     /**
      * Предназначен для получения id вида работ по id заявления
@@ -339,7 +339,4 @@ final class application implements Existent, Responsible
                   WHERE `id` IN ($condition)";
         SimpleQuery::set($query);
     }
-
-
-
 }

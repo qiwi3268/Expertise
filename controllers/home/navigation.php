@@ -2,8 +2,6 @@
 
 
 use core\Classes\Session;
-
-
 use Lib\Singles\VariableTransfer;
 use Lib\Singles\Pagination;
 use Lib\Singles\Helpers\PageAddress as PageAddressHelper;

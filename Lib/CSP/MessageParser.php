@@ -4,7 +4,9 @@
 namespace Lib\CSP;
 
 use Lib\Exceptions\CSPMessageParser as SelfEx;
+use Lib\Exceptions\DataBase as DataBaseEx;
 use Classes\Exceptions\PregMatch as PregMatchEx;
+use Tables\people_name;
 
 
 /**
@@ -29,12 +31,14 @@ class MessageParser
     /**
      * Конструктор класса
      *
-     * @param bool $needNames флаг необходимости инициализировать массив имен. Не нужен, если класс используется не для получения ФИО
+     * @param bool $needNames флаг необходимости инициализировать массив имен.
+     * Не нужен, если класс используется не для получения ФИО
+     * @throws DataBaseEx
      */
     public function __construct(bool $needNames)
     {
         if ($needNames) {
-            $names = \Tables\people_name::getAllSimple();
+            $names = people_name::getAllSimple();
             // Перевод выборки в формат хэш-массива
             foreach ($names as $name) $this->hashNames[$name] = true;
         }
@@ -44,12 +48,12 @@ class MessageParser
     /**
      * Предназначен для получения сообщения без технической его части:
      *
-     * CryptCP 4.0 (c) "Crypto-Pro", 2002-2020.
-     * <br>CryptCP 5.0 (c) "Crypto-Pro", 2002-2019.
-     * <br>Command prompt Utility for File signature and encryption.
-     * <br>Folder '/var/www...'
-     * <br>Signature verifying...
-     * <br>../../../../CSPbuild/CSP/samples/CPCrypt/DSign.cpp
+     * - CryptCP 4.0 (c) "Crypto-Pro", 2002-2020.
+     * - CryptCP 5.0 (c) "Crypto-Pro", 2002-2019.
+     * - Command prompt Utility for File signature and encryption.
+     * - Folder '/var/www...'
+     * - Signature verifying...
+     * - ../../../../CSPbuild/CSP/samples/CPCrypt/DSign.cpp
      *
      * @param string $message вывод исполняемой команды по валидации подписи
      * @return array массив частей сообщения без технической части, разбитый по символам-переносам строк
@@ -85,13 +89,15 @@ class MessageParser
 
         foreach ($parts as $part) {
 
-            if (!icontainsAll($part, 'CryptCP 4.0 (c) "Crypto-Pro", 2002-2020.') &&
+            if (
+                !icontainsAll($part, 'CryptCP 4.0 (c) "Crypto-Pro", 2002-2020.') &&
                 !icontainsAll($part, 'CryptCP 5.0 (c) "Crypto-Pro", 2002-2019.') &&
                 !icontainsAll($part, 'Command prompt Utility for file signature and encryption.') &&
                 !icontainsAll($part, 'Folder') &&
                 !icontainsAll($part, 'Signature verifying...') &&
                 !icontainsAll($part, 'CSPbuild') &&
-                $part !== '') {
+                $part !== ''
+            ) {
 
                 $result[] = trim($part); // Удаляем пробельные символы вначале и вконце строки
             }

@@ -28,13 +28,13 @@ class ActionPage extends DocumentParameters
         // начало текста
         // home/expertise_cards/
         // 1 группа:
-        //   любой символ латиницы один и более раз
+        //   любой не пробельный символ один и более раз
         // /actions/action_
         // любая цифра один и более раз
         // конец текста
         // - регистронезависимые
         // - использование кодировки utf-8
-        $pattern = "/\Ahome\/expertise_cards\/([a-z]+)\/actions\/action_\d+\z/iu";
+        $pattern = "/\Ahome\/expertise_cards\/(\S+)\/actions\/action_\d+\z/iu";
 
         $this->validateAndDefineParameters($clearDocumentId, $pattern, URN);
     }

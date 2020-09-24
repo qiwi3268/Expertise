@@ -13,6 +13,7 @@ use Lib\Exceptions\DataBase as DataBaseEx;
  */
 class SingleMisc extends Validator
 {
+
     private const INTERFACE = 'Tables\Miscs\Interfaces\SingleMiscValidate';
     private const METHOD = 'checkExistById';
 

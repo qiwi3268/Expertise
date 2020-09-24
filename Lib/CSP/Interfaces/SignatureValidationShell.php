@@ -3,6 +3,8 @@
 
 namespace Lib\CSP\Interfaces;
 
+use Lib\Exceptions\Shell as ShellEx;
+
 
 /**
  * Предоставляет интерфейс для классов, которым необходимо реализовать методы получения результата валидации подписи
@@ -18,6 +20,7 @@ interface SignatureValidationShell
      *
      * @param array $filePaths
      * @return string
+     * @throws ShellEx
      */
     public function execErrChain(array $filePaths): string;
 
@@ -27,6 +30,7 @@ interface SignatureValidationShell
      *
      * @param array $filePaths
      * @return string
+     * @throws ShellEx
      */
     public function execNoChain(array $filePaths): string;
 }

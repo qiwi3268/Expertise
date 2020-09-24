@@ -172,7 +172,8 @@ class Uploader
      * Предназначен для проверки файлов на максимально допустимый размер
      *
      * @param int $sizeMB максимально допустимый размер файла в Мб
-     * @return bool <b>true</b> все файлы прошли проверки<br><b>false</b> есть файлы, превысившие размер
+     * @return bool <b>true</b> все файлы прошли проверки<br>
+     * <b>false</b> есть файлы, превысившие размер
      */
     public function checkMaxFilesSize(int $sizeMB): bool
     {
@@ -207,7 +208,8 @@ class Uploader
      * @param array $formats индексный массив форматов
      * @param bool $isAllowed <b>true</b> один из форматов обязательно должен присутствовать в файле<br>
      * <b>false</b> ни один из форматов не должен присутствовать в файле
-     * @return bool <b>true</b> все файлы прошли проверки<br><b>false</b> есть файлы, которые не прошли проверки
+     * @return bool <b>true</b> все файлы прошли проверки<br>
+     * <b>false</b> есть файлы, которые не прошли проверки
      */
     public function checkFilesName(array $formats, bool $isAllowed): bool
     {

@@ -3,6 +3,8 @@
 
 namespace Lib\DataBase;
 
+use Lib\Exceptions\DataBase as DataBaseEx;
+
 
 /**
  * Предназначен для работы с параметризованными запросами к базе данных
@@ -17,7 +19,7 @@ final class ParametrizedQuery extends DataBase
      * @param string $query параметризованный запрос к БД
      * @param array $bindParams параметры запроса
      * @return array ассоциативный массив результата запроса
-     * @throws \Lib\Exceptions\DataBase
+     * @throws DataBaseEx
      */
     static public function getFetchAssoc(string $query, array $bindParams): array
     {
@@ -39,7 +41,7 @@ final class ParametrizedQuery extends DataBase
      * @param string $query параметризованный запрос к БД
      * @param array $bindParams параметры запроса
      * @return array индексный массив результата запроса (без подмассивов)
-     * @throws \Lib\Exceptions\DataBase
+     * @throws DataBaseEx
      */
     static public function getSimpleArray(string $query, array $bindParams): array
     {
@@ -61,7 +63,7 @@ final class ParametrizedQuery extends DataBase
      * @param string $query параметризованный запрос к БД
      * @param array $bindParams параметры запроса
      * @return int id созданной записи
-     * @throws \Lib\Exceptions\DataBase
+     * @throws DataBaseEx
      */
     static public function set(string $query, array $bindParams): int
     {

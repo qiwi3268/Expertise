@@ -15,7 +15,9 @@ class ExternalSignature implements Interfaces\SignatureValidationShell
     /**
      * Предназначен для получения результата валидации открепленной подписи <b>С</b> проверкой цепочки сертификатов
      *
-     * @param array $filePaths массив с путями файлов, где:<br>filePaths[0] - абсолютный путь в ФС сервера к файлу<br>filePaths[1] - абсолютный путь в ФС сервера к файлу открепленной подписи
+     * @param array $filePaths массив с путями файлов, где:<br>
+     * filePaths[0] - абсолютный путь в ФС сервера к файлу<br>
+     * filePaths[1] - абсолютный путь в ФС сервера к файлу открепленной подписи
      * @return string вывод исполняемой команды
      * @throws ShellEx
      */
@@ -33,7 +35,9 @@ class ExternalSignature implements Interfaces\SignatureValidationShell
     /**
      * Предназначен для получения результата валидации открепленной подписи <b>БЕЗ</b> проверки цепочки сертификатов
      *
-     * @param array $filePaths массив с путями файлов, где:<br>filePaths[0] - абсолютный путь в ФС сервера к файлу<br>filePaths[1] - абсолютный путь в ФС сервера к файлу открепленной подписи
+     * @param array $filePaths массив с путями файлов, где:<br>
+     * filePaths[0] - абсолютный путь в ФС сервера к файлу<br>
+     * filePaths[1] - абсолютный путь в ФС сервера к файлу открепленной подписи
      * @return string вывод исполняемой команды
      * @throws ShellEx
      */

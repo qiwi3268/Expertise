@@ -34,7 +34,6 @@ class NavigationParameters
      * Имеет ключи:<br>
      * sort_name, sort_type, data_per_page
      *
-     *
      */
     private array $parameters;
 

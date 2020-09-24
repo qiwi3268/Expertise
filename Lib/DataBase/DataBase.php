@@ -6,6 +6,7 @@ namespace Lib\DataBase;
 use Lib\Exceptions\DataBase as SelfEx;
 use Exception;
 use mysqli;
+use mysqli_result;
 
 
 /**
@@ -63,7 +64,8 @@ class DataBase
      *
      * @param string $query параметризованный запрос к БД
      * @param array $bindParams параметры запроса
-     * @return false|\mysqli_result <b>false</b> для любых запросов DML (INSERT, UPDATE, DELETE)<br><b>mysqli_result</b> для запросов типа SELECT
+     * @return false|mysqli_result <b>false</b> для любых запросов DML (INSERT, UPDATE, DELETE)<br>
+     * <b>mysqli_result</b> для запросов типа SELECT
      * @throws SelfEx
      */
     static protected function executeParametrizedQuery(string $query, array $bindParams)
@@ -154,7 +156,8 @@ class DataBase
      * Предназначен для выполнения простого запроса
      *
      * @param string $query простой запрос к БД
-     * @return true|\mysqli_result <b>mysqli_result</b> для запросов типа SELECT, SHOW, DESCRIBE или EXPLAIN<br> <b>true</b> для остальных успешных запросов
+     * @return true|mysqli_result <b>mysqli_result</b> для запросов типа SELECT, SHOW, DESCRIBE или EXPLAIN<br>
+     * <b>true</b> для остальных успешных запросов
      * @throws SelfEx
      */
     static protected function executeSimpleQuery(string $query)

@@ -31,7 +31,7 @@ final class Route
 
 
     /**
-     * Конструктор класса.
+     * Конструктор класса
      *
      * @param string $requestURI URI входящего на сервер запроса
      * @throws XMLValidatorEx

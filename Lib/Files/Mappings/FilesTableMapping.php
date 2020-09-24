@@ -11,6 +11,7 @@ namespace Lib\Files\Mappings;
 class FilesTableMapping
 {
     private const NEEDED_INTERFACE = 'Tables\Files\Interfaces\FileTable';
+    private const EXISTENT_INTERFACE = 'Tables\CommonInterfaces\Existent';
     protected ?int $errorCode = null;
     protected string $errorText;
     protected string $class;
@@ -45,9 +46,10 @@ class FilesTableMapping
         if (
             !($interfaces = class_implements($class))
             || !in_array(self::NEEDED_INTERFACE, $interfaces, true)
+            || !in_array(self::EXISTENT_INTERFACE, $interfaces, true)
         ) {
             $this->errorCode = 3;
-            $this->errorText = "Указанный в маппинге класс: '{$class}' не реализует требуемый интерфейс: '" . self::NEEDED_INTERFACE . "'";
+            $this->errorText = "Указанный в маппинге класс: '{$class}' не реализует требуемый интерфейс: '" . self::NEEDED_INTERFACE . "' или '" . self::EXISTENT_INTERFACE . "'";
             return;
         }
 
@@ -58,7 +60,8 @@ class FilesTableMapping
     /**
      * Предназначен для получения кода ошибки при проверке маппинга
      *
-     * @return int|null <b>int</b> есть ошибки (код)<br><b>null</b> нет ошибок
+     * @return int|null <b>int</b> есть ошибки (код)<br>
+     * <b>null</b> нет ошибок
      */
     public function getErrorCode(): ?int
     {

@@ -9,13 +9,14 @@ use Tables\Exceptions\Tables as TablesEx;
 
 
 /**
- * Предназначен для получения иерархии документов от любого документа
+ * Предназначен для получения дерева иерархии документов от любого документа
  *
  */
 class HierarchyTree
 {
 
     private int $applicationId;
+
 
     /**
      * Конструктор класса

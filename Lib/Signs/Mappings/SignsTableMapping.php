@@ -54,7 +54,7 @@ class SignsTableMapping extends FilesTableMapping
             || !in_array(self::NEEDED_INTERFACE, $interfaces, true)
         ) {
             $this->errorCode = 3;
-            $this->errorText = "Указанный в маппинге класс: '{$signClass}' не реализует требуемый интерфейс: '{" . self::NEEDED_INTERFACE . "}'";
+            $this->errorText = "Указанный в маппинге класс: '{$signClass}' не реализует требуемый интерфейс: '" . self::NEEDED_INTERFACE . "'";
             return;
         }
 

@@ -1,17 +1,17 @@
 <?php
 
 
-namespace Classes\Application\Actions;
+namespace Classes\TotalCC\Actions;
 
 use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Actions\Actions as MainActions;
 use Lib\Actions\AccessActions as MainAccessActions;
 use Lib\Actions\ExecutionActions as MainExecutionActions;
-use Tables\Actions\application as ActionTable;
+use Tables\Actions\total_cc as ActionTable;
 
 
 /**
- *  Предназначен для работы с действиями для типа документа <i>Заявление</i>
+ *  Предназначен для работы с действиями для типа документа <i>Сводное замечание / заключение</i>
  *
  */
 class Actions extends MainActions

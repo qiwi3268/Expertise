@@ -48,16 +48,21 @@ class Validator
      * В случае <b>shell = ExternalSignature</b> передается 2 параметра - абсолютный путь в ФС сервера к файлу, абсолютный путь в ФС сервера к файлу открепленной подписи
      * @return array массив формата:<br>
      * 0 : <i>array</i><br>
+     * <br>
      *          fio         <i>string</i> : Фамилия Имя Отчество<br>
+     * <br>
      *          certificate <i>string</i> : данные сертификата<br>
+     * <br>
      *          signature_verify : <i>array</i><br>
-     *              result         <i>bool</i> : <b>true</b> подпись верна, <b>false</b> в противном случае <br>
+     *              result         <i>bool</i> : <b>true</b> подпись верна, <b>false</b> в противном случае<br>
      *              message      <i>string</i> : вывод исполняемой команды результата проверки подписи<br>
      *              user_message <i>string</i> : пользовательское сообщение на основе результата проверки подписи<br>
+     * <br>
      *          certificate_verify : <i>array</i><br>
-     *              result         <i>bool</i> : <b>true</b> сертификат действителен, <b>false</b> в противном случае <br>
+     *              result         <i>bool</i> : <b>true</b> сертификат действителен, <b>false</b> в противном случае<br>
      *              message      <i>string</i> : вывод исполняемой команды результата проверки подписи (сертификата)<br>
      *              user_message <i>string</i> : пользовательское сообщение на основе результата проверки подписи (сертификата)<br>
+     * <br>
      * 1 : <i>array</i>...<br>
      *
      * @throws ShellEx
@@ -211,7 +216,8 @@ class Validator
 
                 $errorCodes[] = $this->parser->getErrorCode($part);
 
-            } elseif (containsAny($part,
+            } elseif (containsAny(
+                $part,
                 'Error: Invalid cryptographic message type.',
                 'Error: The parameter is incorrect.',
                 'Unknown error.')

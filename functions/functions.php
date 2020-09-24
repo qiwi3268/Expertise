@@ -1,5 +1,6 @@
 <?php
 
+
 use Classes\Exceptions\PregMatch as PregMatchEx;
 
 
@@ -35,7 +36,8 @@ function enableAutoloadRegister(): void
  * Предназначен для проверки наличия требуемых параметров в <b>POST</b> запросе
  *
  * @param string ...$params <i>перечисление</i> необходимых параметров
- * @return bool <b>true</b> все принятые параметры присутствуют в массиве POST (на первом уровне вложенности)<br/><b>false</b> в противном случае
+ * @return bool <b>true</b> все принятые параметры присутствуют в массиве POST (на первом уровне вложенности)<br/>
+ * <b>false</b> в противном случае
  */
 function checkParamsPOST(string ...$params): bool
 {

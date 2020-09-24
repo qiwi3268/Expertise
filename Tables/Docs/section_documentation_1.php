@@ -5,13 +5,13 @@ namespace Tables\Docs;
 
 use Lib\Exceptions\DataBase as DataBaseEx;
 
+use Lib\DataBase\ParametrizedQuery;
+
 use Tables\Docs\Interfaces\Responsible;
 use Tables\CommonInterfaces\Existent;
 
 use Tables\Docs\Traits\Responsible as ResponsibleTrait;
 use Tables\CommonTraits\Existent as ExistentTrait;
-
-use Lib\DataBase\ParametrizedQuery;
 
 
 /**

@@ -5,7 +5,7 @@ namespace Tables\FinancingSources\Interfaces;
 
 
 /**
- * Интерфейс для работы с файловыми таблицами
+ * Интерфейс для работы с источниками финансирования
  *
  */
 interface FinancingSourceTable

@@ -63,30 +63,6 @@ trait ActionTable
         $result = ParametrizedQuery::getFetchAssoc($query, [$pageName]);
         return $result ? $result[0] : null;
     }
-
-
-    /**
-     * Реализация метода интерфейса
-     * {@see \Tables\Actions\Interfaces\ActionTable::getAssocByPageName()}
-     *
-     * @param string $pageName
-     * @return array|null
-     * @throws DataBaseEx
-     */
-    static public function getAssocByPageName(string $pageName): ?array
-    {
-        $table = self::$tableName;
-
-        $query = "SELECT `id`,
-                         `page_name`,
-                         `name`,
-                         `callback_name`,
-                         `description`
-                  FROM `{$table}`
-                  WHERE `page_name`=?";
-        $result = ParametrizedQuery::getFetchAssoc($query, [$pageName]);
-        return $result ? $result[0] : null;
-    }
 }
 
 

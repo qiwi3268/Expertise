@@ -15,7 +15,8 @@ class InternalSignature implements Interfaces\SignatureValidationShell
     /**
      * Предназначен для получения результата валидации встроенной подписи <b>С</b> проверкой цепочки сертификатов
      *
-     * @param array $filePaths массив с путями файлов, где:<br> filePaths[0] - абсолютный путь в ФС сервера к файлу со встроенной подписью
+     * @param array $filePaths массив с путями файлов, где:<br>
+     * filePaths[0] - абсолютный путь в ФС сервера к файлу со встроенной подписью
      * @return string вывод исполняемой команды
      * @throws ShellEx
      */
@@ -33,7 +34,8 @@ class InternalSignature implements Interfaces\SignatureValidationShell
     /**
      * Предназначен для получения результата валидации встроенной подписи <b><БЕЗ/b> проверки цепочки сертификатов
      *
-     * @param array $filePaths массив с путями файлов, где:<br> filePaths[0] - абсолютный путь в ФС сервера к файлу со встроенной подписью
+     * @param array $filePaths массив с путями файлов, где:<br>
+     * filePaths[0] - абсолютный путь в ФС сервера к файлу со встроенной подписью
      * @return string вывод исполняемой команды
      * @throws ShellEx
      */

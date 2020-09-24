@@ -3,6 +3,8 @@
 
 namespace Lib\CSP;
 
+use Lib\Exceptions\Shell as ShellEx;
+
 
 /**
  * Предназначен для получения hash-файла для исходного файла
@@ -18,7 +20,7 @@ class FileHash
      * @param string $hashAlg алгоритм hash'ирования
      * @param string $filePath абсолютный путь в ФС сервера к исходному файлу
      * @return string вывод исполняемой команды
-     * @throws \Lib\Exceptions\Shell
+     * @throws ShellEx
      */
     public function execHash(string $hashDir, string $hashAlg, string $filePath): string
     {

@@ -40,7 +40,7 @@ class Helper
      * @param string $path абсолютный путь в ФС сервера к файлу
      * @return array ассоциативный массив с параметрами:<br>
      * 'application_id' <i>int</i> => id заявления<br>
-     * 'file_name'   <i>string</i> => имя файла в ФС
+     * 'file_name' <i>string</i> => имя файла в ФС
      *
      * @throws PregMatchEx
      */

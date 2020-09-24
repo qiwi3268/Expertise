@@ -2,8 +2,9 @@
 
 
 namespace Classes\Application\Miscs\Initialization;
-use Lib\Miscs\Initialization\Initializer;
 
+use Lib\Exceptions\DataBase as DataBaseEx;
+use Lib\Miscs\Initialization\Initializer;
 use Tables\Miscs\{
     budget_level,
     cultural_object_type,
@@ -35,6 +36,7 @@ class CreateFormInitializer extends Initializer
      *
      * Предназначен для инициализации имеющихся в форме справочников
      *
+     * @throws DataBaseEx
      */
     public function __construct()
     {

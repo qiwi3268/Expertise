@@ -30,15 +30,6 @@ abstract class Actions
 
 
     /**
-     * Предназначен для получения ассоциативного массива действия по имени страницы
-     *
-     * @param string $pageName
-     * @return array|null <b>array</b> ассоцивтивный массив действия<br/><b>null</b> действие не существует
-     */
-    abstract public function getAssocActionByPageName(string $pageName): ?array;
-
-
-    /**
      * Предназначен для получения объекта доступа к действиям
      *
      * @return AccessActions

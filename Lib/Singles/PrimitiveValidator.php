@@ -281,7 +281,11 @@ class PrimitiveValidator
                 // true
                 // null, т.к. многие методы не возвращают bool, а выбрасывают исключения
                 // self для построения дальнейшей цепочки вызовов
-                if ($res === true || is_null($res) || ($is_array && is_object($res) && $res instanceof $callback[0])) {
+                if (
+                    $res === true
+                    || is_null($res)
+                    || ($is_array && is_object($res) && $res instanceof $callback[0])
+                ) {
                     $result = true;
                     break 1;
                 }

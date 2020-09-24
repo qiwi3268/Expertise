@@ -38,13 +38,13 @@ class APIActionExecutor extends DocumentParameters
             // начало текста
             // /home/expertise_cards/
             // 1 группа:
-            //   любой символ латиницы один и более раз
+            //   любой не пробельный символ один и более раз
             // /actions/action_
             // любая цифра один и более раз
             // конец текста
             // - регистронезависимые
             // - использование кодировки utf-8
-            $pattern = "/\A\/home\/expertise_cards\/([a-z]+)\/actions\/action_\d+\z/iu";
+            $pattern = "/\A\/home\/expertise_cards\/(\S+)\/actions\/action_\d+\z/iu";
 
             try {
 

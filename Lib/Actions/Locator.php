@@ -5,6 +5,7 @@ namespace Lib\Actions;
 
 use Lib\Exceptions\Actions as SelfEx;
 use Classes\Application\Actions\Actions as ApplicationActions;
+use Classes\TotalCC\Actions\Actions as TotalCCActions;
 
 
 /**
@@ -15,6 +16,7 @@ use Classes\Application\Actions\Actions as ApplicationActions;
  */
 class Locator
 {
+
     /**
      * Сущность класса
      *
@@ -38,6 +40,10 @@ class Locator
 
             case DOCUMENT_TYPE['application'] :
                 $this->actions = new ApplicationActions();
+                break;
+
+            case DOCUMENT_TYPE['total_cc'] :
+                $this->actions = new TotalCCActions();
                 break;
 
             default :
