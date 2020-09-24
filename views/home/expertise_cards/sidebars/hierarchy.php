@@ -1,12 +1,11 @@
 
 <?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
-<input type="hidden" value="<?= $variablesTV->getValue('id_application') ?>" name="id_application">
 
 <div class="view__object">"Капитальный ремонт по замене системы АПС"в Муниципальном общеобразовательном учреждении «Школа-интернат для детей-сирот и детей, оставшихся без попечения родителей «Семья» г. Магнитогорска, расположенного по адресу: 455026, Челябинская область, г. Магнитогорск, ул. Дружбы, 25»</div>
 
 <div class="view__header">
-    <div class="view__title">Заявление на экспертизу <?= $variablesTV->getValue('numerical_name') ?></div>
+    <div class="view__title">Заявление на экспертизу 123</div>
 </div>
 
 <div class="view__container">

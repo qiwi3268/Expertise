@@ -5,6 +5,8 @@ define('ROOT_LIB_CSS', ROOT_CSS . 'lib/');
 define('TMP_CSS', ROOT_CSS . 'tmp/');
 
 define('ROOT_JS', '/views/js/');
+define('APPLICATION_JS', '/views/js/application/');
+define('MODALS_JS', '/views/js/modals/');
 define('ROOT_LIB_JS', ROOT_JS . 'lib/');
 define('TMP_JS', ROOT_JS . 'tmp/');
 
@@ -21,9 +23,8 @@ switch (URN) {
         $sourcesFiles = [...GetFontAwesome5Case(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'modal.css'),
-            ...CreateSource('js', TMP_JS, 'ErrorHandler.js', 'BrowserHelper.js'),
+            ...CreateSource('js', ROOT_JS, 'ErrorHandler.js', 'BrowserHelper.js', 'API_login.js'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
-            ...CreateSource('js', ROOT_JS, 'API_login.js'),
 
         ];
         break;
@@ -35,18 +36,21 @@ switch (URN) {
             ...CreateSource('css', TMP_CSS, 'null.css', 'header.css', 'footer.css', 'main.css', 'modal.css', 'radio.css', 'calendar.css', 'file_modal.css', 'files.css', 'documentation.css', 'multiple_block.css', 'sign_modal.css'),
             ...CreateSource('css', TMP_CSS, 'create_application.css'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js', 'cadesplugin_api.js'),
-            ...CreateSource('js', TMP_JS, 'ErrorHandler.js', 'main.js', 'API.js', 'Misc.js', 'sidebar.js', 'section.js', 'validation.js', 'DependenciesHandler.js', 'Calendar.js', 'radio.js', 'save_application.js', 'SignView.js', 'SignHandler.js', 'PerfectCades.js', 'BrowserHelper.js', 'FileChecker.js', 'FileNeeds.js', 'FileUploader.js', 'MultipleBlock.js', 'GeFile.js', 'PartBlock.js')
+            ...CreateSource('js', ROOT_JS, 'ErrorHandler.js', 'main.js', 'API.js', 'section.js', 'validation.js', 'DependenciesHandler.js', 'radio.js', 'PerfectCades.js', 'BrowserHelper.js', 'FileChecker.js', 'FileNeeds.js', 'MultipleBlock.js', 'GeFile.js', 'PartBlock.js'),
+            ...CreateSource('js', MODALS_JS, 'Calendar.js', 'ErrorModal.js', 'FileUploader.js', 'Misc.js', 'SignView.js', 'SignHandler.js'),
+            ...CreateSource('js', APPLICATION_JS, 'create.js', 'save.js', 'sidebar.js'),
         ];
         break;
 
-    case 'home/application/view' :
+    case 'home/expertise_cards/application/view' :
         $pageName = 'АИС_view';
         $sourcesFiles = [...GetFontAwesome5Case(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'action_sidebar.css', 'radio.css', 'sign_modal.css'),
             ...CreateSource('css', TMP_CSS, 'create_application.css', 'view_application.css'),
-            ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js', ),
-            ...CreateSource('js', TMP_JS, 'section.js', 'main.js', 'API.js', 'GeFile.js', 'SignView.js', 'SignHandler.js', 'ErrorHandler.js')
+            ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
+            ...CreateSource('js', ROOT_JS, 'section.js', 'main.js', 'API.js', 'GeFile.js', 'ErrorHandler.js'),
+            ...CreateSource('js', MODALS_JS, 'Calendar.js', 'ErrorModal.js', 'SignView.js'),
         ];
         break;
 
@@ -88,7 +92,7 @@ switch (URN) {
         ];
         break;
 
-    case 'home/application/actions/action_2' :
+    case 'home/expertise_cards/application/actions/action_2' :
         $pageName = 'Action_2';
         $sourcesFiles = [...GetFontAwesome5Case(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
@@ -165,6 +169,6 @@ function GetFontAwesome5Case(): array
 
 function GetTinyMCECase(): array
 {
-    return CreateSource('js', ROOT_LIB_JS. 'tinymce/js/tinymce/', 'tinymce.min.js');
+    return CreateSource('js', ROOT_LIB_JS . 'tinymce/js/tinymce/', 'tinymce.min.js');
 }
 

@@ -5,8 +5,9 @@ use Lib\Exceptions\AccessToDocument as AccessToDocumentEx;
 
 use Lib\Singles\VariableTransfer;
 use Lib\AccessToDocument\AccessToDocumentTree;
-use Classes\DocumentTreeHandler;
 use Lib\AccessToDocument\Factory;
+use Lib\Singles\Helpers\PageAddress;
+use Classes\DocumentTreeHandler;
 
 
 $VT = VariableTransfer::getInstance();
@@ -59,7 +60,7 @@ if ($treeHandler->ce_application()) {
 
     $addDocumentToArray(
         'Заявление',
-        '/home/application/view?id_document=' . $treeHandler->getApplicationId(),
+        PageAddress::createCardRef($treeHandler->getApplicationId(), 'application', 'view'),
         ['стадия', 'еще что-то'],
         0
     );
@@ -77,13 +78,16 @@ if ($treeHandler->ce_totalCC()) {
 
             $addDocumentToArray(
                 'Сводное замечание',
-                '/home/application/view?id_document=' . $treeHandler->getTotalCCId(),
+                PageAddress::createCardRef($treeHandler->getTotalCCId(), 'total_cc', 'view'),
                 ['стадия', 'еще что-то'],
                 1
             );
 
             // Проверка разделов
             if ($treeHandler->ce_sections()) {
+
+                // dt - document type
+                $dt = $treeHandler->getTypeOfObjectId() == 1 ? 'section_documentation_1' : 'section_documentation_2';
 
                 // Флаг того, что отсутствует раздел, который был проверен в route callback
                 // Этим экономим вызовы замыкания $isDocumentChecked, поскольку одновременно только
@@ -92,9 +96,9 @@ if ($treeHandler->ce_totalCC()) {
 
                 foreach ($treeHandler->getSections() as $section) {
 
-                    if (!$checkedAbsent || !$isDocumentChecked(DOCUMENT_TYPE['section'], $section['id'])) {
+                    if (!$checkedAbsent || !$isDocumentChecked(DOCUMENT_TYPE[$dt], $section['id'])) {
 
-                        $objectSection = $factory->getObject(DOCUMENT_TYPE['section'], [
+                        $objectSection = $factory->getObject(DOCUMENT_TYPE[$dt], [
                             $section['id'],
                             $treeHandler->getTypeOfObjectId()
                         ]);
@@ -105,7 +109,7 @@ if ($treeHandler->ce_totalCC()) {
 
                             $addDocumentToArray(
                                 'Раздел',
-                                '/home/application/view?id_document=' . $section['id'],
+                                PageAddress::createCardRef($section['id'], 'section_documentation_1', 'view'),
                                 ['стадия раздела', 'еще что-то'],
                                 2
                             );
@@ -118,7 +122,7 @@ if ($treeHandler->ce_totalCC()) {
 
                         $addDocumentToArray(
                             'Раздел',
-                            '/home/application/view?id_document=' . $section['id'],
+                            PageAddress::createCardRef($section['id'], 'section_documentation_1', 'view'),
                             ['стадия раздела', 'еще что-то'],
                             2
                         );
@@ -131,7 +135,7 @@ if ($treeHandler->ce_totalCC()) {
 
         $addDocumentToArray(
             'Сводное замечание',
-            '/home/application/view?id_document=' . $treeHandler->getTotalCCId(),
+            PageAddress::createCardRef($treeHandler->getTotalCCId(), 'total_cc', 'view'),
             ['стадия', 'еще что-то'],
             1
         );

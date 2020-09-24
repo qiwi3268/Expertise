@@ -58,7 +58,7 @@ if (!$blockIsset || !$viewIsset) {
 }
 
 
-$path_sidebar_controller = ROOT . '/controllers/home/sidebar.php';
+$path_sidebar_controller = ROOT . '/controllers/home/navigation_sidebar.php';
 $path_sidebar_view = Navigation::VIEWS_PATH . '/sidebar.php';
 
 if (!file_exists($path_sidebar_controller)) {

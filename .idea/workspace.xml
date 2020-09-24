@@ -2,25 +2,47 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/views/js/ErrorHandler.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/js/modals/ErrorModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/validation_block_application_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/expertise_cards/documents/application/validation_block_application_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/expertise_cards/sidebars/hierarchy.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/expertise_cards/sidebars/hierarchy.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/home/navigation.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/navigation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/navigation_sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/navigation_sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/actions/action_sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_card/sidebars/actions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/actions/hierarchy_sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_card/sidebars/hierarchy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/action_sidebar.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_card/documents/application/actions/action_2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/hierarchy_sidebar.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/view.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/view_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_card/documents/application/view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/create_application.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/create_application_dependencies.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/application_dependencies.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/main_footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/main_header.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/navigation/navigation_sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/navigation/sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/navigation/view_footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/navigation/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/navigation/view_header.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/navigation/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/navigation_sidebar.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/section_create_test.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/section_create_test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/html_head.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/html_head.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/routes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/settings/routes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/application-form.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/application/create.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/html_head.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/expertise_card/documents/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/application/actions/action_2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/expertise_card/documents/application/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/application/view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/expertise_card/sidebars/actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/sidebars/actions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/expertise_card/sidebars/hierarchy.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/sidebars/hierarchy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/navigation/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/navigation/footer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/navigation/view_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/navigation/view_1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/API.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/BrowserHelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/BrowserHelper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/Calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/Calendar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/DependenciesHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/DependenciesHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/Drag&amp;Drop.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/Drag&amp;Drop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/ErrorHandler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/FileChecker.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/FileChecker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/FileNeeds.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/FileNeeds.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/FileUploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/FileUploader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/GeFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/GeFile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/Misc.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/Misc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/MultipleBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/MultipleBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/PartBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/PartBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/PerfectCades.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/PerfectCades.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/SignHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/SignHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/SignView.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/SignView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/action_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/application/actions/action_2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/radio.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/radio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/save_application.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/application/save.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/section.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/section.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/application/sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/sorting.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/sorting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/validation.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,11 +115,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\home\application" />
-      <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\home\expertise_card\documents\application\actions" />
-      <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\home\expertise_card\documents\application" />
-      <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\home\expertise_card\sidebars" />
-      <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\home\actions" />
+      <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\controllers\home\expertise_cards\documents\application" />
+      <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\js\tmp" />
+      <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\js" />
+      <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\js\modals" />
+      <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\js\application" />
     </key>
   </component>
   <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
@@ -144,13 +166,6 @@
       <workItem from="1600659199409" duration="40502000" />
       <workItem from="1600789163980" duration="4229000" />
       <workItem from="1600832243874" duration="22601000" />
-    </task>
-    <task id="LOCAL-00086" summary="09.09.2020_2">
-      <created>1599642058246</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1599642058247</updated>
     </task>
     <task id="LOCAL-00087" summary="09.09.2020_4">
       <created>1599648742469</created>
@@ -488,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600919331829</updated>
     </task>
-    <option name="localTasksCounter" value="135" />
+    <task id="LOCAL-00135" summary="24.09.2020_2">
+      <created>1600920045181</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1600920045181</updated>
+    </task>
+    <option name="localTasksCounter" value="136" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -505,7 +527,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="17.09.2020_6" />
     <MESSAGE value="18.09.2020" />
     <MESSAGE value="18.09.2020_1" />
     <MESSAGE value="18.09.2020_2" />
@@ -530,7 +551,8 @@
     <MESSAGE value="23.09.2020_4" />
     <MESSAGE value="24.09.2020" />
     <MESSAGE value="24.09.2020_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="24.09.2020_1" />
+    <MESSAGE value="24.09.2020_2" />
+    <option name="LAST_COMMIT_MESSAGE" value="24.09.2020_2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -553,10 +575,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="679" y="51" key="CommitChangelistDialog2" timestamp="1600919328619">
+    <state x="679" y="51" key="CommitChangelistDialog2" timestamp="1600920042863">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600919328619" />
+    <state x="679" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600920042863" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600519766620" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600789451978" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
@@ -596,10 +618,10 @@
     </state>
     <state x="302" y="56" width="614" height="1035" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1598502743003" />
     <state x="256" y="187" width="1372" height="1077" key="dock-window-1/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1597499951448" />
-    <state x="739" y="323" width="737" height="606" key="find.popup" timestamp="1600862533402">
+    <state x="739" y="323" width="737" height="606" key="find.popup" timestamp="1600926487771">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="739" y="323" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600862533402" />
+    <state x="739" y="323" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600926487771" />
     <state x="-1180" y="531" width="555" height="534" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600791294528" />
     <state x="571" y="185" width="1495" height="1020" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600609806307" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />

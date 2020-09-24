@@ -4,11 +4,11 @@
         <page urn="">
             <files>
                 <dir path="/controllers/" ext=".php">
-                    <file name="header" />
+                    <file name="html_head" />
                     <file name="login" />
                 </dir>
                 <dir path="/views/" ext=".php">
-                    <file name="header" />
+                    <file name="html_head" />
                     <file name="login" />
                 </dir>
                 <dir path="/views/home/modals/" ext=".php">
@@ -136,22 +136,25 @@
         <page urn="home/application/create">
             <files>
                 <dir path="/controllers/" ext=".php">
-                    <file name="header" />
+                    <file name="html_head" />
                 </dir>
-                <dir path="/views/" ext=".php">
+                <dir path="/controllers/home/" ext=".php">
                     <file name="header" />
                 </dir>
                 <dir path="/controllers/home/application/" ext=".php">
-                    <file name="create_application" />
+                    <file name="create" />
                     <file name="display_dependencies_application_form" />
                 </dir>
-                <dir path="/controllers/home/" ext=".php">
-                    <file name="main_header" />
+
+                <dir path="/views/" ext=".php">
+                    <file name="html_head" />
                 </dir>
                 <dir path="/views/home/" ext=".php">
-                    <file name="create_application_dependencies" />
-                    <file name="main_header" />
-                    <file name="create_application" />
+                    <file name="header" />
+                </dir>
+                <dir path="/views/home/application/" ext=".php">
+                    <file name="application_dependencies" />
+                    <file name="create" />
                 </dir>
                 <dir path="/views/home/modals/" ext=".php">
                     <file name="calendar" />
@@ -160,59 +163,56 @@
                     <file name="error" />
                 </dir>
                 <dir path="/views/home/" ext=".php">
-                    <file name="main_footer" />
+                    <file name="footer" />
                 </dir>
             </files>
         </page>
 
-        <page urn="home/application/view">
+        <page urn="home/expertise_cards/application/view">
 
             <callback_template id="DocumentParameters_ExpertiseCard" />
             <callback_template id="DocumentExistChecker" />
             <callback_template id="AccessToDocumentTreeChecker" />
 
-
             <files>
                 <dir path="/controllers/" ext=".php">
-                    <file name="header" />
+                    <file name="html_head" />
                 </dir>
                 <dir path="/controllers/home/" ext=".php">
-                    <file name="main_header" />
+                    <file name="header" />
                 </dir>
-
-                <dir path="/controllers/home/actions/" ext=".php">
-                    <file name="hierarchy_sidebar" />
+                <dir path="/controllers/home/expertise_cards/sidebars/" ext=".php">
+                    <file name="hierarchy" />
                 </dir>
-                <dir path="/controllers/home/application/" ext=".php">
-                    <file name="view_application" />
+                <dir path="/controllers/home/expertise_cards/documents/application/" ext=".php">
+                    <file name="view" />
                     <file name="validation_block_application_form" />
                 </dir>
-                <dir path="/controllers/home/actions/" ext=".php">
-                    <file name="action_sidebar" />
+                <dir path="/controllers/home/expertise_cards/sidebars/" ext=".php">
+                    <file name="actions" />
                 </dir>
 
                 <dir path="/views/" ext=".php">
-                    <file name="header" />
+                    <file name="html_head" />
                 </dir>
                 <dir path="/views/home/" ext=".php">
-                    <file name="main_header" />
+                    <file name="header" />
                 </dir>
-                <dir path="/views/home/actions/" ext=".php">
-                    <file name="hierarchy_sidebar" />
+                <dir path="/views/home/expertise_cards/sidebars/" ext=".php">
+                    <file name="hierarchy" />
                 </dir>
-                <dir path="/views/home/application/" ext=".php">
-                    <file name="view_application" />
+                <dir path="/views/home/expertise_cards/documents/application/" ext=".php">
+                    <file name="view" />
                 </dir>
-                <dir path="/views/home/actions/" ext=".php">
-                    <file name="action_sidebar" />
+                <dir path="/views/home/expertise_cards/sidebars/" ext=".php">
+                    <file name="actions" />
                 </dir>
-
                 <dir path="/views/home/modals/" ext=".php">
                     <file name="view_sign" />
                     <file name="error" />
                 </dir>
                 <dir path="/views/home/" ext=".php">
-                    <file name="main_footer" />
+                    <file name="footer" />
                 </dir>
             </files>
         </page>
@@ -222,22 +222,23 @@
         <page urn="home/navigation">
             <files>
                 <dir path="/controllers/" ext=".php">
-                    <file name="header" />
-                </dir>
-                <dir path="/views/" ext=".php">
-                    <file name="header" />
+                    <file name="html_head" />
                 </dir>
                 <dir path="/controllers/home/" ext=".php">
-                    <file name="main_header" />
+                    <file name="header" />
+                </dir>
+
+                <dir path="/views/" ext=".php">
+                    <file name="html_head" />
                 </dir>
                 <dir path="/views/home/" ext=".php">
-                    <file name="main_header" />
+                    <file name="header" />
                 </dir>
                 <dir path="/controllers/home/" ext=".php">
                     <file name="navigation" />
                 </dir>
                 <dir path="/views/home/" ext=".php">
-                    <file name="main_footer" />
+                    <file name="footer" />
                 </dir>
                 <dir path="/views/home/modals/" ext=".php">
                     <file name="static_error" />
@@ -246,31 +247,31 @@
         </page>
 
 
-        <page urn="home/application/actions/action_2">
+        <page urn="home/expertise_cards/application/actions/action_2">
 
             <callback_template id="DocumentParameters_ActionPage" />
             <callback_template id="DocumentExistChecker" />
             <callback_template id="AccessToDocumentTreeChecker" />
             <callback_template id="ActionChecker" />
 
-
             <files>
                 <dir path="/controllers/" ext=".php">
-                    <file name="header" />
-                </dir>
-                <dir path="/views/" ext=".php">
-                    <file name="header" />
+                    <file name="html_head" />
                 </dir>
                 <dir path="/controllers/home/" ext=".php">
-                    <file name="main_header" />
+                    <file name="header" />
                 </dir>
-                <dir path="/views/home/" ext=".php">
-                    <file name="main_header" />
-                </dir>
-                <dir path="/controllers/home/application/actions/" ext=".php">
+                <dir path="/controllers/home/expertise_cards/documents/application/actions/" ext=".php">
                     <file name="action_2" />
                 </dir>
-                <dir path="/views/home/application/actions/" ext=".php">
+
+                <dir path="/views/" ext=".php">
+                    <file name="html_head" />
+                </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="header" />
+                </dir>
+                <dir path="/views/home/expertise_cards/documents/application/actions/" ext=".php">
                     <file name="action_2" />
                 </dir>
                 <dir path="/views/home/modals/" ext=".php">
@@ -278,11 +279,10 @@
                     <file name="error" />
                 </dir>
                 <dir path="/views/home/" ext=".php">
-                    <file name="main_footer" />
+                    <file name="footer" />
                 </dir>
             </files>
         </page>
-
 
         <page urn="home/test">
             <callbacks>
@@ -298,18 +298,18 @@
         <page urn="home/test_1">
             <files>
                 <dir path="/controllers/" ext=".php">
-                    <file name="header" />
+                    <file name="html_head" />
                 </dir>
                 <dir path="/views/" ext=".php">
-                    <file name="header" />
+                    <file name="html_head" />
                 </dir>
                 <dir path="/controllers/home/" ext=".php">
-                    <file name="main_header" />
+                    <file name="header" />
                 </dir>
                 <dir path="/views/home/" ext=".php">
-                    <file name="main_header" />
+                    <file name="header" />
                     <file name="test_1" />
-                    <file name="main_footer" />
+                    <file name="footer" />
                 </dir>
             </files>
         </page>
@@ -317,18 +317,19 @@
         <page urn="home/section_create_test">
             <files>
                 <dir path="/controllers/" ext=".php">
-                    <file name="header" />
-                </dir>
-                <dir path="/views/" ext=".php">
-                    <file name="header" />
+                    <file name="html_head" />
                 </dir>
                 <dir path="/controllers/home/" ext=".php">
-                    <file name="main_header" />
+                    <file name="header" />
+                </dir>
+
+                <dir path="/views/" ext=".php">
+                    <file name="html_head" />
                 </dir>
                 <dir path="/views/home/" ext=".php">
-                    <file name="main_header" />
+                    <file name="header" />
                     <file name="section_create_test" />
-                    <file name="main_footer" />
+                    <file name="footer" />
                 </dir>
             </files>
         </page>
