@@ -37,11 +37,13 @@
                 <i class="info__icon fas fa-user-edit"></i>
                 <div class="info__description">
                     <span class="info__label">Ответственные</span>
-                    <span class="info__text">Заявитель</span>
+                    <span class="info__text">Заявительfsdfkl;sdfkl;k;sdf sdfjlsfsdfsdfjk fksdjkldjklsfsdfjkl sdjklsdfjklsdfjkl fsdjklfjklsdfjkl sdfsjklsdfjkl fsdfkl;sdfkl;k;sdf sdfjlsfsdfsdfjk fksdjkldjklsfsdfjkl sdjklsdfjklsdfjkl fsdjklfjklsdfjkl sdfsjklsdfjk fsdfkl;sdfkl;k;sdf sdfjlsfsdfsdfjk fksdjkldjklsfsdfjkl sdjklsdfjklsdfjkl fsdjklfjklsdfjkl sdfsjklsdfjk fsdfkl;sdfkl;k;sdf sdfjlsfsdfsdfjk fksdjkldjklsfsdfjkl sdjklsdfjklsdfjkl fsdjklfjklsdfjkl sdfsjklsdfjk fsdfkl;sdfkl;k;sdf sdfjlsfsdfsdfjk fksdjkldjklsfsdfjkl sdjklsdfjklsdfjkl fsdjklfjklsdfjkl sdfsjklsdfjk</span>
                 </div>
                 
                 <div class="responsible" data-tooltip_content hidden>
-                    <div class="responsible__name">Тестов Т.Т.</div>
+                    <div class="responsible__name">Андефайнд А.А.</div>
+                    <div class="responsible__name">Андефайнд А.А.</div>
+                    <div class="responsible__name">Андефайнд А.А.</div>
                     <div class="responsible__name">Андефайнд А.А.</div>
                 </div>
             </div>
@@ -49,13 +51,19 @@
 
         <div class="view__hierarchy hierarchy">
             <?php foreach ($variablesTV->getValue('availableDocuments') as $document): ?>
-                <div class="hierarchy__section">
+                <div class="hierarchy__section" data-tooltip>
                     <a href="<?= $document['ref'] ?>" class="hierarchy__item" data-depth="<?= $document['depth'] ?>">
                         <span class="hierarchy__name"><?= $document['label'] ?></span>
                         <?php foreach ($document['descriptions'] as $description): ?>
                             <span class="hierarchy__text"><?= $description ?></span>
                         <?php endforeach; ?>
                     </a>
+                    <div class="responsible" data-tooltip_content hidden>
+                        <div class="responsible__name">Андефайнд А.А.</div>
+                        <div class="responsible__name">Андефайнд А.А.</div>
+                        <div class="responsible__name">Андефайнд А.А.</div>
+                        <div class="responsible__name">Андефайнд А.А.</div>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>

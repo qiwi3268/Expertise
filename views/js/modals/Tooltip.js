@@ -29,11 +29,8 @@ class Tooltip {
       this.instance.target.appendChild(this.instance.element);
       this.instance.element.classList.add('active');
 
-
-      console.log(this.instance.target.offsetHeight);
-      console.log(this.instance.content.offsetHeight);
-
-      this.instance.element.style.top = -this.instance.target.offsetHeight / 2 + 'px';
+      this.instance.element.style.top = this.instance.target.offsetHeight / 2 - this.instance.element.offsetHeight / 2 + 'px';
+      this.instance.element.style.left = this.instance.target.offsetWidth + 10 + 'px';
 
       this.instance.target.addEventListener('mouseleave', () => this.instance.close(), { once: true });
    }
@@ -50,20 +47,10 @@ class Tooltip {
    }
 
    setContent (target) {
-
       let content = target.querySelector('[data-tooltip_content]');
-      let copy_to_view = content.cloneNode(true);
-
-      // this.element.style.top = target.clientHeight / 2 + 'px';
-
-      this.content = copy_to_view;
-
+      this.content = content.cloneNode(true);
       this.element.appendChild(this.content);
       this.content.removeAttribute('hidden');
-
-
-
-
    }
 
 }
