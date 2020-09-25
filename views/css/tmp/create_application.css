@@ -52,28 +52,24 @@
 
 /* application-form__header =================================================================== */
 
-.application-form__body {
+.application-form {
    display: flex;
    flex-grow: 1;
+   align-items: flex-start;
 }
 
 .application-form__sidebar {
-   align-self: flex-start;
    margin: 0px 10px 0px 0px;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+   background-color: #ffffff;
+   cursor: pointer;
+   max-width: 20%;
 }
 
 .sidebar-form__row {
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   min-width: 300px;
-   min-height: 35px;
-   padding: 0 15px;
+   padding: 7px 15px;
    border-left: 4px solid #ffffff;
-   background-color: #ffffff;
-   cursor: pointer;
 }
 
 .sidebar-form__row:first-child {
@@ -132,6 +128,7 @@
 
 .application-form__cards {
    flex-grow: 1;
+   /*max-width: 80%;*/
 }
 
 .card-form {

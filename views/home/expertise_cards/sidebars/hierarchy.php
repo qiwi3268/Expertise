@@ -33,11 +33,16 @@
                     <span class="info__text">20.09.2020</span>
                 </div>
             </div>
-            <div class="info__item">
+            <div class="info__item" data-tooltip>
                 <i class="info__icon fas fa-user-edit"></i>
                 <div class="info__description">
                     <span class="info__label">Ответственные</span>
                     <span class="info__text">Заявитель</span>
+                </div>
+                
+                <div class="responsible" data-tooltip_content hidden>
+                    <div class="responsible__name">Тестов Т.Т.</div>
+                    <div class="responsible__name">Андефайнд А.А.</div>
                 </div>
             </div>
         </div>

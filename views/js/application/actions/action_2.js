@@ -24,6 +24,9 @@ function assignExperts () {
 
       let form_data = new FormData();
       form_data.append('experts', JSON.stringify(assigned_experts));
+
+      console.log(new Map(form_data));
+
       API.executeAction(form_data)
          .then(response => {
 

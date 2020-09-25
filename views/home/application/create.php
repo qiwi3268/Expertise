@@ -2,6 +2,7 @@
 
 <?php //var_dump($variablesTV->getValue('structureDocumentation1')); ?>
 
+<!--todo переделать классы-->
 <div class="application-form__header header-form">
     <div class="header-form__title">Заявление на экспертизу <?= $variablesTV->getValue('numerical_name') ?></div>
     <div class="header-form__actions">
@@ -15,7 +16,8 @@
         </div>
     </div>
 </div>
-<div class="application-form__body">
+
+<div class="application-form">
     <div class="application-form__sidebar sidebar-form">
         <div class="sidebar-form__row">
             <span class="sidebar-form__text">Сведения о проекте и цели заявления</span>

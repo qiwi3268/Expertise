@@ -288,6 +288,48 @@
             </files>
         </page>
 
+        <page urn="home/expertise_cards/section_documentation_1/view">
+
+            <callback_template id="DocumentParameters_ExpertiseCard" />
+            <callback_template id="DocumentExistChecker" />
+            <callback_template id="AccessToDocumentTreeChecker" />
+
+            <files>
+                <dir path="/controllers/" ext=".php">
+                    <file name="html_head" />
+                </dir>
+                <dir path="/controllers/home/" ext=".php">
+                    <file name="header" />
+                </dir>
+                <dir path="/controllers/home/expertise_cards/sidebars/" ext=".php">
+                    <file name="hierarchy" />
+                </dir>
+                <dir path="/controllers/home/expertise_cards/documents/section/" ext=".php">
+                    <file name="view" />
+                </dir>
+                <dir path="/controllers/home/expertise_cards/sidebars/" ext=".php">
+                    <file name="actions" />
+                </dir>
+
+                <dir path="/views/" ext=".php">
+                    <file name="html_head" />
+                </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="header" />
+                </dir>
+                <dir path="/views/home/expertise_cards/sidebars/" ext=".php">
+                    <file name="hierarchy" />
+                </dir>
+                <dir path="/views/home/expertise_cards/documents/section/" ext=".php">
+                    <file name="view" />
+                </dir>
+                <dir path="/views/home/expertise_cards/sidebars/" ext=".php">
+                    <file name="actions" />
+                </dir>
+
+            </files>
+        </page>
+
         <page urn="home/expertise_cards/application/actions/action_2">
 
             <callback_template id="DocumentParameters_ActionPage" />
@@ -370,6 +412,30 @@
                 <dir path="/views/home/" ext=".php">
                     <file name="header" />
                     <file name="section_create_test" />
+                    <file name="footer" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="home/total_cc_test">
+            <files>
+                <dir path="/controllers/" ext=".php">
+                    <file name="html_head" />
+                </dir>
+                <dir path="/controllers/home/" ext=".php">
+                    <file name="header" />
+                </dir>
+
+                <dir path="/views/" ext=".php">
+                    <file name="html_head" />
+                </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="header" />
+                </dir>
+                <dir path="/views/home/expertise_cards/documents/total_cc/actions/" ext=".php">
+                    <file name="action_3" />
+                </dir>
+                <dir path="/views/home/" ext=".php">
                     <file name="footer" />
                 </dir>
             </files>

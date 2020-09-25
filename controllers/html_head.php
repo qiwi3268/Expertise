@@ -46,11 +46,11 @@ switch (URN) {
         $pageName = 'АИС_view';
         $sourcesFiles = [...GetFontAwesome5Case(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
-            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'action_sidebar.css', 'radio.css', 'sign_modal.css'),
+            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'action_sidebar.css', 'radio.css', 'sign_modal.css', 'tooltip.css'),
             ...CreateSource('css', TMP_CSS, 'create_application.css', 'view_application.css'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
             ...CreateSource('js', ROOT_JS, 'section.js', 'main.js', 'API.js', 'GeFile.js', 'ErrorHandler.js'),
-            ...CreateSource('js', MODALS_JS, 'ErrorModal.js', 'SignView.js'),
+            ...CreateSource('js', MODALS_JS, 'ErrorModal.js', 'SignView.js', 'Tooltip.js'),
         ];
         break;
 
@@ -66,12 +66,14 @@ switch (URN) {
         break;
     
     case 'home/expertise_cards/total_cc/view' :
+    case 'home/expertise_cards/section_documentation_1/view' :
         $pageName = 'АИС_view';
         $sourcesFiles = [...GetFontAwesome5Case(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'action_sidebar.css', 'radio.css', 'sign_modal.css'),
         ];
         break;
+        
         
     case 'tmp/form_to_file_download' :
         $pageName = 'Загрузка файлов на сервер';
@@ -130,6 +132,16 @@ switch (URN) {
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css'),
             ...CreateSource('css', TMP_CSS,'section_create_test.css'),
             ...CreateSource('js', TMP_JS, 'section_create_test.js')
+        ];
+        break;
+    
+    case 'home/total_cc_test' :
+        $pageName = 'Общая часть';
+        $sourcesFiles = [...GetFontAwesome5Case(),
+            ...CreateSource('css', ROOT_CSS, 'entry.css'),
+            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css'),
+            ...CreateSource('css', TMP_CSS,'create_application.css', 'action_3.css'),
+            ...CreateSource('js', ROOT_JS, 'main.js', 'section.js'),
         ];
         break;
 }

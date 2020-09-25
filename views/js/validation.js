@@ -10,10 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
          let is_required = field.dataset.required;
 
          input.addEventListener('keyup', () => {
-            validateField(input, pattern);
+            // console.log('tut');
+            // validateField(input, pattern);
          });
 
          input.addEventListener('blur', () => {
+            // console.log('tut2');
+
             validateField(input, pattern);
 
             if (is_required === 'true') {

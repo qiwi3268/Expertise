@@ -80,7 +80,9 @@
 .hierarchy__section {
    border-left: 4px solid #ffffff;
    padding: 7px 10px;
-   transition: .1s;
+   /*transition: background-color, border-color .1s;*/
+   /*todo убрать при загрузке страницы*/
+   transition: background-color .1s;
 }
 
 .hierarchy__section:hover {
@@ -135,7 +137,10 @@
    padding: 10px 15px;
    font-size: 16px;
    border-right: 4px solid #ffffff;
-   transition: .1s;
+
+   /*transition: background-color, border-color .1s;*/
+   /*todo убрать при загрузке страницы*/
+   transition: background-color .1s;
 }
 
 .view__action:hover {
