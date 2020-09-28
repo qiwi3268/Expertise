@@ -154,7 +154,6 @@
             <div class="card-form__body body-card card-body">
                 <!--Договор-->
                 <div class="body-card__row field" data-required="true" data-name="" data-pattern="text">
-                    
                     <span class="body-card__title">Договор</span>
                     <div class="body-card__item">
                         <div class="body-card__field filled">
@@ -165,6 +164,9 @@
                     </div>
                 </div>
                 <!--//Договор//-->
+                
+                
+                
             </div>
         </div>
         

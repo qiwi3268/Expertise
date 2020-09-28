@@ -3,13 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/action_3.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_3.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/display_dependencies_application_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/display_dependencies_application_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/html_head.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/html_head.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/routes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/settings/routes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/action_2.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_2.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/action_sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_sidebar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/tooltip.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/tooltip.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/documents/total_cc/actions/action_3.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/total_cc/actions/action_3.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/sidebars/hierarchy.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/sidebars/hierarchy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/modals/Tooltip.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/Tooltip.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,13 +135,6 @@
       <workItem from="1600789163980" duration="4229000" />
       <workItem from="1600832243874" duration="22601000" />
       <workItem from="1600964306900" duration="1111000" />
-    </task>
-    <task id="LOCAL-00095" summary="11.09.2020_2">
-      <created>1599805945237</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1599805945237</updated>
     </task>
     <task id="LOCAL-00096" summary="11.09.2020_3">
       <created>1599814330592</created>
@@ -478,7 +472,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601281134756</updated>
     </task>
-    <option name="localTasksCounter" value="144" />
+    <task id="LOCAL-00144" summary="28.09.2020_1">
+      <created>1601292699057</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1601292699057</updated>
+    </task>
+    <option name="localTasksCounter" value="145" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -495,7 +496,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="20.09.2020_2" />
     <MESSAGE value="20.09.2020_3" />
     <MESSAGE value="20.09.2020_4" />
     <MESSAGE value="20.09.2020_5" />
@@ -520,7 +520,8 @@
     <MESSAGE value="24.09.2020_6" />
     <MESSAGE value="24.09.2020_7" />
     <MESSAGE value="28.09.2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="28.09.2020" />
+    <MESSAGE value="28.09.2020_1" />
+    <option name="LAST_COMMIT_MESSAGE" value="28.09.2020_1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -543,10 +544,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1601281126921">
+    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1601292695164">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1601281126921" />
+    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1601292695164" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600519766620" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600964477191" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
@@ -591,10 +592,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="92" y="92" width="2376" height="1216" key="dock-window-2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600964609575" />
-    <state x="739" y="323" width="737" height="606" key="find.popup" timestamp="1601290360677">
+    <state x="739" y="323" width="737" height="606" key="find.popup" timestamp="1601297277379">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="739" y="323" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601290360677" />
+    <state x="739" y="323" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601297277379" />
     <state x="-1180" y="531" width="555" height="534" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600791294528" />
     <state x="571" y="185" width="1495" height="1020" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600609806307" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />

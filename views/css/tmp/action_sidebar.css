@@ -85,6 +85,11 @@
    transition: background-color .1s;
 }
 
+.hierarchy__section[data-selected='1'] {
+   background-color: #f6f8fa;
+   border-color: #B5C5D7;
+}
+
 .hierarchy__section:hover {
    /*background-color: #f2f2f2;*/
    background-color: #F3F5F6;
@@ -122,7 +127,9 @@
    color: #6e6e6e;
 }
 
-.hierarchy__descriptions {
+.hierarchy__description {
+   display: flex;
+   flex-direction: column;
    margin: 0px 0px 0px 11px;
    font-size: 14px;
    color: #6e6e6e;
@@ -168,15 +175,53 @@
 }
 
 .hierarchy__stage {
-   display: flex;
-   align-items: center;
+   /*display: flex;*/
+   /*align-items: center;*/
+   /*font-style: italic;*/
+
+}
+
+.hierarchy__experts {
+   font-size: 14px;
+   color: #6e6e6e;
 }
 
 .hierarchy__icon-stage {
-   font-size: 4px;
+   font-size: 8px;
    margin: 0px 5px 0px 0px;
    color: #6C89A8;
 }
+
+.hierarchy__experts-title {
+   /*font-style: italic;*/
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .qwe {
    background-color: #ffffff;

@@ -49,3 +49,7 @@
 .responsible {
    padding: 20px;
 }
+
+.responsible__name {
+   white-space: nowrap;
+}

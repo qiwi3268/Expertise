@@ -13,13 +13,6 @@
     <div class="view__sidebar">
         <div class="view__info info">
             <div class="info__item">
-                <i class="info__icon fas fa-file-alt"></i>
-                <div class="info__description">
-                    <span class="info__label">Стадия</span>
-                    <span class="info__text">Формирование сводного замечания</span>
-                </div>
-            </div>
-            <div class="info__item">
                 <i class="info__icon fas fa-calendar-week"></i>
                 <div class="info__description">
                     <span class="info__label">Контрольный срок заявления</span>
@@ -33,71 +26,71 @@
                     <span class="info__text">20.09.2020</span>
                 </div>
             </div>
-            <div class="info__item" data-tooltip>
-                <i class="info__icon fas fa-user-edit"></i>
-                <div class="info__description">
-                    <span class="info__label">Ответственные</span>
-                    <span class="info__text">Заявитель</span>
+            <?php if ($variablesTV->getExistenceFlag('responsible')): ?>
+                <div class="info__item" data-tooltip>
+                    <i class="info__icon fas fa-user-edit"></i>
+                    <div class="info__description">
+                        <span class="info__label">Ответственные</span>
+                        <span class="info__text"><?= $variablesTV->getValue('responsibleLabel') ?></span>
+                    </div>
+                    
+                    <div class="responsible" data-tooltip_content hidden>
+                        <?php foreach ($variablesTV->getValue('responsibleUsers') as $FIO): ?>
+                            <span class="responsible__name"><?= $FIO ?></span>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
-                
-                <div class="responsible" data-tooltip_content hidden>
-                    <div class="responsible__name">Андефайнд А.А.</div>
-                    <div class="responsible__name">Андефайнд А.А.</div>
-                    <div class="responsible__name">Андефайнд А.А.</div>
-                    <div class="responsible__name">Андефайнд А.А.</div>
-                </div>
-            </div>
+            <?php endif; ?>
+
         </div>
 
         <div class="view__hierarchy hierarchy">
-    
-    
             <?php if (isset($variablesTV->getValue('availableDocuments')['application'][0])): ?>
                 <?php $_application = $variablesTV->getValue('availableDocuments')['application'][0] ?>
-                
-                <div class="hierarchy__section">
+                <div class="hierarchy__section" data-selected="<?= $_application['isSelected'] ?>">
                     <a href="<?= $_application['ref'] ?>" class="hierarchy__item" data-depth="0">
                         <span class="hierarchy__name"><?= $_application['label'] ?></span>
-                        <div class="hierarchy__stage">
-                            <i class="hierarchy__icon-stage fas fa-circle"></i>
-                            <span class="hierarchy__text"><?= $_application['stage'] ?></span>
+                        <div class="hierarchy__description">
+                            <span class="hierarchy__stage"><?= $_application['stage'] ?></span>
+                            <?php foreach ($_application['descriptions'] as $description): ?>
+                                <span class="hierarchy__descriptions"><?= $description ?></span>
+                            <?php endforeach; ?>
                         </div>
-                        <?php foreach ($_application['descriptions'] as $description): ?>
-                            <span class="hierarchy__descriptions"><?= $description ?></span>
-                        <?php endforeach; ?>
                     </a>
                 </div>
             <?php endif; ?>
             <?php if (isset($variablesTV->getValue('availableDocuments')['total_cc'][0])): ?>
                 <?php $_total_cc = $variablesTV->getValue('availableDocuments')['total_cc'][0] ?>
-                <div class="hierarchy__section">
+                <div class="hierarchy__section" data-selected="<?= $_total_cc['isSelected'] ?>">
                     <a href="<?= $_total_cc['ref'] ?>" class="hierarchy__item" data-depth="1">
                         <span class="hierarchy__name"><?= $_total_cc['label'] ?></span>
-                        <div class="hierarchy__stage">
-                            <i class="hierarchy__icon-stage fas fa-circle"></i>
-                            <span class="hierarchy__text"><?= $_total_cc['stage'] ?></span>
+                        <div class="hierarchy__description">
+                            <span class="hierarchy__stage"><?= $_total_cc['stage'] ?></span>
+                            <?php foreach ($_total_cc['descriptions'] as $description): ?>
+                                <span class="hierarchy__descriptions"><?= $description ?></span>
+                            <?php endforeach; ?>
                         </div>
-                        <?php foreach ($_total_cc['descriptions'] as $description): ?>
-                            <span class="hierarchy__descriptions"><?= $description ?></span>
-                        <?php endforeach; ?>
                     </a>
                 </div>
             <?php endif; ?>
             <?php if (isset($variablesTV->getValue('availableDocuments')['sections'])): ?>
                 <?php $_sections = $variablesTV->getValue('availableDocuments')['sections'] ?>
                 <?php foreach ($_sections as $section): ?>
-                    <div class="hierarchy__section" data-tooltip>
+                    <div class="hierarchy__section" data-selected="<?= $section['isSelected'] ?>" data-tooltip>
                         <a href="<?= $section['ref'] ?>" class="hierarchy__item" data-depth="2">
                             <span class="hierarchy__name"><?= $section['label'] ?></span>
-                            <div class="hierarchy__stage">
-                                <i class="hierarchy__icon-stage fas fa-circle"></i>
-                                <span class="hierarchy__text"><?= $section['stage'] ?></span>
+                            <div class="hierarchy__description">
+                                <span class="hierarchy__stage"><?= $section['stage'] ?></span>
+                                <span class="hierarchy__experts">
+                                    <i class="hierarchy__experts-icon fas fa-user-friends"></i>
+                                    <span class="hierarchy__experts-title">Назначенные эксперты:</span>
+                                </span>
+                                <?php if (!empty($section['descriptions'])): ?>
+                                    <?php foreach ($section['descriptions'] as $description): ?>
+                                        <span class="hierarchy__descriptions"><?= $description ?></span>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </div>
-                            <?php if (!empty($section['descriptions'])): ?>
-                                <?php foreach ($section['descriptions'] as $description): ?>
-                                    <span class="hierarchy__descriptions"><?= $description ?></span>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
                         </a>
                         <div class="hierarchy__info" data-tooltip_content hidden>
                             <div class="hierarchy__tooltip"><?= $section['tooltip'] ?></div>

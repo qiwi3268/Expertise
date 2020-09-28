@@ -457,7 +457,7 @@
 .files__title {
    padding: 10px;
    text-align: center;
-   border-bottom: 1px solid #e0e0e0;
+   /*border-bottom: 1px solid #e0e0e0;*/
    font-weight: 700;
 }
 
