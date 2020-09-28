@@ -120,7 +120,12 @@
 .hierarchy__text {
    font-size: 14px;
    color: #6e6e6e;
-   word-break: break-all;
+}
+
+.hierarchy__descriptions {
+   margin: 0px 0px 0px 11px;
+   font-size: 14px;
+   color: #6e6e6e;
 }
 
 .view__body {
@@ -158,9 +163,20 @@
    border-radius: 0px 0px 4px 4px;
 }
 
+.hierarchy__info {
+   padding: 10px 20px;
+}
 
+.hierarchy__stage {
+   display: flex;
+   align-items: center;
+}
 
-
+.hierarchy__icon-stage {
+   font-size: 4px;
+   margin: 0px 5px 0px 0px;
+   color: #6C89A8;
+}
 
 .qwe {
    background-color: #ffffff;

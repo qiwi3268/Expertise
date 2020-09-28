@@ -37,7 +37,7 @@
                 <i class="info__icon fas fa-user-edit"></i>
                 <div class="info__description">
                     <span class="info__label">Ответственные</span>
-                    <span class="info__text">Заявительfsdfkl;sdfkl;k;sdf sdfjlsfsdfsdfjk fksdjkldjklsfsdfjkl sdjklsdfjklsdfjkl fsdjklfjklsdfjkl sdfsjklsdfjkl fsdfkl;sdfkl;k;sdf sdfjlsfsdfsdfjk fksdjkldjklsfsdfjkl sdjklsdfjklsdfjkl fsdjklfjklsdfjkl sdfsjklsdfjk fsdfkl;sdfkl;k;sdf sdfjlsfsdfsdfjk fksdjkldjklsfsdfjkl sdjklsdfjklsdfjkl fsdjklfjklsdfjkl sdfsjklsdfjk fsdfkl;sdfkl;k;sdf sdfjlsfsdfsdfjk fksdjkldjklsfsdfjkl sdjklsdfjklsdfjkl fsdjklfjklsdfjkl sdfsjklsdfjk fsdfkl;sdfkl;k;sdf sdfjlsfsdfsdfjk fksdjkldjklsfsdfjkl sdjklsdfjklsdfjkl fsdjklfjklsdfjkl sdfsjklsdfjk</span>
+                    <span class="info__text">Заявитель</span>
                 </div>
                 
                 <div class="responsible" data-tooltip_content hidden>
@@ -50,22 +50,62 @@
         </div>
 
         <div class="view__hierarchy hierarchy">
-            <?php foreach ($variablesTV->getValue('availableDocuments') as $document): ?>
-                <div class="hierarchy__section" data-tooltip>
-                    <a href="<?= $document['ref'] ?>" class="hierarchy__item" data-depth="<?= $document['depth'] ?>">
-                        <span class="hierarchy__name"><?= $document['label'] ?></span>
-                        <?php foreach ($document['descriptions'] as $description): ?>
-                            <span class="hierarchy__text"><?= $description ?></span>
+    
+    
+            <?php if (isset($variablesTV->getValue('availableDocuments')['application'][0])): ?>
+                <?php $_application = $variablesTV->getValue('availableDocuments')['application'][0] ?>
+                
+                <div class="hierarchy__section">
+                    <a href="<?= $_application['ref'] ?>" class="hierarchy__item" data-depth="0">
+                        <span class="hierarchy__name"><?= $_application['label'] ?></span>
+                        <div class="hierarchy__stage">
+                            <i class="hierarchy__icon-stage fas fa-circle"></i>
+                            <span class="hierarchy__text"><?= $_application['stage'] ?></span>
+                        </div>
+                        <?php foreach ($_application['descriptions'] as $description): ?>
+                            <span class="hierarchy__descriptions"><?= $description ?></span>
                         <?php endforeach; ?>
                     </a>
-                    <div class="responsible" data-tooltip_content hidden>
-                        <div class="responsible__name">Раздел 1</div>
-                        <div class="responsible__name">Раздел 1</div>
-                    </div>
                 </div>
-            <?php endforeach; ?>
+            <?php endif; ?>
+            <?php if (isset($variablesTV->getValue('availableDocuments')['total_cc'][0])): ?>
+                <?php $_total_cc = $variablesTV->getValue('availableDocuments')['total_cc'][0] ?>
+                <div class="hierarchy__section">
+                    <a href="<?= $_total_cc['ref'] ?>" class="hierarchy__item" data-depth="1">
+                        <span class="hierarchy__name"><?= $_total_cc['label'] ?></span>
+                        <div class="hierarchy__stage">
+                            <i class="hierarchy__icon-stage fas fa-circle"></i>
+                            <span class="hierarchy__text"><?= $_total_cc['stage'] ?></span>
+                        </div>
+                        <?php foreach ($_total_cc['descriptions'] as $description): ?>
+                            <span class="hierarchy__descriptions"><?= $description ?></span>
+                        <?php endforeach; ?>
+                    </a>
+                </div>
+            <?php endif; ?>
+            <?php if (isset($variablesTV->getValue('availableDocuments')['sections'])): ?>
+                <?php $_sections = $variablesTV->getValue('availableDocuments')['sections'] ?>
+                <?php foreach ($_sections as $section): ?>
+                    <div class="hierarchy__section" data-tooltip>
+                        <a href="<?= $section['ref'] ?>" class="hierarchy__item" data-depth="2">
+                            <span class="hierarchy__name"><?= $section['label'] ?></span>
+                            <div class="hierarchy__stage">
+                                <i class="hierarchy__icon-stage fas fa-circle"></i>
+                                <span class="hierarchy__text"><?= $section['stage'] ?></span>
+                            </div>
+                            <?php if (!empty($section['descriptions'])): ?>
+                                <?php foreach ($section['descriptions'] as $description): ?>
+                                    <span class="hierarchy__descriptions"><?= $description ?></span>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </a>
+                        <div class="hierarchy__info" data-tooltip_content hidden>
+                            <div class="hierarchy__tooltip"><?= $section['tooltip'] ?></div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
-
     </div>
 
 
