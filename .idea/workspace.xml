@@ -2,29 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classes/Application/Actions/AccessActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Actions/AccessActions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/Actions/Actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Actions/Actions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/DocumentTreeHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/DocumentTreeHandler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/TotalCC/Actions/Actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/TotalCC/Actions/Actions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/TotalCC/Actions/ExecutionActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/TotalCC/Actions/ExecutionActions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Actions/Actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Actions/Actions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Actions/Locator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Actions/Locator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/Traits/MainTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/Traits/MainTrait.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Singles/NodeStructure.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/NodeStructure.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Actions/total_cc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Actions/total_cc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Docs/Relations/HierarchyTree.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Docs/Relations/HierarchyTree.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Docs/Relations/total_cc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Docs/Relations/total_cc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/DocumentationTypeTableLocator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/DocumentationTypeTableLocator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Exceptions/Tables.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Exceptions/Tables.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/expertise_cards/documents/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/expertise_cards/documents/application/actions/action_2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/expertise_cards/sidebars/actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/expertise_cards/sidebars/actions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/expertise_cards/sidebars/hierarchy.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/expertise_cards/sidebars/hierarchy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Classes/Exceptions/RoutesXMLHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/Exceptions/RoutesXMLHandler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Classes/RoutesXMLHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/RoutesXMLHandler.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/action_sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_sidebar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/files.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/files.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/tooltip.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/tooltip.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/sidebars/hierarchy.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/sidebars/hierarchy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/modals/Tooltip.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/Tooltip.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,13 +133,7 @@
       <workItem from="1600832243874" duration="22601000" />
       <workItem from="1600964306900" duration="1111000" />
       <workItem from="1601224057513" duration="163000" />
-    </task>
-    <task id="LOCAL-00093" summary="11.09.2020">
-      <created>1599795504761</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1599795504761</updated>
+      <workItem from="1601306216140" duration="5492000" />
     </task>
     <task id="LOCAL-00094" summary="11.09.2020_1">
       <created>1599799908469</created>
@@ -492,7 +471,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601030967370</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <task id="LOCAL-00142" summary="28.09.2020">
+      <created>1601306417679</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1601306417680</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,7 +495,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="20.09.2020" />
     <MESSAGE value="20.09.2020_1" />
     <MESSAGE value="20.09.2020_2" />
     <MESSAGE value="20.09.2020_3" />
@@ -534,7 +519,8 @@
     <MESSAGE value="24.09.2020_3" />
     <MESSAGE value="24.09.2020_5" />
     <MESSAGE value="24.09.2020_6" />
-    <option name="LAST_COMMIT_MESSAGE" value="24.09.2020_6" />
+    <MESSAGE value="28.09.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="28.09.2020" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -557,12 +543,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1601030961535">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1601306416688">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1601030961535" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600519766620" />
-    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600964477191" />
+    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1601306416688" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog" timestamp="1598853557262">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -604,12 +590,12 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="92" y="92" width="2376" height="1216" key="dock-window-2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600964609575" />
-    <state x="739" y="323" width="737" height="606" key="find.popup" timestamp="1601027143936">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="571" y="185" width="1495" height="1020" key="find.popup" timestamp="1601312017239">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="739" y="323" width="737" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601027143936" />
     <state x="-1180" y="531" width="555" height="534" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600791294528" />
-    <state x="571" y="185" width="1495" height="1020" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600609806307" />
+    <state x="571" y="185" width="1495" height="1020" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1601312017239" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
     <state x="1150" y="591" key="publish.login" timestamp="1599582915682">
       <screen x="0" y="0" width="2560" height="1400" />

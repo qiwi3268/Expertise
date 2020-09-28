@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
       target.addEventListener('mouseover', () => new Tooltip(target), {once: true});
 
    });
-   
+
 });
 
 class Tooltip {

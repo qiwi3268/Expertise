@@ -24,6 +24,7 @@ class AccessActions extends MainAccessActions
 
     public function action_2(): bool
     {
+        // Должен быть сохранен вид объекта
         return true;
     }
 }

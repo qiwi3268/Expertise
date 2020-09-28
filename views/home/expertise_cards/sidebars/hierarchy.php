@@ -15,25 +15,25 @@
             <div class="info__item">
                 <i class="info__icon fas fa-calendar-week"></i>
                 <div class="info__description">
-                    <span class="info__label">Контрольный срок заявления</span>
-                    <span class="info__text">25.10.2020</span>
+                    <span class="info__title">Контрольный срок заявления</span>
+                    <span class="info__label">25.10.2020</span>
                 </div>
             </div>
             <div class="info__item">
                 <i class="info__icon fas fa-calendar-day"></i>
                 <div class="info__description">
-                    <span class="info__label">Контрольный срок стадии</span>
-                    <span class="info__text">20.09.2020</span>
+                    <span class="info__title">Контрольный срок стадии</span>
+                    <span class="info__label">20.09.2020</span>
                 </div>
             </div>
             <?php if ($variablesTV->getExistenceFlag('responsible')): ?>
                 <div class="info__item" data-tooltip>
                     <i class="info__icon fas fa-user-edit"></i>
                     <div class="info__description">
-                        <span class="info__label">Ответственные</span>
-                        <span class="info__text"><?= $variablesTV->getValue('responsibleLabel') ?></span>
+                        <span class="info__title">Ответственные</span>
+                        <span class="info__label"><?= $variablesTV->getValue('responsibleLabel') ?></span>
                     </div>
-                    
+
                     <div class="responsible" data-tooltip_content hidden>
                         <?php foreach ($variablesTV->getValue('responsibleUsers') as $FIO): ?>
                             <span class="responsible__name"><?= $FIO ?></span>
@@ -81,15 +81,16 @@
                             <span class="hierarchy__name"><?= $section['label'] ?></span>
                             <div class="hierarchy__description">
                                 <span class="hierarchy__stage"><?= $section['stage'] ?></span>
-                                <span class="hierarchy__experts">
-                                    <i class="hierarchy__experts-icon fas fa-user-friends"></i>
-                                    <span class="hierarchy__experts-title">Назначенные эксперты:</span>
-                                </span>
+                                <div class="hierarchy__experts">
+<!--                                    <i class="hierarchy__experts-icon fas fa-user-friends"></i>-->
+<!--                                    <span class="hierarchy__experts-title">Назначенные эксперты:</span>-->
                                 <?php if (!empty($section['descriptions'])): ?>
                                     <?php foreach ($section['descriptions'] as $description): ?>
                                         <span class="hierarchy__descriptions"><?= $description ?></span>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
+                                </div>
+
                             </div>
                         </a>
                         <div class="hierarchy__info" data-tooltip_content hidden>
