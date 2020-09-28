@@ -2,7 +2,9 @@
 
 
 namespace Lib\Actions;
+
 use Lib\Exceptions\Actions as SelfEx;
+use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Singles\PrimitiveValidator;
 use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
 use ReflectionException;
@@ -48,6 +50,7 @@ abstract class AccessActions
      * То есть тех действий, для которых callback вернул true
      *
      * @return array ассоциативные массивы доступных действий
+     * @throws DataBaseEx
      * @throws SelfEx
      * @throws ReflectionException
      */
@@ -72,6 +75,7 @@ abstract class AccessActions
      * @return bool <b>true</b> есть доступ к действию<br/>
      * <b>false</b> нет доступа к действию
      *
+     * @throws DataBaseEx
      * @throws SelfEx
      * @throws ReflectionException
      */

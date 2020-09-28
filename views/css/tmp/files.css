@@ -158,6 +158,9 @@
    padding-left: 60px;
 }
 
+.files[data-depth='3'] > .files__item {
+   padding-left: 90px;
+}
 
 
 

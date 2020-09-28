@@ -5,7 +5,7 @@ namespace Tables\Docs\Relations;
 
 use Tables\Exceptions\Tables as SelfEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
-use Tables\Exceptions\Tables as TablesEx;
+
 
 
 /**
@@ -30,18 +30,20 @@ class HierarchyTree
      */
     public function __construct(string $documentType, int $documentId)
     {
-        if ($documentType == DOCUMENT_TYPE['application']) {
+        $linker = new ParentDocumentLinker($documentType, $documentId);
 
-            $this->applicationId = $documentId;
-        } elseif ($documentType == DOCUMENT_TYPE['total_cc']) {
+        try {
 
-            $this->applicationId = total_cc::getIdMainDocumentById($documentId);
-        } elseif ($documentType == DOCUMENT_TYPE['section_documentation_1']) {
+            $this->applicationId = $linker->getApplicationId();
+        } catch (SelfEx $e) {
 
-            $totalCCId = section_documentation_1::getIdMainDocumentById($documentId);
-            $this->applicationId = total_cc::getIdMainDocumentById($totalCCId);
-        } else {
-            throw new SelfEx("Методу Tables\Docs\Relations\HierarchyTree::__construct не удалось определить тип документа: '{$documentType}'", 2);
+            if ($e->getCode() == 2001) {
+
+                $this->applicationId = $documentId;
+            } else {
+
+                throw new SelfEx($e->getMessage(), $e->getCode());
+            }
         }
     }
 
@@ -54,7 +56,7 @@ class HierarchyTree
      * @uses \Tables\Docs\Relations\application::getChildrenById()
      * @return array
      * @throws DataBaseEx
-     * @throws TablesEx
+     * @throws SelfEx
      */
     public function getTree(): array
     {

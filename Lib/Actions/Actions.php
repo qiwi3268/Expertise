@@ -2,6 +2,7 @@
 
 
 namespace Lib\Actions;
+use Lib\Exceptions\DataBase as DataBaseEx;
 
 
 /**
@@ -11,12 +12,21 @@ namespace Lib\Actions;
 abstract class Actions
 {
 
+    protected string $actionTable;
+    protected string $accessClass;
+    protected string $executionClass;
+
+
     /**
      * Предназначен для получения ассоциативных массивов активных действий
      *
      * @return array
+     * @throws DataBaseEx
      */
-    abstract public function getAssocActiveActions(): array;
+    public function getAssocActiveActions(): array
+    {
+        return $this->actionTable::getAllAssocWhereActive();
+    }
 
 
     /**
@@ -25,8 +35,12 @@ abstract class Actions
      * @param string $pageName
      * @return array|null <b>array</b> ассоцивтивный массив действия<br/>
      * <b>null</b> действие не существует
+     * @throws DataBaseEx
      */
-    abstract public function getAssocActiveActionByPageName(string $pageName): ?array;
+    public function getAssocActiveActionByPageName(string $pageName): ?array
+    {
+        return $this->actionTable::getAssocWhereActiveByPageName($pageName);
+    }
 
 
     /**
@@ -34,7 +48,10 @@ abstract class Actions
      *
      * @return AccessActions
      */
-    abstract public function getAccessActions(): AccessActions;
+    public function getAccessActions(): AccessActions
+    {
+        return new $this->accessClass($this);
+    }
 
 
     /**
@@ -42,5 +59,18 @@ abstract class Actions
      *
      * @return ExecutionActions
      */
-    abstract public function getExecutionActions(): ExecutionActions;
+    public function getExecutionActions(): ExecutionActions
+    {
+        return new $this->executionClass($this);
+    }
+
+
+    /**
+     * Предназначен для определения названий классов:
+     * - actionTable таблица действий над нужным документом
+     * - accessClass класс проверки доступа к документа (наследуется от {@see \Lib\Actions\AccessActions}
+     * - executionClass класс исполнений действий для документа (наследуется от {@see \Lib\Actions\ExecutionActions}
+     *
+     */
+    abstract protected function defineClasses(): void;
 }

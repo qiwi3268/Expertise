@@ -59,10 +59,8 @@
                         <?php endforeach; ?>
                     </a>
                     <div class="responsible" data-tooltip_content hidden>
-                        <div class="responsible__name">Андефайнд А.А.</div>
-                        <div class="responsible__name">Андефайнд А.А.</div>
-                        <div class="responsible__name">Андефайнд А.А.</div>
-                        <div class="responsible__name">Андефайнд А.А.</div>
+                        <div class="responsible__name">Раздел 1</div>
+                        <div class="responsible__name">Раздел 1</div>
                     </div>
                 </div>
             <?php endforeach; ?>

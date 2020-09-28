@@ -151,10 +151,16 @@ class AccessToDocumentTree
 
     private function application(): array
     {
+        if ($this->treeHandler->ce_totalCC()) {
+            $totalCCid = $this->treeHandler->getTotalCCId();
+        } else {
+            $totalCCid = null;
+        }
+
         return [
             DOCUMENT_TYPE['application'] => [
                 $this->documentId,
-                -1
+                $totalCCid
             ]
         ];
     }

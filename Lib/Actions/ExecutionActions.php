@@ -2,7 +2,9 @@
 
 
 namespace Lib\Actions;
+
 use Lib\Exceptions\Actions as SelfEx;
+use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
 use ReflectionException;
 use Lib\Singles\PrimitiveValidator;
@@ -53,6 +55,7 @@ abstract class ExecutionActions
      * Предназначен для проверки существования активного метода выполения действия по имени странцы
      *
      * @param string $pageName URN требуемой страницы
+     * @throws DataBaseEx
      * @throws SelfEx
      * @throws ReflectionException
      */
@@ -69,6 +72,7 @@ abstract class ExecutionActions
      *
      * @param string $pageName URN требуемой страницы
      * @return string URN страницы, на которую необходимо перенаправить пользователя после действия
+     * @throws DataBaseEx
      * @throws SelfEx
      * @throws ReflectionException
      */

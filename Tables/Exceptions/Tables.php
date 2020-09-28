@@ -11,8 +11,9 @@ use Lib\Exceptions\Traits\MainTrait;
  *
  * {@see \Tables\Docs\application}<br>
  * 1 - в массиве result отсутствует(ют) свойства id_misc и/или name_misc<br>
- * {@see \Tables\Docs\Relations\HierarchyTree}<br>
- * 2 - не удалось определить тип документа<br>
+ * {@see \Tables\Docs\Relations\ParentDocumentLinker}<br>
+ * 2001 - метод невозможно вызвать от типа документа "Заявление"<br>
+ * 2002 - методу не удалось определить тип документа<br>
  * {@see \Tables\Docs\TableLocator}<br>
  * 3 - методу Tables\Docs\TableLocator::getDocTableByDocumentType не удалось определить таблицу документа<br>
  * 4 - методу Tables\Docs\TableLocator::getDocRelationTableByDocumentType не удалось определить таблицу отношений документа<br>

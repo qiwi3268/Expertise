@@ -24,7 +24,8 @@ $checkedDocuments = AccessToDocumentTree::getCheckedDocuments();
  * @return bool
  */
 $isDocumentChecked = function (
-    string $documentType, int $documentId
+    string $documentType,
+    int $documentId
 ) use ($checkedDocuments): bool {
     foreach ($checkedDocuments as ['doc' => $doc, 'id' => $id]) {
         if ($documentType == $doc && $documentId == $id) {
@@ -33,6 +34,7 @@ $isDocumentChecked = function (
     }
     return false;
 };
+
 
 $availableDocumentsTV = [];
 
@@ -48,19 +50,19 @@ $availableDocumentsTV = [];
 $addDocumentToArray = function (
     string $label,
     string $ref,
-    array  $description,
-    int    $depth
+    array $description,
+    int $depth
 ) use (&$availableDocumentsTV): void {
 
     $availableDocumentsTV[] = [
-        'label'        => $label,
-        'ref'          => $ref,
+        'label' => $label,
+        'ref' => $ref,
         'descriptions' => $description,
-        'depth'        => $depth
+        'depth' => $depth
     ];
 };
 
-
+// hierarchyTree определен ранее в AccessToDocumentTreeChecker
 $treeHandler = new DocumentTreeHandler($VT->getValue('hierarchyTree'));
 
 $factory = new Factory();
@@ -77,8 +79,6 @@ $checkAccessFromApplication = function () use ($treeHandler, $factory): bool {
         $treeHandler->getApplicationId(),
         $treeHandler->ce_totalCC() ? $treeHandler->getTotalCCId() : null
     ]);
-
-    $objectApplication->checkAccess();
 
     try {
         $objectApplication->checkAccess();

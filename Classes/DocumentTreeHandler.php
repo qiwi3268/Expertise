@@ -40,7 +40,7 @@ class DocumentTreeHandler
      */
     public function ce_application(): bool
     {
-        return isset($this->tree['id']) && isset($this->tree['id_type_of_object']);
+        return isset($this->tree['id']);
     }
 
 
@@ -51,7 +51,8 @@ class DocumentTreeHandler
      */
     public function ce_totalCC(): bool
     {
-        return isset($this->tree['children']['total_cc']);
+        // Так как сводное замечание / заключение может быть создано только при сохраненном виде объекта
+        return isset($this->tree['id_type_of_object']) && isset($this->tree['children']['total_cc']);
     }
 
 

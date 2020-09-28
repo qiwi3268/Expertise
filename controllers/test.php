@@ -15,9 +15,11 @@ use Tables\Structures\documentation_1;
 use Lib\Singles\Helpers\PageAddress;
 
 
-$a = PageAddress::createCardRef(50, 'application', 'actions', 'action_2');
+$a = 2.000;
 
-var_dump($a);
+$expr = 2 == $a;
+
+var_dump($expr);
 
 
 

@@ -454,8 +454,16 @@
 
 }
 
+.files__title {
+   padding: 10px;
+   text-align: center;
+   border-bottom: 1px solid #e0e0e0;
+   font-weight: 700;
+}
 
-
+.files__title:not(:first-child) {
+   border-top: 1px solid #e0e0e0;
+}
 
 
 
