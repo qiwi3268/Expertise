@@ -3,11 +3,7 @@
 
 namespace Classes\Application\Actions;
 
-use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Actions\Actions as MainActions;
-use Lib\Actions\AccessActions as MainAccessActions;
-use Lib\Actions\ExecutionActions as MainExecutionActions;
-use Tables\Actions\application as ActionTable;
 
 
 /**
@@ -18,48 +14,23 @@ class Actions extends MainActions
 {
 
     /**
-     * Реализация абстрактного метода
+     * Конструктор класса
      *
-     * @return array
-     * @throws DataBaseEx
      */
-    public function getAssocActiveActions(): array
+    public function __construct()
     {
-        return ActionTable::getAllAssocWhereActive();
+        $this->defineClasses();
     }
 
 
     /**
      * Реализация абстрактного метода
      *
-     * @param string $pageName
-     * @return array|null
-     * @throws DataBaseEx
      */
-    public function getAssocActiveActionByPageName(string $pageName): ?array
+    protected function defineClasses(): void
     {
-        return ActionTable::getAssocWhereActiveByPageName($pageName);
-    }
-
-
-    /**
-     * Реализация абстрактного метода
-     *
-     * @return MainAccessActions
-     */
-    public function getAccessActions(): MainAccessActions
-    {
-        return new AccessActions($this);
-    }
-
-
-    /**
-     * Реализация абстрактного метода
-     *
-     * @return MainExecutionActions
-     */
-    public function getExecutionActions(): MainExecutionActions
-    {
-        return new ExecutionActions($this);
+        $this->actionTable = '\Tables\Actions\application';
+        $this->accessClass = '\Classes\Application\Actions\AccessActions';
+        $this->executionClass = '\Classes\Application\Actions\ExecutionActions';
     }
 }

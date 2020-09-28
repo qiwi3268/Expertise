@@ -85,6 +85,11 @@
    transition: background-color .1s;
 }
 
+.hierarchy__section[data-selected='1'] {
+   background-color: #f6f8fa;
+   border-color: #B5C5D7;
+}
+
 .hierarchy__section:hover {
    /*background-color: #f2f2f2;*/
    background-color: #F3F5F6;
@@ -120,7 +125,14 @@
 .hierarchy__text {
    font-size: 14px;
    color: #6e6e6e;
-   word-break: break-all;
+}
+
+.hierarchy__description {
+   display: flex;
+   flex-direction: column;
+   margin: 0px 0px 0px 11px;
+   font-size: 14px;
+   color: #6e6e6e;
 }
 
 .view__body {
@@ -157,6 +169,55 @@
 .view__action:last-child {
    border-radius: 0px 0px 4px 4px;
 }
+
+.hierarchy__info {
+   padding: 10px 20px;
+}
+
+.hierarchy__stage {
+   /*display: flex;*/
+   /*align-items: center;*/
+   /*font-style: italic;*/
+
+}
+
+.hierarchy__experts {
+   font-size: 14px;
+   color: #6e6e6e;
+}
+
+.hierarchy__icon-stage {
+   font-size: 8px;
+   margin: 0px 5px 0px 0px;
+   color: #6C89A8;
+}
+
+.hierarchy__experts-title {
+   /*font-style: italic;*/
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

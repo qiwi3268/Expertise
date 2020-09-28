@@ -57,17 +57,53 @@ $filesInitializer = new FilesInitializer($requiredMappings, CURRENT_DOCUMENT_ID)
 
 $needsFiles = $filesInitializer->getNeedsFilesWithSigns()[$mapping_level_1][$mapping_level_2];
 
-// Обработка файловых массивов
-FileHandler::setFileIconClass($needsFiles);
-FileHandler::setValidateResultJSON($needsFiles);
-FileHandler::setHumanFileSize($needsFiles);
-
 
 $nodeStructure = new NodeStructure(
     call_user_func([$tableLocator->getStructures(), 'getAllAssocWhereActive'])
 );
 
-$filesInStructure = FilesInitializer::getFilesInDepthStructure($needsFiles, $nodeStructure);
+
+// Переиндексация массива, т.к. дальше следует цикл for
+$filesInStructure = array_values(FilesInitializer::getFilesInDepthStructure($needsFiles, $nodeStructure));
+
+$offset = 0;
+
+
+/**
+ * Предназначен для получения информации - есть ли у узла дочерний узел
+ * ведомостей объемов работ, у которого есть загруженные файлы
+ *
+ * @param int $currentIndex текущий индекс в перебираемом массиве
+ * @return int|null <b>int</b> индекс элемента в исходном массиве, который
+ * является дочерним узлом (к элементу currentIndex), ВОРом, в нем есть загруженные файлы<br>
+ * <b>false</b> элемент не существует
+ * @throws LogicException
+ */
+$hasVORWithFiles = function (int $currentIndex) use ($filesInStructure, &$offset): ?int {
+
+    $indexes = [];
+
+    // ВОРы должны быть обязательно после текущего элемента массива
+    for ($l = ($offset + 1); $l < count($filesInStructure); $l++) {
+
+        if (
+            $filesInStructure[$l]['id_parent_node'] == $filesInStructure[$currentIndex]['id']
+            && $filesInStructure[$l]['is_vor']
+            && isset($filesInStructure[$l]['files'])
+        ) {
+            $indexes[] = $l;
+        }
+    }
+
+    if (($count = count($indexes)) > 1) {
+        $debug = implode(', ', $indexes);
+        throw new LogicException("У узла с id: {$filesInStructure[$currentIndex]['id']} найдено: {$count} дочерних узлов ВОРов с id: '{$debug}'");
+    }
+    return $count == 1 ? $indexes[0] : null;
+};
+
+
+$filesInStructureTV = [];
 
 // Отображаем только те разделы, к которым есть файлы и которые привязаны к 341 приказу
 
@@ -75,16 +111,56 @@ $ids = []; // Индексный массив id подошедших блоко
 
 foreach ($filesInStructure as $index => $node) {
 
-    if (isset($node['files']) && !is_null($node['id_main_block_341'])) {
+    // Раздел привязан к блоку из бланка заключения по 341 приказу
+    if (!is_null($node['id_main_block_341'])) {
 
-        $ids[] = (int)$node['id_main_block_341'];
-    } else {
+        $entryFlag = false;
 
-        unset($filesInStructure[$index]);
+        if (isset($node['files'])) {
+
+            $tmpSelf = $filesInStructure[$index];
+
+            FileHandler::setFileIconClass($tmpSelf['files']);
+            FileHandler::setValidateResultJSON($tmpSelf['files']);
+            FileHandler::setHumanFileSize($tmpSelf['files']);
+
+            $tmpSelf['self_files'] = $tmpSelf['files'];
+            unset($tmpSelf['files']);
+
+            $filesInStructureTV[$index] = $tmpSelf;
+            $entryFlag = true;
+        }
+
+        if (!is_null($vorIndex = $hasVORWithFiles($index))) {
+
+            $VORFiles = $filesInStructure[$vorIndex]['files'];
+
+            FileHandler::setFileIconClass($VORFiles);
+            FileHandler::setValidateResultJSON($VORFiles);
+            FileHandler::setHumanFileSize($VORFiles);
+
+            // Если есть собственные файлы - записываем туда ключ vor_files.
+            // Если файлов нет - нужно записать в массив TV этот раздел с ключом vor_files
+            if ($entryFlag) {
+
+                $filesInStructureTV[$index]['vor_files'] = $VORFiles;
+            } else {
+
+                // Если собственных файлов нет - надо добавить в массив для view исходный массив
+                $tmpSelf = $filesInStructure[$index];
+                $tmpSelf['vor_files'] = $VORFiles;
+                unset($tmpSelf['files']);
+
+                $filesInStructureTV[$index] = $tmpSelf;
+                $entryFlag = true;
+            }
+        }
+        if ($entryFlag) $ids[] = $filesInStructure[$index]['id_main_block_341'];
     }
+    $offset++;
 }
 
-$variablesTV->setValue('documentation_files_in_structure', $filesInStructure);
+$variablesTV->setValue('documentation_files_in_structure', $filesInStructureTV);
 
 // Формирование справочников разделов из 341 приказа
 //

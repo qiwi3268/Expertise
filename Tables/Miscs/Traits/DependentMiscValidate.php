@@ -11,7 +11,7 @@ use Lib\DataBase\ParametrizedQuery;
 /**
  * Реализует интерфейс {@see \Tables\Miscs\Interfaces\DependentMiscValidate}
  *
- * <b>*</b> Для использования трейта необходимо, чтобы перед его включением было объявлено
+ * <b>*</b> Для использования трейта необходимо, чтобы перед его включением были объявлены
  * статические свойства:
  * - tableName
  * - mainTableName

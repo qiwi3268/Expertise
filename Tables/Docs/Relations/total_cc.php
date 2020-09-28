@@ -5,7 +5,6 @@ namespace Tables\Docs\Relations;
 
 use Lib\Exceptions\DataBase as DataBaseEx;
 use Tables\Exceptions\Tables as TablesEx;
-use Exception;
 
 use Tables\DocumentationTypeTableLocator;
 use Lib\DataBase\ParametrizedQuery;

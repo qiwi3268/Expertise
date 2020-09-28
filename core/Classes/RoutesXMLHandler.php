@@ -257,7 +257,7 @@ final class RoutesXMLHandler
                 $path != ''
                 && ($path[0] != '/' || $path[mb_strlen($path) - 1] != '/')
             ) {
-                throw new SelfEx("Путь к файлу: '{$path}' должен начинться и заканчиваться на '/'", 2);
+                throw new SelfEx("Путь к файлу: '{$path}' должен начинаться и заканчиваться на '/'", 2);
             }
 
             $ext = (string)$dir['ext'];

@@ -10,6 +10,9 @@ $availableActions = ActionLocator::getInstance(CURRENT_DOCUMENT_TYPE)
     ->getAccessActions()
     ->getAvailableActions();
 
+$test = ActionLocator::getInstance(CURRENT_DOCUMENT_TYPE)->getObject()->getAccessActions();
+
+
 $availableActionsTV = [];
 
 foreach ($availableActions as $action) {

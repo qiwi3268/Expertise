@@ -86,13 +86,22 @@ class ExecutionActions extends MainExecutionActions
         $tableLocator = new DocumentationTypeTableLocator(application::getIdTypeOfObjectById(CURRENT_DOCUMENT_ID));
 
         $tables = [
-            'doc_total_cc'                   => '\Tables\Docs\total_cc',
-            'assigned_expert_total_cc'       => '\Tables\assigned_expert_total_cc',
-            'resp_total_cc'                  => '\Tables\Responsible\type_4\total_cc',
-            'assigned_expert_main_block_341' => $tableLocator->getOrder341AssignedExpert(),
-            'doc_section'                    => $tableLocator->getDocsSection(),
-            'resp_section'                   => $tableLocator->getResponsibleType4Section()
+            // Создание сводного замечания / заключения
+            'doc_total_cc'             => '\Tables\Docs\total_cc',
+            // Назначенные эксперты на сводное замечание / заключение (включая информацию ведущий / общая часть)
+            'assigned_expert_total_cc' => '\Tables\assigned_expert_total_cc',
+            // Назначение ответственных на сводное замечание / заключение
+            'resp_total_cc'            => '\Tables\Responsible\type_4\total_cc',
+            // Создание разделов
+            'doc_section'              => $tableLocator->getDocsSection(),
+            // Назначение ответственных на каждый из разделов
+            'resp_section'             => $tableLocator->getResponsibleType4Section(),
+            // Связь эксперта и разделов, на которые он был назначен
+            'assigned_expert_section'  => $tableLocator->getAssignedExpertSection()
         ];
+
+        // resp_section и assigned_expert_section похожи, но ответственные на разделе в ходе процесса будут меняться
+        // с заявителем, а назначенные на раздел остаются навсегда (если не будут заменены)
 
         $transaction = new Transaction();
 
@@ -112,7 +121,7 @@ class ExecutionActions extends MainExecutionActions
         // Ключ - id блока из 341 приказа
         // Значение - индексный массив формата:
         //    Ключ - простой порядковый индекс
-        //    значение - id эксперта
+        //    Значение - id эксперта
         $mainBlocks = [];
 
         foreach ($experts as $expert) {
@@ -133,15 +142,6 @@ class ExecutionActions extends MainExecutionActions
             );
 
             foreach ($expert['ids_main_block_341'] as $id_main_block) {
-
-                // Создание записей на какие блоки из 341 приказа был назначен итерируемый эксперт
-                $transaction->add(
-                    $tables['assigned_expert_main_block_341'],
-                    'create',
-                    [$id_main_block, $expert['id_expert']],
-                    null,
-                    'id_total_cc'
-                );
 
                 $mainBlocks[$id_main_block][] = $expert['id_expert'];
             }
@@ -172,11 +172,20 @@ class ExecutionActions extends MainExecutionActions
                 'id_total_cc'
             );
 
-            // Назначение определенных экспертов ответственными на раздел
             foreach ($assignedExpertsId as $expertId) {
 
+                // Назначение определенных экспертов ответственными на раздел
                 $transaction->add(
                     $tables['resp_section'],
+                    'create',
+                    [$expertId],
+                    null,
+                    "id_section_{$sectionCount}"
+                );
+
+                // Создание записей на какие разделы был назначен итерируемый эксперт
+                $transaction->add(
+                    $tables['assigned_expert_section'],
                     'create',
                     [$expertId],
                     null,
@@ -185,7 +194,6 @@ class ExecutionActions extends MainExecutionActions
             }
             $sectionCount++;
         }
-
         $transaction->start();
 
 

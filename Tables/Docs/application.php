@@ -9,9 +9,11 @@ use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\DataBase\SimpleQuery;
 use Lib\DataBase\ParametrizedQuery;
 
+use Tables\Docs\Interfaces\Document;
 use Tables\Docs\Interfaces\Responsible;
 use Tables\CommonInterfaces\Existent;
 
+use Tables\Docs\Traits\Document as DocumentTrait;
 use Tables\Docs\Traits\Responsible as ResponsibleTrait;
 use Tables\CommonTraits\Existent as ExistentTrait;
 
@@ -20,11 +22,13 @@ use Tables\CommonTraits\Existent as ExistentTrait;
  * Таблица: <i>'doc_application'</i>
  *
  */
-final class application implements Existent, Responsible
+final class application implements Document, Existent, Responsible
 {
 
     static private string $tableName = 'doc_application';
+    static private string $stageTableName = 'stage_application';
 
+    use DocumentTrait;
     use ExistentTrait;
     use ResponsibleTrait;
 

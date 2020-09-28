@@ -43,6 +43,25 @@ class DocumentationTypeTableLocator
      * в зависимости от вида объекта
      *
      * @return string
+     * {@see \Tables\Actions\section_documentation_1}<br>
+     * или<br>
+     * {@see \Tables\Actions\section_documentation_2}
+     */
+    public function getActionsSection(): string
+    {
+        if ($this->typeOfObjectId == 1) {
+            return '\Tables\Actions\section_documentation_1';
+        } else {
+            return '\Tables\Actions\section_documentation_2';
+        }
+    }
+
+
+    /**
+     * Предназначен для получения названия класса таблицы
+     * в зависимости от вида объекта
+     *
+     * @return string
      * {@see \Tables\Docs\section_documentation_1}<br>
      * или<br>
      * {@see \Tables\Docs\section_documentation_2}
@@ -83,17 +102,17 @@ class DocumentationTypeTableLocator
      * в зависимости от вида объекта
      *
      * @return string
-     * {@see \Tables\order_341\assigned_expert_documentation_1}<br>
+     * {@see \Tables\assigned_expert_section_documentation_1}<br>
      * или<br>
-     * {@see \Tables\order_341\assigned_expert_documentation_2}
+     * {@see \Tables\assigned_expert_section_documentation_2}
      */
-    public function getOrder341AssignedExpert(): string
+    public function getAssignedExpertSection(): string
     {
         if ($this->typeOfObjectId == 1) {
-            return '\Tables\order_341\assigned_expert_documentation_1';
+            return '\Tables\assigned_expert_section_documentation_1';
         } else {
             //todo на вырост
-            return '\Tables\order_341\assigned_expert_documentation_2';
+            return '\Tables\assigned_expert_section_documentation_2';
         }
     }
 

@@ -3,6 +3,7 @@
 getAllAssoc                       индексный массив с ассоциативными массивами внутри
 getAllAssocWhereActive
 getAllAssocWhereActiveByPageName
+getAllAssocFIOByIdSection         индексный массив с ассоциативными массивами ФИО по id раздела
 getAssoc                          ассоциативный массив одной записи
 getAssocWhereActiveByPageName
 getAllSimple                      простой (индексный) массив

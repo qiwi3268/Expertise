@@ -4,6 +4,7 @@
 namespace Classes\RouteCallbacks;
 
 use Lib\Exceptions\Actions as ActionsEx;
+use Lib\Exceptions\DataBase as DataBaseEx;
 use ReflectionException;
 use core\Classes\Session;
 use Lib\Actions\Locator;
@@ -52,6 +53,7 @@ class ActionChecker
      *
      * @throws ActionsEx
      * @throws ReflectionException
+     * @throws DataBaseEx
      */
     public function checkAccess(): void
     {
@@ -68,6 +70,7 @@ class ActionChecker
      *
      * @throws ActionsEx
      * @throws ReflectionException
+     * @throws DataBaseEx
      */
     public function checkIssetExecutionCallback(): void
     {

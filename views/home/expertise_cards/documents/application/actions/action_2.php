@@ -92,21 +92,43 @@
                                     <i class="section__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                                 </div>
                                 <div class="section__files files filled block card-body" data-id_file_field>
-                                    <?php foreach ($section['files'] as $file): ?>
-                                        <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" data-validate_results='<?= $file['validate_results'] ?>'>
-                                            <div class="files__info">
-                                                <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
-                                                <div class="files__description">
-                                                    <span class="files__name"><?= $file['file_name'] ?></span>
-                                                    <span class="files__size"><?= $file['human_file_size'] ?></span>
+                                    <?php if (isset($section['self_files'])): ?>
+                                        <div class="files__title">Файлы по разделу</div>
+                                        <?php foreach ($section['self_files'] as $file): ?>
+                                            <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" data-validate_results='<?= $file['validate_results'] ?>'>
+                                                <div class="files__info">
+                                                    <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
+                                                    <div class="files__description">
+                                                        <span class="files__name"><?= $file['file_name'] ?></span>
+                                                        <span class="files__size"><?= $file['human_file_size'] ?></span>
+                                                    </div>
+                                                </div>
+                                                <div class="files__state"></div>
+                                                <div class="files__actions">
+                                                    <i class="files__unload fas fa-file-download"></i>
                                                 </div>
                                             </div>
-                                            <div class="files__state"></div>
-                                            <div class="files__actions">
-                                                <i class="files__unload fas fa-file-download"></i>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                    <?php if (isset($section['vor_files'])): ?>
+                                        <div class="files__title">Файлы ведомостей объемов работ</div>
+                                        <?php foreach ($section['vor_files'] as $file): ?>
+                                            <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" data-validate_results='<?= $file['validate_results'] ?>'>
+                                                <div class="files__info">
+                                                    <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
+                                                    <div class="files__description">
+                                                        <span class="files__name"><?= $file['file_name'] ?></span>
+                                                        <span class="files__size"><?= $file['human_file_size'] ?></span>
+                                                    </div>
+                                                </div>
+                                                <div class="files__state"></div>
+                                                <div class="files__actions">
+                                                    <i class="files__unload fas fa-file-download"></i>
+                                                </div>
                                             </div>
-                                        </div>
-                                    <?php endforeach; ?>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                    
                                 </div>
                             </div>
                         </div>

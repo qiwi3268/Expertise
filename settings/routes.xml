@@ -211,6 +211,7 @@
                     <file name="header" />
                 </dir>
                 <dir path="/controllers/home/expertise_cards/sidebars/" ext=".php">
+                    <file name="info" />
                     <file name="hierarchy" />
                 </dir>
                 <dir path="/controllers/home/expertise_cards/documents/application/" ext=".php">
@@ -260,6 +261,7 @@
                     <file name="header" />
                 </dir>
                 <dir path="/controllers/home/expertise_cards/sidebars/" ext=".php">
+                    <file name="info" />
                     <file name="hierarchy" />
                 </dir>
                 <dir path="/controllers/home/expertise_cards/documents/total_cc/" ext=".php">
@@ -302,6 +304,7 @@
                     <file name="header" />
                 </dir>
                 <dir path="/controllers/home/expertise_cards/sidebars/" ext=".php">
+                    <file name="info" />
                     <file name="hierarchy" />
                 </dir>
                 <dir path="/controllers/home/expertise_cards/documents/section/" ext=".php">

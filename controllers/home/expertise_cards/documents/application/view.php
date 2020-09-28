@@ -107,17 +107,11 @@ if ($variablesTV->getExistenceFlag('type_of_object')) {
     $variablesTV->setValue('documentation_files_in_structure', $filesInStructure);
 }
 
-//todo перенести вместе с use в другое место
+// todo перенести вместе с use в другое место
+
 
 $responsible = new Responsible(CURRENT_DOCUMENT_ID, CURRENT_DOCUMENT_TYPE);
 $responsible = $responsible->getCurrentResponsible();
 
 
 //var_dump($responsible);
-
-
-
-
-
-
-

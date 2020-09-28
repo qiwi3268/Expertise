@@ -8,15 +8,16 @@ use Lib\DataBase\ParametrizedQuery;
 
 
 /**
- * Таблица: <i>'action_total_cc'</i>
+ * Таблица: <i>'action_section_documentation_2'</i>
  *
- * Действия над типом документа "Сводное замечание / заключение"
+ * Действия над типом документа "Раздел"
+ * Для вида объекта "Линейные"
  *
  */
-final class total_cc implements Interfaces\ActionTable
+final class section_documentation_2 implements Interfaces\ActionTable
 {
 
-    static private string $tableName = 'action_total_cc';
+    static private string $tableName = 'action_section_documentation_2';
 
     use Traits\ActionTable;
 
@@ -31,9 +32,9 @@ final class total_cc implements Interfaces\ActionTable
      */
     static public function getAssocBusinessProcessById(int $id): array
     {
-        $query = "SELECT `doc_total_cc`.`id_stage`
-                  FROM `doc_total_cc`
-                  WHERE `doc_total_cc`.`id`=?";
+        $query = "SELECT `doc_section_documentation_2`.`id_stage`
+                  FROM `doc_section_documentation_2`
+                  WHERE `doc_section_documentation_2`.`id`=?";
         return ParametrizedQuery::getFetchAssoc($query, [$id])[0];
     }
 }

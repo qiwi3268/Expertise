@@ -8,6 +8,8 @@ use Lib\AccessToDocument\AccessToDocumentTree;
 use Lib\AccessToDocument\Factory;
 use Lib\Singles\Helpers\PageAddress;
 use Classes\DocumentTreeHandler;
+use Tables\Docs\TableLocator;
+use Tables\DocumentationTypeTableLocator;
 
 
 $VT = VariableTransfer::getInstance();
@@ -24,7 +26,8 @@ $checkedDocuments = AccessToDocumentTree::getCheckedDocuments();
  * @return bool
  */
 $isDocumentChecked = function (
-    string $documentType, int $documentId
+    string $documentType,
+    int $documentId
 ) use ($checkedDocuments): bool {
     foreach ($checkedDocuments as ['doc' => $doc, 'id' => $id]) {
         if ($documentType == $doc && $documentId == $id) {
@@ -34,33 +37,43 @@ $isDocumentChecked = function (
     return false;
 };
 
+
 $availableDocumentsTV = [];
 
 
 /**
  * Предназначен для добавления документа к массиву, который будет отрисовываться во view
  *
+ * @param string $type тип документа, в который будет вноситься информация
  * @param string $label название документа
  * @param string $ref ссылка для перехода на документ
+ * @param string $stage стадия документа
+ * @param bool $isSelected выбран ли текущий элемент
  * @param array $description индексный массив с описаниями к документу
- * @param int $depth глубина вложенности документа
+ * @param string|null $tooltip текст для всплывающей подсказки
  */
 $addDocumentToArray = function (
+    string $type,
     string $label,
     string $ref,
-    array  $description,
-    int    $depth
+    string $stage,
+    bool $isSelected,
+    array $description = [],
+    ?string $tooltip = null
 ) use (&$availableDocumentsTV): void {
 
-    $availableDocumentsTV[] = [
+    $availableDocumentsTV[$type][] = [
+        'type'         => $type,
         'label'        => $label,
         'ref'          => $ref,
+        'stage'        => $stage,
+        'isSelected'   => $isSelected,
         'descriptions' => $description,
-        'depth'        => $depth
+        'tooltip'      => $tooltip
     ];
 };
 
-
+// hierarchyTree определен ранее в AccessToDocumentTreeChecker
 $treeHandler = new DocumentTreeHandler($VT->getValue('hierarchyTree'));
 
 $factory = new Factory();
@@ -77,8 +90,6 @@ $checkAccessFromApplication = function () use ($treeHandler, $factory): bool {
         $treeHandler->getApplicationId(),
         $treeHandler->ce_totalCC() ? $treeHandler->getTotalCCId() : null
     ]);
-
-    $objectApplication->checkAccess();
 
     try {
         $objectApplication->checkAccess();
@@ -132,6 +143,7 @@ $checkAccessFromSection = function (
     }
 };
 
+$docsTableLocator = new TableLocator();
 
 // Проверка заявления ------------------------------------------------------------------------
 if ($treeHandler->ce_application()) {
@@ -140,33 +152,46 @@ if ($treeHandler->ce_application()) {
         || $checkAccessFromApplication
     ) {
 
+        $docApplicationTable = $docsTableLocator->getDocTableByDocumentType(DOCUMENT_TYPE['application']);
+
         $addDocumentToArray(
+            'application',
             'Заявление',
             PageAddress::createCardRef($treeHandler->getApplicationId(), 'application', 'view'),
-            ['стадия', 'еще что-то'],
-            0
+            $docApplicationTable::getNameStageById($treeHandler->getApplicationId()),
+            CURRENT_DOCUMENT_TYPE == DOCUMENT_TYPE['application']
         );
 
         // Проверка сводного замечания / заключения ------------------------------------------
         if ($treeHandler->ce_totalCC()) {
+
+            $documentationTypeTableLocator = new DocumentationTypeTableLocator($treeHandler->getTypeOfObjectId());
 
             if (
                 $isDocumentChecked(DOCUMENT_TYPE['total_cc'], $treeHandler->getTotalCCId())
                 || $checkAccessFromTotalCC()
             ) {
 
+                $docTotalCCTable = $docsTableLocator->getDocTableByDocumentType(DOCUMENT_TYPE['total_cc']);
+
                 $addDocumentToArray(
+                    'total_cc',
                     'Сводное замечание',
                     PageAddress::createCardRef($treeHandler->getTotalCCId(), 'total_cc', 'view'),
-                    ['стадия', 'еще что-то'],
-                    1
+                    $docTotalCCTable::getNameStageById($treeHandler->getTotalCCId()),
+                    CURRENT_DOCUMENT_TYPE == DOCUMENT_TYPE['total_cc']
                 );
 
                 // Проверка разделов ---------------------------------------------------------
                 if ($treeHandler->ce_sections()) {
 
                     // dt - document type
-                    $dt = $treeHandler->getTypeOfObjectId() == 1 ? 'section_documentation_1' : 'section_documentation_2';
+                    $dt = $treeHandler->getTypeOfObjectId() == 1 ? DOCUMENT_TYPE['section_documentation_1'] : DOCUMENT_TYPE['section_documentation_2'];
+
+                    // Таблица документа раздела
+                    $docSectionTable = $docsTableLocator->getDocTableByDocumentType($dt);
+                    // Таблица назначенных на раздел экспертов
+                    $assignedExpertTable = $documentationTypeTableLocator->getAssignedExpertSection();
 
                     // Флаг того, что отсутствует раздел, который был проверен в route callback
                     // Этим экономим вызовы замыкания $isDocumentChecked, поскольку одновременно только
@@ -175,7 +200,7 @@ if ($treeHandler->ce_application()) {
 
                     foreach ($treeHandler->getSections() as $section) {
 
-                        if ($checkedAbsent && $isDocumentChecked(DOCUMENT_TYPE[$dt], $section['id'])) {
+                        if ($checkedAbsent && $isDocumentChecked($dt, $section['id'])) {
 
                             $checkedAbsent = false;
                         } elseif (!$checkAccessFromSection($dt, $section['id'])) {
@@ -183,11 +208,26 @@ if ($treeHandler->ce_application()) {
                             continue;
                         }
 
+                        // ФИО назначенных экспертов
+                        $FIOs = [];
+
+                        foreach ($assignedExpertTable::getAllAssocFIOByIdSection($section['id']) as $FIO) {
+                            $FIOs[] = getFIO($FIO, true);
+                        }
+
+                        list(
+                            'name'       => $name,
+                            'short_name' => $short_name
+                            ) = $docSectionTable::getNameAndShortNameMainBlockById($section['id']);
+
                         $addDocumentToArray(
-                            'Раздел',
+                            'sections',
+                            "Раздел {$short_name}",
                             PageAddress::createCardRef($section['id'], 'section_documentation_1', 'view'),
-                            ['стадия раздела', 'еще что-то'],
-                            2
+                            $docSectionTable::getNameStageById($section['id']),
+                            CURRENT_DOCUMENT_TYPE == $dt && CURRENT_DOCUMENT_ID == $section['id'],
+                            $FIOs,
+                            $name
                         );
                     }
                 }
@@ -195,5 +235,4 @@ if ($treeHandler->ce_application()) {
         }
     }
 }
-
 $VT->setValue('availableDocuments', $availableDocumentsTV);
