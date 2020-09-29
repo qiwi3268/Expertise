@@ -31,6 +31,7 @@
 
 .view__sidebar {
    /*width: 15%;*/
+   min-width: 250px;
    margin: 0px 10px 0px 0px;
 }
 
@@ -141,6 +142,7 @@
 
 .view__actions {
    /*width: 15%;*/
+   min-width: 200px;
    margin: 0px 0px 0px 10px;
 }
 

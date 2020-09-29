@@ -64,7 +64,9 @@
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
    background-color: #ffffff;
    cursor: pointer;
-   max-width: 20%;
+   /*max-width: 20%;*/
+   /*min-width: 300px;*/
+   width: 300px;
 }
 
 .sidebar-form__row {
@@ -128,7 +130,7 @@
 
 .application-form__cards {
    flex-grow: 1;
-   max-width: 80%;
+   /*max-width: 80%;*/
 }
 
 .card-form {

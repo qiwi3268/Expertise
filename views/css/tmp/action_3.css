@@ -68,12 +68,13 @@
    align-self: center;
    /* border-left: 3px solid #93b0d1; */
    /* box-shadow: 1px 0 3px rgba(0, 0, 0, 0.2); */
+   font-size: 14px;
    border-radius: 4px;
    border: 1px solid #e0e0e0;
    border-left: 3px solid #93b0d1;
 }
 
-.section__title {
+.section__header {
    padding: 10px;
    display: flex;
    align-items: center;
@@ -84,12 +85,23 @@
    background-color: #f6f8fa;
 }
 
+.section__title {
+   display: flex;
+   align-items: center;
+}
+
+.section__icon-info {
+   color: #2E4357;
+
+}
+
 .section__name {
-   margin: 0px 30px 0px 0px;
+   /*margin: 0px 30px 0px 0px;*/
+   margin: 0px 10px 0px 0px;
    font-weight: 700;
 }
 
-.section__icon {
+.section__icon-state {
    color: #2E4357;
 }
 

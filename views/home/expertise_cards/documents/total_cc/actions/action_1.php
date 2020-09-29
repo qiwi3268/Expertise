@@ -35,16 +35,19 @@
             <div class="card-form__body body-card card-body">
                 
                 <div class="section">
-                    <div class="section__title">
-                        <div class="section__name">1.3.3</div>
-                        <i class="section__icon fas fa-check"></i>
+                    <div class="section__header">
+                        <div class="section__title">
+                            <span class="section__name">1.3.3</span>
+                        </div>
+                        <i class="section__icon-state fas fa-check"></i>
                     </div>
                     <div class="section__body">
                         <div class="section__item">Доверенность от 03.03.2020 г. № 8Д</div>
                         <div class="section__item">Доверенность от 03.03.2020 г. № 15</div>
                     </div>
                 </div>
-                
+            
+    
                 <!--Полное наименование-->
                 <div class="body-card__row field" data-required="true" data-name="" data-pattern="text">
                     <span class="body-card__title">Полное наименование</span>
