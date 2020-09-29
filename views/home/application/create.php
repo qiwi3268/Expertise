@@ -504,7 +504,7 @@
                                 <i class="modal__close fas fa-times" data-misc_close></i>
                                 <div class="modal__items" data-misc_body></div>
                             </div>
-                            <input data-form="application" class="body-card__result field-result" type="hidden" name="federal_project">
+                            <input data-form="application" class="body-card__result field-result" data-misc_result type="hidden" name="federal_project">
                         </div>
                         <!--//Название федерального проекта//-->
 

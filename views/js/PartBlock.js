@@ -36,8 +36,9 @@ class PartBlock {
          if (part_data.type) {
             this.savePart(part_data);
 
-            console.log(this.parent.parts);
+            // console.log(this.parent.parts);
          } else {
+
             //todo validate block
          }
 
@@ -109,6 +110,14 @@ function PartData (part_block) {
    dependent_blocks.forEach(block => {
       let field_inputs = block.querySelectorAll('.field-result[data-field]');
 
-      field_inputs.forEach(input => this[input.dataset.field] = input.value || null);
+      field_inputs.forEach(input => {
+
+         if (!input.closest('.block[data-active="false"]')) {
+            this[input.dataset.field] = input.value || null;
+         } else {
+            this[input.dataset.field] = null;
+         }
+
+      });
    });
 }

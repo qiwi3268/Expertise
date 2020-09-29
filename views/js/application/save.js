@@ -50,7 +50,10 @@ function saveApplication () {
             case 1:
                ErrorModal.open('Ошибка при сохранении заявления', 'Нет обязательных параметров POST запроса');
                break;
+
             default:
+               ErrorModal.open('Ошибка при сохранении заявления', response.error_message || response.message);
+
                console.log(response);
          }
 
@@ -65,6 +68,7 @@ function saveMultipleBlocks (form_data) {
    let multiple_blocks = document.querySelectorAll('.block[data-type="multiple"]');
    multiple_blocks.forEach(block => {
 
+      // todo сделать нормально
       let multiple_block = MultipleBlock.getBlockByName(block.dataset.name);
       if (multiple_block.is_changed) {
          multiple_block.is_changed = false;
@@ -86,7 +90,15 @@ function getSaveApplicationFormData() {
    form_data.append('id_application', id_application);
 
    let fields = document.querySelectorAll('.field-result[data-form="application"]');
-   fields.forEach(field => form_data.append(field.name, field.value));
+   fields.forEach(field => {
+
+      if (!field.closest('.block[data-active="false"]')) {
+         form_data.append(field.name, field.value);
+      } else {
+         form_data.append(field.name, '');
+      }
+
+   });
 
    return form_data;
 }
