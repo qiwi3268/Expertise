@@ -10,6 +10,7 @@ use Lib\Singles\Helpers\PageAddress;
 use Classes\DocumentTreeHandler;
 use Tables\Docs\TableLocator;
 use Tables\DocumentationTypeTableLocator;
+use Tables\assigned_expert_total_cc;
 
 
 $VT = VariableTransfer::getInstance();
@@ -49,8 +50,7 @@ $availableDocumentsTV = [];
  * @param string $ref ссылка для перехода на документ
  * @param string $stage стадия документа
  * @param bool $isSelected выбран ли текущий элемент
- * @param array $description индексный массив с описаниями к документу
- * @param string|null $tooltip текст для всплывающей подсказки
+ * @param array|null $info ассоциативный массив с информационными данными
  */
 $addDocumentToArray = function (
     string $type,
@@ -58,18 +58,16 @@ $addDocumentToArray = function (
     string $ref,
     string $stage,
     bool $isSelected,
-    array $description = [],
-    ?string $tooltip = null
+    ?array $info = null
 ) use (&$availableDocumentsTV): void {
 
     $availableDocumentsTV[$type][] = [
-        'type'         => $type,
-        'label'        => $label,
-        'ref'          => $ref,
-        'stage'        => $stage,
-        'isSelected'   => $isSelected,
-        'descriptions' => $description,
-        'tooltip'      => $tooltip
+        'type'       => $type,
+        'label'      => $label,
+        'ref'        => $ref,
+        'stage'      => $stage,
+        'isSelected' => $isSelected,
+        'info'       => $info
     ];
 };
 
@@ -148,7 +146,8 @@ $docsTableLocator = new TableLocator();
 // Проверка заявления ------------------------------------------------------------------------
 if ($treeHandler->ce_application()) {
 
-    if ($isDocumentChecked(DOCUMENT_TYPE['application'], $treeHandler->getApplicationId())
+    if (
+        $isDocumentChecked(DOCUMENT_TYPE['application'], $treeHandler->getApplicationId())
         || $checkAccessFromApplication
     ) {
 
@@ -165,21 +164,35 @@ if ($treeHandler->ce_application()) {
         // Проверка сводного замечания / заключения ------------------------------------------
         if ($treeHandler->ce_totalCC()) {
 
+            $totalCCId = $treeHandler->getTotalCCId();
+
             $documentationTypeTableLocator = new DocumentationTypeTableLocator($treeHandler->getTypeOfObjectId());
 
             if (
-                $isDocumentChecked(DOCUMENT_TYPE['total_cc'], $treeHandler->getTotalCCId())
+                $isDocumentChecked(DOCUMENT_TYPE['total_cc'], $totalCCId)
                 || $checkAccessFromTotalCC()
             ) {
 
                 $docTotalCCTable = $docsTableLocator->getDocTableByDocumentType(DOCUMENT_TYPE['total_cc']);
 
+                $leadExpert = getFIO(assigned_expert_total_cc::getAssocExpertWhereLeadByIdTotalCC($totalCCId));
+
+                $commonPartExperts = [];
+
+                foreach (assigned_expert_total_cc::getAllAssocExpertWhereCommonPartByIdTotalCC($totalCCId) as $expert) {
+                    $commonPartExperts[] = getFIO($expert);
+                }
+
                 $addDocumentToArray(
                     'total_cc',
                     'Сводное замечание',
-                    PageAddress::createCardRef($treeHandler->getTotalCCId(), 'total_cc', 'view'),
-                    $docTotalCCTable::getNameStageById($treeHandler->getTotalCCId()),
-                    CURRENT_DOCUMENT_TYPE == DOCUMENT_TYPE['total_cc']
+                    PageAddress::createCardRef($totalCCId, 'total_cc', 'view'),
+                    $docTotalCCTable::getNameStageById($totalCCId),
+                    CURRENT_DOCUMENT_TYPE == DOCUMENT_TYPE['total_cc'],
+                    [
+                        'leadExpert'        => $leadExpert,
+                        'commonPartExperts' => $commonPartExperts
+                    ]
                 );
 
                 // Проверка разделов ---------------------------------------------------------
@@ -226,8 +239,10 @@ if ($treeHandler->ce_application()) {
                             PageAddress::createCardRef($section['id'], 'section_documentation_1', 'view'),
                             $docSectionTable::getNameStageById($section['id']),
                             CURRENT_DOCUMENT_TYPE == $dt && CURRENT_DOCUMENT_ID == $section['id'],
-                            $FIOs,
-                            $name
+                            [
+                                'tooltipName'     => $name,
+                                'assignedExperts' => $FIOs
+                            ]
                         );
                     }
                 }

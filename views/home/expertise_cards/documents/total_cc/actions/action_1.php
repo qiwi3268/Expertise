@@ -1,4 +1,6 @@
 
+<?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
+
 <div class="action__info">
     <span class="action__description">Капитальный ремонт здания школы в пос. Увельский, ул. Советская, 38 Увельского муниципального района Челябинской области (смета)Капитальный ремонт здания школы в пос. Увельский, ул. Советская, 38 Увельского муниципального района Челябинской области (смета)Капитальный ремонт здания школы в пос. Увельский, ул. Советская, 38 Увельского муниципального района Челябинской области (смета)</span>
 </div>
@@ -33,17 +35,12 @@
                 <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
             </div>
             <div class="card-form__body body-card card-body">
+<!--                --><?php //$_ad = $variablesTV->getValue('applicantDetails') ?>
                 
-                <div class="section">
-                    <div class="section__header">
-                        <div class="section__title">
-                            <span class="section__name">1.3.3</span>
-                        </div>
-                        <i class="section__icon-state fas fa-check"></i>
-                    </div>
+                <div class="section" data-required="true">
+                    <div class="section__header">Полное наименование</div>
                     <div class="section__body">
-                        <div class="section__item">Доверенность от 03.03.2020 г. № 8Д</div>
-                        <div class="section__item">Доверенность от 03.03.2020 г. № 15</div>
+                        <textarea class="section__input field-result" name="INN" placeholder="Введите значение">a</textarea>
                     </div>
                 </div>
             

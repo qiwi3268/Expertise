@@ -13,13 +13,12 @@ use Tables\Actions\application as ApplicationActions;
 use core\Classes\RoutesXMLHandler;
 use Tables\Structures\documentation_1;
 use Lib\Singles\Helpers\PageAddress;
+use Tables\assigned_expert_total_cc;
 
 
-$a = 2.000;
-
-$expr = 2 == $a;
-
-var_dump($expr);
 
 
+$a = assigned_expert_total_cc::getAllAssocExpertWhereCommonPartByIdTotalCC(8);
+
+var_dump($a);
 

@@ -38,13 +38,6 @@ class Session
         foreach ($userRoles as $role) {
             $_SESSION['user_info']['roles'][] = $role['system_value'];
         }
-
-        $_SESSION['flags'] = [
-            'authorized'       => !empty($_SESSION['user_info']['roles']),
-            'admin'            => in_array(ROLE['ADM'], $_SESSION['user_info']['roles'], true),
-            'applicant'        => in_array(ROLE['APP'], $_SESSION['user_info']['roles'], true),
-            'freelance_expert' => in_array(ROLE['FRE_EXP'], $_SESSION['user_info']['roles'], true)
-        ];
     }
 
 
@@ -54,7 +47,7 @@ class Session
      */
     static public function deleteUser(): void
     {
-        unset($_SESSION['user_info'], $_SESSION['flags'], $_SESSION['role_in_application']);
+        unset($_SESSION['user_info']);
     }
 
 
@@ -108,15 +101,30 @@ class Session
      *
      * @return bool
      */
-    static public function isApplicant(): bool
+    static public function isApp(): bool
     {
-        if (
-            isset($_SESSION['flags']['applicant'])
-            && $_SESSION['flags']['applicant'] === true
-        ) {
-            return true;
-        }
-        return false;
+        return in_array(ROLE['APP'], $_SESSION['user_info']['roles']);
+    }
+
+
+    /**
+     * Предназначен для проверки пользователя на сотрудника экспертного отдела
+     *
+     * @return bool
+     */
+    static public function isEmpExp(): bool
+    {
+        return in_array(ROLE['EMP_EXP'], $_SESSION['user_info']['roles']);
+    }
+
+    /**
+     * Предназначен для проверки пользователя на сотрудника сметного отдела
+     *
+     * @return bool
+     */
+    static public function isEmpEst(): bool
+    {
+        return in_array(ROLE['EMP_EST'], $_SESSION['user_info']['roles']);
     }
 
 
@@ -125,15 +133,9 @@ class Session
      *
      * @return bool
      */
-    static public function isFreelanceExpert(): bool
+    static public function isFreExp(): bool
     {
-        if (
-            isset($_SESSION['flags']['freelance_expert'])
-            && $_SESSION['flags']['freelance_expert'] === true
-        ) {
-            return true;
-        }
-        return false;
+        return in_array(ROLE['FRE_EXP'], $_SESSION['user_info']['roles']);
     }
 
 
@@ -143,16 +145,11 @@ class Session
      *
      * @return bool
      */
-    static protected function isAuthorized(): bool
+    static public function isAuthorized(): bool
     {
-        if (
-            isset($_SESSION['flags']['authorized'])
-            && $_SESSION['flags']['authorized'] === true
-        ) {
-            return true;
-        }
-        return false;
+        return !empty($_SESSION['user_info']['roles']);
     }
+
 
 
     /**

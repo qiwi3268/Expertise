@@ -65,7 +65,7 @@ try {
     extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
 
     // Проверка заявителя на доступ к загрузке файлов в указанное заявление
-    if (Session::isApplicant()) {
+    if (Session::isApp()) {
         //TODO для заявителя необходимо реализовать проверку, что он имеет право получать документы из указанного заявления
         //exit result 2
     }
@@ -101,7 +101,7 @@ try {
     }
 
     // Блок проверок файлов для заявителя
-    if (Session::isApplicant()) {
+    if (Session::isApp()) {
 
         // Допустимые форматы файлов
         $allowedFormats = ['.docx', '.doc', '.odt', '.pdf', '.xlsx', '.xls', '.ods', '.xml'];

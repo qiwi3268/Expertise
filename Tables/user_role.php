@@ -19,15 +19,14 @@ final class user_role
      *
      * @param int $id_user id пользователя
      * @param int $id_user_info_role id роли
-     * @return int id созданной записи
      * @throws DataBaseEx
      */
-    static public function create(int $id_user, int $id_user_info_role): int
+    static public function create(int $id_user, int $id_user_info_role): void
     {
         $query = "INSERT INTO `user_role`
                     (`id_user`, `id_user_info_role`)
                   VALUES
                     (?, ?)";
-        return ParametrizedQuery::set($query, [$id_user, $id_user_info_role]);
+        ParametrizedQuery::set($query, [$id_user, $id_user_info_role]);
     }
 }

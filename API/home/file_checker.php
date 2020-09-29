@@ -42,7 +42,7 @@ try {
     extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
 
     // Проверка заявителя на доступ к заявлению
-    if (Session::isApplicant()) {
+    if (Session::isApp()) {
         //TODO для заявителя необходимо реализовать проверку, что он имеет право получать документы из указанного заявления
         //exit result 2
     }

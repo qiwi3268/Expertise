@@ -1,7 +1,7 @@
 <?php
 
 
-use Lib\Singles\PHPMailerAddon;
+use Lib\Singles\PHPMailerFacade;
 
 
 $addresses = ['vam@ge74.ru'];
@@ -16,7 +16,7 @@ $header = '
 
 try {
 
-    $mailAddon = new PHPMailerAddon();
+    $mailAddon = new PHPMailerFacade();
 
     array_map([$mailAddon, 'addAddress'], $addresses);
 

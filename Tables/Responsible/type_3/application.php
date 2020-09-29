@@ -56,7 +56,7 @@ final class application implements ResponsibleType3
                          `user`.`middle_name`
                   FROM `applicant_access_group`
                   INNER JOIN `user`
-                     ON `applicant_access_group`.`id_user`=`user`.`id`
+                     ON (`applicant_access_group`.`id_user`=`user`.`id`)
                   WHERE `applicant_access_group`.`id_application`=?
                      AND `applicant_access_group`.`id_applicant_access_group_type` IN
                         (SELECT `{$table}`.`id_applicant_access_group_type`

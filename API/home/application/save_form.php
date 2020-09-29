@@ -120,7 +120,7 @@ try {
 
     $applicationExist = !is_null($applicationAssoc);
 
-    if (Session::isApplicant()) {
+    if (Session::isApp()) {
 
         // Проверка прав заявителя на доступ к сохранению заявления
         // todo переделать на вызов из специализированного класса

@@ -109,11 +109,10 @@ final class user
     {
         $query = "SELECT `user_info_role`.`name`,
                          `user_info_role`.`system_value`
-                  FROM (SELECT *
-				        FROM `user_role`
-				        WHERE `user_role`.`id_user`=?) AS `user_role`
-                  LEFT JOIN `user_info_role`
-                         ON (`user_role`.`id_user_info_role`=`user_info_role`.`id`)";
+                  FROM `user_role`
+                  JOIN `user_info_role`
+                     ON (`user_role`.`id_user_info_role`=`user_info_role`.`id`)
+				  WHERE `user_role`.`id_user`=?";
         $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
         return $result ? $result : null;
     }

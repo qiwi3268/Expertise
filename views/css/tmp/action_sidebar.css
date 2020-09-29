@@ -31,7 +31,10 @@
 
 .view__sidebar {
    /*width: 15%;*/
+   /*todo придумать что-то с шириной*/
    min-width: 250px;
+   max-width: 250px;
+   /*width: 250px;*/
    margin: 0px 10px 0px 0px;
 }
 
@@ -138,6 +141,7 @@
 
 .view__body {
    /*width: 70%;*/
+   flex-grow: 1;
 }
 
 .view__actions {

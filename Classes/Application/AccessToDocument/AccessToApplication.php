@@ -48,14 +48,14 @@ class AccessToApplication extends AccessToDocument
      */
     public function checkAccess(): void
     {
-        if (Session::isApplicant()) {
+        if (Session::isApp()) {
 
             // Для заявителя происходит проверка, что он состоит в любой группе доступа к заявлению
             if (!applicant_access_group::checkExistByIdApplicationAndIdUser($this->documentId, Session::getUserId())) {
                 throw new SelfEx('Отсутствует доступ к документу "Заявление" для заявителя', 3);
             }
 
-        } elseif (Session::isFreelanceExpert()) {
+        } elseif (Session::isFreExp()) {
 
             $totalCCId = $this->totalCCId;
 

@@ -30,7 +30,7 @@ class AccessToTotalCC extends AccessToDocument
      */
     public function checkAccess(): void
     {
-        if (Session::isApplicant()) {
+        if (Session::isApp()) {
 
             // Для заявителя происходит проверка стадии документа. Он должен быть выдан
             $stageId = total_cc::getIdStageById($this->documentId);

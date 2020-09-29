@@ -137,6 +137,9 @@
         </page>
 
         <page urn="home/application/create">
+
+            <callback_template id="AuthorizationChecker" />
+
             <files>
                 <dir path="/controllers/" ext=".php">
                     <file name="html_head" />
@@ -174,6 +177,9 @@
         <!-- На странице используется динамическое подключение файлов -->
         <!-- см. /controllers/home/navigation.php -->
         <page urn="home/navigation">
+
+            <callback_template id="AuthorizationChecker" />
+
             <files>
                 <dir path="/controllers/" ext=".php">
                     <file name="html_head" />
@@ -202,6 +208,7 @@
 
         <page urn="home/expertise_cards/application/view">
 
+            <callback_template id="AuthorizationChecker" />
             <callback_template id="DocumentParameters_ExpertiseCard" />
             <callback_template id="DocumentExistChecker" />
             <callback_template id="AccessToDocumentTreeChecker" />
@@ -252,6 +259,7 @@
 
         <page urn="home/expertise_cards/total_cc/view">
 
+            <callback_template id="AuthorizationChecker" />
             <callback_template id="DocumentParameters_ExpertiseCard" />
             <callback_template id="DocumentExistChecker" />
             <callback_template id="AccessToDocumentTreeChecker" />
@@ -295,6 +303,7 @@
 
         <page urn="home/expertise_cards/section_documentation_1/view">
 
+            <callback_template id="AuthorizationChecker" />
             <callback_template id="DocumentParameters_ExpertiseCard" />
             <callback_template id="DocumentExistChecker" />
             <callback_template id="AccessToDocumentTreeChecker" />
@@ -338,6 +347,7 @@
 
         <page urn="home/expertise_cards/application/actions/action_2">
 
+            <callback_template id="AuthorizationChecker" />
             <callback_template id="DocumentParameters_ActionPage" />
             <callback_template id="DocumentExistChecker" />
             <callback_template id="AccessToDocumentTreeChecker" />
@@ -423,7 +433,12 @@
             </files>
         </page>
 
+
+
         <page urn="home/expertise_cards/total_cc/actions/action_1">
+
+            <callback_template id="AuthorizationChecker" />
+
             <files>
                 <dir path="/controllers/" ext=".php">
                     <file name="html_head" />
@@ -431,7 +446,7 @@
                 <dir path="/controllers/home/" ext=".php">
                     <file name="header" />
                 </dir>
-                <dir path="/controllers/home/expertise_cards/documents/application/actions/" ext=".php">
+                <dir path="/controllers/home/expertise_cards/documents/total_cc/actions/" ext=".php">
                     <file name="action_1" />
                 </dir>
 
@@ -450,6 +465,15 @@
             </files>
         </page>
 
+        <page urn="registration_user">
+
+            <files>
+                <dir path="/controllers/tmp/" ext=".php">
+                    <file name="registration_user" />
+                </dir>
+            </files>
+        </page>
+
     </pages>
 
 
@@ -464,6 +488,8 @@
                 </namespace>
             </callbacks>
         </template>
+
+
 
 
         <template id="DocumentParameters_ActionPage">
@@ -499,6 +525,15 @@
         </template>
 
 
+        <template id="AuthorizationChecker">
+            <callbacks>
+                <namespace name="\Classes\RouteCallbacks">
+                    <class name="AuthorizationChecker" type="instance">
+                        <method name="checkAuthorization"/>
+                    </class>
+                </namespace>
+            </callbacks>
+        </template>
 
         <template id="DocumentExistChecker">
             <callbacks>

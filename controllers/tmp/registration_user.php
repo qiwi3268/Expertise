@@ -15,13 +15,13 @@
 // 8 - Пароль
 // 9 - Роли пользователя (всегда массив)
 
-$P_last_name = 'Заявитель';
-$P_first_name = 'Заявительб';
-$P_middle_name = 'Заявитель';
-$P_department = '';
-$P_position = '';
-$P_email = 'vam@ge74.ru123';
-$P_login = 'test';
+$P_last_name = '3Заявитель';
+$P_first_name = '3Заявительб';
+$P_middle_name = '3Заявитель';
+$P_department = 1;
+$P_position = 1;
+$P_email = '3vam1@ge74.ru123';
+$P_login = '3te1st';
 $P_password = '123';
 $P_users_role = [1];
 
@@ -41,6 +41,7 @@ $userId = \Tables\user::create($P_last_name, $P_first_name, $P_middle_name, $P_d
 
 // Создание ролей пользователя
 foreach ($P_users_role as $role) {
+
     \Tables\user_role::create($userId, $role);
 }
 
