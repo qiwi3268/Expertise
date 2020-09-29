@@ -11,7 +11,7 @@ define('ROOT_LIB_JS', ROOT_JS . 'lib/');
 define('TMP_JS', ROOT_JS . 'tmp/');
 
 
-// Подключаемые файлы
+// Подключаемые файлыs
 $sourcesFiles = [];
 // Название страницы
 $pageName = '';

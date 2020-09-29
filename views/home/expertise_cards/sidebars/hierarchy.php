@@ -81,14 +81,16 @@
                             <span class="hierarchy__name"><?= $section['label'] ?></span>
                             <div class="hierarchy__description">
                                 <span class="hierarchy__stage"><?= $section['stage'] ?></span>
+                                <div class="hierarchy__card">
+                                
+                                
+                                </div>
                                 <div class="hierarchy__experts">
-<!--                                    <i class="hierarchy__experts-icon fas fa-user-friends"></i>-->
-<!--                                    <span class="hierarchy__experts-title">Назначенные эксперты:</span>-->
-                                <?php if (!empty($section['descriptions'])): ?>
-                                    <?php foreach ($section['descriptions'] as $description): ?>
-                                        <span class="hierarchy__descriptions"><?= $description ?></span>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
+                                    <?php if (!empty($section['descriptions'])): ?>
+                                        <?php foreach ($section['descriptions'] as $description): ?>
+                                            <span class="hierarchy__descriptions"><?= $description ?></span>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </div>
 
                             </div>

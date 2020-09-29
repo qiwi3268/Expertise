@@ -14,6 +14,9 @@
                 <dir path="/views/home/modals/" ext=".php">
                     <file name="error" />
                 </dir>
+                <dir path="/views/home/modals/" ext=".php">
+                    <file name="static_error" />
+                </dir>
             </files>
         </page>
 
