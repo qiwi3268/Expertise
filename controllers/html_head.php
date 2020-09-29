@@ -21,8 +21,8 @@ switch (URN) {
     case '' :
         $pageName = 'АИС';
         $sourcesFiles = [...GetFontAwesome5Case(),
-            ...CreateSource('css', ROOT_CSS, 'entry.css'),
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'modal.css'),
+            ...CreateSource('css', ROOT_CSS, 'entry.css'),
             ...CreateSource('js', ROOT_JS, 'ErrorHandler.js', 'BrowserHelper.js', 'API_login.js'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
 

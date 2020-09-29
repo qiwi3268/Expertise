@@ -13,9 +13,21 @@
 }
 
 .body-card__input {
-   font-size: 16px;
+   /*font-size: 16px;*/
 }
 
-.body-card__list.filled >  {
+.body-card__list {
+   border: 1px solid #818e9a;
+   border-radius: 4px;
 
+
+}
+
+.body-card__list.filled {
+
+}
+
+.body-card__list > .body-card__input {
+   border: 0;
+   border-radius: 0;
 }

@@ -225,7 +225,15 @@
 .body-card__input {
    box-sizing: border-box;
    width: 100%;
+
+
 }
+/*
+.body-card__input:focus,
+.body-card__input:hover {
+   box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
+   border-color: #80bdff;
+}*/
 
 .body-card__select.filled,
 .body-card__field.filled > .body-card__input {

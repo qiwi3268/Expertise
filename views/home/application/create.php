@@ -115,7 +115,7 @@
                         <span class="body-card__title">Дополнительная информация</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
-                                <textarea data-form="application" class="body-card__input body-card__result field-result application-input" name="additional_information"></textarea>
+                                <textarea data-form="application" class="body-card__input field-result" name="additional_information"></textarea>
                             </div>
                             <span class="body-card__error field-error"></span>
                         </div>
@@ -135,7 +135,7 @@
                         <span class="body-card__title">Наименование объекта</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
-                                <textarea data-form="application" class="body-card__input body-card__result field-result application-input" name="object_name"></textarea>
+                                <textarea data-form="application" class="body-card__input field-result" name="object_name"></textarea>
                             </div>
                             <span class="body-card__error field-error"></span>
                         </div>
@@ -253,7 +253,7 @@
                             <span class="body-card__title">Номер утверждения документации по планировке территории</span>
                             <div class="body-card__item">
                                 <div class="body-card__field">
-                                    <input data-form="application" class="body-card__input body-card__result field-result application-input" type="text" name="number_planning_documentation_approval" placeholder="Введите значение">
+                                    <input data-form="application" class="body-card__input field-result" type="text" name="number_planning_documentation_approval" placeholder="Введите значение">
                                 </div>
                                 <span class="body-card__error field-error"></span>
                             </div>
@@ -285,7 +285,7 @@
                             <span class="body-card__title">Номер ГПЗУ</span>
                             <div class="body-card__item">
                                 <div class="body-card__field">
-                                    <input data-form="application" class="body-card__input body-card__result field-result application-input" type="text" name="number_GPZU" placeholder="Введите значение">
+                                    <input data-form="application" class="body-card__input field-result" type="text" name="number_GPZU" placeholder="Введите значение">
                                     <span class="body-card__error field-error"></span>
                                 </div>
                             </div>
@@ -339,7 +339,7 @@
                             <span class="body-card__title">Сведения о сметной или предполагаемой (предельной) стоимости объекта капитального строительства, содержащиеся в решении по объекту или письме. тыс. руб.</span>
                             <div class="body-card__item">
                                 <div class="body-card__field">
-                                    <input data-form="application" class="body-card__input body-card__result field-result application-input" type="text" name="estimate_cost" placeholder="Введите значение">
+                                    <input data-form="application" class="body-card__input field-result" type="text" name="estimate_cost" placeholder="Введите значение">
                                 </div>
                                 <span class="body-card__error field-error"></span>
                             </div>
@@ -371,7 +371,7 @@
                         <span class="body-card__title">Кадастровый номер земельного участка</span>
                         <div class="body-card__item">
                             <div class="body-card__field">
-                                <input data-form="application" class="body-card__input body-card__result field-result application-input" type="text" name="cadastral_number" placeholder="Введите значение">
+                                <input data-form="application" class="body-card__input field-result" type="text" name="cadastral_number" placeholder="Введите значение">
                             </div>
                             <span class="body-card__error field-error"></span>
                         </div>
@@ -657,7 +657,7 @@
                                             <span class="body-card__title">Процент финансирования</span>
                                             <div class="body-card__item">
                                                 <div class="body-card__field">
-                                                    <input class="body-card__input body-card__result field-result application-input" type="text" data-field="percent" name="percent" placeholder="Введите процент">
+                                                    <input class="body-card__input field-result" type="text" data-field="percent" name="percent" placeholder="Введите процент">
                                                 </div>
                                                 <span class="body-card__error field-error"></span>
                                             </div>
@@ -672,7 +672,7 @@
                                     <span class="body-card__title">Полное наименование</span>
                                     <div class="body-card__item">
                                         <div class="body-card__field">
-                                            <input class="body-card__input body-card__result field-result application-input" type="text" data-field="full_name" name="full_name" placeholder="Введите значение">
+                                            <input class="body-card__input field-result" type="text" data-field="full_name" name="full_name" placeholder="Введите значение">
                                         </div>
                                         <span class="body-card__error field-error"></span>
                                     </div>
@@ -681,7 +681,7 @@
                                     <span class="body-card__title">ИНН</span>
                                     <div class="body-card__item">
                                         <div class="body-card__field">
-                                            <input class="body-card__input body-card__result field-result application-input" type="text" data-field="INN" name="INN" placeholder="Введите значение">
+                                            <input class="body-card__input field-result" type="text" data-field="INN" name="INN" placeholder="Введите значение">
                                         </div>
                                         <span class="body-card__error field-error"></span>
                                     </div>
@@ -690,7 +690,7 @@
                                     <span class="body-card__title">КПП</span>
                                     <div class="body-card__item">
                                         <div class="body-card__field">
-                                            <input class="body-card__input body-card__result field-result application-input" type="text" data-field="KPP" name="KPP" placeholder="Введите значение">
+                                            <input class="body-card__input field-result" type="text" data-field="KPP" name="KPP" placeholder="Введите значение">
                                         </div>
                                         <span class="body-card__error field-error"></span>
                                     </div>
@@ -699,7 +699,7 @@
                                     <span class="body-card__title">ОГРН</span>
                                     <div class="body-card__item">
                                         <div class="body-card__field">
-                                            <input class="body-card__input body-card__result field-result application-input" type="text" data-field="OGRN" name="OGRN" placeholder="Введите значение">
+                                            <input class="body-card__input field-result" type="text" data-field="OGRN" name="OGRN" placeholder="Введите значение">
                                         </div>
                                         <span class="body-card__error field-error"></span>
                                     </div>
@@ -708,7 +708,7 @@
                                     <span class="body-card__title">Адрес</span>
                                     <div class="body-card__item">
                                         <div class="body-card__field">
-                                            <input class="body-card__input body-card__result field-result application-input" type="text" data-field="address" name="address" placeholder="Введите значение">
+                                            <input class="body-card__input field-result" type="text" data-field="address" name="address" placeholder="Введите значение">
                                         </div>
                                         <span class="body-card__error field-error"></span>
                                     </div>
@@ -717,7 +717,7 @@
                                     <span class="body-card__title">Место нахождения</span>
                                     <div class="body-card__item">
                                         <div class="body-card__field">
-                                            <input class="body-card__input body-card__result field-result application-input" type="text" data-field="location" name="location" placeholder="Введите значение">
+                                            <input class="body-card__input field-result" type="text" data-field="location" name="location" placeholder="Введите значение">
                                         </div>
                                         <span class="body-card__error field-error"></span>
                                     </div>
@@ -726,7 +726,7 @@
                                     <span class="body-card__title">Телефон</span>
                                     <div class="body-card__item">
                                         <div class="body-card__field">
-                                            <input class="body-card__input body-card__result field-result application-input" type="text" data-field="telephone" name="telephone" placeholder="Введите значение">
+                                            <input class="body-card__input field-result" type="text" data-field="telephone" name="telephone" placeholder="Введите значение">
                                         </div>
                                         <span class="body-card__error field-error"></span>
                                     </div>
@@ -735,7 +735,7 @@
                                     <span class="body-card__title">Адрес электронной почты</span>
                                     <div class="body-card__item">
                                         <div class="body-card__field">
-                                            <input class="body-card__input body-card__result field-result application-input" type="text" data-field="email" name="email" placeholder="Введите значение">
+                                            <input class="body-card__input field-result" type="text" data-field="email" name="email" placeholder="Введите значение">
                                         </div>
                                         <span class="body-card__error field-error"></span>
                                     </div>
@@ -760,7 +760,7 @@
                                             <span class="body-card__title">Процент финансирования</span>
                                             <div class="body-card__item">
                                                 <div class="body-card__field">
-                                                    <input class="body-card__input body-card__result field-result application-input" type="text" data-field="percent" name="percent" placeholder="Введите процент">
+                                                    <input class="body-card__input field-result" type="text" data-field="percent" name="percent" placeholder="Введите процент">
                                                 </div>
                                                 <span class="body-card__error field-error"></span>
                                             </div>
@@ -791,7 +791,7 @@
                                             <span class="body-card__title">Процент финансирования</span>
                                             <div class="body-card__item">
                                                 <div class="body-card__field">
-                                                    <input class="body-card__input body-card__result field-result application-input" type="text" data-field="percent" name="percent" placeholder="Введите процент">
+                                                    <input class="body-card__input field-result" type="text" data-field="percent" name="percent" placeholder="Введите процент">
                                                 </div>
                                                 <span class="body-card__error field-error"></span>
                                             </div>
@@ -822,7 +822,7 @@
                                             <span class="body-card__title">Процент финансирования</span>
                                             <div class="body-card__item">
                                                 <div class="body-card__field">
-                                                    <input class="body-card__input body-card__result field-result application-input" type="text" data-field="percent" name="percent" placeholder="Введите процент">
+                                                    <input class="body-card__input field-result" type="text" data-field="percent" name="percent" placeholder="Введите процент">
                                                 </div>
                                                 <span class="body-card__error field-error"></span>
                                             </div>
@@ -855,7 +855,7 @@
                                     <span class="body-card__title">Процент финансирования</span>
                                     <div class="body-card__item">
                                         <div class="body-card__field">
-                                            <input class="body-card__input body-card__result field-result application-input" type="text" data-field="percent" name="percent" placeholder="Введите процент">
+                                            <input class="body-card__input field-result" type="text" data-field="percent" name="percent" placeholder="Введите процент">
                                         </div>
                                         <span class="body-card__error field-error"></span>
                                     </div>

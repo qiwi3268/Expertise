@@ -78,7 +78,7 @@ a {
    transition: box-shadow .10s;
 }*/
 
-.application-input {
+input {
    padding: 10px 12px;
    font-family: 'Roboto Condensed', sans-serif;
    font-size: 14px;
@@ -101,14 +101,20 @@ a {
 textarea {
    min-height: 60px;
    padding: 8px;
+   font-size: 14px;
    font-family: 'Roboto Condensed', sans-serif;
    color: #343a40;
    resize: vertical;
+   border: 1px solid #cccccc;
+   border-radius: 4px;
    transition: box-shadow .10s;
+   /*transition: box-shadow .10s;*/
 }
 
-.application-input:focus,
-.application-input:hover {
+input:focus,
+input:hover,
+textarea:focus,
+textarea:hover {
    box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
    border-color: #80bdff;
 }

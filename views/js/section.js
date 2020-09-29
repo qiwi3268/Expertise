@@ -21,7 +21,7 @@ window.addEventListener('load', () => {
 
 // Предназначен для обавления событие изменения размера текстового поля для нормального отображения размера блока
 function handleTextAreasResize () {
-   let text_areas = document.querySelectorAll('textarea.application-input');
+   let text_areas = document.querySelectorAll('textarea');
    text_areas.forEach(text_area => {
       text_area.addEventListener('mousedown', () => {
          // При изменении размера текстового поля для расширения блока
