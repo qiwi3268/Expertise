@@ -137,7 +137,7 @@ switch (URN) {
         ];
         break;
     
-    case 'home/total_cc_test' :
+    case 'home/expertise_cards/total_cc/actions/action_1' :
         $pageName = 'Общая часть';
         $sourcesFiles = [...GetFontAwesome5Case(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),

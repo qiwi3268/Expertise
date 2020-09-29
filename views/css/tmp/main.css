@@ -67,6 +67,17 @@ a {
    display: none;
 }
 
+/*.application-input {
+   padding: 10px 12px;
+   font-family: 'Roboto Condensed', sans-serif;
+   font-size: 14px;
+   font-weight: 400;
+   color: #343a40;
+   border: 1px solid #cccccc;
+   border-radius: 4px;
+   transition: box-shadow .10s;
+}*/
+
 .application-input {
    padding: 10px 12px;
    font-family: 'Roboto Condensed', sans-serif;
@@ -75,10 +86,19 @@ a {
    color: #343a40;
    border: 1px solid #cccccc;
    border-radius: 4px;
-   transition: .10s;
+   transition: box-shadow .10s;
 }
 
-textarea.application-input {
+/*textarea.application-input {
+   min-height: 60px;
+   padding: 8px;
+   font-family: 'Roboto Condensed', sans-serif;
+   color: #343a40;
+   resize: vertical;
+   transition: box-shadow .10s;
+}*/
+
+textarea {
    min-height: 60px;
    padding: 8px;
    font-family: 'Roboto Condensed', sans-serif;

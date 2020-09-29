@@ -7,12 +7,10 @@ use Lib\Singles\VariableTransfer;
 
 $VT = VariableTransfer::getInstance();
 
-
 $responsible = new Responsible(CURRENT_DOCUMENT_ID, CURRENT_DOCUMENT_TYPE);
 
 // cr - current responsible
 $cr = $responsible->getCurrentResponsible();
-
 
 if ($cr['type'] != 'type_1') {
 
@@ -35,7 +33,7 @@ if ($cr['type'] != 'type_1') {
     $VT->setValue('responsibleUsers', $cr_usersTV);
 } else {
 
-    $VT->setExistenceFlag('false', true);
+    $VT->setExistenceFlag('responsible', false);
 }
 
 

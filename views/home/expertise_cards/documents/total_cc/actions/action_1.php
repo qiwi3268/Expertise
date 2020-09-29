@@ -156,14 +156,40 @@
                 <div class="body-card__row field" data-required="true" data-name="" data-pattern="text">
                     <span class="body-card__title">Договор</span>
                     <div class="body-card__item">
-                        <div class="body-card__field filled">
-                            <textarea data-form="application" class="body-card__input body-card__result field-result application-input" name=""></textarea>
+                        <div class="body-card__list filled" >
+                            <input class="body-card__input body-card__result field-result" type="text" name="INN" placeholder="Введите значение" value="Договор №123">
+                            <input class="body-card__input body-card__result field-result" type="text" name="INN" placeholder="Введите значение" value="Договор №123">
+                            <input class="body-card__input body-card__result field-result" type="text" name="INN" placeholder="Введите значение" value="Договор №123">
                             <i class="body-card__icon-filled fas fa-check"></i>
                         </div>
                         <span class="body-card__error field-error"></span>
                     </div>
                 </div>
                 <!--//Договор//-->
+                <!--Дополнительное соглашение-->
+                <div class="body-card__row field" data-required="true" data-active="false" data-name="" data-pattern="text">
+                    <span class="body-card__title">Дополнительное соглашение</span>
+                    <div class="body-card__item">
+                        <div class="body-card__field filled">
+                            <input class="body-card__input body-card__result field-result application-input filled" type="text" name="INN" placeholder="Введите значение" value="Дополнительное соглашение №345">
+                            <i class="body-card__icon-filled fas fa-check"></i>
+                        </div>
+                        <span class="body-card__error field-error"></span>
+                    </div>
+                </div>
+                <!--//Дополнительное соглашение//-->
+                <!--Доверенность-->
+                <div class="body-card__row field" data-required="true" data-name="" data-pattern="text">
+                    <span class="body-card__title">Доверенность</span>
+                    <div class="body-card__item">
+                        <div class="body-card__field filled">
+                            <input class="body-card__input body-card__result field-result application-input filled" type="text" name="INN" placeholder="Введите значение" value="Доверенность №123">
+                            <i class="body-card__icon-filled fas fa-check"></i>
+                        </div>
+                        <span class="body-card__error field-error"></span>
+                    </div>
+                </div>
+                <!--//Доверенность//-->
                 
                 
                 

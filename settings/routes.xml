@@ -420,13 +420,16 @@
             </files>
         </page>
 
-        <page urn="home/total_cc_test">
+        <page urn="home/expertise_cards/total_cc/actions/action_1">
             <files>
                 <dir path="/controllers/" ext=".php">
                     <file name="html_head" />
                 </dir>
                 <dir path="/controllers/home/" ext=".php">
                     <file name="header" />
+                </dir>
+                <dir path="/controllers/home/expertise_cards/documents/application/actions/" ext=".php">
+                    <file name="action_1" />
                 </dir>
 
                 <dir path="/views/" ext=".php">
@@ -436,7 +439,7 @@
                     <file name="header" />
                 </dir>
                 <dir path="/views/home/expertise_cards/documents/total_cc/actions/" ext=".php">
-                    <file name="action_3" />
+                    <file name="action_1" />
                 </dir>
                 <dir path="/views/home/" ext=".php">
                     <file name="footer" />
