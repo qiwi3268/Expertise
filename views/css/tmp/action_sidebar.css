@@ -30,7 +30,7 @@
 }
 
 .view__sidebar {
-   width: 15%;
+   /*width: 15%;*/
    margin: 0px 10px 0px 0px;
 }
 
@@ -51,7 +51,6 @@
 }
 
 .info__icon {
-   /*color: #6e6e6e;*/
    color: #6081a8;;
    margin: 0px 10px 0px 0px;
    font-size: 18px;
@@ -89,14 +88,11 @@
 
 .hierarchy__section[data-selected='1'] {
    background-color: #f6f8fa;
-   /*border-color: #B5C5D7;*/
    border-color: #b2cde9;
 }
 
 .hierarchy__section:hover {
-   /*background-color: #f2f2f2;*/
    background-color: #F3F5F6;
-   /*border-color: #ffd354;*/
    border-color: #93b0d1;
 }
 
@@ -140,11 +136,11 @@
 }
 
 .view__body {
-   width: 70%;
+   /*width: 70%;*/
 }
 
 .view__actions {
-   width: 15%;
+   /*width: 15%;*/
    margin: 0px 0px 0px 10px;
 }
 
@@ -160,9 +156,7 @@
 }
 
 .view__action:hover {
-   /*background-color: #f2f2f2;*/
    background-color: #F3F5F6;
-   /*border-color: #ffd354;*/
    border-color: #93b0d1;
 }
 
@@ -182,28 +176,6 @@
    padding: 10px 20px;
 }
 
-.hierarchy__stage {
-   /*display: flex;*/
-   /*align-items: center;*/
-   /*font-style: italic;*/
-
-}
-
-.hierarchy__experts {
-   display: flex;
-   flex-direction: column;
-   align-self: flex-start;
-   font-size: 14px;
-   color: #6e6e6e;
-   /*background-color: #E3EFFF;*/
-   /*background-color: #f6f8fa;*/
-   background-color: #f0f6fd;
-   border: 1px solid #CAD6E7;
-   color: #6A7E9A;
-   border-radius: 4px;
-   padding: 5px;
-
-}
 
 .hierarchy__icon-stage {
    font-size: 8px;
@@ -211,21 +183,58 @@
    color: #6C89A8;
 }
 
-.hierarchy__experts-title {
-   /*font-style: italic;*/
+
+.hierarchy__cards {
+   border: 1px solid #CAD6E7;
+   border-radius: 4px;
+
+}
+
+
+.hierarchy__experts {
+
+   color: #6A7E9A;
+   display: flex;
+   flex-direction: column;
+
+}
+
+.hierarchy__card {
+   display: flex;
+   align-items: center;
+   /*border-left: 2px solid #93b0d1;*/
+}
+
+
+.hierarchy__label {
+   padding: 2px 0px;
+   margin: 0px 5px 0px 0px;
+   font-weight: 700;
+}
+
+.hierarchy__descriptions {
+   white-space: nowrap;
 }
 
 
 
 
+/*.test {
+   margin: 0px 10px 0px 0px;
+}
 
+.test__icon {
+   margin: 0px 10px 0px 0px;
+}
 
+.test__card {
+   background-color: #ffffff;
+   border-radius: 4px;
+   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
 
+   margin: 0px 0px 10px 0px;
 
-
-
-
-
+}*/
 
 
 

@@ -73,9 +73,7 @@ function saveMultipleBlocks (form_data) {
          form_data.append('finance_sources_exist_flag', '0');
       }
 
-      let block_result = block.querySelector(`.field-result[name='${block.dataset.name}']`);
-      block_result.value = multiple_block.getPartsDataJSON();
-
+      form_data.append(block.dataset.name, multiple_block.getPartsDataJSON());
    });
 }
 

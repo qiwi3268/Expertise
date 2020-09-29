@@ -884,8 +884,7 @@
                             </div>
                         </div>
                         <!--//Шаблоны источников финансирования//-->
-
-                        <input data-form="application" class="multiple-block__result field-result" type="hidden" name="finance_sources">
+                        
                     </div>
                     <!--//Источники финансирования//-->
                 </div>

@@ -128,7 +128,7 @@
 
 .application-form__cards {
    flex-grow: 1;
-   /*max-width: 80%;*/
+   max-width: 80%;
 }
 
 .card-form {

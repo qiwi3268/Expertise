@@ -34,18 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {
             ErrorModal.open('Ошибка авторизации', 'Неверный логин или пароль');
             break;
          case 3 :
-            ErrorModal.open('Ошибка авторизации', 'Учетная запись заблокирована');
+            ErrorModal.open('Ошибка авторизации', 'Учетная запись заблокирована. Обратитесь к администратору');
             break;
          case 4 :
             ErrorModal.open('Ошибка авторизации', 'Учетная запись не назначена на роль в системе. Обратитесь к администратору');
             break;
-         case 6 :
-            ErrorModal.open('Ошибка авторизации', `Ошибка при запросе к БД. code: ${response.code}, message: ${response.message}`);
-            break;
          case 1 :
             ErrorModal.open('Ошибка авторизации', 'Нет обязательных параметров запроса на сервер. Обратитесь к администратору');
             break;
-         case 7 :
+         case 6 :
             ErrorModal.open('Ошибка авторизации', `Непредвиденная ошибка. code: ${response.code}, message: ${response.message}`);
             break;
          default :
