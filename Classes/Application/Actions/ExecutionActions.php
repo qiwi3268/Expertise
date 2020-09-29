@@ -13,6 +13,7 @@ use ReflectionException;
 use core\Classes\Session;
 use Lib\Actions\ExecutionActions as MainExecutionActions;
 use Lib\DataBase\Transaction;
+use Lib\Singles\Helpers\PageAddress;
 use Tables\Docs\application;
 use Tables\DocumentationTypeTableLocator;
 
@@ -194,14 +195,15 @@ class ExecutionActions extends MainExecutionActions
             }
             $sectionCount++;
         }
-        $transaction->start();
+        $transactionResults = $transaction->start()->getLastResults();
+
+        $totalCCId = $transactionResults[$tables['doc_total_cc']]['create'][0];
 
 
-        return 'todo';
         // todo поменять стадию на заявлении
         // todo ???КД на заявлении
         // todo ??? ответственные на заявлении
         // todo ???КД на сводном
-        
+        return PageAddress::createCardRef($totalCCId, 'total_cc', 'view');
     }
 }

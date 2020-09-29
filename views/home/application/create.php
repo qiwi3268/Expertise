@@ -576,8 +576,7 @@
                         <!--Шаблоны источников финансирования-->
                         <div class="body-card__block block" data-name="templates_container">
                             <!--Шаблон элемента множественного блока-->
-                            <div class="body-card__block block" data-name="part" data-active="false" data-dependency_scope>
-                            </div>
+                            <div class="body-card__block block" data-name="part" data-active="false" data-dependency_scope></div>
                             <!--Шаблон элемента множественного блока-->
                             <!--Шаблон "Вид финансирования"-->
                             <div class="body-card__block block" data-type="part" data-name="type" data-active="false">
@@ -862,7 +861,7 @@
                                 </div>
                             </div>
                             <!--//Шаблон "Процент финансирования"//-->
-                            <!--Кнопка сохранить-->
+                            <!--Шаблон действий-->
                             <div class="body-card__block block" data-name="actions" data-active="false">
                                 <div class="multiple-block__actions">
                                     <div class="multiple-block__button save">
@@ -875,7 +874,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--//Шаблон "Процент финансирования"//-->
+                            <!--//Шаблон действий//-->
                             <div class="body-card__block block" data-name="part_short" data-active="false">
                                 <div class="multiple-block__short part-short">
                                     <span class="multiple-block__info part-info"></span>

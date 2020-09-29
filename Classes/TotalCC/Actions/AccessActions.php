@@ -49,4 +49,15 @@ class AccessActions extends MainAccessActions
 
         return false;
     }
+
+
+    /**
+     * <b>Редактировать общую часть</b>
+     *
+     * @return bool
+     */
+    public function action_2(): bool
+    {
+        // Проверка, что заполнены все необходимые поля
+    }
 }

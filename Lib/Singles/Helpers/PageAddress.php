@@ -34,6 +34,8 @@ class PageAddress
     /**
      * Предназначен для формирование ссылки на карточку документа
      *
+     * К ссылке: /home/expertise_cards/ добавляются parts
+     *
      * @param int $documentId id документа
      * @param string ...$parts <i>перечисление</i> частей URN (вложенности)
      * @return string

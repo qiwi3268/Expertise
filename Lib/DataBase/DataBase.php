@@ -43,6 +43,12 @@ class DataBase
         if (self::$mysqli->connect_error) {
             throw new SelfEx('Ошибка подключения к базе данных: ' . self::$mysqli->connect_errno, self::$mysqli->connect_error);
         }
+
+        // Преобразовывает столбцы типов integer и float к числам
+        // Работает только с установленным расширением mysqlnd
+        if (self::$mysqli->options(MYSQLI_OPT_INT_AND_FLOAT_NATIVE, true) === false) {
+            throw new SelfEx('Ошибка под');
+        }
     }
 
 
@@ -183,6 +189,7 @@ class DataBase
     static protected function executeTransaction(Transaction $transaction): void
     {
         if (self::$mysqli->begin_transaction() === false) {
+
             throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
         }
 
@@ -192,17 +199,20 @@ class DataBase
         } catch (SelfEx $e) {
 
             if (self::$mysqli->rollback() === false) {
+
                 throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
             }
             throw new SelfEx($e->getMessage(), $e->getCode());
         } catch (Exception $e) {
 
             if (self::$mysqli->rollback() === false) {
+
                 throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
             }
             throw new Exception($e->getMessage(), $e->getCode());
         }
         if (self::$mysqli->commit() === false) {
+
             throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
         }
     }

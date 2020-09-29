@@ -31,6 +31,7 @@ class PartBlock {
    handleSaveButton () {
       let save_btn = this.actions.querySelector('.save');
       save_btn.addEventListener('click', () => {
+         // console.log(this.element);
          let part_data = new PartData(this.element);
 
          if (part_data.type) {
@@ -66,6 +67,11 @@ class PartBlock {
          this.createShortElement();
       }
 
+      let part_info = this.short_block.querySelector('.part-info');
+      let part_title = this.element.querySelector(`[data-part_title='${this.data.type}']`);
+      part_info.innerHTML = part_title.innerHTML;
+      resizeCard(this.parent.element);
+
    }
 
    createShortElement () {
@@ -86,11 +92,8 @@ class PartBlock {
          resizeCard(this.parent.element);
       });
 
-      let part_info = this.short_block.querySelector('.part-info');
-      let part_title = this.element.querySelector(`[data-part_title='${this.data.type}']`);
-      part_info.innerHTML = part_title.innerHTML;
 
-      resizeCard(this.parent.element);
+
    }
 
    handleCancelButton () {
@@ -108,6 +111,7 @@ function PartData (part_block) {
    let dependent_blocks = part_block.querySelectorAll('.block[data-active="true"]');
 
    dependent_blocks.forEach(block => {
+      console.log(block);
       let field_inputs = block.querySelectorAll('.field-result[data-field]');
 
       field_inputs.forEach(input => {

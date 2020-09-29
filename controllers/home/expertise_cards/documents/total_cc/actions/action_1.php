@@ -4,6 +4,12 @@
 use Lib\Singles\VariableTransfer;
 use Lib\DataBase\Transaction;
 use Classes\TotalCC\Actions\DefaultFormParametersAction1;
+use Tables\Docs\Relations\ParentDocumentLinker;
+use Classes\Application\FinancingSources;
+
+
+$linker = new ParentDocumentLinker(CURRENT_DOCUMENT_TYPE, CURRENT_DOCUMENT_ID);
+$applicationId = $linker->getApplicationId();
 
 
 
@@ -22,6 +28,10 @@ $transaction->add(
 );
 
 
+$financingSources = new FinancingSources($applicationId);
+$transaction->add($financingSources, 'getFinancingSources');
+
+
 
 
 
@@ -30,7 +40,11 @@ $transaction->add(
 $defaultParameters = new DefaultFormParametersAction1(
     $transaction,
     [
-        'applicantDetails' => $commonPartApplicantDetails
+        'applicantDetails' => $commonPartApplicantDetails,
+        'financingSources' => [
+            'class'  => '\\' . get_class($financingSources),
+            'method' => 'getFinancingSources'
+        ]
     ]
 );
 

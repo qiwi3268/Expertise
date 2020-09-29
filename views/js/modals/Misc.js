@@ -572,7 +572,7 @@ class Pagination {
  * @param {Misc} misc - объект справочника, в котором выбран элемент
  * @returns {function} одна из следующих функций:
  * {@link setApplicationFieldValue} - добавить значение в поле формы анкеты
- * {@link setAdditionalAction} - установить название дополнительного раздела при назначении экспертов
+ * {@link setAdditionalSection} - установить название дополнительного раздела при назначении экспертов
  */
 function getMiscResultCallback (misc) {
    let callback;
@@ -582,7 +582,7 @@ function getMiscResultCallback (misc) {
          callback = setApplicationFieldValue;
          break;
       case 'additional_section':
-         callback = setAdditionalAction;
+         callback = setAdditionalSection;
          break;
 
       default:
@@ -625,10 +625,23 @@ function setApplicationFieldValue (selected_item, misc) {
  * @param {HTMLElement} selected_item - выбранный элемент справочника
  * @param {Misc} misc - объект справочника, к которому отностится элемент
  */
-function setAdditionalAction (selected_item, misc) {
+function setAdditionalSection (selected_item, misc) {
    misc.field.dataset.id = selected_item.dataset.id;
    misc.field.dataset.drop_area = '';
    misc.select.classList.remove('empty');
+
+   //todo доделать
+/*
+   let misc_template = document.getElementById('section_template');
+   let template_item = misc_template.querySelector(`[data-misc_item][data-id='${selected_item.dataset.id}']`);
+   console.log(template_item);
+   template_item.style.display = 'none';
+*/
+
+   // if (document.querySelector(`[data-misc_item][data-id='${selected_item.dataset.id}']`))
+   // {
+   //    console.log(selected_item);
+   // }
 
    let misc_value = misc.select.querySelector('[data-misc_value]');
    misc_value.innerHTML = selected_item.innerHTML;

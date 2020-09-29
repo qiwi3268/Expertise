@@ -12,6 +12,7 @@ use Lib\DataBase\ParametrizedQuery;
 use Tables\Docs\Interfaces\Document;
 use Tables\Docs\Interfaces\Responsible;
 use Tables\CommonInterfaces\Existent;
+use Tables\Helpers\Helper;
 
 use Tables\Docs\Traits\Document as DocumentTrait;
 use Tables\Docs\Traits\Responsible as ResponsibleTrait;
@@ -198,16 +199,16 @@ final class application implements Document, Existent, Responsible
         $result = $result[0];
 
         // Перекладываем каждый справочник в отдельный подмассив
-        self::restructureMiscToSubarray($result, 'id_expertise_purpose', 'name_expertise_purpose', 'expertise_purpose');
-        self::restructureMiscToSubarray($result, 'id_type_of_object', 'name_type_of_object', 'type_of_object');
-        self::restructureMiscToSubarray($result, 'id_functional_purpose', 'name_functional_purpose', 'functional_purpose');
-        self::restructureMiscToSubarray($result, 'id_functional_purpose_subsector', 'name_functional_purpose_subsector', 'functional_purpose_subsector');
-        self::restructureMiscToSubarray($result, 'id_functional_purpose_group', 'name_functional_purpose_group', 'functional_purpose_group');
-        self::restructureMiscToSubarray($result, 'id_type_of_work', 'name_type_of_work', 'type_of_work');
-        self::restructureMiscToSubarray($result, 'id_cultural_object_type', 'name_cultural_object_type', 'cultural_object_type');
-        self::restructureMiscToSubarray($result, 'id_national_project', 'name_national_project', 'national_project');
-        self::restructureMiscToSubarray($result, 'id_federal_project', 'name_federal_project', 'federal_project');
-        self::restructureMiscToSubarray($result, 'id_curator', 'name_curator', 'curator');
+        Helper::restructureMiscToSubarray($result, 'id_expertise_purpose', 'name_expertise_purpose', 'expertise_purpose');
+        Helper::restructureMiscToSubarray($result, 'id_type_of_object', 'name_type_of_object', 'type_of_object');
+        Helper::restructureMiscToSubarray($result, 'id_functional_purpose', 'name_functional_purpose', 'functional_purpose');
+        Helper::restructureMiscToSubarray($result, 'id_functional_purpose_subsector', 'name_functional_purpose_subsector', 'functional_purpose_subsector');
+        Helper::restructureMiscToSubarray($result, 'id_functional_purpose_group', 'name_functional_purpose_group', 'functional_purpose_group');
+        Helper::restructureMiscToSubarray($result, 'id_type_of_work', 'name_type_of_work', 'type_of_work');
+        Helper::restructureMiscToSubarray($result, 'id_cultural_object_type', 'name_cultural_object_type', 'cultural_object_type');
+        Helper::restructureMiscToSubarray($result, 'id_national_project', 'name_national_project', 'national_project');
+        Helper::restructureMiscToSubarray($result, 'id_federal_project', 'name_federal_project', 'federal_project');
+        Helper::restructureMiscToSubarray($result, 'id_curator', 'name_curator', 'curator');
 
         // Предметы экспертизы
         $queryExpertiseSubjects = "SELECT `misc_expertise_subject`.`id`,
@@ -228,42 +229,6 @@ final class application implements Document, Existent, Responsible
         $result['expertise_subjects'] = $expertiseSubjects;
 
         return $result;
-    }
-
-
-    /**
-     * Предназначен для реструктуризации ассоциативного массива заявления
-     *
-     * Перекладывает полученные данные о справочнике в отдельный подмассив<br>
-     * В случае, если данные null, то новое свойство также null<br>
-     * Полученные данные id_misc и name_misc вырезаются из массива
-     *
-     * @param array $result <i>ссылка</i> на результирующий запрос в БД
-     * @param string $id_misc id справочника из запроса в БД
-     * @param string $name_misc имя справочника из запроса в БД
-     * @param string $restructuredName имя нового свойства, в которое будет записаны 'id' и 'name'
-     * @throws SelfEx
-     */
-    static private function restructureMiscToSubarray(
-        array &$result,
-        string $id_misc,
-        string $name_misc,
-        string $restructuredName
-    ): void {
-
-        if (!array_key_exists($id_misc, $result) || !array_key_exists($name_misc, $result)) {
-            throw new SelfEx("В массиве result отсутствует(ют) свойства: '{$id_misc}' и/или '{$name_misc}'", 1);
-        }
-
-        if (is_null($result[$id_misc])) {
-
-            $result[$restructuredName] = null;
-        } else {
-
-            $result[$restructuredName]['id'] = $result[$id_misc];
-            $result[$restructuredName]['name'] = $result[$name_misc];
-        }
-        unset($result[$id_misc], $result[$name_misc]);
     }
 
 

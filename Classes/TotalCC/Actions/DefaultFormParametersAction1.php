@@ -40,6 +40,15 @@ class DefaultFormParametersAction1 extends DefaultFormParametersCreator
             'director'  => $ad['director'] ?? '',
         ];
 
+        // Источники финансирования
+        // fs - financing sources
+
+        $fs = $this->getResult('financingSources');
+
+        $result['financingSources'] = [
+            $fs
+        ];
+
         return $result;
     }
 }

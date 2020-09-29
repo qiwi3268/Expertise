@@ -9,8 +9,8 @@ use Lib\Exceptions\Traits\MainTrait;
 /**
  * Связан с ошибками при работе классов таблиц
  *
- * {@see \Tables\Docs\application}<br>
- * 1 - в массиве result отсутствует(ют) свойства id_misc и/или name_misc<br>
+ * {@see \Tables\Helpers\Helper}<br>
+ * 1001 - в массиве result отсутствует(ют) свойства id_misc и/или name_misc<br>
  * {@see \Tables\Docs\Relations\ParentDocumentLinker}<br>
  * 2001 - метод невозможно вызвать от типа документа "Заявление"<br>
  * 2002 - методу не удалось определить тип документа<br>

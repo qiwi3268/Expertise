@@ -14,11 +14,13 @@ use core\Classes\RoutesXMLHandler;
 use Tables\Structures\documentation_1;
 use Lib\Singles\Helpers\PageAddress;
 use Tables\assigned_expert_total_cc;
+use Classes\Application\FinancingSources;
+use Lib\DataBase\Transaction;
+use Tables\test;
 
-
-
-
-$a = assigned_expert_total_cc::getAllAssocExpertWhereCommonPartByIdTotalCC(8);
+$a = test::test1();
+$b = test::test2();
 
 var_dump($a);
+var_dump($b);
 

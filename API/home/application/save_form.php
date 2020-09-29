@@ -261,7 +261,7 @@ try {
     if ($P_number_planning_documentation_approval != '' || $P_date_planning_documentation_approval != '') {
 
         // Заполнены данные при невыбранном виде объекта или вид объекта не того типа
-        if (!$typeOfObject->isExist() || $typeOfObject->getIntValue() != 1) {
+        if (!$typeOfObject->isExist() || $typeOfObject->getIntValue() != 2) {
 
             exit(json_encode([
                 'result'        => 7,
@@ -283,7 +283,7 @@ try {
     } elseif ($P_number_GPZU != '' || $P_date_GPZU != '') {
 
         // Заполнены данные при невыбранном виде объекта или вид объекта не того типа
-        if (!$typeOfObject->isExist() || !$typeOfObject->getIntValue() != 2) {
+        if (!$typeOfObject->isExist() || $typeOfObject->getIntValue() != 1) {
 
             exit(json_encode([
                 'result'        => 7,

@@ -68,7 +68,6 @@ function saveMultipleBlocks (form_data) {
    let multiple_blocks = document.querySelectorAll('.block[data-type="multiple"]');
    multiple_blocks.forEach(block => {
 
-      // todo сделать нормально
       let multiple_block = MultipleBlock.getBlockByName(block.dataset.name);
       if (multiple_block.is_changed) {
          multiple_block.is_changed = false;
@@ -78,6 +77,7 @@ function saveMultipleBlocks (form_data) {
       }
 
       form_data.append(block.dataset.name, multiple_block.getPartsDataJSON());
+
    });
 }
 
