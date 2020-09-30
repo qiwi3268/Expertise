@@ -30,7 +30,13 @@ function assignExperts () {
       API.executeAction(form_data)
          .then(response => {
 
-            location.href = response.ref;
+            switch (response.result) {
+               case 18:
+                  location.href = response.ref;
+                  break;
+               default:
+                  console.log(response);
+            }
 
          })
          .catch(exc => {

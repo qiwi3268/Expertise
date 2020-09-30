@@ -57,7 +57,7 @@ use Tables\Docs\TableLocator;
 try {
 
     if (!Session::isAuthorized()) {
-        
+
         exit(json_encode([
             'result'        => 8,
             'error_message' => 'Для работы с действиями Вам необходимо авторизоваться'

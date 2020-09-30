@@ -617,32 +617,25 @@ function setApplicationFieldValue (selected_item, misc) {
    validateMisc(misc);
 }
 
-
 /**
- * Устанавливает название дополнительного раздела при назначении экспертов
+ * Устанавливает название дополнительного раздела, если такой раздел не был создан
  * и добавляет возможность перекинуть в него экспертов
  *
  * @param {HTMLElement} selected_item - выбранный элемент справочника
  * @param {Misc} misc - объект справочника, к которому отностится элемент
  */
 function setAdditionalSection (selected_item, misc) {
-   misc.field.dataset.id = selected_item.dataset.id;
-   misc.field.dataset.drop_area = '';
-   misc.select.classList.remove('empty');
 
-   //todo доделать
-/*
-   let misc_template = document.getElementById('section_template');
-   let template_item = misc_template.querySelector(`[data-misc_item][data-id='${selected_item.dataset.id}']`);
-   console.log(template_item);
-   template_item.style.display = 'none';
-*/
+   if (!document.querySelector(`[data-misc_field][data-id='${selected_item.dataset.id}']`)) {
+      misc.field.dataset.id = selected_item.dataset.id;
+      misc.field.dataset.drop_area = '';
+      misc.select.classList.remove('empty');
+      let misc_value = misc.select.querySelector('[data-misc_value]');
+      misc_value.innerHTML = selected_item.innerHTML;
+   } else {
+      let section = selected_item.closest('[data-misc_field]');
+      section.remove();
+      ErrorModal.open('Ошибка при добавлении раздела', 'Такой раздел уже создан');
+   }
 
-   // if (document.querySelector(`[data-misc_item][data-id='${selected_item.dataset.id}']`))
-   // {
-   //    console.log(selected_item);
-   // }
-
-   let misc_value = misc.select.querySelector('[data-misc_value]');
-   misc_value.innerHTML = selected_item.innerHTML;
 }
