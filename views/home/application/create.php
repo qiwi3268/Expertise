@@ -2,23 +2,22 @@
 
 <?php //var_dump($variablesTV->getValue('structureDocumentation1')); ?>
 
-<!--todo переделать классы-->
-<div class="application-form__header header-form">
-    <div class="header-form__title">Заявление на экспертизу <?= $variablesTV->getValue('numerical_name') ?></div>
-    <div class="header-form__actions">
-        <div id="application_save" class="header-form__btn">
-            <span class="header-form__text">Сохранить</span>
-            <i class="header-form__icon fas fa-save"></i>
+<div class="application-header">
+    <div class="application-header__title">Заявление на экспертизу <?= $variablesTV->getValue('numerical_name') ?></div>
+    <div class="application-header__actions">
+        <div id="application_save" class="application-header__button">
+            <span class="application-header__text">Сохранить</span>
+            <i class="application-header__icon-save fas fa-save"></i>
         </div>
-        <div class="header-form__btn">
-            <span class="header-form__text">Удалить</span>
-            <i class="header-form__icon fas fa-trash"></i>
+        <div class="application-header__button">
+            <span class="application-header__text">Удалить</span>
+            <i class="application-header__icon-delete fas fa-trash"></i>
         </div>
     </div>
 </div>
 
 <div class="application-form">
-    <div class="application-form__sidebar sidebar-form">
+    <div class="sidebar-form application-form__sidebar">
         <div class="sidebar-form__row">
             <span class="sidebar-form__text">Сведения о проекте и цели заявления</span>
             <i class="sidebar-form__icon fas"></i>
@@ -44,10 +43,6 @@
             <i class="sidebar-form__icon fas"></i>
         </div>
         <div class="sidebar-form__row">
-            <span class="sidebar-form__text">Плательщик</span>
-            <i class="sidebar-form__icon fas"></i>
-        </div>
-        <div class="sidebar-form__row">
             <span class="sidebar-form__text">Условия предоставления услуги</span>
             <i class="sidebar-form__icon fas"></i>
         </div>
@@ -56,11 +51,13 @@
             <i class="sidebar-form__icon fas"></i>
         </div>
     </div>
+
     <div class="application-form__cards">
         <input type="hidden" name="id_application" value="<?= $variablesTV->getValue('id_application') ?>">
 
         <div class="application-form__block block" data-dependency_scope>
-            <div class="application-form__card card-form card" data-type="purpose">
+
+            <div class="application-form__card card-form card" data-type="purpose" data-card>
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">СВЕДЕНИЯ О ЦЕЛИ ОБРАЩЕНИЯ</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
@@ -97,7 +94,7 @@
                     <!--//Цель обращения//-->
 
                     <!--Предмет экспертизы-->
-                    <div class="body-card__row field center" data-name="expertise_subjects" data-required="true">
+                    <div class="body-card__row field" data-name="expertise_subjects" data-required="true">
                         <span class="body-card__title">Предмет экспертизы</span>
                         <div class="body-card__item">
                             <div class="body-card__field radio" data-multiple="true" data-required="true">
@@ -637,7 +634,7 @@
                                     <input class="body-card__result field-result" data-misc_result type="hidden" data-field="budget_level" name="budget_level">
                                 </div>
                                 <div class="body-card__block block" data-type="part" data-name="no_data" data-active="false">
-                                    <div class="body-card__row field center" data-name="no_data">
+                                    <div class="body-card__row field" data-name="no_data">
                                         <span class="body-card__title">Размер финансирования</span>
                                         <div class="body-card__item">
                                             <div class="body-card__field radio">
@@ -740,7 +737,7 @@
                                     </div>
                                 </div>
                                 <div class="body-card__block block" data-type="part" data-name="no_data" data-active="false">
-                                    <div class="body-card__row field center" data-name="no_data">
+                                    <div class="body-card__row field" data-name="no_data">
                                         <span class="body-card__title">Размер финансирования</span>
                                         <div class="body-card__item">
                                             <div class="body-card__field radio">
@@ -771,7 +768,7 @@
                             <!--Шаблон "Собственные средства застройщика"-->
                             <div class="body-card__block block" data-type="part" data-name="builder_source" data-active="false">
                                 <div class="body-card__block block" data-type="part" data-name="no_data" data-active="false">
-                                    <div class="body-card__row field center" data-name="no_data">
+                                    <div class="body-card__row field" data-name="no_data">
                                         <span class="body-card__title">Размер финансирования</span>
                                         <div class="body-card__item">
                                             <div class="body-card__field radio">
@@ -802,7 +799,7 @@
                             <!--Шаблон "Средства инвестора"-->
                             <div class="body-card__block block" data-type="part" data-name="investor" data-active="false">
                                 <div class="body-card__block block" data-type="part" data-name="no_data" data-active="false">
-                                    <div class="body-card__row field center" data-name="no_data">
+                                    <div class="body-card__row field" data-name="no_data">
                                         <span class="body-card__title">Размер финансирования</span>
                                         <div class="body-card__item">
                                             <div class="body-card__field radio">
@@ -832,7 +829,7 @@
                             <!--//Шаблон "Средства инвестора"//-->
                             <!--Шаблон "Размер финансирования"-->
                             <div class="body-card__block block" data-type="part" data-name="no_data" data-active="false">
-                                <div class="body-card__row field center" data-name="no_data">
+                                <div class="body-card__row field" data-name="no_data">
                                     <span class="body-card__title">Размер финансирования</span>
                                     <div class="body-card__item">
                                         <div class="body-card__field radio">
@@ -883,11 +880,12 @@
                             </div>
                         </div>
                         <!--//Шаблоны источников финансирования//-->
-                        
+
                     </div>
                     <!--//Источники финансирования//-->
                 </div>
             </div>
+
         </div>
 
         <div class="application-form__card card-form card" data-type="documentation">

@@ -1,4 +1,4 @@
-.application-form__header {
+.application-header {
    display: flex;
    justify-content: space-between;
    min-height: 50px;
@@ -8,7 +8,7 @@
    background-color: #ffffff;
 }
 
-.header-form__title {
+.application-header__title {
    align-self: center;
    margin: 0px 0px 0px 20px;
    font-family: 'Bebas Neue', sans-serif;
@@ -16,38 +16,39 @@
    font-weight: 700;
 }
 
-.header-form__actions {
+.application-header__actions {
    display: flex;
 }
 
-.header-form__btn {
+.application-header__button {
    display: flex;
    align-items: center;
    padding: 0px 15px;
    border-bottom: 2px solid #ffffff;
    cursor: pointer;
    /*transition: background-color 0.15s;*/
-   transition: 0.15s;
+   transition: background-color, border-color 0.15s;
 }
 
-.header-form__btn:hover {
+.application-header__button:hover {
    border-bottom: 2px solid #ffd354;
    background-color: #f2f2f2;
 }
 
-.header-form__text {
+.application-header__text {
    margin: 0px 15px 0px 0px;
    font-family: 'PT Sans Narrow', sans-serif;
    font-size: 18px;
 }
 
-.header-form__icon {
+.application-header__icon-save {
    font-size: 20px;
    color: #8e8e8e;
 }
 
-.header-form__btn.fa-trash {
+.application-header__icon-delete {
    font-size: 18px;
+   color: #8e8e8e;
 }
 
 /* application-form__header =================================================================== */
@@ -60,13 +61,16 @@
 
 .application-form__sidebar {
    margin: 0px 10px 0px 0px;
+   /*max-width: 20%;*/
+   min-width: 300px;
+   width: 300px;
+}
+
+.sidebar-form {
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
    background-color: #ffffff;
    cursor: pointer;
-   /*max-width: 20%;*/
-   min-width: 300px;
-   width: 300px;
 }
 
 .sidebar-form__row {
@@ -178,10 +182,6 @@
    position: relative;
    margin: 0px 15px;
    padding: 10px 0px;
-}
-
-.body-card__row.center {
-   align-items: center;
 }
 
 .body-card__title {
