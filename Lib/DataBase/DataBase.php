@@ -47,7 +47,7 @@ class DataBase
         // Преобразовывает столбцы типов integer и float к числам
         // Работает только с установленным расширением mysqlnd
         if (self::$mysqli->options(MYSQLI_OPT_INT_AND_FLOAT_NATIVE, true) === false) {
-            throw new SelfEx('Ошибка под');
+            throw new SelfEx('Ошибка установки настройки MYSQLI_OPT_INT_AND_FLOAT_NATIVE: ' . self::$mysqli->error, self::$mysqli->errno);
         }
     }
 
@@ -115,8 +115,7 @@ class DataBase
 
         // Подготовка запроса к выполнению
         if ($stmt === false) {
-            // Ошибка в формировании параметризованного запроса
-            throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
+            throw new SelfEx('Ошибка в формировании параметризованного запроса:' . self::$mysqli->error, self::$mysqli->errno);
         }
 
         // Привязка переменных к параметрам запроса
@@ -125,17 +124,15 @@ class DataBase
             call_user_func_array([$stmt, 'bind_param'], $arrToCallback) === false
             && self::$mysqli->errno != 0
         ){
-            // Ошибка при привязке привязке переменных
-            throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
+            throw new SelfEx('Ошибка при привязке привязке переменных:' . self::$mysqli->error, self::$mysqli->errno);
         }
 
         if ($stmt->execute() === false) {
-            // Ошибка при выполнении параметризованного запроса
             // Возможные ошибки:
             // количество символов в переменной больше, чем в поле БД
             // NULL в запросе указан в кавычках
             // повторяющееся значение для столбца с индексом unique
-            throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
+            throw new SelfEx('Ошибка при выполнении параметризованного запроса: ' . self::$mysqli->error, self::$mysqli->errno);
         }
 
         $result = $stmt->get_result();
@@ -144,14 +141,12 @@ class DataBase
             $result === false
             && self::$mysqli->errno != 0
         ){
-            // Ошибка при получении результата параметризованного запроса
-            throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
+            throw new SelfEx('Ошибка при получении результата параметризованного запроса: ' . self::$mysqli->error, self::$mysqli->errno);
         }
 
         // Закрытие подготовленного вопроса
         if($stmt->close() === false){
-            // Ошибка при закрытии параметризованного запроса
-            throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
+            throw new SelfEx('Ошибка при закрытии параметризованного запроса: ' . self::$mysqli->error, self::$mysqli->errno);
         }
 
         return $result;
@@ -170,9 +165,8 @@ class DataBase
     {
         $result = self::$mysqli->query($query);
 
-        // Ошибка при выполнении простого запроса
         if ($result === false) {
-            throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
+            throw new SelfEx('Ошибка при выполнении простого запроса:' . self::$mysqli->error, self::$mysqli->errno);
         }
 
         return $result;
@@ -185,12 +179,13 @@ class DataBase
      * @param Transaction $transaction экземпляр класса, содержащий в себе запросы,
      * которые необходимо выполнить в рамках транзакции
      * @throws SelfEx
+     * @throws Exception
      */
     static protected function executeTransaction(Transaction $transaction): void
     {
         if (self::$mysqli->begin_transaction() === false) {
 
-            throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
+            throw new SelfEx('Ошибка при старте транзакции: ' . self::$mysqli->error, self::$mysqli->errno);
         }
 
         try {
@@ -200,20 +195,20 @@ class DataBase
 
             if (self::$mysqli->rollback() === false) {
 
-                throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
+                throw new SelfEx('Ошибка при откате текущей транзакции: ' . self::$mysqli->error, self::$mysqli->errno);
             }
             throw new SelfEx($e->getMessage(), $e->getCode());
         } catch (Exception $e) {
 
             if (self::$mysqli->rollback() === false) {
 
-                throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
+                throw new SelfEx('Ошибка при откате текущей транзакции: ' . self::$mysqli->error, self::$mysqli->errno);
             }
             throw new Exception($e->getMessage(), $e->getCode());
         }
         if (self::$mysqli->commit() === false) {
 
-            throw new SelfEx(self::$mysqli->error, self::$mysqli->errno);
+            throw new SelfEx('Ошибка при фиксации текущей транзакции: ' . self::$mysqli->error, self::$mysqli->errno);
         }
     }
 }
