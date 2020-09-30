@@ -17,22 +17,59 @@ use Tables\assigned_expert_total_cc;
 use Classes\Application\FinancingSources;
 use Lib\DataBase\Transaction;
 use Tables\test;
+use Classes\Application\Miscs\Initialization\CreateFormInitializer;
 
-TemplateMaker::getData();
+
+$miscInitializer = new CreateFormInitializer();
+
+$data = $miscInitializer->getPaginationSingleMiscs()['type_of_object'];
 
 
+TemplateMaker::getInstance()->create(
+    'type_of_object',
+    TemplateMaker::HOME_WITH_DATA_CREATE_MISCS . '/type_of_object.php',
+    $data
+);
+
+TemplateMaker::require('type_of_object');
+
+
+/**
+ * lalalala
+ *
+ */
 final class TemplateMaker
 {
 
+    public const HOME_WITH_DATA_CREATE_MISCS = ROOT . '/views/home/templates_with_data/create/miscs';
+
+    /**
+     * Массих для хранения шаблонов
+     *
+     */
     private array $templates = [];
 
+    /**
+     * Сущность класса
+     *
+     */
     private static self $instance;
 
 
+    /**
+     * Конструктор класса
+     *
+     */
     private function __construct()
     {
     }
 
+
+    /**
+     * Предназначен для получения сущности класса
+     *
+     * @return static сущность класса
+     */
     static public function getInstance(): self
     {
         if (empty(self::$instance)) {
@@ -47,18 +84,26 @@ final class TemplateMaker
      *
      * @param string $method
      * @param array $arguments
+     * @return mixed результат не статического метода
      * @throws SelfEx
      */
-    static public function __callStatic(string $method, array $arguments): void
+    static public function __callStatic(string $method, array $arguments)
     {
         $classMapping = [
-            'create'  => 'create',
-            'require' => 'requireByName',
-            'getData' => 'getDataByPath'
+            'require'     => 'requireByName',
+            'getSelfData' => 'getDataByPath'
         ];
 
         if (isset($classMapping[$method])) {
-            call_user_func_array([self::getInstance(), $classMapping[$method]], $arguments);
+
+            if ($method == 'getSelfData') {
+
+                $arguments = [
+                    debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file']
+                ];
+            }
+
+            return call_user_func_array([self::getInstance(), $classMapping[$method]], $arguments);
         } else {
             throw new SelfEx("Отсутствует callStatic маппинг для метода: '{$method}'", 1);
         }
@@ -69,28 +114,21 @@ final class TemplateMaker
      * Предназначен для создания шаблона
      *
      * @param string $name уникальное название шаблона
-     * @param string $dir абсолютный путь в ФС сервера к директории с шаблоном.<br>
-     * Начинается на '/', заканчивается <b>без</b> '/'
-     * @param string $fileName
+     * @param string $path абсолютный путь в ФС сервера к файлу шаблона
      * @param array|null $data
      * @throws SelfEx
      */
-    public function create(string $name, string $dir, string $fileName, ?array $data = null): void
+    public function create(string $name, string $path, ?array $data = null): void
     {
         if (isset($this->templates[$name])) {
             throw new SelfEx("Шаблон: '{$name}' уже существует", 2);
         }
 
-        $path = "{$dir}/{$fileName}";
-
-        if (!file_exists($path)) {
-            throw new SelfEx("Файл шаблона: '{$name}' по пути: '{$path}' не существует", 3);
-        }
+        $this->checkPathExist($path);
 
         $this->templates[$name] = [
-            'dir'      => $dir,
-            'fileName' => $fileName,
-            'data'     => $data
+            'path' => $path,
+            'data' => $data
         ];
     }
 
@@ -103,40 +141,54 @@ final class TemplateMaker
      */
     public function requireByName(string $name): void
     {
-        if (isset($this->templates[$name])) {
+        if (!isset($this->templates[$name])) {
             throw new SelfEx("Запрашиваемый шаблон: '{$name}' не существует", 4);
         }
 
-        list('dir' => $dir, 'fileName' => $fileName) = $this->templates[$name];
+        require $this->templates[$name]['path'];
+    }
 
-        require "{$dir}/{$fileName}";
+
+    /**
+     * Предназначен для подключения файла шаблона без данных
+     *
+     * @param string $path абсолютный путь в ФС сервера к файлу шаблона
+     * @throws SelfEx
+     */
+    public function requireTemplateNoDataByPath(string $path): void
+    {
+        $this->checkPathExist($path);
+        require $path;
     }
 
 
     /**
      * Предназначен для получения данных для шаблона
      *
-     * @param string|null $path <b>string</b> абсолютный путь в ФС сервера к файлу шаблона.<br>
-     * Начинается на '/', заканчивается <b>без</b> '/', включая расширение файла<br>
-     * <b>null</b> в случае, если шаблон будет браться по пути к файлу,
-     * в котором вызывается данный метод
+     * @param string $path абсолютный путь в ФС сервера к файлу шаблона
      * @return array|null
      * @throws SelfEx
      */
-    public function getDataByPath(?string $path = null): ?array
+    public function getDataByPath(string $path): ?array
     {
-        if (is_null($path)) {
-            $path = __FILE__;
-        }
+        foreach ($this->templates as ['path' => $templatePath, 'data' => $data]) {
 
-        foreach ($this->templates as ['dir' => $dir, 'fileName' => $fileName, 'data' => $data]) {
-
-            $templatePath = "{$dir}/{$fileName}";
-
-            if ($path == $templatePath) {
-                return $data;
-            }
+            if ($path == $templatePath) return $data;
         }
         throw new SelfEx("По пути: '{$path}' не найден шаблон для получения его данных", 777);
+    }
+
+
+    /**
+     * Предназначен для проверки существования файла шаблона в ФС сервера
+     *
+     * @param string $path абсолютный путь в ФС сервера к файлу шаблона
+     * @throws SelfEx
+     */
+    private function checkPathExist(string $path): void
+    {
+        if (!file_exists($path)) {
+            throw new SelfEx("Файл шаблона по пути: '{$path}' не существует в файловой системе сервера", 3);
+        }
     }
 }
