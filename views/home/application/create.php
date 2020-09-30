@@ -570,7 +570,7 @@
 
                         <div class="multiple-block__add field-add">
                             <span class="multiple-block__text">Добавить источник финансирования</span>
-                            <i class="multiple-block__icon fas fa-plus-square"></i>
+                            <i class="multiple-block__icon fas fa-plus"></i>
                         </div>
 
                         <!--Шаблоны источников финансирования-->
@@ -866,11 +866,11 @@
                                 <div class="multiple-block__actions">
                                     <div class="multiple-block__button save">
                                         <span class="multiple-block__text">Сохранить источник финансирования</span>
-                                        <i class="multiple-block__icon fas fa-check-circle"></i>
+                                        <i class="multiple-block__icon fas fa-check"></i>
                                     </div>
                                     <div class="multiple-block__button cancel">
                                         <span class="multiple-block__text">Отмена</span>
-                                        <i class="multiple-block__icon fas fa-times-circle"></i>
+                                        <i class="multiple-block__icon fas fa-times"></i>
                                     </div>
                                 </div>
                             </div>

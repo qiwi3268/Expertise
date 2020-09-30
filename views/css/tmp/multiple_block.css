@@ -3,7 +3,7 @@
 }
 
 .multiple-block__icon {
-   font-size: 18px;
+   font-size: 16px;
 }
 
 .multiple-block__actions {
@@ -11,6 +11,8 @@
    justify-content: center;
 
 }
+
+
 
 .multiple-block__add,
 .multiple-block__button {
@@ -26,10 +28,15 @@
    border: 1px solid #cccccc;
    border-radius: 4px;
    font-size: 14px;
-   color: #6e6e6e;
    cursor: pointer;
    transition: box-shadow .10s;
 }
+
+.multiple-block__add {
+   color: #1c3959;
+}
+
+
 
 .multiple-block__add:hover,
 .multiple-block__button:hover {
@@ -41,6 +48,7 @@
    margin: 10px;
    display: flex;
    align-items: center;
+
 }
 
 .multiple-block__info {
@@ -51,7 +59,7 @@
    border: 1px solid #cccccc;
    border-radius: 4px;
    font-size: 14px;
-   color: #6e6e6e;
+   color: #1c3959;
    cursor: pointer;
    transition: box-shadow .10s;
 }
@@ -63,18 +71,25 @@
 
 .multiple-block__delete {
    margin: 0px 0px 0px 3px;
-   padding: 10px;
+   padding: 8px;
    border: #ffffff solid 2px;
    border-radius: 4px;
-   color: #6e6e6e;
+   color: #a93d3d;
    cursor: pointer;
    transition: 0.15s;
+}
+
+.multiple-block__button.save > .multiple-block__icon {
+   color: #87c596;
+}
+
+.multiple-block__button.cancel > .multiple-block__icon {
+   color: #a93d3d;
 }
 
 .multiple-block__delete:hover {
    border-color: #ffb0b0;
    background-color: #ffb0b0;
-   color: #a93d3d;
 }
 
 .body-card__block[data-name='part']:not(:last-child) {

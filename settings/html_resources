@@ -1,0 +1,21 @@
+<resources>
+
+    <pages>
+        <page urn="home/navigation">
+
+        </page>
+    </pages>
+
+    <paths>
+        <path id="root_css" value="/views/css/" />
+        <path id="root_lib_css" value="/views/css/lib/" />
+        <path id="tmp_css" value="/views/css/tmp/" />
+
+        <path id="root_js" value="/views/js/" />
+        <path id="root_lib_js" value="/views/js/lib/" />
+        <path id="tmp_js" value="/views/js/tmp/" />
+        <path id="modals_js" value="/views/js/modals/" />
+        <path id="application_js" value="/views/js/application/" />
+    </paths>
+
+</resources>

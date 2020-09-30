@@ -59,8 +59,6 @@ class AccessToDocumentTree
     /**
      * Конструктор класса
      *
-     * Предназначен для предва
-     *
      * Устанавливает массив иерархии документов в VariableTransfer
      * в ключ <i>hierarchyTree</i>, если его там нет
      *

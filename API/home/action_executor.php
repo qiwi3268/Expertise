@@ -2,8 +2,12 @@
 
 
 use Lib\Exceptions\Actions as ActionsEx;
-use Lib\Actions\Locator;
+use Lib\Exceptions\AccessToDocument as AccessToDocumentEx;
 
+use core\Classes\Session;
+use Lib\Actions\Locator;
+use Lib\AccessToDocument\AccessToDocumentTree;
+use Tables\Docs\TableLocator;
 
 // API предназначен для выполнения действий
 //
@@ -24,28 +28,41 @@ use Lib\Actions\Locator;
 //  7  - Непредвиденная ошибка метода Classes\DocumentParameters\APIActionExecutor::defineDocumentParameters
 //       {result, message : текст ошибки, code: код ошибки}
 // ---------------------------------------------------------------------
-//  8  - Ошибка при определении типа документа
+//  8  - Для работы с действиями Вам необходимо авторизоваться
 //       {result, error_message : текст ошибки}
-//  9  - Отсутствует доступ к выполняемому действию
+//  9  - Ошибка при распознании типа документа
 //       {result, error_message : текст ошибки}
-//  10 - Ошибка при получении проверенного результата callback'а
+//  10 - Запрашиваемый документ не существует
+//       {result, error_message : текст ошибки}
+//  11 - Ошибка при проверке доступа к текущему документу (вероятно, отсутствует доступ к текущему документу)
 //       {result, message : текст ошибки, code: код ошибки}
-//  11 - Ошибка при получении проверенного метода действия
+//  12 - Отсутствует доступ к выполняемому действию
 //       {result, error_message : текст ошибки}
-//  12 - Нет обязательного параметра POST / GET запроса
-//       {result, error_message : текст ошибки}
-//  13 - Ошибка во время исполнения действия
-//       {result, error_message : текст ошибки}
-//  14 - Неизвестная ошибка во время работы с классом действий
+//  13 - Ошибка при получении проверенного результата callback'а
 //       {result, message : текст ошибки, code: код ошибки}
-//  15 - Все прошло успешно
+//  14 - Ошибка при получении проверенного метода действия
+//       {result, error_message : текст ошибки}
+//  15 - Нет обязательного параметра POST / GET запроса
+//       {result, error_message : текст ошибки}
+//  16 - Ошибка во время исполнения действия
+//       {result, error_message : текст ошибки}
+//  17 - Неизвестная ошибка во время работы с классом действий
+//       {result, message : текст ошибки, code: код ошибки}
+//  18 - Все прошло успешно
 //       {result, ref : ссылка на страницу, на которую необходимо перенаправить пользователя}
-//  16 - Непредвиденная ошибка
+//  19 - Непредвиденная ошибка
 //       {result, message : текст ошибки, code: код ошибки}
 //
 
-
 try {
+
+    if (!Session::isAuthorized()) {
+        
+        exit(json_encode([
+            'result'        => 8,
+            'error_message' => 'Для работы с действиями Вам необходимо авторизоваться'
+        ]));
+    }
 
     try {
 
@@ -53,10 +70,37 @@ try {
     } catch (ActionsEx $e) {
 
         exit(json_encode([
-            'result'        => 8,
-            'error_message' => 'Ошибка при определении типа документа'
+            'result'        => 9,
+            'error_message' => 'Ошибка при распознании типа документа'
         ]));
     }
+
+    // Проверка существования текущего документа
+    $tableLocator = new TableLocator();
+    $docTable = $tableLocator->getDocTableByDocumentType(CURRENT_DOCUMENT_TYPE);
+
+    if (!$docTable::checkExistById(CURRENT_DOCUMENT_ID)) {
+
+        exit(json_encode([
+            'result'        => 10,
+            'error_message' => 'Запрашиваемый документ documentType: ' . CURRENT_DOCUMENT_TYPE . ' id: ' . CURRENT_DOCUMENT_ID . ' не существует'
+        ]));
+    }
+
+    // Проверка доступа к текущему докменту с учетом всего дерева наследования
+    try {
+
+        $accessToDocumentTree = new AccessToDocumentTree(CURRENT_DOCUMENT_TYPE, CURRENT_DOCUMENT_ID);
+        $accessToDocumentTree->checkAccessToDocumentTree();
+    } catch (AccessToDocumentEx $e) {
+
+        exit(json_encode([
+            'result'  => 11,
+            'message' => $e->getMessage(),
+            'code'    => $e->getCode()
+        ]));
+    }
+
 
     // Проверка доступа к действию
     try {
@@ -64,7 +108,7 @@ try {
         if (!$actions->getAccessActions()->checkAccessFromActionByPageName(CURRENT_PAGE_NAME)) {
 
             exit(json_encode([
-                'result'        => 9,
+                'result'        => 12,
                 'error_message' => 'Отсутствует доступ к выполняемому действию'
             ]));
         }
@@ -72,7 +116,7 @@ try {
 
         // Ошибка при получении проверенного результата callback'а
         exit(json_encode([
-            'result'  => 10,
+            'result'  => 13,
             'message' => $e->getMessage(),
             'code'    => $e->getCode()
         ]));
@@ -92,25 +136,25 @@ try {
             case 3 : // метод исполнения действия не реализован в дочернем классе
             case 4 : // ошибка метода исполнения действия для страницы
                 exit(json_encode([
-                    'result'        => 11,
+                    'result'        => 14,
                     'error_message' => $e->getMessage(),
                 ]));
 
             case 5 : // Нет обязательного параметра POST / GET запроса
                 exit(json_encode([
-                    'result'        => 12,
+                    'result'        => 15,
                     'error_message' => $e->getMessage(),
                 ]));
 
             case 6 : // Ошибка во время исполнения действия
                 exit(json_encode([
-                    'result'        => 13,
+                    'result'        => 16,
                     'error_message' => $e->getMessage(),
                 ]));
 
             default : // Неизвестная ошибка во время работы с классом действий
                 exit(json_encode([
-                    'result'  => 14,
+                    'result'  => 17,
                     'message' => $e->getMessage(),
                     'code'    => $e->getCode()
                 ]));
@@ -119,14 +163,14 @@ try {
 
     // Все прошло успешно
     exit(json_encode([
-        'result'  => 15,
+        'result'  => 18,
         'ref'     => $ref,
     ]));
 
 } catch (Exception $e) {
 
     exit(json_encode([
-        'result'  => 16,
+        'result'  => 19,
         'message' => $e->getMessage(),
         'code'    => $e->getCode()
     ]));

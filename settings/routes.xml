@@ -486,19 +486,9 @@
 
     <callback_templates>
 
-        <template id="1">
-            <callbacks>
-                <namespace name="\Classes\RouteCallbacks\DocumentParameters">
-                    <class name="APIActionExecutor" type="instance">
-                        <method name="defineDocumentParameters"/>
-                    </class>
-                </namespace>
-            </callbacks>
-        </template>
+        <!-- Блок DocumentParameters_* определяет константы для открытого документа -->
 
-
-
-
+        <!-- Страница открытого действия -->
         <template id="DocumentParameters_ActionPage">
             <callbacks>
                 <namespace name="\Classes\RouteCallbacks\DocumentParameters">
@@ -509,7 +499,7 @@
             </callbacks>
         </template>
 
-
+        <!-- Страница открытого документа из карточек экспертизы -->
         <template id="DocumentParameters_ExpertiseCard">
             <callbacks>
                 <namespace name="\Classes\RouteCallbacks\DocumentParameters">
@@ -520,7 +510,7 @@
             </callbacks>
         </template>
 
-
+        <!-- API выполнения действий -->
         <template id="DocumentParameters_APIActionExecutor">
             <callbacks>
                 <namespace name="\Classes\RouteCallbacks\DocumentParameters">
@@ -531,7 +521,7 @@
             </callbacks>
         </template>
 
-
+        <!-- Проверяет авторизацию пользователя -->
         <template id="AuthorizationChecker">
             <callbacks>
                 <namespace name="\Classes\RouteCallbacks">
@@ -542,6 +532,7 @@
             </callbacks>
         </template>
 
+        <!-- Проверяет существование открытого документа -->
         <template id="DocumentExistChecker">
             <callbacks>
                 <namespace name="\Classes\RouteCallbacks">
@@ -553,7 +544,7 @@
             </callbacks>
         </template>
 
-
+        <!--  -->
         <template id="AccessToDocumentTreeChecker">
             <callbacks>
                 <namespace name="\Classes\RouteCallbacks">
@@ -565,7 +556,7 @@
             </callbacks>
         </template>
 
-
+        <!--  -->
         <template id="ActionChecker">
             <callbacks>
                 <namespace name="\Classes\RouteCallbacks">
@@ -577,10 +568,6 @@
                 </namespace>
             </callbacks>
         </template>
-
-
-
-
 
     </callback_templates>
 </routes>

@@ -206,6 +206,7 @@ class DataBase
             }
             throw new Exception($e->getMessage(), $e->getCode());
         }
+
         if (self::$mysqli->commit() === false) {
 
             throw new SelfEx('Ошибка при фиксации текущей транзакции: ' . self::$mysqli->error, self::$mysqli->errno);
