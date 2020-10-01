@@ -20,14 +20,9 @@ use Tables\test;
 use Classes\Application\Miscs\Initialization\CreateFormInitializer;
 use Lib\Singles\TemplateMaker;
 use Lib\Miscs\Initialization\Initializer2;
+use Classes\Application\DisplayDependenciesApplicationForm;
+use Classes\TotalCC\Actions\DisplayDependenciesAction1;
 
-$a = new Initializer2([
-    '\Tables\Miscs\type_of_object',
-    'functional_purpose',
-    'functional_purpose_subsector'
-]);
-
-$b = $a->getPaginationSingleMiscs();
-$c = $a->getPaginationDependentMiscs();
-
-var_dump($c);
+$a = new DisplayDependenciesAction1();
+$b = $a->getBlockDependencies();
+var_dump($b);
