@@ -176,7 +176,7 @@
    margin-right: 5px;
 }
 
-.body-card__row {
+.application-field {
    display: flex;
    align-items: center;
    position: relative;
@@ -184,33 +184,33 @@
    padding: 10px 0px;
 }
 
-.body-card__title {
+.application-field__title {
    text-align: right;
    width: 30%;
    margin: 0px 20px 0px 0px;
 }
 
-.body-card__row[data-required='true'] > .body-card__title::after {
+.application-field[data-required='true'] > .application-field__title::after {
    content: '*';
    color: #bd4949;
 }
 
-.body-card__title.fas {
+.application-field__title.fas {
    font-size: 12px;
 }
 
-.body-card__item {
+.application-field__item {
    /*flex-grow: 1;*/
    width: 70%;
 }
 
-.body-card__field {
+.application-field__body {
    display: flex;
    align-items: center;
 }
 
 /*todo вынести*/
-.body-card__select {
+.application-field__select {
    box-sizing: border-box;
    display: flex;
    align-items: center;
@@ -224,21 +224,21 @@
    transition: box-shadow .10s;
 }
 
-.body-card__input {
+.application-field__input {
    box-sizing: border-box;
    width: 100%;
 
 
 }
 /*
-.body-card__input:focus,
-.body-card__input:hover {
+.application-field__input:focus,
+.application-field__input:hover {
    box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
    border-color: #80bdff;
 }*/
 
-.body-card__select.filled,
-.body-card__field.filled > .body-card__input {
+.application-field__select.filled,
+.application-field__body.filled > .application-field__input {
    /*color: #343a40;*/
    /*background-color: #f5f6fa;*/
    color: #1c3959;
@@ -247,52 +247,52 @@
    background-color: #f9fafe;
 }
 
-.body-card__field.filled > .body-card__input:hover {
+.application-field__body.filled > .application-field__input:hover {
    border-color: #80bdff;
 }
 
-.body-card__select.filled > .body-card__icon {
+.application-field__select.filled > .application-field__icon-misc{
    display: none;
 }
 
-.body-card__icon-filled {
+.application-field__icon-filled {
    display: none;
    margin: 0px 5px 0px 10px;
    color: #1c3959;
 }
 
-.body-card__select.filled > .body-card__icon-filled,
-.body-card__field.filled > .body-card__icon-filled {
+.application-field__select.filled > .application-field__icon-filled,
+.application-field__body.filled > .application-field__icon-filled {
    display: block;
 }
 
-.body-card__select:hover,
+.application-field__select:hover,
 .body-card__add-button:hover {
    box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
    border-color: #80bdff;
 }
 
-.body-card__value {
+.application-field__value {
    flex-grow: 1;
 }
 
-.body-card__error {
+.application-field__error {
    display: none;
    font-size: 12px;
    color: #bd4949;
 }
 
-.body-card__error.active {
+.application-field__error.active {
    display: inline;
 }
 
-.body-card__input-error {
+.application-field__input-error {
    visibility: hidden;
    font-size: 12px;
    color: #bd4949;
 }
 
-.body-card__input-error.active {
+.application-field__input-error.active {
    visibility: visible;
 }
 
@@ -304,20 +304,20 @@
    font-size: 16px;
 }
 
-.body-card__select.invalid,
-.body-card__input.invalid {
+.application-field__select.invalid,
+.application-field__input.invalid {
    border-color: #db5151;
    color: #bd4949;
 }
 
-.body-card__select.invalid:hover,
-.body-card__select.invalid:focus,
-.body-card__input.invalid:hover,
-.body-card__input.invalid:focus {
+.application-field__select.invalid:hover,
+.application-field__select.invalid:focus,
+.application-field__input.invalid:hover,
+.application-field__input.invalid:focus {
    box-shadow: 0px 0px 0px 3px rgba(255,176,176,1);
 }
 
-.body-card__icon-clear {
+.application-field__icon-clear {
    margin: 0px 0px 0px 3px;
    /*padding: 10px;*/
    padding: 8px;
@@ -331,11 +331,11 @@
 
 }
 
-.body-card__icon-clear.fa-calendar-times{
+.application-field__icon-clear.fa-calendar-times{
    font-size: 18px;
 }
 
-.body-card__icon-clear:hover {
+.application-field__icon-clear:hover {
    border-color: #ffb0b0;
    background-color: #ffb0b0;
    color: #a93d3d;
@@ -347,7 +347,7 @@
    padding: 15px 10px;
 }
 
-.body-card__message-icon {
+.body-card__icon-message {
    margin: 0px 10px 0px 10px;
    font-size: 22px;
    color: #bd4949;
@@ -414,7 +414,7 @@
    border-top: 1px solid #e0e0e0;
 }
 
-.body-card__files.filled {
+.application-field__files.filled {
    border-color: #818e9a;
 
 }

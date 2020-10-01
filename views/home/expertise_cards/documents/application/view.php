@@ -16,26 +16,26 @@
             <div class="card-form__body body-card card-body expanded">
 
                 <!--Цель обращения-->
-                <div class="body-card__row">
-                    <div class="body-card__title">
-                        <span class="body-card__title-text">Цель обращения</span>
+                <div class="application-field">
+                    <div class="application-field__title">
+                        <span class="application-field__title-text">Цель обращения</span>
                     </div>
-                    <span class="body-card__item">
+                    <span class="application-field__item">
                         <?php if ($variablesTV->getExistenceFlag('expertise_purpose')): ?>
                             <?= $variablesTV->getValue('expertise_purpose')['name'] ?>
                         <?php else: ?>
-                            <i class="body-card__icon fas fa-exclamation-circle"></i>
-                            <span class="body-card__input">Не выбрана</span>
+                            <i class="application-field__icon-misc fas fa-exclamation-circle"></i>
+                            <span class="application-field__input">Не выбрана</span>
                         <?php endif; ?>
                     </span>
                 </div>
                 <!--//Цель обращения//-->
 
                 <!--Предмет экспертизы-->
-                <div class="body-card__row center">
-                    <span class="body-card__title">Предмет экспертизы</span>
+                <div class="application-field">
+                    <span class="application-field__title">Предмет экспертизы</span>
                     <?php if ($variablesTV->getExistenceFlag('expertise_subjects')): ?>
-                        <div class="body-card__value radio">
+                        <div class="application-field__value radio">
                             <div class="radio__body">
                                 <?php foreach ($variablesTV->getValue('expertise_subjects') as $subject): ?>
                                     <div class="radio__item">
@@ -46,9 +46,9 @@
                             </div>
                         </div>
                     <?php else: ?>
-                        <div class="body-card__item">
-                            <i class="body-card__icon fas fa-exclamation-circle"></i>
-                            <span class="body-card__input">Не выбран</span>
+                        <div class="application-field__item">
+                            <i class="application-field__icon-misc fas fa-exclamation-circle"></i>
+                            <span class="application-field__input">Не выбран</span>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -56,9 +56,9 @@
 
                 <!--Дополнительная информация-->
                 <?php if ($variablesTV->getExistenceFlag('additional_information')): ?>
-                    <div class="body-card__row">
-                        <span class="body-card__title">Дополнительная информация</span>
-                        <span class="body-card__item"><?= $variablesTV->getValue('additional_information') ?></span>
+                    <div class="application-field">
+                        <span class="application-field__title">Дополнительная информация</span>
+                        <span class="application-field__item"><?= $variablesTV->getValue('additional_information') ?></span>
                     </div>
                 <?php endif; ?>
                 <!--//Дополнительная информация//-->
@@ -78,72 +78,72 @@
             <div class="card-form__body body-card card-body expanded">
 
                 <!--Наименование объекта-->
-                <div class="body-card__row">
-                    <span class="body-card__title">Наименование объекта</span>
-                    <span class="body-card__item">
+                <div class="application-field">
+                    <span class="application-field__title">Наименование объекта</span>
+                    <span class="application-field__item">
                         <?php if ($variablesTV->getExistenceFlag('object_name')): ?>
                             <?= $variablesTV->getValue('object_name') ?>
                         <?php else: ?>
-                        <i class="body-card__icon fas fa-exclamation-circle"></i>
-                        <span class="body-card__input">Не указано</span>
+                        <i class="application-field__icon-misc fas fa-exclamation-circle"></i>
+                        <span class="application-field__input">Не указано</span>
                         <?php endif; ?>
                     </span>
                 </div>
                 <!--//Наименование объекта//-->
 
                 <!--Вид объекта-->
-                <div class="body-card__row">
-                    <div class="body-card__title">
-                        <span class="body-card__title-text">Вид объекта</span>
+                <div class="application-field">
+                    <div class="application-field__title">
+                        <span class="application-field__title-text">Вид объекта</span>
                     </div>
-                    <span class="body-card__item">
+                    <span class="application-field__item">
                         <?php if ($variablesTV->getExistenceFlag('type_of_object')): ?>
                             <?= $variablesTV->getValue('type_of_object')['name'] ?>
                         <?php else: ?>
-                            <i class="body-card__icon fas fa-exclamation-circle"></i>
-                            <span class="body-card__input">Не выбран</span>
+                            <i class="application-field__icon-misc fas fa-exclamation-circle"></i>
+                            <span class="application-field__input">Не выбран</span>
                         <?php endif; ?>
                     </span>
                 </div>
                 <!--//Вид объекта//-->
 
                 <!--Функциональное назначение-->
-                <div class="body-card__row">
-                    <span class="body-card__title">Функциональное назначение</span>
-                    <span class="body-card__item">
+                <div class="application-field">
+                    <span class="application-field__title">Функциональное назначение</span>
+                    <span class="application-field__item">
                         <?php if ($variablesTV->getExistenceFlag('functional_purpose')): ?>
                             <?= $variablesTV->getValue('functional_purpose')['name'] ?>
                         <?php else: ?>
-                            <i class="body-card__icon fas fa-exclamation-circle"></i>
-                            <span class="body-card__input">Не выбрано</span>
+                            <i class="application-field__icon-misc fas fa-exclamation-circle"></i>
+                            <span class="application-field__input">Не выбрано</span>
                         <?php endif; ?>
                     </span>
                 </div>
                 <!--//Функциональное назначение//-->
 
                 <!--Функциональное назначение. Подотрасль-->
-                <div class="body-card__row">
-                    <span class="body-card__title">Функциональное назначение. Подотрасль</span>
-                    <span class="body-card__item">
+                <div class="application-field">
+                    <span class="application-field__title">Функциональное назначение. Подотрасль</span>
+                    <span class="application-field__item">
                         <?php if ($variablesTV->getExistenceFlag('functional_purpose_subsector')): ?>
                             <?= $variablesTV->getValue('functional_purpose_subsector')['name'] ?>
                         <?php else: ?>
-                            <i class="body-card__icon fas fa-exclamation-circle"></i>
-                            <span class="body-card__input">Не выбрано</span>
+                            <i class="application-field__icon-misc fas fa-exclamation-circle"></i>
+                            <span class="application-field__input">Не выбрано</span>
                         <?php endif; ?>
                     </span>
                 </div>
                 <!--//Функциональное назначение. Подотрасль//-->
 
                 <!--Функциональное назначение. Группа-->
-                <div class="body-card__row">
-                    <span class="body-card__title">Функциональное назначение. Группа</span>
-                    <span class="body-card__item">
+                <div class="application-field">
+                    <span class="application-field__title">Функциональное назначение. Группа</span>
+                    <span class="application-field__item">
                         <?php if ($variablesTV->getExistenceFlag('functional_purpose_group')): ?>
                             <?= $variablesTV->getValue('functional_purpose_group')['name'] ?>
                         <?php else: ?>
-                            <i class="body-card__icon fas fa-exclamation-circle"></i>
-                            <span class="body-card__input">Не выбрано</span>
+                            <i class="application-field__icon-misc fas fa-exclamation-circle"></i>
+                            <span class="application-field__input">Не выбрано</span>
                         <?php endif; ?>
                     </span>
                 </div>
@@ -153,18 +153,18 @@
 
                 <!--Номер утверждения документации по планировке территории-->
                 <?php if ($variablesTV->getExistenceFlag('number_planning_documentation_approval')): ?>
-                    <div class="body-card__row">
-                        <span class="body-card__title">Номер утверждения документации по планировке территории</span>
-                        <span class="body-card__item"><?= $variablesTV->getValue('number_planning_documentation_approval') ?></span>
+                    <div class="application-field">
+                        <span class="application-field__title">Номер утверждения документации по планировке территории</span>
+                        <span class="application-field__item"><?= $variablesTV->getValue('number_planning_documentation_approval') ?></span>
                     </div>
                 <?php endif; ?>
                 <!--//Номер утверждения документации по планировке территории//-->
 
                 <!--Дата утверждения документации по планировке территории-->
                 <?php if ($variablesTV->getExistenceFlag('date_planning_documentation_approval')): ?>
-                    <div class="body-card__row">
-                        <span class="body-card__title">Дата утверждения документации по планировке территории</span>
-                        <span class="body-card__item"><?= $variablesTV->getValue('date_planning_documentation_approval') ?></span>
+                    <div class="application-field">
+                        <span class="application-field__title">Дата утверждения документации по планировке территории</span>
+                        <span class="application-field__item"><?= $variablesTV->getValue('date_planning_documentation_approval') ?></span>
                     </div>
                 <?php endif; ?>
                 <!--//Дата утверждения документации по планировке территории//-->
@@ -173,32 +173,32 @@
                 <!--Блок линейные объекты капитального строительства-->
                 <!--Номер ГПЗУ-->
                 <?php if ($variablesTV->getExistenceFlag('number_GPZU')): ?>
-                    <div class="body-card__row">
-                        <span class="body-card__title">Номер ГПЗУ</span>
-                        <span class="body-card__item"><?= $variablesTV->getValue('number_GPZU') ?></span>
+                    <div class="application-field">
+                        <span class="application-field__title">Номер ГПЗУ</span>
+                        <span class="application-field__item"><?= $variablesTV->getValue('number_GPZU') ?></span>
                     </div>
                 <?php endif; ?>
                 <!--//Номер ГПЗУ//-->
 
                 <!--Дата ГПЗУ-->
                 <?php if ($variablesTV->getExistenceFlag('date_GPZU')): ?>
-                    <div class="body-card__row">
-                        <span class="body-card__title">Дата ГПЗУ</span>
-                        <span class="body-card__item"><?= $variablesTV->getValue('date_GPZU') ?></span>
+                    <div class="application-field">
+                        <span class="application-field__title">Дата ГПЗУ</span>
+                        <span class="application-field__item"><?= $variablesTV->getValue('date_GPZU') ?></span>
                     </div>
                 <?php endif; ?>
                 <!--//Дата ГПЗУ//-->
                 <!--//Блок линейные объекты капитального строительства//-->
 
                 <!--Вид работ-->
-                <div class="body-card__row">
-                    <span class="body-card__title">Вид работ</span>
-                    <span class="body-card__item">
+                <div class="application-field">
+                    <span class="application-field__title">Вид работ</span>
+                    <span class="application-field__item">
                         <?php if ($variablesTV->getExistenceFlag('type_of_work')): ?>
                             <?= $variablesTV->getValue('type_of_work')['name'] ?>
                         <?php else: ?>
-                            <i class="body-card__icon fas fa-exclamation-circle"></i>
-                            <span class="body-card__input">Не выбран</span>
+                            <i class="application-field__icon-misc fas fa-exclamation-circle"></i>
+                            <span class="application-field__input">Не выбран</span>
                         <?php endif; ?>
                     </span>
                 </div>
@@ -206,9 +206,9 @@
 
                 <!--ГРБС-->
                 <?php if (!is_null($variablesTV->getValue('form_files')[1][1])): ?>
-                    <div class="body-card__row" data-id_file_field data-mapping_level_1="1" data-mapping_level_2="1">
-                        <span class="body-card__title">Файл ГРБС</span>
-                        <div class="body-card__files files">
+                    <div class="application-field" data-id_file_field data-mapping_level_1="1" data-mapping_level_2="1">
+                        <span class="application-field__title">Файл ГРБС</span>
+                        <div class="application-field__files files">
                             <?php foreach ($variablesTV->getValue('form_files')[1][1] as $file): ?>
                                 <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" data-validate_results='<?= $file['validate_results'] ?>'>
 
@@ -232,54 +232,54 @@
 
                 <!--Кадастровый номер земельного участка-->
                 <?php if ($variablesTV->getExistenceFlag('cadastral_number')): ?>
-                    <div class="body-card__row">
-                        <span class="body-card__title">Кадастровый номер земельного участка</span>
-                        <span class="body-card__item"><?= $variablesTV->getValue('cadastral_number') ?></span>
+                    <div class="application-field">
+                        <span class="application-field__title">Кадастровый номер земельного участка</span>
+                        <span class="application-field__item"><?= $variablesTV->getValue('cadastral_number') ?></span>
                     </div>
                 <?php endif; ?>
                 <!--//Кадастровый номер земельного участка//-->
 
                 <!--Тип объекта культурного наследия-->
                 <?php if ($variablesTV->getExistenceFlag('cultural_object_type')): ?>
-                    <div class="body-card__row">
-                        <span class="body-card__title">Тип объекта культурного наследия</span>
-                        <span class="body-card__item"><?= $variablesTV->getValue('cultural_object_type')['name'] ?></span>
+                    <div class="application-field">
+                        <span class="application-field__title">Тип объекта культурного наследия</span>
+                        <span class="application-field__item"><?= $variablesTV->getValue('cultural_object_type')['name'] ?></span>
                     </div>
                 <?php endif; ?>
                 <!--//Тип объекта культурного наследия//-->
 
                 <!--Название национального проекта-->
                 <?php if ($variablesTV->getExistenceFlag('national_project')): ?>
-                    <div class="body-card__row">
-                        <span class="body-card__title">Название национального проекта</span>
-                        <span class="body-card__item"><?= $variablesTV->getValue('national_project')['name'] ?></span>
+                    <div class="application-field">
+                        <span class="application-field__title">Название национального проекта</span>
+                        <span class="application-field__item"><?= $variablesTV->getValue('national_project')['name'] ?></span>
                     </div>
                 <?php endif; ?>
                 <!--//Название национального проекта//-->
 
                 <!--Название федерального проекта-->
                 <?php if ($variablesTV->getExistenceFlag('federal_project')): ?>
-                    <div class="body-card__row">
-                        <span class="body-card__title">Название федерального проекта</span>
-                        <span class="body-card__item"><?= $variablesTV->getValue('federal_project')['name'] ?></span>
+                    <div class="application-field">
+                        <span class="application-field__title">Название федерального проекта</span>
+                        <span class="application-field__item"><?= $variablesTV->getValue('federal_project')['name'] ?></span>
                     </div>
                 <?php endif; ?>
                 <!--//Название федерального проекта//-->
 
                 <!--Дата окончания строительства-->
                 <?php if ($variablesTV->getExistenceFlag('date_finish_building')): ?>
-                    <div class="body-card__row">
-                        <span class="body-card__title">Дата окончания строительства</span>
-                        <span class="body-card__item"><?= $variablesTV->getValue('date_finish_building') ?></span>
+                    <div class="application-field">
+                        <span class="application-field__title">Дата окончания строительства</span>
+                        <span class="application-field__item"><?= $variablesTV->getValue('date_finish_building') ?></span>
                     </div>
                 <?php endif; ?>
                 <!--//Дата окончания строительства//-->
 
                 <!--Куратор-->
                 <?php if ($variablesTV->getExistenceFlag('curator')): ?>
-                    <div class="body-card__row">
-                        <span class="body-card__title">Куратор</span>
-                        <span class="body-card__item"><?= $variablesTV->getValue('curator')['name'] ?></span>
+                    <div class="application-field">
+                        <span class="application-field__title">Куратор</span>
+                        <span class="application-field__item"><?= $variablesTV->getValue('curator')['name'] ?></span>
                     </div>
                 <?php endif; ?>
                 <!--//Куратор//-->
@@ -300,7 +300,7 @@
             <div class="card-form__body body-card card-body expanded">
                 <?php if (!$variablesTV->getExistenceFlag('type_of_object')): ?>
                     <div class="body-card__message">
-                        <i class="body-card__message-icon fas fa-exclamation"></i>
+                        <i class="body-card__icon-message fas fa-exclamation"></i>
                         <span class="body-card__message-text">Для отображения структуры разделов документации выберите вид объекта</span>
                     </div>
                 <?php else: ?>

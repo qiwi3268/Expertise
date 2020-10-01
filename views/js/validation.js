@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
    let pattern_fields = document.querySelectorAll('[data-pattern]');
 
    pattern_fields.forEach(field => {
-      let input = field.querySelector('.body-card__input');
+      let input = field.querySelector('.application-field__input');
 
       if (input) {
          let pattern = field.dataset.pattern;

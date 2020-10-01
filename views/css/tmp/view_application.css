@@ -1,4 +1,4 @@
-.body-card__item {
+.application-field__item {
     display: flex;
     align-items: center;
 
@@ -10,11 +10,11 @@
     width: 70%;
 }
 
-.body-card__value {
+.application-field__value {
     width: 70%;
 }
 
-.body-card__icon {
+.application-field__icon-misc{
     align-self: center;
     margin: 0px 8px 0px 0px;
     font-size: 18px;
@@ -34,7 +34,7 @@
 /*tmp================================*/
 
 
-.body-card__files {
+.application-field__files {
     /*display: block;*/
     /*padding: 5px;*/
     width: 70%;
