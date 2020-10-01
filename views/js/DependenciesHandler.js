@@ -21,7 +21,7 @@ class DependenciesHandler {
       this.result_input = result_input;
 
       let parent_block = this.result_input.closest('[data-block]');
-      if (parent_block && parent_block.dataset.type === 'part') {
+      if (parent_block && parent_block.dataset.type === 'template') {
          this.blocks_container = parent_block;
          this.is_multiple_block = true;
 

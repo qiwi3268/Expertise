@@ -7,8 +7,8 @@
 
 <?php if (!empty($_financingSources['type_1'])): ?>
     <?php foreach ($_financingSources['type_1'] as $source): ?>
-        <div class="multiple-block__item" data-block data-name="part" data-active="true" data-dependency_scope>
-            <div class="multiple-block__item" data-block data-type="part" data-name="type" data-active="true">
+        <div class="multiple-block__item" data-block data-name="multiple_block_part" data-active="true" data-dependency_scope>
+            <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="true">
                 <div class="form-field field" data-name="finance_type" data-required="true">
                     <span class="form-field__title field-title">Вид финансирования</span>
                     <div class="form-field__item">
@@ -37,7 +37,7 @@
                     <input class="form-field__result field-result" type="hidden" data-multiple_block_field="type"
                            name="finance_type" value="1">
                 </div>
-                <div class="multiple-block__item" data-block data-type="part" data-name="budget" data-active="true">
+                <div class="multiple-block__item" data-block data-type="template" data-name="budget" data-active="true">
                     <div class="form-field field" data-misc_field data-name="budget_level" data-required="true">
                         <span class="form-field__title field-title">Уровень бюджета</span>
                         <div class="form-field__item">
@@ -66,7 +66,7 @@
                         <input class="form-field__result field-result" data-misc_result type="hidden"
                                data-multiple_block_field="budget_level" name="budget_level" value="<?= !empty($source['budget_level']) ? $source['budget_level']['id'] : ''; ?>">
                     </div>
-                    <div class="multiple-block__item" data-block data-type="part" data-name="no_data"
+                    <div class="multiple-block__item" data-block data-type="template" data-name="no_data"
                          data-active="<?= !$source['no_data'] ?>">
                         <div class="form-field field" data-name="no_data">
                             <span class="form-field__title">Размер финансирования</span>
@@ -83,7 +83,7 @@
                             <input class="form-field__result field-result" type="hidden"
                                    data-multiple_block_field="no_data" name="no_data" value="<?= $source['no_data'] ?>">
                         </div>
-                        <div class="multiple-block__item" data-block data-type="part" data-name="percent"
+                        <div class="multiple-block__item" data-block data-type="template" data-name="percent"
                              data-active="<?= $source['no_data'] ?>">
                             <div class="form-field field" data-required="true" data-name="percent"
                                  data-pattern="number">
@@ -120,8 +120,8 @@
 <?php endif; ?>
 <?php if (!empty($_financingSources['type_2'])): ?>
     <?php foreach ($_financingSources['type_2'] as $source): ?>
-        <div class="multiple-block__item" data-block data-name="part" data-active="true" data-dependency_scope>
-            <div class="multiple-block__item" data-block data-type="part" data-name="type" data-active="true">
+        <div class="multiple-block__item" data-block data-name="multiple_block_part" data-active="true" data-dependency_scope>
+            <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="true">
                 <div class="form-field field" data-name="finance_type" data-required="true">
                     <span class="form-field__title field-title">Вид финансирования</span>
                     <div class="form-field__item">
@@ -150,7 +150,7 @@
                     <input class="form-field__result field-result" type="hidden" data-multiple_block_field="type"
                            name="finance_type" value="2">
                 </div>
-                <div class="multiple-block__item" data-block data-type="part" data-name="organization"
+                <div class="multiple-block__item" data-block data-type="template" data-name="organization"
                      data-active="true">
                     <div class="form-field field" data-required="true" data-name="full_name">
                         <span class="form-field__title">Полное наименование</span>
@@ -236,7 +236,7 @@
                             <span class="form-field__error field-error"></span>
                         </div>
                     </div>
-                    <div class="multiple-block__item" data-block data-type="part" data-name="no_data"
+                    <div class="multiple-block__item" data-block data-type="template" data-name="no_data"
                          data-active="<?= !$source['no_data'] ?>">
                         <div class="form-field field" data-name="no_data">
                             <span class="form-field__title">Размер финансирования</span>
@@ -253,7 +253,7 @@
                             <input class="form-field__result field-result" type="hidden"
                                    data-multiple_block_field="no_data" name="no_data" value="<?= $source['no_data'] ?>">
                         </div>
-                        <div class="multiple-block__item" data-block data-type="part" data-name="percent"
+                        <div class="multiple-block__item" data-block data-type="template" data-name="percent"
                              data-active="<?= $source['no_data'] ?>">
                             <div class="form-field field" data-required="true" data-name="percent"
                                  data-pattern="number">
@@ -277,7 +277,7 @@
                         <span class="multiple-block__text">Сохранить источник финансирования</span>
                         <i class="multiple-block__icon fas fa-check"></i>
                     </div>
-                
+
                 </div>
             </div>
             <div class="multiple-block__item" data-block data-name="part_short" data-active="true">
@@ -291,8 +291,8 @@
 <?php endif; ?>
 <?php if (!empty($_financingSources['type_3'])): ?>
     <?php foreach ($_financingSources['type_3'] as $source): ?>
-        <div class="multiple-block__item" data-block data-name="part" data-active="true" data-dependency_scope>
-            <div class="multiple-block__item" data-block data-type="part" data-name="type" data-active="true">
+        <div class="multiple-block__item" data-block data-name="multiple_block_part" data-active="true" data-dependency_scope>
+            <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="true">
                 <div class="form-field field" data-name="finance_type" data-required="true">
                     <span class="form-field__title field-title">Вид финансирования</span>
                     <div class="form-field__item">
@@ -321,9 +321,9 @@
                     <input class="form-field__result field-result" type="hidden" data-multiple_block_field="type"
                            name="finance_type" value="3">
                 </div>
-                <div class="multiple-block__item" data-block data-type="part" data-name="builder_source"
+                <div class="multiple-block__item" data-block data-type="template" data-name="builder_source"
                      data-active="true">
-                    <div class="multiple-block__item" data-block data-type="part" data-name="no_data"
+                    <div class="multiple-block__item" data-block data-type="template" data-name="no_data"
                          data-active="<?= !$source['no_data'] ?>">
                         <div class="form-field field" data-name="no_data">
                             <span class="form-field__title">Размер финансирования</span>
@@ -340,7 +340,7 @@
                             <input class="form-field__result field-result" type="hidden"
                                    data-multiple_block_field="no_data" name="no_data" value="<?= $source['no_data'] ?>">
                         </div>
-                        <div class="multiple-block__item" data-block data-type="part" data-name="percent"
+                        <div class="multiple-block__item" data-block data-type="template" data-name="percent"
                              data-active="<?= $source['no_data'] ?>">
                             <div class="form-field field" data-required="true" data-name="percent"
                                  data-pattern="number">
@@ -377,8 +377,8 @@
 <?php endif; ?>
 <?php if (!empty($_financingSources['type_4'])): ?>
     <?php foreach ($_financingSources['type_4'] as $source): ?>
-        <div class="multiple-block__item" data-block data-name="part" data-active="true" data-dependency_scope>
-            <div class="multiple-block__item" data-block data-type="part" data-name="type" data-active="true">
+        <div class="multiple-block__item" data-block data-name="multiple_block_part" data-active="true" data-dependency_scope>
+            <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="true">
                 <div class="form-field field" data-name="finance_type" data-required="true">
                     <span class="form-field__title field-title">Вид финансирования</span>
                     <div class="form-field__item">
@@ -407,9 +407,9 @@
                     <input class="form-field__result field-result" type="hidden" data-multiple_block_field="type"
                            name="finance_type" value="4">
                 </div>
-                <div class="multiple-block__item" data-block data-type="part" data-name="builder_source"
+                <div class="multiple-block__item" data-block data-type="template" data-name="builder_source"
                      data-active="true">
-                    <div class="multiple-block__item" data-block data-type="part" data-name="no_data"
+                    <div class="multiple-block__item" data-block data-type="template" data-name="no_data"
                          data-active="<?= !$source['no_data'] ?>">
                         <div class="form-field field" data-name="no_data">
                             <span class="form-field__title">Размер финансирования</span>
@@ -426,7 +426,7 @@
                             <input class="form-field__result field-result" type="hidden"
                                    data-multiple_block_field="no_data" name="no_data" value="<?= $source['no_data'] ?>">
                         </div>
-                        <div class="multiple-block__item" data-block data-type="part" data-name="percent"
+                        <div class="multiple-block__item" data-block data-type="template" data-name="percent"
                              data-active="<?= $source['no_data'] ?>">
                             <div class="form-field field" data-required="true" data-name="percent"
                                  data-pattern="number">

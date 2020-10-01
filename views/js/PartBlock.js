@@ -16,19 +16,45 @@ class PartBlock {
 
    is_saved = false;
 
-   constructor (multiple_block) {
+   static create(multiple_block) {
+
+      let element = multiple_block.createBlock(multiple_block.element, 'multiple_block_part');
+      let body = multiple_block.createBlock(element, 'type');
+      let actions = multiple_block.createBlock(element, 'actions');
+
+      return new PartBlock(multiple_block, element, body, actions);
+
+   }
+
+   constructor (multiple_block, element, body, actions) {
       this.parent = multiple_block;
 
-      this.element = this.parent.createBlock(this.parent.element, 'part');
+      this.element = element;
+      this.body = body;
+      this.actions = actions;
+
+      this.handleSaveButton();
+      this.handleCancelButton();
+   }
+
+
+
+/*   constructor (multiple_block) {
+      this.parent = multiple_block;
+
+      this.element = this.parent.createBlock(this.parent.element, 'multiple_block_part');
       this.body = this.parent.createBlock(this.element, 'type');
       this.actions = this.parent.createBlock(this.element, 'actions');
 
 
       this.handleSaveButton();
       this.handleCancelButton();
-   }
+   }*/
 
    handleSaveButton () {
+      console.log(this);
+      console.log(this.actions);
+
       let save_btn = this.actions.querySelector('.save');
       save_btn.addEventListener('click', () => {
 
@@ -76,13 +102,21 @@ class PartBlock {
    createShortElement () {
       this.short_block = this.parent.createBlock(this.element, 'part_short');
 
+      this.handleDeleteButton();
+      this.handleExpandButton();
+
+   }
+
+   handleDeleteButton() {
       let delete_btn = this.short_block.querySelector('.delete');
       delete_btn.addEventListener('click', () => {
          this.parent.is_changed = true;
          this.parent.parts.delete(this.id);
          this.element.remove();
       });
+   }
 
+   handleExpandButton() {
       let expand_btn = this.short_block.querySelector('.part-short');
       expand_btn.addEventListener('click', () => {
          this.actions.dataset.active = 'true';
@@ -90,18 +124,18 @@ class PartBlock {
          this.short_block.dataset.active = 'false';
          resizeCard(this.parent.element);
       });
-
-
-
    }
 
    handleCancelButton () {
       this.cancel_btn = this.actions.querySelector('.cancel');
-      this.cancel_btn.addEventListener('click', () => {
-         this.element.remove();
-         this.parent.parts.delete(this.id);
-         resizeCard(this.parent.element);
-      });
+      if (this.cancel_btn) {
+         this.cancel_btn.addEventListener('click', () => {
+            this.element.remove();
+            this.parent.parts.delete(this.id);
+            resizeCard(this.parent.element);
+         });
+      }
+
    }
 
 }

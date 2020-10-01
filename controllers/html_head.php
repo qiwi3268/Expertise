@@ -65,7 +65,7 @@ switch (URN) {
             ...CreateSource('js', TMP_JS, 'sidebar.js', 'section.js', 'validation.js', 'cards.js', 'calendar.js', 'radio.js', 'save_application.js', 'test.js')
         ];
         break;
-    
+
     case 'home/expertise_cards/total_cc/view' :
     case 'home/expertise_cards/section_documentation_1/view' :
         $pageName = 'АИС_view';
@@ -76,8 +76,8 @@ switch (URN) {
             ...CreateSource('js', MODALS_JS, 'Tooltip.js'),
         ];
         break;
-        
-        
+
+
     case 'tmp/form_to_file_download' :
         $pageName = 'Загрузка файлов на сервер';
         $sourcesFiles = [...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
@@ -117,7 +117,7 @@ switch (URN) {
             ...CreateSource('js', MODALS_JS,'SignView.js', 'Misc.js', 'ErrorModal.js')
         ];
         break;
-    
+
     case 'home/test_1' :
         $pageName = 'Тест';
         $sourcesFiles = [...GetFontAwesome5Case(),
@@ -126,7 +126,7 @@ switch (URN) {
             ...CreateSource('css', TMP_CSS, 'action_sidebar.css', 'test_1.css')
         ];
         break;
-    
+
     case 'home/section_create_test' :
         $pageName = 'Раздел';
         $sourcesFiles = [...GetFontAwesome5Case(),
@@ -137,13 +137,13 @@ switch (URN) {
             ...CreateSource('js', TMP_JS, 'section_create_test.js')
         ];
         break;
-    
+
     case 'home/expertise_cards/total_cc/actions/action_1' :
         $pageName = 'Общая часть';
         $sourcesFiles = [...GetFontAwesome5Case(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css'),
-            ...CreateSource('css', TMP_CSS,'multiple_block.css', 'create_application.css', 'action_3.css', 'modal.css'),
+            ...CreateSource('css', TMP_CSS,'multiple_block.css', 'create_application.css', 'action_3.css', 'modal.css', 'radio.css'),
             ...CreateSource('js', ROOT_JS, 'main.js', 'section.js', 'DependenciesHandler.js', 'radio.js', 'MultipleBlock.js', 'PartBlock.js'),
             ...CreateSource('js', MODALS_JS,'SignView.js', 'Misc.js', 'ErrorModal.js')
 

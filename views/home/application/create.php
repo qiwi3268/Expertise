@@ -562,7 +562,7 @@
 
                     <!--Источники финансирования-->
                     <div class="multiple-block card-form__block" data-block data-type="multiple" data-name="financing_sources">
-                        
+
                         <div class="multiple-block__add" data-multiple_add>
                             <span class="multiple-block__text">Добавить источник финансирования</span>
                             <i class="multiple-block__icon fas fa-plus"></i>
@@ -571,10 +571,10 @@
                         <!--Шаблоны источников финансирования-->
                         <div class="multiple-block__item" data-block data-name="templates_container">
                             <!--Шаблон элемента множественного блока-->
-                            <div class="multiple-block__item" data-block data-name="part" data-active="false" data-dependency_scope></div>
+                            <div class="multiple-block__item" data-block data-name="multiple_block_part" data-active="false" data-dependency_scope></div>
                             <!--Шаблон элемента множественного блока-->
                             <!--Шаблон "Вид финансирования"-->
-                            <div class="multiple-block__item" data-block data-type="part" data-name="type" data-active="false">
+                            <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="false">
                                 <div class="form-field field" data-name="finance_type" data-required="true">
                                     <span class="form-field__title field-title">Вид финансирования</span>
                                     <div class="form-field__item">
@@ -604,7 +604,7 @@
                             </div>
                             <!--//Шаблон "Вид финансирования"//-->
                             <!--Шаблон "Бюджетные средства"-->
-                            <div class="multiple-block__item" data-block data-type="part" data-name="budget" data-active="false">
+                            <div class="multiple-block__item" data-block data-type="template" data-name="budget" data-active="false">
                                 <div class="form-field field" data-misc_field data-name="budget_level" data-required="true">
                                     <span class="form-field__title field-title">Уровень бюджета</span>
                                     <div class="form-field__item">
@@ -631,7 +631,7 @@
                                     </div>
                                     <input class="form-field__result field-result" data-misc_result type="hidden" data-multiple_block_field="budget_level" name="budget_level">
                                 </div>
-                                <div class="multiple-block__item" data-block data-type="part" data-name="no_data" data-active="false">
+                                <div class="multiple-block__item" data-block data-type="template" data-name="no_data" data-active="false">
                                     <div class="form-field field" data-name="no_data">
                                         <span class="form-field__title">Размер финансирования</span>
                                         <div class="form-field__item">
@@ -646,7 +646,7 @@
                                         </div>
                                         <input class="form-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
                                     </div>
-                                    <div class="multiple-block__item" data-block data-type="part" data-name="percent" data-active="true">
+                                    <div class="multiple-block__item" data-block data-type="template" data-name="percent" data-active="true">
                                         <div class="form-field field" data-required="true" data-name="percent" data-pattern="number">
                                             <span class="form-field__title">Процент финансирования</span>
                                             <div class="form-field__item">
@@ -661,7 +661,7 @@
                             </div>
                             <!--//Шаблон "Бюджетные средства"//-->
                             <!--Шаблон "Средства юридических лиц"-->
-                            <div class="multiple-block__item" data-block data-type="part" data-name="organization" data-active="false">
+                            <div class="multiple-block__item" data-block data-type="template" data-name="organization" data-active="false">
                                 <div class="form-field field" data-required="true" data-name="full_name">
                                     <span class="form-field__title">Полное наименование</span>
                                     <div class="form-field__item">
@@ -734,7 +734,7 @@
                                         <span class="form-field__error field-error"></span>
                                     </div>
                                 </div>
-                                <div class="multiple-block__item" data-block data-type="part" data-name="no_data" data-active="false">
+                                <div class="multiple-block__item" data-block data-type="template" data-name="no_data" data-active="false">
                                     <div class="form-field field" data-name="no_data">
                                         <span class="form-field__title">Размер финансирования</span>
                                         <div class="form-field__item">
@@ -749,7 +749,7 @@
                                         </div>
                                         <input class="form-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
                                     </div>
-                                    <div class="multiple-block__item" data-block data-type="part" data-name="percent" data-active="true">
+                                    <div class="multiple-block__item" data-block data-type="template" data-name="percent" data-active="true">
                                         <div class="form-field field" data-required="true" data-name="percent" data-pattern="number">
                                             <span class="form-field__title">Процент финансирования</span>
                                             <div class="form-field__item">
@@ -764,8 +764,8 @@
                             </div>
                             <!--//Шаблон "Средства юридических лиц"//-->
                             <!--Шаблон "Собственные средства застройщика"-->
-                            <div class="multiple-block__item" data-block data-type="part" data-name="builder_source" data-active="false">
-                                <div class="multiple-block__item" data-block data-type="part" data-name="no_data" data-active="false">
+                            <div class="multiple-block__item" data-block data-type="template" data-name="builder_source" data-active="false">
+                                <div class="multiple-block__item" data-block data-type="template" data-name="no_data" data-active="false">
                                     <div class="form-field field" data-name="no_data">
                                         <span class="form-field__title">Размер финансирования</span>
                                         <div class="form-field__item">
@@ -780,7 +780,7 @@
                                         </div>
                                         <input class="form-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
                                     </div>
-                                    <div class="multiple-block__item" data-block data-type="part" data-name="percent" data-active="true">
+                                    <div class="multiple-block__item" data-block data-type="template" data-name="percent" data-active="true">
                                         <div class="form-field field" data-required="true" data-name="percent" data-pattern="number">
                                             <span class="form-field__title">Процент финансирования</span>
                                             <div class="form-field__item">
@@ -795,8 +795,8 @@
                             </div>
                             <!--//Шаблон "Собственные средства застройщика"//-->
                             <!--Шаблон "Средства инвестора"-->
-                            <div class="multiple-block__item" data-block data-type="part" data-name="investor" data-active="false">
-                                <div class="multiple-block__item" data-block data-type="part" data-name="no_data" data-active="false">
+                            <div class="multiple-block__item" data-block data-type="template" data-name="investor" data-active="false">
+                                <div class="multiple-block__item" data-block data-type="template" data-name="no_data" data-active="false">
                                     <div class="form-field field" data-name="no_data">
                                         <span class="form-field__title">Размер финансирования</span>
                                         <div class="form-field__item">
@@ -811,7 +811,7 @@
                                         </div>
                                         <input class="form-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
                                     </div>
-                                    <div class="multiple-block__item" data-block data-type="part" data-name="percent" data-active="true">
+                                    <div class="multiple-block__item" data-block data-type="template" data-name="percent" data-active="true">
                                         <div class="form-field field" data-required="true" data-name="percent" data-pattern="number">
                                             <span class="form-field__title">Процент финансирования</span>
                                             <div class="form-field__item">
