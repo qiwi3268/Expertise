@@ -210,6 +210,7 @@
             
                 <!--Источники финансирования-->
                 <div class="multiple-block card-form__block" data-block data-type="multiple" data-name="financing_sources">
+                    
                     <?php \Lib\Singles\TemplateMaker::requireByName('edit_financing_sources'); ?>
                     <?php \Lib\Singles\TemplateMaker::requireByName('create_financing_sources'); ?>
                 </div>

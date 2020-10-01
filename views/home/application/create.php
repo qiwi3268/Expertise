@@ -825,37 +825,6 @@
                                 </div>
                             </div>
                             <!--//Шаблон "Средства инвестора"//-->
-                            <!--Шаблон "Размер финансирования"-->
-                            <div class="multiple-block__item" data-block data-type="part" data-name="no_data" data-active="false">
-                                <div class="form-field field" data-name="no_data">
-                                    <span class="form-field__title">Размер финансирования</span>
-                                    <div class="form-field__item">
-                                        <div class="radio form-field__body">
-                                            <div class="radio__body">
-                                                <div class="radio__item" data-id="1">
-                                                    <i class="radio__icon inline far fa-square"></i>
-                                                    <span class="radio__text">Нет данных</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <input class="form-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
-                                </div>
-                            </div>
-                            <!--//Шаблон "Размер финансирования"//-->
-                            <!--Шаблон "Процент финансирования"-->
-                            <div class="multiple-block__item" data-block data-type="part" data-name="percent" data-active="false">
-                                <div class="form-field field" data-required="true" data-name="percent" data-pattern="number">
-                                    <span class="form-field__title">Процент финансирования</span>
-                                    <div class="form-field__item">
-                                        <div class="form-field__body">
-                                            <input class="form-field__input field-result" type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
-                                        </div>
-                                        <span class="form-field__error field-error"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--//Шаблон "Процент финансирования"//-->
                             <!--Шаблон действий-->
                             <div class="multiple-block__item" data-block data-name="actions" data-active="false">
                                 <div class="multiple-block__actions">

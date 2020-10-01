@@ -40,7 +40,12 @@
           value='<?= $VT->getValue('federal_project') ?>'>
 </div>
 
-<input id="block_dependencies" type="hidden" value='<?= $VT->getValue('blockDependencies') ?>'>
-<input id="require_dependencies" type="hidden" value='<?= $VT->getValue('requireDependencies') ?>'>
+<?php
+    $_dependencies = new \Classes\Application\DisplayDependenciesApplicationForm();
+    $_blockDependencies = json_encode($_dependencies->getBlockDependencies());
+    $_requireDependencies = json_encode($_dependencies->getRequireDependencies());
+?>
+<input id="block_dependencies" type="hidden" value='<?= $_blockDependencies ?>'>
+<input id="require_dependencies" type="hidden" value='<?= $_requireDependencies ?>'>
 
 

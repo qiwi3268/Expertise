@@ -149,7 +149,6 @@
                 </dir>
                 <dir path="/controllers/home/application/" ext=".php">
                     <file name="create" />
-                    <file name="display_dependencies_application_form" />
                 </dir>
 
                 <dir path="/views/" ext=".php">
@@ -450,9 +449,6 @@
                 <dir path="/controllers/home/" ext=".php">
                     <file name="header" />
                 </dir>
-                <dir path="/controllers/home/application/" ext=".php">
-                    <file name="display_dependencies_application_form" />
-                </dir>
                 <dir path="/controllers/home/expertise_cards/documents/total_cc/actions/" ext=".php">
                     <file name="action_1" />
                 </dir>
@@ -464,6 +460,7 @@
                     <file name="header" />
                 </dir>
                 <dir path="/views/home/expertise_cards/documents/total_cc/actions/" ext=".php">
+                    <file name="action_1_dependencies" />
                     <file name="action_1" />
                 </dir>
                 <dir path="/views/home/" ext=".php">
