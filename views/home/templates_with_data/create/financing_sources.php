@@ -1,3 +1,4 @@
+<?php $_data = \Lib\Singles\TemplateMaker::getSelfData(); ?>
 
 <div class="multiple-block__add" data-multiple_add>
     <span class="multiple-block__text">Добавить источник финансирования</span>
@@ -5,7 +6,7 @@
 </div>
 
 <!--Шаблоны источников финансирования-->
-<div class="multiple-block__item" data-block data-name="templates_container">
+<div class="multiple-block__item" data-block data-type="templates_container">
     <!--Шаблон элемента множественного блока-->
     <div class="multiple-block__item" data-block data-name="part" data-active="false" data-dependency_scope></div>
     <!--Шаблон элемента множественного блока-->
@@ -56,7 +57,7 @@
             <div class="modal" data-misc_modal data-result_callback="document_field">
                 <i class="modal__close fas fa-times" data-misc_close></i>
                 <div class="modal__items" data-misc_body>
-                    <?php foreach ($variablesTV->getValue('budget_level') as $pageNumber => $page): ?>
+                    <?php foreach ($_data['budget_level'] as $pageNumber => $page): ?>
                         <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
                             <?php foreach ($page as $item): ?>
                                 <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>

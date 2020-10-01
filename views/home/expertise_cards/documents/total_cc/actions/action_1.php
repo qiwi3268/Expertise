@@ -38,20 +38,6 @@
             <div class="card-form__body card-form card-body">
                 
                 
-<!--                --><?php //$_applicantDetails = $_defaultParameters['applicantDetails'] ?>
-                
-<!--                <div class="section" data-required="true">
-                    <div class="section__header">Полное наименование</div>
-                    <div class="section__body">
-                        <textarea class="section__input field-result" name="" placeholder="Введите значение"><?/*= $_applicantDetails['full_name'] */?></textarea>
-                    </div>
-                </div>
-                <div class="section" data-required="true">
-                    <div class="section__header">ИНН</div>
-                    <div class="section__body">
-                        <input class="section__input field-result" name="" placeholder="Введите значение" value="<?/*= $_applicantDetails['INN'] */?>">
-                    </div>
-                </div>-->
             
     
                 <!--Полное наименование-->
@@ -224,7 +210,8 @@
             
                 <!--Источники финансирования-->
                 <div class="multiple-block card-form__block" data-block data-type="multiple" data-name="financing_sources">
-                    <?php \Lib\Singles\TemplateMaker::requireByName('editFinancingSources'); ?>
+                    <?php \Lib\Singles\TemplateMaker::requireByName('edit_financing_sources'); ?>
+                    <?php \Lib\Singles\TemplateMaker::requireByName('create_financing_sources'); ?>
                 </div>
                 <!--//Источники финансирования//-->
                 

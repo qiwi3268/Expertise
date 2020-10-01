@@ -1,11 +1,9 @@
 <?php
     $_data = \Lib\Singles\TemplateMaker::getSelfData();
-    $_financingSources = $_data['financingSources'];
-    $_singleMiscs =  $_data['singleMiscs'];
+    $_financingSources = $_data['financing_sources'];
 ?>
 
 <?php //var_dump($_data); ?>
-<?php //var_dump($_financingSources); ?>
 
 <?php if (!empty($_financingSources['type_1'])): ?>
     <?php foreach ($_financingSources['type_1'] as $source): ?>
@@ -56,7 +54,7 @@
                         <div class="modal" data-misc_modal data-result_callback="document_field">
                             <i class="modal__close fas fa-times" data-misc_close></i>
                             <div class="modal__items" data-misc_body>
-                                <?php foreach ($_singleMiscs['budget_level'] as $pageNumber => $page): ?>
+                                <?php foreach ($_data['budget_level'] as $pageNumber => $page): ?>
                                     <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
                                         <?php foreach ($page as $item): ?>
                                             <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
@@ -294,7 +292,7 @@
 <?php if (!empty($_financingSources['type_3'])): ?>
     <?php foreach ($_financingSources['type_3'] as $source): ?>
         <div class="multiple-block__item" data-block data-name="part" data-active="true" data-dependency_scope>
-            <div class="multiple-block__item" data-block data-type="part" data-name="type" data-active="false">
+            <div class="multiple-block__item" data-block data-type="part" data-name="type" data-active="true">
                 <div class="form-field field" data-name="finance_type" data-required="true">
                     <span class="form-field__title field-title">Вид финансирования</span>
                     <div class="form-field__item">
@@ -360,7 +358,7 @@
                     </div>
                 </div>
             </div>
-            <div class="multiple-block__item" data-block data-name="actions" data-active="false">
+            <div class="multiple-block__item" data-block data-name="actions" data-active="true">
                 <div class="multiple-block__actions">
                     <div class="multiple-block__button save">
                         <span class="multiple-block__text">Сохранить источник финансирования</span>
@@ -380,7 +378,7 @@
 <?php if (!empty($_financingSources['type_4'])): ?>
     <?php foreach ($_financingSources['type_4'] as $source): ?>
         <div class="multiple-block__item" data-block data-name="part" data-active="true" data-dependency_scope>
-            <div class="multiple-block__item" data-block data-type="part" data-name="type" data-active="false">
+            <div class="multiple-block__item" data-block data-type="part" data-name="type" data-active="true">
                 <div class="form-field field" data-name="finance_type" data-required="true">
                     <span class="form-field__title field-title">Вид финансирования</span>
                     <div class="form-field__item">
@@ -446,7 +444,7 @@
                     </div>
                 </div>
             </div>
-            <div class="multiple-block__item" data-block data-name="actions" data-active="false">
+            <div class="multiple-block__item" data-block data-name="actions" data-active="true">
                 <div class="multiple-block__actions">
                     <div class="multiple-block__button save">
                         <span class="multiple-block__text">Сохранить источник финансирования</span>
@@ -456,7 +454,7 @@
             </div>
             <div class="multiple-block__item" data-block data-name="part_short" data-active="true">
                 <div class="multiple-block__short part-short">
-                    <span class="multiple-block__info part-info">Собственные средства застройщика</span>
+                    <span class="multiple-block__info part-info">Средства инвестора</span>
                     <i class="multiple-block__delete fas fa-times delete"></i>
                 </div>
             </div>

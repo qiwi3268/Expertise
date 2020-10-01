@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
       new MultipleBlock(block);
    });
 
+   console.log(MultipleBlock.multiple_blocks);
+
 });
 
 class MultipleBlock {
@@ -27,6 +29,11 @@ class MultipleBlock {
       this.templates_container = this.element.querySelector('[data-block][data-name="templates_container"]');
       this.parts = new Map();
 
+      this.handleAddPartButton();
+
+   }
+
+   handleAddPartButton () {
       this.add_btn = this.element.querySelector('[data-multiple_add]');
       this.add_btn.addEventListener('click', () => {
 
@@ -34,7 +41,6 @@ class MultipleBlock {
          this.element.appendChild(part.element);
 
       });
-
    }
 
    static getBlockByName (name) {
@@ -42,7 +48,6 @@ class MultipleBlock {
    }
 
    createBlock (main_block, dependent_name) {
-
       let template = this.templates_container.querySelector(`[data-block][data-name='${dependent_name}']`);
       let new_block = template.cloneNode(true);
 
