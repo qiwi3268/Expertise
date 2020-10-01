@@ -31,9 +31,9 @@ class PartBlock {
    handleSaveButton () {
       let save_btn = this.actions.querySelector('.save');
       save_btn.addEventListener('click', () => {
-         // console.log(this.element);
-         let part_data = new PartData(this.element);
+         console.log(this.element);
 
+         let part_data = new PartData(this.element);
          if (part_data.type) {
             this.savePart(part_data);
 
@@ -108,18 +108,15 @@ class PartBlock {
 }
 
 function PartData (part_block) {
-   let dependent_blocks = part_block.querySelectorAll('.block[data-active="true"]');
-
+   let dependent_blocks = part_block.querySelectorAll('[data-block][data-active="true"]');
    dependent_blocks.forEach(block => {
-      console.log(block);
-      let field_inputs = block.querySelectorAll('.field-result[data-field]');
-
+      let field_inputs = block.querySelectorAll('.field-result[data-multiple_block_field]');
       field_inputs.forEach(input => {
 
-         if (!input.closest('.block[data-active="false"]')) {
-            this[input.dataset.field] = input.value || null;
+         if (!input.closest('[data-block][data-active="false"]')) {
+            this[input.dataset.multiple_block_field] = input.value || null;
          } else {
-            this[input.dataset.field] = null;
+            this[input.dataset.multiple_block_field] = null;
          }
 
       });

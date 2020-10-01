@@ -109,7 +109,7 @@ class FileField {
     * @returns {boolean} активно ли файловое поле
     */
    isActive () {
-      return !this.element.closest('.block[data-active="false"]');
+      return !this.element.closest('[data-block][data-active="false"]');
    }
 
 }

@@ -20,12 +20,12 @@ class DependenciesHandler {
    static initialize (result_input) {
       this.result_input = result_input;
 
-      let parent_block = this.result_input.closest('.block');
+      let parent_block = this.result_input.closest('[data-block]');
       if (parent_block && parent_block.dataset.type === 'part') {
          this.blocks_container = parent_block;
          this.is_multiple_block = true;
 
-         let multiple_name = parent_block.closest('.block[data-type="multiple"]').dataset.name;
+         let multiple_name = parent_block.closest('[data-block][data-type="multiple"]').dataset.name;
          this.multiple_block = MultipleBlock.getBlockByName(multiple_name);
       } else {
          this.blocks_container = document;
@@ -76,7 +76,7 @@ class DependenciesHandler {
 
             if (this.is_multiple_block) {
 
-               let dependent_blocks = this.blocks_container.querySelectorAll(`.block[data-name="${name}"]`);
+               let dependent_blocks = this.blocks_container.querySelectorAll(`[data-block][data-name="${name}"]`);
                if (dependent_blocks.length === 0 && is_active) {
 
                   let new_block = this.multiple_block.createBlock(this.blocks_container, name);
@@ -92,7 +92,7 @@ class DependenciesHandler {
 
             } else {
 
-               let dependent_blocks = document.querySelectorAll(`.block[data-name="${name}"]`);
+               let dependent_blocks = document.querySelectorAll(`[data-block][data-name="${name}"]`);
                dependent_blocks.forEach(block => {
                   block.dataset.active = is_active;
                   resizeCard(block);

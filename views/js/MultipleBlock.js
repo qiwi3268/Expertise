@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
    MultipleBlock.multiple_blocks = new Map();
 
-   let blocks = document.querySelectorAll('.block[data-type="multiple"]');
+   let blocks = document.querySelectorAll('[data-block][data-type="multiple"]');
    blocks.forEach(block => {
       new MultipleBlock(block);
    });
@@ -24,10 +24,10 @@ class MultipleBlock {
       this.element = main_block;
       MultipleBlock.multiple_blocks.set(this.element.dataset.name, this);
 
-      this.templates_container = this.element.querySelector('.block[data-name="templates_container"]');
+      this.templates_container = this.element.querySelector('[data-block][data-name="templates_container"]');
       this.parts = new Map();
 
-      this.add_btn = this.element.querySelector('.field-add');
+      this.add_btn = this.element.querySelector('[data-multiple_add]');
       this.add_btn.addEventListener('click', () => {
 
          let part = new PartBlock(this);
@@ -43,7 +43,7 @@ class MultipleBlock {
 
    createBlock (main_block, dependent_name) {
 
-      let template = this.templates_container.querySelector(`.block[data-name='${dependent_name}']`);
+      let template = this.templates_container.querySelector(`[data-block][data-name='${dependent_name}']`);
       let new_block = template.cloneNode(true);
 
       main_block.appendChild(new_block);

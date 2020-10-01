@@ -55,14 +55,14 @@
     <div class="application-form__cards">
         <input type="hidden" name="id_application" value="<?= $variablesTV->getValue('id_application') ?>">
 
-        <div class="application-form__block block" data-dependency_scope>
+        <div class="application-form__block" data-block data-dependency_scope>
 
             <div class="application-form__card card-form card" data-type="purpose" data-card>
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">СВЕДЕНИЯ О ЦЕЛИ ОБРАЩЕНИЯ</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
-                <div class="card-form__body body-card card-body">
+                <div class="card-form__body card-body">
                     <!--Цель обращения-->
                     <div class="application-field field" data-misc_field data-name="expertise_purpose" data-required="true">
                         <span class="application-field__title field-title">Цель обращения</span>
@@ -89,7 +89,7 @@
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <input data-form="application" class="application-field__result field-result" type="hidden" data-misc_result name="expertise_purpose">
+                        <input class="application-field__result field-result" type="hidden" data-misc_result name="expertise_purpose">
                     </div>
                     <!--//Цель обращения//-->
 
@@ -97,13 +97,13 @@
                     <div class="application-field field" data-name="expertise_subjects" data-required="true">
                         <span class="application-field__title">Предмет экспертизы</span>
                         <div class="application-field__item">
-                            <div class="application-field__body radio" data-multiple="true" data-required="true">
+                            <div class="radio application-field__body" data-multiple="true" data-required="true">
                                 <div class="radio__body">
                                     <span class="radio__title">Выберите цель обращения</span>
                                 </div>
                             </div>
                         </div>
-                        <input data-form="application" class="application-field__result field-result" type="hidden" data-misc_result name="expertise_subjects" value="">
+                        <input class="application-field__result field-result" type="hidden" data-misc_result name="expertise_subjects" value="">
                     </div>
                     <!--//Предмет экспертизы//-->
 
@@ -112,7 +112,7 @@
                         <span class="application-field__title">Дополнительная информация</span>
                         <div class="application-field__item">
                             <div class="application-field__body">
-                                <textarea data-form="application" class="application-field__input field-result" name="additional_information"></textarea>
+                                <textarea class="application-field__input field-result" name="additional_information"></textarea>
                             </div>
                             <span class="application-field__error field-error"></span>
                         </div>
@@ -121,18 +121,18 @@
                 </div>
             </div>
 
-            <div class="application-form__card card-form card" data-type="object">
+            <div class="card-form application-form__card card" data-type="object">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">СВЕДЕНИЯ ОБ ОБЪЕКТЕ</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
-                <div class="card-form__body body-card card-body">
+                <div class="card-form__body card-body">
                     <!--Наименование объекта-->
                     <div class="application-field field" data-name="object_name" data-required="true" data-pattern="text">
                         <span class="application-field__title">Наименование объекта</span>
                         <div class="application-field__item">
                             <div class="application-field__body">
-                                <textarea data-form="application" class="application-field__input field-result" name="object_name"></textarea>
+                                <textarea class="application-field__input field-result" name="object_name"></textarea>
                             </div>
                             <span class="application-field__error field-error"></span>
                         </div>
@@ -142,7 +142,6 @@
                     <!--Вид объекта-->
                     <div class="application-field field" data-misc_field data-name="type_of_object" data-required="true">
                         <span class="application-field__title field-title">Вид объекта</span>
-
                         <div class="application-field__item">
                             <div class="application-field__body">
                                 <div class="application-field__select field-select" data-misc_select>
@@ -153,7 +152,6 @@
                             </div>
                             <span class="application-field__error field-error">Поле обязательно для заполнения</span>
                         </div>
-
                         <div class="modal" data-misc_modal data-result_callback="application_field">
                             <i class="modal__close fas fa-times" data-misc_close></i>
                             <div class="modal__items" data-misc_body>
@@ -166,7 +164,7 @@
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <input data-form="application" class="application-field__result field-result" type="hidden" data-misc_result name="type_of_object">
+                        <input class="application-field__result field-result" type="hidden" data-misc_result name="type_of_object">
                     </div>
                     <!--//Вид объекта//-->
 
@@ -195,7 +193,7 @@
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <input data-form="application" class="application-field__result field-result" type="hidden" data-misc_result name="functional_purpose">
+                        <input class="application-field__result field-result" type="hidden" data-misc_result name="functional_purpose">
                     </div>
                     <!--//Функциональное назначение//-->
 
@@ -217,7 +215,7 @@
                             <i class="modal__close fas fa-times" data-misc_close></i>
                             <div class="modal__items" data-misc_body></div>
                         </div>
-                        <input data-form="application" class="application-field__result field-result" type="hidden" data-misc_result name="functional_purpose_subsector">
+                        <input class="application-field__result field-result" type="hidden" data-misc_result name="functional_purpose_subsector">
                     </div>
                     <!--//Функциональное назначение. Подотрасль//-->
 
@@ -239,18 +237,18 @@
                             <i class="modal__close fas fa-times" data-misc_close></i>
                             <div class="modal__items" data-misc_body></div>
                         </div>
-                        <input data-form="application" class="application-field__result field-result" type="hidden" data-misc_result name="functional_purpose_group">
+                        <input class="application-field__result field-result" type="hidden" data-misc_result name="functional_purpose_group">
                     </div>
                     <!--//Функциональное назначение. Группа//-->
 
                     <!--Блок производственные/непроизводственные объекты капитального строительства-->
-                    <div class="body-card__block block" data-name="planning_documentation_approval" data-active="false">
+                    <div class="card-form__block" data-block data-name="planning_documentation_approval" data-active="false">
                         <!--Номер утверждения документации по планировке территории-->
                         <div class="application-field field" data-name="number_planning_documentation_approval" data-pattern="number">
                             <span class="application-field__title">Номер утверждения документации по планировке территории</span>
                             <div class="application-field__item">
                                 <div class="application-field__body">
-                                    <input data-form="application" class="application-field__input field-result" type="text" name="number_planning_documentation_approval" placeholder="Введите значение">
+                                    <input class="application-field__input field-result" type="text" name="number_planning_documentation_approval" placeholder="Введите значение">
                                 </div>
                                 <span class="application-field__error field-error"></span>
                             </div>
@@ -269,20 +267,20 @@
                                     <i class="application-field__icon-clear fas fa-times"></i>
                                 </div>
                             </div>
-                            <input data-form="application" class="application-field__result field-result" type="hidden" name="date_planning_documentation_approval">
+                            <input class="application-field__result field-result" type="hidden" name="date_planning_documentation_approval">
                         </div>
                         <!--//Дата утверждения документации по планировке территории//-->
                     </div>
                     <!--//Блок производственные/непроизводственные объекты капитального строительства//-->
 
                     <!--Блок линейные объекты капитального строительства-->
-                    <div class="body-card__block block" data-name="GPZU" data-active="false">
+                    <div class="card-form__block" data-block data-name="GPZU" data-active="false">
                         <!--Номер ГПЗУ-->
                         <div class="application-field field" data-name="number_GPZU" data-pattern="">
                             <span class="application-field__title">Номер ГПЗУ</span>
                             <div class="application-field__item">
                                 <div class="application-field__body">
-                                    <input data-form="application" class="application-field__input field-result" type="text" name="number_GPZU" placeholder="Введите значение">
+                                    <input class="application-field__input field-result" type="text" name="number_GPZU" placeholder="Введите значение">
                                     <span class="application-field__error field-error"></span>
                                 </div>
                             </div>
@@ -301,7 +299,7 @@
                                     <i class="application-field__icon-clear fas fa-times"></i>
                                 </div>
                             </div>
-                            <input data-form="application" class="application-field__result field-result" type="hidden" name="date_GPZU">
+                            <input class="application-field__result field-result" type="hidden" name="date_GPZU">
                         </div>
                         <!--//Дата ГПЗУ//-->
                     </div>
@@ -325,18 +323,18 @@
                             <i class="modal__close fas fa-times" data-misc_close></i>
                             <div class="modal__items" data-misc_body></div>
                         </div>
-                        <input data-form="application" class="application-field__result field-result" type="hidden" data-misc_result name="type_of_work">
+                        <input class="application-field__result field-result" type="hidden" data-misc_result name="type_of_work">
                     </div>
                     <!--//Вид работ//-->
 
                     <!--Блок смета-->
-                    <div class="body-card__block block" data-name="estimate" data-active="true">
+                    <div class="card-form__block" data-block data-name="estimate" data-active="true">
                         <!--Сметная стоимость-->
                         <div class="application-field field" data-name="estimate_cost" data-pattern="number">
                             <span class="application-field__title">Сведения о сметной или предполагаемой (предельной) стоимости объекта капитального строительства, содержащиеся в решении по объекту или письме. тыс. руб.</span>
                             <div class="application-field__item">
                                 <div class="application-field__body">
-                                    <input data-form="application" class="application-field__input field-result" type="text" name="estimate_cost" placeholder="Введите значение">
+                                    <input class="application-field__input field-result" type="text" name="estimate_cost" placeholder="Введите значение">
                                 </div>
                                 <span class="application-field__error field-error"></span>
                             </div>
@@ -353,11 +351,11 @@
                                         <i class="application-field__icon-misc fas fa-file"></i>
                                         <i class="application-field__icon-filled fas fa-check"></i>
                                     </div>
-                                    <div class="application-field__files files"></div>
+                                    <div class="files application-field__files"></div>
                                 </div>
                                 <span class="application-field__error field-error"></span>
                             </div>
-                            <input data-form="application" class="application-field__result field-result" type="hidden" name="file_grbs">
+                            <input class="application-field__result field-result" type="hidden" name="file_grbs">
                         </div>
                         <!--Файл ГРБС-->
                     </div>
@@ -368,7 +366,7 @@
                         <span class="application-field__title">Кадастровый номер земельного участка</span>
                         <div class="application-field__item">
                             <div class="application-field__body">
-                                <input data-form="application" class="application-field__input field-result" type="text" name="cadastral_number" placeholder="Введите значение">
+                                <input class="application-field__input field-result" type="text" name="cadastral_number" placeholder="Введите значение">
                             </div>
                             <span class="application-field__error field-error"></span>
                         </div>
@@ -379,7 +377,7 @@
                     <div class="application-field field" data-name="cultural_object_type_checkbox" data-multiple="false">
                         <span class="application-field__title">Объект культурного наследия</span>
                         <div class="application-field__item">
-                            <div class="application-field__body radio" data-required="true">
+                            <div class="radio application-field__body" data-required="true">
                                 <div class="radio__body inline">
                                     <div class="radio__item inline" data-id="1">
                                         <i class="radio__icon inline far fa-square"></i>
@@ -392,12 +390,12 @@
                                 </div>
                             </div>
                         </div>
-                        <input data-form="application" class="application-field__result field-result" type="hidden" name="cultural_object_type_checkbox">
+                        <input class="application-field__result field-result" type="hidden" name="cultural_object_type_checkbox">
                     </div>
                     <!--//CHECKBOX Объект культурного наследия//-->
 
                     <!--Блок культурное наследие-->
-                    <div class="body-card__block block" data-name="cultural_object_type" data-active="false">
+                    <div class="card-form__block" data-block data-name="cultural_object_type" data-active="false">
                         <!--Тип объекта культурного наследия-->
                         <div class="application-field field" data-misc_field data-name="cultural_object_type" data-required="true">
                             <span class="application-field__title field-title">Тип объекта культурного наследия</span>
@@ -424,7 +422,7 @@
                                     <?php endforeach; ?>
                                 </div>
                             </div>
-                            <input data-form="application" class="application-field__result field-result" type="hidden" data-misc_result name="cultural_object_type">
+                            <input class="application-field__result field-result" type="hidden" data-misc_result name="cultural_object_type">
                         </div>
                         <!--//Тип объекта культурного наследия//-->
                     </div>
@@ -434,7 +432,7 @@
                     <div class="application-field field" data-name="national_project_checkbox">
                         <span class="application-field__title">Национальный проект</span>
                         <div class="application-field__item">
-                            <div class="application-field__body radio" data-required="true">
+                            <div class="radio application-field__body" data-required="true">
                                 <div class="radio__body inline">
                                     <div class="radio__item inline" data-id="1">
                                         <i class="radio__icon inline far fa-square"></i>
@@ -447,12 +445,12 @@
                                 </div>
                             </div>
                         </div>
-                        <input data-form="application" class="application-field__result field-result" type="hidden" name="national_project_checkbox">
+                        <input class="application-field__result field-result" type="hidden" name="national_project_checkbox">
                     </div>
                     <!--//CHECKBOX Национальный проект//-->
 
                     <!--Блок национальный проект-->
-                    <div class="body-card__block block" data-name="national_project" data-active="false">
+                    <div class="card-form__block" data-block data-name="national_project" data-active="false">
                         <!--Название национального проекта-->
                         <div class="application-field field" data-misc_field data-name="national_project" data-required="true">
                             <span class="application-field__title field-title">Название национального проекта</span>
@@ -479,7 +477,7 @@
                                     <?php endforeach; ?>
                                 </div>
                             </div>
-                            <input data-form="application" class="application-field__result field-result" data-misc_result type="hidden" name="national_project">
+                            <input class="application-field__result field-result" data-misc_result type="hidden" name="national_project">
                         </div>
                         <!--//Название национального проекта//-->
 
@@ -501,7 +499,7 @@
                                 <i class="modal__close fas fa-times" data-misc_close></i>
                                 <div class="modal__items" data-misc_body></div>
                             </div>
-                            <input data-form="application" class="application-field__result field-result" data-misc_result type="hidden" name="federal_project">
+                            <input class="application-field__result field-result" data-misc_result type="hidden" name="federal_project">
                         </div>
                         <!--//Название федерального проекта//-->
 
@@ -518,7 +516,7 @@
                                     <i class="application-field__icon-clear fas fa-times"></i>
                                 </div>
                             </div>
-                            <input data-form="application" class="application-field__result field-result" type="hidden" name="date_finish_building">
+                            <input class="application-field__result field-result" type="hidden" name="date_finish_building">
                         </div>
                         <!--//Дата окончания строительства//-->
                     </div>
@@ -549,7 +547,7 @@
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <input data-form="application" class="application-field__result field-result" type="hidden" data-misc_result name="curator">
+                        <input class="application-field__result field-result" type="hidden" data-misc_result name="curator">
                     </div>
                     <!--//Куратор//-->
                 </div>
@@ -560,23 +558,23 @@
                     <span class="card-form__title">СВЕДЕНИЯ ОБ ИСТОЧНИКАХ ФИНАНСИРОВАНИЯ</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
-                <div class="card-form__body body-card card-body">
+                <div class="card-form__body card-body">
 
                     <!--Источники финансирования-->
-                    <div class="body-card__block multiple-block block" data-type="multiple" data-name="finance_sources">
+                    <div class="multiple-block card-form__block" data-block data-type="multiple" data-name="finance_sources">
 
-                        <div class="multiple-block__add field-add">
+                        <div class="multiple-block__add" data-multiple_add>
                             <span class="multiple-block__text">Добавить источник финансирования</span>
                             <i class="multiple-block__icon fas fa-plus"></i>
                         </div>
 
                         <!--Шаблоны источников финансирования-->
-                        <div class="body-card__block block" data-name="templates_container">
+                        <div class="multiple-block__item" data-block data-name="templates_container">
                             <!--Шаблон элемента множественного блока-->
-                            <div class="body-card__block block" data-name="part" data-active="false" data-dependency_scope></div>
+                            <div class="multiple-block__item" data-block data-name="part" data-active="false" data-dependency_scope></div>
                             <!--Шаблон элемента множественного блока-->
                             <!--Шаблон "Вид финансирования"-->
-                            <div class="body-card__block block" data-type="part" data-name="type" data-active="false">
+                            <div class="multiple-block__item" data-block data-type="part" data-name="type" data-active="false">
                                 <div class="application-field field" data-name="finance_type" data-required="true">
                                     <span class="application-field__title field-title">Вид финансирования</span>
                                     <div class="application-field__item">
@@ -601,12 +599,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input class="application-field__result field-result" type="hidden" data-field="type" name="finance_type">
+                                    <input class="application-field__result field-result" type="hidden" data-multiple_block_field="type" name="finance_type">
                                 </div>
                             </div>
                             <!--//Шаблон "Вид финансирования"//-->
                             <!--Шаблон "Бюджетные средства"-->
-                            <div class="body-card__block block" data-type="part" data-name="budget" data-active="false">
+                            <div class="multiple-block__item" data-block data-type="part" data-name="budget" data-active="false">
                                 <div class="application-field field" data-misc_field data-name="budget_level" data-required="true">
                                     <span class="application-field__title field-title">Уровень бюджета</span>
                                     <div class="application-field__item">
@@ -631,9 +629,9 @@
                                             <?php endforeach; ?>
                                         </div>
                                     </div>
-                                    <input class="application-field__result field-result" data-misc_result type="hidden" data-field="budget_level" name="budget_level">
+                                    <input class="application-field__result field-result" data-misc_result type="hidden" data-multiple_block_field="budget_level" name="budget_level">
                                 </div>
-                                <div class="body-card__block block" data-type="part" data-name="no_data" data-active="false">
+                                <div class="multiple-block__item" data-block data-type="part" data-name="no_data" data-active="false">
                                     <div class="application-field field" data-name="no_data">
                                         <span class="application-field__title">Размер финансирования</span>
                                         <div class="application-field__item">
@@ -646,14 +644,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input class="application-field__result field-result" type="hidden" data-field="no_data" name="no_data">
+                                        <input class="application-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
                                     </div>
-                                    <div class="body-card__block block" data-type="part" data-name="percent" data-active="true">
+                                    <div class="multiple-block__item" data-block data-type="part" data-name="percent" data-active="true">
                                         <div class="application-field field" data-required="true" data-name="percent" data-pattern="number">
                                             <span class="application-field__title">Процент финансирования</span>
                                             <div class="application-field__item">
                                                 <div class="application-field__body">
-                                                    <input class="application-field__input field-result" type="text" data-field="percent" name="percent" placeholder="Введите процент">
+                                                    <input class="application-field__input field-result" type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                                                 </div>
                                                 <span class="application-field__error field-error"></span>
                                             </div>
@@ -663,12 +661,12 @@
                             </div>
                             <!--//Шаблон "Бюджетные средства"//-->
                             <!--Шаблон "Средства юридических лиц"-->
-                            <div class="body-card__block block" data-type="part" data-name="organization" data-active="false">
+                            <div class="multiple-block__item" data-block data-type="part" data-name="organization" data-active="false">
                                 <div class="application-field field" data-required="true" data-name="full_name">
                                     <span class="application-field__title">Полное наименование</span>
                                     <div class="application-field__item">
                                         <div class="application-field__body">
-                                            <input class="application-field__input field-result" type="text" data-field="full_name" name="full_name" placeholder="Введите значение">
+                                            <input class="application-field__input field-result" type="text" data-multiple_block_field="full_name" name="full_name" placeholder="Введите значение">
                                         </div>
                                         <span class="application-field__error field-error"></span>
                                     </div>
@@ -677,7 +675,7 @@
                                     <span class="application-field__title">ИНН</span>
                                     <div class="application-field__item">
                                         <div class="application-field__body">
-                                            <input class="application-field__input field-result" type="text" data-field="INN" name="INN" placeholder="Введите значение">
+                                            <input class="application-field__input field-result" type="text" data-multiple_block_field="INN" name="INN" placeholder="Введите значение">
                                         </div>
                                         <span class="application-field__error field-error"></span>
                                     </div>
@@ -686,7 +684,7 @@
                                     <span class="application-field__title">КПП</span>
                                     <div class="application-field__item">
                                         <div class="application-field__body">
-                                            <input class="application-field__input field-result" type="text" data-field="KPP" name="KPP" placeholder="Введите значение">
+                                            <input class="application-field__input field-result" type="text" data-multiple_block_field="KPP" name="KPP" placeholder="Введите значение">
                                         </div>
                                         <span class="application-field__error field-error"></span>
                                     </div>
@@ -695,7 +693,7 @@
                                     <span class="application-field__title">ОГРН</span>
                                     <div class="application-field__item">
                                         <div class="application-field__body">
-                                            <input class="application-field__input field-result" type="text" data-field="OGRN" name="OGRN" placeholder="Введите значение">
+                                            <input class="application-field__input field-result" type="text" data-multiple_block_field="OGRN" name="OGRN" placeholder="Введите значение">
                                         </div>
                                         <span class="application-field__error field-error"></span>
                                     </div>
@@ -704,7 +702,7 @@
                                     <span class="application-field__title">Адрес</span>
                                     <div class="application-field__item">
                                         <div class="application-field__body">
-                                            <input class="application-field__input field-result" type="text" data-field="address" name="address" placeholder="Введите значение">
+                                            <input class="application-field__input field-result" type="text" data-multiple_block_field="address" name="address" placeholder="Введите значение">
                                         </div>
                                         <span class="application-field__error field-error"></span>
                                     </div>
@@ -713,7 +711,7 @@
                                     <span class="application-field__title">Место нахождения</span>
                                     <div class="application-field__item">
                                         <div class="application-field__body">
-                                            <input class="application-field__input field-result" type="text" data-field="location" name="location" placeholder="Введите значение">
+                                            <input class="application-field__input field-result" type="text" data-multiple_block_field="location" name="location" placeholder="Введите значение">
                                         </div>
                                         <span class="application-field__error field-error"></span>
                                     </div>
@@ -722,7 +720,7 @@
                                     <span class="application-field__title">Телефон</span>
                                     <div class="application-field__item">
                                         <div class="application-field__body">
-                                            <input class="application-field__input field-result" type="text" data-field="telephone" name="telephone" placeholder="Введите значение">
+                                            <input class="application-field__input field-result" type="text" data-multiple_block_field="telephone" name="telephone" placeholder="Введите значение">
                                         </div>
                                         <span class="application-field__error field-error"></span>
                                     </div>
@@ -731,12 +729,12 @@
                                     <span class="application-field__title">Адрес электронной почты</span>
                                     <div class="application-field__item">
                                         <div class="application-field__body">
-                                            <input class="application-field__input field-result" type="text" data-field="email" name="email" placeholder="Введите значение">
+                                            <input class="application-field__input field-result" type="text" data-multiple_block_field="email" name="email" placeholder="Введите значение">
                                         </div>
                                         <span class="application-field__error field-error"></span>
                                     </div>
                                 </div>
-                                <div class="body-card__block block" data-type="part" data-name="no_data" data-active="false">
+                                <div class="multiple-block__item" data-block data-type="part" data-name="no_data" data-active="false">
                                     <div class="application-field field" data-name="no_data">
                                         <span class="application-field__title">Размер финансирования</span>
                                         <div class="application-field__item">
@@ -749,14 +747,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input class="application-field__result field-result" type="hidden" data-field="no_data" name="no_data">
+                                        <input class="application-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
                                     </div>
-                                    <div class="body-card__block block" data-type="part" data-name="percent" data-active="true">
+                                    <div class="multiple-block__item" data-block data-type="part" data-name="percent" data-active="true">
                                         <div class="application-field field" data-required="true" data-name="percent" data-pattern="number">
                                             <span class="application-field__title">Процент финансирования</span>
                                             <div class="application-field__item">
                                                 <div class="application-field__body">
-                                                    <input class="application-field__input field-result" type="text" data-field="percent" name="percent" placeholder="Введите процент">
+                                                    <input class="application-field__input field-result" type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                                                 </div>
                                                 <span class="application-field__error field-error"></span>
                                             </div>
@@ -766,8 +764,8 @@
                             </div>
                             <!--//Шаблон "Средства юридических лиц"//-->
                             <!--Шаблон "Собственные средства застройщика"-->
-                            <div class="body-card__block block" data-type="part" data-name="builder_source" data-active="false">
-                                <div class="body-card__block block" data-type="part" data-name="no_data" data-active="false">
+                            <div class="multiple-block__item" data-block data-type="part" data-name="builder_source" data-active="false">
+                                <div class="multiple-block__item" data-block data-type="part" data-name="no_data" data-active="false">
                                     <div class="application-field field" data-name="no_data">
                                         <span class="application-field__title">Размер финансирования</span>
                                         <div class="application-field__item">
@@ -780,14 +778,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input class="application-field__result field-result" type="hidden" data-field="no_data" name="no_data">
+                                        <input class="application-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
                                     </div>
-                                    <div class="body-card__block block" data-type="part" data-name="percent" data-active="true">
+                                    <div class="multiple-block__item" data-block data-type="part" data-name="percent" data-active="true">
                                         <div class="application-field field" data-required="true" data-name="percent" data-pattern="number">
                                             <span class="application-field__title">Процент финансирования</span>
                                             <div class="application-field__item">
                                                 <div class="application-field__body">
-                                                    <input class="application-field__input field-result" type="text" data-field="percent" name="percent" placeholder="Введите процент">
+                                                    <input class="application-field__input field-result" type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                                                 </div>
                                                 <span class="application-field__error field-error"></span>
                                             </div>
@@ -797,8 +795,8 @@
                             </div>
                             <!--//Шаблон "Собственные средства застройщика"//-->
                             <!--Шаблон "Средства инвестора"-->
-                            <div class="body-card__block block" data-type="part" data-name="investor" data-active="false">
-                                <div class="body-card__block block" data-type="part" data-name="no_data" data-active="false">
+                            <div class="multiple-block__item" data-block data-type="part" data-name="investor" data-active="false">
+                                <div class="multiple-block__item" data-block data-type="part" data-name="no_data" data-active="false">
                                     <div class="application-field field" data-name="no_data">
                                         <span class="application-field__title">Размер финансирования</span>
                                         <div class="application-field__item">
@@ -811,14 +809,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input class="application-field__result field-result" type="hidden" data-field="no_data" name="no_data">
+                                        <input class="application-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
                                     </div>
-                                    <div class="body-card__block block" data-type="part" data-name="percent" data-active="true">
+                                    <div class="multiple-block__item" data-block data-type="part" data-name="percent" data-active="true">
                                         <div class="application-field field" data-required="true" data-name="percent" data-pattern="number">
                                             <span class="application-field__title">Процент финансирования</span>
                                             <div class="application-field__item">
                                                 <div class="application-field__body">
-                                                    <input class="application-field__input field-result" type="text" data-field="percent" name="percent" placeholder="Введите процент">
+                                                    <input class="application-field__input field-result" type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                                                 </div>
                                                 <span class="application-field__error field-error"></span>
                                             </div>
@@ -828,7 +826,7 @@
                             </div>
                             <!--//Шаблон "Средства инвестора"//-->
                             <!--Шаблон "Размер финансирования"-->
-                            <div class="body-card__block block" data-type="part" data-name="no_data" data-active="false">
+                            <div class="multiple-block__item" data-block data-type="part" data-name="no_data" data-active="false">
                                 <div class="application-field field" data-name="no_data">
                                     <span class="application-field__title">Размер финансирования</span>
                                     <div class="application-field__item">
@@ -841,17 +839,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input class="application-field__result field-result" type="hidden" data-field="no_data" name="no_data">
+                                    <input class="application-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
                                 </div>
                             </div>
                             <!--//Шаблон "Размер финансирования"//-->
                             <!--Шаблон "Процент финансирования"-->
-                            <div class="body-card__block block" data-type="part" data-name="percent" data-active="false">
+                            <div class="multiple-block__item" data-block data-type="part" data-name="percent" data-active="false">
                                 <div class="application-field field" data-required="true" data-name="percent" data-pattern="number">
                                     <span class="application-field__title">Процент финансирования</span>
                                     <div class="application-field__item">
                                         <div class="application-field__body">
-                                            <input class="application-field__input field-result" type="text" data-field="percent" name="percent" placeholder="Введите процент">
+                                            <input class="application-field__input field-result" type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                                         </div>
                                         <span class="application-field__error field-error"></span>
                                     </div>
@@ -859,7 +857,7 @@
                             </div>
                             <!--//Шаблон "Процент финансирования"//-->
                             <!--Шаблон действий-->
-                            <div class="body-card__block block" data-name="actions" data-active="false">
+                            <div class="multiple-block__item" data-block data-name="actions" data-active="false">
                                 <div class="multiple-block__actions">
                                     <div class="multiple-block__button save">
                                         <span class="multiple-block__text">Сохранить источник финансирования</span>
@@ -872,7 +870,7 @@
                                 </div>
                             </div>
                             <!--//Шаблон действий//-->
-                            <div class="body-card__block block" data-name="part_short" data-active="false">
+                            <div class="multiple-block__item" data-block data-name="part_short" data-active="false">
                                 <div class="multiple-block__short part-short">
                                     <span class="multiple-block__info part-info"></span>
                                     <i class="multiple-block__delete fas fa-times delete"></i>
@@ -893,14 +891,14 @@
                 <span class="card-form__title">ДОКУМЕНТАЦИЯ</span>
                 <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
             </div>
-            <div class="card-form__body body-card card-body">
-                <div class="body-card__block block" data-name="empty_documentation" data-active="true">
-                    <div class="body-card__message">
-                        <i class="body-card__icon-message fas fa-exclamation"></i>
-                        <span class="body-card__message-text">Для отображения структуры разделов документации выберите вид объекта</span>
+            <div class="card-form__body card-body">
+                <div class="card-form__block" data-block data-name="empty_documentation" data-active="true">
+                    <div class="card-form__message">
+                        <i class="card-form__icon-message fas fa-exclamation"></i>
+                        <span class="card-form__message-text">Для отображения структуры разделов документации выберите вид объекта</span>
                     </div>
                 </div>
-                <div class="body-card__block block" data-name="structureDocumentation1" data-active="false">
+                <div class="card-form__block" data-block data-name="structureDocumentation1" data-active="false">
                     <div class="documentation field" data-id_file_field data-mapping_level_1="2" data-mapping_level_2="1">
                         <?php foreach ($variablesTV->getValue('structureDocumentation1') as $node): ?>
                             <div class="documentation__node" data-id_structure_node="<?= $node['id'] ?>">
@@ -915,7 +913,7 @@
                         <?php endforeach; ?>
                     </div>
                 </div>
-                <div class="body-card__block block" data-name="structureDocumentation2" data-active="false">
+                <div class="card-form__block" data-block data-name="structureDocumentation2" data-active="false">
                     <div class="documentation field" data-id_file_field data-mapping_level_1="2" data-mapping_level_2="2">
                         <?php foreach ($variablesTV->getValue('structureDocumentation2') as $node): ?>
                             <div class="documentation__node" data-id_structure_node="<?= $node['id'] ?>">

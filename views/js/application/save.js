@@ -65,7 +65,7 @@ function saveApplication () {
 
 function saveMultipleBlocks (form_data) {
 
-   let multiple_blocks = document.querySelectorAll('.block[data-type="multiple"]');
+   let multiple_blocks = document.querySelectorAll('[data-block][data-type="multiple"]');
    multiple_blocks.forEach(block => {
 
       let multiple_block = MultipleBlock.getBlockByName(block.dataset.name);
@@ -89,10 +89,10 @@ function getSaveApplicationFormData() {
    let id_application = document.querySelector('[name="id_application"]').value;
    form_data.append('id_application', id_application);
 
-   let fields = document.querySelectorAll('.field-result[data-form="application"]');
+   let fields = document.querySelectorAll('.field-result:not([data-multiple_block_field])');
    fields.forEach(field => {
 
-      if (!field.closest('.block[data-active="false"]')) {
+      if (!field.closest('[data-block][data-active="false"]')) {
          form_data.append(field.name, field.value);
       } else {
          form_data.append(field.name, '');

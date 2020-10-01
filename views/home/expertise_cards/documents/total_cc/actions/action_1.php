@@ -251,7 +251,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <input class="application-field__result field-result" type="hidden" data-field="type" name="finance_type">
+                                <input class="application-field__result field-result" type="hidden" data-multiple_block_field="type" name="finance_type">
                             </div>
                             <div class="body-card__block block" data-type="part" data-name="budget" data-active="true">
                                 <div class="application-field field" data-misc_field data-name="budget_level" data-required="true">
@@ -278,7 +278,7 @@
                                             <?php /*endforeach; */?>
                                         </div>
                                     </div>-->
-                                    <input class="application-field__result field-result" data-misc_result type="hidden" data-field="budget_level" name="budget_level">
+                                    <input class="application-field__result field-result" data-misc_result type="hidden" data-multiple_block_field="budget_level" name="budget_level">
                                 </div>
                                 <div class="body-card__block block" data-type="part" data-name="no_data" data-active="true">
                                     <div class="application-field field center" data-name="no_data">
@@ -293,14 +293,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input class="application-field__result field-result" type="hidden" data-field="no_data" name="no_data">
+                                        <input class="application-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
                                     </div>
                                     <div class="body-card__block block" data-type="part" data-name="percent" data-active="true">
                                         <div class="application-field field" data-required="true" data-name="percent" data-pattern="number">
                                             <span class="application-field__title">Процент финансирования</span>
                                             <div class="application-field__item">
                                                 <div class="application-field__body">
-                                                    <input class="application-field__input field-result" type="text" data-field="percent" name="percent" placeholder="Введите процент">
+                                                    <input class="application-field__input field-result" type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                                                 </div>
                                                 <span class="application-field__error field-error"></span>
                                             </div>
@@ -345,7 +345,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <input class="application-field__result field-result" type="hidden" data-field="type" name="finance_type">
+                                <input class="application-field__result field-result" type="hidden" data-multiple_block_field="type" name="finance_type">
                             </div>
                         </div>
                         <!--//Шаблон "Вид финансирования"//-->
@@ -375,7 +375,7 @@
                                         <?php endforeach; ?>
                                     </div>
                                 </div>
-                                <input class="application-field__result field-result" data-misc_result type="hidden" data-field="budget_level" name="budget_level">
+                                <input class="application-field__result field-result" data-misc_result type="hidden" data-multiple_block_field="budget_level" name="budget_level">
                             </div>
                             <div class="body-card__block block" data-type="part" data-name="no_data" data-active="false">
                                 <div class="application-field field center" data-name="no_data">
@@ -390,14 +390,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input class="application-field__result field-result" type="hidden" data-field="no_data" name="no_data">
+                                    <input class="application-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
                                 </div>
                                 <div class="body-card__block block" data-type="part" data-name="percent" data-active="true">
                                     <div class="application-field field" data-required="true" data-name="percent" data-pattern="number">
                                         <span class="application-field__title">Процент финансирования</span>
                                         <div class="application-field__item">
                                             <div class="application-field__body">
-                                                <input class="application-field__input field-result" type="text" data-field="percent" name="percent" placeholder="Введите процент">
+                                                <input class="application-field__input field-result" type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                                             </div>
                                             <span class="application-field__error field-error"></span>
                                         </div>
@@ -412,7 +412,7 @@
                                 <span class="application-field__title">Полное наименование</span>
                                 <div class="application-field__item">
                                     <div class="application-field__body">
-                                        <input class="application-field__input field-result" type="text" data-field="full_name" name="full_name" placeholder="Введите значение">
+                                        <input class="application-field__input field-result" type="text" data-multiple_block_field="full_name" name="full_name" placeholder="Введите значение">
                                     </div>
                                     <span class="application-field__error field-error"></span>
                                 </div>
@@ -421,7 +421,7 @@
                                 <span class="application-field__title">ИНН</span>
                                 <div class="application-field__item">
                                     <div class="application-field__body">
-                                        <input class="application-field__input field-result" type="text" data-field="INN" name="INN" placeholder="Введите значение">
+                                        <input class="application-field__input field-result" type="text" data-multiple_block_field="INN" name="INN" placeholder="Введите значение">
                                     </div>
                                     <span class="application-field__error field-error"></span>
                                 </div>
@@ -430,7 +430,7 @@
                                 <span class="application-field__title">КПП</span>
                                 <div class="application-field__item">
                                     <div class="application-field__body">
-                                        <input class="application-field__input field-result" type="text" data-field="KPP" name="KPP" placeholder="Введите значение">
+                                        <input class="application-field__input field-result" type="text" data-multiple_block_field="KPP" name="KPP" placeholder="Введите значение">
                                     </div>
                                     <span class="application-field__error field-error"></span>
                                 </div>
@@ -439,7 +439,7 @@
                                 <span class="application-field__title">ОГРН</span>
                                 <div class="application-field__item">
                                     <div class="application-field__body">
-                                        <input class="application-field__input field-result" type="text" data-field="OGRN" name="OGRN" placeholder="Введите значение">
+                                        <input class="application-field__input field-result" type="text" data-multiple_block_field="OGRN" name="OGRN" placeholder="Введите значение">
                                     </div>
                                     <span class="application-field__error field-error"></span>
                                 </div>
@@ -448,7 +448,7 @@
                                 <span class="application-field__title">Адрес</span>
                                 <div class="application-field__item">
                                     <div class="application-field__body">
-                                        <input class="application-field__input field-result" type="text" data-field="address" name="address" placeholder="Введите значение">
+                                        <input class="application-field__input field-result" type="text" data-multiple_block_field="address" name="address" placeholder="Введите значение">
                                     </div>
                                     <span class="application-field__error field-error"></span>
                                 </div>
@@ -457,7 +457,7 @@
                                 <span class="application-field__title">Место нахождения</span>
                                 <div class="application-field__item">
                                     <div class="application-field__body">
-                                        <input class="application-field__input field-result" type="text" data-field="location" name="location" placeholder="Введите значение">
+                                        <input class="application-field__input field-result" type="text" data-multiple_block_field="location" name="location" placeholder="Введите значение">
                                     </div>
                                     <span class="application-field__error field-error"></span>
                                 </div>
@@ -466,7 +466,7 @@
                                 <span class="application-field__title">Телефон</span>
                                 <div class="application-field__item">
                                     <div class="application-field__body">
-                                        <input class="application-field__input field-result" type="text" data-field="telephone" name="telephone" placeholder="Введите значение">
+                                        <input class="application-field__input field-result" type="text" data-multiple_block_field="telephone" name="telephone" placeholder="Введите значение">
                                     </div>
                                     <span class="application-field__error field-error"></span>
                                 </div>
@@ -475,7 +475,7 @@
                                 <span class="application-field__title">Адрес электронной почты</span>
                                 <div class="application-field__item">
                                     <div class="application-field__body">
-                                        <input class="application-field__input field-result" type="text" data-field="email" name="email" placeholder="Введите значение">
+                                        <input class="application-field__input field-result" type="text" data-multiple_block_field="email" name="email" placeholder="Введите значение">
                                     </div>
                                     <span class="application-field__error field-error"></span>
                                 </div>
@@ -493,14 +493,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input class="application-field__result field-result" type="hidden" data-field="no_data" name="no_data">
+                                    <input class="application-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
                                 </div>
                                 <div class="body-card__block block" data-type="part" data-name="percent" data-active="true">
                                     <div class="application-field field" data-required="true" data-name="percent" data-pattern="number">
                                         <span class="application-field__title">Процент финансирования</span>
                                         <div class="application-field__item">
                                             <div class="application-field__body">
-                                                <input class="application-field__input field-result" type="text" data-field="percent" name="percent" placeholder="Введите процент">
+                                                <input class="application-field__input field-result" type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                                             </div>
                                             <span class="application-field__error field-error"></span>
                                         </div>
@@ -524,14 +524,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input class="application-field__result field-result" type="hidden" data-field="no_data" name="no_data">
+                                    <input class="application-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
                                 </div>
                                 <div class="body-card__block block" data-type="part" data-name="percent" data-active="true">
                                     <div class="application-field field" data-required="true" data-name="percent" data-pattern="number">
                                         <span class="application-field__title">Процент финансирования</span>
                                         <div class="application-field__item">
                                             <div class="application-field__body">
-                                                <input class="application-field__input field-result" type="text" data-field="percent" name="percent" placeholder="Введите процент">
+                                                <input class="application-field__input field-result" type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                                             </div>
                                             <span class="application-field__error field-error"></span>
                                         </div>
@@ -555,14 +555,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input class="application-field__result field-result" type="hidden" data-field="no_data" name="no_data">
+                                    <input class="application-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
                                 </div>
                                 <div class="body-card__block block" data-type="part" data-name="percent" data-active="true">
                                     <div class="application-field field" data-required="true" data-name="percent" data-pattern="number">
                                         <span class="application-field__title">Процент финансирования</span>
                                         <div class="application-field__item">
                                             <div class="application-field__body">
-                                                <input class="application-field__input field-result" type="text" data-field="percent" name="percent" placeholder="Введите процент">
+                                                <input class="application-field__input field-result" type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                                             </div>
                                             <span class="application-field__error field-error"></span>
                                         </div>
@@ -585,7 +585,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <input class="application-field__result field-result" type="hidden" data-field="no_data" name="no_data">
+                                <input class="application-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
                             </div>
                         </div>
                         <!--//Шаблон "Размер финансирования"//-->
@@ -595,7 +595,7 @@
                                 <span class="application-field__title">Процент финансирования</span>
                                 <div class="application-field__item">
                                     <div class="application-field__body">
-                                        <input class="application-field__input field-result" type="text" data-field="percent" name="percent" placeholder="Введите процент">
+                                        <input class="application-field__input field-result" type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                                     </div>
                                     <span class="application-field__error field-error"></span>
                                 </div>

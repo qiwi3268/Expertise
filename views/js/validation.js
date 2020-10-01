@@ -162,7 +162,7 @@ function isValidCard (card) {
    // Для всех обязательных полей, проверяем наличие значений
    required_fields.forEach(field => {
 
-      if (!field.closest('.block[data-active="false"]')) {
+      if (!field.closest('[data-block][data-active="false"]')) {
          field_value = field.querySelector('.field-result');
 
          if (!field_value.value) {
@@ -186,7 +186,7 @@ function hasInvalidFields (card) {
    let required_fields = card.querySelectorAll('.field[data-required="true"]:not([data-mapping_level_1])');
    return required_fields.find(field => {
 
-      if (!field.closest('.block[data-active="false"]')) {
+      if (!field.closest('[data-block][data-active="false"]')) {
          let field_value = field.querySelector('.field-result');
 
          if (!field_value.value) {
@@ -201,7 +201,7 @@ function findInvalidField (card) {
    let file_fields = card.querySelector('.field[data-required="true"]');
    return !file_fields.find(field => {
 
-      if (!field.closest('.block[data-active="false"]')) {
+      if (!field.closest('[data-block][data-active="false"]')) {
 
          if (field.hasAttribute('data-mapping_level_1')) {
 
