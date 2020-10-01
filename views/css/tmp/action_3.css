@@ -12,11 +12,11 @@
    font-size: 16px;
 }
 
-.application-field__input {
+.form-field__input {
    /*font-size: 16px;*/
 }
 
-.body-card__list {
+.card-form__list {
    border: 1px solid #818e9a;
    border-radius: 4px;
 
@@ -25,37 +25,37 @@
    transition: box-shadow 0.1s;
 }
 
-.body-card__list:hover {
+.card-form__list:hover {
    box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
    border-color: #80bdff;
 }
 
-.body-card__list.filled {
+.card-form__list.filled {
    background-color: #f9fafe;
 }
 
 
-.body-card__cell {
+.card-form__cell {
    border: 0;
    border-radius: 0;
 }
 
-.body-card__cell:not(:last-child) {
+.card-form__cell:not(:last-child) {
    border-bottom: 1px solid #818e9a;
 
 }
 
-.body-card__cell:first-child {
+.card-form__cell:first-child {
    border-radius: 4px 4px 0px 0px;
 
 }
 
-.body-card__cell:last-child {
+.card-form__cell:last-child {
    border-radius: 0px 0px 4px 4px;
 }
 
-.body-card__cell:hover,
-.body-card__cell:focus {
+.card-form__cell:hover,
+.card-form__cell:focus {
    box-shadow: none;
 
 }
@@ -151,7 +151,6 @@
    /*border-color: #A3A8B6;*/
    box-shadow: none;
 }
-
 
 .card-form__body {
    display: flex;

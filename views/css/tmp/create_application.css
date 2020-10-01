@@ -172,11 +172,11 @@
 
 /* card-form =================================================================== */
 
-.body-card.fas {
+.card-form.fas {
    margin-right: 5px;
 }
 
-.application-field {
+.form-field {
    display: flex;
    align-items: center;
    position: relative;
@@ -184,33 +184,33 @@
    padding: 10px 0px;
 }
 
-.application-field__title {
+.form-field__title {
    text-align: right;
    width: 30%;
    margin: 0px 20px 0px 0px;
 }
 
-.application-field[data-required='true'] > .application-field__title::after {
+.form-field[data-required='true'] > .form-field__title::after {
    content: '*';
    color: #bd4949;
 }
 
-.application-field__title.fas {
+.form-field__title.fas {
    font-size: 12px;
 }
 
-.application-field__item {
+.form-field__item {
    /*flex-grow: 1;*/
    width: 70%;
 }
 
-.application-field__body {
+.form-field__body {
    display: flex;
    align-items: center;
 }
 
 /*todo вынести*/
-.application-field__select {
+.form-field__select {
    box-sizing: border-box;
    display: flex;
    align-items: center;
@@ -224,21 +224,21 @@
    transition: box-shadow .10s;
 }
 
-.application-field__input {
+.form-field__input {
    box-sizing: border-box;
    width: 100%;
 
 
 }
 /*
-.application-field__input:focus,
-.application-field__input:hover {
+.form-field__input:focus,
+.form-field__input:hover {
    box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
    border-color: #80bdff;
 }*/
 
-.application-field__select.filled,
-.application-field__body.filled > .application-field__input {
+.form-field__select.filled,
+.form-field__body.filled > .form-field__input {
    /*color: #343a40;*/
    /*background-color: #f5f6fa;*/
    color: #1c3959;
@@ -247,77 +247,77 @@
    background-color: #f9fafe;
 }
 
-.application-field__body.filled > .application-field__input:hover {
+.form-field__body.filled > .form-field__input:hover {
    border-color: #80bdff;
 }
 
-.application-field__select.filled > .application-field__icon-misc{
+.form-field__select.filled > .form-field__icon-misc{
    display: none;
 }
 
-.application-field__icon-filled {
+.form-field__icon-filled {
    display: none;
    margin: 0px 5px 0px 10px;
    color: #1c3959;
 }
 
-.application-field__select.filled > .application-field__icon-filled,
-.application-field__body.filled > .application-field__icon-filled {
+.form-field__select.filled > .form-field__icon-filled,
+.form-field__body.filled > .form-field__icon-filled {
    display: block;
 }
 
-.application-field__select:hover,
-.body-card__add-button:hover {
+.form-field__select:hover,
+.card-form__add-button:hover {
    box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
    border-color: #80bdff;
 }
 
-.application-field__value {
+.form-field__value {
    flex-grow: 1;
 }
 
-.application-field__error {
+.form-field__error {
    display: none;
    font-size: 12px;
    color: #bd4949;
 }
 
-.application-field__error.active {
+.form-field__error.active {
    display: inline;
 }
 
-.application-field__input-error {
+.form-field__input-error {
    visibility: hidden;
    font-size: 12px;
    color: #bd4949;
 }
 
-.application-field__input-error.active {
+.form-field__input-error.active {
    visibility: visible;
 }
 
-.body-card__icon.fa-bars {
+.card-form__icon.fa-bars {
    margin: 0px 5px 0px 0px;
 }
 
-.body-card__icon.fa-file {
+.card-form__icon.fa-file {
    font-size: 16px;
 }
 
-.application-field__select.invalid,
-.application-field__input.invalid {
+.form-field__select.invalid,
+.form-field__input.invalid {
    border-color: #db5151;
    color: #bd4949;
 }
 
-.application-field__select.invalid:hover,
-.application-field__select.invalid:focus,
-.application-field__input.invalid:hover,
-.application-field__input.invalid:focus {
+.form-field__select.invalid:hover,
+.form-field__select.invalid:focus,
+.form-field__input.invalid:hover,
+.form-field__input.invalid:focus {
    box-shadow: 0px 0px 0px 3px rgba(255,176,176,1);
 }
 
-.application-field__icon-clear {
+.form-field__icon-clear {
    margin: 0px 0px 0px 3px;
    /*padding: 10px;*/
    padding: 8px;
@@ -331,29 +331,29 @@
 
 }
 
-.application-field__icon-clear.fa-calendar-times{
+.form-field__icon-clear.fa-calendar-times{
    font-size: 18px;
 }
 
-.application-field__icon-clear:hover {
+.form-field__icon-clear:hover {
    border-color: #ffb0b0;
    background-color: #ffb0b0;
    color: #a93d3d;
 }
 
-.body-card__message {
+.card-form__message {
    display: flex;
    align-items: center;
    padding: 15px 10px;
 }
 
-.body-card__icon-message {
+.card-form__icon-message {
    margin: 0px 10px 0px 10px;
    font-size: 22px;
    color: #bd4949;
 }
 
-.body-card__message-text {
+.card-form__message-text {
    cursor: default;
 }
 
@@ -414,7 +414,7 @@
    border-top: 1px solid #e0e0e0;
 }
 
-.application-field__files.filled {
+.form-field__files.filled {
    border-color: #818e9a;
 
 }

@@ -1,4 +1,4 @@
-.application-field__item {
+.form-field__item {
     display: flex;
     align-items: center;
 
@@ -10,11 +10,11 @@
     width: 70%;
 }
 
-.application-field__value {
+.form-field__value {
     width: 70%;
 }
 
-.application-field__icon-misc{
+.form-field__icon-misc{
     align-self: center;
     margin: 0px 8px 0px 0px;
     font-size: 18px;
@@ -34,7 +34,7 @@
 /*tmp================================*/
 
 
-.application-field__files {
+.form-field__files {
     /*display: block;*/
     /*padding: 5px;*/
     width: 70%;

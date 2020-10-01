@@ -571,15 +571,15 @@ class Pagination {
  *
  * @param {Misc} misc - объект справочника, в котором выбран элемент
  * @returns {function} одна из следующих функций:
- * {@link setApplicationFieldValue} - добавить значение в поле формы анкеты
+ * {@link setDocumentFieldValue} - добавить значение в поле формы анкеты
  * {@link setAdditionalSection} - установить название дополнительного раздела при назначении экспертов
  */
 function getMiscResultCallback (misc) {
    let callback;
 
    switch (misc.modal.dataset.result_callback) {
-      case 'application_field':
-         callback = setApplicationFieldValue;
+      case 'document_field':
+         callback = setDocumentFieldValue;
          break;
       case 'additional_section':
          callback = setAdditionalSection;
@@ -593,14 +593,13 @@ function getMiscResultCallback (misc) {
    return callback;
 }
 
-
 /**
  * Добавляет значение справочника в поле формы анкеты
  *
  * @param {HTMLElement} selected_item - выбранный элемент справочника
  * @param {Misc} misc - объект справочника, к которому отностится элемент
  */
-function setApplicationFieldValue (selected_item, misc) {
+function setDocumentFieldValue (selected_item, misc) {
    misc.result_input = misc.field.querySelector('[data-misc_result]');
    // В результат записываем id элемента из справочника
    misc.result_input.value = selected_item.dataset.id;

@@ -2,17 +2,18 @@
 
 
 namespace Lib\Singles;
-yse
+use Lib\Exceptions\TemplateMaker as SelfEx;
 
 
 /**
- * Предназначн для
+ * Предназначн для создания view шаблонов
  *
  */
 final class TemplateMaker
 {
 
     public const HOME_WITH_DATA_CREATE_MISCS = ROOT . '/views/home/templates_with_data/create/miscs';
+    public const HOME_WITH_DATA_EDIT = ROOT . '/views/home/templates_with_data/edit/';
 
     /**
      * Массих для хранения шаблонов
@@ -41,7 +42,7 @@ final class TemplateMaker
             ) = arrayEntry(self::$templates, 'path', $path);
 
         if ($count > 0) {
-            throw new SelfEx("Указанный абсолютный футь в ФС сервера к шаблону: '{$name}' уже существует в шаблоне: '{$first_key}'", 2);
+            throw new SelfEx("Указанный абсолютный футь в ФС сервера к шаблону: '{$name}' уже существует в другом шаблоне: '{$first_key}'", 2);
         }
 
         self::checkPathExist($path);
@@ -59,7 +60,7 @@ final class TemplateMaker
      * @param string $name уникальное название шаблона
      * @throws SelfEx
      */
-    public function requireByName(string $name): void
+    static public function requireByName(string $name): void
     {
         if (!isset(self::$templates[$name])) {
             throw new SelfEx("Запрашиваемый шаблон: '{$name}' не существует", 4);
@@ -84,7 +85,7 @@ final class TemplateMaker
     /**
      * Получает данных для шаблона, в котором вызывается этот метод
      *
-     * @uses TemplateMaker::getDataByPath() //todo
+     * @uses \Lib\Singles\TemplateMaker::getDataByPath()
      * @return array|null
      * @throws SelfEx
      */
@@ -121,7 +122,7 @@ final class TemplateMaker
     static private function checkPathExist(string $path): void
     {
         if (!file_exists($path)) {
-            throw new SelfEx("Файл шаблона по пути: '{$path}' не существует в файловой системе сервера", 3);
+            throw new SelfEx("Файл шаблона по пути: '{$path}' не существует в ФС сервера", 3);
         }
     }
 }

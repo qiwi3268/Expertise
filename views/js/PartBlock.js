@@ -31,7 +31,6 @@ class PartBlock {
    handleSaveButton () {
       let save_btn = this.actions.querySelector('.save');
       save_btn.addEventListener('click', () => {
-         console.log(this.element);
 
          let part_data = new PartData(this.element);
          if (part_data.type) {

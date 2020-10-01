@@ -143,8 +143,10 @@ switch (URN) {
         $sourcesFiles = [...GetFontAwesome5Case(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css'),
-            ...CreateSource('css', TMP_CSS,'create_application.css', 'action_3.css'),
-            ...CreateSource('js', ROOT_JS, 'main.js', 'section.js'),
+            ...CreateSource('css', TMP_CSS,'multiple_block.css', 'create_application.css', 'action_3.css', 'modal.css'),
+            ...CreateSource('js', ROOT_JS, 'main.js', 'section.js', 'DependenciesHandler.js', 'radio.js', 'MultipleBlock.js', 'PartBlock.js'),
+            ...CreateSource('js', MODALS_JS,'SignView.js', 'Misc.js', 'ErrorModal.js')
+
         ];
         break;
 }

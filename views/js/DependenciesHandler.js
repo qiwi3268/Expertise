@@ -195,7 +195,7 @@ class DependenciesHandler {
 
    // Предназначен для обработки кнопок удаления значений полей
    static handleClearFieldButtons () {
-      let clear_buttons = document.querySelectorAll('.application-field__icon-clear');
+      let clear_buttons = document.querySelectorAll('.form-field__icon-clear');
 
       clear_buttons.forEach(button => {
          button.addEventListener('click', () => {
