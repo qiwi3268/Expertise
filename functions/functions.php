@@ -2,7 +2,7 @@
 
 
 use Classes\Exceptions\PregMatch as PregMatchEx;
-
+use functions\Exceptions\Functions as SelfEx;
 
 /**
  * Предназначен для включения пользовательской автозагрузки
@@ -11,7 +11,6 @@ use Classes\Exceptions\PregMatch as PregMatchEx;
  */
 function enableAutoloadRegister(): void
 {
-
     spl_autoload_register(function (string $className) {
 
         $path = null;
@@ -252,6 +251,29 @@ function arrayEntry(array $array, string $key, $value): array
         'first_key' => $indexes ? $indexes[array_key_first($indexes)] : null
     ];
 }
+
+
+/**
+ * Предназначен для получения массива с рекурсивно замененными null значениями во входном массиве на новое значение
+ *
+ * @param array $array исходный массив
+ * @param $newValue mixed новое значение
+ * @return array массив с заменнными значениями
+ * @throws SelfEx
+ */
+function getArrayWithReplacedNullValues(array $array, $newValue): array
+{
+    $result = array_walk_recursive($array, function(&$value) use ($newValue) {
+
+        if (is_null($value)) $value = $newValue;
+    });
+
+    if ($result) {
+        return $array;
+    }
+    throw new SelfEx('Результат вызова функции array_walk_recursive вернул false', 1);
+}
+
 
 
 

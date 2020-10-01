@@ -9,7 +9,7 @@ use Tables\Helpers\Helper as TableHelper;
 
 
 /**
- * Таблица: <i>'financing_source_type_2'</i>
+ * Таблица: <i>'application_financing_source_type_2'</i>
  *
  * Средства юридических лиц, указанных в ч. 2 статьи 48.2 ГрК
  *
@@ -17,7 +17,7 @@ use Tables\Helpers\Helper as TableHelper;
 final class type_2 implements Interfaces\FinancingSourceTable
 {
 
-    static private string $tableName = 'financing_source_type_2';
+    static private string $tableName = 'application_financing_source_type_2';
 
     use Traits\Deleter;
     use Traits\FinancingSourceTable;
@@ -26,7 +26,7 @@ final class type_2 implements Interfaces\FinancingSourceTable
     /**
      * Предназначен для создания записи источника финансирования
      *
-     * @param int $id_application
+     * @param int $id_main_document
      * @param string|null $full_name
      * @param string|null $INN
      * @param string|null $KPP
@@ -41,7 +41,7 @@ final class type_2 implements Interfaces\FinancingSourceTable
      * @throws DataBaseEx
      */
     static public function create(
-        int $id_application,
+        int $id_main_document,
         ?string $full_name,
         ?string $INN,
         ?string $KPP,
@@ -53,11 +53,11 @@ final class type_2 implements Interfaces\FinancingSourceTable
         int $no_data,
         ?int $percent
     ): int {
-        $bindParams = [$id_application, $full_name, $INN, $KPP, $OGRN, $address, $location, $telephone, $email, $no_data, $percent];
+        $bindParams = [$id_main_document, $full_name, $INN, $KPP, $OGRN, $address, $location, $telephone, $email, $no_data, $percent];
         $values = TableHelper::getValuesWithoutNull($bindParams);
 
-        $query = "INSERT INTO `financing_source_type_2`
-                    (`id_application`, `full_name`, `INN`, `KPP`, `OGRN`, `address`, `location`, `telephone`, `email`, `no_data`, `percent`, `date_creation`)
+        $query = "INSERT INTO `application_financing_source_type_2`
+                    (`id_main_document`, `full_name`, `INN`, `KPP`, `OGRN`, `address`, `location`, `telephone`, `email`, `no_data`, `percent`, `date_creation`)
                  VALUES ({$values}, UNIX_TIMESTAMP())";
         return ParametrizedQuery::set($query, $bindParams);
     }

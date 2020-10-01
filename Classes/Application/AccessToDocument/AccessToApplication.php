@@ -48,6 +48,7 @@ class AccessToApplication extends AccessToDocument
      */
     public function checkAccess(): void
     {
+        return;
         if (Session::isApp()) {
 
             // Для заявителя происходит проверка, что он состоит в любой группе доступа к заявлению

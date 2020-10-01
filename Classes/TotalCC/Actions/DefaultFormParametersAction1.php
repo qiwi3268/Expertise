@@ -3,8 +3,10 @@
 
 namespace Classes\TotalCC\Actions;
 
-use Lib\Exceptions\DefaultFormParameters as SelfEx;
-use Lib\DefaultFormParameters\DefaultFormParametersCreator;
+use Lib\Exceptions\Form as SelfEx;
+use functions\Exceptions\Functions as FunctionsEx;
+
+use Lib\Form\DefaultFormParametersCreator;
 
 
 /**
@@ -20,6 +22,7 @@ class DefaultFormParametersAction1 extends DefaultFormParametersCreator
      *
      * @return array
      * @throws SelfEx
+     * @throws FunctionsEx
      */
     public function getDefaultParameters(): array
     {
@@ -27,27 +30,14 @@ class DefaultFormParametersAction1 extends DefaultFormParametersCreator
 
         // Сведения о заявителе
         // ad - applicant details
-        $ad = $this->getResult('applicantDetails')[0];
-
-        $result['applicantDetails'] = [
-            'full_name' => $ad['full_name'] ?? '',
-            'INN'       => $ad['INN'] ?? '',
-            'KPP'       => $ad['KPP'] ?? '',
-            'OGRN'      => $ad['OGRN'] ?? '',
-            'address'   => $ad['address'] ?? '',
-            'location'  => $ad['location'] ?? '',
-            'email'     => $ad['email'] ?? '',
-            'director'  => $ad['director'] ?? '',
-        ];
+        $ad = getArrayWithReplacedNullValues($this->getResult('applicant_details')[0], '');
 
         // Источники финансирования
         // fs - financing sources
+        $fs = getArrayWithReplacedNullValues($this->getResult('financing_sources')[0], '');
 
-        $fs = $this->getResult('financingSources');
-
-        $result['financingSources'] = [
-            $fs
-        ];
+        $result['applicant_details'] = $ad;
+        $result['financing_sources'] = $fs;
 
         return $result;
     }

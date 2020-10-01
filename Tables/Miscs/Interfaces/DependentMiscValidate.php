@@ -20,13 +20,4 @@ interface DependentMiscValidate
      * <b>false</b> зависимость не существует
      */
     static public function checkExistCorrByIds(int $id_main, int $id_dependent): bool;
-
-
-    /**
-     * Предназначен для получения ассоциативных массивов зависимого справочника, упакованных по id главного справочника
-     *
-     * @return array индексный массив (id главного справочника),
-     * в элементах которого находятся ассоциативные массивы зависимого справочника
-     */
-    static public function getAllAssocWhereActiveCorrMain(): array;
 }

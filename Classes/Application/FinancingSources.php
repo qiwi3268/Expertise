@@ -4,6 +4,7 @@
 namespace Classes\Application;
 
 use Lib\Exceptions\DataBase as DataBaseEx;
+use Tables\Exceptions\Tables as TablesEx;
 use Tables\FinancingSources\type_1;
 use Tables\FinancingSources\type_2;
 use Tables\FinancingSources\type_3;
@@ -40,14 +41,15 @@ final class FinancingSources
      *
      * @return array
      * @throws DataBaseEx
+     * @throws TablesEx
      */
     public function getFinancingSources(): array
     {
         return [
-            'type_1' => type_1::getAllAssocByIdApplication($this->applicationId),
-            'type_2' => type_2::getAllAssocByIdApplication($this->applicationId),
-            'type_3' => type_3::getAllAssocByIdApplication($this->applicationId),
-            'type_4' => type_4::getAllAssocByIdApplication($this->applicationId)
+            'type_1' => type_1::getAllAssocByIdMainDocument($this->applicationId),
+            'type_2' => type_2::getAllAssocByIdMainDocument($this->applicationId),
+            'type_3' => type_3::getAllAssocByIdMainDocument($this->applicationId),
+            'type_4' => type_4::getAllAssocByIdMainDocument($this->applicationId)
         ];
     }
 }

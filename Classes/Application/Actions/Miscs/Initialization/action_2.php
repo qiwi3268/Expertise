@@ -12,21 +12,17 @@ use Lib\Miscs\Initialization\Initializer;
 class action_2 extends Initializer
 {
 
-    protected const PAGINATION_SIZE = 8;
-
-
     /**
      * Конструктор класса
      *
      * Предназначен для инициализации имеющихся в форме справочников
      *
-     * @param array|null $mainBlocks341 параметр передан со значением по умолчанию, чтобы не было конфикта
-     * с абстрактным методом родительского класса
+     * @param array $mainBlocks341 разделы из 341 приказа
+     * @param int $paginationSize количество справочников на стрнице
      */
-    public function __construct(?array $mainBlocks341 = [])
+    public function __construct(array $mainBlocks341, int $paginationSize = 8)
     {
-        $mainBlocks341 ??= [];
-
-        $this->setSingleMisc('main_block_341', $mainBlocks341);
+        $this->singleMiscs['main_block_341'] = $mainBlocks341;
+        $this->paginationSize = $paginationSize;
     }
 }

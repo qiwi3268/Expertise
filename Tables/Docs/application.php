@@ -12,7 +12,7 @@ use Lib\DataBase\ParametrizedQuery;
 use Tables\Docs\Interfaces\Document;
 use Tables\Docs\Interfaces\Responsible;
 use Tables\CommonInterfaces\Existent;
-use Tables\Helpers\Helper;
+use Tables\Helpers\Helper as TableHelper;
 
 use Tables\Docs\Traits\Document as DocumentTrait;
 use Tables\Docs\Traits\Responsible as ResponsibleTrait;
@@ -199,16 +199,16 @@ final class application implements Document, Existent, Responsible
         $result = $result[0];
 
         // Перекладываем каждый справочник в отдельный подмассив
-        Helper::restructureMiscToSubarray($result, 'id_expertise_purpose', 'name_expertise_purpose', 'expertise_purpose');
-        Helper::restructureMiscToSubarray($result, 'id_type_of_object', 'name_type_of_object', 'type_of_object');
-        Helper::restructureMiscToSubarray($result, 'id_functional_purpose', 'name_functional_purpose', 'functional_purpose');
-        Helper::restructureMiscToSubarray($result, 'id_functional_purpose_subsector', 'name_functional_purpose_subsector', 'functional_purpose_subsector');
-        Helper::restructureMiscToSubarray($result, 'id_functional_purpose_group', 'name_functional_purpose_group', 'functional_purpose_group');
-        Helper::restructureMiscToSubarray($result, 'id_type_of_work', 'name_type_of_work', 'type_of_work');
-        Helper::restructureMiscToSubarray($result, 'id_cultural_object_type', 'name_cultural_object_type', 'cultural_object_type');
-        Helper::restructureMiscToSubarray($result, 'id_national_project', 'name_national_project', 'national_project');
-        Helper::restructureMiscToSubarray($result, 'id_federal_project', 'name_federal_project', 'federal_project');
-        Helper::restructureMiscToSubarray($result, 'id_curator', 'name_curator', 'curator');
+        TableHelper::restructureMiscToSubarray($result, 'id_expertise_purpose', 'name_expertise_purpose', 'expertise_purpose');
+        TableHelper::restructureMiscToSubarray($result, 'id_type_of_object', 'name_type_of_object', 'type_of_object');
+        TableHelper::restructureMiscToSubarray($result, 'id_functional_purpose', 'name_functional_purpose', 'functional_purpose');
+        TableHelper::restructureMiscToSubarray($result, 'id_functional_purpose_subsector', 'name_functional_purpose_subsector', 'functional_purpose_subsector');
+        TableHelper::restructureMiscToSubarray($result, 'id_functional_purpose_group', 'name_functional_purpose_group', 'functional_purpose_group');
+        TableHelper::restructureMiscToSubarray($result, 'id_type_of_work', 'name_type_of_work', 'type_of_work');
+        TableHelper::restructureMiscToSubarray($result, 'id_cultural_object_type', 'name_cultural_object_type', 'cultural_object_type');
+        TableHelper::restructureMiscToSubarray($result, 'id_national_project', 'name_national_project', 'national_project');
+        TableHelper::restructureMiscToSubarray($result, 'id_federal_project', 'name_federal_project', 'federal_project');
+        TableHelper::restructureMiscToSubarray($result, 'id_curator', 'name_curator', 'curator');
 
         // Предметы экспертизы
         $queryExpertiseSubjects = "SELECT `misc_expertise_subject`.`id`,

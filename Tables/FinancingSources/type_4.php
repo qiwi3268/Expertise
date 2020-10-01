@@ -9,7 +9,7 @@ use Tables\Helpers\Helper as TableHelper;
 
 
 /**
- * Таблица: <i>'financing_source_type_4'</i>
+ * Таблица: <i>'application_financing_source_type_4'</i>
  *
  * Средства инвестора
  *
@@ -17,7 +17,7 @@ use Tables\Helpers\Helper as TableHelper;
 final class type_4 implements Interfaces\FinancingSourceTable
 {
 
-    static private string $tableName = 'financing_source_type_4';
+    static private string $tableName = 'application_financing_source_type_4';
 
     use Traits\Deleter;
     use Traits\FinancingSourceTable;
@@ -26,22 +26,22 @@ final class type_4 implements Interfaces\FinancingSourceTable
     /**
      * Предназначен для создания записи источника финансирования
      *
-     * @param int $id_application
+     * @param int $id_main_document
      * @param int $no_data
      * @param int|null $percent
      * @return int id созданной записи
      * @throws DataBaseEx
      */
     static public function create(
-        int $id_application,
+        int $id_main_document,
         int $no_data,
         ?int $percent
     ): int {
-        $bindParams = [$id_application, $no_data, $percent];
+        $bindParams = [$id_main_document, $no_data, $percent];
         $values = TableHelper::getValuesWithoutNull($bindParams);
 
-        $query = "INSERT INTO `financing_source_type_4`
-                    (`id_application`, `no_data`, `percent`, `date_creation`)
+        $query = "INSERT INTO `application_financing_source_type_4`
+                    (`id_main_document`, `no_data`, `percent`, `date_creation`)
                   VALUES ({$values}, UNIX_TIMESTAMP())";
         return ParametrizedQuery::set($query, $bindParams);
     }

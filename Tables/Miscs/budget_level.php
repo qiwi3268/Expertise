@@ -2,6 +2,8 @@
 
 
 namespace Tables\Miscs;
+use Tables\Miscs\Interfaces\SingleMisc;
+use Tables\Miscs\Interfaces\SingleMiscValidate;
 use Tables\CommonTraits\Existent as ExistentTrait;
 
 
@@ -11,7 +13,7 @@ use Tables\CommonTraits\Existent as ExistentTrait;
  * Справочник "Уровень бюджета"
  *
  */
-final class budget_level implements Interfaces\SingleMiscValidate
+final class budget_level implements SingleMisc, SingleMiscValidate
 {
 
     static private string $tableName = 'misc_budget_level';

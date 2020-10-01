@@ -19,20 +19,20 @@ trait FinancingSourceTable
 
     /**
      * Реализация метода интерфейса
-     * {@see \Tables\FinancingSources\Interfaces\FinancingSourceTable::getAllAssocByIdApplication()}
+     * {@see \Tables\FinancingSources\Interfaces\FinancingSourceTable::getAllAssocByIdMainDocument()}
      *
-     * @param int $id_application
+     * @param int $id_main_document
      * @return array|null
      * @throws DataBaseEx
      */
-    static public function getAllAssocByIdApplication(int $id_application): ?array
+    static public function getAllAssocByIdMainDocument(int $id_main_document): ?array
     {
         $table = self::$tableName;
 
         $query = "SELECT *
                   FROM `{$table}`
-                  WHERE `id_application`=?";
-        $result = ParametrizedQuery::getFetchAssoc($query, [$id_application]);
+                  WHERE `id_main_document`=?";
+        $result = ParametrizedQuery::getFetchAssoc($query, [$id_main_document]);
         return $result ? $result : null;
     }
 }

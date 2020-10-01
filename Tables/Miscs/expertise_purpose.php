@@ -2,9 +2,9 @@
 
 
 namespace Tables\Miscs;
-
+use Tables\Miscs\Interfaces\SingleMisc;
+use Tables\Miscs\Interfaces\SingleMiscValidate;
 use Tables\CommonTraits\Existent as ExistentTrait;
-
 
 
 /**
@@ -13,7 +13,7 @@ use Tables\CommonTraits\Existent as ExistentTrait;
  * Справочник "Цель обращения"
  *
  */
-final class expertise_purpose implements Interfaces\SingleMiscValidate
+final class expertise_purpose implements SingleMisc, SingleMiscValidate
 {
 
     static private string $tableName = 'misc_expertise_purpose';

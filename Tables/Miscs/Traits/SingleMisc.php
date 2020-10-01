@@ -9,7 +9,7 @@ use Lib\DataBase\ParametrizedQuery;
 
 
 /**
- * Предназначен для реализации общих методов одиночных справочников
+ * Реализует интерфейс {@see \Tables\Miscs\Interfaces\SingleMisc}
  *
  * <b>*</b> Для использования трейта необходимо, чтобы перед его включением было объявлено
  * статическое свойство <i>tableName</i> с соответствующим именем таблицы
@@ -19,9 +19,10 @@ trait SingleMisc
 {
 
     /**
-     * Предназначен для получения ассоциативных массивов активных справочников
+     * Реализация метода интерфейса
+     * {@see \Tables\Miscs\Interfaces\SingleMisc::getAllAssocWhereActive()}
      *
-     * @return array индексный массив с ассоциативными массива внутри
+     * @return array
      * @throws DataBaseEx
      */
     static public function getAllAssocWhereActive(): array
@@ -38,11 +39,11 @@ trait SingleMisc
 
 
     /**
-     * Предназначен для получения ассициативного массива справочника по его id
+     * Реализация метода интерфейса
+     * {@see \Tables\Miscs\Interfaces\SingleMisc::getAssocById()}
      *
-     * @param int $id id записи справочника
-     * @return array|null <b>array</b> ассоциативный массив, если запись существует<br>
-     * <b>null</b> в противном случае
+     * @param int $id
+     * @return array|null
      * @throws DataBaseEx
      */
     static public function getAssocById(int $id): ?array

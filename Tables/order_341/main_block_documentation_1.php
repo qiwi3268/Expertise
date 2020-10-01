@@ -31,7 +31,7 @@ final class main_block_documentation_1
         $query = "SELECT `id`,
                          `name`
                   FROM `main_block_341_documentation_1`
-                  where `id` NOT IN ({$condition})
+                  WHERE `id` NOT IN ({$condition})
                   ORDER BY `sort`";
 
         $result = ParametrizedQuery::getFetchAssoc($query, [...$ids]);

@@ -4,7 +4,7 @@ use core\Classes\Session;
 use Lib\Singles\NodeStructure;
 use Lib\Responsible\Responsible;
 use Lib\Singles\VariableTransfer;
-use Classes\Application\Miscs\Initialization\CreateFormInitializer;
+use Lib\Miscs\Initialization\Initializer as MiscInitializer;
 use Classes\Application\Helpers\Helper as ApplicationHelper;
 use Tables\Docs\application;
 use Tables\application_counter;
@@ -50,8 +50,21 @@ $variablesTV->setValue('numerical_name', $appNumName);
 $variablesTV->setValue('id_application', $applicationId);
 
 
-// Справочники
-$miscInitializer = new CreateFormInitializer();
+// Инициализация справочников
+$miscInitializer = new MiscInitializer([
+    'expertise_purpose',
+    'expertise_subject',
+    'type_of_object',
+    'functional_purpose',
+    'functional_purpose_subsector',
+    'functional_purpose_group',
+    'type_of_work',
+    'cultural_object_type',
+    'national_project',
+    'federal_project',
+    'curator',
+    'budget_level'
+]);
 
 foreach ($miscInitializer->getPaginationSingleMiscs() as $miscName => $misc) {
     $variablesTV->setValue($miscName, $misc);

@@ -2,9 +2,9 @@
 
 
 namespace Tables\Miscs;
-
+use Tables\Miscs\Interfaces\SingleMisc;
+use Tables\Miscs\Interfaces\SingleMiscValidate;
 use Tables\CommonTraits\Existent as ExistentTrait;
-
 
 
 /**
@@ -13,7 +13,7 @@ use Tables\CommonTraits\Existent as ExistentTrait;
  * Справочник "Тип объекта культурного наследия"
  *
  */
-final class cultural_object_type implements Interfaces\SingleMiscValidate
+final class cultural_object_type implements SingleMisc, SingleMiscValidate
 {
 
     static private string $tableName = 'misc_cultural_object_type';

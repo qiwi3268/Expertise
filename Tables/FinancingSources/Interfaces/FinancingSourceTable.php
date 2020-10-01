@@ -12,11 +12,11 @@ interface FinancingSourceTable
 {
 
     /**
-     * Предназначен для получения ассоциативных массивов источников финансирования по id заявления
+     * Предназначен для получения ассоциативных массивов источников финансирования по id главного документа
      *
-     * @param int $id_application id заявления
+     * @param int $id_main_document id главного документа
      * @return array|null <b>array</b> индексный массив с ассоциативными массива внутри, если записи существуют<br>
      * <b>null</b> в противном случае
      */
-    static public function getAllAssocByIdApplication(int $id_application): ?array;
+    static public function getAllAssocByIdMainDocument(int $id_main_document): ?array;
 }

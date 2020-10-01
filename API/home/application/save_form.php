@@ -69,7 +69,8 @@ if (!checkParamsPOST(
     'federal_project',
     'date_finish_building',
     'curator',
-    'finance_sources'
+    'financing_sources_exist_flag',
+    'financing_sources'
 )) {
     exit(json_encode([
         'result'        => 1,
@@ -103,8 +104,8 @@ try {
     /** @var string $P_federal_project Федеральный проект */
     /** @var string $P_date_finish_building Дата окончания строительства */
     /** @var string $P_curator Куратор */
-    /** @var string $P_finance_sources_exist_flag Флаг переданных источников финансирования */
-    /** @var string $P_finance_sources Истичник(и) финансирования JSON */
+    /** @var string $P_financing_sources_exist_flag Флаг переданных источников финансирования */
+    /** @var string $P_financing_sources Истичник(и) финансирования JSON */
     extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
 
 
@@ -353,12 +354,12 @@ try {
     // Проверка источников финансирования --------------------------------------------------------------
     //
     // В источники финансирования было внесено изменение
-    if ($P_finance_sources_exist_flag == '1') {
+    if ($P_financing_sources_exist_flag == '1') {
 
         try {
 
             // Получаем массив из входного json'а
-            $financingSources = $primitiveValidator->getAssocArrayFromJson($P_finance_sources);
+            $financingSources = $primitiveValidator->getAssocArrayFromJson($P_financing_sources);
 
             // Проверяем структуру массива и валидируем его
             foreach ($financingSources as $source) {
