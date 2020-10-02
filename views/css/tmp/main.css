@@ -203,6 +203,7 @@ textarea:hover {
 
 .alert-modal.active,
 .modal.active,
+.modal__pagination.active,
 .modal-overlay.active,
 .file-overlay.active,
 .modal__close.active,

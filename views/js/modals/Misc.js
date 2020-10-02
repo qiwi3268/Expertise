@@ -179,7 +179,9 @@ class Misc {
 
       // todo убрать плавно и проверить, что нормально переключается
       if (this.pagination) {
+         // this.pagination.element.classList.remove('active');
          this.pagination.element.style.display = 'none';
+         // this.pagination.element.style.display = 'none';
       }
 
    }
@@ -320,6 +322,7 @@ class Misc {
       this.pagination.arrow_left.style.visibility = 'hidden';
       this.pagination.arrow_right.style.visibility = 'visible';
       this.pagination.element.style.display = 'flex';
+      // this.pagination.element.classList.add('active');
    }
 
    /**
@@ -372,8 +375,14 @@ class Misc {
       let misc = !isNaN(id_misc) ? this.miscs.get(id_misc) : new Misc(select);
 
       if (misc.pages.length > 1) {
+         console.log('123');
          misc.handlePagination();
+         console.log(misc.pagination.element);
+         misc.pagination.element.classList.add('active');
+         // this.pagination.element.classList.add('active');
+
       } else {
+
          // todo убирать пагинацию
       }
 
@@ -447,6 +456,8 @@ class Misc {
  */
 class Pagination {
 
+   static instance;
+
    /**
     * Элемент пагинации
     *
@@ -490,6 +501,7 @@ class Pagination {
    constructor (misc) {
       this.element = document.createElement('DIV');
       this.element.classList.add('modal__pagination', 'pagination');
+
       this.misc = misc;
 
       this.initArrows();
@@ -500,6 +512,7 @@ class Pagination {
       this.element.appendChild(this.arrow_left);
       this.element.appendChild(this.page_label);
       this.element.appendChild(this.arrow_right);
+
       this.misc.modal.appendChild(this.element);
    }
 
@@ -511,6 +524,7 @@ class Pagination {
       this.arrow_right = Pagination.createPaginationArrow('right');
 
       this.arrow_left.addEventListener('click', () => {
+
          let new_page_num = parseInt(this.misc.active_page.dataset.misc_page) - 1;
          this.misc.changeActivePage(new_page_num);
 
@@ -564,7 +578,6 @@ class Pagination {
       return arrow;
    }
 }
-
 
 /**
  * Получает функцию обработки выбора элемента справочника
@@ -625,7 +638,10 @@ function setDocumentFieldValue (selected_item, misc) {
  */
 function setAdditionalSection (selected_item, misc) {
 
-   if (!document.querySelector(`[data-misc_field][data-id='${selected_item.dataset.id}']`)) {
+   if (
+      !document.querySelector(`[data-misc_field][data-id='${selected_item.dataset.id}']`)
+      || misc.field.dataset.id === selected_item.dataset.id
+   ) {
       misc.field.dataset.id = selected_item.dataset.id;
       misc.field.dataset.drop_area = '';
       misc.select.classList.remove('empty');

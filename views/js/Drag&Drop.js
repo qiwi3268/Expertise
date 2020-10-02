@@ -310,11 +310,6 @@ function changeLeadExpert (expert) {
    } else {
       removeLeadExpert();
    }
-
-   // removeLeadExpert();
-   //
-   // if (!isLeadExpert(expert)) {
-   // }
 }
 
 function isLeadExpert (expert) {
@@ -323,23 +318,11 @@ function isLeadExpert (expert) {
 }
 
 function removeLeadExpert (expert) {
-   /*let current_expert = document.querySelectorAll(`.section__expert[data-id='${expert.dataset.id}']`);
-   current_expert.forEach(expert_copy => {
-      expert_copy.dataset.lead = 'false';
-   });*/
-
    let lead_experts = document.querySelectorAll('.section__expert[data-lead="true"]');
    lead_experts.forEach(lead_expert => lead_expert.dataset.lead = 'false');
 }
 
 function setLeadExpert (expert) {
-  /* let lead_experts = document.querySelectorAll('.section__expert[data-lead="true"]');
-   lead_experts.forEach(lead_expert => {
-      if (lead_expert.dataset.id !== expert.dataset.id) {
-         lead_expert.dataset.lead = 'false';
-      }
-   });*/
-
    let current_expert = document.querySelectorAll(`.section__expert[data-id='${expert.dataset.id}']`);
    current_expert.forEach(expert_copy => {
       expert_copy.dataset.lead = 'true';
