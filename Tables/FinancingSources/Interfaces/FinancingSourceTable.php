@@ -19,4 +19,12 @@ interface FinancingSourceTable
      * <b>null</b> в противном случае
      */
     static public function getAllAssocByIdMainDocument(int $id_main_document): ?array;
+
+
+    /**
+     * Предназначен для удаления всех записей источников финансирования по id главного документа
+     *
+     * @param int $id_main_document id главного документа
+     */
+    static public function deleteAllByIdMainDocument(int $id_main_document): void;
 }

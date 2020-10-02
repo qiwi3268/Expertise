@@ -20,7 +20,7 @@ use Tables\test;
 use Classes\Application\Miscs\Initialization\CreateFormInitializer;
 use Lib\Singles\TemplateMaker;
 use Lib\Miscs\Initialization\Initializer2;
-use Classes\Application\DisplayDependenciesApplicationForm;
+use Classes\Application\HtmlDependenciesManagerApplicationForm;
 use Classes\TotalCC\Actions\DisplayDependenciesAction1;
 
 $a = new DisplayDependenciesAction1();

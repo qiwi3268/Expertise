@@ -41,7 +41,7 @@
 </div>
 
 <?php
-    $_dependencies = new \Classes\Application\DisplayDependenciesApplicationForm();
+    $_dependencies = new \Classes\Application\HtmlDependenciesManagerApplicationForm();
     $_blockDependencies = json_encode($_dependencies->getBlockDependencies());
     $_requireDependencies = json_encode($_dependencies->getRequireDependencies());
 ?>

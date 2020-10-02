@@ -2,10 +2,14 @@
 
 
 namespace Classes\Application;
-use Lib\Form\DisplayDependencies;
+use Lib\Form\HtmlDependenciesManager;
 
 
-class DisplayDependenciesApplicationForm extends DisplayDependencies
+/**
+ * Предназначен для инициализации и предоставления зависимостей в html-форме создания заявления
+ *
+ */
+class HtmlDependenciesManagerApplicationForm extends HtmlDependenciesManager
 {
 
     /**
@@ -14,8 +18,6 @@ class DisplayDependenciesApplicationForm extends DisplayDependencies
      */
     protected function initializeBlockDependencies(): void
     {
-        // JSON_TRUE_OR (значения разделяются символом #) - зависимый блок отработает в том случае, если в input'е хотя бы одно из перечисленных значений TRUE
-        // JSON_FALSE_AND (значения разделяются символом #) - зависимый блок отработает в том случае, если в input'е одновремено все перечисленные значения FALSE
         $this->blockDependencies =  [
 
             // Зависимость от выбранного предмета экспертизы
@@ -59,42 +61,43 @@ class DisplayDependenciesApplicationForm extends DisplayDependencies
 
             // Зависимости множественных блоков --------------------------------------------------------
 
-            'finance_type' => [
+            'financing_type' => [
                 1 => [
-                    'budget'         => true,
-                    'organization'   => false,
-                    'builder_source' => false,
-                    'investor'       => false,
-                    'no_data'        => true,
+                    'budget'                   => true,
+                    'organization'             => false,
+                    'builder_source'           => false,
+                    'investor'                 => false,
+                    'financing_source_no_data' => true,
                 ],
 
                 2 => [
-                    'budget'         => false,
-                    'organization'   => true,
-                    'builder_source' => false,
-                    'investor'       => false,
-                    'no_data'        => true,
+                    'budget'                   => false,
+                    'organization'             => true,
+                    'builder_source'           => false,
+                    'investor'                 => false,
+                    'financing_source_no_data' => true,
                 ],
 
                 3 => [
-                    'budget'         => false,
-                    'organization'   => false,
-                    'builder_source' => true,
-                    'investor'       => false,
-                    'no_data'        => true,
+                    'budget'                   => false,
+                    'organization'             => false,
+                    'builder_source'           => true,
+                    'investor'                 => false,
+                    'financing_source_no_data' => true,
                 ],
 
-                4 => ['budget'       => false,
-                    'organization'   => false,
-                    'builder_source' => false,
-                    'investor'       => true,
-                    'no_data'        => true,
+                4 => [
+                    'budget'                   => false,
+                    'organization'             => false,
+                    'builder_source'           => false,
+                    'investor'                 => true,
+                    'financing_source_no_data' => true,
                 ],
             ],
 
-            'no_data' => [
-                ''    => ['percent' => true],
-                1     => ['percent' => false],
+            'financing_source_no_data' => [
+                '' => ['percent' => true],
+                1  => ['percent' => false],
             ]
         ];
     }

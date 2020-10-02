@@ -18,17 +18,17 @@ final class common_part_applicant_details
      * Предназначен для получения ассоциативного массива сведений о заявителе из общей части
      * по id сводного замечаничя / заключения
      *
-     * @param int $id_total_cc id сводного замечания / заключения
+     * @param int $id_main_document id сводного замечания / заключения
      * @return array|null <b>array</b> ассоциативный массив, если запись существует<br>
      * <b>null</b> в противном случае
      * @throws DataBaseEx
      */
-    static public function getAssocByIdTotalCC(int $id_total_cc): ?array
+    static public function getAssocByIdTotalCC(int $id_main_document): ?array
     {
         $query = "SELECT *
                   FROM `common_part_applicant_details`
-                  WHERE `id_total_cc`=?";
-        $result = ParametrizedQuery::getFetchAssoc($query, [$id_total_cc]);
+                  WHERE `id_main_document`=?";
+        $result = ParametrizedQuery::getFetchAssoc($query, [$id_main_document]);
         return $result ? $result[0] : null;
     }
 }

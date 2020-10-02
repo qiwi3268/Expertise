@@ -278,12 +278,13 @@
 
 .form-field__error {
    display: none;
+   margin: 2px 0px 0px 0px;
    font-size: 12px;
    color: #bd4949;
 }
 
 .form-field__error.active {
-   display: inline;
+   display: block;
 }
 
 .form-field__input-error {

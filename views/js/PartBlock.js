@@ -34,7 +34,15 @@ class PartBlock {
 
       part.short_block = part_elem.querySelector('[data-block][data-name="part_short"]');
 
+      console.log(part);
+      console.log(new PartData(part.element));
 
+      part.data = new PartData(part.element);
+      part.id = PartBlock.parts_counter++;
+      part.handleDeleteButton();
+      part.handleExpandButton();
+
+      return part;
    }
 
    constructor (multiple_block, element, body, actions) {
@@ -46,9 +54,11 @@ class PartBlock {
 
       this.handleSaveButton();
       this.handleCancelButton();
+
    }
 
-/*   constructor (multiple_block) {
+   /*
+      constructor (multiple_block) {
       this.parent = multiple_block;
 
       this.element = this.parent.createBlock(this.parent.element, 'multiple_block_part');
@@ -61,8 +71,6 @@ class PartBlock {
    }*/
 
    handleSaveButton () {
-      console.log(this);
-      console.log(this.actions);
 
       let save_btn = this.actions.querySelector('.save');
       save_btn.addEventListener('click', () => {
@@ -91,8 +99,10 @@ class PartBlock {
 
       this.data = part_data;
 
-      console.log(this.cancel_btn);
-      this.cancel_btn.remove();
+      if (this.cancel_btn) {
+         this.cancel_btn.remove();
+      }
+
       this.actions.dataset.active = 'false';
       this.body.dataset.active = 'false';
 
@@ -114,7 +124,6 @@ class PartBlock {
 
       this.handleDeleteButton();
       this.handleExpandButton();
-
    }
 
    handleDeleteButton() {
@@ -151,7 +160,18 @@ class PartBlock {
 }
 
 function PartData (part_block) {
-   let dependent_blocks = part_block.querySelectorAll('[data-block][data-active="true"]');
+   let field_inputs = part_block.querySelectorAll('.field-result[data-multiple_block_field]');
+   field_inputs.forEach(input => {
+
+      if (!input.closest('[data-block][data-active="false"]')) {
+         this[input.dataset.multiple_block_field] = input.value || null;
+      } else {
+         this[input.dataset.multiple_block_field] = null;
+      }
+
+   });
+
+ /*  let dependent_blocks = part_block.querySelectorAll('[data-block][data-active="true"]');
    dependent_blocks.forEach(block => {
       let field_inputs = block.querySelectorAll('.field-result[data-multiple_block_field]');
       field_inputs.forEach(input => {
@@ -163,5 +183,5 @@ function PartData (part_block) {
          }
 
       });
-   });
+   });*/
 }

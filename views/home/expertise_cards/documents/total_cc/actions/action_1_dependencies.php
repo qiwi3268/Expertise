@@ -1,5 +1,5 @@
 <?php
-    $_dependencies = new \Classes\TotalCC\Actions\DisplayDependenciesAction1();
+    $_dependencies = new \Classes\TotalCC\Actions\HtmlDependenciesManagerAction1();
     $_blockDependencies = json_encode($_dependencies->getBlockDependencies());
     $_requireDependencies = json_encode($_dependencies->getRequireDependencies());
 ?>

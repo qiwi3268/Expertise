@@ -2,17 +2,17 @@
 
 
 namespace Classes\TotalCC\Actions;
-use Lib\Form\DisplayDependencies;
-use Classes\Application\DisplayDependenciesApplicationForm;
+use Lib\Form\HtmlDependenciesManager;
+use Classes\Application\ApplicationFormHtmlDependenciesManager;
 
 
-class DisplayDependenciesAction1 extends DisplayDependencies
+class DisplayDependenciesAction1 extends HtmlDependenciesManager
 {
-    private DisplayDependencies $applicationForm;
+    private HtmlDependenciesManager $applicationForm;
 
     public function __construct()
     {
-        $this->applicationForm = new DisplayDependenciesApplicationForm();
+        $this->applicationForm = new ApplicationFormHtmlDependenciesManager();
         parent::__construct();
     }
 

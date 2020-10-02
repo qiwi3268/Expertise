@@ -35,7 +35,7 @@
                 <span class="card-form__title">СВЕДЕНИЯ О ЗАЯВИТЕЛЕ</span>
                 <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
             </div>
-            <div class="card-form__body card-form card-body">
+            <div class="card-form__body card-body">
                 
                 
             
@@ -157,7 +157,7 @@
                 <span class="card-form__title">ОСНОВАНИЯ ДЛЯ ПРОВЕДЕНИЯ ЭКСПЕРТИЗЫ</span>
                 <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
             </div>
-            <div class="card-form__body card-form card-body">
+            <div class="card-form__body card-body">
                 <!--Договор-->
                 <div class="form-field field" data-required="true" data-name="" data-pattern="text">
                     <span class="form-field__title">Договор</span>
@@ -213,6 +213,7 @@
                     
                     <?php \Lib\Singles\TemplateMaker::requireByName('edit_financing_sources'); ?>
                     <?php \Lib\Singles\TemplateMaker::requireByName('create_financing_sources'); ?>
+                    
                 </div>
                 <!--//Источники финансирования//-->
                 

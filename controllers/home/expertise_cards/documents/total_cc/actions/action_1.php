@@ -6,7 +6,7 @@ use Lib\Singles\TemplateMaker;
 use Lib\DataBase\Transaction;
 use Classes\TotalCC\Actions\DefaultFormParametersAction1;
 use Tables\Docs\Relations\ParentDocumentLinker;
-use Classes\Application\FinancingSources;
+use Tables\FinancingSources\FinancingSources;
 
 
 $linker = new ParentDocumentLinker(CURRENT_DOCUMENT_TYPE, CURRENT_DOCUMENT_ID);
@@ -29,7 +29,7 @@ $transaction->add(
 );
 
 
-$financingSources = new FinancingSources($applicationId);
+$financingSources = new FinancingSources(FinancingSources::APPLICATION_TABLE_TYPE, $applicationId);
 $transaction->add($financingSources, 'getFinancingSources');
 
 
@@ -66,6 +66,8 @@ TemplateMaker::registration(
         'financing_sources' => $defaultParameters['financing_sources']
     ]
 );
+
+
 
 TemplateMaker::registration(
     'create_financing_sources',

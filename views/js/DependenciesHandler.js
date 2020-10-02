@@ -39,11 +39,14 @@ class DependenciesHandler {
       let field_name = this.result_input.name;
 
       let block_dependencies = this.block_dependencies[field_name];
+
       if (block_dependencies) {
          this.handleBlockDependencies(block_dependencies)
       }
 
-      this.handleRadioDependencies();
+      if (this.radio_dependency) {
+         this.handleRadioDependencies();
+      }
 
       let require_dependencies = this.require_dependencies[field_name];
       if (require_dependencies) {

@@ -3,13 +3,12 @@
     $_financingSources = $_data['financing_sources'];
 ?>
 
-<?php //var_dump($_data); ?>
 
 <?php if (!empty($_financingSources['type_1'])): ?>
     <?php foreach ($_financingSources['type_1'] as $source): ?>
         <div class="multiple-block__item" data-block data-name="multiple_block_part" data-active="true" data-dependency_scope>
-            <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="true">
-                <div class="form-field field" data-name="finance_type" data-required="true">
+            <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="false">
+                <div class="form-field field" data-name="financing_type" data-required="true">
                     <span class="form-field__title field-title">Вид финансирования</span>
                     <div class="form-field__item">
                         <div class="radio form-field__body" data-required="true">
@@ -35,7 +34,7 @@
                         </div>
                     </div>
                     <input class="form-field__result field-result" type="hidden" data-multiple_block_field="type"
-                           name="finance_type" value="1">
+                           name="financing_type" value="1">
                 </div>
                 <div class="multiple-block__item" data-block data-type="template" data-name="budget" data-active="true">
                     <div class="form-field field" data-misc_field data-name="budget_level" data-required="true">
@@ -66,9 +65,9 @@
                         <input class="form-field__result field-result" data-misc_result type="hidden"
                                data-multiple_block_field="budget_level" name="budget_level" value="<?= !empty($source['budget_level']) ? $source['budget_level']['id'] : ''; ?>">
                     </div>
-                    <div class="multiple-block__item" data-block data-type="template" data-name="no_data"
+                    <div class="multiple-block__item" data-block data-type="template" data-name="financing_source_no_data"
                          data-active="<?= !$source['no_data'] ?>">
-                        <div class="form-field field" data-name="no_data">
+                        <div class="form-field field" data-name="financing_source_no_data">
                             <span class="form-field__title">Размер финансирования</span>
                             <div class="form-field__item">
                                 <div class="radio form-field__body">
@@ -81,7 +80,7 @@
                                 </div>
                             </div>
                             <input class="form-field__result field-result" type="hidden"
-                                   data-multiple_block_field="no_data" name="no_data" value="<?= $source['no_data'] ?>">
+                                   data-multiple_block_field="no_data" name="financing_source_no_data" value="<?= $source['no_data'] ?>">
                         </div>
                         <div class="multiple-block__item" data-block data-type="template" data-name="percent"
                              data-active="<?= $source['no_data'] ?>">
@@ -101,7 +100,7 @@
                     </div>
                 </div>
             </div>
-            <div class="multiple-block__item" data-block data-name="actions" data-active="true">
+            <div class="multiple-block__item" data-block data-name="actions" data-active="false">
                 <div class="multiple-block__actions">
                     <div class="multiple-block__button save">
                         <span class="multiple-block__text">Сохранить источник финансирования</span>
@@ -121,8 +120,8 @@
 <?php if (!empty($_financingSources['type_2'])): ?>
     <?php foreach ($_financingSources['type_2'] as $source): ?>
         <div class="multiple-block__item" data-block data-name="multiple_block_part" data-active="true" data-dependency_scope>
-            <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="true">
-                <div class="form-field field" data-name="finance_type" data-required="true">
+            <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="false">
+                <div class="form-field field" data-name="financing_type" data-required="true">
                     <span class="form-field__title field-title">Вид финансирования</span>
                     <div class="form-field__item">
                         <div class="radio form-field__body" data-required="true">
@@ -148,7 +147,7 @@
                         </div>
                     </div>
                     <input class="form-field__result field-result" type="hidden" data-multiple_block_field="type"
-                           name="finance_type" value="2">
+                           name="financing_type" value="2">
                 </div>
                 <div class="multiple-block__item" data-block data-type="template" data-name="organization"
                      data-active="true">
@@ -236,9 +235,9 @@
                             <span class="form-field__error field-error"></span>
                         </div>
                     </div>
-                    <div class="multiple-block__item" data-block data-type="template" data-name="no_data"
+                    <div class="multiple-block__item" data-block data-type="template" data-name="financing_source_no_data"
                          data-active="<?= !$source['no_data'] ?>">
-                        <div class="form-field field" data-name="no_data">
+                        <div class="form-field field" data-name="financing_source_no_data">
                             <span class="form-field__title">Размер финансирования</span>
                             <div class="form-field__item">
                                 <div class="radio form-field__body">
@@ -251,7 +250,7 @@
                                 </div>
                             </div>
                             <input class="form-field__result field-result" type="hidden"
-                                   data-multiple_block_field="no_data" name="no_data" value="<?= $source['no_data'] ?>">
+                                   data-multiple_block_field="no_data" name="financing_source_no_data" value="<?= $source['no_data'] ?>">
                         </div>
                         <div class="multiple-block__item" data-block data-type="template" data-name="percent"
                              data-active="<?= $source['no_data'] ?>">
@@ -271,7 +270,7 @@
                     </div>
                 </div>
             </div>
-            <div class="multiple-block__item" data-block data-name="actions" data-active="true">
+            <div class="multiple-block__item" data-block data-name="actions" data-active="false">
                 <div class="multiple-block__actions">
                     <div class="multiple-block__button save">
                         <span class="multiple-block__text">Сохранить источник финансирования</span>
@@ -292,8 +291,8 @@
 <?php if (!empty($_financingSources['type_3'])): ?>
     <?php foreach ($_financingSources['type_3'] as $source): ?>
         <div class="multiple-block__item" data-block data-name="multiple_block_part" data-active="true" data-dependency_scope>
-            <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="true">
-                <div class="form-field field" data-name="finance_type" data-required="true">
+            <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="false">
+                <div class="form-field field" data-name="financing_type" data-required="true">
                     <span class="form-field__title field-title">Вид финансирования</span>
                     <div class="form-field__item">
                         <div class="radio form-field__body" data-required="true">
@@ -319,13 +318,13 @@
                         </div>
                     </div>
                     <input class="form-field__result field-result" type="hidden" data-multiple_block_field="type"
-                           name="finance_type" value="3">
+                           name="financing_type" value="3">
                 </div>
                 <div class="multiple-block__item" data-block data-type="template" data-name="builder_source"
                      data-active="true">
-                    <div class="multiple-block__item" data-block data-type="template" data-name="no_data"
+                    <div class="multiple-block__item" data-block data-type="template" data-name="financing_source_no_data"
                          data-active="<?= !$source['no_data'] ?>">
-                        <div class="form-field field" data-name="no_data">
+                        <div class="form-field field" data-name="financing_source_no_data">
                             <span class="form-field__title">Размер финансирования</span>
                             <div class="form-field__item">
                                 <div class="radio form-field__body">
@@ -338,7 +337,7 @@
                                 </div>
                             </div>
                             <input class="form-field__result field-result" type="hidden"
-                                   data-multiple_block_field="no_data" name="no_data" value="<?= $source['no_data'] ?>">
+                                   data-multiple_block_field="no_data" name="financing_source_no_data" value="<?= $source['no_data'] ?>">
                         </div>
                         <div class="multiple-block__item" data-block data-type="template" data-name="percent"
                              data-active="<?= $source['no_data'] ?>">
@@ -358,7 +357,7 @@
                     </div>
                 </div>
             </div>
-            <div class="multiple-block__item" data-block data-name="actions" data-active="true">
+            <div class="multiple-block__item" data-block data-name="actions" data-active="false">
                 <div class="multiple-block__actions">
                     <div class="multiple-block__button save">
                         <span class="multiple-block__text">Сохранить источник финансирования</span>
@@ -378,8 +377,8 @@
 <?php if (!empty($_financingSources['type_4'])): ?>
     <?php foreach ($_financingSources['type_4'] as $source): ?>
         <div class="multiple-block__item" data-block data-name="multiple_block_part" data-active="true" data-dependency_scope>
-            <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="true">
-                <div class="form-field field" data-name="finance_type" data-required="true">
+            <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="false">
+                <div class="form-field field" data-name="financing_type" data-required="true">
                     <span class="form-field__title field-title">Вид финансирования</span>
                     <div class="form-field__item">
                         <div class="radio form-field__body" data-required="true">
@@ -405,13 +404,13 @@
                         </div>
                     </div>
                     <input class="form-field__result field-result" type="hidden" data-multiple_block_field="type"
-                           name="finance_type" value="4">
+                           name="financing_type" value="4">
                 </div>
                 <div class="multiple-block__item" data-block data-type="template" data-name="builder_source"
                      data-active="true">
-                    <div class="multiple-block__item" data-block data-type="template" data-name="no_data"
+                    <div class="multiple-block__item" data-block data-type="template" data-name="financing_source_no_data"
                          data-active="<?= !$source['no_data'] ?>">
-                        <div class="form-field field" data-name="no_data">
+                        <div class="form-field field" data-name="financing_source_no_data">
                             <span class="form-field__title">Размер финансирования</span>
                             <div class="form-field__item">
                                 <div class="radio form-field__body">
@@ -424,7 +423,7 @@
                                 </div>
                             </div>
                             <input class="form-field__result field-result" type="hidden"
-                                   data-multiple_block_field="no_data" name="no_data" value="<?= $source['no_data'] ?>">
+                                   data-multiple_block_field="no_data" name="financing_source_no_data" value="<?= $source['no_data'] ?>">
                         </div>
                         <div class="multiple-block__item" data-block data-type="template" data-name="percent"
                              data-active="<?= $source['no_data'] ?>">
@@ -444,7 +443,7 @@
                     </div>
                 </div>
             </div>
-            <div class="multiple-block__item" data-block data-name="actions" data-active="true">
+            <div class="multiple-block__item" data-block data-name="actions" data-active="false">
                 <div class="multiple-block__actions">
                     <div class="multiple-block__button save">
                         <span class="multiple-block__text">Сохранить источник финансирования</span>

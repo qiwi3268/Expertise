@@ -16,18 +16,19 @@ trait Deleter
 {
 
     /**
-     * Предназначен для удаления всех записей источников финансирования, относящихся к заявлению по его id
+     * Реализация метода интерфейса
+     * {@see \Tables\FinancingSources\Interfaces\FinancingSourceTable::deleteAllByIdMainDocument()}
      *
-     * @param int $id_application id заявления
+     * @param int $id_main_document
      * @throws DataBaseEx
      */
-    static public function deleteAllByIdApplication(int $id_application): void
+    static public function deleteAllByIdMainDocument(int $id_main_document): void
     {
         $table = self::$tableName;
 
         $query = "DELETE
                   FROM `{$table}`
-                  WHERE `id_application`=?";
-        ParametrizedQuery::set($query, [$id_application]);
+                  WHERE `id_main_document`=?";
+        ParametrizedQuery::set($query, [$id_main_document]);
     }
 }

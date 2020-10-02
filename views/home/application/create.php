@@ -345,7 +345,7 @@
                         <div class="form-field field" data-id_file_field data-name="file_grbs" data-required="false" data-multiple="true" data-mapping_level_1="1" data-mapping_level_2="1">
                             <span class="form-field__title">Файл ГРБС</span>
                             <div class="form-field__item">
-                                <div class="form-field__body">
+                                <div class="form-field__file-block">
                                     <div class="form-field__select field-select modal-file">
                                         <span class="form-field__value">Загрузите файлы</span>
                                         <i class="form-field__icon-misc fas fa-file"></i>
@@ -575,7 +575,7 @@
                             <!--Шаблон элемента множественного блока-->
                             <!--Шаблон "Вид финансирования"-->
                             <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="false">
-                                <div class="form-field field" data-name="finance_type" data-required="true">
+                                <div class="form-field field" data-name="financing_type" data-required="true">
                                     <span class="form-field__title field-title">Вид финансирования</span>
                                     <div class="form-field__item">
                                         <div class="radio form-field__body" data-required="true">
@@ -599,7 +599,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input class="form-field__result field-result" type="hidden" data-multiple_block_field="type" name="finance_type">
+                                    <input class="form-field__result field-result" type="hidden" data-multiple_block_field="type" name="financing_type">
                                 </div>
                             </div>
                             <!--//Шаблон "Вид финансирования"//-->
@@ -631,8 +631,8 @@
                                     </div>
                                     <input class="form-field__result field-result" data-misc_result type="hidden" data-multiple_block_field="budget_level" name="budget_level">
                                 </div>
-                                <div class="multiple-block__item" data-block data-type="template" data-name="no_data" data-active="false">
-                                    <div class="form-field field" data-name="no_data">
+                                <div class="multiple-block__item" data-block data-type="template" data-name="financing_source_no_data" data-active="false">
+                                    <div class="form-field field" data-name="financing_source_no_data">
                                         <span class="form-field__title">Размер финансирования</span>
                                         <div class="form-field__item">
                                             <div class="radio form-field__body">
@@ -644,7 +644,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input class="form-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
+                                        <input class="form-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="financing_source_no_data">
                                     </div>
                                     <div class="multiple-block__item" data-block data-type="template" data-name="percent" data-active="true">
                                         <div class="form-field field" data-required="true" data-name="percent" data-pattern="number">
@@ -734,8 +734,8 @@
                                         <span class="form-field__error field-error"></span>
                                     </div>
                                 </div>
-                                <div class="multiple-block__item" data-block data-type="template" data-name="no_data" data-active="false">
-                                    <div class="form-field field" data-name="no_data">
+                                <div class="multiple-block__item" data-block data-type="template" data-name="financing_source_no_data" data-active="false">
+                                    <div class="form-field field" data-name="financing_source_no_data">
                                         <span class="form-field__title">Размер финансирования</span>
                                         <div class="form-field__item">
                                             <div class="radio form-field__body">
@@ -747,7 +747,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input class="form-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
+                                        <input class="form-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="financing_source_no_data">
                                     </div>
                                     <div class="multiple-block__item" data-block data-type="template" data-name="percent" data-active="true">
                                         <div class="form-field field" data-required="true" data-name="percent" data-pattern="number">
@@ -765,8 +765,8 @@
                             <!--//Шаблон "Средства юридических лиц"//-->
                             <!--Шаблон "Собственные средства застройщика"-->
                             <div class="multiple-block__item" data-block data-type="template" data-name="builder_source" data-active="false">
-                                <div class="multiple-block__item" data-block data-type="template" data-name="no_data" data-active="false">
-                                    <div class="form-field field" data-name="no_data">
+                                <div class="multiple-block__item" data-block data-type="template" data-name="financing_source_no_data" data-active="false">
+                                    <div class="form-field field" data-name="financing_source_no_data">
                                         <span class="form-field__title">Размер финансирования</span>
                                         <div class="form-field__item">
                                             <div class="radio form-field__body">
@@ -778,7 +778,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input class="form-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
+                                        <input class="form-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="financing_source_no_data">
                                     </div>
                                     <div class="multiple-block__item" data-block data-type="template" data-name="percent" data-active="true">
                                         <div class="form-field field" data-required="true" data-name="percent" data-pattern="number">
@@ -796,8 +796,8 @@
                             <!--//Шаблон "Собственные средства застройщика"//-->
                             <!--Шаблон "Средства инвестора"-->
                             <div class="multiple-block__item" data-block data-type="template" data-name="investor" data-active="false">
-                                <div class="multiple-block__item" data-block data-type="template" data-name="no_data" data-active="false">
-                                    <div class="form-field field" data-name="no_data">
+                                <div class="multiple-block__item" data-block data-type="template" data-name="financing_source_no_data" data-active="false">
+                                    <div class="form-field field" data-name="financing_source_no_data">
                                         <span class="form-field__title">Размер финансирования</span>
                                         <div class="form-field__item">
                                             <div class="radio form-field__body">
@@ -809,7 +809,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input class="form-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="no_data">
+                                        <input class="form-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="financing_source_no_data">
                                     </div>
                                     <div class="multiple-block__item" data-block data-type="template" data-name="percent" data-active="true">
                                         <div class="form-field field" data-required="true" data-name="percent" data-pattern="number">
