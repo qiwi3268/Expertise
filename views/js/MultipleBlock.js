@@ -30,7 +30,7 @@ class MultipleBlock {
       this.parts = new Map();
 
       this.handleAddPartButton();
-      this.initParts();
+      // this.initParts();
    }
 
    handleAddPartButton () {
@@ -47,15 +47,17 @@ class MultipleBlock {
    initParts () {
       let parts = this.element.querySelectorAll('[data-block][data-name="multiple_block_part"]');
       parts.forEach(part_elem => {
+
+
+
          console.log(part_elem);
          let body = part_elem.querySelector('[data-block][data-name="type"]');
          let actions = part_elem.querySelector('[data-block][data-name="actions"]');
          let part = new PartBlock(this, part_elem, body, actions);
-         part.short_block = part_elem.querySelector('[data-block][data-name="part_short"]')
+         part.short_block = part_elem.querySelector('[data-block][data-name="part_short"]');
          part.handleExpandButton();
          part.handleDeleteButton();
          this.element.appendChild(part.element);
-
 
          console.log(part);
       })

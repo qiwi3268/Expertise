@@ -432,8 +432,6 @@
             </files>
         </page>
 
-
-
         <page urn="home/expertise_cards/total_cc/actions/action_1">
 
             <callback_template id="AuthorizationChecker" />
@@ -467,6 +465,7 @@
                     <file name="footer" />
                 </dir>
             </files>
+
         </page>
 
         <page urn="registration_user">

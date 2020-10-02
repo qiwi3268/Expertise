@@ -26,6 +26,17 @@ class PartBlock {
 
    }
 
+   static createFromElement (multiple_block, part_elem) {
+
+      let body = part_elem.querySelector('[data-block][data-name="type"]');
+      let actions = part_elem.querySelector('[data-block][data-name="actions"]');
+      let part = new PartBlock(multiple_block, part_elem, body, actions);
+
+      part.short_block = part_elem.querySelector('[data-block][data-name="part_short"]');
+
+
+   }
+
    constructor (multiple_block, element, body, actions) {
       this.parent = multiple_block;
 
@@ -36,8 +47,6 @@ class PartBlock {
       this.handleSaveButton();
       this.handleCancelButton();
    }
-
-
 
 /*   constructor (multiple_block) {
       this.parent = multiple_block;
@@ -82,6 +91,7 @@ class PartBlock {
 
       this.data = part_data;
 
+      console.log(this.cancel_btn);
       this.cancel_btn.remove();
       this.actions.dataset.active = 'false';
       this.body.dataset.active = 'false';
