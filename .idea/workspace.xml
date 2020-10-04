@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/modal.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/application_dependencies.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/application_dependencies.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/DependenciesHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/DependenciesHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/Drag&amp;Drop.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/Drag&amp;Drop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/FileNeeds.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/FileNeeds.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/MultipleBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/MultipleBlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/PartBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/PartBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/modals/Misc.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/Misc.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,9 +27,6 @@
     </option>
     <expand />
     <select />
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="Expertise_project" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -140,14 +129,7 @@
       <workItem from="1601224057513" duration="163000" />
       <workItem from="1601306216140" duration="5492000" />
       <workItem from="1601565896273" duration="5056000" />
-      <workItem from="1601789789719" duration="709000" />
-    </task>
-    <task id="LOCAL-00113" summary="19.09.2020">
-      <created>1600502689236</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1600502689236</updated>
+      <workItem from="1601789789719" duration="2434000" />
     </task>
     <task id="LOCAL-00114" summary="19.09.2020_1">
       <created>1600519767004</created>
@@ -485,7 +467,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601612107429</updated>
     </task>
-    <option name="localTasksCounter" value="162" />
+    <task id="LOCAL-00162" summary="04.10.2020">
+      <created>1601796716354</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1601796716354</updated>
+    </task>
+    <option name="localTasksCounter" value="163" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,7 +491,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="24.09.2020_old" />
     <MESSAGE value="24.09.2020_new" />
     <MESSAGE value="24.09.2020_3" />
     <MESSAGE value="24.09.2020_5" />
@@ -527,7 +515,8 @@
     <MESSAGE value="01.10.2020_5" />
     <MESSAGE value="01.10.2020_6" />
     <MESSAGE value="02.10.2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="02.10.2020" />
+    <MESSAGE value="04.10.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="04.10.2020" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -554,12 +543,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1601612103054">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1601796715864">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1601612103054" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600519766620" />
-    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1601566658821" />
+    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1601796715864" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog" timestamp="1598853557262">
       <screen x="0" y="0" width="1920" height="1040" />
