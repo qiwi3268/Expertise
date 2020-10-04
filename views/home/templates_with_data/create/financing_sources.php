@@ -8,14 +8,16 @@
 <!--Шаблоны источников финансирования-->
 <div class="multiple-block__item" data-block data-name="templates_container">
     <!--Шаблон элемента множественного блока-->
-    <div class="multiple-block__item" data-block data-name="multiple_block_part" data-active="false" data-dependency_scope></div>
+    <div class="multiple-block__part" data-block data-name="multiple_block_part" data-active="false" data-dependency_scope>
+        <div class="multiple-block__title" data-multiple_title>...</div>
+    </div>
     <!--Шаблон элемента множественного блока-->
     <!--Шаблон "Вид финансирования"-->
     <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="false">
         <div class="form-field field" data-name="financing_type" data-required="true">
             <span class="form-field__title field-title">Вид финансирования</span>
             <div class="form-field__item">
-                <div class="form-field__body radio" data-required="true">
+                <div class="form-field__body radio" data-required="true" data-result_callback="financing_type">
                     <div class="radio__body">
                         <div class="radio__item" data-id="1">
                             <i class="radio__icon inline far fa-square"></i>

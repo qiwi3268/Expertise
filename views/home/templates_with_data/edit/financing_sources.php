@@ -6,12 +6,13 @@
 
 <?php if (!empty($_financingSources['type_1'])): ?>
     <?php foreach ($_financingSources['type_1'] as $source): ?>
-        <div class="multiple-block__item" data-block data-name="multiple_block_part" data-active="true" data-dependency_scope>
+        <div class="multiple-block__part short" data-block data-name="multiple_block_part" data-active="true" data-dependency_scope>
+            <div class="multiple-block__title" data-multiple_title>Бюджетные средства</div>
             <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="false">
                 <div class="form-field field" data-name="financing_type" data-required="true">
                     <span class="form-field__title field-title">Вид финансирования</span>
                     <div class="form-field__item">
-                        <div class="radio form-field__body" data-required="true">
+                        <div class="radio form-field__body" data-required="true" data-result_callback="financing_type">
                             <div class="radio__body">
                                 <div class="radio__item selected" data-id="1">
                                     <i class="radio__icon inline far fa-check-square"></i>
@@ -119,12 +120,13 @@
 <?php endif; ?>
 <?php if (!empty($_financingSources['type_2'])): ?>
     <?php foreach ($_financingSources['type_2'] as $source): ?>
-        <div class="multiple-block__item" data-block data-name="multiple_block_part" data-active="true" data-dependency_scope>
+        <div class="multiple-block__part short" data-block data-name="multiple_block_part" data-active="true" data-dependency_scope>
+            <div class="multiple-block__title" data-multiple_title>Средства юридических лиц, указанных в ч. 2 статьи 48.2 ГрК</div>
             <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="false">
                 <div class="form-field field" data-name="financing_type" data-required="true">
                     <span class="form-field__title field-title">Вид финансирования</span>
                     <div class="form-field__item">
-                        <div class="radio form-field__body" data-required="true">
+                        <div class="radio form-field__body" data-required="true" data-result_callback="financing_type">
                             <div class="radio__body">
                                 <div class="radio__item" data-id="1">
                                     <i class="radio__icon inline far fa-square"></i>
@@ -290,12 +292,13 @@
 <?php endif; ?>
 <?php if (!empty($_financingSources['type_3'])): ?>
     <?php foreach ($_financingSources['type_3'] as $source): ?>
-        <div class="multiple-block__item" data-block data-name="multiple_block_part" data-active="true" data-dependency_scope>
+        <div class="multiple-block__part short" data-block data-name="multiple_block_part" data-active="true" data-dependency_scope>
+            <div class="multiple-block__title" data-multiple_title>Собственные средства застройщика</div>
             <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="false">
                 <div class="form-field field" data-name="financing_type" data-required="true">
                     <span class="form-field__title field-title">Вид финансирования</span>
                     <div class="form-field__item">
-                        <div class="radio form-field__body" data-required="true">
+                        <div class="radio form-field__body" data-required="true" data-result_callback="financing_type">
                             <div class="radio__body">
                                 <div class="radio__item" data-id="1">
                                     <i class="radio__icon inline far fa-square"></i>
@@ -376,12 +379,13 @@
 <?php endif; ?>
 <?php if (!empty($_financingSources['type_4'])): ?>
     <?php foreach ($_financingSources['type_4'] as $source): ?>
-        <div class="multiple-block__item" data-block data-name="multiple_block_part" data-active="true" data-dependency_scope>
+        <div class="multiple-block__part short" data-block data-name="multiple_block_part" data-active="true" data-dependency_scope>
+            <div class="multiple-block__title" data-multiple_title>Средства инвестора</div>
             <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="false">
                 <div class="form-field field" data-name="financing_type" data-required="true">
                     <span class="form-field__title field-title">Вид финансирования</span>
                     <div class="form-field__item">
-                        <div class="radio form-field__body" data-required="true">
+                        <div class="radio form-field__body" data-required="true" data-result_callback="financing_type">
                             <div class="radio__body">
                                 <div class="radio__item" data-id="1">
                                     <i class="radio__icon inline far fa-square"></i>

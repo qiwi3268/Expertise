@@ -95,3 +95,30 @@
 .card-form__block[data-name='part']:not(:last-child) {
    border-bottom: 1px solid #cccccc;
 }
+
+.multiple-block__part:not(.short) {
+   margin: 20px;
+   border: 1px solid #e0e0e0;
+   border-radius: 4px;
+}
+
+.multiple-block__part.short > .multiple-block__title {
+   display: none;
+}
+
+.multiple-block__title {
+   padding: 10px 15px;
+   /*font-weight: 700;*/
+   border-bottom: 1px solid #e0e0e0;
+   background-color: #f6f8fa;
+   border-radius: 4px 4px 0px 0px;
+}
+
+
+
+
+
+
+
+
+
