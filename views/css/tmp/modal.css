@@ -47,6 +47,8 @@
 }
 
 .modal__pagination {
+   visibility: hidden;
+   opacity: 0;
    display: flex;
    justify-content: center;
    border-top: 1px solid #e0e0e0;

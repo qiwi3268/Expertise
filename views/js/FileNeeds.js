@@ -90,7 +90,7 @@ class FileNeeds {
          id_file: ge_file.id_sign,
          mapping_level_1: ge_file.field.mapping_1,
          mapping_level_2: ge_file.field.mapping_2
-      }
+      };
 
       FileNeeds.sign_needs.to_save.set(ge_file.id_sign, file_data);
    }
