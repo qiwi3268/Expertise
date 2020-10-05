@@ -2,17 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/views/home/templates_with_data/view/financing_sources.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/radio.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/radio.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/html_head.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/html_head.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/routes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/settings/routes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/action_3.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_3.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/multiple_block.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/multiple_block.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/section_create_test.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/section_create_test.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/documents/total_cc/actions/action_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/total_cc/actions/action_1.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/section_create_test.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/section_create_test.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/templates_with_data/create/financing_sources.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/templates_with_data/create/financing_sources.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/templates_with_data/edit/financing_sources.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/templates_with_data/edit/financing_sources.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/PartBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/PartBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/API.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/ErrorHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/ErrorHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/MultipleBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/MultipleBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/modals/ErrorModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/ErrorModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/radio.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/radio.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/tmp/section_create_test.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/section_create_test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/total_cc/actions/action_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/total_cc/actions/action_1.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +88,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.CSS" />
     <property name="ts.external.directory.path" value="G:\PhpStorm 2020.1.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
@@ -143,13 +148,6 @@
       <workItem from="1601224057513" duration="163000" />
       <workItem from="1601306216140" duration="5492000" />
       <workItem from="1601565896273" duration="5056000" />
-    </task>
-    <task id="LOCAL-00117" summary="20.09.2020_2">
-      <created>1600601961588</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1600601961588</updated>
     </task>
     <task id="LOCAL-00118" summary="20.09.2020_3">
       <created>1600602739612</created>
@@ -487,7 +485,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601877437831</updated>
     </task>
-    <option name="localTasksCounter" value="166" />
+    <task id="LOCAL-00166" summary="05.10.2020_3">
+      <created>1601886704331</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1601886704331</updated>
+    </task>
+    <option name="localTasksCounter" value="167" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -504,7 +509,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="24.09.2020_6" />
     <MESSAGE value="28.09.2020" />
     <MESSAGE value="29.09.2020" />
     <MESSAGE value="29.09.2020_2" />
@@ -529,7 +533,8 @@
     <MESSAGE value="02.10.2020_2" />
     <MESSAGE value="05.10.2020_1" />
     <MESSAGE value="05.10.2020_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="05.10.2020_2" />
+    <MESSAGE value="05.10.2020_3" />
+    <option name="LAST_COMMIT_MESSAGE" value="05.10.2020_3" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -556,10 +561,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1601877436074">
+    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1601886698752">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1601877436074" />
+    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1601886698752" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600519766620" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1601566658821" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
@@ -572,18 +577,18 @@
     </state>
     <state x="186" y="90" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600659246037" />
     <state x="248" y="121" key="MergeDialog/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596186835322" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1601557184566">
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1601895700312">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601557184566" />
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601895700312" />
     <state x="735" y="231" key="RollbackChangesDialog" timestamp="1598853548198">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="735" y="231" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598853548198" />
-    <state x="892" y="71" key="SettingsEditor" timestamp="1601541121725">
+    <state x="629" y="72" key="SettingsEditor" timestamp="1601899114245">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="892" y="71" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1601541121725" />
+    <state x="629" y="72" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1601899114245" />
     <state x="1060" y="462" key="SettingsEditor/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600362354400" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1597580480401">
       <screen x="0" y="0" width="2560" height="1400" />
@@ -603,10 +608,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="92" y="92" width="2376" height="1216" key="dock-window-2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600964609575" />
-    <state x="513" y="114" width="1169" height="814" key="find.popup" timestamp="1601886512468">
+    <state x="512" y="114" width="1169" height="814" key="find.popup" timestamp="1601897880567">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="513" y="114" width="1169" height="814" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601886512468" />
+    <state x="512" y="114" width="1169" height="814" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601897880567" />
     <state x="-1180" y="531" width="555" height="534" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600791294528" />
     <state x="571" y="185" width="1495" height="1020" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1601570068539" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
@@ -620,10 +625,10 @@
     </state>
     <state x="702" y="245" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600320350483" />
     <state x="936" y="330" key="run.anything.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596602547364" />
-    <state x="943" y="315" width="672" height="160" key="search.everywhere.popup" timestamp="1600536739645">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="707" y="234" width="672" height="160" key="search.everywhere.popup" timestamp="1601888697318">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="707" y="234" width="672" height="160" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600233203553" />
+    <state x="707" y="234" width="672" height="160" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601888697318" />
     <state x="943" y="315" width="672" height="160" key="search.everywhere.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600536739645" />
   </component>
 </project>

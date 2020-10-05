@@ -144,7 +144,7 @@ switch (URN) {
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'action_header.css'),
             ...CreateSource('css', TMP_CSS,'multiple_block.css', 'create_application.css', 'action_3.css', 'modal.css', 'radio.css'),
-            ...CreateSource('js', ROOT_JS, 'main.js', 'API.js', 'section.js', 'DependenciesHandler.js', 'radio.js', 'MultipleBlock.js', 'PartBlock.js'),
+            ...CreateSource('js', ROOT_JS, 'main.js', 'API.js', 'section.js', 'DependenciesHandler.js', 'radio.js', 'MultipleBlock.js', 'PartBlock.js', 'validation.js'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
             ...CreateSource('js', MODALS_JS,'SignView.js', 'Misc.js', 'ErrorModal.js'),
             ...CreateSource('js', ROOT_JS . 'total_cc/actions/', 'action_1.js'),

@@ -3,7 +3,6 @@
     $_financingSources = $_data['financing_sources'];
 ?>
 
-
 <?php if (!empty($_financingSources['type_1'])): ?>
     <?php foreach ($_financingSources['type_1'] as $source): ?>
         <div class="multiple-block__part short" data-block data-name="multiple_block_part" data-active="true" data-dependency_scope>
@@ -88,7 +87,7 @@
                                 </div>
                             </div>
                             <input class="form-field__result field-result" type="hidden"
-                                   data-multiple_block_field="no_data" name="financing_source_no_data" value="<?= $source['no_data'] ?>">
+                                   data-multiple_block_field="no_data" name="financing_source_no_data" value="<?php if ($source['no_data']): ?>1<?php endif; ?>">
                         </div>
                         <div class="multiple-block__item" data-block data-type="template" data-name="percent"
                              data-active="<?= $source['no_data'] ? 'false' : 'true' ?>">
@@ -266,7 +265,7 @@
                                 </div>
                             </div>
                             <input class="form-field__result field-result" type="hidden"
-                                   data-multiple_block_field="no_data" name="financing_source_no_data" value="<?= $source['no_data'] ?>">
+                                   data-multiple_block_field="no_data" name="financing_source_no_data" value="<?php if ($source['no_data']): ?>1<?php endif; ?>">
                         </div>
                         <div class="multiple-block__item" data-block data-type="template" data-name="percent"
                              data-active="<?= $source['no_data'] ? 'false' : 'true' ?>">
@@ -361,7 +360,7 @@
                                 </div>
                             </div>
                             <input class="form-field__result field-result" type="hidden"
-                                   data-multiple_block_field="no_data" name="financing_source_no_data" value="<?= $source['no_data'] ?>">
+                                   data-multiple_block_field="no_data" name="financing_source_no_data" value="<?php if ($source['no_data']): ?>1<?php endif; ?>">
                         </div>
                         <div class="multiple-block__item" data-block data-type="template" data-name="percent"
                              data-active="<?= $source['no_data'] ? 'false' : 'true' ?>">
@@ -455,7 +454,7 @@
                                 </div>
                             </div>
                             <input class="form-field__result field-result" type="hidden"
-                                   data-multiple_block_field="no_data" name="financing_source_no_data" value="<?= $source['no_data'] ?>">
+                                   data-multiple_block_field="no_data" name="financing_source_no_data" value="<?php if ($source['no_data']): ?>1<?php endif; ?>">
                         </div>
                         <div class="multiple-block__item" data-block data-type="template" data-name="percent"
                              data-active="<?= $source['no_data'] ? 'false' : 'true' ?>">

@@ -4,12 +4,8 @@
    background-color: #ffffff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
-
 }
 
-.description__text {
-   color: red;
-}
 
 .action-info {
    padding: 10px 20px;
@@ -26,25 +22,27 @@
 
 }
 
-.section__common-part {
-
-   padding: 10px;
-   margin: 0px 0px 10px;
-
+.description__card {
+   margin: 0px 0px 10px 0px;
+   border-left: 3px solid #93b0d1;
 }
 
-.section__indicator {
-
-}
-
-.section__header {
-   border-bottom: 1px solid #e0e0e0;
-   padding: 10px 20px;
+.description__header {
+   padding: 10px 15px;
    font-weight: 700;
+   text-align: center;
+   border-bottom: 1px solid #e0e0e0;
+   background-color: #f6f8fa;
+   border-radius: 4px 4px 0px 0px;
 }
 
-.section__body {
-   padding: 10px 20px;
+/*Переопределение свойства библиотеки текстового редактора*/
+.description__card .tox {
+   border: 0;
+}
+
+.description__body {
+   padding: 10px;
 }
 
 

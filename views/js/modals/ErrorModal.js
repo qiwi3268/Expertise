@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', () => {
+   ErrorModal.init();
+});
+
 class ErrorModal {
    static modal;
    static overlay;

@@ -33,12 +33,11 @@ class API {
                      } else {
                         reject(`message: ${response.message}, code: ${response.code}`);
                      }
-
                      break;
 
                   default:
-
-                     reject(response.error_message || response.message);
+                     let message = response.error_message !== undefined ? response.error_message : response.message;
+                     reject(message);
                }
 
             })
@@ -92,7 +91,8 @@ class API {
                      break;
 
                   default:
-                     reject(`Ошибка при проверке файла:\n${response.error_message || response.message}`);
+                     let message = response.error_message !== undefined ? response.error_message : response.message;
+                     reject(`Ошибка при проверке файла:\n${message}`);
 
                }
 
@@ -150,7 +150,8 @@ class API {
                      break;
 
                   default:
-                     reject(`Ошибка при проверке открепленной подписи:\n${response.error_message || response.message}`);
+                     let message = response.error_message !== undefined ? response.error_message : response.message;
+                     reject(`Ошибка при проверке открепленной подписи:\n${message}`);
 
                }
 
@@ -194,7 +195,8 @@ class API {
                      break;
 
                   default:
-                     reject(`Ошибка при получении хэша файла: \n${response.error_message || response.message}`);
+                     let message = response.error_message !== undefined ? response.error_message : response.message;
+                     reject(`Ошибка при получении хэша файла: \n${message}`);
 
                }
 
@@ -246,8 +248,8 @@ class API {
                      break;
 
                   default:
-                     reject(`Ошибка при проверке встроенной подписи: \n${response.error_message || response.message}`);
-
+                     let message = response.error_message !== undefined ? response.error_message : response.message;
+                     reject(`Ошибка при проверке встроенной подписи: \n${message}`);
                }
 
             })
@@ -311,6 +313,7 @@ class API {
 
       return new Promise((resolve, reject) => {
 
+
          XHR(
             'post',
             '/home/API_action_executor',
@@ -319,7 +322,19 @@ class API {
             'json'
          )
             .then(response => {
-               resolve(response);
+
+               if (response.result !== undefined) {
+                  if (response.result === 18) {
+                     resolve(response);
+                  } else if (response.error_message !== undefined) {
+                     reject(response.error_message);
+                  } else {
+                     reject(response.message);
+                  }
+               } else {
+                  reject('Отсутствует результат выполнения действия');
+               }
+
             })
             .catch(exc => {
                reject(exc);

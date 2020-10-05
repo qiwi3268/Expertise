@@ -202,6 +202,29 @@
             </div>
             <div class="card-form__body card-body">
 
+                <div class="view-table">
+                    <div class="view-table__header">
+                        <div class="view-table__title">Бюджетные средства</div>
+                        <i class="view-table__icon fas fa-chevron-down"></i>
+                    </div>
+                    <div class="view-table__body">
+                        <div class="view-table__row">
+                            <div class="view-table__label">Уровень бюджета</div>
+                            <div class="view-table__value">Местный бюджет</div>
+                        </div>
+                        <div class="view-table__row">
+                            <div class="view-table__label">Уровень бюджета</div>
+                            <div class="view-table__value">Местный бюджет</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="view-table">
+                    <div class="view-table__header">
+                        <div class="view-table__title">Средства юридических лиц, указанных в ч. 2 статьи 48.2 ГрК</div>
+                        <i class="view-table__icon fas fa-chevron-down"></i>
+                    </div>
+                </div>
+                
                 <!--Источники финансирования-->
                 <div class="multiple-block card-form__block" data-block data-type="multiple" data-name="financing_sources" data-saved="false">
 

@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
    let blocks = document.querySelectorAll('[data-block][data-type="multiple"]');
    blocks.forEach(block => {
+
+      // if (block.dataset.readonly)
+
       new MultipleBlock(block);
    });
 

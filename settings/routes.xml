@@ -461,6 +461,9 @@
                     <file name="action_1_dependencies" />
                     <file name="action_1" />
                 </dir>
+                <dir path="/views/home/modals/" ext=".php">
+                    <file name="error" />
+                </dir>
                 <dir path="/views/home/" ext=".php">
                     <file name="footer" />
                 </dir>

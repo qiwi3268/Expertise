@@ -92,10 +92,6 @@
    background-color: #ffb0b0;
 }
 
-.card-form__block[data-name='part']:not(:last-child) {
-   border-bottom: 1px solid #cccccc;
-}
-
 .multiple-block__part:not(.short) {
    margin: 20px;
    border: 1px solid #e0e0e0;

@@ -56,9 +56,11 @@ function initRadioItems (radio_elem, result_callback) {
                // handleDependentBlocks(result_input);
                DependenciesHandler.handleDependencies(result_input);
 
-               if (required) {
-                  validateCard(result_input.closest('.card-form'));
-               }
+               //todo включить
+
+               // if (required) {
+               //    validateCard(result_input.closest('.card-form'));
+               // }
             }
          });
       });

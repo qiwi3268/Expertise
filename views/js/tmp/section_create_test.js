@@ -1,13 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
 
 
-
-
 });
 
 tinymce.init({
    selector: "textarea#descriptive_part",
-   height: 200,
+   min_height: 400,
+   max_height: 700,
    elementpath: false,
    statusbar: false,
    language: 'ru',
@@ -15,7 +14,7 @@ tinymce.init({
    plugins: [
       "advlist autolink lists link image charmap print preview anchor",
       "searchreplace visualblocks code fullscreen",
-      "insertdatetime media table paste code help wordcount"
+      "insertdatetime media table paste code help wordcount autoresize"
    ],
    toolbar:
       "undo redo | " +

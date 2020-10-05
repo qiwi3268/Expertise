@@ -5,9 +5,7 @@ exceptions = {
 
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-   ErrorModal.init();
-});
+
 
 
 
