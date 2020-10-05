@@ -69,8 +69,8 @@ function saveMultipleBlocks (form_data) {
    multiple_blocks.forEach(block => {
 
       let multiple_block = MultipleBlock.getBlockByName(block.dataset.name);
-      if (multiple_block.is_changed) {
-         multiple_block.is_changed = false;
+      if (multiple_block.element.dataset.saved !== 'true') {
+         multiple_block.element.dataset.saved = 'true';
          form_data.append('financing_sources_exist_flag', '1');
       } else {
          form_data.append('financing_sources_exist_flag', '0');

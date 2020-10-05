@@ -6,6 +6,17 @@
     <span class="action__description">Капитальный ремонт здания школы в пос. Увельский, ул. Советская, 38 Увельского муниципального района Челябинской области (смета)Капитальный ремонт здания школы в пос. Увельский, ул. Советская, 38 Увельского муниципального района Челябинской области (смета)Капитальный ремонт здания школы в пос. Увельский, ул. Советская, 38 Увельского муниципального района Челябинской области (смета)</span>
 </div>
 
+<div class="action-header">
+    <div class="action-header__title">
+        <span class="action-header__name">Создание общей части</span>
+        <span class="action-header__document">Заявление на экспертизу № 2020-6-1179/2020-8-1025-С от 18.08.2020</span>
+    </div>
+    <div class="action-header__buttons">
+        <span class="action-header__button" data-action_submit>ОК</span>
+        <span class="action-header__button">Отмена</span>
+    </div>
+</div>
+
 <div class="application-form">
 
     <div class="application-form__sidebar sidebar-form">
@@ -194,7 +205,7 @@
             <div class="card-form__body card-body">
 
                 <!--Источники финансирования-->
-                <div class="multiple-block card-form__block" data-block data-type="multiple" data-name="financing_sources">
+                <div class="multiple-block card-form__block" data-block data-type="multiple" data-name="financing_sources" data-saved="false">
 
                     <?php \Lib\Singles\TemplateMaker::requireByName('edit_financing_sources'); ?>
                     <?php \Lib\Singles\TemplateMaker::requireByName('create_financing_sources'); ?>

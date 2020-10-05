@@ -11,13 +11,13 @@
 </div>
 
 <div class="action-header">
-    <div class="action__row">
-        <span class="header-action__name">ПЕРЕДАТЬ НА РАССМОТРЕНИЕ В ПТО</span>
-        <span class="header-action__document">Заявление на экспертизу № 2020-6-1179/2020-8-1025-С от 18.08.2020</span>
+    <div class="action-header__title">
+        <span class="action-header__name">ПЕРЕДАТЬ НА РАССМОТРЕНИЕ В ПТО</span>
+        <span class="action-header__document">Заявление на экспертизу № 2020-6-1179/2020-8-1025-С от 18.08.2020</span>
     </div>
-    <div class="header-action__buttons">
-        <span class="header-action__button" data-action_submit>ОК</span>
-        <span class="header-action__button">Отмена</span>
+    <div class="action-header__buttons">
+        <span class="action-header__button" data-action_submit>ОК</span>
+        <span class="action-header__button">Отмена</span>
     </div>
 </div>
 

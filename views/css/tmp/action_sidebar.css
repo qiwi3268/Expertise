@@ -242,27 +242,93 @@
 
 }*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .qwe {
    background-color: #ffffff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
    flex-grow: 1;
 }
+
+
+
+
+
+
+
+
+
+
+
+/*Заголовок действия*/
+
+.action-header {
+   display: flex;
+   margin: 0px 0px 10px;
+   height: 50px;
+   position: sticky;
+   top: 0;
+   z-index: 200;
+   font-size: 16px;
+   background-color: #ffffff;
+   border-radius: 4px;
+   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+}
+
+.action-header__name {
+   align-self: center;
+   font-family: 'Bebas Neue', sans-serif;
+   font-size: 20px;
+   font-weight: 700;
+}
+
+.action-header__document {
+   flex-grow: 1;
+   text-align: center;
+   font-size: 18px;
+}
+
+.action-header__buttons {
+   display: flex;
+}
+
+.action-header__button {
+   flex-grow: 1;
+   display: flex;
+   align-items: center;
+   border-bottom: 2px solid #ffffff;
+   cursor: pointer;
+   transition: 0.15s;
+   padding: 0px 20px;
+}
+
+.action-header__button:hover {
+   border-bottom: 2px solid #ffd354;
+   background-color: #f2f2f2;
+}
+
+.action-header__button:last-child {
+   border-radius: 0px 4px 4px 0px;
+}
+
+.action-header__title {
+   flex-grow: 1;
+   display: flex;
+   align-items: center;
+   padding: 0px 0px 0px 20px;
+}
+
+.action__info {
+   background-color: #ffffff;
+   border-radius: 4px;
+   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+   padding: 10px 20px;
+   margin: 0px 0px 10px;
+   font-size: 16px;
+}
+
+/*\\Заголовок действия\\*/
+
+
 
 
 

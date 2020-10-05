@@ -57,19 +57,6 @@ class PartBlock {
 
    }
 
-   /*
-      constructor (multiple_block) {
-      this.parent = multiple_block;
-
-      this.element = this.parent.createBlock(this.parent.element, 'multiple_block_part');
-      this.body = this.parent.createBlock(this.element, 'type');
-      this.actions = this.parent.createBlock(this.element, 'actions');
-
-
-      this.handleSaveButton();
-      this.handleCancelButton();
-   }*/
-
    handleSaveButton () {
 
       let save_btn = this.actions.querySelector('.save');
@@ -92,7 +79,8 @@ class PartBlock {
 
    savePart (part_data) {
       this.element.classList.add('short');
-      this.parent.is_changed = true;
+      // this.parent.is_changed = true;
+      this.parent.element.dataset.saved = 'false';
 
       if (!this.is_saved) {
          this.id = PartBlock.parts_counter++;
@@ -132,7 +120,8 @@ class PartBlock {
    handleDeleteButton() {
       let delete_btn = this.short_block.querySelector('.delete');
       delete_btn.addEventListener('click', () => {
-         this.parent.is_changed = true;
+         // this.parent.is_changed = true;
+         this.parent.element.dataset.saved = 'false';
          this.parent.parts.delete(this.id);
          this.element.remove();
       });

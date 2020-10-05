@@ -19,7 +19,7 @@ class MultipleBlock {
    parts;
 
    templates_container;
-   is_changed = false;
+   // is_changed = false;
 
    constructor (main_block) {
 

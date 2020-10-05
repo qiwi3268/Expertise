@@ -561,7 +561,7 @@
                 <div class="card-form__body card-body">
 
                     <!--Источники финансирования-->
-                    <div class="multiple-block card-form__block" data-block data-type="multiple" data-name="financing_sources">
+                    <div class="multiple-block card-form__block" data-block data-type="multiple" data-name="financing_sources" data-saved="true">
 
                         <div class="multiple-block__add" data-multiple_add>
                             <span class="multiple-block__text">Добавить источник финансирования</span>

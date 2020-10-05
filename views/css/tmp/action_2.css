@@ -1,48 +1,12 @@
-.action {
-   flex-grow: 1;
-   display: flex;
-   flex-direction: column;
-
-}
-
-.header-action__document {
-   font-size: 18px;
-}
-
-.header-action__name {
-   align-self: center;
-   font-family: 'Bebas Neue', sans-serif;
-   font-size: 20px;
-   font-weight: 700;
-}
-
-.header-action__document {
-   flex-grow: 1;
-   text-align: center;
-}
-
-.header-action__button:last-child {
-   border-radius: 0px 4px 4px 0px;
-}
-
-.action__body {
-   flex-grow: 1;
-   background-color: #ffffff;
-   margin: 0px 0px 10px 0px;
-   border-radius: 4px;
-}
-
 .assignment__section {
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.2);
    border-radius: 4px;
-
    margin: 0px 0px 10px 0px;
 }
 
 .assignment__section:last-child {
    margin: 0px;
 }
-
 
 .section {
    background-color: #ffffff;
@@ -53,7 +17,6 @@
    display: flex;
    flex-direction: column;
    width: 85%;
-
 }
 
 .section__header {
@@ -77,10 +40,6 @@
 .section__body {
    display: flex;
    border-top: 1px solid #e0e0e0;
-   /*border-top: 2px solid #ffd354;*/
-   /*border-top: 1px solid #93b0d1;*/
-   /*border-bottom: 1px solid #e0e0e0;*/
-   /*border-bottom: 2px solid #93b0d1;*/
 }
 
 .assignment__section-name {
@@ -116,7 +75,6 @@
 .section__common_part {
    opacity: 0;
    visibility: hidden;
-
    color: #DADADA;
    padding: 5px;
    transition: 0.15s;
@@ -180,7 +138,6 @@
 .section__remove:hover {
    background-color: #ffb0b0;
    color: #a93d3d;
-
 }
 
 .section__files {
@@ -227,7 +184,6 @@
 .section__experts-title {
    padding: 10px 13px;
    border-bottom: 1px solid #e0e0e0;
-
 }
 
 .assignment__expert-list {
@@ -236,10 +192,6 @@
 }
 
 .assignment__expert {
-   /*display: flex;*/
-   /*justify-content: space-between;*/
-   /*align-items: center;*/
-
    padding: 10px 5px 10px 15px;
    font-size: 16px;
    cursor: pointer;
@@ -249,16 +201,6 @@
 .assignment__expert:hover {
    background-color: #F6F6F6;
 }
-
-/*.assignment__expert-name {*/
-/*   flex-grow: 1;*/
-/*}*/
-
-
-
-
-
-
 
 .assignment__experts {
    width: 15%;
@@ -281,96 +223,19 @@
    margin: 0px 0px 10px 0px;
 }
 
-.assignment__sections {
-}
-
-.action__empty {
-   flex-grow: 1;
-}
-
-/*tmp*/
-
-.action-header {
-   display: flex;
-   margin: 0px 0px 10px;
-
-   height: 50px;
-
-
-   position: sticky;
-   top: 0;
-   z-index: 200;
-
-   font-size: 16px;
-
-   background-color: #ffffff;
-   border-radius: 4px;
-   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
-}
-
-.action__row {
-   flex-grow: 1;
-
-}
-
-.header-action__buttons {
-   display: flex;
-}
-
-
-.header-action__button {
-   flex-grow: 1;
-   display: flex;
-   align-items: center;
-   border-bottom: 2px solid #ffffff;
-   cursor: pointer;
-   transition: 0.15s;
-   padding: 0px 20px;
-}
-
-.header-action__button:hover {
-   border-bottom: 2px solid #ffd354;
-   background-color: #f2f2f2;
-}
-
-.action__row {
-   display: flex;
-   align-items: center;
-
-   padding: 0px 0px 0px 20px;
-
-}
-
-.action__info {
-   background-color: #ffffff;
-   border-radius: 4px;
-   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
-
-   padding: 10px 20px;
-   margin: 0px 0px 10px;
-
-   font-size: 16px;
-}
-
 .assignment__experts-header {
    display: flex;
    align-items: center;
    justify-content: center;
    padding: 10px 0px;
    font-weight: 700;
-
-
    border-bottom: 1px solid #e0e0e0;
-   /*border-left: 4px solid #ffd354;*/
    border-radius: 4px 0px 0px 0px;
-
 }
-
 
 .assignment__type {
    padding: 10px 15px;
    border-left: 3px solid #93b0d1;
-   /*border-bottom: 1px solid #e0e0e0;*/
    background-color: #F3F5F6;
 }
 
@@ -389,16 +254,13 @@
 .assignment__header {
    display: flex;
    border-bottom: 1px solid #e0e0e0;
-   /*border-left: 4px solid #ffd354;*/
    border-radius: 4px 0px 0px 0px;
-
 }
 
 .assignment__title {
    flex-grow: 1;
    font-weight: 700;
    padding: 10px 20px;
-
 }
 
 .assignment__add {
@@ -417,7 +279,6 @@
 
 .assignment__add-text {
    margin: 0px 10px 0px 0px;
-
 }
 
 .assignment__add:hover {
@@ -447,16 +308,13 @@
 }
 
 .section__folder {
-   /*padding: 5px;*/
    color: #80A0C5;
    margin: 0px 10px 0px 10px;
-
 }
 
 .files__title {
    padding: 10px;
    text-align: center;
-   /*border-bottom: 1px solid #e0e0e0;*/
    font-weight: 700;
 }
 

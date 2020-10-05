@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 });
+
 tinymce.init({
    selector: "textarea#common_part",
    height: 200,
