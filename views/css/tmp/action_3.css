@@ -188,19 +188,26 @@
 }
 
 
+
+
+/*tmp*/
+.card-form__financing {
+   padding: 10px;
+}
+
+
 .view-table {
    border: 1px solid #e0e0e0;
+   border-bottom: 0;
+   border-top: 0;
    /*border-radius: 4px;*/
    margin: 0px 10px;
    /*border-left: 3px solid #93b0d1;*/
 }
 
-.view-table:first-child > .view-table__header {
-   border-radius: 4px 4px 0px 0px;
-}
-
-.view-table:last-child {
-   border-radius: 0px 0px 4px 4px;
+.view-table:first-child {
+   border-top: 1px solid #e0e0e0;
+   /*border-radius: 4px 4px 0px 0px;*/
 }
 
 
@@ -213,7 +220,35 @@
    justify-content: space-between;
    padding: 10px;
    border-bottom: 2px solid #93b0d1;
+   cursor: pointer;
+}
 
+
+/*.view-table:first-child > .view-table__header {
+   border-radius: 4px 4px 0px 0px;
+}*/
+
+.view-table:first-child:last-child > .view-table__header {
+   /*border-radius: 4px;*/
+}
+
+.view-table:last-child {
+   /*border-radius: 0px 0px 4px 4px;*/
+}
+
+
+
+.view-table:last-child > .view-table__header {
+   /*border-radius: 0px 0px 4px 4px;*/
+}
+
+
+
+
+
+
+.view-table__body {
+   /*border-bottom: 1px solid #e0e0e0;*/
 }
 
 .view-table__title {
@@ -229,11 +264,13 @@
 .view-table__row {
    display: flex;
    /*padding: 10px;*/
+   border-bottom: 1px solid #e0e0e0;
+
 }
 
-.view-table__row:not(:last-child) {
-   border-bottom: 1px solid #e0e0e0;
-}
+/*.view-table__row:not(:last-child) {*/
+/*   border-bottom: 1px solid #e0e0e0;*/
+/*}*/
 
 .view-table__label {
    /*padding: 0px 10px 0px 0px;*/
@@ -245,10 +282,6 @@
 .view-table__value {
    padding: 10px;
 }
-
-
-
-
 
 
 

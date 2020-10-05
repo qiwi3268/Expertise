@@ -2,22 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/views/home/templates_with_data/view/financing_sources.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/html_head.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/html_head.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings/routes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/settings/routes.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/action_3.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_3.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/multiple_block.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/multiple_block.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/section_create_test.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/section_create_test.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/documents/total_cc/actions/action_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/total_cc/actions/action_1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/section_create_test.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/section_create_test.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/templates_with_data/edit/financing_sources.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/templates_with_data/edit/financing_sources.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/API.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/ErrorHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/ErrorHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/MultipleBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/MultipleBlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/modals/ErrorModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/ErrorModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/radio.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/radio.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/section_create_test.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/section_create_test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/templates_with_data/view/financing_sources.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/templates_with_data/view/financing_sources.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/section.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/section.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,9 +18,7 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -43,9 +33,6 @@
     </option>
     <expand />
     <select />
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="Expertise_project" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -100,7 +87,7 @@
       <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\js" />
     </key>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -148,13 +135,7 @@
       <workItem from="1601224057513" duration="163000" />
       <workItem from="1601306216140" duration="5492000" />
       <workItem from="1601565896273" duration="5056000" />
-    </task>
-    <task id="LOCAL-00118" summary="20.09.2020_3">
-      <created>1600602739612</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1600602739612</updated>
+      <workItem from="1601910983618" duration="4001000" />
     </task>
     <task id="LOCAL-00119" summary="20.09.2020_4">
       <created>1600608720586</created>
@@ -492,7 +473,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601886704331</updated>
     </task>
-    <option name="localTasksCounter" value="167" />
+    <task id="LOCAL-00167" summary="05.10.2020_4">
+      <created>1601911107262</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1601911107262</updated>
+    </task>
+    <option name="localTasksCounter" value="168" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,7 +497,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="28.09.2020" />
     <MESSAGE value="29.09.2020" />
     <MESSAGE value="29.09.2020_2" />
     <MESSAGE value="29.09.2020_3" />
@@ -534,7 +521,8 @@
     <MESSAGE value="05.10.2020_1" />
     <MESSAGE value="05.10.2020_2" />
     <MESSAGE value="05.10.2020_3" />
-    <option name="LAST_COMMIT_MESSAGE" value="05.10.2020_3" />
+    <MESSAGE value="05.10.2020_4" />
+    <option name="LAST_COMMIT_MESSAGE" value="05.10.2020_4" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -561,12 +549,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1601886698752">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1601911106590">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1601886698752" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600519766620" />
-    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1601566658821" />
+    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1601911106590" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog" timestamp="1598853557262">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -608,12 +596,12 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="92" y="92" width="2376" height="1216" key="dock-window-2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600964609575" />
-    <state x="512" y="114" width="1169" height="814" key="find.popup" timestamp="1601897880567">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="571" y="185" width="1495" height="1020" key="find.popup" timestamp="1601911228399">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="512" y="114" width="1169" height="814" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601897880567" />
     <state x="-1180" y="531" width="555" height="534" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600791294528" />
-    <state x="571" y="185" width="1495" height="1020" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1601570068539" />
+    <state x="571" y="185" width="1495" height="1020" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1601911228399" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
     <state x="1150" y="591" key="publish.login" timestamp="1599582915682">
       <screen x="0" y="0" width="2560" height="1400" />
@@ -630,5 +618,16 @@
     </state>
     <state x="707" y="234" width="672" height="160" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601888697318" />
     <state x="943" y="315" width="672" height="160" key="search.everywhere.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600536739645" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/views/home/templates_with_data/edit/financing_sources.php</url>
+          <line>337</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

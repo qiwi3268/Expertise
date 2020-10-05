@@ -3,6 +3,8 @@
     $_financingSources = $_data['financing_sources'];
 ?>
 
+<?php var_dump($_data); ?>
+
 <?php if (!empty($_financingSources['type_1'])): ?>
     <?php foreach ($_financingSources['type_1'] as $source): ?>
         <div class="multiple-block__part short" data-block data-name="multiple_block_part" data-active="true" data-dependency_scope>

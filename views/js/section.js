@@ -47,6 +47,7 @@ function expandCard (card) {
    let card_body = card.querySelector('.card-body');
    let card_arrow = card.querySelector('.card-icon');
 
+
    //переворачиваем стрелку
    if (card_arrow) {
       card_arrow.classList.toggle('arrow-down');
