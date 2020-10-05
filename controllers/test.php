@@ -14,15 +14,12 @@ use core\Classes\RoutesXMLHandler;
 use Tables\Structures\documentation_1;
 use Lib\Singles\Helpers\PageAddress;
 use Tables\assigned_expert_total_cc;
-use Classes\Application\FinancingSources;
+
 use Lib\DataBase\Transaction;
 use Tables\test;
-use Classes\Application\Miscs\Initialization\CreateFormInitializer;
-use Lib\Singles\TemplateMaker;
-use Lib\Miscs\Initialization\Initializer2;
-use Classes\Application\HtmlDependenciesManagerApplicationForm;
-use Classes\TotalCC\Actions\DisplayDependenciesAction1;
 
-$a = new DisplayDependenciesAction1();
-$b = $a->getBlockDependencies();
-var_dump($b);
+
+use Lib\Singles\PrimitiveValidatorBoolMode;
+
+$a = new PrimitiveValidatorBoolMode();
+$a->validateInt(444444);

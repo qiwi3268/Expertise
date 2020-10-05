@@ -51,7 +51,7 @@ class ExecutionActions extends MainExecutionActions
         try {
             $experts = $this->primitiveValidator->getAssocArrayFromJson($this->getRequiredPOSTParameter('experts'));
         } catch (PrimitiveValidatorEx $e) {
-            throw new SelfEx("Произошла ошибка при декодировании входной json-строки с назначенными экспертами : {$e->getMessage()}", 6);
+            throw new SelfEx("Произошла ошибка при декодировании входной json-строки с назначенными экспертами: {$e->getMessage()}", 6);
         }
 
         // Валидация входного массива
@@ -71,7 +71,7 @@ class ExecutionActions extends MainExecutionActions
                 }
             } catch (PrimitiveValidatorEx $e) {
 
-                throw new SelfEx("Произошла ошибка при валидации массива с назначенными экспертами : {$e->getMessage()}", 6);
+                throw new SelfEx("Произошла ошибка при валидации массива с назначенными экспертами: {$e->getMessage()}", 6);
             }
         }
 

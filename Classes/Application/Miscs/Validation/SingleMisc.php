@@ -3,6 +3,7 @@
 
 namespace Classes\Application\Miscs\Validation;
 
+use Classes\Exceptions\ApplicationFormMiscValidator;
 use Lib\Exceptions\MiscValidator as MiscValidatorEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
 use Classes\Exceptions\ApplicationFormMiscValidator as ApplicationFormMiscValidatorEx;
@@ -58,18 +59,7 @@ class SingleMisc extends MainSingleMisc
             parent::validate();
         } catch (MiscValidatorEx $e) {
 
-            $msg = $e->getMessage();
-            $code = $e->getCode();
-            // Конвертируем значения MiscValidatorEx к значениям API_save_form result
-            switch ($code) {
-                case 1 :
-                    throw new ApplicationFormMiscValidatorEx($msg, 4);
-                case 4 :
-                    throw new ApplicationFormMiscValidatorEx($msg, 5);
-                case 2 :
-                case 3 :
-                    throw new MiscValidatorEx($msg, $code);
-            }
+            throw new ApplicationFormMiscValidatorEx($e->getMessage(), $e->getCode(), $e);
         }
         return $this;
     }

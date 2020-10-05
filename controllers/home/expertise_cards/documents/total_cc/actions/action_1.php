@@ -6,7 +6,7 @@ use Lib\Singles\TemplateMaker;
 use Lib\DataBase\Transaction;
 use Classes\TotalCC\Actions\DefaultFormParametersAction1;
 use Tables\Docs\Relations\ParentDocumentLinker;
-use Tables\FinancingSources\FinancingSources;
+use Tables\FinancingSources\FinancingSourcesAggregator;
 
 
 $linker = new ParentDocumentLinker(CURRENT_DOCUMENT_TYPE, CURRENT_DOCUMENT_ID);
@@ -29,8 +29,8 @@ $transaction->add(
 );
 
 
-$financingSources = new FinancingSources(FinancingSources::APPLICATION_TABLE_TYPE, $applicationId);
-$transaction->add($financingSources, 'getFinancingSources');
+$financingSourcesAggregator = new FinancingSourcesAggregator(FinancingSourcesAggregator::APPLICATION_TABLE_TYPE, $applicationId);
+$transaction->add($financingSourcesAggregator, 'getFinancingSources');
 
 
 
@@ -40,7 +40,7 @@ $defaultParameters = new DefaultFormParametersAction1(
     [
         'applicant_details' => $commonPartApplicantDetails,
         'financing_sources' => [
-            'class'  => '\\' . get_class($financingSources),
+            'class'  => '\\' . get_class($financingSourcesAggregator),
             'method' => 'getFinancingSources'
         ]
     ]

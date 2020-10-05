@@ -15,6 +15,7 @@ final class TemplateMaker
     public const HOME_WITH_DATA_CREATE_MISCS = ROOT . '/views/home/templates_with_data/create/miscs';
     public const HOME_WITH_DATA_CREATE = ROOT . '/views/home/templates_with_data/create/';
     public const HOME_WITH_DATA_EDIT = ROOT . '/views/home/templates_with_data/edit/';
+    public const HOME_WITH_DATA_VIEW = ROOT . '/views/home/templates_with_data/view/';
 
     /**
      * Массих для хранения шаблонов

@@ -9,9 +9,11 @@ use Classes\Exceptions\ApplicationFormMiscValidator as ApplicationFormMiscValida
 use core\Classes\Session;
 use Lib\DataBase\Transaction;
 use Lib\Singles\PrimitiveValidator;
+use Lib\Singles\FinancingSourcesHandler;
 use Classes\Application\DataToUpdate;
 use Classes\Application\Miscs\Validation\SingleMisc as SingleMiscValidator;
 use Classes\Application\Miscs\Validation\DependentMisc as DependentMiscValidator;
+use Tables\FinancingSources\FinancingSourcesAggregator;
 use Tables\expertise_subject;
 use Tables\Docs\application;
 
@@ -358,53 +360,14 @@ try {
 
         try {
 
-            // Получаем массив из входного json'а
-            $financingSources = $primitiveValidator->getAssocArrayFromJson($P_financing_sources);
+            $financingSourcesHandler = new FinancingSourcesHandler($P_financing_sources);
 
-            // Проверяем структуру массива и валидируем его
-            foreach ($financingSources as $source) {
+            try {
 
-                $primitiveValidator->validateSomeInclusions($source['type'], '1', '2', '3', '4');
+                $financingSourcesHandler->validateArray();
+            } catch (MiscValidatorEx $e) {
 
-                switch ($source['type']) {
-                    case '1' :
-
-                        $budgetLevel = new SingleMiscValidator((is_null($source['budget_level']) ? '' : $source['budget_level']), '\Tables\Miscs\budget_level');
-
-                        $settings = [
-                            'budget_level' => ['is_null', [$budgetLevel, 'validate']],
-                            'no_data'      => [[$primitiveValidator, 'validateSomeInclusions', null, '1']],
-                            'percent'      => ['is_null', [$primitiveValidator, 'validatePercent']]
-                        ];
-                        break;
-
-                    case '2' :
-
-                        $settings = [
-                            'full_name' => ['is_null', 'is_string'],
-                            'INN'       => ['is_null', [$primitiveValidator, 'validateINN']],
-                            'KPP'       => ['is_null', [$primitiveValidator, 'validateKPP']],
-                            'OGRN'      => ['is_null', [$primitiveValidator, 'validateOGRN']],
-                            'address'   => ['is_null', 'is_string'],
-                            'location'  => ['is_null', 'is_string'],
-                            'telephone' => ['is_null', 'is_string'],
-                            'email'     => ['is_null', [$primitiveValidator, 'validateEmail']],
-                            'no_data'   => [[$primitiveValidator, 'validateSomeInclusions', null, '1']],
-                            'percent'   => ['is_null', [$primitiveValidator, 'validatePercent']]
-                        ];
-                        break;
-
-                    case '3' :
-                    case '4' :
-
-                        $settings = [
-                            'no_data' => [[$primitiveValidator, 'validateSomeInclusions', null, '1']],
-                            'percent' => ['is_null', [$primitiveValidator, 'validatePercent']]
-                        ];
-                        break;
-                }
-
-                $primitiveValidator->validateAssociativeArray($source, $settings);
+                throw new ApplicationFormMiscValidatorEx($e->getMessage(), $e->getCode(), $e);
             }
         } catch (PrimitiveValidatorEx $e) {
 
@@ -438,7 +401,6 @@ try {
                 default :
                     throw new PrimitiveValidatorEx($message, $code);
             }
-
         } catch (ApplicationFormMiscValidatorEx $e) {
 
             //  4 - передано некорректное значение справочника
@@ -449,60 +411,12 @@ try {
             ]));
         }
 
-        // Удаляем все источники финансирования, относящиеся к этому заявлению
-        $transaction->add('\Tables\FinancingSources\type_1', 'deleteAllByIdApplication', [$form_applicationID]);
-        $transaction->add('\Tables\FinancingSources\type_2', 'deleteAllByIdApplication', [$form_applicationID]);
-        $transaction->add('\Tables\FinancingSources\type_3', 'deleteAllByIdApplication', [$form_applicationID]);
-        $transaction->add('\Tables\FinancingSources\type_4', 'deleteAllByIdApplication', [$form_applicationID]);
+        $financingSourcesAggregator = new FinancingSourcesAggregator(FinancingSourcesAggregator::APPLICATION_TABLE_TYPE, $form_applicationID);
 
-        foreach ($financingSources as $source) {
-
-            $no_data = is_null($source['no_data']) ? 0 : 1;
-
-            switch ($source['type']) {
-
-                case '1' :
-                    $transaction->add('\Tables\FinancingSources\type_1', 'create', [
-                        $form_applicationID,
-                        $source['budget_level'],
-                        $no_data,
-                        $source['percent']
-                    ]);
-                    break;
-
-                case '2' :
-                    $transaction->add('\Tables\FinancingSources\type_2', 'create', [
-                        $form_applicationID,
-                        $source['full_name'],
-                        $source['INN'],
-                        $source['KPP'],
-                        $source['OGRN'],
-                        $source['address'],
-                        $source['location'],
-                        $source['telephone'],
-                        $source['email'],
-                        $no_data,
-                        $source['percent']]
-                    );
-                    break;
-
-                case '3' :
-                    $transaction->add('\Tables\FinancingSources\type_3', 'create', [
-                        $form_applicationID,
-                        $no_data,
-                        $source['percent']]
-                    );
-                    break;
-
-                case '4' :
-                    $transaction->add('\Tables\FinancingSources\type_4', 'create', [
-                        $form_applicationID,
-                        $no_data,
-                        $source['percent']]
-                    );
-                    break;
-            }
-        }
+        // Удаление источников финансирования, относящиеся к этому заявлению
+        $transaction->add($financingSourcesAggregator, 'deleteAll');
+        // Создание источников финансирования
+        $transaction->add($financingSourcesAggregator, 'createByArray', [$financingSourcesHandler->getArray()]);
     }
 
 
@@ -591,6 +505,8 @@ try {
 
     //todo обернуть все в DataBaseEx?
     $transaction->start();
+
+    $test = $transaction->getLastResults();
 
     // Успешное сохранение
     exit(json_encode(['result' => 8]));

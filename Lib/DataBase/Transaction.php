@@ -118,7 +118,9 @@ final class Transaction extends DataBase
      */
     public function start(): self
     {
-        parent::executeTransaction($this);
+        if (!empty($this->queries)) {
+            parent::executeTransaction($this);
+        }
         return $this;
     }
 

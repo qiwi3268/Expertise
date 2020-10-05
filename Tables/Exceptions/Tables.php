@@ -15,10 +15,12 @@ use Lib\Exceptions\Traits\MainTrait;
  * 2001 - метод невозможно вызвать от типа документа "Заявление"<br>
  * 2002 - методу не удалось определить тип документа<br>
  * {@see \Tables\Docs\TableLocator}<br>
- * 3 - методу Tables\Docs\TableLocator::getDocTableByDocumentType не удалось определить таблицу документа<br>
- * 4 - методу Tables\Docs\TableLocator::getDocRelationTableByDocumentType не удалось определить таблицу отношений документа<br>
+ * 3001 - методу Tables\Docs\TableLocator::getDocTableByDocumentType не удалось определить таблицу документа<br>
+ * 3002 - методу Tables\Docs\TableLocator::getDocRelationTableByDocumentType не удалось определить таблицу отношений документа<br>
  * {@see \Tables\DocumentationTypeTableLocator}<br>
- * 5 - получен неопределенный вид объекта<br>
+ * 4001 - получен неопределенный вид объекта<br>
+ * {@see \Tables\FinancingSources\FinancingSourcesAggregator}<br>
+ * 5001 - получен неопределенный вид объекта<br>
  *
  *
  *

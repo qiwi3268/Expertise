@@ -3,6 +3,8 @@
 
 namespace Classes\TotalCC\Actions;
 
+use Lib\Exceptions\DataBase as DataBaseEx;
+
 use core\Classes\Session;
 use Lib\Actions\AccessActions as MainAccessActions;
 use Tables\assigned_expert_total_cc;
@@ -25,10 +27,12 @@ class AccessActions extends MainAccessActions
      * <b>Создать общую часть</b>
      *
      * @return bool
+     * @throws DataBaseEx
      */
     public function action_1(): bool
     {
         return true;
+
         // -------------------------Список условий-------------------------
         // Пользователь сотрудник экспертного отдела | сметного отдела | внештатный эксперт
         // Сотрудник один из тех, кто назначен на общую часть

@@ -32,7 +32,7 @@ class DocumentationTypeTableLocator
             $typeOfObjectId != 1    // Производственные / непроизводственные
             && $typeOfObjectId != 2 // Линейные
         ) {
-            throw new SelfEx("Получен неопределенный вид объекта: '{$typeOfObjectId}'", 5);
+            throw new SelfEx("Получен неопределенный вид объекта: '{$typeOfObjectId}'", 4001);
         }
         $this->typeOfObjectId = $typeOfObjectId;
     }

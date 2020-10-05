@@ -32,7 +32,7 @@ class TableLocator
             case DOCUMENT_TYPE['section_documentation_2'] :
                 return '\Tables\Docs\section_documentation_2';
             default :
-                throw new SelfEx("Методу Tables\Docs\TableLocator::getDocTableByDocumentType не удалось определить таблицу документа для documentType: '{$documentType}'", 3);
+                throw new SelfEx("Методу Tables\Docs\TableLocator::getDocTableByDocumentType не удалось определить таблицу документа для documentType: '{$documentType}'", 3001);
         }
     }
 
@@ -54,7 +54,7 @@ class TableLocator
             case DOCUMENT_TYPE['section_documentation_1'] :
                 return '\Tables\Docs\Relations\section_documentation_1';
             default :
-                throw new SelfEx("Методу Tables\Docs\TableLocator::getDocRelationTableByDocumentType не удалось определить таблицу отношений документа для documentType: '{$documentType}'", 4);
+                throw new SelfEx("Методу Tables\Docs\TableLocator::getDocRelationTableByDocumentType не удалось определить таблицу отношений документа для documentType: '{$documentType}'", 3002);
         }
     }
 }
