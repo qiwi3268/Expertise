@@ -6,19 +6,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initializeRadio (block) {
    let radio_blocks = block.querySelectorAll('.radio');
+   let result_callback;
 
    // Добавляем обработку переключателей для каждого блока с переключателями
-   radio_blocks.forEach(radio_elem => {
-      initRadioItems(radio_elem);
+   radio_blocks.forEach(radio => {
+      result_callback = getRadioResultCallback(radio);
+      initRadioItems(radio, result_callback);
    });
 }
 
 // Предназначен для добавления обработчиков для переключателей
 // Принимает параметры-------------------------------
 // radio_elem         Element : блок с переключателями
-function initRadioItems (radio_elem) {
+function initRadioItems (radio_elem, result_callback) {
    let parent_field = radio_elem.closest('.field');
    let body = radio_elem.querySelector('.radio__body');
+
 
    if (parent_field && body) {
       // Обязателен ли выбор хотя бы одного элемента
@@ -45,6 +48,12 @@ function initRadioItems (radio_elem) {
             if (is_changed) {
                // Записываем в результат json с id выбранных элементов
                result_input.value = getRadioResult(body, multiple, required);
+
+               if (result_callback) {
+                  console.log('tut');
+                  result_callback(item);
+               }
+
                // handleDependentBlocks(result_input);
                DependenciesHandler.handleDependencies(result_input);
 
@@ -56,6 +65,28 @@ function initRadioItems (radio_elem) {
       });
    }
 }
+
+function getRadioResultCallback (radio) {
+   let callback;
+
+   switch (radio.dataset.result_callback) {
+      case 'financing_type':
+         callback = selectFinancingType;
+         break;
+      default:
+         callback = null;
+   }
+
+   return callback;
+}
+
+function selectFinancingType(radio_elem) {
+   let title = radio_elem.querySelector('[data-part_title]').innerHTML;
+   let multiple_block = radio_elem.closest('[data-block][data-name="multiple_block_part"]');
+   let block_title = multiple_block.querySelector('[data-multiple_title]');
+   block_title.innerHTML = title;
+}
+
 
 // Предназначен для создания элемента переключателя
 // Принимает параметры-------------------------------

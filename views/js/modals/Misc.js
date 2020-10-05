@@ -177,11 +177,8 @@ class Misc {
       this.modal.classList.remove('active');
       Misc.overlay.classList.remove('active');
 
-      // todo убрать плавно и проверить, что нормально переключается
       if (this.pagination) {
-         // this.pagination.element.classList.remove('active');
-         this.pagination.element.style.display = 'none';
-         // this.pagination.element.style.display = 'none';
+         this.pagination.element.classList.remove('active');
       }
 
    }
@@ -314,15 +311,8 @@ class Misc {
     * Добавляет в модальное окно блок с пагинацией
     */
    handlePagination () {
-      if (!this.pagination) {
-         this.pagination = new Pagination(this);
-      }
-
-      this.pagination.page_label.innerHTML = `1/${this.pages.length}`;
-      this.pagination.arrow_left.style.visibility = 'hidden';
-      this.pagination.arrow_right.style.visibility = 'visible';
-      this.pagination.element.style.display = 'flex';
-      // this.pagination.element.classList.add('active');
+      this.pagination = Pagination.getInstance();
+      this.pagination.addToModal(this);
    }
 
    /**
@@ -375,19 +365,8 @@ class Misc {
       let misc = !isNaN(id_misc) ? this.miscs.get(id_misc) : new Misc(select);
 
       if (misc.pages.length > 1) {
-         console.log('123');
          misc.handlePagination();
-         console.log(misc.pagination.element);
-         misc.pagination.element.classList.add('active');
-         // this.pagination.element.classList.add('active');
-
-      } else {
-
-         // todo убирать пагинацию
       }
-
-      // console.log(select);
-      // console.log(misc);
 
       return misc;
    }
@@ -456,6 +435,11 @@ class Misc {
  */
 class Pagination {
 
+   /**
+    * Объект пагинации
+    *
+    * @type {Pagination}
+    */
    static instance;
 
    /**
@@ -494,15 +478,38 @@ class Pagination {
    page_label;
 
    /**
-    * Создает объект пагинации
     *
-    * @param {Misc} misc - родительский справочник
+    * @returns {Pagination}
     */
-   constructor (misc) {
+   static getInstance () {
+      if (!this.instance) {
+         this.instance = new Pagination();
+      }
+
+      return this.instance;
+   }
+
+   /**
+    * Добавляет в модальное окно справочника блок с пагинацией
+    *
+    * @param {Misc} misc
+    */
+   addToModal (misc) {
+      this.misc = misc;
+      this.misc.modal.appendChild(this.element);
+
+      this.page_label.innerHTML = `1/${this.misc.pages.length}`;
+      this.arrow_left.style.visibility = 'hidden';
+      this.arrow_right.style.visibility = 'visible';
+      this.element.classList.add('active');
+   }
+
+   /**
+    * Создает объект пагинации
+    */
+   constructor () {
       this.element = document.createElement('DIV');
       this.element.classList.add('modal__pagination', 'pagination');
-
-      this.misc = misc;
 
       this.initArrows();
 
@@ -512,8 +519,6 @@ class Pagination {
       this.element.appendChild(this.arrow_left);
       this.element.appendChild(this.page_label);
       this.element.appendChild(this.arrow_right);
-
-      this.misc.modal.appendChild(this.element);
    }
 
    /**

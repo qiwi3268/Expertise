@@ -78,17 +78,20 @@ class PartBlock {
          let part_data = new PartData(this.element);
          if (part_data.type) {
             this.savePart(part_data);
-
-            // console.log(this.parent.parts);
          } else {
 
-            //todo validate block
+            ErrorModal.open(
+               'Ошибка при сохранении источника финансирования',
+               'Не выбран вид финансирования'
+            );
+
          }
 
       });
    }
 
    savePart (part_data) {
+      this.element.classList.add('short');
       this.parent.is_changed = true;
 
       if (!this.is_saved) {
@@ -138,6 +141,7 @@ class PartBlock {
    handleExpandButton() {
       let expand_btn = this.short_block.querySelector('.part-short');
       expand_btn.addEventListener('click', () => {
+         this.element.classList.remove('short');
          this.actions.dataset.active = 'true';
          this.body.dataset.active = 'true';
          this.short_block.dataset.active = 'false';
