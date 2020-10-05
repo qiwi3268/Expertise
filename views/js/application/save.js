@@ -63,28 +63,12 @@ function saveApplication () {
       });
 }
 
-function saveMultipleBlocks (form_data) {
 
-   let multiple_blocks = document.querySelectorAll('[data-block][data-type="multiple"]');
-   multiple_blocks.forEach(block => {
-
-      let multiple_block = MultipleBlock.getBlockByName(block.dataset.name);
-      if (multiple_block.element.dataset.saved !== 'true') {
-         multiple_block.element.dataset.saved = 'true';
-         form_data.append('financing_sources_exist_flag', '1');
-      } else {
-         form_data.append('financing_sources_exist_flag', '0');
-      }
-
-      form_data.append(block.dataset.name, multiple_block.getPartsDataJSON());
-
-   });
-}
 
 function getSaveApplicationFormData() {
    let form_data = new FormData();
 
-   saveMultipleBlocks(form_data);
+   MultipleBlock.saveMultipleBlocks(form_data);
 
    let id_application = document.querySelector('[name="id_application"]').value;
    form_data.append('id_application', id_application);

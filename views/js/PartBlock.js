@@ -34,10 +34,13 @@ class PartBlock {
 
       part.short_block = part_elem.querySelector('[data-block][data-name="part_short"]');
 
-      console.log(part);
-      console.log(new PartData(part.element));
+      // console.log(part);
+      // console.log(new PartData(part.element));
 
-      part.data = new PartData(part.element);
+      part.data = new PartData(part.element, true);
+
+      console.log(part.data);
+
       part.id = PartBlock.parts_counter++;
       part.handleDeleteButton();
       part.handleExpandButton();
@@ -152,11 +155,11 @@ class PartBlock {
 
 }
 
-function PartData (part_block) {
+function PartData (part_block, is_initialization) {
    let field_inputs = part_block.querySelectorAll('.field-result[data-multiple_block_field]');
    field_inputs.forEach(input => {
 
-      if (!input.closest('[data-block][data-active="false"]')) {
+      if (!input.closest('[data-block][data-active="false"]') || is_initialization) {
          this[input.dataset.multiple_block_field] = input.value || null;
       } else {
          this[input.dataset.multiple_block_field] = null;
