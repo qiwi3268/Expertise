@@ -17,7 +17,7 @@
         <div class="form-field field" data-name="financing_type" data-required="true">
             <span class="form-field__title field-title">Вид финансирования</span>
             <div class="form-field__item">
-                <div class="form-field__body radio" data-required="true" data-result_callback="financing_type">
+                <div class="radio form-field__body" data-required="true" data-result_callback="financing_type">
                     <div class="radio__body">
                         <div class="radio__item" data-id="1">
                             <i class="radio__icon inline far fa-square"></i>
@@ -74,7 +74,7 @@
             <div class="form-field field" data-name="financing_source_no_data">
                 <span class="form-field__title">Размер финансирования</span>
                 <div class="form-field__item">
-                    <div class="form-field__body radio">
+                    <div class="radio form-field__body">
                         <div class="radio__body">
                             <div class="radio__item" data-id="1">
                                 <i class="radio__icon inline far fa-square"></i>
@@ -177,7 +177,7 @@
             <div class="form-field field" data-name="financing_source_no_data">
                 <span class="form-field__title">Размер финансирования</span>
                 <div class="form-field__item">
-                    <div class="form-field__body radio">
+                    <div class="radio form-field__body">
                         <div class="radio__body">
                             <div class="radio__item" data-id="1">
                                 <i class="radio__icon inline far fa-square"></i>
@@ -208,7 +208,7 @@
             <div class="form-field field" data-name="financing_source_no_data">
                 <span class="form-field__title">Размер финансирования</span>
                 <div class="form-field__item">
-                    <div class="form-field__body radio">
+                    <div class="radio form-field__body">
                         <div class="radio__body">
                             <div class="radio__item" data-id="1">
                                 <i class="radio__icon inline far fa-square"></i>
@@ -239,7 +239,7 @@
             <div class="form-field field" data-name="financing_source_no_data">
                 <span class="form-field__title">Размер финансирования</span>
                 <div class="form-field__item">
-                    <div class="form-field__body radio">
+                    <div class="radio form-field__body">
                         <div class="radio__body">
                             <div class="radio__item" data-id="1">
                                 <i class="radio__icon inline far fa-square"></i>
@@ -269,7 +269,7 @@
         <div class="form-field field" data-name="financing_source_no_data">
             <span class="form-field__title">Размер финансирования</span>
             <div class="form-field__item">
-                <div class="form-field__body radio">
+                <div class="radio form-field__body">
                     <div class="radio__body">
                         <div class="radio__item" data-id="1">
                             <i class="radio__icon inline far fa-square"></i>

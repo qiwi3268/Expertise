@@ -13,13 +13,13 @@ function saveCommonPart () {
 
          console.log(response);
 
-         switch (response.result) {
+       /*  switch (response.result) {
             case 18:
                // location.href = response.ref;
                break;
             default:
                console.log(response);
-         }
+         }*/
 
       })
       .catch(exc => {

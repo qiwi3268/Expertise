@@ -1,13 +1,17 @@
+.radio__body.inline {
+   display: flex;
+   align-items: center;
+}
+
 .radio__icon {
    margin: 0px 10px 0px 0px;
 }
 
-.radio__icon.inline {
+.radio__body.inline .radio__icon {
    margin: 0px 5px 0px 0px;
 }
 
-.radio__icon.far,
-.checkbox__icon.far {
+.radio__icon {
    font-size: 20px;
 }
 
@@ -21,7 +25,7 @@
    margin: 0px 0px 10px 0px;
 }
 
-.radio__item.inline {
+.radio__body.inline > .radio__item {
    margin: 0px 10px 0px 0px;
 }
 
@@ -36,9 +40,4 @@
 
 .radio__value {
    font-size: 15px;
-}
-
-.radio__body.inline {
-   display: flex;
-   align-items: center;
 }

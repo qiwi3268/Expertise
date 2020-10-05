@@ -37,7 +37,7 @@ function initRadioItems (radio_elem, result_callback) {
       items.forEach(item => {
          item.addEventListener('click', () => {
 
-            if (item.classList.contains('selected')) {
+            if (item.dataset.selected === 'true') {
                is_changed = removeSelectedItem(item, required);
             } else if (multiple) {
                is_changed = addSelectedItem(item);
@@ -50,7 +50,6 @@ function initRadioItems (radio_elem, result_callback) {
                result_input.value = getRadioResult(body, multiple, required);
 
                if (result_callback) {
-                  console.log('tut');
                   result_callback(item);
                }
 
@@ -87,7 +86,6 @@ function selectFinancingType(radio_elem) {
    block_title.innerHTML = title;
 }
 
-
 // Предназначен для создания элемента переключателя
 // Принимает параметры-------------------------------
 // value         string : текст переключателя
@@ -115,7 +113,8 @@ function createRadioItem (value) {
 // Принимает параметры-------------------------------
 // radio_item         Element : элемент переключателя
 function addSelectedItem (radio_item) {
-   radio_item.classList.add('selected');
+   // radio_item.classList.add('selected');
+   radio_item.dataset.selected = 'true';
 
    // Меняем на иконку с галочкой
    let radio_icon = radio_item.querySelector('.radio__icon');
@@ -131,10 +130,11 @@ function addSelectedItem (radio_item) {
 // radio_item       Element : элемент переключателя
 // required         boolean : обязателен ли хотя бы один выбранный элемент
 function removeSelectedItem (radio_item, required) {
-   let selected_items = radio_item.parentElement.querySelectorAll('.selected');
+   let selected_items = radio_item.parentElement.querySelectorAll('[data-selected="true"]');
 
    if (!required || selected_items.length > 1) {
-      radio_item.classList.remove('selected');
+      // radio_item.classList.remove('selected');
+      radio_item.dataset.selected = 'false';
 
       // Меняем на пустую иконку
       let radio_icon = radio_item.querySelector('.radio__icon');
@@ -151,7 +151,7 @@ function removeSelectedItem (radio_item, required) {
 // radio_item         Element : переключатель, который становится выбранным
 function changeSelectedItem (radio_item) {
    let items = radio_item.parentElement;
-   let selected_item = items.querySelector('.selected');
+   let selected_item = items.querySelector('[data-selected="true"]');
 
    if (!selected_item) {
       return addSelectedItem(radio_item);
@@ -170,7 +170,7 @@ function changeSelectedItem (radio_item) {
 // result             JSON : json с id выбранных элементов
 function getRadioResult (radio_body, multiple) {
    let result = [];
-   let selected_items = radio_body.querySelectorAll('.selected');
+   let selected_items = radio_body.querySelectorAll('[data-selected="true"]');
 
    selected_items.forEach(item => {
       result.push(item.dataset.id)

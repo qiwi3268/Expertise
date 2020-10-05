@@ -7,8 +7,11 @@
     <div class="description__card">
         
         <div class="description__header">Описательная часть</div>
+        <div class="description__body">
+            <textarea class="description__text" id="descriptive_part"></textarea>
+        </div>
         
-        <textarea id="common_part"></textarea>
+        
       
     </div>
     

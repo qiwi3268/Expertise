@@ -1,10 +1,14 @@
 .action-info,
-.section__indicator,
-.section__common-part {
+.description__card,
+.section__indicator {
    background-color: #ffffff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
 
+}
+
+.description__text {
+   color: red;
 }
 
 .action-info {

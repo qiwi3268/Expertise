@@ -39,7 +39,7 @@ class PartBlock {
 
       part.data = new PartData(part.element, true);
 
-      console.log(part.data);
+      // console.log(part.data);
 
       part.id = PartBlock.parts_counter++;
       part.handleDeleteButton();

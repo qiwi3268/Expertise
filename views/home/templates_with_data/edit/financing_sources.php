@@ -14,7 +14,7 @@
                     <div class="form-field__item">
                         <div class="radio form-field__body" data-required="true" data-result_callback="financing_type">
                             <div class="radio__body">
-                                <div class="radio__item selected" data-id="1">
+                                <div class="radio__item" data-id="1" data-selected="true">
                                     <i class="radio__icon inline far fa-check-square"></i>
                                     <span class="radio__text" data-part_title="1">Бюджетные средства</span>
                                 </div>
@@ -73,10 +73,17 @@
                             <div class="form-field__item">
                                 <div class="radio form-field__body">
                                     <div class="radio__body">
-                                        <div class="radio__item" data-id="1">
-                                            <i class="radio__icon inline far fa-square"></i>
-                                            <span class="radio__text">Нет данных</span>
-                                        </div>
+                                        <?php if ($source['no_data']): ?>
+                                            <div class="radio__item" data-id="1" data-selected="true">
+                                                <i class="radio__icon inline far fa-check-square"></i>
+                                                <span class="radio__text">Нет данных</span>
+                                            </div>
+                                        <?php else: ?>
+                                            <div class="radio__item" data-id="1" data-selected="false">
+                                                <i class="radio__icon inline far fa-square"></i>
+                                                <span class="radio__text">Нет данных</span>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +91,7 @@
                                    data-multiple_block_field="no_data" name="financing_source_no_data" value="<?= $source['no_data'] ?>">
                         </div>
                         <div class="multiple-block__item" data-block data-type="template" data-name="percent"
-                             data-active="<?= $source['no_data'] ?>">
+                             data-active="<?= $source['no_data'] ? 'false' : 'true' ?>">
                             <div class="form-field field" data-required="true" data-name="percent"
                                  data-pattern="number">
                                 <span class="form-field__title">Процент финансирования</span>
@@ -132,7 +139,7 @@
                                     <i class="radio__icon inline far fa-square"></i>
                                     <span class="radio__text" data-part_title="1">Бюджетные средства</span>
                                 </div>
-                                <div class="radio__item selected" data-id="2">
+                                <div class="radio__item" data-id="2" data-selected="true">
                                     <i class="radio__icon inline far fa-check-square"></i>
                                     <span class="radio__text" data-part_title="2">Средства юридических лиц, указанных в ч. 2 статьи 48.2 ГрК</span>
                                 </div>
@@ -244,10 +251,17 @@
                             <div class="form-field__item">
                                 <div class="radio form-field__body">
                                     <div class="radio__body">
-                                        <div class="radio__item" data-id="1">
-                                            <i class="radio__icon inline far fa-square"></i>
-                                            <span class="radio__text">Нет данных</span>
-                                        </div>
+                                        <?php if ($source['no_data']): ?>
+                                            <div class="radio__item" data-id="1" data-selected="true">
+                                                <i class="radio__icon inline far fa-check-square"></i>
+                                                <span class="radio__text">Нет данных</span>
+                                            </div>
+                                        <?php else: ?>
+                                            <div class="radio__item" data-id="1" data-selected="false">
+                                                <i class="radio__icon inline far fa-square"></i>
+                                                <span class="radio__text">Нет данных</span>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -255,7 +269,7 @@
                                    data-multiple_block_field="no_data" name="financing_source_no_data" value="<?= $source['no_data'] ?>">
                         </div>
                         <div class="multiple-block__item" data-block data-type="template" data-name="percent"
-                             data-active="<?= $source['no_data'] ?>">
+                             data-active="<?= $source['no_data'] ? 'false' : 'true' ?>">
                             <div class="form-field field" data-required="true" data-name="percent"
                                  data-pattern="number">
                                 <span class="form-field__title">Процент финансирования</span>
@@ -308,7 +322,7 @@
                                     <i class="radio__icon inline far fa-square"></i>
                                     <span class="radio__text" data-part_title="2">Средства юридических лиц, указанных в ч. 2 статьи 48.2 ГрК</span>
                                 </div>
-                                <div class="radio__item selected" data-id="3">
+                                <div class="radio__item" data-id="3" data-selected="true">
                                     <i class="radio__icon inline far fa-check-square"></i>
                                     <span class="radio__text"
                                           data-part_title="3">Собственные средства застройщика</span>
@@ -332,10 +346,17 @@
                             <div class="form-field__item">
                                 <div class="radio form-field__body">
                                     <div class="radio__body">
-                                        <div class="radio__item" data-id="1">
-                                            <i class="radio__icon inline far fa-square"></i>
-                                            <span class="radio__text">Нет данных</span>
-                                        </div>
+                                        <?php if ($source['no_data']): ?>
+                                            <div class="radio__item" data-id="1" data-selected="true">
+                                                <i class="radio__icon inline far fa-check-square"></i>
+                                                <span class="radio__text">Нет данных</span>
+                                            </div>
+                                        <?php else: ?>
+                                            <div class="radio__item" data-id="1" data-selected="false">
+                                                <i class="radio__icon inline far fa-square"></i>
+                                                <span class="radio__text">Нет данных</span>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -343,7 +364,7 @@
                                    data-multiple_block_field="no_data" name="financing_source_no_data" value="<?= $source['no_data'] ?>">
                         </div>
                         <div class="multiple-block__item" data-block data-type="template" data-name="percent"
-                             data-active="<?= $source['no_data'] ?>">
+                             data-active="<?= $source['no_data'] ? 'false' : 'true' ?>">
                             <div class="form-field field" data-required="true" data-name="percent"
                                  data-pattern="number">
                                 <span class="form-field__title">Процент финансирования</span>
@@ -400,7 +421,7 @@
                                     <span class="radio__text"
                                           data-part_title="3">Собственные средства застройщика</span>
                                 </div>
-                                <div class="radio__item selected" data-id="4">
+                                <div class="radio__item" data-id="4" data-selected="true">
                                     <i class="radio__icon inline far fa-square"></i>
                                     <span class="radio__text" data-part_title="4">Средства инвестора</span>
                                 </div>
@@ -419,10 +440,17 @@
                             <div class="form-field__item">
                                 <div class="radio form-field__body">
                                     <div class="radio__body">
-                                        <div class="radio__item" data-id="1">
-                                            <i class="radio__icon inline far fa-square"></i>
-                                            <span class="radio__text">Нет данных</span>
-                                        </div>
+                                        <?php if ($source['no_data']): ?>
+                                            <div class="radio__item" data-id="1" data-selected="true">
+                                                <i class="radio__icon inline far fa-check-square"></i>
+                                                <span class="radio__text">Нет данных</span>
+                                            </div>
+                                        <?php else: ?>
+                                            <div class="radio__item" data-id="1" data-selected="false">
+                                                <i class="radio__icon inline far fa-square"></i>
+                                                <span class="radio__text">Нет данных</span>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -430,7 +458,7 @@
                                    data-multiple_block_field="no_data" name="financing_source_no_data" value="<?= $source['no_data'] ?>">
                         </div>
                         <div class="multiple-block__item" data-block data-type="template" data-name="percent"
-                             data-active="<?= $source['no_data'] ?>">
+                             data-active="<?= $source['no_data'] ? 'false' : 'true' ?>">
                             <div class="form-field field" data-required="true" data-name="percent"
                                  data-pattern="number">
                                 <span class="form-field__title">Процент финансирования</span>

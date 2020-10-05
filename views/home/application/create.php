@@ -379,12 +379,12 @@
                         <div class="form-field__item">
                             <div class="radio form-field__body" data-required="true">
                                 <div class="radio__body inline">
-                                    <div class="radio__item inline" data-id="1">
-                                        <i class="radio__icon inline far fa-square"></i>
+                                    <div class="radio__item" data-id="1">
+                                        <i class="radio__icon far fa-square"></i>
                                         <span class="radio__text">Да</span>
                                     </div>
-                                    <div class="radio__item inline selected" data-id="0">
-                                        <i class="radio__icon inline far fa-check-square"></i>
+                                    <div class="radio__item" data-id="0" data-selected="true">
+                                        <i class="radio__icon far fa-check-square"></i>
                                         <span class="radio__text">Нет</span>
                                     </div>
                                 </div>
@@ -434,12 +434,12 @@
                         <div class="form-field__item">
                             <div class="radio form-field__body" data-required="true">
                                 <div class="radio__body inline">
-                                    <div class="radio__item inline" data-id="1">
-                                        <i class="radio__icon inline far fa-square"></i>
+                                    <div class="radio__item" data-id="1">
+                                        <i class="radio__icon far fa-square"></i>
                                         <span class="radio__text">Да</span>
                                     </div>
-                                    <div class="radio__item inline selected" data-id="0">
-                                        <i class="radio__icon inline far fa-check-square"></i>
+                                    <div class="radio__item" data-id="0" data-selected="true">
+                                        <i class="radio__icon far fa-check-square"></i>
                                         <span class="radio__text">Нет</span>
                                     </div>
                                 </div>
@@ -583,19 +583,19 @@
                                         <div class="radio form-field__body" data-required="true" data-result_callback="financing_type">
                                             <div class="radio__body">
                                                 <div class="radio__item" data-id="1">
-                                                    <i class="radio__icon inline far fa-square"></i>
+                                                    <i class="radio__icon far fa-square"></i>
                                                     <span class="radio__text" data-part_title="1">Бюджетные средства</span>
                                                 </div>
                                                 <div class="radio__item" data-id="2">
-                                                    <i class="radio__icon inline far fa-square"></i>
+                                                    <i class="radio__icon far fa-square"></i>
                                                     <span class="radio__text" data-part_title="2">Средства юридических лиц, указанных в ч. 2 статьи 48.2 ГрК</span>
                                                 </div>
                                                 <div class="radio__item" data-id="3">
-                                                    <i class="radio__icon inline far fa-square"></i>
+                                                    <i class="radio__icon far fa-square"></i>
                                                     <span class="radio__text" data-part_title="3">Собственные средства застройщика</span>
                                                 </div>
                                                 <div class="radio__item" data-id="4">
-                                                    <i class="radio__icon inline far fa-square"></i>
+                                                    <i class="radio__icon far fa-square"></i>
                                                     <span class="radio__text" data-part_title="4">Средства инвестора</span>
                                                 </div>
                                             </div>
@@ -640,7 +640,7 @@
                                             <div class="radio form-field__body">
                                                 <div class="radio__body">
                                                     <div class="radio__item" data-id="1">
-                                                        <i class="radio__icon inline far fa-square"></i>
+                                                        <i class="radio__icon far fa-square"></i>
                                                         <span class="radio__text">Нет данных</span>
                                                     </div>
                                                 </div>
@@ -743,7 +743,7 @@
                                             <div class="radio form-field__body">
                                                 <div class="radio__body">
                                                     <div class="radio__item" data-id="1">
-                                                        <i class="radio__icon inline far fa-square"></i>
+                                                        <i class="radio__icon far fa-square"></i>
                                                         <span class="radio__text">Нет данных</span>
                                                     </div>
                                                 </div>
@@ -774,7 +774,7 @@
                                             <div class="radio form-field__body">
                                                 <div class="radio__body">
                                                     <div class="radio__item" data-id="1">
-                                                        <i class="radio__icon inline far fa-square"></i>
+                                                        <i class="radio__icon far fa-square"></i>
                                                         <span class="radio__text">Нет данных</span>
                                                     </div>
                                                 </div>
@@ -805,7 +805,7 @@
                                             <div class="radio form-field__body">
                                                 <div class="radio__body">
                                                     <div class="radio__item" data-id="1">
-                                                        <i class="radio__icon inline far fa-square"></i>
+                                                        <i class="radio__icon far fa-square"></i>
                                                         <span class="radio__text">Нет данных</span>
                                                     </div>
                                                 </div>

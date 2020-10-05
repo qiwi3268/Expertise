@@ -6,12 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 tinymce.init({
-   selector: "textarea#common_part",
+   selector: "textarea#descriptive_part",
    height: 200,
    elementpath: false,
    statusbar: false,
    language: 'ru',
-   placeholder: 'Введите текст общей части',
+   placeholder: 'Введите текст описательной части',
    plugins: [
       "advlist autolink lists link image charmap print preview anchor",
       "searchreplace visualblocks code fullscreen",
@@ -32,7 +32,6 @@ tinymce.init({
       format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript | removeformat' },
       help: { title: 'Дополнительно', items: 'wordcount help' }
    },
-
 
    skin: "CUSTOM",
    content_css: "CUSTOM"
