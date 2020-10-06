@@ -79,11 +79,20 @@ function changeParentCardMaxHeight (inner_element, value = null) {
       card_body.style.maxHeight = value;
    }
 
+   // Если текущий раскрывающийся блок находится внутри друго раскрывающегося,
+   // меняем высоту родительского
+   let card_container = card_body.closest('.card').parentElement;
+   let parent_card_body = card_container.closest('.card-body');
+   if (parent_card_body) {
+      let parent_card_height = card_container.scrollHeight + card_body.scrollHeight + 'px';
+      changeParentCardMaxHeight(card_container, parent_card_height);
+   }
+
 }
 
 function resizeCard (inner_element) {
-   let card_body = inner_element.closest('.card-body');
 
+   let card_body = inner_element.closest('.card-body');
    if (card_body.style.maxHeight) {
       // Раскрываем блок
       changeParentCardMaxHeight(card_body);

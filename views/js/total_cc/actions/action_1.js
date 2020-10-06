@@ -19,6 +19,7 @@ function saveCommonPart () {
                break;
             default:
                console.log(response);
+
          }*/
 
       })
