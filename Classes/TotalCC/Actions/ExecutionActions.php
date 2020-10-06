@@ -21,13 +21,8 @@ use Tables\FinancingSources\FinancingSourcesAggregator;
 class ExecutionActions extends MainExecutionActions
 {
 
-    // Реализация callback'ов исполнения действий из БД
-
-    // Ошибкам во время исполнения действия необходимо присваивать code 6
-
-
     /**
-     * Действие <i>"Создать общую часть"</i>
+     * Действие <i>Создать общую часть</i>
      *
      * @return string
      * @throws DataBaseEx
@@ -66,11 +61,10 @@ class ExecutionActions extends MainExecutionActions
     }
 
 
-
-
-
-
-    // редактирование
+    /**
+     * Действие <i>{@todo}</i>
+     * @return string
+     */
     public function action_2(): string
     {
         //todo удалять источников финансирования записи из таблицы

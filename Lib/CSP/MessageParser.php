@@ -5,7 +5,7 @@ namespace Lib\CSP;
 
 use Lib\Exceptions\CSPMessageParser as SelfEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
-use Classes\Exceptions\PregMatch as PregMatchEx;
+use functions\Exceptions\Functions as FunctionsEx;
 use Tables\people_name;
 
 
@@ -57,7 +57,7 @@ class MessageParser
      *
      * @param string $message вывод исполняемой команды по валидации подписи
      * @return array массив частей сообщения без технической части, разбитый по символам-переносам строк
-     * @throws PregMatchEx
+     * @throws FunctionsEx
      */
     public function getMessagePartsWithoutTechnicalPart(string $message): array
     {
@@ -90,6 +90,7 @@ class MessageParser
         foreach ($parts as $part) {
 
             if (
+                //todo тут переделать на containsAny?
                 !icontainsAll($part, 'CryptCP 4.0 (c) "Crypto-Pro", 2002-2020.') &&
                 !icontainsAll($part, 'CryptCP 5.0 (c) "Crypto-Pro", 2002-2019.') &&
                 !icontainsAll($part, 'Command prompt Utility for file signature and encryption.') &&
@@ -112,7 +113,7 @@ class MessageParser
      * @param string $Signer строка с подписантом
      * @return string ФИО подписанта
      * @throws SelfEx
-     * @throws PregMatchEx
+     * @throws FunctionsEx
      */
     public function getFIO(string $Signer): string
     {
@@ -143,7 +144,7 @@ class MessageParser
 
         foreach ($matches as $match) {
 
-            // Заменяем все ё на е, т.е. в БД хранятся только е
+            // Заменяем все ё на е, т.к. в БД хранятся только е
             $match = str_replace('ё', 'е', $match);
 
             $fio_matches = getHandlePregMatch($fio_pattern, $match, true)[0]; // Массив полных вхождений шаблона
@@ -176,7 +177,7 @@ class MessageParser
      *
      * @param string $Signer строка с подписантом
      * @return string данные сертификата
-     * @throws PregMatchEx
+     * @throws FunctionsEx
      */
     public function getCertificateInfo(string $Signer): string
     {
@@ -197,7 +198,7 @@ class MessageParser
      *
      * @param string $message вывод исполняемой cryptcp команды
      * @return string код ошибки
-     * @throws PregMatchEx
+     * @throws FunctionsEx
      */
     public function getErrorCode(string $message): string
     {

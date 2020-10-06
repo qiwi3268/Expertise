@@ -5,7 +5,7 @@ namespace Classes\Application;
 
 
 /**
- * Предназначен для сохранения (обновленных) новых данных анкеты документа <i>Заявление</i>
+ * Предназначен для сохранения (обновленных) новых данных анкеты заявления
  *
  */
 class DataToUpdate
@@ -13,6 +13,7 @@ class DataToUpdate
 
     static private ?array $flatAssoc = null;
     static private array $dataToUpdate = [];
+
 
     /**
      * Конструктор класса

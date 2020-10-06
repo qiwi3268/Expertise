@@ -1,6 +1,6 @@
 <?php
 
-use Classes\Exceptions\PregMatch as PregMatchEx;
+use functions\Exceptions\Functions as FunctionsEx;
 use Lib\Exceptions\Shell as ShellEx;
 use Lib\Exceptions\Logger as LoggerEx;
 
@@ -73,7 +73,7 @@ try {
     try {
 
         list('application_id' => $applicationId, 'file_name' => $fileName) = ApplicationHelper::parseApplicationFilePath($P_fs_name);
-    } catch (PregMatchEx $e) {
+    } catch (FunctionsEx $e) {
 
         // Произошла ошибка при парсинге P_fs_name
         $errorMessage = $e->getMessage();
@@ -112,7 +112,7 @@ try {
     try {
 
         $errorCode = $messageParser->getErrorCode($message);
-    } catch (PregMatchEx $e) {
+    } catch (FunctionsEx $e) {
 
         // Произошла ошибка или нет вхождений ErrorCode
         $errorMessage = $e->getMessage();

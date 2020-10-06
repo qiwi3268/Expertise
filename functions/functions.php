@@ -1,13 +1,12 @@
 <?php
 
 
-use Classes\Exceptions\PregMatch as PregMatchEx;
 use functions\Exceptions\Functions as SelfEx;
 
 /**
  * Предназначен для включения пользовательской автозагрузки
  *
- * @throws PregMatchEx
+ * @throws SelfEx
  */
 function enableAutoloadRegister(): void
 {
@@ -198,7 +197,7 @@ function containsAny(string $haystack, string ...$needles): bool
  * <b>true</b> preg_match_all<br/>
  * <b>false</b> preg_match
  * @return array массив совпавших значений
- * @throws PregMatchEx
+ * @throws SelfEx
  */
 function getHandlePregMatch(string $pattern, string $subject, bool $is_preg_match_all): array
 {
@@ -208,7 +207,7 @@ function getHandlePregMatch(string $pattern, string $subject, bool $is_preg_matc
 
     // Во время выполнения произошли ошибки или нет вхождений шаблона
     if ($result === false || $result === 0) {
-        throw new PregMatchEx("Во время выполнения функции: '{$functionName}' произошла ошибка или нет вхождений шаблона: '{$pattern}' в строку: '{$subject}'", 1);
+        throw new SelfEx("Во время выполнения функции: '{$functionName}' произошла ошибка или нет вхождений шаблона: '{$pattern}' в строку: '{$subject}'", 2);
     }
 
     return $matches;
@@ -303,7 +302,7 @@ function getHumanFileSize(int $bytes): string
  * @param bool $needShort <b>true</b> возвращать короткую версию ФИО<br/>
  * <b>false</b> возвращать полную версию ФИО
  * @return string ФИО в нужном формате
- * @throws PregMatchEx
+ * @throws SelfEx
  */
 function getFIO(array $userInfo, bool $needShort = true): string
 {

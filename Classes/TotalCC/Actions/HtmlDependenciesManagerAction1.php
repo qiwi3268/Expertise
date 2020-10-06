@@ -36,7 +36,7 @@ class HtmlDependenciesManagerAction1 extends HtmlDependenciesManager
     /**
      * Реализация абстрактного метода
      *
-     * @uses \Classes\Application\HtmlDependenciesManagerApplicationForm::getRequireDependencies()
+     * @uses \Classes\Application\HtmlDependenciesManagerApplicationForm::getBlockDependencies()
      */
     protected function initializeBlockDependencies(): void
     {

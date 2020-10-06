@@ -21,10 +21,8 @@ use Tables\assigned_expert_total_cc;
 class AccessActions extends MainAccessActions
 {
 
-    // Реализация callback'ов доступа к действиям из БД
-
     /**
-     * <b>Создать общую часть</b>
+     * Действие <i>Создать общую часть</i>
      *
      * @return bool
      * @throws DataBaseEx
@@ -56,7 +54,7 @@ class AccessActions extends MainAccessActions
 
 
     /**
-     * <b>Редактировать общую часть</b>
+     * Действие <i>Редактировать общую часть</i>
      *
      * @return bool
      */

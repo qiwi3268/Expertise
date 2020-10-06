@@ -6,7 +6,7 @@ namespace Lib\CSP;
 use Lib\Exceptions\CSPValidator as SelfEx;
 use Lib\Exceptions\Shell as ShellEx;
 use Lib\Exceptions\CSPMessageParser as CSPMessageParserEx;
-use Classes\Exceptions\PregMatch as PregMatchEx;
+use functions\Exceptions\Functions as FunctionsEx;
 use Lib\CSP\Interfaces\SignatureValidationShell;
 
 
@@ -49,26 +49,26 @@ class Validator
      * @return array массив формата:<br>
      * 0 : <i>array</i><br>
      * <br>
-     *          fio         <i>string</i> : Фамилия Имя Отчество<br>
+     * fio <i>string</i>: Фамилия Имя Отчество<br>
      * <br>
-     *          certificate <i>string</i> : данные сертификата<br>
+     * certificate <i>string</i>: данные сертификата<br>
      * <br>
-     *          signature_verify : <i>array</i><br>
-     *              result         <i>bool</i> : <b>true</b> подпись верна, <b>false</b> в противном случае<br>
-     *              message      <i>string</i> : вывод исполняемой команды результата проверки подписи<br>
-     *              user_message <i>string</i> : пользовательское сообщение на основе результата проверки подписи<br>
+     * signature_verify : <i>array</i><br>
+     * result <i>bool</i>: <b>true</b> подпись верна, <b>false</b> в противном случае<br>
+     * message <i>string</i>: вывод исполняемой команды результата проверки подписи<br>
+     * user_message <i>string</i>: пользовательское сообщение на основе результата проверки подписи<br>
      * <br>
-     *          certificate_verify : <i>array</i><br>
-     *              result         <i>bool</i> : <b>true</b> сертификат действителен, <b>false</b> в противном случае<br>
-     *              message      <i>string</i> : вывод исполняемой команды результата проверки подписи (сертификата)<br>
-     *              user_message <i>string</i> : пользовательское сообщение на основе результата проверки подписи (сертификата)<br>
+     * certificate_verify : <i>array</i><br>
+     * result <i>bool</i>: <b>true</b> сертификат действителен, <b>false</b> в противном случае<br>
+     * message <i>string</i>: вывод исполняемой команды результата проверки подписи (сертификата)<br>
+     * user_message <i>string</i>: пользовательское сообщение на основе результата проверки подписи (сертификата)<br>
      * <br>
      * 1 : <i>array</i>...<br>
      *
      * @throws ShellEx
      * @throws SelfEx
      * @throws CSPMessageParserEx
-     * @throws PregMatchEx
+     * @throws FunctionsEx
      */
     public function validate(string ...$paths): array
     {
@@ -101,8 +101,8 @@ class Validator
                     'user_message' => $this->getSignatureUserMessage($signer['message'])
                 ];
 
-                // Результат с проверкой цепочки сертификатов невалидный и при этом нет ошибки, что подпись невалидная
-                // Производим повторную проверку подписи без проверки цепочки сертификатов
+           // Результат с проверкой цепочки сертификатов невалидный и при этом нет ошибки, что подпись невалидная
+           // Производим повторную проверку подписи без проверки цепочки сертификатов
             } else {
 
                 // Получение результатов валидации подписи БЕЗ проверкой цепочки сертификатов
@@ -152,17 +152,20 @@ class Validator
      *
      * @param array $messageParts
      * @return array массив формата:<br>
-     * signers<br>
-     *       0 : <i>array</i><br>
-     *           fio         <i>string</i> : Фамилия Имя Отчество<br>
-     *           certificate <i>string</i> : данные сертификата<br>
-     *           result        <i>bool</i> : результат проверки подписи<br>
-     *           message     <i>string</i> : сообщение результата проверки подписи<br>
-     *       1 : <i>array</i>...<br>
-     * errorCode:<br>
-     *          код ошибки : <i>string</i><br>
+     * signers : <i>array</i><br>
+     * <br>
+     * 0 : <i>array</i><br>
+     * fio <i>string</i>: Фамилия Имя Отчество<br>
+     * certificate <i>string</i>: данные сертификата<br>
+     * result <i>bool</i>: результат проверки подписи<br>
+     * message <i>string</i>: сообщение результата проверки подписи<br>
+     * <br>
+     * 1 : <i>array</i>...<br>
+     * <br>
+     * errorCode <i>string</i>: код ошибки
+     *
      * @throws SelfEx
-     * @throws PregMatchEx
+     * @throws FunctionsEx
      * @throws CSPMessageParserEx
      */
     private function getValidateResults(array $messageParts): array

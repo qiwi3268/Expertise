@@ -3,7 +3,7 @@
 
 namespace core\Classes;
 
-use Classes\Exceptions\PregMatch as PregMatchEx;
+use functions\Exceptions\Functions as FunctionsEx;
 
 
 /**
@@ -77,7 +77,7 @@ class Session
      * Предназначен для получения полного ФИО пользователя
      *
      * @return string полное ФИО пользователя
-     * @throws PregMatchEx
+     * @throws FunctionsEx
      */
     static public function getUserFullFIO(): string
     {

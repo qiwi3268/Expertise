@@ -432,6 +432,8 @@
             </files>
         </page>
 
+
+
         <page urn="home/expertise_cards/total_cc/actions/action_1">
 
             <callback_template id="AuthorizationChecker" />
@@ -458,17 +460,12 @@
                     <file name="header" />
                 </dir>
                 <dir path="/views/home/expertise_cards/documents/total_cc/actions/" ext=".php">
-                    <file name="action_1_dependencies" />
                     <file name="action_1" />
-                </dir>
-                <dir path="/views/home/modals/" ext=".php">
-                    <file name="error" />
                 </dir>
                 <dir path="/views/home/" ext=".php">
                     <file name="footer" />
                 </dir>
             </files>
-
         </page>
 
         <page urn="registration_user">

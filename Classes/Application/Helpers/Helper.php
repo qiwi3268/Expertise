@@ -3,7 +3,7 @@
 
 namespace Classes\Application\Helpers;
 
-use Classes\Exceptions\PregMatch as PregMatchEx;
+use functions\Exceptions\Functions as FunctionsEx;
 
 
 /**
@@ -42,7 +42,7 @@ class Helper
      * 'application_id' <i>int</i> => id заявления<br>
      * 'file_name' <i>string</i> => имя файла в ФС
      *
-     * @throws PregMatchEx
+     * @throws FunctionsEx
      */
     static public function parseApplicationFilePath(string $path): array
     {

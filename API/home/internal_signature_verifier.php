@@ -2,7 +2,7 @@
 
 
 use Lib\Exceptions\DataBase as DataBaseEx;
-use Classes\Exceptions\PregMatch as PregMatchEx;
+use functions\Exceptions\Functions as FunctionsEx;
 use Lib\Exceptions\Shell as ShellEx;
 use Lib\Exceptions\CSPMessageParser as CSPMessageParserEx;
 use Lib\Exceptions\CSPValidator as CSPValidatorEx;
@@ -30,7 +30,7 @@ use Lib\CSP\Validator;
 //  3  - Произошла ошибка при парсинге fs_name_sign
 //       {result, error_message : текст ошибки}
 //	4  - Произошла внутренняя ошибка 'Lib\Exceptions\Shell'
-//       Произошла внутренняя ошибка 'Classes\Exceptions\PregMatch'
+//       Произошла внутренняя ошибка 'functions\Exceptions\Functions'
 //       Произошла внутренняя ошибка 'Lib\Exceptions\CSPMessageParser'
 //       Произошла внутренняя ошибка 'Lib\Exceptions\CSPValidator'
 //       {result, error_message : текст ошибки}
@@ -88,7 +88,7 @@ try {
 
         // Получение id файла
         list('application_id' => $application_id, 'file_name' => $hash_sign) = ApplicationHelper::parseApplicationFilePath($P_fs_name_sign);
-    } catch (PregMatchEx $e) {
+    } catch (FunctionsEx $e) {
 
         // Произошла ошибка при парсинге P_fs_name_sign
         $errorMessage = $e->getMessage();
@@ -122,7 +122,7 @@ try {
             'result'        => 4,
             'error_message' => "Произошла внутренняя ошибка 'Lib\Exceptions\Shell'. log time: '{$date}'"
         ]));
-    } catch (PregMatchEx $e) {
+    } catch (FunctionsEx $e) {
 
         // getHandlePregMatch
         // Произошла ошибка или нет вхождений шаблона при работе функции getHandlePregMatch
@@ -130,7 +130,7 @@ try {
 
         exit(json_encode([
             'result'        => 4,
-            'error_message' => "Произошла внутренняя ошибка 'Classes\Exceptions\PregMatch'. log time: '{$date}'"
+            'error_message' => "Произошла внутренняя ошибка 'functions\Exceptions\Functions'. log time: '{$date}'"
         ]));
     } catch (CSPMessageParserEx $e) {
 

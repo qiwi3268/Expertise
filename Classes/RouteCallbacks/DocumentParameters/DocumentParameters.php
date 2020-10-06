@@ -4,7 +4,7 @@
 namespace Classes\RouteCallbacks\DocumentParameters;
 use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
 use Classes\Exceptions\DocumentParameters as SelfEx;
-use Classes\Exceptions\PregMatch as PregMatchEx;
+use functions\Exceptions\Functions as FunctionsEx;
 use Lib\Singles\PrimitiveValidator;
 
 
@@ -44,7 +44,7 @@ abstract class DocumentParameters
     {
         try {
             $documentType = getHandlePregMatch($pattern, $subject, false)[1];
-        } catch (PregMatchEx $e) {
+        } catch (FunctionsEx $e) {
             throw new SelfEx("Произошла ошибка при определении типа открытого документа", 2);
         }
 

@@ -4,7 +4,7 @@
 namespace Classes\RouteCallbacks\DocumentParameters;
 
 use Classes\Exceptions\DocumentParameters as SelfEx;
-use Classes\Exceptions\PregMatch as PregMatchEx;
+use functions\Exceptions\Functions as FunctionsEx;
 use Exception;
 
 
@@ -87,7 +87,7 @@ class APIActionExecutor extends DocumentParameters
                     'CURRENT_PAGE_NAME',
                     getHandlePregMatch("/\A\/(.+)\z/", $path_name, false)[1]
                 );
-            } catch (PregMatchEx $e) {
+            } catch (FunctionsEx $e) {
 
                 exit(json_encode([
                     'result'        => 6,

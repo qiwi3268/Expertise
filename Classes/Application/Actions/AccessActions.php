@@ -15,18 +15,14 @@ use Lib\Actions\AccessActions as MainAccessActions;
 class AccessActions extends MainAccessActions
 {
 
-    // Реализация callback'ов доступа к действиям из БД
-
-
     public function action_1(): bool
     {
         return true;
     }
 
-    //
 
     /**
-     * <b>Назначить экспертов</b>
+     * Действие <i>Назначить экспертов</i>
      *
      * @return bool
      */
