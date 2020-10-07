@@ -9,7 +9,7 @@
     <!--            <i class="card-form__icon-state fas fa-exclamation-circle"></i>-->
     <!--        --><?php //endif; ?>
             <span class="card-form__title">СВЕДЕНИЯ О ЗАЯВИТЕЛЕ</span>
-            <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
+            <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
         </div>
         
         <div class="card-form__body expanded card-body">
@@ -31,7 +31,7 @@
             <i class="card-form__icon-state fas fa-exclamation-circle"></i>
             <!--        --><?php //endif; ?>
             <span class="card-form__title">СВЕДЕНИЯ О ЗАЯВИТЕЛЕ</span>
-            <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
+            <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
         </div>
         
         <div class="card-form__body expanded card-body">

@@ -256,6 +256,8 @@ function TEPPartValidation (part) {
    if (part.data.indicator && part.data.measure && part.data.value) {
       result.is_valid = true;
       result.part_title = part.data.indicator;
+      let part_title = part.element.querySelector('[data-multiple_title]');
+      part_title.innerHTML = result.part_title;
    } else {
       result.is_valid = false;
       result.error_message = 'Не заполнены обязательные поля';

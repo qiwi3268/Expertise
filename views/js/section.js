@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
    let cards = document.querySelectorAll('.card');
    cards.forEach(card => {
-      console.log('tut');
+      // console.log('tut');
       let card_header = card.querySelector('.card-expand');
       card_header.addEventListener('click', () => expandCard(card));
    });
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Сразу делаем блоки раскрытыми без анимации развертывания
 window.addEventListener('load', () => {
-   console.log('tut2');
+   // console.log('tut2');
 
    let cards_view = document.querySelectorAll('.card-body.expanded');
    cards_view.forEach(card_body => {
@@ -89,7 +89,7 @@ function changeParentCardMaxHeight (inner_element, value = null) {
    // card_body.style.transition = `${card_body.scrollHeight / 2500 + 0.2}s cubic-bezier(0.65, 0, 0.35, 1)`;
 
    if (!value) {
-      card_body.style.maxHeight = card_body.scrollHeight + 'px';
+      card_body.style.maxHeight = getFullHeight(card_body) + 'px';
    } else {
       card_body.style.maxHeight = value;
    }
@@ -99,10 +99,16 @@ function changeParentCardMaxHeight (inner_element, value = null) {
    let card_container = card_body.closest('.card').parentElement;
    let parent_card_body = card_container.closest('.card-body');
    if (parent_card_body) {
-      let parent_card_height = card_container.scrollHeight + card_body.scrollHeight + 'px';
+
+      let parent_card_height = getFullHeight(card_container) + getFullHeight(card_body) + 'px';
       changeParentCardMaxHeight(card_container, parent_card_height);
    }
 
+}
+
+function getFullHeight (element) {
+   let style = window.getComputedStyle(element);
+   return element.scrollHeight + parseInt(style.marginTop) + parseInt(style.marginBottom);
 }
 
 // Предназначен для обработки события отпускания кнопки мыши

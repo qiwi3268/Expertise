@@ -42,7 +42,7 @@
         <div class="application-form__card card-form card" data-type="applicant">
             <div class="card-form__header card-expand">
                 <span class="card-form__title">СВЕДЕНИЯ О ЗАЯВИТЕЛЕ</span>
-                <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
+                <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
             </div>
             <div class="card-form__body card-body">
 
@@ -153,7 +153,7 @@
         <div class="application-form__card card-form card" data-type="">
             <div class="card-form__header card-expand">
                 <span class="card-form__title">ОСНОВАНИЯ ДЛЯ ПРОВЕДЕНИЯ ЭКСПЕРТИЗЫ</span>
-                <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
+                <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
             </div>
             <div class="card-form__body card-body">
                 <!--Договор-->
@@ -198,7 +198,7 @@
         <div class="card-form application-form__card card" data-type="financing_sources">
             <div class="card-form__header card-expand">
                 <span class="card-form__title">СВЕДЕНИЯ, СОДЕРЖАЩИЕСЯ В ДОКУМЕНТАХ, ПРЕДСТАВЛЕННЫХ ДЛЯ ПРОВЕДЕНИЯ ЭКСПЕРТИЗЫ ПРОЕКТНОЙ ДОКУМЕНТАЦИИ</span>
-                <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
+                <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
             </div>
             <div class="card-form__body card-body">
 

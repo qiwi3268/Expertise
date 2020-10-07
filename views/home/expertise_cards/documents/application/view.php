@@ -10,7 +10,7 @@
                     <i class="card-form__icon-state fas fa-exclamation-circle"></i>
                 <?php endif; ?>
                 <span class="card-form__title">СВЕДЕНИЯ О ЦЕЛИ ОБРАЩЕНИЯ</span>
-                <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
+                <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
             </div>
 
             <div class="card-form__body card-body expanded">
@@ -73,7 +73,7 @@
                     <i class="card-form__icon-state fas fa-exclamation-circle"></i>
                 <?php endif; ?>
                 <span class="card-form__title">СВЕДЕНИЯ ОБ ОБЪЕКТЕ</span>
-                <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
+                <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
             </div>
             <div class="card-form__body card-body expanded">
 
@@ -295,7 +295,7 @@
                     <i class="card-form__icon-state fas fa-exclamation-circle"></i>
                 <?php endif; ?>
                 <span class="card-form__title">ДОКУМЕНТАЦИЯ</span>
-                <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
+                <i class="card-form__icon-expand fas fa-chevron-up arrow-up card-icon"></i>
             </div>
             <div class="card-form__body card-body expanded">
                 <?php if (!$variablesTV->getExistenceFlag('type_of_object')): ?>
