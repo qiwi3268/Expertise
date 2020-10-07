@@ -5,6 +5,7 @@ namespace Classes\RouteCallbacks;
 
 use Lib\Exceptions\Actions as ActionsEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
+use Tables\Exceptions\Tables as TablesEx;
 use ReflectionException;
 use core\Classes\Session;
 use Lib\Actions\Locator;
@@ -32,6 +33,8 @@ class ActionChecker
      * Необходим, так как класс создается до того, как будет вызван метод, объявляющий константы
      *
      * @throws ActionsEx
+     * @throws DataBaseEx
+     * @throws TablesEx
      */
     public function construct(): void
     {

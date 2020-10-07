@@ -133,8 +133,11 @@ switch (URN) {
             ...GetTinyMCECase(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'action_header.css'),
-            ...CreateSource('css', TMP_CSS,'section_create_test.css'),
-            ...CreateSource('js', TMP_JS, 'section_create_test.js')
+            ...CreateSource('css', TMP_CSS,'section_create_test.css', 'multiple_block.css', 'create_application.css'),
+            ...CreateSource('js', ROOT_JS, 'main.js', 'DependenciesHandler.js', 'MultipleBlock.js', 'PartBlock.js'),
+            ...CreateSource('js', MODALS_JS,'ErrorModal.js'),
+    
+            ...CreateSource('js', TMP_JS, 'section_create_test.js'),
         ];
         break;
 
@@ -150,19 +153,7 @@ switch (URN) {
             ...CreateSource('js', ROOT_JS . 'total_cc/actions/', 'action_1.js'),
         ];
         break;
-    
-    case 'home/expertise_cards/total_cc/view' :
-        $pageName = 'Общая часть';
-        $sourcesFiles = [...GetFontAwesome5Case(),
-            ...CreateSource('css', ROOT_CSS, 'entry.css'),
-            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'action_header.css'),
-            ...CreateSource('css', TMP_CSS,'multiple_block.css', 'create_application.css', 'action_3.css', 'modal.css', 'radio.css'),
-            ...CreateSource('js', ROOT_JS, 'main.js', 'API.js', 'section.js', 'DependenciesHandler.js', 'radio.js', 'MultipleBlock.js', 'PartBlock.js', 'validation.js'),
-            ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
-            ...CreateSource('js', MODALS_JS,'SignView.js', 'Misc.js', 'ErrorModal.js'),
-            ...CreateSource('js', ROOT_JS . 'total_cc/actions/', 'action_1.js'),
-        ];
-        break;
+
 }
 
 $variablesTV = \Lib\Singles\VariableTransfer::getInstance();

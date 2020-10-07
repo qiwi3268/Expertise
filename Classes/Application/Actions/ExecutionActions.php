@@ -15,7 +15,7 @@ use Lib\Actions\ExecutionActions as MainExecutionActions;
 use Lib\DataBase\Transaction;
 use Lib\Singles\Helpers\PageAddress;
 use Tables\Docs\application;
-use Tables\DocumentationTypeTableLocator;
+use Tables\Locators\TypeOfObjectTableLocator;
 
 
 /**
@@ -81,7 +81,7 @@ class ExecutionActions extends MainExecutionActions
             throw new SelfEx("Количество экспертов на общую часть равно 0", 6);
         }
 
-        $tableLocator = new DocumentationTypeTableLocator(application::getIdTypeOfObjectById(CURRENT_DOCUMENT_ID));
+        $tableLocator = new TypeOfObjectTableLocator(application::getIdTypeOfObjectById(CURRENT_DOCUMENT_ID));
 
         $tables = [
             // Создание сводного замечания / заключения

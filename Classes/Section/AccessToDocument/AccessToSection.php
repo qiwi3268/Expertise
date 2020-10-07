@@ -8,7 +8,7 @@ use Lib\Exceptions\DataBase as DataBaseEx;
 use Tables\Exceptions\Tables as TablesEx;
 
 use Lib\AccessToDocument\AccessToDocument;
-use Tables\DocumentationTypeTableLocator;
+use Tables\Locators\TypeOfObjectTableLocator;
 
 
 /**
@@ -32,7 +32,7 @@ class AccessToSection extends AccessToDocument
     {
         parent::__construct($documentId);
 
-        $locator = new DocumentationTypeTableLocator($typeOfObjectId);
+        $locator = new TypeOfObjectTableLocator($typeOfObjectId);
         $this->sectionTable = $locator->getDocsSection();
     }
 

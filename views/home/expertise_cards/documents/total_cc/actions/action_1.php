@@ -202,20 +202,11 @@
             </div>
             <div class="card-form__body card-body">
 
-                <div class="card-form__financing">
-
-                    <?php \Lib\Singles\TemplateMaker::requireByName('view_financing_sources'); ?>
-
-                </div>
-
-
                 <!--Источники финансирования-->
-<!--                <div class="multiple-block card-form__block" data-block data-type="multiple" data-name="financing_sources" data-saved="false">-->
-
-<!--                    --><?php //\Lib\Singles\TemplateMaker::requireByName('edit_financing_sources'); ?>
-<!--                    --><?php //\Lib\Singles\TemplateMaker::requireByName('create_financing_sources'); ?>
-
-<!--                </div>-->
+                <div class="multiple-block card-form__block" data-block data-type="multiple" data-name="financing_sources" data-saved="false">
+                    <?php \Lib\Singles\TemplateMaker::requireByName('edit_financing_sources'); ?>
+                    <?php \Lib\Singles\TemplateMaker::requireByName('create_financing_sources'); ?>
+                </div>
                 <!--//Источники финансирования//-->
 
             </div>

@@ -98,7 +98,9 @@ class HtmlDependenciesManagerApplicationForm extends HtmlDependenciesManager
             'financing_source_no_data' => [
                 '' => ['percent' => true],
                 1  => ['percent' => false],
-            ]
+            ],
+            
+            
         ];
     }
 

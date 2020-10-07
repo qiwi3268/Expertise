@@ -8,8 +8,8 @@ use Lib\AccessToDocument\AccessToDocumentTree;
 use Lib\AccessToDocument\Factory;
 use Lib\Singles\Helpers\PageAddress;
 use Classes\DocumentTreeHandler;
-use Tables\Docs\TableLocator;
-use Tables\DocumentationTypeTableLocator;
+use Tables\Locators\DocumentTypeTableLocator;
+use Tables\Locators\TypeOfObjectTableLocator;
 use Tables\assigned_expert_total_cc;
 
 
@@ -141,7 +141,7 @@ $checkAccessFromSection = function (
     }
 };
 
-$docsTableLocator = new TableLocator();
+
 
 // Проверка заявления ------------------------------------------------------------------------
 if ($treeHandler->ce_application()) {
@@ -151,7 +151,9 @@ if ($treeHandler->ce_application()) {
         || $checkAccessFromApplication
     ) {
 
-        $docApplicationTable = $docsTableLocator->getDocTableByDocumentType(DOCUMENT_TYPE['application']);
+        $applicationTableLocator = new DocumentTypeTableLocator(DOCUMENT_TYPE['application']);
+
+        $docApplicationTable = $applicationTableLocator->getDocs();
 
         $addDocumentToArray(
             'application',
@@ -166,14 +168,16 @@ if ($treeHandler->ce_application()) {
 
             $totalCCId = $treeHandler->getTotalCCId();
 
-            $documentationTypeTableLocator = new DocumentationTypeTableLocator($treeHandler->getTypeOfObjectId());
+            $typeOfObjectTableLocator = new TypeOfObjectTableLocator($treeHandler->getTypeOfObjectId());
 
             if (
                 $isDocumentChecked(DOCUMENT_TYPE['total_cc'], $totalCCId)
                 || $checkAccessFromTotalCC()
             ) {
 
-                $docTotalCCTable = $docsTableLocator->getDocTableByDocumentType(DOCUMENT_TYPE['total_cc']);
+                $totalCCTableLocator = new DocumentTypeTableLocator(DOCUMENT_TYPE['total_cc']);
+
+                $docTotalCCTable = $totalCCTableLocator->getDocs();
 
                 $leadExpert = getFIO(assigned_expert_total_cc::getAssocExpertWhereLeadByIdTotalCC($totalCCId));
 
@@ -201,10 +205,13 @@ if ($treeHandler->ce_application()) {
                     // dt - document type
                     $dt = $treeHandler->getTypeOfObjectId() == 1 ? DOCUMENT_TYPE['section_documentation_1'] : DOCUMENT_TYPE['section_documentation_2'];
 
+                    $sectionTableLocator = new DocumentTypeTableLocator($dt);
+
                     // Таблица документа раздела
-                    $docSectionTable = $docsTableLocator->getDocTableByDocumentType($dt);
+                    $docSectionTable = $sectionTableLocator->getDocs();
+
                     // Таблица назначенных на раздел экспертов
-                    $assignedExpertTable = $documentationTypeTableLocator->getAssignedExpertSection();
+                    $assignedExpertTable = $typeOfObjectTableLocator->getAssignedExpertSection();
 
                     // Флаг того, что отсутствует раздел, который был проверен в route callback
                     // Этим экономим вызовы замыкания $isDocumentChecked, поскольку одновременно только

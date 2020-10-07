@@ -4,6 +4,9 @@
 namespace Lib\Actions;
 
 use Lib\Exceptions\Actions as SelfEx;
+use Lib\Exceptions\DataBase as DataBaseEx;
+use Tables\Exceptions\Tables as TablesEx;
+
 use Classes\Application\Actions\Actions as ApplicationActions;
 use Classes\TotalCC\Actions\Actions as TotalCCActions;
 use Classes\Section\Actions\Actions as SectionActions;
@@ -34,6 +37,8 @@ class Locator
      *
      * @param string $documentType тип документа
      * @throws SelfEx
+     * @throws DataBaseEx
+     * @throws TablesEx
      */
     private function __construct(string $documentType)
     {
@@ -63,7 +68,9 @@ class Locator
      *
      * @param string $documentType тип документа
      * @return static сущность класса
+     * @throws DataBaseEx
      * @throws SelfEx
+     * @throws TablesEx
      */
     static public function getInstance(string $documentType): self
     {

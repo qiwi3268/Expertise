@@ -6,7 +6,7 @@ namespace Tables\Docs\Relations;
 use Lib\Exceptions\DataBase as DataBaseEx;
 use Tables\Exceptions\Tables as TablesEx;
 
-use Tables\DocumentationTypeTableLocator;
+use Tables\Locators\TypeOfObjectTableLocator;
 use Lib\DataBase\ParametrizedQuery;
 
 
@@ -60,7 +60,7 @@ final class total_cc
      */
     static public function getChildrenById(int $id_total_cc, int $id_type_of_object): array
     {
-        $locator = new DocumentationTypeTableLocator($id_type_of_object);
+        $locator = new TypeOfObjectTableLocator($id_type_of_object);
 
         $sectionTable = $locator->getDocsRelationsSection();
 

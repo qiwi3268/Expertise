@@ -17,9 +17,7 @@ use Tables\assigned_expert_total_cc;
 
 use Lib\DataBase\Transaction;
 use Tables\test;
+use Tables\Locators\DocumentTypeTableLocator;
 
-
-use Lib\Singles\PrimitiveValidatorBoolMode;
-
-$a = new PrimitiveValidatorBoolMode();
-$a->validateInt(444444);
+$a = new DocumentTypeTableLocator('total_cc');
+$a->getActionsHistory();

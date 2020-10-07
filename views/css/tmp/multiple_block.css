@@ -1,9 +1,15 @@
+.multiple-block {
+   display: flex;
+   flex-direction: column;
+}
+
 .multiple-block__text {
 
 }
 
 .multiple-block__icon {
    font-size: 16px;
+   margin: 0px 0px 0px 15px;
 }
 
 .multiple-block__actions {
@@ -16,14 +22,15 @@
 
 .multiple-block__add,
 .multiple-block__button {
-   max-width: 300px;
+   /*max-width: 300px;*/
+   min-width: 280px;
    margin: 10px;
    justify-content: space-between;
-
+   align-self: flex-start;
    box-sizing: border-box;
    display: flex;
    align-items: center;
-   flex-grow: 1;
+   /*flex-grow: 1;*/
    padding: 10px;
    border: 1px solid #cccccc;
    border-radius: 4px;
@@ -45,7 +52,8 @@
 }
 
 .multiple-block__short {
-   margin: 10px;
+   /*margin: 10px;*/
+   margin: 0px 10px 5px;
    display: flex;
    align-items: center;
 

@@ -7,7 +7,7 @@ namespace Classes\RouteCallbacks;
 use Tables\Exceptions\Tables as TablesEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
 use Exception;
-use Tables\Docs\TableLocator;
+use Tables\Locators\DocumentTypeTableLocator;
 
 
 /**
@@ -37,8 +37,8 @@ class DocumentExistChecker
      */
     public function construct(): void
     {
-        $tableLocator = new TableLocator();
-        $this->documentTable = $tableLocator->getDocTableByDocumentType(CURRENT_DOCUMENT_TYPE);
+        $locator = new DocumentTypeTableLocator(CURRENT_DOCUMENT_TYPE);
+        $this->documentTable = $locator->getDocs();
     }
 
 

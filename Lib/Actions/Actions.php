@@ -66,6 +66,17 @@ abstract class Actions
 
 
     /**
+     * Предназначен для получения таблицы действий над документом
+     *
+     * @return string
+     */
+    public function getActionTable(): string
+    {
+        return $this->actionTable;
+    }
+
+
+    /**
      * Предназначен для определения названий классов:
      * - actionTable таблица действий над нужным документом
      * - accessClass класс проверки доступа к документа (наследуется от {@see \Lib\Actions\AccessActions}

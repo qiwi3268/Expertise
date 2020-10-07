@@ -7,7 +7,7 @@ use Lib\Exceptions\AccessToDocument as AccessToDocumentEx;
 use core\Classes\Session;
 use Lib\Actions\Locator;
 use Lib\AccessToDocument\AccessToDocumentTree;
-use Tables\Docs\TableLocator;
+use Tables\Locators\DocumentTypeTableLocator;
 
 // API предназначен для выполнения действий
 //
@@ -76,8 +76,8 @@ try {
     }
 
     // Проверка существования текущего документа
-    $tableLocator = new TableLocator();
-    $docTable = $tableLocator->getDocTableByDocumentType(CURRENT_DOCUMENT_TYPE);
+    $tableLocator = new DocumentTypeTableLocator(CURRENT_DOCUMENT_TYPE);
+    $docTable = $tableLocator->getDocs();
 
     if (!$docTable::checkExistById(CURRENT_DOCUMENT_ID)) {
 
@@ -160,6 +160,13 @@ try {
                 ]));
         }
     }
+
+    // Получение id действия
+    $actionId = call_user_func([$actions->getActionTable(), 'getIdByPageName'], CURRENT_PAGE_NAME);
+
+    $historyTable = $tableLocator->getActionsHistory();
+
+
 
     // Все прошло успешно
     exit(json_encode([

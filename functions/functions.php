@@ -274,6 +274,25 @@ function getArrayWithReplacedNullValues(array $array, $newValue): array
 }
 
 
+/**
+ * Предназначен для получения имени вызывающей функции из функции
+ *
+ * Вызывать данную функцию требуется из функции, чтобы узнать,
+ * какая функция вызвала первую
+ *
+ * @return string
+ */
+function getCallingFunctionName(): string
+{
+    // Берется trace[2], потому что:
+    // 0 - текущая функция
+    // 1 - функция, из которой вызвалась текущая
+    // 2 - функция, которая вызвала [1] функцию
+    $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 3);
+
+    return $trace[2]['function'];
+}
+
 
 
 /**

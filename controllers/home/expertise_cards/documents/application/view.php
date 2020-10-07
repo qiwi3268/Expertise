@@ -8,7 +8,7 @@ use Lib\Singles\NodeStructure;
 use Lib\Singles\Helpers\FileHandler;
 use Classes\Application\Files\Initialization\Initializer as FilesInitializer;
 use Tables\Docs\application;
-use Tables\DocumentationTypeTableLocator;
+use Tables\Locators\TypeOfObjectTableLocator;
 
 
 $variablesTV = VariableTransfer::getInstance();
@@ -68,7 +68,7 @@ if ($variablesTV->getExistenceFlag('type_of_object')) {
 
     $typeOfObjectId = $variablesTV->getValue('type_of_object')['id'];
 
-    $tableLocator = new DocumentationTypeTableLocator($typeOfObjectId);
+    $tableLocator = new TypeOfObjectTableLocator($typeOfObjectId);
 
 
     if ($typeOfObjectId == 1) { // Производственные / непроизводственные

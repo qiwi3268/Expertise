@@ -3,8 +3,6 @@
     $_financingSources = $_data['financing_sources'];
 ?>
 
-<?php var_dump($_data); ?>
-
 <?php if (!empty($_financingSources['type_1'])): ?>
     <?php foreach ($_financingSources['type_1'] as $source): ?>
         <div class="view-table card">

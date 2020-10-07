@@ -63,6 +63,25 @@ trait ActionTable
         $result = ParametrizedQuery::getFetchAssoc($query, [$pageName]);
         return $result ? $result[0] : null;
     }
+
+
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Actions\Interfaces\ActionTable::getIdByPageName()}
+     *
+     * @param string $pageName
+     * @return int
+     * @throws DataBaseEx
+     */
+    static public function getIdByPageName(string $pageName): int
+    {
+        $table = self::$tableName;
+
+        $query = "SELECT `id`
+                  FROM `{$table}`
+                  WHERE `page_name`=?";
+        return ParametrizedQuery::getSimpleArray($query, [$pageName])[0];
+    }
 }
 
 

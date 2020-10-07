@@ -14,14 +14,13 @@ use Lib\Exceptions\Traits\MainTrait;
  * {@see \Tables\Docs\Relations\ParentDocumentLinker}<br>
  * 2001 - метод невозможно вызвать от типа документа "Заявление"<br>
  * 2002 - методу не удалось определить тип документа<br>
- * {@see \Tables\Docs\TableLocator}<br>
- * 3001 - методу Tables\Docs\TableLocator::getDocTableByDocumentType не удалось определить таблицу документа<br>
- * 3002 - методу Tables\Docs\TableLocator::getDocRelationTableByDocumentType не удалось определить таблицу отношений документа<br>
- * {@see \Tables\DocumentationTypeTableLocator}<br>
+ * {@see \Tables\Locators\DocumentTypeTableLocator}<br>
+ * 3001 - получен неопределенный тип документа<br>
+ * 3002 - в маппинге метода не найдено совпадения для типа документа<br>
+ * {@see \Tables\Locators\TypeOfObjectTableLocator}<br>
  * 4001 - получен неопределенный вид объекта<br>
  * {@see \Tables\FinancingSources\FinancingSourcesAggregator}<br>
  * 5001 - получен неопределенный вид объекта<br>
- *
  *
  *
  */

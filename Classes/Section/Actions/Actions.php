@@ -11,7 +11,7 @@ use Classes\DocumentTreeHandler;
 use Tables\Docs\Relations\ParentDocumentLinker;
 use Tables\Docs\application;
 use Lib\Actions\Actions as MainActions;
-use Tables\DocumentationTypeTableLocator;
+use Tables\Locators\TypeOfObjectTableLocator;
 
 
 /**
@@ -90,7 +90,7 @@ class Actions extends MainActions
      */
     protected function defineClasses(): void
     {
-        $locator = new DocumentationTypeTableLocator($this->typeOfObjectId);
+        $locator = new TypeOfObjectTableLocator($this->typeOfObjectId);
 
         $this->actionTable = $locator->getActionsSection();
         $this->accessClass = '\Classes\Section\Actions\AccessActions';

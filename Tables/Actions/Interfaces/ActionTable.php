@@ -37,4 +37,13 @@ interface ActionTable
      * @return array ассоциативный массив
      */
     static public function getAssocBusinessProcessById(int $id_document): array;
+
+
+    /**
+     * Предназначен для получения id действия по имени страницы
+     *
+     * @param string $pageName имя страницы
+     * @return int id действия
+     */
+    static public function getIdByPageName(string $pageName): int;
 }

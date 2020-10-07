@@ -14,7 +14,7 @@ use Classes\Application\Files\Initialization\Initializer as FilesInitializer;
 use Classes\Application\Actions\Miscs\Initialization\action_2 as MiscInitializer;
 use Tables\Docs\application;
 use Tables\user;
-use Tables\DocumentationTypeTableLocator;
+use Tables\Locators\TypeOfObjectTableLocator;
 
 
 $variablesTV = VariableTransfer::getInstance();
@@ -34,7 +34,7 @@ $variablesTV->setValue('experts', $activeExperts);
 // Получение данных о выбранном виде объекта для выбора нужных классов
 //
 $typeOfObjectId = application::getIdTypeOfObjectById(CURRENT_DOCUMENT_ID);
-$tableLocator = new DocumentationTypeTableLocator($typeOfObjectId);
+$tableLocator = new TypeOfObjectTableLocator($typeOfObjectId);
 
 
 if ($typeOfObjectId == 1) { // Производственные / непроизводственные
