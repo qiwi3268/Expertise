@@ -56,7 +56,7 @@ class ExecutionActions extends MainExecutionActions
         $transaction->start();
 
         $test = $transaction->getLastResults();
-        //todo флаг о создании общей части или из истории?
+
         return PageAddress::createCardRef(CURRENT_DOCUMENT_ID, 'total_cc', 'view');
     }
 

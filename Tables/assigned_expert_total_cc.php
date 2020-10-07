@@ -49,7 +49,7 @@ final class assigned_expert_total_cc
      */
     static public function checkExistByIdTotalCCAndIdExpert(int $id_total_cc, int $id_expert): bool
     {
-        $query = "SELECT count(*)>0
+        $query = "SELECT COUNT(*)>0
                   FROM `assigned_expert_total_cc`
                   WHERE `id_total_cc`=? AND `id_expert`=?";
         // Автоматическое преобразование к bool типу
@@ -68,7 +68,7 @@ final class assigned_expert_total_cc
      */
     static public function checkLeadByIdTotalCCAndIdExpert(int $id_total_cc, int $id_expert): bool
     {
-        $query = "SELECT count(*)>0
+        $query = "SELECT COUNT(*)>0
                   FROM `assigned_expert_total_cc`
                   WHERE `id_total_cc`=? AND `id_expert`=? AND `is_lead`=1";
         // Автоматическое преобразование к bool типу
@@ -87,7 +87,7 @@ final class assigned_expert_total_cc
      */
     static public function checkCommonPartByIdTotalCCAndIdExpert(int $id_total_cc, int $id_expert): bool
     {
-        $query = "SELECT count(*)>0
+        $query = "SELECT COUNT(*)>0
                   FROM `assigned_expert_total_cc`
                   WHERE `id_total_cc`=? AND `id_expert`=? AND `is_common_part`=1";
         // Автоматическое преобразование к bool типу

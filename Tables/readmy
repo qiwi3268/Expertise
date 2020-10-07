@@ -1,4 +1,5 @@
 Правила и примеры наименования таблиц:
+* NN - not null
 
 getAllAssoc                       индексный массив с ассоциативными массивами внутри
 getAllAssocWhereActive
@@ -10,4 +11,6 @@ getAllSimple                      простой (индексный) масси
 
 getResponsibleTypeById
 updateResponsibleTypeById
+
 checkExistById
+checkExistByIdWhereIdTypeOfObjectNN

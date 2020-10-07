@@ -7,6 +7,7 @@ use Lib\Exceptions\AccessToDocument as AccessToDocumentEx;
 use core\Classes\Session;
 use Lib\Actions\Locator;
 use Lib\AccessToDocument\AccessToDocumentTree;
+use Lib\Singles\Logger;
 use Tables\Locators\DocumentTypeTableLocator;
 
 // API предназначен для выполнения действий
@@ -55,6 +56,7 @@ use Tables\Locators\DocumentTypeTableLocator;
 //
 
 try {
+    $errorLogger = new Logger(LOGS . '/actions/errors', 'API_action_executor.log');
 
     if (!Session::isAuthorized()) {
 
@@ -124,7 +126,8 @@ try {
 
     try {
 
-        $ref = $actions->getExecutionActions()->executeCallbackByPageName(CURRENT_PAGE_NAME);
+        //$ref = $actions->getExecutionActions()->executeCallbackByPageName(CURRENT_PAGE_NAME);
+        $ref = '/';
     } catch (ActionsEx $e) {
 
         $e_message = $e->getMessage();
@@ -164,9 +167,8 @@ try {
     // Получение id действия
     $actionId = call_user_func([$actions->getActionTable(), 'getIdByPageName'], CURRENT_PAGE_NAME);
 
-    $historyTable = $tableLocator->getActionsHistory();
-
-
+    // Запись действия в логи
+    call_user_func([$tableLocator->getLoggingActions(), 'create'], CURRENT_DOCUMENT_ID, $actionId, Session::getUserId());
 
     // Все прошло успешно
     exit(json_encode([
@@ -175,6 +177,8 @@ try {
     ]));
 
 } catch (Exception $e) {
+
+    $errorLogger->writeException($e, 'Непредвиденная ошибка');
 
     exit(json_encode([
         'result'  => 19,

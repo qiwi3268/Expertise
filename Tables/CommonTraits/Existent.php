@@ -29,7 +29,7 @@ trait Existent
     {
         $table = self::$tableName;
 
-        $query = "SELECT count(*)>0
+        $query = "SELECT COUNT(*)>0
                   FROM `{$table}`
                   WHERE `id`=?";
         // Автоматическое преобразование к bool типу

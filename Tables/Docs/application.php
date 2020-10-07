@@ -96,6 +96,25 @@ final class application implements Document, Existent, Responsible
 
 
     /**
+     * Предназначен для проверки существования записи по id заявления, у которого
+     * id_type_of_object не NULL
+     *
+     * @param int $id id заявления
+     * @return bool
+     * @throws DataBaseEx
+     */
+    static public function checkExistByIdWhereIdTypeOfObjectNN(int $id): bool
+    {
+        $query = "SELECT COUNT(*)>0
+                  FROM `doc_application`
+                  WHERE `id`=? AND `id_type_of_object` IS NOT NULL";
+
+        // Автоматическое преобразование к bool типу
+        return ParametrizedQuery::getSimpleArray($query, [$id])[0];
+    }
+
+
+    /**
      * Предназначен для получения id вида работ по id заявления
      *
      * @param int $id id заявления

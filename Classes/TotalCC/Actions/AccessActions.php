@@ -4,10 +4,12 @@
 namespace Classes\TotalCC\Actions;
 
 use Lib\Exceptions\DataBase as DataBaseEx;
+use Tables\Exceptions\Tables as TablesEx;
 
 use core\Classes\Session;
 use Lib\Actions\AccessActions as MainAccessActions;
 use Tables\assigned_expert_total_cc;
+use Tables\LoggingActions\total_cc as log_action_total_cc;
 
 
 
@@ -29,26 +31,41 @@ class AccessActions extends MainAccessActions
      */
     public function action_1(): bool
     {
-        return true;
 
         // -------------------------Список условий-------------------------
-        // Пользователь сотрудник экспертного отдела | сметного отдела | внештатный эксперт
-        // Сотрудник один из тех, кто назначен на общую часть
-        // Общая часть еще не создана
+        // Роли:    сотрудник экспертного отдела | сотрудник сметного отдела | внештатный эксперт
+        // Стадия:  любая
+        // Условия: - сотрудник один из тех, кто назначен на общую часть
+        //          - текущее действие (Создать общую часть) не производилось
         // ----------------------------------------------------------------
+
+        if (!log_action_total_cc::checkExistByIdMainDocumentAndActionCallbackName(
+            CURRENT_DOCUMENT_ID,
+            __FUNCTION__
+        )) {
+            return true;
+        }
+        return false;
+
+        // -----------------------------------------------------------------------------------------
+
 
         if (
             Session::isEmpExp()
             || Session::isEmpEst()
             || Session::isFreExp()
         ) {
+
             if (assigned_expert_total_cc::checkCommonPartByIdTotalCCAndIdExpert(CURRENT_DOCUMENT_ID, Session::getUserId())) {
 
-                //todo проверка на несозданную общую часть
-                return true;
+                if (!log_action_total_cc::checkExistByIdMainDocumentAndActionCallbackName(
+                    CURRENT_DOCUMENT_ID,
+                    __FUNCTION__
+                )) {
+                    return true;
+                }
             }
         }
-
         return false;
     }
 
@@ -60,6 +77,6 @@ class AccessActions extends MainAccessActions
      */
     public function action_2(): bool
     {
-        // Проверка, что заполнены все необходимые поля
+
     }
 }

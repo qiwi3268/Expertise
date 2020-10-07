@@ -45,7 +45,7 @@ class applicant_access_group
      */
     static public function checkExistByIdApplicationAndIdUser(int $id_application, int $id_user): bool
     {
-        $query = "SELECT count(*)>0
+        $query = "SELECT COUNT(*)>0
                   FROM `applicant_access_group`
                   WHERE `id_application`=? AND `id_user`=?";
         // Автоматическое преобразование к bool типу

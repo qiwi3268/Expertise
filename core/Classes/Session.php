@@ -129,6 +129,17 @@ class Session
 
 
     /**
+     * Предназначен для проверки пользователя на сотрудника производственно-технического отдела
+     *
+     * @return bool
+     */
+    static public function isEmpPTO(): bool
+    {
+        return in_array(ROLE['EMP_PTO'], $_SESSION['user_info']['roles']);
+    }
+
+
+    /**
      * Предназначен для проверки пользователя на внештатного эксперта
      *
      * @return bool
@@ -137,7 +148,6 @@ class Session
     {
         return in_array(ROLE['FRE_EXP'], $_SESSION['user_info']['roles']);
     }
-
 
 
     /**

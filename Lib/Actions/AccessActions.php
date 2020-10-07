@@ -28,7 +28,7 @@ abstract class AccessActions
      * Объект дочернего класса документа, унаследованного от библиотчечного класса
      *
      */
-    private Actions $actions;
+    protected Actions $actions;
 
 
     /**

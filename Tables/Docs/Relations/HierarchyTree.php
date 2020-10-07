@@ -15,6 +15,10 @@ use Lib\Exceptions\DataBase as DataBaseEx;
 class HierarchyTree
 {
 
+    /**
+     * id заявления
+     *
+     */
     private int $applicationId;
 
 
@@ -30,21 +34,8 @@ class HierarchyTree
      */
     public function __construct(string $documentType, int $documentId)
     {
-        $linker = new ParentDocumentLinker($documentType, $documentId);
-
-        try {
-
-            $this->applicationId = $linker->getApplicationId();
-        } catch (SelfEx $e) {
-
-            if ($e->getCode() == 2001) {
-
-                $this->applicationId = $documentId;
-            } else {
-
-                throw new SelfEx($e->getMessage(), $e->getCode());
-            }
-        }
+        $facade = new ParentDocumentLinkerFacade($documentType, $documentId);
+        $this->applicationId = $facade->getApplicationId();
     }
 
 

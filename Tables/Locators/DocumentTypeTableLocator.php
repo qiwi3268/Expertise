@@ -43,7 +43,7 @@ class DocumentTypeTableLocator
      * @throws SelfEx
      */
     private function handleMapping(array $mapping): string
-    {
+    {throw new SelfEx("В маппинге метода:  не найдено совпадения для типа документа: '{$this->documentType}'",3002);
         if (!isset($mapping[$this->documentType])) {
 
             $class = __CLASS__;
@@ -91,15 +91,18 @@ class DocumentTypeTableLocator
 
 
     /**
-     * Возвращает название класса таблицы из пакета \Tables\ActionsHistory
+     * Возвращает название класса таблицы из пакета \Tables\LoggingActions
      *
      * @return string
      * @throws SelfEx
      */
-    public function getActionsHistory(): string
+    public function getLoggingActions(): string
     {
         $mapping = [
-            DOCUMENT_TYPE['application'] => '\Tables\ActionsHistory\application'
+            DOCUMENT_TYPE['application']             => '\Tables\LoggingActions\application',
+            DOCUMENT_TYPE['total_cc']                => '\Tables\LoggingActions\total_cc',
+            DOCUMENT_TYPE['section_documentation_1'] => '\Tables\LoggingActions\section_documentation_1',
+            DOCUMENT_TYPE['section_documentation_2'] => '\Tables\LoggingActions\section_documentation_2',
         ];
         return $this->handleMapping($mapping);
     }

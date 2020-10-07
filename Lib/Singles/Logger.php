@@ -3,6 +3,8 @@
 
 namespace Lib\Singles;
 
+use Exception;
+use core\Classes\Session;
 use Lib\Exceptions\Logger as SelfEx;
 
 
@@ -63,6 +65,27 @@ class Logger
 
 
     /**
+     * Предназначен для записи логов исключений
+     *
+     * @uses \Lib\Singles\Logger::write()
+     * @param Exception $e логируемое исключение
+     * @param string|null $description описание (часть перед сообщением и кода исключения).<br>
+     * <i>Без точки и пробелов в конце</i>
+     * @return string временная отметка логируемого сообщения
+     * @throws SelfEx
+     */
+    public function writeException(Exception $e, ?string $description = null): string
+    {
+        $description = !is_null($description) ? "{$description}. " : "";
+
+        $class = get_class($e);
+
+        $message = "{$description}Exception: {$class}. Message: {$e->getMessage()}. Code: {$e->getCode()}";
+        return $this->write($message);
+    }
+
+
+    /**
      * Предназначен для записи логов
      *
      * @param string $message логируемое сообщение
@@ -72,7 +95,16 @@ class Logger
     public function write(string $message): string
     {
         $date = date('d.m.Y H:i:s');
-        $message = "{$date} {$message}" . PHP_EOL;
+
+        $user = 'Пользователь';
+        if (Session::isAuthorized()) {
+
+            $id = Session::getUserId();
+            $user = "{$user} id: {$id}";
+        } else {
+            $user = "{$user} не авторизован";
+        }
+        $message = "{$date} | {$user} | {$message}" . PHP_EOL;
         if (file_put_contents("{$this->logsDir}/{$this->logsName}", $message, FILE_APPEND) === false) {
             throw new SelfEx("Произошла ошибка при попытке записать логируемое сообщение: '{$message}' в файл: '{$this->logsDir}/{$this->logsName}'", 5);
         }

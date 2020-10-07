@@ -26,7 +26,7 @@ abstract class NavigationTable
     static public function getCountByIdUser(int $id_user): int
     {
         $section = static::getSection(); // Позднее статическое связывание
-        $query = "SELECT count(*) $section";
+        $query = "SELECT COUNT(*) {$section}";
 
         return ParametrizedQuery::getSimpleArray($query, [$id_user])[0];
     }

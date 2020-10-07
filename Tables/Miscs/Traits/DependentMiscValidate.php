@@ -31,7 +31,7 @@ trait DependentMiscValidate
     {
         $table = self::$corrTableName;
 
-        $query = "SELECT count(*)>0
+        $query = "SELECT COUNT(*)>0
                   FROM `{$table}`
                   WHERE `id_main`=? AND `id_dependent`=?";
         // Автоматическое преобразование к bool типу
