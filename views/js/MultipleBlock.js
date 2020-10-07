@@ -40,13 +40,11 @@ class MultipleBlock {
       this.add_btn = this.element.querySelector('[data-multiple_add]');
       this.add_btn.addEventListener('click', () => {
 
-         // let part = new PartBlock(this);
-         let part_creation_callback = getPartCreationCallback(this.add_btn.dataset.multiple_add);
+         let create_part = getPartCreationCallback(this.add_btn.dataset.multiple_add);
 
-         if (part_creation_callback !== null) {
-            let part = part_creation_callback(this);
+         if (create_part !== null) {
+            let part = create_part(this);
             this.element.appendChild(part.element);
-
          } else {
             ErrorModal.open('Ошибка создания блока', 'Не определен callback для создания блока');
          }

@@ -16,18 +16,7 @@ class PartBlock {
 
    is_saved = false;
 
-   validation_callback;
-
-  /* static create(multiple_block) {
-
-      let element = multiple_block.createBlock(multiple_block.element, 'multiple_block_part');
-      let body = multiple_block.createBlock(element, 'type');
-      let actions = multiple_block.createBlock(element, 'actions');
-
-      return new PartBlock(multiple_block, element, body, actions);
-
-   }*/
-
+   // todo определить callback в дата атрибуте
    static createFromElement (multiple_block, part_elem) {
 
       let body = part_elem.querySelector('[data-block][data-name="type"]');
@@ -67,25 +56,25 @@ class PartBlock {
       let save_btn = this.actions.querySelector('.save');
       save_btn.addEventListener('click', () => {
 
-         // let part_data = new PartData(this.element);
          this.data = new PartData(this.element);
-         this.validate();
 
-        /* if (part_data.type) {
-            this.savePart(part_data);
+         let save_part = getSavePartCallback(this.parent);
+
+         if (save_part !== null) {
+            save_part(this);
          } else {
 
+            this.data = null;
             ErrorModal.open(
-               'Ошибка при сохранении источника финансирования',
-               'Не выбран вид финансирования'
+               'Ошибка при создании блока',
+               'Не указан callback для сохранения данного вида блока'
             );
-
-         }*/
+         }
 
       });
    }
 
-   savePart (part_title) {
+   save (part_title) {
       this.element.classList.add('short');
       // this.parent.is_changed = true;
       this.parent.element.dataset.saved = 'false';
@@ -109,7 +98,7 @@ class PartBlock {
          this.createShortElement();
       }
 
-      let part_info = this.short_block.querySelector('.part-info');
+      let part_info = this.short_block.querySelector('[data-part_info]');
       part_info.innerHTML = part_title;
       resizeCard(this.parent.element);
 
@@ -157,11 +146,12 @@ class PartBlock {
 
    validate () {
 
+
       let validation_callback = getPartValidationCallback(this.parent);
       let validate_result = validation_callback(this);
 
       if (validate_result.is_valid) {
-         this.savePart(validate_result.part_title);
+         this.save(validate_result.part_title);
       } else {
          this.data = null;
          ErrorModal.open('Ошибка при сохранении блока', validate_result.error_message);
@@ -182,7 +172,7 @@ function createFinancingSource (multiple_block) {
 function createTEP (multiple_block) {
    let element = multiple_block.createBlock(multiple_block.element, 'multiple_block_part');
    let actions = element.querySelector('[data-block][data-name="actions"]');
-   let body = element.querySelector('.multiple-block__body');
+   let body = element.querySelector('[data-multiple_body]');
 
    return new PartBlock(multiple_block, element, body, actions);
 }
@@ -201,67 +191,59 @@ function PartData (part_block, is_initialization) {
 
 }
 
-function getPartValidationCallback (multiple_block) {
-   let callback;
+function getSavePartCallback (multiple_block) {
+   let callback = null;
 
    switch (multiple_block.element.dataset.name) {
 
       case 'financing_sources':
-         callback = financingSourcePartValidation;
+         callback = saveFinancingSource;
          break;
       case 'TEP':
-         callback = TEPPartValidation;
+         callback = saveTEP;
          break;
       default:
-         callback = defaultPartValidation;
-         break;
+
    }
 
    return callback;
 }
 
-function defaultPartValidation () {
-   // return {is_valid: true};
-// todo
-  /* let result = {};
-
-   if (part_data.type !== null) {
-      result.is_valid = true;
-   } else {
-      result.is_valid = false;
-      result.error_message = 'Не заполнены обязательные поля';
-   }
-
-   return result;*/
-}
-
-function financingSourcePartValidation (part) {
-   // return part_data.type !== null;
-   let result = {};
+function saveFinancingSource (part) {
 
    if (part.data.type) {
-      result.is_valid = true;
-      result.part_title = part.element.querySelector(`[data-part_title='${part.data.type}']`).innerHTML;
-   } else {
-      result.is_valid = false;
-      result.error_message = 'Не выбран вид финансирования';
-   }
 
-   return result;
+      let part_title = part.element.querySelector(`[data-part_title='${part.data.type}']`);
+      part.save(part_title.innerHTML);
+
+   } else {
+
+      this.data = null;
+      ErrorModal.open(
+         'Ошибка при сохранении источника финансирования',
+         'Не выбран вид финансирования'
+      );
+
+   }
 }
 
-function TEPPartValidation (part) {
-   let result = {};
+function saveTEP (part) {
 
    if (part.data.indicator && part.data.measure && part.data.value) {
-      result.is_valid = true;
-      result.part_title = part.data.indicator;
-      let part_title = part.element.querySelector('[data-multiple_title]');
-      part_title.innerHTML = result.part_title;
-   } else {
-      result.is_valid = false;
-      result.error_message = 'Не заполнены обязательные поля';
-   }
 
-   return result;
+      let title_string = `${part.data.indicator} - ${part.data.value} ${part.data.measure}`;
+      let part_title = part.element.querySelector('[data-multiple_title]');
+      part_title.innerHTML = title_string;
+      part.save(title_string);
+
+   } else {
+
+      this.data = null;
+      ErrorModal.open(
+         'Ошибка при сохранении технико-экономического показателя',
+         'Не заполнены обязательные поля'
+      );
+
+   }
 }
+

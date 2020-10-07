@@ -117,7 +117,7 @@
             </div>
             <div class="multiple-block__item" data-block data-name="part_short" data-active="true">
                 <div class="multiple-block__short part-short">
-                    <span class="multiple-block__info part-info">Бюджетные средства</span>
+                    <span class="multiple-block__info" data-part_info>Бюджетные средства</span>
                     <i class="multiple-block__delete fas fa-times delete"></i>
                 </div>
             </div>
@@ -296,7 +296,7 @@
             </div>
             <div class="multiple-block__item" data-block data-name="part_short" data-active="true">
                 <div class="multiple-block__short part-short">
-                    <span class="multiple-block__info part-info">Средства юридических лиц, указанных в ч. 2 статьи 48.2 ГрК</span>
+                    <span class="multiple-block__info" data-part_info>Средства юридических лиц, указанных в ч. 2 статьи 48.2 ГрК</span>
                     <i class="multiple-block__delete fas fa-times delete"></i>
                 </div>
             </div>
@@ -390,7 +390,7 @@
             </div>
             <div class="multiple-block__item" data-block data-name="part_short" data-active="true">
                 <div class="multiple-block__short part-short">
-                    <span class="multiple-block__info part-info">Собственные средства застройщика</span>
+                    <span class="multiple-block__info" data-part_info>Собственные средства застройщика</span>
                     <i class="multiple-block__delete fas fa-times delete"></i>
                 </div>
             </div>
@@ -484,7 +484,7 @@
             </div>
             <div class="multiple-block__item" data-block data-name="part_short" data-active="true">
                 <div class="multiple-block__short part-short">
-                    <span class="multiple-block__info part-info">Средства инвестора</span>
+                    <span class="multiple-block__info" data-part_info>Средства инвестора</span>
                     <i class="multiple-block__delete fas fa-times delete"></i>
                 </div>
             </div>

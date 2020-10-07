@@ -21,26 +21,26 @@
             <textarea class="descriptive-part__text" id="descriptive_part"></textarea>
         </div>
     </div>
-    
+
     <div class="descriptive-part__card card">
-        
+
         <div class="descriptive-part__header card-expand">Технико-экономические показатели</div>
         <div class="descriptive-part__body card-body expanded">
-    
+
             <!--Технико-экономические показатели-->
             <div class="multiple-block" data-block data-type="multiple" data-name="TEP">
-        
+
                 <div class="multiple-block__add" data-multiple_add="add_tep">
                     <span class="multiple-block__text">Добавить технико-экономический показатель</span>
                     <i class="multiple-block__icon fas fa-plus"></i>
                 </div>
-        
+
                 <!--Шаблоны источников финансирования-->
                 <div class="multiple-block__item" data-block data-name="templates_container">
                     <!--Шаблон элемента множественного блока-->
                     <div class="multiple-block__part" data-block data-name="multiple_block_part" data-active="false" data-validation_callback="TEP">
                         <div class="multiple-block__title" data-multiple_title>...</div>
-                        <div class="multiple-block__body" data-block>
+                        <div class="multiple-block__item" data-block data-multiple_body>
                             <!--Шаблон "Средства юридических лиц"-->
                             <div class="multiple-block__item" data-block data-type="template" data-name="TEP">
                                 <div class="form-field field" data-required="true" data-name="indicator">
@@ -95,27 +95,27 @@
                                 </div>
                             </div>
                             <!--//Шаблон действий//-->
-                            
+
                         </div>
                     </div>
                     <!--Шаблон элемента множественного блока-->
                     <div class="multiple-block__item" data-block data-name="part_short" data-active="false">
                         <div class="multiple-block__short part-short">
-                            <span class="multiple-block__info part-info"></span>
+                            <span class="multiple-block__info" data-part_info></span>
                             <i class="multiple-block__delete fas fa-times delete"></i>
                         </div>
                     </div>
-                    
-                   
+
+
                 </div>
                 <!--//Шаблоны источников финансирования//-->
-    
+
             </div>
             <!--//Технико-экономические показатели//-->
-        
+
         </div>
-    
+
     </div>
-    
+
 
 </div>

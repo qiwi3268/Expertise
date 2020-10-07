@@ -311,7 +311,7 @@
     <!--//Шаблон действий//-->
     <div class="multiple-block__item" data-block data-name="part_short" data-active="false">
         <div class="multiple-block__short part-short">
-            <span class="multiple-block__info part-info"></span>
+            <span class="multiple-block__info" data-part_info></span>
             <i class="multiple-block__delete fas fa-times delete"></i>
         </div>
     </div>
