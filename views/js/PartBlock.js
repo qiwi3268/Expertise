@@ -16,7 +16,9 @@ class PartBlock {
 
    is_saved = false;
 
-   static create(multiple_block) {
+   validation_callback;
+
+  /* static create(multiple_block) {
 
       let element = multiple_block.createBlock(multiple_block.element, 'multiple_block_part');
       let body = multiple_block.createBlock(element, 'type');
@@ -24,7 +26,7 @@ class PartBlock {
 
       return new PartBlock(multiple_block, element, body, actions);
 
-   }
+   }*/
 
    static createFromElement (multiple_block, part_elem) {
 
@@ -65,8 +67,11 @@ class PartBlock {
       let save_btn = this.actions.querySelector('.save');
       save_btn.addEventListener('click', () => {
 
-         let part_data = new PartData(this.element);
-         if (part_data.type) {
+         // let part_data = new PartData(this.element);
+         this.data = new PartData(this.element);
+         this.validate();
+
+        /* if (part_data.type) {
             this.savePart(part_data);
          } else {
 
@@ -75,12 +80,12 @@ class PartBlock {
                'Не выбран вид финансирования'
             );
 
-         }
+         }*/
 
       });
    }
 
-   savePart (part_data) {
+   savePart (part_title) {
       this.element.classList.add('short');
       // this.parent.is_changed = true;
       this.parent.element.dataset.saved = 'false';
@@ -90,8 +95,6 @@ class PartBlock {
          this.parent.parts.set(this.id, this);
          this.is_saved = true;
       }
-
-      this.data = part_data;
 
       if (this.cancel_btn) {
          this.cancel_btn.remove();
@@ -107,8 +110,7 @@ class PartBlock {
       }
 
       let part_info = this.short_block.querySelector('.part-info');
-      let part_title = this.element.querySelector(`[data-part_title='${this.data.type}']`);
-      part_info.innerHTML = part_title.innerHTML;
+      part_info.innerHTML = part_title;
       resizeCard(this.parent.element);
 
    }
@@ -153,6 +155,36 @@ class PartBlock {
 
    }
 
+   validate () {
+
+      let validation_callback = getPartValidationCallback(this.parent);
+      let validate_result = validation_callback(this);
+
+      if (validate_result.is_valid) {
+         this.savePart(validate_result.part_title);
+      } else {
+         this.data = null;
+         ErrorModal.open('Ошибка при сохранении блока', validate_result.error_message);
+      }
+
+   }
+
+}
+
+function createFinancingSource (multiple_block) {
+   let element = multiple_block.createBlock(multiple_block.element, 'multiple_block_part');
+   let body = multiple_block.createBlock(element, 'type');
+   let actions = multiple_block.createBlock(element, 'actions');
+
+   return new PartBlock(multiple_block, element, body, actions);
+}
+
+function createTEP (multiple_block) {
+   let element = multiple_block.createBlock(multiple_block.element, 'multiple_block_part');
+   let actions = element.querySelector('[data-block][data-name="actions"]');
+   let body = element.querySelector('.multiple-block__body');
+
+   return new PartBlock(multiple_block, element, body, actions);
 }
 
 function PartData (part_block, is_initialization) {
@@ -167,17 +199,67 @@ function PartData (part_block, is_initialization) {
 
    });
 
- /*  let dependent_blocks = part_block.querySelectorAll('[data-block][data-active="true"]');
-   dependent_blocks.forEach(block => {
-      let field_inputs = block.querySelectorAll('.field-result[data-multiple_block_field]');
-      field_inputs.forEach(input => {
+}
 
-         if (!input.closest('[data-block][data-active="false"]')) {
-            this[input.dataset.multiple_block_field] = input.value || null;
-         } else {
-            this[input.dataset.multiple_block_field] = null;
-         }
+function getPartValidationCallback (multiple_block) {
+   let callback;
 
-      });
-   });*/
+   switch (multiple_block.element.dataset.name) {
+
+      case 'financing_sources':
+         callback = financingSourcePartValidation;
+         break;
+      case 'TEP':
+         callback = TEPPartValidation;
+         break;
+      default:
+         callback = defaultPartValidation;
+         break;
+   }
+
+   return callback;
+}
+
+function defaultPartValidation () {
+   // return {is_valid: true};
+// todo
+  /* let result = {};
+
+   if (part_data.type !== null) {
+      result.is_valid = true;
+   } else {
+      result.is_valid = false;
+      result.error_message = 'Не заполнены обязательные поля';
+   }
+
+   return result;*/
+}
+
+function financingSourcePartValidation (part) {
+   // return part_data.type !== null;
+   let result = {};
+
+   if (part.data.type) {
+      result.is_valid = true;
+      result.part_title = part.element.querySelector(`[data-part_title='${part.data.type}']`).innerHTML;
+   } else {
+      result.is_valid = false;
+      result.error_message = 'Не выбран вид финансирования';
+   }
+
+   return result;
+}
+
+function TEPPartValidation (part) {
+   let result = {};
+
+   if (part.data.indicator && part.data.measure && part.data.value) {
+      result.is_valid = true;
+      result.part_title = part.data.indicator;
+   } else {
+      result.is_valid = false;
+      result.error_message = 'Не заполнены обязательные поля';
+   }
+
+   return result;
 }

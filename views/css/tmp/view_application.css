@@ -21,16 +21,6 @@
     color: #db5151;
 }
 
-.card-form__icon-state {
-    margin: 0px 0px 0px 15px;
-    font-size: 20px;
-    color: #db5151;
-}
-
-.card-form__icon-state.valid {
-    color: #87c596;
-}
-
 /*tmp================================*/
 
 

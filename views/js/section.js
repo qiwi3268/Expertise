@@ -1,8 +1,11 @@
 // todo вынести в отдельный файл
 
 document.addEventListener('DOMContentLoaded', () => {
+
+
    let cards = document.querySelectorAll('.card');
    cards.forEach(card => {
+      console.log('tut');
       let card_header = card.querySelector('.card-expand');
       card_header.addEventListener('click', () => expandCard(card));
    });
@@ -12,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Сразу делаем блоки раскрытыми без анимации развертывания
 window.addEventListener('load', () => {
+   console.log('tut2');
+
    let cards_view = document.querySelectorAll('.card-body.expanded');
    cards_view.forEach(card_body => {
       changeParentCardMaxHeight(card_body);
@@ -63,6 +68,16 @@ function expandCard (card) {
 
 }
 
+// todo не вызывать где не надо
+function resizeCard (inner_element) {
+
+   let card_body = inner_element.closest('.card-body');
+   if (card_body.style.maxHeight) {
+      // Раскрываем блок
+      changeParentCardMaxHeight(card_body);
+   }
+}
+
 // Предназначен для изменения максимальной высоты блока анкеты при изменении контенета
 // Принимает параметры-------------------------------
 // inner_element       Element : элемент, по которому получаем родительский блок анкеты
@@ -88,15 +103,6 @@ function changeParentCardMaxHeight (inner_element, value = null) {
       changeParentCardMaxHeight(card_container, parent_card_height);
    }
 
-}
-
-function resizeCard (inner_element) {
-
-   let card_body = inner_element.closest('.card-body');
-   if (card_body.style.maxHeight) {
-      // Раскрываем блок
-      changeParentCardMaxHeight(card_body);
-   }
 }
 
 // Предназначен для обработки события отпускания кнопки мыши

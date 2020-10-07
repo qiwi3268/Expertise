@@ -145,6 +145,27 @@
    background-color: #ffffff;
 }
 
+.card-form[data-completed="true"] {
+   border-color: #87c596;
+}
+
+.card-form[data-completed="true"] .card-form__icon-state {
+   color: #87c596;
+}
+
+.card-form[data-completed="false"] {
+   border-color: #E99A9A;
+}
+
+.card-form[data-completed="false"] .card-form__icon-state {
+   color: #E28383;
+}
+
+.card-form__icon-state {
+   margin: 0px 0px 0px 15px;
+   font-size: 20px;
+}
+
 .card-form__header {
    display: flex;
    align-items: center;

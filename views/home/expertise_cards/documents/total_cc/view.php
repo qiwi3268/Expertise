@@ -1,6 +1,6 @@
 <div class="application-form__cards">
 
-    <div class="view-body card-form card">
+    <div class="view-body card-form card" data-completed="true">
         
         <div class="card-form__header card-expand">
     <!--        --><?php //if ($variablesTV->getValue('block1_completed')): ?>
@@ -23,7 +23,7 @@
     </div>
     
     
-    <div class="view-body card-form card">
+    <div class="view-body card-form card" data-completed="false">
         <div class="card-form__header card-expand">
             <!--        --><?php //if ($variablesTV->getValue('block1_completed')): ?>
             <!--        <i class="card-form__icon-state fas fa-check-circle valid"></i>-->

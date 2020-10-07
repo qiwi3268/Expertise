@@ -12,10 +12,8 @@
                     <file name="login" />
                 </dir>
                 <dir path="/views/home/modals/" ext=".php">
-                    <file name="error" />
-                </dir>
-                <dir path="/views/home/modals/" ext=".php">
                     <file name="static_error" />
+                    <file name="error" />
                 </dir>
             </files>
         </page>
@@ -161,14 +159,14 @@
                     <file name="application_dependencies" />
                     <file name="create" />
                 </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="footer" />
+                </dir>
                 <dir path="/views/home/modals/" ext=".php">
                     <file name="calendar" />
                     <file name="file_upload" />
                     <file name="create_sign" />
                     <file name="error" />
-                </dir>
-                <dir path="/views/home/" ext=".php">
-                    <file name="footer" />
                 </dir>
             </files>
         </page>
@@ -246,12 +244,12 @@
                 <dir path="/views/home/expertise_cards/sidebars/" ext=".php">
                     <file name="actions" />
                 </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="footer" />
+                </dir>
                 <dir path="/views/home/modals/" ext=".php">
                     <file name="view_sign" />
                     <file name="error" />
-                </dir>
-                <dir path="/views/home/" ext=".php">
-                    <file name="footer" />
                 </dir>
             </files>
         </page>
@@ -372,12 +370,12 @@
                 <dir path="/views/home/expertise_cards/documents/application/actions/" ext=".php">
                     <file name="action_2" />
                 </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="footer" />
+                </dir>
                 <dir path="/views/home/modals/" ext=".php">
                     <file name="view_sign" />
                     <file name="error" />
-                </dir>
-                <dir path="/views/home/" ext=".php">
-                    <file name="footer" />
                 </dir>
             </files>
         </page>
@@ -424,10 +422,17 @@
                 <dir path="/views/" ext=".php">
                     <file name="html_head" />
                 </dir>
+
                 <dir path="/views/home/" ext=".php">
                     <file name="header" />
                     <file name="section_create_test" />
                     <file name="footer" />
+                </dir>
+                <dir path="/views/home/expertise_cards/documents/total_cc/actions/" ext=".php">
+                    <file name="action_1_dependencies" />
+                </dir>
+                <dir path="/views/home/modals/" ext=".php">
+                    <file name="error" />
                 </dir>
             </files>
         </page>
@@ -462,11 +467,14 @@
                 <dir path="/views/home/expertise_cards/documents/total_cc/actions/" ext=".php">
                     <file name="action_1" />
                 </dir>
-                <dir path="/views/home/modals/" ext=".php">
-                    <file name="error" />
-                </dir>
                 <dir path="/views/home/" ext=".php">
                     <file name="footer" />
+                </dir>
+                <dir path="/views/home/expertise_cards/documents/total_cc/actions/" ext=".php">
+                    <file name="action_1_dependencies" />
+                </dir>
+                <dir path="/views/home/modals/" ext=".php">
+                    <file name="error" />
                 </dir>
             </files>
         </page>

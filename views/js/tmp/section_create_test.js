@@ -1,12 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+   let submit_btn = document.querySelector('[data-action_submit]');
+   submit_btn.addEventListener('click', saveSection);
 
 });
+
+function saveSection () {
+   console.log('tut');
+   let form_data = new FormData();
+
+   MultipleBlock.saveMultipleBlocks(form_data);
+
+   form_data.append('descriptive_part', tinymce.get('descriptive_part').getContent());
+
+   console.log(tinymce.get('descriptive_part').getContent());
+
+   console.log(new Map(form_data));
+}
 
 tinymce.init({
    selector: "textarea#descriptive_part",
    min_height: 400,
    max_height: 700,
+   table_default_styles: {
+      width: '50%'
+   },
    elementpath: false,
    statusbar: false,
    language: 'ru',
@@ -21,7 +39,6 @@ tinymce.init({
       "bold italic underline | alignleft aligncenter " +
       "alignright alignjustify | bullist numlist outdent indent | " +
       "table",
-
    menubar: 'file edit format insert view help',
    menu: {
       file: { title: 'File', items: 'newdocument | preview | print ' },
@@ -31,7 +48,6 @@ tinymce.init({
       format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript | removeformat' },
       help: { title: 'Дополнительно', items: 'wordcount help' }
    },
-
    skin: "CUSTOM",
    content_css: "CUSTOM"
 });

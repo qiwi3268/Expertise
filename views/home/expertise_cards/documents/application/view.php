@@ -2,7 +2,7 @@
 
 <div class="view__body">
     <div class="application-form__cards">
-        <div class="application-form__card card-form card" data-type="purpose">
+        <div class="application-form__card card-form card" data-type="purpose" data-completed="<?= $variablesTV->getValue('block1_completed') ? 'true' : 'false' ?>">
             <div class="card-form__header card-expand">
                 <?php if ($variablesTV->getValue('block1_completed')): ?>
                     <i class="card-form__icon-state fas fa-check-circle valid"></i>
@@ -65,7 +65,7 @@
             </div>
         </div>
 
-        <div class="application-form__card card-form card" data-type="object">
+        <div class="application-form__card card-form card" data-type="object" data-completed="<?= $variablesTV->getValue('block2_completed') ? 'true' : 'false' ?>">
             <div class="card-form__header card-expand">
                 <?php if ($variablesTV->getValue('block2_completed')): ?>
                     <i class="card-form__icon-state fas fa-check-circle valid"></i>
@@ -287,7 +287,7 @@
         </div>
 
         <!-- todo data-type-->
-        <div class="application-form__card card-form card" data-type="ещвщ">
+        <div class="application-form__card card-form card" data-type="ещвщ" data-completed="<?= $variablesTV->getValue('block77_completed') ? 'true' : 'false' ?>">
             <div class="card-form__header card-expand">
                 <?php if ($variablesTV->getValue('block77_completed')): ?>
                     <i class="card-form__icon-state fas fa-check-circle valid"></i>

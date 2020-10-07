@@ -563,7 +563,7 @@
                     <!--Источники финансирования-->
                     <div class="multiple-block card-form__block" data-block data-type="multiple" data-name="financing_sources" data-saved="true">
 
-                        <div class="multiple-block__add" data-multiple_add>
+                        <div class="multiple-block__add" data-multiple_add="add_financing_source">
                             <span class="multiple-block__text">Добавить источник финансирования</span>
                             <i class="multiple-block__icon fas fa-plus"></i>
                         </div>

@@ -1,5 +1,5 @@
 .action-info,
-.description__card,
+.descriptive-part__card,
 .section__indicator {
    background-color: #ffffff;
    border-radius: 4px;
@@ -14,7 +14,7 @@
    font-size: 16px;
 }
 
-.description {
+.descriptive-part {
    display: flex;
    flex-grow: 1;
    flex-direction: column;
@@ -22,26 +22,27 @@
 
 }
 
-.description__card {
+.descriptive-part__card {
    margin: 0px 0px 10px 0px;
    border-left: 3px solid #93b0d1;
 }
 
-.description__header {
+.descriptive-part__header {
    padding: 10px 15px;
    font-weight: 700;
    text-align: center;
    border-bottom: 1px solid #e0e0e0;
    background-color: #f6f8fa;
    border-radius: 4px 4px 0px 0px;
+   cursor: pointer;
 }
 
 /*Переопределение свойства библиотеки текстового редактора*/
-.description__card .tox {
+.descriptive-part__card .tox {
    border: 0;
 }
 
-.description__body {
+.descriptive-part__body {
    /*padding: 10px;*/
 }
 
