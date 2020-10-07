@@ -40,22 +40,28 @@ function saveApplication () {
    )
       .then(response => {
 
-         switch (response.result) {
-            case 8:
-               if (FileNeeds.hasFiles()) {
-                  API.updateFileNeeds();
-               }
-               showSaveModal();
-               break;
-            case 1:
-               ErrorModal.open('Ошибка при сохранении заявления', 'Нет обязательных параметров POST запроса');
-               break;
+         if (response.result !== undefined) {
 
-            default:
-               ErrorModal.open('Ошибка при сохранении заявления', response.error_message || response.message);
+            switch (response.result) {
+               case 8:
+                  if (FileNeeds.hasFiles()) {
+                     API.updateFileNeeds();
+                  }
+                  showSaveModal();
+                  break;
+               case 1:
+                  ErrorModal.open('Ошибка при сохранении заявления', 'Нет обязательных параметров POST запроса');
+                  break;
 
-               console.log(response);
+               default:
+                  ErrorModal.open('Ошибка при сохранении заявления', response.error_message || response.message);
+            }
+
+         } else {
+            ErrorModal.open('Ошибка при сохранении заявления', 'Не получен результат сохранения заявления');
          }
+
+
 
       })
       .catch(error => {
