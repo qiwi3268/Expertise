@@ -7,6 +7,7 @@ namespace Classes\RouteCallbacks;
 use Lib\Exceptions\AccessToDocument as AccessToDocumentEx;
 use Tables\Exceptions\Tables as TablesEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
+use Lib\Exceptions\DocumentTreeHandler as DocumentTreeHandlerEx;
 use ReflectionException;
 
 use core\Classes\Session;
@@ -40,6 +41,7 @@ class AccessToDocumentTreeChecker
      * @throws DataBaseEx
      * @throws AccessToDocumentEx
      * @throws TablesEx
+     * @throws DocumentTreeHandlerEx
      */
     public function construct(): void
     {

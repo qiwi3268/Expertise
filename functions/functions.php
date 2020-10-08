@@ -388,3 +388,20 @@ function p($arg): void
         var_dump($arg);
     }
 }
+
+/**
+ * Предназначен для вызова функции var_dump с предварительным выводом
+ * из какого файла и строки был вызов данной функции
+ *
+ * @uses var_dump()
+ * @param mixed $arg
+ */
+function vd($arg): void
+{
+    list(
+        'file' => $file,
+        'line' => $line
+        ) = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0];
+    echo "<br/><b>file:</b> {$file}<br/><b>line:</b> {$line}<br/>";
+    var_dump($arg);
+}

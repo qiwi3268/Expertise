@@ -3,15 +3,14 @@
 
 namespace Lib\AccessToDocument;
 
-use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Exceptions\AccessToDocument as SelfEx;
+use Lib\Exceptions\DataBase as DataBaseEx;
+use Lib\Exceptions\DocumentTreeHandler as DocumentTreeHandlerEx;
 use Tables\Exceptions\Tables as TablesEx;
 use ReflectionException;
-use Exception;
 
-use Tables\Docs\Relations\HierarchyTree;
-use Lib\Singles\VariableTransfer;
-use Classes\DocumentTreeHandler;
+use Lib\Singles\DocumentTreeHandler;
+
 
 
 /**
@@ -67,26 +66,15 @@ class AccessToDocumentTree
      * @throws DataBaseEx
      * @throws TablesEx
      * @throws SelfEx
-     * @throws Exception
+     * @throws DocumentTreeHandlerEx
      */
     public function __construct(string $documentType, int $documentId)
     {
-        $VT = VariableTransfer::getInstance();
-
-        if (is_null($tree = $VT->getValue('hierarchyTree%S'))) {
-
-            $hierarchyTree = new HierarchyTree($documentType, $documentId);
-
-            $tree = $hierarchyTree->getTree();
-
-            $VT->setValue('hierarchyTree', $tree);
-        }
-
         if (!method_exists($this, $documentType)) {
             throw new SelfEx("В классе Lib\AccessToDocument\AccessToDocumentTree не реализован метод типа документа: '{$documentType}'", 2);
         }
 
-        $this->treeHandler = new DocumentTreeHandler($tree);
+        $this->treeHandler = DocumentTreeHandler::setInstanceByKey('AccessToDocumentTree', $documentType, $documentId);
         $this->documentId = $documentId;
         $this->callbacks = call_user_func([$this, $documentType]);
         $this->factory = new Factory();

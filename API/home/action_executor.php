@@ -43,7 +43,7 @@ use Tables\Locators\DocumentTypeTableLocator;
 //       {result, message : текст ошибки, code: код ошибки}
 //  14 - Ошибка при получении проверенного метода действия
 //       {result, error_message : текст ошибки}
-//  15 - Нет обязательного параметра POST / GET запроса
+//  15 - Нет обязательного(ых) параметра POST / GET запроса
 //       {result, error_message : текст ошибки}
 //  16 - Ошибка во время исполнения действия
 //       {result, error_message : текст ошибки}
@@ -126,8 +126,7 @@ try {
 
     try {
 
-        //$ref = $actions->getExecutionActions()->executeCallbackByPageName(CURRENT_PAGE_NAME);
-        $ref = '/';
+        $ref = $actions->getExecutionActions()->executeCallbackByPageName(CURRENT_PAGE_NAME);
     } catch (ActionsEx $e) {
 
         $e_message = $e->getMessage();

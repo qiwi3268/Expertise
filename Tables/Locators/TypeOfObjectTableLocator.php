@@ -175,4 +175,42 @@ class TypeOfObjectTableLocator
             return '\Tables\Structures\documentation_2';
         }
     }
+
+
+    /**
+     * Предназначен для получения названия класса таблицы
+     * в зависимости от вида объекта
+     *
+     * @return string
+     * {@see \Tables\DescriptivePart\description_documentation_1}<br>
+     * или<br>
+     * {@see \Tables\DescriptivePart\description_documentation_2}
+     */
+    public function getDescriptivePartDescription(): string
+    {
+        if ($this->typeOfObjectId == 1) {
+            return '\Tables\DescriptivePart\description_documentation_1';
+        } else {
+            return '\Tables\DescriptivePart\description_documentation_2';
+        }
+    }
+
+
+    /**
+     * Предназначен для получения названия класса таблицы
+     * в зависимости от вида объекта
+     *
+     * @return string
+     * {@see \Tables\DescriptivePart\TEP_documentation_1}<br>
+     * или<br>
+     * {@see \Tables\DescriptivePart\TEP_documentation_2}
+     */
+    public function getDescriptivePartTEP(): string
+    {
+        if ($this->typeOfObjectId == 1) {
+            return '\Tables\DescriptivePart\TEP_documentation_1';
+        } else {
+            return '\Tables\DescriptivePart\TEP_documentation_2';
+        }
+    }
 }

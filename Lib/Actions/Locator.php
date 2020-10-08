@@ -5,6 +5,7 @@ namespace Lib\Actions;
 
 use Lib\Exceptions\Actions as SelfEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
+use Lib\Exceptions\DocumentTreeHandler as DocumentTreeHandlerEx;
 use Tables\Exceptions\Tables as TablesEx;
 
 use Classes\Application\Actions\Actions as ApplicationActions;
@@ -39,6 +40,7 @@ class Locator
      * @throws SelfEx
      * @throws DataBaseEx
      * @throws TablesEx
+     * @throws DocumentTreeHandlerEx;
      */
     private function __construct(string $documentType)
     {
@@ -71,6 +73,7 @@ class Locator
      * @throws DataBaseEx
      * @throws SelfEx
      * @throws TablesEx
+     * @throws DocumentTreeHandlerEx
      */
     static public function getInstance(string $documentType): self
     {

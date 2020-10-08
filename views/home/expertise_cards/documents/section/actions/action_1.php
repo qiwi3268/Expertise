@@ -4,7 +4,7 @@
 
 <div class="action-header">
     <div class="action-header__title">
-        <span class="action-header__name">СОЗДАНИЕ ОПИСАТЕЛЬНОЙ ЧАСТИ РАЗДЕЛА</span>
+        <span class="action-header__name">СОЗДАНИЕ ОПИСАНИЯ РАЗДЕЛА</span>
         <span class="action-header__document">Заявление на экспертизу № 2020-6-1179/2020-8-1025-С от 18.08.2020</span>
     </div>
     <div class="action-header__buttons">

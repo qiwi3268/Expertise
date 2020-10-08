@@ -43,7 +43,7 @@ class DocumentTypeTableLocator
      * @throws SelfEx
      */
     private function handleMapping(array $mapping): string
-    {throw new SelfEx("В маппинге метода:  не найдено совпадения для типа документа: '{$this->documentType}'",3002);
+    {
         if (!isset($mapping[$this->documentType])) {
 
             $class = __CLASS__;

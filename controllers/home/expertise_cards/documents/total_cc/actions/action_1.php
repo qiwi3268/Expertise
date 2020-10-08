@@ -4,13 +4,13 @@ use Lib\Miscs\Initialization\Initializer as MiscInitializer;
 use Lib\Singles\TemplateMaker;
 
 use Lib\DataBase\Transaction;
+use Lib\Singles\DocumentTreeHandler;
 use Classes\TotalCC\Actions\DefaultFormParametersAction1;
-use Tables\Docs\Relations\ParentDocumentLinker;
 use Tables\FinancingSources\FinancingSourcesAggregator;
 
 
-$linker = new ParentDocumentLinker(CURRENT_DOCUMENT_TYPE, CURRENT_DOCUMENT_ID);
-$applicationId = $linker->getApplicationId();
+$treeHandler = DocumentTreeHandler::getInstanceByKey('AccessToDocumentTree');
+$applicationId = $treeHandler->getApplicationId();
 
 
 

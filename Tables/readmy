@@ -10,7 +10,10 @@ getAssocWhereActiveByPageName
 getAllSimple                      простой (индексный) массив
 
 getResponsibleTypeById
+
 updateResponsibleTypeById
+
+deleteAllByIdMainDocument
 
 checkExistById
 checkExistByIdWhereIdTypeOfObjectNN

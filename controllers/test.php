@@ -19,5 +19,5 @@ use Lib\DataBase\Transaction;
 use Tables\test;
 use Tables\Locators\DocumentTypeTableLocator;
 
-$a = new DocumentTypeTableLocator('total_cc');
-$a->getActionsHistory();
+vd('lalal');
+

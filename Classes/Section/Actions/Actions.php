@@ -4,12 +4,10 @@
 namespace Classes\Section\Actions;
 
 use Lib\Exceptions\DataBase as DataBaseEx;
+use Lib\Exceptions\DocumentTreeHandler as DocumentTreeHandlerEx;
 use Tables\Exceptions\Tables as TablesEx;
 
-use Lib\Singles\VariableTransfer;
-use Classes\DocumentTreeHandler;
-use Tables\Docs\Relations\ParentDocumentLinkerFacade;
-use Tables\Docs\application;
+use Lib\Singles\DocumentTreeHandler;
 use Lib\Actions\Actions as MainActions;
 use Tables\Locators\TypeOfObjectTableLocator;
 use Tables\Locators\DocumentTypeTableLocator;
@@ -34,6 +32,7 @@ class Actions extends MainActions
      */
     private int $typeOfObjectId;
 
+    public DocumentTreeHandler $documentTreeHandler;
     public TypeOfObjectTableLocator $typeOfObjectTableLocator;
     public DocumentTypeTableLocator $documentTypeTableLocator;
 
@@ -44,29 +43,26 @@ class Actions extends MainActions
      * Метод самостоятельно определяет с таблицей какого вида разделов будет
      * производиться работа
      *
-     * @throws DataBaseEx
      * @throws TablesEx
+     * @throws DocumentTreeHandlerEx
+     * @throws DataBaseEx
      */
     public function __construct()
     {
+        try {
 
-        // Получение вида объекта (для получения конкретной таблицы с действиями нужного типа)
+            $typeOfObjectId = DocumentTreeHandler::getInstanceByKey('AccessToDocumentTree')->getTypeOfObjectId();
+        } catch (DocumentTreeHandlerEx $e) {
 
-        // hierarchyTree должен быть определен ранее в AccessToDocumentTreeChecker
-        if (
-            !is_null($tree = VariableTransfer::getInstance()->getValue('hierarchyTree%S'))
-            // На случай, если класс будет вызываться не из заявления со сводным замечанием / заключением
-            && (($treeHandler = new DocumentTreeHandler($tree))->ce_totalCC())
-        ) {
-
-            $typeOfObjectId = $treeHandler->getTypeOfObjectId();
-        } else {
-
-            // Получаем id заявления напрямую, если до вызова этого класса не было вызова AccessToDocumentTreeChecker
-            // (это крайне маловероятно, сделано просто на вырост)
-            $facade = new ParentDocumentLinkerFacade(CURRENT_DOCUMENT_TYPE, CURRENT_DOCUMENT_ID);
-            $typeOfObjectId = application::getIdTypeOfObjectById($facade->getApplicationId());;
+            // Экземпляр класса не существует в хранилище
+            if ($e->getCode() == 2) {
+                $typeOfObjectId = DocumentTreeHandler::setInstanceByKey('SectionActions', CURRENT_DOCUMENT_TYPE, CURRENT_DOCUMENT_ID)->getTypeOfObjectId();
+            } else {
+                throw new DocumentTreeHandlerEx($e->getMessage(), $e->getCode());
+            }
         }
+
+
 
         $this->typeOfObjectId = $typeOfObjectId;
 

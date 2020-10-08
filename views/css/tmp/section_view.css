@@ -55,7 +55,8 @@
 
 }
 
-.tep-table {
+.tep-table,
+.view-section__description table {
 
    margin: 10px;
 
@@ -72,14 +73,22 @@
 }
 
 .tep-table td,
-.tep-table th {
+.view-section__description td,
+.tep-table th,
+.view-section__description th
+{
    /*border: solid #e0e0e0;*/
    /*border-width: 0 1px 1px 0;*/
    border: 1px solid #e0e0e0;
    padding: 10px;
 }
 
+.view-section__description {
+   /*margin: 10px;*/
+   /*border-bottom: 1px solid #e0e0e0;*/
 
+
+}
 
 
 

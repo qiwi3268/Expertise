@@ -32,7 +32,7 @@ abstract class ExecutionActions
      * Объект дочернего класса документа, унаследованного от библиотчечного класса
      *
      */
-    private Actions $actions;
+    protected Actions $actions;
 
 
     /**
@@ -117,6 +117,22 @@ abstract class ExecutionActions
         }
 
         return $method;
+    }
+
+
+    /**
+     * Предназначен для проверки наличия требуемых параметров в <b>POST</b> запросе
+     *
+     * @uses checkParamsPOST()
+     * @param string ...$params <i>перечисление</i> необходимых параметров
+     * @throws SelfEx
+     */
+    protected function checkParamsPOST(string ...$params): void
+    {
+        if (!call_user_func_array('checkParamsPOST', $params)) {
+            $debug = implode(', ', $params);
+            throw new SelfEx("Нет одного или более обязательного параметра POST запроса: '{$debug}'", 5);
+        }
     }
 
 

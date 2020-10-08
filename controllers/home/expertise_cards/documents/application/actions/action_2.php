@@ -10,6 +10,7 @@ use Lib\Singles\VariableTransfer;
 use Lib\Files\Mappings\RequiredMappingsSetter;
 use Lib\Singles\Helpers\FileHandler;
 use Lib\Singles\NodeStructure;
+use Lib\Singles\DocumentTreeHandler;
 use Classes\Application\Files\Initialization\Initializer as FilesInitializer;
 use Classes\Application\Actions\Miscs\Initialization\action_2 as MiscInitializer;
 use Tables\Docs\application;
@@ -33,7 +34,10 @@ $variablesTV->setValue('experts', $activeExperts);
 
 // Получение данных о выбранном виде объекта для выбора нужных классов
 //
-$typeOfObjectId = application::getIdTypeOfObjectById(CURRENT_DOCUMENT_ID);
+$treeHandler = DocumentTreeHandler::getInstanceByKey('AccessToDocumentTree');
+
+$typeOfObjectId = $treeHandler->getTypeOfObjectId();
+
 $tableLocator = new TypeOfObjectTableLocator($typeOfObjectId);
 
 

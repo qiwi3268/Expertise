@@ -19,7 +19,7 @@ class VariableTransfer
      * Сущность класса
      *
      */
-    private static self $instance;
+    static private self $instance;
 
     /**
      * Режим работы класса

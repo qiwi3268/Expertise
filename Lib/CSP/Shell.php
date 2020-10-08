@@ -27,7 +27,7 @@ class Shell
      * @return string вывод исполняемой команды
      * @throws SelfEx
      */
-    public static function exec(string $cmd): string
+    static public function exec(string $cmd): string
     {
         $message = shell_exec($cmd);
 

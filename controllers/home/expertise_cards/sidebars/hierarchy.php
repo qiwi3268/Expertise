@@ -7,7 +7,7 @@ use Lib\Singles\VariableTransfer;
 use Lib\AccessToDocument\AccessToDocumentTree;
 use Lib\AccessToDocument\Factory;
 use Lib\Singles\Helpers\PageAddress;
-use Classes\DocumentTreeHandler;
+use Lib\Singles\DocumentTreeHandler;
 use Tables\Locators\DocumentTypeTableLocator;
 use Tables\Locators\TypeOfObjectTableLocator;
 use Tables\assigned_expert_total_cc;
@@ -71,8 +71,8 @@ $addDocumentToArray = function (
     ];
 };
 
-// hierarchyTree определен ранее в AccessToDocumentTreeChecker
-$treeHandler = new DocumentTreeHandler($VT->getValue('hierarchyTree'));
+
+$treeHandler = DocumentTreeHandler::getInstanceByKey('AccessToDocumentTree');
 
 $factory = new Factory();
 

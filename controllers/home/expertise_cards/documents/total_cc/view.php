@@ -10,8 +10,6 @@ $financingSourcesAggregator = new FinancingSourcesAggregator(
     CURRENT_DOCUMENT_ID
 );
 
-var_dump($financingSourcesAggregator->getFinancingSources());
-
 TemplateMaker::registration(
     'view_financing_sources',
     TemplateMaker::HOME_WITH_DATA_VIEW . 'financing_sources.php',

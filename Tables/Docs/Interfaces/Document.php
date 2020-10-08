@@ -5,7 +5,7 @@ namespace Tables\Docs\Interfaces;
 
 
 /**
- * Общий интерфейс для работы с докментом
+ * Общий интерфейс для работы с документом
  *
  */
 interface Document
