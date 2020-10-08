@@ -2,6 +2,7 @@
 
 <div class="view__body">
     <div class="application-form__cards">
+    
         <div class="application-form__card card-form card" data-type="purpose" data-completed="<?= $variablesTV->getValue('block1_completed') ? 'true' : 'false' ?>">
             <div class="card-form__header card-expand">
                 <?php if ($variablesTV->getValue('block1_completed')): ?>
@@ -12,9 +13,9 @@
                 <span class="card-form__title">СВЕДЕНИЯ О ЦЕЛИ ОБРАЩЕНИЯ</span>
                 <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
             </div>
-
+    
             <div class="card-form__body card-body expanded">
-
+                
                 <!--Цель обращения-->
                 <div class="form-field">
                     <div class="form-field__title">
