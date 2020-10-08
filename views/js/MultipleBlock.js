@@ -88,6 +88,7 @@ class MultipleBlock {
 
    addEventListeners (new_block) {
       // todo придумать что-то с этим
+      // вынести в callback создания части
       if (new_block.querySelector('[data-misc_select]')) {
          Misc.initializeMiscSelects(new_block);
       }
@@ -113,11 +114,12 @@ class MultipleBlock {
          if (multiple_block.element.dataset.saved !== 'true') {
             multiple_block.element.dataset.saved = 'true';
             form_data.append(`${block.dataset.name}_exist_flag`, '1');
+            form_data.append(block.dataset.name, multiple_block.getPartsDataJSON());
          } else {
             form_data.append(`${block.dataset.name}_exist_flag`, '0');
+            form_data.append(block.dataset.name, '');
          }
 
-         form_data.append(block.dataset.name, multiple_block.getPartsDataJSON());
 
       });
    }

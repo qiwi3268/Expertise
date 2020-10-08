@@ -67,7 +67,6 @@ switch (URN) {
         break;
 
     case 'home/expertise_cards/total_cc/view' :
-    case 'home/expertise_cards/section_documentation_1/view' :
         $pageName = 'АИС_view';
         $sourcesFiles = [...GetFontAwesome5Case(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
@@ -76,7 +75,17 @@ switch (URN) {
             ...CreateSource('js', MODALS_JS, 'Tooltip.js'),
         ];
         break;
-
+    
+    
+    case 'home/expertise_cards/section_documentation_1/view' :
+        $pageName = 'АИС_view';
+        $sourcesFiles = [...GetFontAwesome5Case(),
+            ...CreateSource('css', ROOT_CSS, 'entry.css'),
+            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'create_application.css', 'view_application.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'action_sidebar.css', 'tooltip.css', 'section_view.css'),
+            ...CreateSource('js', ROOT_JS, 'main.js', 'section.js', 'ErrorModal.js'),
+            ...CreateSource('js', MODALS_JS, 'Tooltip.js'),
+        ];
+        break;
 
     case 'tmp/form_to_file_download' :
         $pageName = 'Загрузка файлов на сервер';

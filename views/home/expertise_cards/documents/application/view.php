@@ -1,4 +1,4 @@
-
+<?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
 <div class="view__body">
     <div class="application-form__cards">

@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initEditor () {
    tinymce.init({
-      selector: "textarea#descriptive_part",
+      selector: "textarea#description",
       min_height: 400,
       max_height: 1000,
       table_default_styles: {
@@ -43,18 +43,14 @@ function initEditor () {
    })
       .then(result => {
          let editor = result[0];
+         let text_area = editor.getElement();
 
          // todo если не срабатывает событие
-         editor.on('ObjectResizeStart', () => {
+         editor.on('ObjectResizeStart', () => changeParentCardMaxHeight(text_area, '100%'));
+         editor.on('ObjectResized', () => changeParentCardMaxHeight(text_area));
+         editor.on('focus', () => changeParentCardMaxHeight(text_area, '100%'));
+         editor.on('blur', () => changeParentCardMaxHeight(text_area));
 
-            let text_area = editor.getElement();
-            changeParentCardMaxHeight(text_area, '100%');
-
-            editor.on('ObjectResized', () => {
-               changeParentCardMaxHeight(text_area);
-            });
-
-         });
       })
       .catch(exc => {
          ErrorModal.open('Ошибка при инициализации редактора', exc);
@@ -66,7 +62,7 @@ function saveSection () {
 
    MultipleBlock.saveMultipleBlocks(form_data);
 
-   form_data.append('description', tinymce.get('descriptive_part').getContent());
+   form_data.append('description', tinymce.get('description').getContent());
 
    API.executeAction(form_data)
       .then((response) => {

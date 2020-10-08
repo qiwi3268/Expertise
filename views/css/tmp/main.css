@@ -218,6 +218,7 @@ textarea:hover {
 .modal__close {
    /*visibility: hidden;*/
    /*opacity: 0;*/
+   color: #343a40;
    position: absolute;
    top: -23px;
    right: -25px;
@@ -255,11 +256,13 @@ textarea:hover {
 }
 
 .error-modal__title {
+   color: #343a40;
    font-weight: 700;
    font-size: 18px;
 }
 
 .error-modal__message {
+   color: #343a40;
    padding: 10px 15px;
 }
 

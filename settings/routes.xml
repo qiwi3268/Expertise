@@ -159,14 +159,14 @@
                     <file name="application_dependencies" />
                     <file name="create" />
                 </dir>
-                <dir path="/views/home/" ext=".php">
-                    <file name="footer" />
-                </dir>
                 <dir path="/views/home/modals/" ext=".php">
                     <file name="calendar" />
                     <file name="file_upload" />
                     <file name="create_sign" />
                     <file name="error" />
+                </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="footer" />
                 </dir>
             </files>
         </page>
@@ -337,6 +337,12 @@
                 </dir>
                 <dir path="/views/home/expertise_cards/sidebars/" ext=".php">
                     <file name="actions" />
+                </dir>
+                <dir path="/views/home/modals/" ext=".php">
+                    <file name="error" />
+                </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="footer" />
                 </dir>
 
             </files>
@@ -564,7 +570,7 @@
             </callbacks>
         </template>
 
-        <!--  -->
+        <!-- Проверяет доступ пользователя к текущему документу с учетом всего дерева наследования -->
         <template id="AccessToDocumentTreeChecker">
             <callbacks>
                 <namespace name="\Classes\RouteCallbacks">

@@ -258,7 +258,6 @@ class FileUploader {
             // Вызываем событие для выбора файла у стандартного инпута
             this.file_input.click();
             this.clearModal();
-
          }
       });
 
@@ -270,9 +269,13 @@ class FileUploader {
    handleSubmitButton () {
       let submit_button = this.modal.querySelector('.file-modal__submit');
       submit_button.addEventListener('click', () => {
-         if (!this.is_uploading && this.file_input.files.length > 0) {
+
+         if (this.file_input.files.length === 0) {
+            ErrorModal.open('Ошибка при загрузке файлов', 'Не выбраны файлы для загрузки');
+         } else if (!this.is_uploading) {
             this.sendFiles();
          }
+
       });
    }
 

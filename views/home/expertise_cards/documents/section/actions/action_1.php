@@ -16,9 +16,9 @@
 <div class="descriptive-part">
     
     <div class="descriptive-part__card card">
-        <div class="descriptive-part__header card-expand">Описательная часть</div>
+        <div class="descriptive-part__header card-expand">Описание</div>
         <div class="descriptive-part__editor card-body expanded">
-            <textarea class="descriptive-part__text" id="descriptive_part"></textarea>
+            <textarea class="descriptive-part__text" id="description"></textarea>
         </div>
     </div>
     
@@ -28,7 +28,7 @@
         <div class="descriptive-part__body card-body expanded">
             
             <!--Технико-экономические показатели-->
-            <div class="multiple-block" data-block data-type="multiple" data-name="TEP" data-saved="true">
+            <div class="multiple-block descriptive-part__multiple-block" data-block data-type="multiple" data-name="TEP" data-saved="true">
                 <div class="multiple-block__add" data-multiple_add="add_tep">
                     <span class="multiple-block__text">Добавить технико-экономический показатель</span>
                     <i class="multiple-block__icon fas fa-plus"></i>
@@ -110,5 +110,11 @@
             <!--//Технико-экономические показатели//-->
         </div>
     </div>
+    
+    <div class="descriptive-part__card card">
+        <div class="descriptive-part__header card-expand">Замечания</div>
 
+        
+    </div>
+    
 </div>
