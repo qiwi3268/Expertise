@@ -294,6 +294,9 @@
                 <dir path="/views/home/expertise_cards/sidebars/" ext=".php">
                     <file name="actions" />
                 </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="footer" />
+                </dir>
 
             </files>
         </page>

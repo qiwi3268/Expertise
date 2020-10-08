@@ -43,11 +43,6 @@
    padding: 10px;
 }
 
-.tep {
-   border: 1px solid #e0e0e0;
-   color: #343a40;
-}
-
 .tep__header {
    padding: 10px;
 }
@@ -62,15 +57,6 @@
 
 .tep-table {
 
-   /*border: solid #e0e0dc;*/
-   /*border-width: 1px 0 0 1px;*/
-
-   /*border: 1px solid #e0e0dc;*/
-   /*border-spacing: 0;*/
-   /*border-collapse: collapse;*/
-   /*border: solid #e0e0dc;*/
-   /*border-width: 1px 0 0 1px;*/
-   /*border: 1px solid #e0e0dc;*/
    margin: 10px;
 
    color: #343a40;
@@ -79,18 +65,23 @@
    border: 1px solid #e0e0e0;
    border-collapse: collapse;
 
-   /*border: 0;*/
-
 }
 
+.tep-table__author {
+   width: 15%;
+}
 
-td,
-th {
+.tep-table td,
+.tep-table th {
    /*border: solid #e0e0e0;*/
    /*border-width: 0 1px 1px 0;*/
    border: 1px solid #e0e0e0;
    padding: 10px;
 }
+
+
+
+
 
 
 

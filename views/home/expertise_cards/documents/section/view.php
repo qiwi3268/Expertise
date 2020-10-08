@@ -1,87 +1,46 @@
 <!--todo переделать в VT-->
 <?php $_VT = \Lib\Singles\VariableTransfer::getInstance(); ?>
+<?php $_TEPsByAuthors = $_VT->getValue('TEPsByAuthors'); ?>
 
 
 <div class="view-section">
     
-    <table class="tep-table">
-        <thead>
-            <tr>
-                <th colspan="4">Технико-экономические показатели</th>
-            </tr>
-            <tr>
-                <th style="width: 15%;">Автор</th>
-                <th>Показатель</th>
-                <th>Значение</th>
-                <th>Примечание</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($_VT->getValue('TEPs') as $author => $TEPs): ?>
+    <?php if (!empty($_TEPsByAuthors)): ?>
+        <table class="tep-table">
+            <thead>
                 <tr>
-                    <td rowspan="<?= count($TEPs) ?>"><?= $author ?></td>
-                    <td><?= $TEPs[0]['indicator'] ?></td>
-                    <td><?= $TEPs[0]['value'] ?></td>
-                    <td><?= $TEPs[0]['note'] ?></td>
+                    <th colspan="4">Технико-экономические показатели</th>
                 </tr>
-                <?php for ($l = 1; $l < count($TEPs); $l++): ?>
+                <tr>
+                    <th class="tep-table__author">Автор</th>
+                    <th>Показатель</th>
+                    <th>Значение</th>
+                    <th>Примечание</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($_TEPsByAuthors as $author => $TEPs): ?>
                     <tr>
-                        <td><?= $TEPs[$l]['indicator'] ?></td>
-                        <td><?= $TEPs[$l]['value'] ?></td>
-                        <td><?= $TEPs[$l]['note'] ?></td>
+                        <td class="tep-table__author" rowspan="<?= count($TEPs) ?>"><?= $author ?></td>
+                        <td><?= $TEPs[0]['indicator'] ?></td>
+                        <td><?= $TEPs[0]['value'] ?></td>
+                        <td><?= $TEPs[0]['note'] ?></td>
                     </tr>
-                <?php endfor; ?>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+                    <?php for ($l = 1; $l < count($TEPs); $l++): ?>
+                        <tr>
+                            <td><?= $TEPs[$l]['indicator'] ?></td>
+                            <td><?= $TEPs[$l]['value'] ?></td>
+                            <td><?= $TEPs[$l]['note'] ?></td>
+                        </tr>
+                    <?php endfor; ?>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
     
     
-<!--    <table class="tep-table">-->
-<!--        <thead>-->
-<!--            <tr>-->
-<!--                <th colspan="4">Источники финансирования</th>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <th style="width: 15%;">Автор</th>-->
-<!--                <th>Показатель</th>-->
-<!--                <th>Значение</th>-->
-<!--                <th>Примечание</th>-->
-<!--            </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        -->
-<!--            <tr>-->
-<!--                <td rowspan="2">Иванов Т.Т.</td>-->
-<!--                <td>Высота</td>-->
-<!--                <td>30 м</td>-->
-<!--                <td>примечание</td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>Этажность</td>-->
-<!--                <td>10 эт</td>-->
-<!--                <td>примечание</td>-->
-<!--            </tr>-->
-<!---->
-<!--            <tr>-->
-<!--                <td rowspan="3">Иванов Т.Т.</td>-->
-<!--                <td>Высота</td>-->
-<!--                <td>30 м</td>-->
-<!--                <td>примечание</td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>Этажность</td>-->
-<!--                <td>10 эт</td>-->
-<!--                <td>примечание</td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>Этажность</td>-->
-<!--                <td>10 эт</td>-->
-<!--                <td>примечание</td>-->
-<!--            </tr>-->
-<!--        </tbody>-->
-<!--    </table>-->
-
-<!--    <div class="view-table">-->
+    
+    <!--    <div class="view-table">-->
 <!--        -->
 <!--        <div class="view-table__header">-->
 <!--            <div class="view-table__title">Технико-экономические показатели</div>-->

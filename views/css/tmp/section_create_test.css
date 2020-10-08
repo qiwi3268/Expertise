@@ -48,7 +48,9 @@
    /*padding: 10px;*/
 }
 
-
+.descriptive-part__comments {
+   display: flex;
+}
 
 
 
