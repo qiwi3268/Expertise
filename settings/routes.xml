@@ -410,7 +410,14 @@
             </files>
         </page>
 
-        <page urn="home/section_create_test">
+        <page urn="home/expertise_cards/section_documentation_1/actions/action_1">
+
+            <callback_template id="AuthorizationChecker" />
+            <callback_template id="DocumentParameters_ActionPage" />
+            <callback_template id="DocumentExistChecker" />
+            <callback_template id="AccessToDocumentTreeChecker" />
+            <callback_template id="ActionChecker" />
+
             <files>
                 <dir path="/controllers/" ext=".php">
                     <file name="html_head" />
@@ -418,18 +425,24 @@
                 <dir path="/controllers/home/" ext=".php">
                     <file name="header" />
                 </dir>
+                <dir path="/controllers/home/expertise_cards/documents/section/actions/" ext=".php">
+                    <file name="action_1" />
+                </dir>
 
                 <dir path="/views/" ext=".php">
                     <file name="html_head" />
                 </dir>
-
                 <dir path="/views/home/" ext=".php">
                     <file name="header" />
-                    <file name="section_create_test" />
-                    <file name="footer" />
+                </dir>
+                <dir path="/views/home/expertise_cards/documents/section/actions/" ext=".php">
+                    <file name="action_1" />
                 </dir>
                 <dir path="/views/home/expertise_cards/documents/total_cc/actions/" ext=".php">
                     <file name="action_1_dependencies" />
+                </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="footer" />
                 </dir>
                 <dir path="/views/home/modals/" ext=".php">
                     <file name="error" />

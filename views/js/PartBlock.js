@@ -144,21 +144,6 @@ class PartBlock {
 
    }
 
-   validate () {
-
-
-      let validation_callback = getPartValidationCallback(this.parent);
-      let validate_result = validation_callback(this);
-
-      if (validate_result.is_valid) {
-         this.save(validate_result.part_title);
-      } else {
-         this.data = null;
-         ErrorModal.open('Ошибка при сохранении блока', validate_result.error_message);
-      }
-
-   }
-
 }
 
 function createFinancingSource (multiple_block) {
