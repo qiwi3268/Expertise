@@ -1,17 +1,16 @@
 <?php
 
 
-use Lib\Responsible\Responsible;
 use Lib\Files\Mappings\RequiredMappingsSetter;
 use Lib\Singles\VariableTransfer;
-use Lib\Singles\NodeStructure;
+use Lib\Singles\DocumentationFilesFacade;
+
 use Lib\Singles\Helpers\FileHandler;
 use Classes\Application\Files\Initialization\Initializer as FilesInitializer;
 use Tables\Docs\application;
-use Tables\Locators\TypeOfObjectTableLocator;
 
 
-$variablesTV = VariableTransfer::getInstance();
+$VT = VariableTransfer::getInstance();
 
 $applicationAssoc = application::getAssocById(CURRENT_DOCUMENT_ID);
 
@@ -27,12 +26,12 @@ updateDatesTimestampToDdMmYyyy(
 foreach ($applicationAssoc as $property => $value) {
 
     if (is_null($value)) {
-        $variablesTV->setExistenceFlag($property, false);
+        $VT->setExistenceFlag($property, false);
         continue;
     }
 
-    $variablesTV->setExistenceFlag($property, true);
-    $variablesTV->setValue($property, $value);
+    $VT->setExistenceFlag($property, true);
+    $VT->setValue($property, $value);
 }
 
 
@@ -49,60 +48,28 @@ $needsFiles = $filesInitializer->getNeedsFilesWithSigns();
 foreach ($needsFiles as &$mapping_level_2) {
     foreach ($mapping_level_2 as &$files) {
         if (!is_null($files)) {
-            FileHandler::setFileIconClass($files);
-            FileHandler::setValidateResultJSON($files);
-            FileHandler::setHumanFileSize($files);
+            DocumentationFilesFacade::handleFiles($files);
         }
     }
     unset($files);
 }
 unset($mapping_level_2);
 
-$variablesTV->setValue('form_files', $needsFiles);
+$VT->setValue('form_files', $needsFiles);
 
 // Сохранен вид объекта, показываем документацию
-if ($variablesTV->getExistenceFlag('type_of_object')) {
+if ($VT->getExistenceFlag('type_of_object')) {
 
-    // Удаление переменных, служивших выше
-    unset($requiredMappings, $filesInitializer, $needsFiles);
+    $documentationFilesFacade = new DocumentationFilesFacade(CURRENT_DOCUMENT_ID, $VT->getValue('type_of_object')['id']);
 
-    $typeOfObjectId = $variablesTV->getValue('type_of_object')['id'];
-
-    $tableLocator = new TypeOfObjectTableLocator($typeOfObjectId);
-
-
-    if ($typeOfObjectId == 1) { // Производственные / непроизводственные
-        $mapping_level_1 = 2;
-        $mapping_level_2 = 1;
-    } else {                    // Линейные
-        $mapping_level_1 = 2;
-        $mapping_level_2 = 2;
-    }
-
+    $mappings = $documentationFilesFacade->getMappingsLevel();
 
     // Устанавливаем маппинги для работы js по скачиванию файлов
-    $variablesTV->setValue('documentation_mapping_level_1', $mapping_level_1);
-    $variablesTV->setValue('documentation_mapping_level_2', $mapping_level_2);
+    $VT->setValue('documentation_mapping_level_1', $mappings['1']);
+    $VT->setValue('documentation_mapping_level_2', $mappings['2']);
 
-    // Объект нужных маппингов (только документация выбранного вида объекта)
-    $requiredMappings = new RequiredMappingsSetter();
+    $filesInStructure = $documentationFilesFacade->getFilesInDepthStructure();
+    DocumentationFilesFacade::handleFilesInStructure($filesInStructure);
 
-    $requiredMappings->setMappingLevel2($mapping_level_1, $mapping_level_2);
-
-    $filesInitializer = new FilesInitializer($requiredMappings, CURRENT_DOCUMENT_ID);
-
-    $needsFiles = $filesInitializer->getNeedsFilesWithSigns()[$mapping_level_1][$mapping_level_2] ?? [];
-
-    // Обработка файловых массивов
-    FileHandler::setFileIconClass($needsFiles);
-    FileHandler::setValidateResultJSON($needsFiles);
-    FileHandler::setHumanFileSize($needsFiles);
-
-    $nodeStructure = new NodeStructure(
-        call_user_func([$tableLocator->getStructures(), 'getAllAssocWhereActive'])
-    );
-
-    $filesInStructure = FilesInitializer::getFilesInDepthStructure($needsFiles, $nodeStructure);
-
-    $variablesTV->setValue('documentation_files_in_structure', $filesInStructure);
+    $VT->setValue('documentation_files_in_structure', $filesInStructure);
 }

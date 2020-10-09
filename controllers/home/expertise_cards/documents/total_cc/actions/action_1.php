@@ -1,5 +1,11 @@
 <?php
 
+
+// -----------------------------------------------------------------------------------------
+// Действие: "Создать общую часть"
+// -----------------------------------------------------------------------------------------
+
+
 use Lib\Miscs\Initialization\Initializer as MiscInitializer;
 use Lib\Singles\TemplateMaker;
 
@@ -11,7 +17,6 @@ use Tables\FinancingSources\FinancingSourcesAggregator;
 
 $treeHandler = DocumentTreeHandler::getInstanceByKey('AccessToDocumentTree');
 $applicationId = $treeHandler->getApplicationId();
-
 
 
 $transaction = new Transaction();

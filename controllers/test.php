@@ -18,6 +18,4 @@ use Tables\assigned_expert_total_cc;
 use Lib\DataBase\Transaction;
 use Tables\test;
 use Tables\Locators\DocumentTypeTableLocator;
-
-vd('lalal');
-
+use Lib\Singles\DocumentationFilesFacade;

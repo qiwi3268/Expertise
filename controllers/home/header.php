@@ -5,6 +5,6 @@ use core\Classes\Session;
 use Lib\Singles\VariableTransfer;
 
 
-$variablesTV = VariableTransfer::getInstance();
+$VT = VariableTransfer::getInstance();
 
-$variablesTV->setValue('userFIO', Session::getUserFullFIO());
+$VT->setValue('userFIO', Session::getUserFullFIO());

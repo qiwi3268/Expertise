@@ -47,9 +47,8 @@ class NodeStructure
     /**
      * Предназначен для получения "глубинной" структуры
      *
-     * У каждого узла будет проставлен уровень его вложенности
+     * У каждого узла будет проставлен уровень его вложенности в свойстве 'depth'
      *
-     * @return array массив с массивами формата id, name, is_header, depth
      */
     public function getDepthStructure(): array
     {
@@ -83,7 +82,22 @@ class NodeStructure
                 } while ($issetParent);
             }
 
-            // todo важное
+            /*
+             * $handleNode = [];
+            $handleNode['depth'] = $depth;
+
+            foreach ($node as $key => $value) {
+
+                if (containsAll($key, 'is_')) {
+                    $handleNode[$key] = (bool)$value;
+                } else {
+                    $handleNode[$key] = $value;
+                }
+            }
+
+            $result[] = $handleNode;
+            */
+            //todo важное
             @$result[] = [
                 'id'                => $node['id'],
                 'id_parent_node'    => $node['id_parent_node'],
@@ -95,5 +109,35 @@ class NodeStructure
             ];
         }
         return $result;
+    }
+
+
+    /**
+     * Предназначен для получения индексного массива (нумерация с 0 индекса), в котором указаны id
+     * родительских узлов
+     *
+     * id родительских узлов расположены по убыванию, то есть стремятся к самому верхнему узлу
+     *
+     * @param int $nodeId id узла
+     * @param array $depthStructure "глубинная" структура.<br>
+     * <b>***</b> Предполагается, что все указанные родительские узлы по 'id_parent_node' существуют
+     * в принятом массиве
+     * @return array
+     */
+    public function getNodeParents(int $nodeId, array $depthStructure): array
+    {
+        // Текущий узел, далее его родительские узлы и т.д.
+        $currentNodeIndex = getFirstArrayEntryIndex($depthStructure, 'id', $nodeId);
+
+        $parentCount = $depthStructure[$currentNodeIndex]['depth'];
+
+        $parents = [];
+
+        for ($l = 0; $l < $parentCount; $l++) {
+
+            $currentNodeIndex = getFirstArrayEntryIndex($depthStructure, 'id', $depthStructure[$currentNodeIndex]['id_parent_node']);
+            $parents[$l] = $depthStructure[$currentNodeIndex]['id'];
+        }
+        return $parents;
     }
 }

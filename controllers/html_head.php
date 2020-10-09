@@ -142,10 +142,10 @@ switch (URN) {
             ...GetTinyMCECase(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'action_header.css'),
-            ...CreateSource('css', TMP_CSS,'section_create_test.css', 'multiple_block.css', 'create_application.css', 'comment_modal.css'),
+            ...CreateSource('css', TMP_CSS,'radio.css', 'files.css', 'documentation.css', 'section_create_test.css', 'multiple_block.css', 'sign.css', 'create_application.css', 'comment_modal.css'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
-            ...CreateSource('js', ROOT_JS, 'section.js', 'main.js', 'API.js', 'DependenciesHandler.js', 'MultipleBlock.js', 'PartBlock.js', 'radio.js'),
-            ...CreateSource('js', MODALS_JS,'ErrorModal.js', 'CommentCreator.js'),
+            ...CreateSource('js', ROOT_JS, 'section.js', 'main.js', 'API.js', 'DependenciesHandler.js', 'MultipleBlock.js', 'PartBlock.js', 'radio.js', 'GeFile.js', 'validation.js'),
+            ...CreateSource('js', MODALS_JS,'ErrorModal.js', 'CommentCreator.js', 'SignView.js', 'Misc.js'),
             ...CreateSource('js', ROOT_JS . 'expertise_cards/documents/section/actions/', 'action_1.js'),
         ];
         break;

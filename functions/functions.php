@@ -253,6 +253,28 @@ function arrayEntry(array $array, string $key, $value): array
 
 
 /**
+ * Предназначен для поиска в исходном массиве первого элемента по ключу key со значением value
+ *
+ * @param array $array индексный массив с ассоциативными массивами внутри
+ * @param string $key ключ ассоциативного массива
+ * @param mixed $value значение ассоциативного массива
+ * @return int|null <b>int</b> индекс исходного массива при котором было первое вхождение<br>
+ * <b>null</b> в случае, если не было ни одного вхождения
+ */
+function getFirstArrayEntryIndex(array $array, string $key, $value): ?int
+{
+    foreach ($array as $k => $v) {
+
+        if (isset($v[$key]) && $v[$key] === $value) {
+
+            return $k;
+        }
+    }
+    return null;
+}
+
+
+/**
  * Предназначен для получения массива с рекурсивно замененными null значениями во входном массиве на новое значение
  *
  * @param array $array исходный массив

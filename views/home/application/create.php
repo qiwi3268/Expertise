@@ -1,9 +1,9 @@
-<?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
+<?php $_VT = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
-<?php //var_dump($variablesTV->getValue('structureDocumentation1')); ?>
+<?php //var_dump($_VT->getValue('structureDocumentation1')); ?>
 
 <div class="application-header">
-    <div class="application-header__title">Заявление на экспертизу <?= $variablesTV->getValue('numerical_name') ?></div>
+    <div class="application-header__title">Заявление на экспертизу <?= $_VT->getValue('numerical_name') ?></div>
     <div class="application-header__actions">
         <div id="application_save" class="application-header__button">
             <span class="application-header__text">Сохранить</span>
@@ -53,7 +53,7 @@
     </div>
 
     <div class="application-form__cards">
-        <input type="hidden" name="id_application" value="<?= $variablesTV->getValue('id_application') ?>">
+        <input type="hidden" name="id_application" value="<?= $_VT->getValue('id_application') ?>">
 
         <div class="application-form__block" data-block data-dependency_scope>
 
@@ -80,7 +80,7 @@
                         <div class="modal" data-misc_modal data-result_callback="document_field">
                             <i class="modal__close fas fa-times" data-misc_close></i>
                             <div class="modal__items" data-misc_body>
-                                <?php foreach ($variablesTV->getValue('expertise_purpose') as $pageNumber => $page): ?>
+                                <?php foreach ($_VT->getValue('expertise_purpose') as $pageNumber => $page): ?>
                                     <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
                                         <?php foreach ($page as $item): ?>
                                             <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
@@ -155,7 +155,7 @@
                         <div class="modal" data-misc_modal data-result_callback="document_field">
                             <i class="modal__close fas fa-times" data-misc_close></i>
                             <div class="modal__items" data-misc_body>
-                                <?php foreach ($variablesTV->getValue('type_of_object') as $pageNumber => $page): ?>
+                                <?php foreach ($_VT->getValue('type_of_object') as $pageNumber => $page): ?>
                                     <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
                                         <?php foreach ($page as $item): ?>
                                             <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
@@ -184,7 +184,7 @@
                         <div class="modal" data-misc_modal data-result_callback="document_field">
                             <i class="modal__close fas fa-times" data-misc_close></i>
                             <div class="modal__items" data-misc_body>
-                                <?php foreach ($variablesTV->getValue('functional_purpose') as $pageNumber => $page): ?>
+                                <?php foreach ($_VT->getValue('functional_purpose') as $pageNumber => $page): ?>
                                     <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
                                         <?php foreach ($page as $item): ?>
                                             <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
@@ -413,7 +413,7 @@
                             <div class="modal" data-misc_modal data-result_callback="document_field">
                                 <i class="modal__close fas fa-times" data-misc_close></i>
                                 <div class="modal__items" data-misc_body>
-                                    <?php foreach ($variablesTV->getValue('cultural_object_type') as $pageNumber => $page): ?>
+                                    <?php foreach ($_VT->getValue('cultural_object_type') as $pageNumber => $page): ?>
                                         <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
                                             <?php foreach ($page as $item): ?>
                                                 <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
@@ -468,7 +468,7 @@
                             <div class="modal" data-misc_modal data-result_callback="document_field">
                                 <i class="modal__close fas fa-times" data-misc_close></i>
                                 <div class="modal__items" data-misc_body>
-                                    <?php foreach ($variablesTV->getValue('national_project') as $pageNumber => $page): ?>
+                                    <?php foreach ($_VT->getValue('national_project') as $pageNumber => $page): ?>
                                         <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
                                             <?php foreach ($page as $item): ?>
                                                 <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
@@ -538,7 +538,7 @@
                         <div class="modal" data-misc_modal data-result_callback="document_field">
                             <i class="modal__close fas fa-times" data-misc_close></i>
                             <div class="modal__items" data-misc_body>
-                                <?php foreach ($variablesTV->getValue('curator') as $pageNumber => $page): ?>
+                                <?php foreach ($_VT->getValue('curator') as $pageNumber => $page): ?>
                                     <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
                                         <?php foreach ($page as $item): ?>
                                             <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
@@ -622,7 +622,7 @@
                                     <div class="modal" data-misc_modal data-result_callback="document_field">
                                         <i class="modal__close fas fa-times" data-misc_close></i>
                                         <div class="modal__items" data-misc_body>
-                                            <?php foreach ($variablesTV->getValue('budget_level') as $pageNumber => $page): ?>
+                                            <?php foreach ($_VT->getValue('budget_level') as $pageNumber => $page): ?>
                                                 <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
                                                     <?php foreach ($page as $item): ?>
                                                         <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
@@ -873,7 +873,7 @@
                 </div>
                 <div class="card-form__block" data-block data-name="structureDocumentation1" data-active="false">
                     <div class="documentation field" data-id_file_field data-mapping_level_1="2" data-mapping_level_2="1">
-                        <?php foreach ($variablesTV->getValue('structureDocumentation1') as $node): ?>
+                        <?php foreach ($_VT->getValue('structureDocumentation1') as $node): ?>
                             <div class="documentation__node" data-id_structure_node="<?= $node['id'] ?>">
                                 <div class="documentation__header" data-title="<?= $node['is_header'] ? 'true' : 'false' ?>">
                                     <span class="documentation__name" style="padding-left: <?= $node['depth']*25 + 15 ?>px"><?= $node['name'] ?></span>
@@ -888,7 +888,7 @@
                 </div>
                 <div class="card-form__block" data-block data-name="structureDocumentation2" data-active="false">
                     <div class="documentation field" data-id_file_field data-mapping_level_1="2" data-mapping_level_2="2">
-                        <?php foreach ($variablesTV->getValue('structureDocumentation2') as $node): ?>
+                        <?php foreach ($_VT->getValue('structureDocumentation2') as $node): ?>
                             <div class="documentation__node" data-id_structure_node="<?= $node['id'] ?>">
                                 <div class="documentation__header" data-title="<?= $node['is_header'] ? 'true' : 'false' ?>">
                                     <span class="documentation__name" style="padding-left: <?= $node['depth']*25 + 15 ?>px"><?= $node['name'] ?></span>

@@ -1,10 +1,10 @@
 
 
-<?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
+<?php $_VT = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
-<?php //var_dump($variablesTV->getValue('documentation_files_in_structure')); ?>
-<?php //var_dump($variablesTV->getValue('experts')); ?>
-<?php //var_dump($variablesTV->getValue('main_block_341')); ?>
+<?php //var_dump($_VT->getValue('documentation_files_in_structure')); ?>
+<?php //var_dump($_VT->getValue('experts')); ?>
+<?php //var_dump($_VT->getValue('main_block_341')); ?>
 
 <div class="action-info">Капитальный ремонт здания школы в пос. Увельский, ул. Советская, 38 Увельского муниципального района Челябинской области (смета)Капитальный ремонт здания школы в пос. Увельский, ул. Советская, 38 Увельского муниципального района Челябинской области (смета)Капитальный ремонт здания школы в пос. Увельский, ул. Советская, 38 Увельского муниципального района Челябинской области (смета)</div>
 
@@ -31,7 +31,7 @@
                      data-drag_multiple="true"
                      data-transform_callback="expert"
                 >
-                    <?php foreach ($variablesTV->getValue('experts') as $index => $expert): ?>
+                    <?php foreach ($_VT->getValue('experts') as $index => $expert): ?>
                         <span class="assignment__expert"
                               data-drag_element
                               data-id="<?= $expert['id'] ?>"
@@ -44,7 +44,7 @@
             <div class="assignment__expert-section">
                 <div class="assignment__type">Экспертный отдел</div>
                 <div class="assignment__expert-list" data-drag_container data-drag_multiple="false" data-transform_callback="expert">
-                    <?php foreach ($variablesTV->getValue('experts') as $index => $expert): ?>
+                    <?php foreach ($_VT->getValue('experts') as $index => $expert): ?>
                         <div class="assignment__expert"
                              data-drag_element
                              data-id="<?= $expert['id'] ?>"
@@ -63,7 +63,7 @@
                 <span class="assignment__title">Представленные на экспертизу разделы</span>
             </div>
             <div class="assignment__body-sections">
-                <?php foreach ($variablesTV->getValue('documentation_files_in_structure') as $section): ?>
+                <?php foreach ($_VT->getValue('documentation_files_in_structure') as $section): ?>
                     <div class="assignment__section section"
                          data-drop_area
                          data-id="<?= $section['id_main_block_341'] ?>"
@@ -165,7 +165,7 @@
                 <div class="modal" data-misc_modal data-result_callback="additional_section">
                     <i class="modal__close fas fa-times" data-misc_close></i>
                     <div class="modal__items" data-misc_body>
-                        <?php foreach ($variablesTV->getValue('main_block_341') as $pageNumber => $page): ?>
+                        <?php foreach ($_VT->getValue('main_block_341') as $pageNumber => $page): ?>
                             <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
                                 <?php foreach ($page as $item): ?>
                                     <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>

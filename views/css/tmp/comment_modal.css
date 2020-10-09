@@ -4,31 +4,32 @@
    max-width: 1655px;
 
    top: 50%;
-   overflow-y: auto;
-   overflow-x: hidden;
+   /*overflow-y: auto;*/
+   /*overflow-x: hidden;*/
+
+   overflow: hidden;
+
    color: #343a40;
 
-   box-shadow: none;
-   background-color: rgba(0, 0, 0, 0);
-
-   /*display: flex;*/
    flex-direction: row;
-   /*top: 0;*/
-   /*left: 0;*/
-
 }
 
-.comment-modal__form,
 .comment-modal__files {
-   box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
-   background-color: #ffffff;
-   border-radius: 4px;
+   overflow: hidden;
+}
+
+.comment-modal__body {
+   height: 100%;
+   overflow-y: auto;
+   overflow-x: hidden;
 }
 
 .comment-modal__form {
-   width: 30%;
-   margin: 0px 5px 0px 0px;
+   width: 50%;
+}
 
+.comment-modal__form > .comment-modal__body {
+   border-right: 2px solid #93b0d1;
 }
 
 .comment-modal__form .form-field {
@@ -47,11 +48,19 @@
 }
 
 .comment-modal__files {
-   width: 70%;
-
+   width: 50%;
 }
 
-/*.form-field__item .multiple-block__add {
-   margin: 10px 0px 0px 0px;
-   align-self: flex-start;
-}*/
+.comment-modal__header {
+   padding: 10px;
+   border-bottom: 2px solid #93b0d1;
+}
+
+.comment-modal__title {
+   font-weight: 700;
+   text-align: center;
+}
+
+.radio__text {
+   font-size: 16px;
+}
