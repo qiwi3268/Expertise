@@ -115,7 +115,7 @@
         <div class="descriptive-part__header card-expand">Замечания</div>
         <div class="descriptive-part__comments card-body expanded">
             
-            <div class="multiple-block__add">
+            <div class="multiple-block__add" data-add_comment>
                 <span class="multiple-block__text">Создать замечание</span>
                 <i class="multiple-block__icon fas fa-plus"></i>
             </div>

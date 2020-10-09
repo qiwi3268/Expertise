@@ -171,7 +171,7 @@ textarea:hover {
    width: 100%;
    max-width: 500px;
    font-family: 'Roboto Condensed', sans-serif;
-   border-radius: 3px;
+   border-radius: 4px;
    box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
    background-color: #ffffff;
    transform: translate(-50%, -50%);
@@ -188,7 +188,8 @@ textarea:hover {
 .file-overlay,
 .save-overlay,
 .sign-overlay,
-.error-overlay {
+.error-overlay,
+.comment-overlay {
    visibility: hidden;
    opacity: 0;
    position: fixed;
@@ -209,8 +210,8 @@ textarea:hover {
 .modal__close.active,
 .save-overlay.active,
 .sign-overlay.active,
-.error-overlay.active
-{
+.error-overlay.active,
+.comment-overlay.active {
    visibility: visible;
    opacity: 1;
 }

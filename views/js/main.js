@@ -80,7 +80,18 @@ function enableScroll () {
 // Возвращает параметры------------------------------
 // id         string : id текущего заявления
 function getIdDocument () {
-   return document.querySelector('[name="id_application"]').value;
+   let id_document_input = document.querySelector('[name="id_application"]');
+   let id_document;
+
+   if (id_document_input) {
+      id_document = id_document_input.value
+   } else {
+      let url = new URL(window.location.href);
+      id_document = url.searchParams.get('id_document');
+
+   }
+
+   return id_document;
 }
 
 //---------

@@ -454,6 +454,7 @@
                     <file name="footer" />
                 </dir>
                 <dir path="/views/home/modals/" ext=".php">
+                    <file name="comment" />
                     <file name="error" />
                 </dir>
             </files>

@@ -28,18 +28,22 @@ function handleTextAreasResize () {
    let text_areas = document.querySelectorAll('textarea');
    text_areas.forEach(text_area => {
       text_area.addEventListener('mousedown', () => {
-         // При изменении размера текстового поля для расширения блока
-         // ставим максимальную высоту в процентах
-         changeParentCardMaxHeight(text_area, '100%');
 
-         // При изменении размера текстового поля добавляем разовый обработчик,
-         // который при отпускании мыши ставит высоту блока в пикселях
-         document.addEventListener(
-            'mouseup',
-            expandListener.bind(this, text_area),
-            {
-               once: true,
-            });
+         if (text_area.closest('.card-body')) {
+            // При изменении размера текстового поля для расширения блока
+            // ставим максимальную высоту в процентах
+            changeParentCardMaxHeight(text_area, '100%');
+
+            // При изменении размера текстового поля добавляем разовый обработчик,
+            // который при отпускании мыши ставит высоту блока в пикселях
+            document.addEventListener(
+               'mouseup',
+               expandListener.bind(this, text_area),
+               {
+                  once: true,
+               });
+         }
+
       });
    });
 }
@@ -71,7 +75,7 @@ function expandCard (card) {
 function resizeCard (inner_element) {
 
    let card_body = inner_element.closest('.card-body');
-   if (card_body.style.maxHeight) {
+   if (card_body && card_body.style.maxHeight) {
       // Раскрываем блок
       changeParentCardMaxHeight(card_body);
    }

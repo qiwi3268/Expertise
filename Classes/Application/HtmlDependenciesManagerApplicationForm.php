@@ -57,6 +57,11 @@ class HtmlDependenciesManagerApplicationForm extends HtmlDependenciesManager
                 0 => ['national_project' => false],
                 1 => ['national_project' => true]
             ],
+            
+            'comment_without_files' => [
+                0 => ['mark_files' => true],
+                1 => ['mark_files' => false]
+            ],
 
 
             // Зависимости множественных блоков --------------------------------------------------------

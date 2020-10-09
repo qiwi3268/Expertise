@@ -34,7 +34,10 @@ function initRadioItems (radio_elem, result_callback) {
 
       let is_changed;
 
+
+
       items.forEach(item => {
+
          item.addEventListener('click', () => {
 
             if (item.dataset.selected === 'true') {
@@ -44,6 +47,7 @@ function initRadioItems (radio_elem, result_callback) {
             } else {
                is_changed = changeSelectedItem(item);
             }
+
 
             if (is_changed) {
                // Записываем в результат json с id выбранных элементов

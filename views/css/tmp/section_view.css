@@ -1,13 +1,29 @@
-.view-section {
+/*.view-section,*/
+.view-section__card
+{
    background-color: #ffffff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
    overflow: hidden;
 }
 
+.view-section__card {
+   margin: 0px 0px 10px 0px;
+   border-left: 3px solid #93b0d1;
+
+}
+
 .view-section {
    flex-grow: 1;
    margin: 0px 0px 10px 0px;
+}
+
+.view-section__header {
+   padding: 10px;
+   text-align: center;
+   font-weight: 700;
+   border-bottom: 1px solid #e0e0e0;
+   background-color: #f6f8fa;
 }
 
 .view-table {
@@ -21,6 +37,10 @@
    padding: 10px;
    border-bottom: 1px solid #e0e0e0;
 
+}
+
+.view-section__description {
+   padding: 10px;
 }
 
 .view-table__row {

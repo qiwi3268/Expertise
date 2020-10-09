@@ -1,0 +1,57 @@
+.comment-modal {
+   height: 98%;
+   min-width: 1024px;
+   max-width: 1655px;
+
+   top: 50%;
+   overflow-y: auto;
+   overflow-x: hidden;
+   color: #343a40;
+
+   box-shadow: none;
+   background-color: rgba(0, 0, 0, 0);
+
+   /*display: flex;*/
+   flex-direction: row;
+   /*top: 0;*/
+   /*left: 0;*/
+
+}
+
+.comment-modal__form,
+.comment-modal__files {
+   box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
+   background-color: #ffffff;
+   border-radius: 4px;
+}
+
+.comment-modal__form {
+   width: 30%;
+   margin: 0px 5px 0px 0px;
+
+}
+
+.comment-modal__form .form-field {
+   flex-direction: column;
+   align-items: flex-start;
+}
+
+.comment-modal__form .form-field__item {
+   width: 100%;
+}
+
+.comment-modal__form .form-field__title {
+    text-align: left;
+    width: 100%;
+    margin: 0px 0px 10px 0px;
+}
+
+.comment-modal__files {
+   width: 70%;
+
+}
+
+/*.form-field__item .multiple-block__add {
+   margin: 10px 0px 0px 0px;
+   align-self: flex-start;
+}*/
