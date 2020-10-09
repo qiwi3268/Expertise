@@ -20,7 +20,13 @@ class FileUploader {
     * Объект модуля загрузки файлов
     * @type {FileUploader}
     */
-   static instance;
+   static get instance() {
+      return this._instance;
+   }
+
+   static set instance(instance) {
+      this._instance = instance;
+   }
 
    /**
     * Инпут, в который загружаются файлы

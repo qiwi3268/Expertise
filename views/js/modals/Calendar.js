@@ -6,10 +6,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 class Calendar {
    // Объект календаря
-   static instance;
+   // static instance;
+
+   static get instance() {
+      return this._instance;
+   }
+
+   static set instance(instance) {
+      this._instance = instance;
+   }
+
+   static get overlay() {
+      return this._overlay;
+   }
+
+   static set overlay(overlay) {
+      this._overlay = overlay;
+   }
 
    // Фон календаря
-   static overlay;
+   // static overlay;
 
    // Родительское поле
    select;
@@ -500,11 +516,11 @@ class Calendar {
    // calendar   Calendar : объект календаря
    static getInstance (field) {
 
-      if (!Calendar.instance) {
-         Calendar.instance = new Calendar(field);
+      if (!this.instance) {
+         this.instance = new Calendar(field);
       }
 
-      return Calendar.instance;
+      return this.instance;
    }
 
    // Предназначен для получения координат элемента относительно документа

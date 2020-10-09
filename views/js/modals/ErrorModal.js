@@ -1,13 +1,46 @@
 document.addEventListener('DOMContentLoaded', () => {
    ErrorModal.init();
+
 });
 
 class ErrorModal {
-   static modal;
-   static overlay;
+   // _modal;
+   // overlay;
 
-   static title;
-   static message;
+   // title;
+   // message;
+
+   static get modal() {
+      return this._modal;
+   }
+
+   static set modal(modal) {
+      this._modal = modal;
+   }
+
+   static get overlay() {
+      return this._overlay;
+   }
+
+   static set overlay(overlay) {
+      this._overlay = overlay;
+   }
+
+   static get title() {
+      return this._title;
+   }
+
+   static set title(title) {
+      this._title = title;
+   }
+
+   static get message() {
+      return this._message;
+   }
+
+   static set message(message) {
+      this._message = message;
+   }
 
    static init () {
       this.modal = document.querySelector('.error-modal');

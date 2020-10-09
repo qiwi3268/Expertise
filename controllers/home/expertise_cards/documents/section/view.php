@@ -26,8 +26,6 @@ if (!is_null($descriptions = $descriptionTable::getAllAssocByIdMainDocument(CURR
     }
 }
 
-vd($descriptionsTV);
-
 $VT->setValue('descriptions', $descriptionsTV);
 
 // Технико-экономические показатели
