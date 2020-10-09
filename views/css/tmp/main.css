@@ -238,11 +238,11 @@ textarea:hover {
 }
 
 .error-modal {
-   z-index: 10000;
+   z-index: 100000;
 }
 
 .error-overlay {
-   z-index: 9000;
+   z-index: 90000;
 }
 
 .error-modal__header {

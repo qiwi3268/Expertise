@@ -292,7 +292,7 @@
 
 .avatar {
    position: absolute;
-   z-index: 100000;
+   z-index: 1000000;
    box-sizing: border-box;
    align-items: center;
    flex-grow: 1;
