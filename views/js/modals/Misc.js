@@ -622,8 +622,9 @@ function setDocumentFieldValue (selected_item, misc) {
    // В результат записываем id элемента из справочника
    misc.result_input.value = selected_item.dataset.id;
 
-   misc.select.classList.add('filled');
-   let misc_value = misc.select.querySelector('[data-misc_value]');
+   // misc.select.classList.add('filled');
+   misc.field.classList.add('filled');
+   let misc_value = misc.field.querySelector('[data-misc_value]');
    misc_value.innerHTML = selected_item.innerHTML;
 
    // Показываем или скрываем блоки, зависящие от выбранного значения

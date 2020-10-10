@@ -257,7 +257,8 @@
    border-color: #80bdff;
 }*/
 
-.form-field__select.filled,
+/*.form-field__select.filled,*/
+.form-field.filled .form-field__select,
 .form-field__body.filled > .form-field__input {
    /*color: #343a40;*/
    /*background-color: #f5f6fa;*/
@@ -271,7 +272,9 @@
    border-color: #80bdff;
 }
 
-.form-field__select.filled > .form-field__icon-misc{
+/*.form-field__select.filled > .form-field__icon-misc */
+.form-field.filled .form-field__icon-misc
+{
    display: none;
 }
 
@@ -281,7 +284,8 @@
    color: #1c3959;
 }
 
-.form-field__select.filled > .form-field__icon-filled,
+/*.form-field__select.filled > .form-field__icon-filled,*/
+.form-field.filled .form-field__icon-filled,
 .form-field__body.filled > .form-field__icon-filled {
    display: block;
 }

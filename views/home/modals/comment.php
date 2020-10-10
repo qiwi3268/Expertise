@@ -10,31 +10,20 @@
         </div>
         <div class="comment-modal__body">
             
-            <div class="field-card field" data-name="text">
+            <div class="field-card field" data-name="text" data-required="true">
                 <div class="field-card__title">Текст замечания</div>
                 <div class="field-card__body">
                     <textarea class="field-card__input field-result" name="text"></textarea>
                 </div>
                 <input class="field-card__result field-result" type="hidden" name="text">
             </div>
-            
-            <div class="form-field field" data-name="text" data-pattern="text" data-required="true">
-                <span class="form-field__title">Текст замечания</span>
-                <div class="form-field__item">
-                    <div class="form-field__body">
-                        <textarea class="form-field__input field-result" name="text"></textarea>
-                    </div>
-                    <span class="form-field__error field-error"></span>
+    
+            <div class="field-card field" data-name="normative" data-required="true">
+                <div class="field-card__title">Ссылка на нормативный документ</div>
+                <div class="field-card__body">
+                    <textarea class="field-card__input field-result" name="text"></textarea>
                 </div>
-            </div>
-            <div class="form-field field" data-name="normative" data-pattern="text" data-required="true">
-                <span class="form-field__title">Ссылка на нормативный документ</span>
-                <div class="form-field__item">
-                    <div class="form-field__body">
-                        <textarea class="form-field__input field-result" name="normative"></textarea>
-                    </div>
-                    <span class="form-field__error field-error"></span>
-                </div>
+                <input class="field-card__result field-result" type="hidden" name="normative">
             </div>
             <div class="form-field field" data-name="no_files" data-misc_field>
                 <div class="form-field__item">
@@ -49,6 +38,7 @@
                 </div>
                 <input class="form-field__result field-result" type="hidden" name="no_files">
             </div>
+    
             <div class="form-field field" data-misc_field data-name="criticality" data-required="true">
                 <span class="form-field__title field-title">Критичность</span>
                 <div class="form-field__item">
