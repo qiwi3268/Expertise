@@ -12,7 +12,13 @@
    color: #343a40;
 
    flex-direction: row;
+   z-index: 1000;
 }
+
+.comment-overlay {
+   z-index: 500;
+}
+
 
 .comment-modal__files {
    overflow: hidden;
@@ -42,9 +48,14 @@
 }
 
 .comment-modal__form .form-field__title {
-    text-align: left;
-    width: 100%;
-    margin: 0px 0px 10px 0px;
+   text-align: left;
+   width: 100%;
+   /*margin: 0px 0px 10px 0px;*/
+
+   margin: 0;
+   border-radius: 4px 4px 0px 0px;
+   border: 1px solid #e0e0e0;
+
 }
 
 .comment-modal__files {
@@ -64,3 +75,29 @@
 .radio__text {
    font-size: 16px;
 }
+
+.comment-modal__body .form-field__title {
+   border: 1px solid #e0e0e0;
+}
+
+.field-card {
+   margin: 20px;
+   border-radius: 4px;
+}
+
+.field-card__title {
+   padding: 10px;
+   border: 1px solid #e0e0e0;
+   background-color: #f6f8fa;
+   border-bottom: 0;
+}
+
+.field-card__body {
+   display: flex;
+}
+
+.field-card__body textarea {
+   flex-grow: 1;
+   border-radius: 0px 0px 4px 4px;
+}
+

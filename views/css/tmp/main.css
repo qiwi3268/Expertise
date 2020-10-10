@@ -78,7 +78,7 @@ a {
    transition: box-shadow .10s;
 }*/
 
-input {
+.field input {
    padding: 10px 12px;
    font-family: 'Roboto Condensed', sans-serif;
    font-size: 14px;
@@ -98,7 +98,7 @@ input {
    transition: box-shadow .10s;
 }*/
 
-textarea {
+.field textarea {
    min-height: 60px;
    padding: 8px;
    font-size: 14px;
@@ -111,10 +111,10 @@ textarea {
    /*transition: box-shadow .10s;*/
 }
 
-input:focus,
-input:hover,
-textarea:focus,
-textarea:hover {
+.field input:focus,
+.field input:hover,
+.field textarea:focus,
+.field textarea:hover {
    box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
    border-color: #80bdff;
 }
@@ -167,7 +167,7 @@ textarea:hover {
    position: fixed;
    top: 45%;
    left: 50%;
-   z-index: 1000;
+   z-index: 5000;
    width: 100%;
    max-width: 500px;
    font-family: 'Roboto Condensed', sans-serif;
@@ -197,7 +197,7 @@ textarea:hover {
    left: 0;
    width: 100%;
    height: 100%;
-   z-index: 500;
+   z-index: 4000;
    background-color: rgba(0, 0, 0, .5);
    transition: .3s all;
 }

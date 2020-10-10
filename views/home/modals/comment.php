@@ -9,6 +9,15 @@
             <div class="comment-modal__title">Замечание</div>
         </div>
         <div class="comment-modal__body">
+            
+            <div class="field-card field" data-name="text">
+                <div class="field-card__title">Текст замечания</div>
+                <div class="field-card__body">
+                    <textarea class="field-card__input field-result" name="text"></textarea>
+                </div>
+                <input class="field-card__result field-result" type="hidden" name="text">
+            </div>
+            
             <div class="form-field field" data-name="text" data-pattern="text" data-required="true">
                 <span class="form-field__title">Текст замечания</span>
                 <div class="form-field__item">
@@ -105,7 +114,7 @@
             </div>
         </div>
     </div>
-    
+    <div id="misc_overlay" class="modal-overlay"></div>
+
 </div>
 
-<div id="misc_overlay" class="modal-overlay"></div>

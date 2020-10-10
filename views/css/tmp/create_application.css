@@ -326,7 +326,8 @@
 }
 
 .form-field__select.invalid,
-.form-field__input.invalid {
+.form-field__input.invalid,
+textarea.form-field__input.invalid {
    border-color: #db5151;
    color: #bd4949;
 }
