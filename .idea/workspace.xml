@@ -5,8 +5,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/comment_modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/comment_modal.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/documents/total_cc/actions/action_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/total_cc/actions/action_1.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/modals/comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/modals/comment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/modals/Misc.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/Misc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/DependenciesHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/DependenciesHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/expertise_cards/documents/section/actions/action_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/expertise_cards/documents/section/actions/action_1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/modals/CommentCreator.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/CommentCreator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/validation.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,13 +149,6 @@
       <workItem from="1601910983618" duration="4001000" />
       <workItem from="1601955341134" duration="33695000" />
       <workItem from="1602087210480" duration="4691000" />
-    </task>
-    <task id="LOCAL-00136" summary="24.09.2020_3">
-      <created>1600930905981</created>
-      <option name="number" value="00136" />
-      <option name="presentableId" value="LOCAL-00136" />
-      <option name="project" value="LOCAL" />
-      <updated>1600930905982</updated>
     </task>
     <task id="LOCAL-00137" summary="24.09.2020_old">
       <created>1600931700591</created>
@@ -488,7 +486,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602304973347</updated>
     </task>
-    <option name="localTasksCounter" value="185" />
+    <task id="LOCAL-00185" summary="10.10.2020_1">
+      <created>1602308111457</created>
+      <option name="number" value="00185" />
+      <option name="presentableId" value="LOCAL-00185" />
+      <option name="project" value="LOCAL" />
+      <updated>1602308111458</updated>
+    </task>
+    <option name="localTasksCounter" value="186" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -505,7 +510,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="01.10.2020_5" />
     <MESSAGE value="01.10.2020_6" />
     <MESSAGE value="02.10.2020" />
     <MESSAGE value="02.10.2020_1" />
@@ -530,7 +534,8 @@
     <MESSAGE value="09.10.2020_2" />
     <MESSAGE value="09.10.2020_3" />
     <MESSAGE value="10.10.2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="10.10.2020" />
+    <MESSAGE value="10.10.2020_1" />
+    <option name="LAST_COMMIT_MESSAGE" value="10.10.2020_1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -557,10 +562,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1602304969995">
+    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1602308109176">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602304969995" />
+    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602308109176" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600519766620" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1602091044288" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
@@ -586,10 +591,10 @@
     </state>
     <state x="629" y="72" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1602217899152" />
     <state x="1060" y="462" key="SettingsEditor/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600362354400" />
-    <state width="498" height="398" key="SwitcherDM" timestamp="1602307686206">
+    <state width="498" height="398" key="SwitcherDM" timestamp="1602320010220">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="498" height="398" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1602307686206" />
+    <state width="498" height="398" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1602320010220" />
     <state width="498" height="446" key="SwitcherDM/0.0.2560.1400@0.0.2560.1400" timestamp="1597580480401" />
     <state x="823" y="455" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601877381712">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -605,10 +610,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="92" y="92" width="2376" height="1216" key="dock-window-2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600964609575" />
-    <state x="568" y="114" width="1169" height="814" key="find.popup" timestamp="1602305033596">
+    <state x="568" y="114" width="1169" height="814" key="find.popup" timestamp="1602336083672">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="568" y="114" width="1169" height="814" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602305033596" />
+    <state x="568" y="114" width="1169" height="814" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602336083672" />
     <state x="-1180" y="531" width="555" height="534" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600791294528" />
     <state x="571" y="185" width="1495" height="1020" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1602089698623" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />
@@ -622,10 +627,10 @@
     </state>
     <state x="702" y="245" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600320350483" />
     <state x="936" y="330" key="run.anything.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596602547364" />
-    <state x="707" y="234" width="672" height="160" key="search.everywhere.popup" timestamp="1601888697318">
+    <state x="707" y="234" width="672" height="160" key="search.everywhere.popup" timestamp="1602333590908">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="707" y="234" width="672" height="160" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601888697318" />
+    <state x="707" y="234" width="672" height="160" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602333590908" />
     <state x="943" y="315" width="672" height="160" key="search.everywhere.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600536739645" />
   </component>
   <component name="XDebuggerManager">

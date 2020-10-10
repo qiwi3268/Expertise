@@ -8,6 +8,7 @@
    /*overflow-x: hidden;*/
 
    overflow: hidden;
+   position: absolute;
 
    color: #343a40;
 
@@ -18,7 +19,6 @@
 .comment-overlay {
    z-index: 500;
 }
-
 
 .comment-modal__files {
    overflow: hidden;
@@ -36,6 +36,7 @@
 
 .comment-modal__form > .comment-modal__body {
    border-right: 2px solid #93b0d1;
+   padding: 10px 0px;
 }
 
 .comment-modal__form .form-field {
@@ -56,7 +57,6 @@
    text-align: left;
    width: 100%;
    margin: 0px 0px 10px 0px;
-
 }
 
 .comment-modal__files {
@@ -71,6 +71,29 @@
 .comment-modal__title {
    font-weight: 700;
    text-align: center;
+}
+
+
+::-webkit-scrollbar {
+   width: 4px;
+   max-height: 5px;
+}
+
+::-webkit-scrollbar-track {
+   background: #f1f1f1;
+   border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb {
+   /*background: #ffd354;*/
+   background: #DEDEDE;
+   border-radius: 0;
+   /*border-radius: 3px;*/
+}
+
+::-webkit-scrollbar-thumb:hover {
+   background: #cccccc;
+   /*background: #FFC828;*/
 }
 
 .radio__text {
@@ -102,7 +125,6 @@
    font-size: 16px;
    /*border-color: #e0e0e0;*/
    /*border: 1px solid #cccccc;*/
-
 }
 
 .field-card[data-required='true'] > .field-card__title::after {
@@ -110,25 +132,15 @@
    color: #bd4949;
 }
 
-::-webkit-scrollbar {
-   width: 4px;
-   max-height: 5px;
+.files__checkbox {
+   font-size: 18px;
 }
 
-::-webkit-scrollbar-track {
-   background: #f1f1f1;
-   border-radius: 0;
+.files__checkbox.far {
 }
 
-::-webkit-scrollbar-thumb {
-   /*background: #ffd354;*/
-   background: #DEDEDE;
-   border-radius: 0;
+.files__checkbox.fas {
+   color: #007bff;
 
-   /*border-radius: 3px;*/
-}
-
-::-webkit-scrollbar-thumb:hover {
-   background: #cccccc;
-   /*background: #FFC828;*/
+   /*color: #007bff;*/
 }

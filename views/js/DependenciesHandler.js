@@ -213,6 +213,7 @@ class DependenciesHandler {
 
                this.removeRowValue(parent_field);
 
+
                let related_modal = parent_field.querySelector('[data-misc_modal]');
                if (related_modal) {
                   let misc = Misc.getMiscBySelect(parent_select);
@@ -230,10 +231,11 @@ class DependenciesHandler {
    static removeRowValue (field) {
       // Удаляем записанное значение в зависимом поле
       field.querySelector('.field-result').value = '';
+      field.classList.remove('filled');
 
       let select = field.querySelector('.field-select');
       if (select) {
-         select.classList.remove('filled');
+         // select.classList.remove('filled');
 
          let value = field.querySelector('.field-value');
          // Если зависимое поле - дата, удаляем отображаемую дату

@@ -61,8 +61,6 @@ a {
    color: #343a40;
 }
 
-
-
 [data-active='false'] {
    display: none;
 }
@@ -117,6 +115,38 @@ a {
 .field textarea:hover {
    box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
    border-color: #80bdff;
+}
+
+/*.form-field__select.invalid,*/
+.field.invalid .form-field__select,
+.field.invalid .form-field__input,
+/*.field.invalid .field-card__input,*/
+textarea.form-field__input.invalid {
+   border-color: #db5151;
+   color: #bd4949;
+}
+
+.field.invalid .field-card__input {
+   /*border-color: #EC8D8D;*/
+   border-color: #db5151;
+   color: #bd4949;
+   /*color: #bd4949;*/
+
+   /*background-color: #ffffff;*/
+   /*background-color: #FFFAFA;*/
+}
+
+/*.form-field__select.invalid:hover,*/
+.field.invalid .form-field__select:hover,
+/*.form-field__select.invalid:focus,*/
+.field.invalid .form-field__select:focus,
+/*.form-field__input.invalid:hover,*/
+.field.invalid .form-field__input:hover,
+/*.form-field__input.invalid:focus,*/
+.field.invalid .form-field__input:focus,
+.field.invalid .field-card__input:hover,
+.field.invalid .field-card__input:focus {
+   box-shadow: 0px 0px 0px 3px rgba(255,176,176,1);
 }
 
 .application-button {

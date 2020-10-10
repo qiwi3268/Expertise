@@ -1,23 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
    // Поля, для которых нужна валидация
    let pattern_fields = document.querySelectorAll('[data-pattern]');
-
    pattern_fields.forEach(field => {
-      let input = field.querySelector('.form-field__input');
+      let input = field.querySelector('.field-result:not([type="hidden"])');
 
       if (input) {
          let pattern = field.dataset.pattern;
          let is_required = field.dataset.required;
 
          input.addEventListener('keyup', () => {
-            // console.log('tut');
-            // validateField(input, pattern);
+            validateField(field, input, pattern);
          });
 
          input.addEventListener('blur', () => {
             // console.log('tut2');
-
-            validateField(input, pattern);
+            validateField(field, input, pattern);
 
             if (is_required === 'true') {
                validateCard(input.closest('.card-form'));
@@ -37,12 +34,15 @@ function validateMisc (misc) {
       let error = misc.field.querySelector('.field-error');
 
       // Если не выбрано значение
-      if (!misc.result_input.value) {
-         misc.select.classList.add('invalid');
+      if (!misc.result_input || !misc.result_input.value) {
+         // misc.select.classList.add('invalid');
+         misc.field.classList.add('invalid');
+         // misc.field.classList.remove('filled');
          error.classList.add('active');
          resizeCard(misc.field);
       } else {
-         misc.select.classList.remove('invalid');
+         // misc.select.classList.remove('invalid');
+         misc.field.classList.remove('invalid');
          error.classList.remove('active');
       }
 
@@ -57,7 +57,7 @@ function validateMisc (misc) {
 // Принимает параметры-------------------------------
 // input         Element : поле для валидации
 // pattern        string : тип поля
-function validateField (input, pattern) {
+function validateField (field, input, pattern) {
    let regex;
    let error_message;
    switch (pattern) {
@@ -91,7 +91,7 @@ function validateField (input, pattern) {
          error_message = 'Значение должно начинаться с непробельного символа';
    }
 
-   validateInput(input, regex, error_message);
+   validateInput(field, input, regex, error_message);
 }
 
 // Предназначен для валидации значения в поле
@@ -99,7 +99,7 @@ function validateField (input, pattern) {
 // input         Element : поле для валидации
 // regex          string : регулярное выражение, по которому проверяется значение
 // message        string : сообщение с ошибкой для отображения
-function validateInput (input, regex, message) {
+function validateInput (field, input, regex, message) {
    let value = input.value;
    let parent_field = input.closest('.field');
    let error_element = parent_field.querySelector('.field-error');
@@ -108,7 +108,9 @@ function validateInput (input, regex, message) {
    let is_invalid = !value.match(regex) && (is_required || value);
 
    if (is_invalid) {
-      input.classList.add('invalid');
+      // input.classList.add('invalid');
+      field.classList.add('invalid');
+
       error_element.classList.add('active');
 
       // Если поле непустое
@@ -120,7 +122,8 @@ function validateInput (input, regex, message) {
 
       resizeCard(parent_field);
    } else {
-      input.classList.remove('invalid');
+      // input.classList.remove('invalid');
+      field.classList.remove('invalid');
       error_element.classList.remove('active');
    }
 
@@ -131,17 +134,36 @@ function validateInput (input, regex, message) {
 // Принимает параметры-------------------------------
 // card         Element : блок для валидации
 function validateCard (card) {
-   let card_name = card.dataset.type;
-   // let is_valid = isValidCard(card);
-   // let is_valid = !findInvalidField(card);
+   if (card) {
+      let card_name = card.dataset.type;
+      // let is_valid = isValidCard(card);
+      // let is_valid = !findInvalidField(card);
 
-   let sidebar_item = document.querySelector(`.sidebar-form__row[data-card=${card_name}]`);
+      let sidebar_item = document.querySelector(`.sidebar-form__row[data-card=${card_name}]`);
 
-   // Отображаем состояние проверки в связанном элементе сайдбара
-   if (sidebar_item) {
-      // setSidebarItemState(sidebar_item, is_valid);
+      // Отображаем состояние проверки в связанном элементе сайдбара
+      if (sidebar_item) {
+         // setSidebarItemState(sidebar_item, is_valid);
+      }
    }
 }
+
+function validateBlock (block) {
+   let fields = block.querySelectorAll('.field[data-required="true"]');
+   fields.forEach(field => {
+
+      // console.log(field);
+
+      if (field.hasAttribute('data-misc_field')) {
+         validateMisc(Misc.getMiscBySelect(field.querySelector('[data-misc_select]')));
+      } else {
+         let input = field.querySelector('.field-result:not([type="hidden"])');
+         validateField(field, input, input.dataset.pattern);
+      }
+
+   });
+}
+
 
 
 // Предназначен для валидации блока анкеты и отображения состояния в связанном элементе сайдбара

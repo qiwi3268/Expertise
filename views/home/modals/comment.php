@@ -3,6 +3,7 @@
 <div class="comment-overlay"></div>
 <div class="modal comment-modal">
     
+    <input id="comment_id" class="comment-modal__id" name="comment_id" type="hidden">
     <div class="comment-modal__form">
     
         <div class="comment-modal__header">
@@ -10,26 +11,27 @@
         </div>
         <div class="comment-modal__body">
             
-            <div class="field-card field" data-name="text" data-required="true">
+            <div class="field-card field" data-name="text" data-required="true" data-pattern="text">
                 <div class="field-card__title">Текст замечания</div>
                 <div class="field-card__body">
-                    <textarea class="field-card__input field-result" name="text"></textarea>
+                    <textarea id="comment_text" class="field-card__input field-result" name="text"></textarea>
                 </div>
-                <input class="field-card__result field-result" type="hidden" name="text">
+                <span class="form-field__error field-error">Поле обязательно для заполнения</span>
             </div>
     
-            <div class="field-card field" data-name="normative" data-required="true">
+            <div class="field-card field" data-name="normative_document" data-required="true" data-pattern="text">
                 <div class="field-card__title">Ссылка на нормативный документ</div>
                 <div class="field-card__body">
-                    <textarea class="field-card__input field-result" name="text"></textarea>
+                    <textarea id="normative_document" class="field-card__input field-result" name="normative_document"></textarea>
                 </div>
-                <input class="field-card__result field-result" type="hidden" name="normative">
+                <span class="form-field__error field-error">Поле обязательно для заполнения</span>
             </div>
+            
             <div class="form-field field" data-name="no_files" data-misc_field>
                 <div class="form-field__item">
                     <div class="radio form-field__body">
                         <div class="radio__body">
-                            <div class="radio__item" data-id="1">
+                            <div id="no_files" class="radio__item" data-id="1">
                                 <i class="radio__icon far fa-square"></i>
                                 <span class="radio__text">Отметка файлов не требуется</span>
                             </div>
@@ -39,12 +41,12 @@
                 <input class="form-field__result field-result" type="hidden" name="no_files">
             </div>
     
-            <div class="form-field field" data-misc_field data-name="criticality" data-required="true">
-                <span class="form-field__title field-title">Критичность</span>
+            <div class="form-field field" data-misc_field data-name="comment_criticality" data-required="true">
+                <span class="form-field__title field-title">Критичность замечания</span>
                 <div class="form-field__item">
                     <div class="form-field__body">
                         <div class="form-field__select field-select" data-misc_select>
-                            <span class="form-field__value field-value" data-misc_value>Выберите критичность</span>
+                            <span id="comment_criticality_name" class="form-field__value field-value" data-misc_value>Выберите критичность</span>
                             <i class="form-field__icon-misc fas fa-bars"></i>
                             <i class="form-field__icon-filled fas fa-check"></i>
                         </div>
@@ -63,7 +65,19 @@
                         <?php endforeach; ?>
                     </div>
                 </div>
-                <input class="form-field__result field-result" type="hidden" data-misc_result name="criticality">
+                <input id="comment_criticality_value" class="form-field__result field-result" type="hidden" data-misc_result name="comment_criticality">
+            </div>
+            <div id="note" class="field-card field" data-name="note" data-required="false" data-pattern="text">
+                <div class="field-card__title">Личная заметка</div>
+                <div class="field-card__body">
+                    <textarea id="comment_note" class="field-card__input field-result" name="note"></textarea>
+                </div>
+                <span class="form-field__error field-error">Поле обязательно для заполнения</span>
+            </div>
+    
+            <div class="multiple-block__add" data-save_comment>
+                <span class="multiple-block__text">Сохранить замечание</span>
+                <i class="multiple-block__icon fas fa-plus"></i>
             </div>
         </div>
         
@@ -84,6 +98,7 @@
                             <div class="documentation__files files" >
                                 <?php foreach ($node['files'] as $file): ?>
                                     <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" style="padding-left: <?= $node['depth']*25 + 7 ?>px" data-validate_results='<?= $file['validate_results'] ?>'>
+                                        <i class="files__checkbox far fa-square"></i>
                                         <div class="files__info">
                                             <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
                                             <div class="files__description">

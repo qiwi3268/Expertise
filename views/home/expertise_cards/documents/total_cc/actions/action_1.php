@@ -51,7 +51,7 @@
                     <span class="form-field__title">Полное наименование</span>
                     <div class="form-field__item">
                         <div class="form-field__body filled">
-                            <textarea data-form="application" class="form-field__input field-result" name=""></textarea>
+                            <textarea class="form-field__input field-result" name=""></textarea>
                         </div>
                         <span class="form-field__error field-error"></span>
                     </div>
@@ -102,7 +102,7 @@
                     <span class="form-field__title">Адрес</span>
                     <div class="form-field__item">
                         <div class="form-field__body filled">
-                            <textarea data-form="application" class="form-field__input field-result" name="">Челябинск</textarea>
+                            <textarea class="form-field__input field-result" name="">Челябинск</textarea>
                         </div>
                         <span class="form-field__error field-error"></span>
                     </div>
@@ -114,7 +114,7 @@
                     <span class="form-field__title">Место нахождения</span>
                     <div class="form-field__item">
                         <div class="form-field__body filled">
-                            <textarea data-form="application" class="form-field__input field-result" name="">Челябинск</textarea>
+                            <textarea class="form-field__input field-result" name="">Челябинск</textarea>
                         </div>
                         <span class="form-field__error field-error"></span>
                     </div>
