@@ -9,13 +9,13 @@ class CommentCreator {
    overlay;
 
    comments;
-   comments_counter = 0;
+   // comments_counter = 0;
 
    marked_files;
    comment_id_input;
 
 
-   comment_index;
+   comment_hash;
 
 
    text;
@@ -51,6 +51,7 @@ class CommentCreator {
       this.text = document.getElementById('comment_text');
       this.normative_document = document.getElementById('normative_document');
       this.no_files_checkbox = document.getElementById('no_files');
+
       this.criticality_name = document.getElementById('comment_criticality_name');
       this.criticality_value = document.getElementById('comment_criticality_value');
       this.note = document.getElementById('comment_note');
@@ -86,6 +87,8 @@ class CommentCreator {
 
       validateBlock(this.modal);
 
+      console.log(comment);
+
       if (!comment.text || !comment.normative_document || !comment.comment_criticality) {
          ErrorModal.open('Ошибка при сохранении замечания', 'Не заполнены обязательные поля');
       } else if (comment.files.length === 0 && comment.no_files === null) {
@@ -99,14 +102,14 @@ class CommentCreator {
    saveComment (comment) {
       let comments_container = document.querySelector('.descriptive-part__comments');
       let comment_element;
-      let index;
+      let hash;
 
-      if (this.comment_index === null) {
+      if (this.comment_hash === null) {
          console.log('save_comment');
          comment_element = document.createElement('DIV');
          comment_element.classList.add('descriptive-part__comment');
-         index = this.comments_counter++;
-         comment_element.dataset.index = index;
+         hash = Date.now();
+         comment_element.dataset.hash = hash;
 
          comment_element.innerHTML = comment.text;
          comment_element.addEventListener('click', () => CommentCreator.getInstance().open(comment_element));
@@ -116,11 +119,12 @@ class CommentCreator {
          // resizeCard(comments_container);
       } else {
          console.log('edit comment');
-         comment_element = comments_container.querySelector(`[data-index="${this.comment_index}"]`);
-         index = this.comment_index;
+         comment_element = comments_container.querySelector(`[data-hash="${this.comment_hash}"]`);
+         comment_element.innerHTML = comment.text;
+         hash = this.comment_hash;
       }
 
-      this.comments.set(index, comment);
+      this.comments.set(hash, comment);
       this.modal.classList.remove('active');
       this.overlay.classList.remove('active');
 
@@ -192,7 +196,10 @@ class CommentCreator {
 
    initFields (comment_element) {
       let checkbox_icon = this.no_files_checkbox.querySelector('.radio__icon');
+      let checkbox_field = this.no_files_checkbox.closest('.field[data-name="no_files"]');
+      let checkbox_input = checkbox_field.querySelector('.field-result');
       let criticality_field = this.criticality_name.closest('.field');
+
 
       this.marked_files = new Map();
       let files = this.modal.querySelectorAll('.files__item');
@@ -200,9 +207,10 @@ class CommentCreator {
 
 
       if (comment_element) {
+         this.comment_hash = parseInt(comment_element.dataset.hash);
+         let comment = this.comments.get(parseInt(this.comment_hash));
 
-         let comment = this.comments.get(parseInt(comment_element.dataset.index));
-         this.comment_index = parseInt(comment_element.dataset.index);
+         this.id_input.value = comment.id;
          this.text.value = comment.text;
          this.normative_document.value = comment.normative_document;
 
@@ -210,10 +218,12 @@ class CommentCreator {
             this.no_files_checkbox.dataset.selected = 'false';
             checkbox_icon.classList.add('fa-square');
             checkbox_icon.classList.remove('fa-check-square');
+            checkbox_input.value = null;
          } else {
             this.no_files_checkbox.dataset.selected = 'true';
             checkbox_icon.classList.add('fa-check-square');
             checkbox_icon.classList.remove('fa-square');
+            checkbox_input.value = "1";
          }
 
          this.criticality_name.innerHTML = comment.criticality_name;
@@ -227,8 +237,10 @@ class CommentCreator {
             this.marked_files.set(file_id, file);
          });
 
+         this.note.value = comment.note;
+
       } else {
-         this.comment_index = null;
+         this.comment_hash = null;
          this.no_files_checkbox.dataset.selected = 'false';
          this.text.value = '';
          this.normative_document.value = '';
@@ -240,6 +252,9 @@ class CommentCreator {
          this.no_files_checkbox.dataset.selected = 'false';
          checkbox_icon.classList.add('fa-square');
          checkbox_icon.classList.remove('fa-check-square');
+         checkbox_input.value = null;
+
+         this.note.value = '';
       }
 
 

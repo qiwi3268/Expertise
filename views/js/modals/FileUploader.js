@@ -342,7 +342,6 @@ class FileUploader {
       // }
 
 
-
       let files_body;
       // Если блок с документацией
       if (this.parent_node) {

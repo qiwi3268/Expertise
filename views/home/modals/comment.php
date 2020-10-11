@@ -23,7 +23,9 @@
             </div>
             
             <div class="field-card field" data-name="text" data-required="true" data-pattern="text">
-                <div class="field-card__title">Текст замечания</div>
+                <div class="field-card__header">
+                    <div class="field-card__title">Текст замечания</div>
+                </div>
                 <div class="field-card__body">
                     <textarea id="comment_text" class="field-card__input field-result" name="text"></textarea>
                 </div>
@@ -31,7 +33,9 @@
             </div>
     
             <div class="field-card field" data-name="normative_document" data-required="true" data-pattern="text">
-                <div class="field-card__title">Ссылка на нормативный документ</div>
+                <div class="field-card__header">
+                    <div class="field-card__title">Ссылка на нормативный документ</div>
+                </div>
                 <div class="field-card__body">
                     <textarea id="normative_document" class="field-card__input field-result" name="normative_document"></textarea>
                 </div>
@@ -78,12 +82,17 @@
                 </div>
                 <input id="comment_criticality_value" class="form-field__result field-result" type="hidden" data-misc_result name="comment_criticality">
             </div>
-            <div id="note" class="field-card field" data-name="note" data-required="false" data-pattern="text">
-                <div class="field-card__title">Личная заметка</div>
+            <div id="note" class="field-card field" data-name="note" data-required="false" data-pattern="text" data-tooltip_container>
+    
+                <div class="field-card__header">
+                    <div class="field-card__title">Личная заметка</div>
+                    <i class="field-card__icon-tooltip fas fa-user-secret" data-tooltip></i>
+                </div>
                 <div class="field-card__body">
                     <textarea id="comment_note" class="field-card__input field-result" name="note"></textarea>
                 </div>
                 <span class="form-field__error field-error">Поле обязательно для заполнения</span>
+                <div class="comment-modal__note-tooltip" data-tooltip_content hidden>Это поле будет видно только Вам</div>
             </div>
     
             

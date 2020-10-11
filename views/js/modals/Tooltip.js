@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 class Tooltip {
 
    element;
+   container;
    target;
    content;
 
@@ -20,12 +21,31 @@ class Tooltip {
       this.element = document.createElement('DIV');
       this.target = target;
 
+      this.container = this.target.closest('[data-tooltip_container]');
       this.setContent(this.target);
       this.target.appendChild(this.element);
       this.element.classList.add('tooltip', 'active');
       // this.element.style.top = this.target.offsetHeight / 2 - this.element.offsetHeight + 'px';
       // this.element.style.top = 0;
-      this.element.style.left = this.target.offsetWidth + 10 + 'px';
+
+      // this.element.style.left = this.target.offsetWidth + 10 + 'px';
+      let coordinates = this.target.getBoundingClientRect();
+
+      // console.log(coordinates);
+      // console.log(this.target.clientWidth);
+      // console.log(this.target.clientHeight);
+      // console.log(this.target.offsetHeight);
+      // console.log(this.target.clientWidth);
+
+     /* this.element.style.top = coordinates.top + 'px';
+      this.element.style.left = coordinates.left - coordinates.width + 'px';*/
+
+      // console.log(this.element.clientWidth);
+
+      this.element.style.left = coordinates.left + coordinates.width + 7 + "px";
+      this.element.style.top = coordinates.top + "px";
+
+
       this.target.addEventListener('mouseleave', () => this.close(), { once: true });
    }
 
@@ -35,7 +55,8 @@ class Tooltip {
    }
 
    setContent (target) {
-      let content = target.querySelector('[data-tooltip_content]');
+      console.log(this.container);
+      let content = this.container.querySelector('[data-tooltip_content]');
       this.content = content.cloneNode(true);
       this.element.appendChild(this.content);
       this.content.removeAttribute('hidden');

@@ -27,7 +27,7 @@
                 </div>
             </div>
             <?php if ($variablesTV->getExistenceFlag('responsible')): ?>
-                <div class="info__item" data-tooltip>
+                <div class="info__item" data-tooltip_container data-tooltip>
                     <i class="info__icon fas fa-user-edit"></i>
                     <div class="info__description">
                         <span class="info__title">Ответственные</span>
@@ -88,7 +88,7 @@
             <?php if (isset($variablesTV->getValue('availableDocuments')['sections'])): ?>
                 <?php $_sections = $variablesTV->getValue('availableDocuments')['sections'] ?>
                 <?php foreach ($_sections as $section): ?>
-                    <div class="hierarchy__section" data-selected="<?= $section['isSelected'] ?>" data-tooltip>
+                    <div class="hierarchy__section" data-selected="<?= $section['isSelected'] ?>" data-tooltip_container data-tooltip>
                         <a href="<?= $section['ref'] ?>" class="hierarchy__item" data-depth="2">
                             <span class="hierarchy__name"><?= $section['label'] ?></span>
                             <div class="hierarchy__description">

@@ -1,5 +1,7 @@
 [data-tooltip] {
-   position: relative;
+
+   /*position: relative;*/
+
 }
 
 /*[data-tooltip_content] {
@@ -15,6 +17,12 @@
    /* Position the tooltip */
    position: absolute;
    z-index: 9999;
+
+   font-family: 'Roboto Condensed', sans-serif;
+   color: #343a40;
+   font-size: 16px;
+   font-weight: 400;
+
    top: 0;
    left: 0;
 
