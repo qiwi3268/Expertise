@@ -84,23 +84,35 @@
 
 .comments-table__row {
    cursor: pointer;
+}
+
+.comments-table__row td:not(:first-child) {
+   transition: .15s;
+}
+
+.comments-table__row:hover td:not(:first-child) {
+   background-color: #F3F5F6;
+   background-color: #F9FBFC;
+}
+
+/*.comments-table__delete {
    transition: .1s;
 }
 
-.comments-table__row:hover {
-   background-color: #F3F5F6;
-}
+.comments-table__delete:hover {
+   background-color: #F8F5F5;
+}*/
 
 .comments-table__header {
    border-bottom: 2px solid #93b0d1;
 }
 
-.comments-table__delete {
-   border: 0;
-}
-
 .comments-table__criticality {
    text-align: center;
+}
+
+.comments-table .documentation__files {
+   border: 0;
 }
 
 .comments-table .files__item {
@@ -108,14 +120,49 @@
    padding: 0;
 }
 
-.comments-table .files__item:hover {
+.comments-table .files__info {
+   padding: 3px 0px;
+}
+
+.comments-table .files__info:hover {
+   background-color: unset;
 
 }
 
+td.comments-table__action {
+   padding: 5px;
+}
 
+.application-actions {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
 
+.application-actions__item {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
 
+.application-actions__text {
+   font-size: 12px;
 
+}
+
+.application-actions__icon {
+   font-size: 18px;
+}
+
+.application-actions__item.edit .application-actions__icon,
+.application-actions__item.edit .application-actions__text  {
+   color: #1c3959;
+}
+
+.application-actions__item.delete .application-actions__icon,
+.application-actions__item.delete .application-actions__text {
+   color: #a93d3d;
+}
 
 
 
