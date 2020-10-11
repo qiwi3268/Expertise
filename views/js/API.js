@@ -323,7 +323,7 @@ class API {
             .then(response => {
 
                if (response.result !== undefined) {
-                  if (response.result === 18) {
+                  if (response.result === 19) {
                      resolve(response);
                   } else if (response.error_message !== undefined) {
                      reject(response.error_message);

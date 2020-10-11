@@ -20,12 +20,12 @@
             <?php if (!empty($_TEPsByAuthors)): ?>
                 <table class="tep-table">
                     <thead>
-                    <tr>
-                        <th class="tep-table__author">Автор</th>
-                        <th>Показатель</th>
-                        <th>Значение</th>
-                        <th>Примечание</th>
-                    </tr>
+                        <tr>
+                            <th class="tep-table__author">Автор</th>
+                            <th>Показатель</th>
+                            <th>Значение</th>
+                            <th>Примечание</th>
+                        </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($_TEPsByAuthors as $author => $TEPs): ?>

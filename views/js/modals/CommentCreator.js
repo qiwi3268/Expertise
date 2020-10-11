@@ -9,15 +9,12 @@ class CommentCreator {
    overlay;
 
    comments;
-   // comments_counter = 0;
 
    marked_files;
-   comment_id_input;
-
 
    comment_hash;
 
-
+   id_input;
    text;
    normative_document;
    no_files_checkbox;
@@ -45,6 +42,7 @@ class CommentCreator {
 
    constructor () {
       this.modal = document.querySelector('.comment-modal');
+      this.overlay = document.querySelector('.comment-overlay');
 
       this.id_input = document.getElementById('comment_id');
 
@@ -70,8 +68,12 @@ class CommentCreator {
 
          let comment = {};
 
+         // this.comment_hash = Date.now();
+         // comment.hash = this.comment_hash;
+
          let field_inputs = this.modal.querySelectorAll('.field-result');
          field_inputs.forEach(input => comment[input.name] = input.value || null);
+
          comment.files = Array.from(this.marked_files.keys());
          comment.criticality_name = this.criticality_name.innerHTML;
 
@@ -79,15 +81,19 @@ class CommentCreator {
 
       });
 
-      this.handleOverlay();
+      let cancel_button = this.modal.querySelector('[data-delete_comment]');
+      cancel_button.addEventListener('click', () => {
+         this.modal.classList.remove('active');
+         this.overlay.classList.remove('active');
+      });
+
+      // this.handleOverlay();
       this.handleFiles();
    }
 
    validateComment (comment) {
 
       validateBlock(this.modal);
-
-      console.log(comment);
 
       if (!comment.text || !comment.normative_document || !comment.comment_criticality) {
          ErrorModal.open('Ошибка при сохранении замечания', 'Не заполнены обязательные поля');
@@ -102,15 +108,17 @@ class CommentCreator {
    saveComment (comment) {
       let comments_container = document.querySelector('.descriptive-part__comments');
       let comment_element;
-      let hash;
+
 
       if (this.comment_hash === null) {
+
          console.log('save_comment');
+         this.comment_hash = Date.now();
+         comment.hash = this.comment_hash;
+
          comment_element = document.createElement('DIV');
          comment_element.classList.add('descriptive-part__comment');
-         hash = Date.now();
-         comment_element.dataset.hash = hash;
-
+         comment_element.dataset.hash = this.comment_hash;
          comment_element.innerHTML = comment.text;
          comment_element.addEventListener('click', () => CommentCreator.getInstance().open(comment_element));
 
@@ -121,10 +129,10 @@ class CommentCreator {
          console.log('edit comment');
          comment_element = comments_container.querySelector(`[data-hash="${this.comment_hash}"]`);
          comment_element.innerHTML = comment.text;
-         hash = this.comment_hash;
       }
 
-      this.comments.set(hash, comment);
+      this.comments.set(this.comment_hash, comment);
+
       this.modal.classList.remove('active');
       this.overlay.classList.remove('active');
 
@@ -177,13 +185,13 @@ class CommentCreator {
       checkbox.classList.remove('fa-square', 'far');
    }
 
-   handleOverlay () {
+/*   handleOverlay () {
       this.overlay = document.querySelector('.comment-overlay');
       this.overlay.addEventListener('click', () => {
          this.modal.classList.remove('active');
          this.overlay.classList.remove('active');
       });
-   }
+   }*/
 
    open (comment = null) {
       this.modal.classList.add('active');
@@ -205,10 +213,13 @@ class CommentCreator {
       let files = this.modal.querySelectorAll('.files__item');
       files.forEach(file => this.removeFileCheckbox(file));
 
+      let fields = this.modal.querySelectorAll('.field');
+      fields.forEach(field => field.classList.remove('invalid'));
+
 
       if (comment_element) {
          this.comment_hash = parseInt(comment_element.dataset.hash);
-         let comment = this.comments.get(parseInt(this.comment_hash));
+         let comment = this.comments.get(this.comment_hash);
 
          this.id_input.value = comment.id;
          this.text.value = comment.text;
@@ -242,6 +253,8 @@ class CommentCreator {
       } else {
          this.comment_hash = null;
          this.no_files_checkbox.dataset.selected = 'false';
+
+         this.id_input.value = null;
          this.text.value = '';
          this.normative_document.value = '';
 

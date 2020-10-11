@@ -21,6 +21,10 @@
    background-color: #f2f2f2;
 }
 
+.files__state-text {
+   white-space: nowrap;
+}
+
 .files__icon {
    font-size: 20px;
    margin: 0px 10px 0px 0px;
@@ -42,7 +46,7 @@
 .files__unload,
 .files__sign {
    padding: 8px;
-   border: 2px solid #ffffff;
+   /*border: 2px solid #ffffff;*/
    border-radius: 4px;
    color: #6e6e6e;
    cursor: pointer;
@@ -55,7 +59,7 @@
 }
 
 .files__delete:hover {
-   border-color: #ffb0b0;
+   /*border-color: #ffb0b0;*/
    background-color: #ffb0b0;
    color: #a93d3d;
 }
@@ -87,7 +91,8 @@
 
 .files__name {
    flex-grow: 1;
-   word-break: break-all;
+   /*word-break: break-all;*/
+   word-break: break-word;
 }
 
 .files__size {

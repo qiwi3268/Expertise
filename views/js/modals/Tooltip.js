@@ -55,7 +55,7 @@ class Tooltip {
    }
 
    setContent (target) {
-      console.log(this.container);
+      // console.log(this.container);
       let content = this.container.querySelector('[data-tooltip_content]');
       this.content = content.cloneNode(true);
       this.element.appendChild(this.content);

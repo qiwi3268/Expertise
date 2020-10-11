@@ -8,7 +8,7 @@
    /*overflow-x: hidden;*/
 
    overflow: hidden;
-   position: absolute;
+   /*position: absolute;*/
 
    color: #343a40;
 
@@ -198,7 +198,6 @@
 .comment-modal__note-tooltip {
    padding: 10px;
 }
-
 
 
 

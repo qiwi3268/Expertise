@@ -112,7 +112,7 @@
                             <span class="documentation__name" style="padding-left: <?= $node['depth']*25 + 15 ?>px"><?= $node['name'] ?></span>
                         </div>
                         <?php if (isset($node['files'])): ?>
-                            <div class="documentation__files files" >
+                            <div class="documentation__files files filled" >
                                 <?php foreach ($node['files'] as $file): ?>
                                     <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" style="padding-left: <?= $node['depth']*25 + 7 ?>px" data-validate_results='<?= $file['validate_results'] ?>'>
                                         <i class="files__checkbox far fa-square"></i>

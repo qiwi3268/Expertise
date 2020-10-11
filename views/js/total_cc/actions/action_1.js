@@ -10,18 +10,7 @@ function saveCommonPart () {
 
    API.executeAction(form_data)
       .then(response => {
-
-         console.log(response);
-
-       /*  switch (response.result) {
-            case 18:
-               // location.href = response.ref;
-               break;
-            default:
-               console.log(response);
-
-         }*/
-
+         location.href = response.ref;
       })
       .catch(exc => {
          ErrorModal.open('Ошибка при сохранении общей части', exc);
