@@ -14,9 +14,17 @@ class CommentCreator {
    marked_files;
    comment_id_input;
 
-   no_files_checkbox;
 
    comment_index;
+
+
+   text;
+   normative_document;
+   no_files_checkbox;
+   criticality_name;
+   criticality_value;
+   note;
+
 
    static get instance() {
       return this._instance;
@@ -68,7 +76,6 @@ class CommentCreator {
 
          this.validateComment(comment);
 
-
       });
 
       this.handleOverlay();
@@ -92,34 +99,31 @@ class CommentCreator {
    saveComment (comment) {
       let comments_container = document.querySelector('.descriptive-part__comments');
       let comment_element;
+      let index;
 
       if (this.comment_index === null) {
          console.log('save_comment');
          comment_element = document.createElement('DIV');
          comment_element.classList.add('descriptive-part__comment');
-         let index = this.comments_counter++;
+         index = this.comments_counter++;
          comment_element.dataset.index = index;
-         this.comments.set(index, comment);
 
          comment_element.innerHTML = comment.text;
          comment_element.addEventListener('click', () => CommentCreator.getInstance().open(comment_element));
 
-
          comments_container.appendChild(comment_element);
 
-
          // resizeCard(comments_container);
-         console.log(comment_element);
-         console.log(comments_container);
-
       } else {
          console.log('edit comment');
          comment_element = comments_container.querySelector(`[data-index="${this.comment_index}"]`);
+         index = this.comment_index;
       }
 
-      console.log(this.comments);
+      this.comments.set(index, comment);
       this.modal.classList.remove('active');
       this.overlay.classList.remove('active');
+
    }
 
    handleFiles () {
@@ -130,17 +134,13 @@ class CommentCreator {
          file_info.addEventListener('click', () => {
             let file_id = parseInt(file.dataset.id);
 
-
             if (this.no_files_checkbox.dataset.selected !== "true") {
-
 
                this.marked_files.has(file_id)
                   ? this.marked_files.delete(file_id)
                   : this.marked_files.set(file_id, file);
 
-
                this.toggleFileCheckbox(file);
-
 
             } else {
                ErrorModal.open(
@@ -149,11 +149,8 @@ class CommentCreator {
                );
             }
 
-
          });
-
       });
-
    }
 
    toggleFileCheckbox (file_element) {
@@ -195,6 +192,7 @@ class CommentCreator {
 
    initFields (comment_element) {
       let checkbox_icon = this.no_files_checkbox.querySelector('.radio__icon');
+      let criticality_field = this.criticality_name.closest('.field');
 
       this.marked_files = new Map();
       let files = this.modal.querySelectorAll('.files__item');
@@ -204,7 +202,7 @@ class CommentCreator {
       if (comment_element) {
 
          let comment = this.comments.get(parseInt(comment_element.dataset.index));
-         this.comment_index = comment_element.dataset.index;
+         this.comment_index = parseInt(comment_element.dataset.index);
          this.text.value = comment.text;
          this.normative_document.value = comment.normative_document;
 
@@ -219,10 +217,8 @@ class CommentCreator {
          }
 
          this.criticality_name.innerHTML = comment.criticality_name;
-         //todo добавить
-         let criticality_field = this.criticality_name.closest('.field');
-         criticality_field.classList.remove('filled');
          this.criticality_value.value = comment.comment_criticality;
+         criticality_field.classList.add('filled');
 
          let marked_files = comment.files;
          marked_files.forEach(file_id => {
@@ -238,9 +234,7 @@ class CommentCreator {
          this.normative_document.value = '';
 
          this.criticality_name.innerHTML = 'Выберите критичность';
-         //todo убрать
-         this.criticality_value.value = comment.comment_criticality;
-         let criticality_field = this.criticality_name.closest('.field');
+         this.criticality_value.value = '';
          criticality_field.classList.remove('filled');
 
          this.no_files_checkbox.dataset.selected = 'false';
@@ -248,7 +242,6 @@ class CommentCreator {
          checkbox_icon.classList.remove('fa-check-square');
       }
 
-      console.log(this.marked_files);
 
    }
 

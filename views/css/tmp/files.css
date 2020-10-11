@@ -2,7 +2,7 @@
    border-radius: 0px 0px 4px 4px;
 }
 
-.field-select.modal-file.filled {
+.field.filled .field-select.modal-file {
    border-radius: 4px 4px 0px 0px;
 }
 

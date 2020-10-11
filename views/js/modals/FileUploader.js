@@ -334,10 +334,14 @@ class FileUploader {
    // files         Array[Object] : массив с файлами
    putFilesToRow (files) {
       //todo вынести
-      let parent_select = this.parent_field.querySelector('.field-select');
-      if (parent_select) {
-         parent_select.classList.add('filled');
-      }
+
+      this.parent_field.classList.add('filled');
+      // let parent_select = this.parent_field.querySelector('.field-select');
+      // if (parent_select) {
+      //    parent_select.classList.add('filled');
+      // }
+
+
 
       let files_body;
       // Если блок с документацией

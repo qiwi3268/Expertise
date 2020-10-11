@@ -3,13 +3,24 @@
 <div class="comment-overlay"></div>
 <div class="modal comment-modal">
     
-    <input id="comment_id" class="comment-modal__id" name="comment_id" type="hidden">
+    <input id="comment_id" class="comment-modal__id field-result" name="id" type="hidden">
     <div class="comment-modal__form">
     
         <div class="comment-modal__header">
             <div class="comment-modal__title">Замечание</div>
         </div>
         <div class="comment-modal__body">
+            
+            <div class="comment-modal__actions">
+                <div class="comment-modal__button" data-save_comment>
+                    <span class="comment-modal__label-button">Сохранить замечание</span>
+                    <i class="comment-modal__icon-button fas fa-check"></i>
+                </div>
+                <div class="comment-modal__button" data-delete_comment>
+                    <span class="comment-modal__text">Отмена</span>
+                    <i class="comment-modal__icon-button fas fa-times"></i>
+                </div>
+            </div>
             
             <div class="field-card field" data-name="text" data-required="true" data-pattern="text">
                 <div class="field-card__title">Текст замечания</div>
@@ -75,10 +86,7 @@
                 <span class="form-field__error field-error">Поле обязательно для заполнения</span>
             </div>
     
-            <div class="multiple-block__add" data-save_comment>
-                <span class="multiple-block__text">Сохранить замечание</span>
-                <i class="multiple-block__icon fas fa-plus"></i>
-            </div>
+            
         </div>
         
     </div>

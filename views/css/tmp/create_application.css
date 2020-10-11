@@ -266,6 +266,7 @@
    background-color: #f9fafe;
 }
 
+.form-field.filled .form-field__select:hover,
 .form-field__body.filled > .form-field__input:hover {
    border-color: #80bdff;
 }

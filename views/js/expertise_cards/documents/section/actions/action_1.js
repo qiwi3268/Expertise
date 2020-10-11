@@ -66,6 +66,17 @@ function saveSection () {
 
    form_data.append('description', tinymce.get('description').getContent());
 
+   let comments = Array.from(CommentCreator.getInstance().comments.values());
+   let comments_to_json = comments.map((comment) => {
+      delete comment.criticality_name;
+      return comment;
+   });
+
+   form_data.append('comments', JSON.stringify(comments_to_json));
+
+
+
+
    API.executeAction(form_data)
       .then((response) => {
 
