@@ -9,7 +9,7 @@ use Exception;
 /**
  * Предназначеный для передачи переменных между блоками
  *
- * Паттерн: <i>Singleton</i>
+ * Паттерн: <i>Singleton, Registry</i>
  *
  */
 class VariableTransfer

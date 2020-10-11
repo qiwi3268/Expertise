@@ -4,8 +4,6 @@
 use Lib\Files\Mappings\RequiredMappingsSetter;
 use Lib\Singles\VariableTransfer;
 use Lib\Singles\DocumentationFilesFacade;
-
-use Lib\Singles\Helpers\FileHandler;
 use Classes\Application\Files\Initialization\Initializer as FilesInitializer;
 use Tables\Docs\application;
 

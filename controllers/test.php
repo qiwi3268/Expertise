@@ -19,3 +19,37 @@ use Lib\DataBase\Transaction;
 use Tables\test;
 use Tables\Locators\DocumentTypeTableLocator;
 use Lib\Singles\DocumentationFilesFacade;
+use Lib\Miscs\Validation\SingleMisc;
+
+
+
+$validator = new PrimitiveValidator();
+
+$comments = [
+    [
+        'id'                  => null,
+        'text'                => 'aaa',
+        'normative_document'  => 'bbb',
+        'note'                => '',
+        'comment_criticality' => '1',
+        'no_files'            => null,
+        'files'               => ['1', '2', '3']
+    ],
+    [
+        'id'                  => '123',
+        'text'                => 'aaa',
+        'normative_document'  => 'bbb',
+        'note'                => 'ccc',
+        'comment_criticality' => '',
+        'no_files'            => '1',
+        'files'               => []
+    ]
+];
+
+// Валидация входного массива
+//
+// В первом обходе
+// Во втором обходе проверяется весь массив
+foreach ($comments as $comment) {
+
+}

@@ -71,8 +71,26 @@ class TypeOfObjectTableLocator
         if ($this->typeOfObjectId == 1) {
             return '\Tables\Docs\section_documentation_1';
         } else {
-            //todo на вырост
             return '\Tables\Docs\section_documentation_2';
+        }
+    }
+
+
+    /**
+     * Предназначен для получения названия класса таблицы
+     * в зависимости от вида объекта
+     *
+     * @return string
+     * {@see \Tables\Docs\comment_documentation_1}<br>
+     * или<br>
+     * {@see \Tables\Docs\comment_documentation_2}
+     */
+    public function getDocsComment(): string
+    {
+        if ($this->typeOfObjectId == 1) {
+            return '\Tables\Docs\comment_documentation_1';
+        } else {
+            return '\Tables\Docs\comment_documentation_2';
         }
     }
 
@@ -93,6 +111,44 @@ class TypeOfObjectTableLocator
         } else {
             //todo на вырост
             return '\Tables\Docs\Relations\section_documentation_2';
+        }
+    }
+
+
+    /**
+     * Предназначен для получения названия класса таблицы
+     * в зависимости от вида объекта
+     *
+     * @return string
+     * {@see \Tables\Comment\AttachedFiles\documentation_1}<br>
+     * или<br>
+     * {@see \Tables\Comment\AttachedFiles\documentation_2}
+     */
+    public function getCommentAttachedFiles(): string
+    {
+        if ($this->typeOfObjectId == 1) {
+            return '\Tables\Comment\AttachedFiles\documentation_1';
+        } else {
+            return '\Tables\Comment\AttachedFiles\documentation_2';
+        }
+    }
+
+
+    /**
+     * Предназначен для получения названия класса таблицы
+     * в зависимости от вида объекта
+     *
+     * @return string
+     * {@see \Tables\Comment\VersionFiles\documentation_1}<br>
+     * или<br>
+     * {@see \Tables\Comment\VersionFiles\documentation_2}
+     */
+    public function getCommentVersionFiles(): string
+    {
+        if ($this->typeOfObjectId == 1) {
+            return '\Tables\Comment\VersionFiles\documentation_1';
+        } else {
+            return '\Tables\Comment\VersionFiles\documentation_2';
         }
     }
 

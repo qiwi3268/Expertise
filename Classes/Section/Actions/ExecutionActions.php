@@ -12,6 +12,7 @@ use ReflectionException;
 
 use Lib\Actions\ExecutionActions as MainExecutionActions;
 use Lib\DataBase\Transaction;
+use Lib\Miscs\Validation\SingleMisc;
 
 
 /**
@@ -33,7 +34,7 @@ class ExecutionActions extends MainExecutionActions
      */
     public function action_1(): string
     {
-        $this->checkParamsPOST('description', 'TEP_exist_flag', 'TEP');
+        $this->checkParamsPOST('description', 'TEP_exist_flag', 'TEP', 'comments');
 
         $descriptionTable = $this->actions->typeOfObjectTableLocator->getDescriptivePartDescription();
         $TEPTable = $this->actions->typeOfObjectTableLocator->getDescriptivePartTEP();
@@ -81,8 +82,95 @@ class ExecutionActions extends MainExecutionActions
             }
         }
 
+
+        // Замечания
+        //
+        // Декодирование json'а
+        try {
+            //$comments = $this->primitiveValidator->getAssocArrayFromJson($this->clearPOST['comments']);
+
+            $comments = [
+                [
+                    'id'                  => null,
+                    'text'                => 'aaa',
+                    'normative_document'  => 'bbb',
+                    'note'                => '',
+                    'comment_criticality' => '1',
+                    'no_files'            => '0',
+                    'files'               => ['1', '2', '3']
+                ],
+                [
+                    'id'                  => 123,
+                    'text'                => 'aaa',
+                    'normative_document'  => 'bbb',
+                    'note'                => 'ccc',
+                    'comment_criticality' => '2',
+                    'no_files'            => '1',
+                    'files'               => []
+                ]
+            ];
+
+        } catch (PrimitiveValidatorEx $e) {
+            throw new SelfEx("Произошла ошибка при декодировании входной json-строки с написанными замечаниями: {$e->getMessage()}", 6);
+        }
+
+        $docCommentTable = $this->actions->typeOfObjectTableLocator->getDocsComment();
+        $attachedFileTable = $this->actions->typeOfObjectTableLocator->getCommentAttachedFiles();
+
+
+        foreach ($comments as $comment) {
+
+            try {
+
+                $commentCriticality = new SingleMisc($comment['comment_criticality'], '\Tables\Miscs\comment_criticality');
+
+                if (!is_array($comment['files'])) {
+
+                    $type = gettype($comment['files']);
+                    throw new SelfEx("'files' имеет тип: '{$type}', в то время как должен быть 'array'", 6);
+                }
+
+                $this->primitiveValidator->validateAssociativeArray($comment, [
+                    'id'                  => ['is_null', [$this->primitiveValidator, 'validateNoEmptyString']],
+                    'text'                => [[$this->primitiveValidator, 'validateNoEmptyString']],
+                    'normative_document'  => [[$this->primitiveValidator, 'validateNoEmptyString']],
+                    'note'                => ['is_null', [$this->primitiveValidator, 'validateNoEmptyString']],
+                    'comment_criticality' => [[$commentCriticality, 'validate']],
+                    'no_files'            => [[$this->primitiveValidator, 'validateSomeInclusions', null, '1']],
+                    'files'               => [[$this->primitiveValidator, 'validateArrayValues', 'is_numeric']]
+                ]);
+
+                if (!$commentCriticality->isExist()) {
+                    throw new SelfEx("Справочник критичности замечания является обязательным к заполнению", 6);
+                }
+
+                if (
+                    $comment['no_files'] === '1'
+                    && !empty($comment['files'])
+                ) {
+                    throw new SelfEx("Массив отмеченных файлов должен быть путым при выбранной опции: 'Отметка файлов не требуется'", 6);
+                }
+
+                // Создание записи замечания
+                //$transaction->add
+
+                // Создание записи файлов
+                foreach ($comment['files'] as $file) {
+
+                    //$transaction->add
+                }
+
+
+            } catch (PrimitiveValidatorEx $e) {
+
+                throw new SelfEx("Произошла ошибка при валидации массива с замечаниями: {$e->getMessage()}", 6);
+            }
+        }
+
+
+
         $transaction->start();
 
-        return true;
+        return 'todo';
     }
 }

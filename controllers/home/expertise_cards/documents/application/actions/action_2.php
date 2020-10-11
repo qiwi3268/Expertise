@@ -39,7 +39,6 @@ $filesInStructure = array_values($documentationFilesFacade->getFilesInDepthStruc
 
 $offset = 0;
 
-
 /**
  * Предназначен для получения информации - есть ли у узла дочерний узел
  * ведомостей объемов работ, у которого есть загруженные файлы

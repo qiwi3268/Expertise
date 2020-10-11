@@ -229,7 +229,9 @@ class PrimitiveValidator
     /**
      * Предназначен для проверки обязательных элементов в ассоциативном массиве
      *
-     * Метод проверяет их существование и проверяет принятыми callback'ами
+     * Метод проверяет их существование и проверяет принятыми callback'ами.
+     * Успешной является проверка, при которой хотя бы один callback вернул
+     * положительный результат
      *
      * @param array $array проверяемый массив
      * @param array $settings <i>ключ</i> - элемент (ключ из array), который обязательно должен присутствовать в массиве<br>
@@ -392,6 +394,79 @@ class PrimitiveValidator
     {
         if (!method_exists($className, $methodName)) {
             throw new SelfEx("Метод: '{$className}::{$methodName}' не существует", 20);
+        }
+    }
+
+
+    /**
+     * Предназначен для проверки значения на не пустую строку
+     *
+     * @param mixed $value проверяемое значение
+     * @throws SelfEx
+     */
+    public function validateNoEmptyString($value): void
+    {
+        if (
+            !is_string($value)
+            || mb_strlen($value) == 0
+        ) {
+            throw new selfEx("Значение: '{$value}' не является не пустой строкой", 21);
+        }
+    }
+
+
+    /**
+     * Предназначен для проверки значений массива определенной функцией или методом
+     *
+     * @param array $array проверяемый массив
+     * @param string|array $function имя функции или массив с функцией, где:
+     * - [0] - экземпляр объекта или имя метода
+     * - [1] - имя метода
+     * @throws SelfEx
+     */
+    public function validateArrayValues(array $array, $function): void
+    {
+        if (is_array($function)) {
+            $this->validateFunctionArray($function);
+            $debugFunction = $function[1];
+        } else {
+            $debugFunction = $function;
+        }
+
+        foreach ($array as $value) {
+
+            // Строгое сранение, т.к. функция может ничего не возвращать
+            if (call_user_func($function, $value) === false) {
+
+                $debugValue = is_array($value) ? 'с типом (array)' : $value;
+                throw new SelfEx("Значение массива: '{$debugValue}' не прошло проверку функцией '{$debugFunction}'", 22);
+            }
+        }
+    }
+
+
+    /**
+     * Предназначен для проверки массива с функцией
+     *
+     * @param array $function массив с функцией, где 0 элемент - экземпляр объекта или имя класса.
+     * 1 элемент - имя метода
+     * @throws SelfEx
+     */
+    public function validateFunctionArray(array $function): void
+    {
+        if (($count = count($function)) != 2) {
+            throw new SelfEx("Массив с функцией имеет размерность: {$count}, в то время как должно быть 2", 23);
+        }
+
+        $object = $function[0]; // Экземпляр объекта или имя класса
+        $method = $function[1];
+
+        if (!is_string($method)) {
+            throw new SelfEx("Переданный метод должен быть строковым значением'", 23);
+        }
+
+        if (!method_exists($object, $method)) {
+            throw new SelfEx("Переданный метод: '{$method}' не существует'", 23);
         }
     }
 }

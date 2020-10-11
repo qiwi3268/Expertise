@@ -1,5 +1,6 @@
 <?php
 
+
 use Lib\Singles\VariableTransfer;
 use Lib\Singles\DocumentTreeHandler;
 use Tables\Locators\TypeOfObjectTableLocator;
@@ -25,8 +26,6 @@ if (!is_null($descriptions = $descriptionTable::getAllAssocByIdMainDocument(CURR
         $descriptionsTV[$author] = $description['description'];
     }
 }
-
-vd($descriptionsTV);
 
 $VT->setValue('descriptions', $descriptionsTV);
 

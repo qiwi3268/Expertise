@@ -21,18 +21,18 @@ trait Responsible
      * Реализация метода интерфейса
      * {@see \Tables\Docs\Interfaces\Responsible::getResponsibleTypeById()}
      *
-     * @param int $id_main_document
+     * @param int $id id записи
      * @return string
      * @throws DataBaseEx
      */
-    static public function getResponsibleTypeById(int $id_main_document): string
+    static public function getResponsibleTypeById(int $id): string
     {
         $table = self::$tableName;
 
         $query = "SELECT `responsible_type`
                   FROM `{$table}`
                   WHERE `id`=?";
-        return ParametrizedQuery::getSimpleArray($query, [$id_main_document])[0];
+        return ParametrizedQuery::getSimpleArray($query, [$id])[0];
     }
 
 
@@ -40,18 +40,18 @@ trait Responsible
      * Реализация метода интерфейса
      * {@see \Tables\Docs\Interfaces\Responsible::updateResponsibleTypeById()}
      *
-     * @param int $id_main_document
+     * @param int $id
      * @param string $responsible_type
      * @throws DataBaseEx
      */
-    static public function updateResponsibleTypeById(int $id_main_document, string $responsible_type): void
+    static public function updateResponsibleTypeById(int $id, string $responsible_type): void
     {
         $table = self::$tableName;
 
         $query = "UPDATE `{$table}`
                   SET `responsible_type`=?
                   WHERE `id`=?";
-        ParametrizedQuery::set($query, [$responsible_type, $id_main_document]);
+        ParametrizedQuery::set($query, [$responsible_type, $id]);
     }
 }
 

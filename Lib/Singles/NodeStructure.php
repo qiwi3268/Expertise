@@ -82,8 +82,8 @@ class NodeStructure
                 } while ($issetParent);
             }
 
-            /*
-             * $handleNode = [];
+            $handleNode = [];
+
             $handleNode['depth'] = $depth;
 
             foreach ($node as $key => $value) {
@@ -96,17 +96,6 @@ class NodeStructure
             }
 
             $result[] = $handleNode;
-            */
-            //todo важное
-            @$result[] = [
-                'id'                => $node['id'],
-                'id_parent_node'    => $node['id_parent_node'],
-                'is_vor'            => (bool)$node['is_vor'],
-                'id_main_block_341' => $node['id_main_block_341'],
-                'name'              => $node['name'],
-                'is_header'         => (bool)$node['is_header'],
-                'depth'             => $depth
-            ];
         }
         return $result;
     }
