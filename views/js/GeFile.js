@@ -248,7 +248,7 @@ class GeFile {
                location.href = API.getUnloadFileURN(check_result);
             })
             .catch(exc => {
-               console.error('Ошибка при проверке файла во время скачивания: ' + exc);
+               ErrorModal.open('Ошибка при проверке файла во время скачивания', exc);
             });
 
       });
@@ -295,9 +295,6 @@ class GeFile {
    handleSignButton () {
       this.sign_button.addEventListener('click', () => {
          let sign_state = this.element.dataset.state;
-
-         // console.log('sign');
-         // console.log(this);
 
          if (this.element.dataset.read_only && sign_state !== 'not_signed') {
             SignView.getInstance().open(this);

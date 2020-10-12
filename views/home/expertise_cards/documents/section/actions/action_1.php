@@ -120,7 +120,7 @@
                 <i class="multiple-block__icon fas fa-plus"></i>
             </div>
             
-            <table class="comments-table">
+            <table id="comments_table" class="comments-table" data-active="true">
                 <thead class="comments-table__header">
                     <tr>
                         <th style="width: 40%" colspan="2">Текст замечания</th>
@@ -129,13 +129,13 @@
                         <th style="width: 45%">Отмеченные файлы</th>
                     </tr>
                 </thead>
-                <tbody class="comments-table__body">
-                    
+                <tbody id="comments_table_body" class="comments-table__body">
+                
                     <tr class="comments-table__row">
-                        <td class="comments-table__action">
-                            <div class="application-actions__item edit">
+                        <td class="comments-table__action edit">
+                            <div class="application-actions__item">
                                 <i class="application-actions__icon fas fa-pen-alt"></i>
-                                <div class="application-actions__text">Изменить</div>
+                                <span class="application-actions__text">Изменить</span>
                             </div>
                         </td>
                         <td rowspan="2">5.2.2.10.1. Представлена сметная документация без общей суммы и не понятно на которую сумму претендует заказчик. Представлены объектные и локальные сметы.
@@ -149,72 +149,72 @@
                             Что такое остров мой человек</td>
                         <td rowspan="2" class="comments-table__criticality">Техническая ошибка</td>
                         <td rowspan="2">
-                            <div class="documentation__files files filled">
-                                <div class="files__item" data-id="1058" data-state="not_signed">
-                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>
-                                        <div class="files__description"><span class="files__name">Контроль актов с 19.02.2019 по 19.02.2020 — копия.xlsx</span><span
-                                                class="files__size">14,94 Кб</span></div>
-                                    </div>
-                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span
-                                            class="files__state-text">Не подписано</span></div>
-                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>
-                                </div>
-                                <div class="files__item" data-id="1059" data-state="not_signed">
-                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>
-                                        <div class="files__description"><span class="files__name">Сколько я не искал золотого святого Всюду грубый оскал, всюду черное слово Всюду грубый оскал, всюду черное слово Сколько я не искал золотого, святого Мир стоит в тишине или бранном тумане На кровавой войне, на любовном обмане На любовном, любовном, любовном обмане Любовном, любовном, любовном обмане Обмане-е-е Обмане-ане-ане-ане-ане-анеее</span><span
-                                                class="files__size">14,94 Кб</span></div>
-                                    </div>
-                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span
-                                            class="files__state-text">Не подписано</span></div>
-                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>
-                                </div>
-                                <div class="files__item" data-id="1060" data-state="not_signed">
-                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>
-                                        <div class="files__description"><span class="files__name">Сколько я не искал золотого святого Мир стоит в тишине или бранном тумане На кр.xlsx</span><span
-                                                class="files__size">14,94 Кб</span></div>
-                                    </div>
-                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span
-                                            class="files__state-text">Не подписано</span></div>
-                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>
-                                </div>
-                                <div class="files__item" data-id="1061" data-state="not_signed">
-                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>
-                                        <div class="files__description"><span class="files__name">Отчет Объекты в работе от 19.02.2020 — копия (2).xlsx</span><span
-                                                class="files__size">19,57 Кб</span></div>
-                                    </div>
-                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span
-                                            class="files__state-text">Не подписано</span></div>
-                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>
-                                </div>
-                                <div class="files__item" data-id="1062" data-state="not_signed">
-                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>
-                                        <div class="files__description"><span class="files__name">Отчет Объекты в работе от 19.02.2020 — копия.xlsx</span><span
-                                                class="files__size">19,57 Кб</span></div>
-                                    </div>
-                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span
-                                            class="files__state-text">Не подписано</span></div>
-                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>
-                                </div>
-                                <div class="files__item" data-id="1063" data-state="not_signed">
-                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>
-                                        <div class="files__description"><span class="files__name">Отчет Объекты в работе от 19.02.2020.xlsx</span><span
-                                                class="files__size">19,57 Кб</span></div>
-                                    </div>
-                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span
-                                            class="files__state-text">Не подписано</span></div>
-                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>
-                                </div>
-                            </div>
+<!--                            <div class="documentation__files files filled">-->
+<!--                                <div class="files__item" data-id="1058" data-state="not_signed">-->
+<!--                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>-->
+<!--                                        <div class="files__description"><span class="files__name">Контроль актов с 19.02.2019 по 19.02.2020 — копия.xlsx</span><span-->
+<!--                                                class="files__size">14,94 Кб</span></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span-->
+<!--                                            class="files__state-text">Не подписано</span></div>-->
+<!--                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>-->
+<!--                                </div>-->
+<!--                                <div class="files__item" data-id="1059" data-state="not_signed">-->
+<!--                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>-->
+<!--                                        <div class="files__description"><span class="files__name">Сколько я не искал золотого святого Всюду грубый оскал, всюду черное слово Всюду грубый оскал, всюду черное слово Сколько я не искал золотого, святого Мир стоит в тишине или бранном тумане На кровавой войне, на любовном обмане На любовном, любовном, любовном обмане Любовном, любовном, любовном обмане Обмане-е-е Обмане-ане-ане-ане-ане-анеее</span><span-->
+<!--                                                class="files__size">14,94 Кб</span></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span-->
+<!--                                            class="files__state-text">Не подписано</span></div>-->
+<!--                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>-->
+<!--                                </div>-->
+<!--                                <div class="files__item" data-id="1060" data-state="not_signed">-->
+<!--                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>-->
+<!--                                        <div class="files__description"><span class="files__name">Сколько я не искал золотого святого Мир стоит в тишине или бранном тумане На кр.xlsx</span><span-->
+<!--                                                class="files__size">14,94 Кб</span></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span-->
+<!--                                            class="files__state-text">Не подписано</span></div>-->
+<!--                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>-->
+<!--                                </div>-->
+<!--                                <div class="files__item" data-id="1061" data-state="not_signed">-->
+<!--                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>-->
+<!--                                        <div class="files__description"><span class="files__name">Отчет Объекты в работе от 19.02.2020 — копия (2).xlsx</span><span-->
+<!--                                                class="files__size">19,57 Кб</span></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span-->
+<!--                                            class="files__state-text">Не подписано</span></div>-->
+<!--                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>-->
+<!--                                </div>-->
+<!--                                <div class="files__item" data-id="1062" data-state="not_signed">-->
+<!--                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>-->
+<!--                                        <div class="files__description"><span class="files__name">Отчет Объекты в работе от 19.02.2020 — копия.xlsx</span><span-->
+<!--                                                class="files__size">19,57 Кб</span></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span-->
+<!--                                            class="files__state-text">Не подписано</span></div>-->
+<!--                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>-->
+<!--                                </div>-->
+<!--                                <div class="files__item" data-id="1063" data-state="not_signed">-->
+<!--                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>-->
+<!--                                        <div class="files__description"><span class="files__name">Отчет Объекты в работе от 19.02.2020.xlsx</span><span-->
+<!--                                                class="files__size">19,57 Кб</span></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span-->
+<!--                                            class="files__state-text">Не подписано</span></div>-->
+<!--                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>-->
+<!--                                </div>-->
+<!--                            </div>-->
                         </td>
                        <!-- <td rowspan="2" class="comments-table__delete">
                             <i class="comments-table__icon-delete fas fa-times"></i>
                         </td>-->
                     </tr>
                     <tr>
-                        <td class="comments-table__action">
-                            <div class="application-actions__item delete">
+                        <td class="comments-table__action delete">
+                            <div class="application-actions__item">
                                 <i class="application-actions__icon fas fa-times"></i>
-                                <div class="application-actions__text">Удалить</div>
+                                <span class="application-actions__text">Удалить</span>
                             </div>
                         </td>
                     </tr>
@@ -236,62 +236,62 @@
                             Что такое остров мой человек</td>
                         <td rowspan="2" class="comments-table__criticality">Техническая ошибка</td>
                         <td rowspan="2">
-                            <div class="documentation__files files filled">
-                                <div class="files__item" data-id="1058" data-state="not_signed">
-                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>
-                                        <div class="files__description"><span class="files__name">Контроль актов с 19.02.2019 по 19.02.2020 — копия.xlsx</span><span
-                                                class="files__size">14,94 Кб</span></div>
-                                    </div>
-                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span
-                                            class="files__state-text">Не подписано</span></div>
-                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>
-                                </div>
-                                <div class="files__item" data-id="1059" data-state="not_signed">
-                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>
-                                        <div class="files__description"><span class="files__name">Сколько я не искал золотого святого Всюду грубый оскал, всюду черное слово Всюду грубый оскал, всюду черное слово Сколько я не искал золотого, святого Мир стоит в тишине или бранном тумане На кровавой войне, на любовном обмане На любовном, любовном, любовном обмане Любовном, любовном, любовном обмане Обмане-е-е Обмане-ане-ане-ане-ане-анеее</span><span
-                                                class="files__size">14,94 Кб</span></div>
-                                    </div>
-                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span
-                                            class="files__state-text">Не подписано</span></div>
-                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>
-                                </div>
-                                <div class="files__item" data-id="1060" data-state="not_signed">
-                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>
-                                        <div class="files__description"><span class="files__name">Сколько я не искал золотого святого Мир стоит в тишине или бранном тумане На кр.xlsx</span><span
-                                                class="files__size">14,94 Кб</span></div>
-                                    </div>
-                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span
-                                            class="files__state-text">Не подписано</span></div>
-                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>
-                                </div>
-                                <div class="files__item" data-id="1061" data-state="not_signed">
-                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>
-                                        <div class="files__description"><span class="files__name">Отчет Объекты в работе от 19.02.2020 — копия (2).xlsx</span><span
-                                                class="files__size">19,57 Кб</span></div>
-                                    </div>
-                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span
-                                            class="files__state-text">Не подписано</span></div>
-                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>
-                                </div>
-                                <div class="files__item" data-id="1062" data-state="not_signed">
-                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>
-                                        <div class="files__description"><span class="files__name">Отчет Объекты в работе от 19.02.2020 — копия.xlsx</span><span
-                                                class="files__size">19,57 Кб</span></div>
-                                    </div>
-                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span
-                                            class="files__state-text">Не подписано</span></div>
-                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>
-                                </div>
-                                <div class="files__item" data-id="1063" data-state="not_signed">
-                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>
-                                        <div class="files__description"><span class="files__name">Отчет Объекты в работе от 19.02.2020.xlsx</span><span
-                                                class="files__size">19,57 Кб</span></div>
-                                    </div>
-                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span
-                                            class="files__state-text">Не подписано</span></div>
-                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>
-                                </div>
-                            </div>
+<!--                            <div class="documentation__files files filled">-->
+<!--                                <div class="files__item" data-id="1058" data-state="not_signed">-->
+<!--                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>-->
+<!--                                        <div class="files__description"><span class="files__name">Контроль актов с 19.02.2019 по 19.02.2020 — копия.xlsx</span><span-->
+<!--                                                class="files__size">14,94 Кб</span></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span-->
+<!--                                            class="files__state-text">Не подписано</span></div>-->
+<!--                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>-->
+<!--                                </div>-->
+<!--                                <div class="files__item" data-id="1059" data-state="not_signed">-->
+<!--                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>-->
+<!--                                        <div class="files__description"><span class="files__name">Сколько я не искал золотого святого Всюду грубый оскал, всюду черное слово Всюду грубый оскал, всюду черное слово Сколько я не искал золотого, святого Мир стоит в тишине или бранном тумане На кровавой войне, на любовном обмане На любовном, любовном, любовном обмане Любовном, любовном, любовном обмане Обмане-е-е Обмане-ане-ане-ане-ане-анеее</span><span-->
+<!--                                                class="files__size">14,94 Кб</span></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span-->
+<!--                                            class="files__state-text">Не подписано</span></div>-->
+<!--                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>-->
+<!--                                </div>-->
+<!--                                <div class="files__item" data-id="1060" data-state="not_signed">-->
+<!--                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>-->
+<!--                                        <div class="files__description"><span class="files__name">Сколько я не искал золотого святого Мир стоит в тишине или бранном тумане На кр.xlsx</span><span-->
+<!--                                                class="files__size">14,94 Кб</span></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span-->
+<!--                                            class="files__state-text">Не подписано</span></div>-->
+<!--                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>-->
+<!--                                </div>-->
+<!--                                <div class="files__item" data-id="1061" data-state="not_signed">-->
+<!--                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>-->
+<!--                                        <div class="files__description"><span class="files__name">Отчет Объекты в работе от 19.02.2020 — копия (2).xlsx</span><span-->
+<!--                                                class="files__size">19,57 Кб</span></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span-->
+<!--                                            class="files__state-text">Не подписано</span></div>-->
+<!--                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>-->
+<!--                                </div>-->
+<!--                                <div class="files__item" data-id="1062" data-state="not_signed">-->
+<!--                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>-->
+<!--                                        <div class="files__description"><span class="files__name">Отчет Объекты в работе от 19.02.2020 — копия.xlsx</span><span-->
+<!--                                                class="files__size">19,57 Кб</span></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span-->
+<!--                                            class="files__state-text">Не подписано</span></div>-->
+<!--                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>-->
+<!--                                </div>-->
+<!--                                <div class="files__item" data-id="1063" data-state="not_signed">-->
+<!--                                    <div class="files__info"><i class="files__icon fas fa-file-excel"></i>-->
+<!--                                        <div class="files__description"><span class="files__name">Отчет Объекты в работе от 19.02.2020.xlsx</span><span-->
+<!--                                                class="files__size">19,57 Кб</span></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="files__state"><i class="files__state-icon fas fa-times"></i><span-->
+<!--                                            class="files__state-text">Не подписано</span></div>-->
+<!--                                    <div class="files__actions"><i class="files__unload fas fa-download"></i></div>-->
+<!--                                </div>-->
+<!--                            </div>-->
                         </td>
                         <!-- <td rowspan="2" class="comments-table__delete">
                              <i class="comments-table__icon-delete fas fa-times"></i>

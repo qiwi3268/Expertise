@@ -27,7 +27,7 @@
                     <div class="field-card__title">Текст замечания</div>
                 </div>
                 <div class="field-card__body">
-                    <textarea id="comment_text" class="field-card__input field-result" name="text"></textarea>
+                    <textarea id="comment_text" class="field-card__input field-result" name="text" rows="10"></textarea>
                 </div>
                 <span class="form-field__error field-error">Поле обязательно для заполнения</span>
             </div>
@@ -105,14 +105,14 @@
             <div class="comment-modal__title">Документация</div>
         </div>
         <div class="comment-modal__body">
-            <div class="documentation" data-id_file_field data-mapping_level_1="<?= $_VT->getValue('documentation_mapping_level_1') ?>" data-mapping_level_2="<?= $_VT->getValue('documentation_mapping_level_2') ?>">
+            <div id="documentation" class="documentation" data-id_file_field data-mapping_level_1="<?= $_VT->getValue('documentation_mapping_level_1') ?>" data-mapping_level_2="<?= $_VT->getValue('documentation_mapping_level_2') ?>">
                 <?php foreach ($_VT->getValue('documentation_files_in_structure') as $node): ?>
                     <div class="documentation__node">
                         <div class="documentation__header" data-title="<?= $node['is_header'] ? 'true' : 'false' ?>">
                             <span class="documentation__name" style="padding-left: <?= $node['depth']*25 + 15 ?>px"><?= $node['name'] ?></span>
                         </div>
                         <?php if (isset($node['files'])): ?>
-                            <div class="documentation__files files filled" >
+                            <div class="documentation__files files">
                                 <?php foreach ($node['files'] as $file): ?>
                                     <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" style="padding-left: <?= $node['depth']*25 + 7 ?>px" data-validate_results='<?= $file['validate_results'] ?>'>
                                         <i class="files__checkbox far fa-square"></i>
@@ -125,7 +125,7 @@
                                         </div>
                                         <div class="files__state"></div>
                                         <div class="files__actions">
-                                            <i class="files__unload fas fa-file-download"></i>
+                                            <i class="files__unload fas fa-download"></i>
                                         </div>
                                     </div>
                                 <?php endforeach; ?>

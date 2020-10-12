@@ -109,6 +109,24 @@ a {
    /*transition: box-shadow .10s;*/
 }
 
+.field textarea::-webkit-scrollbar {
+   width: 8px;
+}
+
+.field textarea::-webkit-scrollbar-track {
+   background: #f1f1f1;
+   border-radius: unset;
+}
+
+.field textarea::-webkit-scrollbar-thumb {
+   background: #DEDEDE;
+   border-radius: unset;
+}
+
+.field textarea::-webkit-scrollbar-thumb:hover {
+   background: #cccccc;
+}
+
 .field input:focus,
 .field input:hover,
 .field textarea:focus,

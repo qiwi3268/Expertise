@@ -385,7 +385,8 @@ class FileUploader {
 
          })
          .catch(exc => {
-            console.error('Ошибка при проверке подписи файла:\n' + exc);
+            ErrorModal.open('Ошибка при проверке подписи файла', exc);
+            // console.error('Ошибка при проверке подписи файла:\n' + exc);
             // let ge_file = new GeFile(file_item, files_body);
             // ge_file.removeElement();
             ge_file.removeElement();

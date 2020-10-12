@@ -22,6 +22,9 @@ class CommentCreator {
    criticality_value;
    note;
 
+   comments_table;
+   table_body;
+   files_container;
 
    static get instance() {
       return this._instance;
@@ -54,7 +57,6 @@ class CommentCreator {
       this.criticality_value = document.getElementById('comment_criticality_value');
       this.note = document.getElementById('comment_note');
 
-
       this.comments = new Map();
 
       this.no_files_checkbox.addEventListener('click', () => {
@@ -63,13 +65,17 @@ class CommentCreator {
       });
 
 
+      this.comments_table = document.getElementById('comments_table');
+      this.table_body = document.getElementById('comments_table_body');
+      this.files_container = document.getElementById('documentation');
+
+      console.log(this.files_container);
+
+
       let save_button = this.modal.querySelector('[data-save_comment]');
       save_button.addEventListener('click', () => {
 
          let comment = {};
-
-         // this.comment_hash = Date.now();
-         // comment.hash = this.comment_hash;
 
          let field_inputs = this.modal.querySelectorAll('.field-result');
          field_inputs.forEach(input => comment[input.name] = input.value || null);
@@ -91,6 +97,145 @@ class CommentCreator {
       this.handleFiles();
    }
 
+   saveComment (comment) {
+
+
+      if (this.comment_hash === null) {
+         console.log('save_comment');
+
+         this.comment_hash = Date.now();
+         this.addCommentToTable(comment);
+
+      } else {
+         console.log('edit comment');
+         this.editTableComment(comment);
+
+      }
+
+      resizeCard(this.comments_table);
+      comment.hash = this.comment_hash;
+
+      this.comments.set(this.comment_hash, comment);
+
+      this.modal.classList.remove('active');
+      this.overlay.classList.remove('active');
+
+   }
+
+   editTableComment (comment) {
+      let table_row = this.comments_table.querySelector(`[data-comment_hash="${this.comment_hash}"]`);
+      let text_column = table_row.querySelector('[data-comment_text]');
+      text_column.innerHTML = comment.text;
+
+      let normative_column = table_row.querySelector('[data-comment_normative_document]');
+      normative_column.innerHTML = comment.normative_document;
+
+      let criticality_column = table_row.querySelector('[data-comment_criticality]');
+      criticality_column.innerHTML = comment.criticality_name;
+
+      let files_block = table_row.querySelector('[data-comment_files]');
+      this.addFilesToTable(comment, files_block);
+
+   }
+
+   addCommentToTable (comment) {
+      this.comments_table.dataset.active = 'true';
+
+      let data_row = document.createElement('TR');
+      data_row.classList.add('comments-table__row');
+      data_row.setAttribute('data-comment_hash', this.comment_hash);
+
+      this.table_body.appendChild(data_row);
+
+      let edit_button = this.createActionColumn('edit');
+      edit_button.addEventListener('click', () => CommentCreator.getInstance().open(data_row));
+      data_row.appendChild(edit_button);
+
+      let text_column = document.createElement('TD');
+      text_column.setAttribute('rowspan', '2');
+      text_column.setAttribute('data-comment_text', '');
+      text_column.innerHTML = comment.text;
+      data_row.appendChild(text_column);
+
+      let normative_column = document.createElement('TD');
+      normative_column.setAttribute('rowspan', '2');
+      normative_column.setAttribute('data-comment_normative_document', '');
+      normative_column.innerHTML = comment.normative_document;
+      data_row.appendChild(normative_column);
+
+      let criticality_column = document.createElement('TD');
+      criticality_column.setAttribute('rowspan', '2');
+      criticality_column.setAttribute('data-comment_criticality', '');
+      criticality_column.classList.add('comments-table__criticality');
+      criticality_column.innerHTML = comment.criticality_name;
+      data_row.appendChild(criticality_column);
+
+      let files_column = document.createElement('TD');
+      files_column.setAttribute('rowspan', '2');
+      data_row.appendChild(files_column);
+
+      let files_block = document.createElement('DIV');
+      files_block.classList.add('documentation__files', 'files', 'filled');
+      files_block.setAttribute('data-comment_files', '');
+      files_block.setAttribute('data-id_file_field', '');
+      files_block.setAttribute('data-mapping_level_1', this.files_container.dataset.mapping_level_1);
+      files_block.setAttribute('data-mapping_level_2', this.files_container.dataset.mapping_level_2);
+
+      files_column.appendChild(files_block);
+
+      this.addFilesToTable(comment, files_block);
+
+      let action_row = document.createElement('TR');
+      action_row.classList.add('comments-table__row');
+      let delete_button = this.createActionColumn('delete');
+      delete_button.addEventListener('click', () => {
+         this.comments.delete(this.comment_hash);
+         data_row.remove();
+         action_row.remove();
+      });
+
+      action_row.appendChild(delete_button);
+
+
+      this.table_body.appendChild(action_row);
+   }
+
+   addFilesToTable (comment, files_block) {
+      comment.files.forEach(file_id => {
+         let file_element = this.files_container.querySelector(`.files__item[data-id="${file_id}"]`);
+         let file_copy = file_element.cloneNode(true);
+         file_copy.removeAttribute('style');
+         let checkbox = file_copy.querySelector('.files__checkbox');
+         checkbox.remove();
+
+         let ge_file = new GeFile(file_copy, files_block);
+         ge_file.handleActionButtons();
+
+         files_block.appendChild(file_copy);
+      });
+   }
+
+   createActionColumn (action_class) {
+      let action_column = document.createElement('TD');
+      action_column.classList.add('comments-table__action', action_class);
+
+      let action_item = document.createElement('DIV');
+      action_item.classList.add('application-actions__item');
+      action_column.appendChild(action_item);
+
+      let action_icon = document.createElement('I');
+      let icon_class = action_class === 'edit' ? 'fa-pen-alt' : 'fa-times';
+      action_icon.classList.add('application-actions__icon', 'fas', icon_class);
+      action_item.appendChild(action_icon);
+
+      let action_text = document.createElement('SPAN');
+      action_text.classList.add('application-actions__text');
+      action_text.innerHTML = action_class === 'edit' ? 'Изменить' : 'Удалить';
+      action_item.appendChild(action_text);
+
+      return action_column;
+   }
+
    validateComment (comment) {
 
       validateBlock(this.modal);
@@ -102,39 +247,6 @@ class CommentCreator {
       } else {
          this.saveComment(comment);
       }
-
-   }
-
-   saveComment (comment) {
-      let comments_container = document.querySelector('.descriptive-part__comments');
-      let comment_element;
-
-
-      if (this.comment_hash === null) {
-
-         console.log('save_comment');
-         this.comment_hash = Date.now();
-         comment.hash = this.comment_hash;
-
-         comment_element = document.createElement('DIV');
-         comment_element.classList.add('descriptive-part__comment');
-         comment_element.dataset.hash = this.comment_hash;
-         comment_element.innerHTML = comment.text;
-         comment_element.addEventListener('click', () => CommentCreator.getInstance().open(comment_element));
-
-         comments_container.appendChild(comment_element);
-
-         // resizeCard(comments_container);
-      } else {
-         console.log('edit comment');
-         comment_element = comments_container.querySelector(`[data-hash="${this.comment_hash}"]`);
-         comment_element.innerHTML = comment.text;
-      }
-
-      this.comments.set(this.comment_hash, comment);
-
-      this.modal.classList.remove('active');
-      this.overlay.classList.remove('active');
 
    }
 
@@ -218,7 +330,7 @@ class CommentCreator {
 
 
       if (comment_element) {
-         this.comment_hash = parseInt(comment_element.dataset.hash);
+         this.comment_hash = parseInt(comment_element.dataset.comment_hash);
          let comment = this.comments.get(this.comment_hash);
 
          this.id_input.value = comment.id;

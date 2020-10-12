@@ -154,19 +154,28 @@ td.comments-table__action {
    font-size: 18px;
 }
 
-.application-actions__item.edit .application-actions__icon,
-.application-actions__item.edit .application-actions__text  {
+.comments-table__action.edit .application-actions__icon,
+.comments-table__action.edit .application-actions__text  {
    color: #1c3959;
 }
 
-.application-actions__item.delete .application-actions__icon,
-.application-actions__item.delete .application-actions__text {
+.comments-table__action.delete .application-actions__icon,
+.comments-table__action.delete .application-actions__text {
    color: #a93d3d;
 }
 
+.comments-table__action {
+   cursor: pointer;
+   transition: .15s;
+}
 
+.comments-table__action.edit:hover {
+   background-color: #F0F6F9;
+}
 
-
+.comments-table__action.delete:hover {
+   background-color: #FCF6F6;
+}
 
 
 

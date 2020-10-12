@@ -68,13 +68,11 @@ function saveSection () {
 
    let comments = Array.from(CommentCreator.getInstance().comments.values());
    let comments_to_json = comments.map((comment) => {
-      delete comment.criticality_name;
-      return comment;
+      return Object.assign({}, comment, {criticality_name: undefined});
    });
 
+
    form_data.append('comments', JSON.stringify(comments_to_json));
-
-
 
 
    API.executeAction(form_data)
