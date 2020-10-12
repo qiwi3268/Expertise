@@ -13,7 +13,7 @@ class Helper
 {
 
     /**
-     * Предназначен для получения строки values формата "?, ?, ?, NULL"
+     * Предназначен для получения строки VALUES формата "?, ?, ?, NULL"
      * в зависимости от количества переданных элементов массива
      *
      * Если элемент null, то он удаляется из массива и в values записывается NULL
@@ -21,7 +21,7 @@ class Helper
      * @param array $bindParams ссылка на массив параметров
      * @return string строка values формата "?, ?, ?, NULL"
      */
-    static public function getValuesWithoutNull(array &$bindParams): string
+    static public function getValuesWithoutNullForInsert(array &$bindParams): string
     {
         $result = [];
 
@@ -37,6 +37,39 @@ class Helper
             }
         }
         return implode(', ', $result);
+    }
+
+    /**
+     * Предназначен для получения строки SET формата "`param1`=?, `param2`=NULL, `param3`=?"
+     * и массива bindParams
+     *
+     * Все значения записываются в строку 'SETPart' в формате '?' или 'NULL'.<br>
+     * В массив 'bindParams' добавляются только те значения, которые не NULL
+     *
+     * @param array $array ассоциативный массив, где ключ - название столбца в БД,
+     * а значение - величина, которая может быть null
+     * @return array ассоциативный массив формата:<br>
+     * 'SETPart' => "`param1`=?, `param2`=NULL, `param3`=?"<br>
+     * 'bindParams' => [1, 2]
+     */
+    static public function getValuesWithoutNullForUpdate(array $array): array
+    {
+        $SETPart = [];
+        $bindParams = [];
+
+        foreach ($array as $key => $value) {
+
+            if (is_null($value)) {
+                $SETPart[] = "`{$key}`=NULL";
+            } else {
+                $SETPart[] = "`{$key}`=?";
+                $bindParams[] = $value;
+            }
+        }
+        return [
+            'SETPart'    => implode(', ', $SETPart),
+            'bindParams' => $bindParams
+        ];
     }
 
 

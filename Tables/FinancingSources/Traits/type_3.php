@@ -36,7 +36,7 @@ trait type_3
         $table = self::$tableName;
 
         $bindParams = [$id_main_document, $no_data, $percent];
-        $values = TableHelper::getValuesWithoutNull($bindParams);
+        $values = TableHelper::getValuesWithoutNullForInsert($bindParams);
 
         $query = "INSERT INTO `{$table}`
                     (`id_main_document`, `no_data`, `percent`, `date_creation`)

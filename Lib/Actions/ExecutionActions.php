@@ -99,21 +99,21 @@ abstract class ExecutionActions
     private function getValidatedCallback(?array $action, string $pageName): string
     {
         if (is_null($action)) {
-            throw new SelfEx("Попытка получить доступ к несуществующему действию для страницы: '{$pageName}'", 2);
+            throw new SelfEx("Попытка получить доступ к несуществующему действию для страницы: '{$pageName}'", 3001);
         }
 
         $method = $action['callback_name'];
 
         if (!method_exists($this, $method)) {
-            throw new SelfEx("Метод исполнения действия: '{$this->childClassName}::{$method}' для страницы: '{$pageName}' не реализован в дочернем классе: '{$this->childClassName}'", 3);
+            throw new SelfEx("Метод исполнения действия: '{$this->childClassName}::{$method}' для страницы: '{$pageName}' не реализован в дочернем классе: '{$this->childClassName}'", 3002);
         }
 
         $primitiveValidator = new PrimitiveValidator();
 
         try {
-            $primitiveValidator->validateReturnType([$this, $method], 'string');
+            $primitiveValidator->validateReturnType([$this, $method], 'Lib\Actions\ExecutionActionsResult');
         } catch (PrimitiveValidatorEx $e) {
-            throw new SelfEx("Ошибка метода исполнения действия для страницы: '{$pageName}'. {$e->getMessage()}", 4);
+            throw new SelfEx("Ошибка метода исполнения действия для страницы: '{$pageName}'. {$e->getMessage()}", 3003);
         }
 
         return $method;
@@ -131,7 +131,7 @@ abstract class ExecutionActions
     {
         if (!call_user_func_array('checkParamsPOST', $params)) {
             $debug = implode(', ', $params);
-            throw new SelfEx("Нет одного или более обязательного параметра POST запроса: '{$debug}'", 5);
+            throw new SelfEx("Нет одного или более обязательного параметра POST запроса: '{$debug}'", 3004);
         }
     }
 
@@ -146,7 +146,7 @@ abstract class ExecutionActions
     protected function getRequiredPOSTParameter(string $key)
     {
         if (!isset($this->clearPOST[$key])) {
-            throw new SelfEx("Нет обязательного параметра POST запроса: '{$key}'", 5);
+            throw new SelfEx("Нет обязательного параметра POST запроса: '{$key}'", 3004);
         }
         return $this->clearPOST[$key];
     }

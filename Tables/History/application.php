@@ -42,7 +42,7 @@ class application
         $table = self::$tableName;
 
         $bindParams = [$id_main_document, $id_author, $description, $additional_information, $is_visible_from_applicant];
-        $values = TableHelper::getValuesWithoutNull($bindParams);
+        $values = TableHelper::getValuesWithoutNullForInsert($bindParams);
 
         $query = "INSERT INTO `{$table}`
                      (`id_main_document`, `id_author`, `description`, `additional_information`, `is_visible_from_applicant`, `date_creation`)

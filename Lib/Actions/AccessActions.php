@@ -100,13 +100,13 @@ abstract class AccessActions
     public function getValidatedCallbackResult(?array $action, string $pageName): bool
     {
         if (is_null($action)) {
-            throw new SelfEx("Попытка получить доступ к несуществующему действию для страницы: '{$pageName}'", 2);
+            throw new SelfEx("Попытка получить доступ к несуществующему действию для страницы: '{$pageName}'", 2001);
         }
 
         $method = $action['callback_name'];
 
         if (!method_exists($this, $method)) {
-            throw new SelfEx("Метод доступа к действию: '{$this->childClassName}::{$method}' для страницы: '{$pageName}' не реализован в дочернем классе: '{$this->childClassName}'", 3);
+            throw new SelfEx("Метод доступа к действию: '{$this->childClassName}::{$method}' для страницы: '{$pageName}' не реализован в дочернем классе: '{$this->childClassName}'", 2002);
         }
 
         $primitiveValidator = new PrimitiveValidator();
@@ -114,7 +114,7 @@ abstract class AccessActions
         try {
             $primitiveValidator->validateReturnType([$this, $method], 'bool');
         } catch (PrimitiveValidatorEx $e) {
-            throw new SelfEx("Ошибка метода доступа к действию для страницы: '{$pageName}'. {$e->getMessage()}", 4);
+            throw new SelfEx("Ошибка метода доступа к действию для страницы: '{$pageName}'. {$e->getMessage()}", 2003);
         }
 
         return $this->$method();

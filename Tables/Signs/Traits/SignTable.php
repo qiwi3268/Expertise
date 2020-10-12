@@ -67,7 +67,7 @@ trait  SignTable
             $certificate_user_message
         ];
 
-        $values = TableHelper::getValuesWithoutNull($bindParams);
+        $values = TableHelper::getValuesWithoutNullForInsert($bindParams);
 
         $query = "INSERT INTO `{$table}`
                     (`id`,

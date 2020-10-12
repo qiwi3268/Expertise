@@ -29,7 +29,7 @@ use Tables\Locators\DocumentTypeTableLocator;
 //  7  - Непредвиденная ошибка метода Classes\DocumentParameters\APIActionExecutor::defineDocumentParameters
 //       {result, message : текст ошибки, code: код ошибки}
 // ---------------------------------------------------------------------
-//  8  - Для работы с действиями Вам необходимо авторизоваться
+//  8  - Отсутствует авторизация на сервере
 //       {result, error_message : текст ошибки}
 //  9  - Ошибка при распознании типа документа
 //       {result, error_message : текст ошибки}
@@ -47,11 +47,13 @@ use Tables\Locators\DocumentTypeTableLocator;
 //       {result, error_message : текст ошибки}
 //  16 - Ошибка во время исполнения действия
 //       {result, error_message : текст ошибки}
-//  17 - Неизвестная ошибка во время работы с классом действий
+//  17 - Ошибка во время работы с объектом результата
+//       {result, error_message : текст ошибки}
+//  18 - Неизвестная ошибка во время работы с классом действий
 //       {result, message : текст ошибки, code: код ошибки}
-//  18 - Все прошло успешно
-//       {result, ref : ссылка на страницу, на которую необходимо перенаправить пользователя}
-//  19 - Непредвиденная ошибка
+//  19 - Все прошло успешно
+//       {result, ref : ссылка на страницу, на которую необходимо перенаправить пользователя, add : массив с дополнительными параметрами}
+//  20 - Непредвиденная ошибка
 //       {result, message : текст ошибки, code: код ошибки}
 //
 
@@ -62,7 +64,7 @@ try {
 
         exit(json_encode([
             'result'        => 8,
-            'error_message' => 'Для работы с действиями Вам необходимо авторизоваться'
+            'error_message' => 'Отсутствует авторизация на сервере'
         ]));
     }
 
@@ -126,7 +128,7 @@ try {
 
     try {
 
-        $ref = $actions->getExecutionActions()->executeCallbackByPageName(CURRENT_PAGE_NAME);
+        $executionActionsResult = $actions->getExecutionActions()->executeCallbackByPageName(CURRENT_PAGE_NAME);
     } catch (ActionsEx $e) {
 
         $e_message = $e->getMessage();
@@ -134,29 +136,35 @@ try {
 
         // Ошибка при получении проверенного метода действия
         switch ($e_code) {
-            case 2 : // попытка получить доступ к несуществующему действию для страницы
-            case 3 : // метод исполнения действия не реализован в дочернем классе
-            case 4 : // ошибка метода исполнения действия для страницы
+            case 3001 : // попытка получить доступ к несуществующему действию для страницы
+            case 3002 : // метод исполнения действия не реализован в дочернем классе
+            case 3003 : // ошибка метода исполнения действия для страницы
                 exit(json_encode([
                     'result'        => 14,
                     'error_message' => $e->getMessage(),
                 ]));
 
-            case 5 : // Нет обязательного параметра POST / GET запроса
+            case 3004 : // Нет обязательного параметра POST / GET запроса
                 exit(json_encode([
                     'result'        => 15,
                     'error_message' => $e->getMessage(),
                 ]));
 
-            case 6 : // Ошибка во время исполнения действия
+            case 3005 : // Ошибка во время исполнения действия
                 exit(json_encode([
                     'result'        => 16,
                     'error_message' => $e->getMessage(),
                 ]));
 
+            case 4001 : // Ошибка во время работы с объектом результата
+                exit(json_encode([
+                    'result'        => 17,
+                    'error_message' => $e->getMessage(),
+                ]));
+
             default : // Неизвестная ошибка во время работы с классом действий
                 exit(json_encode([
-                    'result'  => 17,
+                    'result'  => 18,
                     'message' => $e->getMessage(),
                     'code'    => $e->getCode()
                 ]));
@@ -170,17 +178,14 @@ try {
     call_user_func([$tableLocator->getLoggingActions(), 'create'], CURRENT_DOCUMENT_ID, $actionId, Session::getUserId());
 
     // Все прошло успешно
-    exit(json_encode([
-        'result'  => 18,
-        'ref'     => $ref,
-    ]));
+    exit((string)$executionActionsResult);
 
 } catch (Exception $e) {
 
     $errorLogger->writeException($e, 'Непредвиденная ошибка');
 
     exit(json_encode([
-        'result'  => 19,
+        'result'  => 20,
         'message' => $e->getMessage(),
         'code'    => $e->getCode()
     ]));

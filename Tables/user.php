@@ -54,7 +54,7 @@ final class user
             $password,
             $hash
         ];
-        $values = TableHelper::getValuesWithoutNull($bindParams);
+        $values = TableHelper::getValuesWithoutNullForInsert($bindParams);
 
         $query = "INSERT INTO `user`
                     (`id`, `last_name`, `first_name`, `middle_name`, `id_user_info_department`, `id_user_info_position`, `email`, `login`, `password`, `hash`, `date_reg`, `is_banned`, `num_incorrect_password_input`)

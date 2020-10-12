@@ -3,8 +3,33 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/section_create_test.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/section_create_test.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/documents/section/actions/action_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/section/actions/action_1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/home/action_executor.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/action_executor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Application/Actions/ExecutionActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Actions/ExecutionActions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/RouteCallbacks/ActionChecker.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/RouteCallbacks/ActionChecker.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Section/Actions/Actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Section/Actions/Actions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Section/Actions/ExecutionActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Section/Actions/ExecutionActions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/TotalCC/Actions/ExecutionActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/TotalCC/Actions/ExecutionActions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Actions/AccessActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Actions/AccessActions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Actions/ExecutionActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Actions/ExecutionActions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Actions/Locator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Actions/Locator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/Actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/Actions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/PrimitiveValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/PrimitiveValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Singles/PrimitiveValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/PrimitiveValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/DescriptivePart/Traits/TEP.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/DescriptivePart/Traits/TEP.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Docs/Traits/CommentTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Docs/Traits/CommentTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Files/Traits/FileTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Files/Traits/FileTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Files/Traits/FileTableType1.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Files/Traits/FileTableType1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Files/Traits/FileTableType2.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Files/Traits/FileTableType2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/FinancingSources/Traits/type_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/FinancingSources/Traits/type_1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/FinancingSources/Traits/type_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/FinancingSources/Traits/type_2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/FinancingSources/Traits/type_3.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/FinancingSources/Traits/type_3.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/FinancingSources/Traits/type_4.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/FinancingSources/Traits/type_4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Helpers/Helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Helpers/Helper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/History/application.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/History/application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Locators/TypeOfObjectTableLocator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Locators/TypeOfObjectTableLocator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Signs/Traits/SignTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Signs/Traits/SignTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,13 +167,6 @@
       <workItem from="1601910983618" duration="4001000" />
       <workItem from="1601955341134" duration="33695000" />
       <workItem from="1602087210480" duration="4691000" />
-    </task>
-    <task id="LOCAL-00142" summary="28.09.2020">
-      <created>1601306417679</created>
-      <option name="number" value="00142" />
-      <option name="presentableId" value="LOCAL-00142" />
-      <option name="project" value="LOCAL" />
-      <updated>1601306417680</updated>
     </task>
     <task id="LOCAL-00143" summary="29.09.2020">
       <created>1601352032025</created>
@@ -486,7 +504,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602415824892</updated>
     </task>
-    <option name="localTasksCounter" value="191" />
+    <task id="LOCAL-00191" summary="11.10.2020_4">
+      <created>1602419409991</created>
+      <option name="number" value="00191" />
+      <option name="presentableId" value="LOCAL-00191" />
+      <option name="project" value="LOCAL" />
+      <updated>1602419409991</updated>
+    </task>
+    <option name="localTasksCounter" value="192" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -503,7 +528,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="05.10.2020_2" />
     <MESSAGE value="05.10.2020_3" />
     <MESSAGE value="05.10.2020_4" />
     <MESSAGE value="06.10.2020" />
@@ -528,7 +552,8 @@
     <MESSAGE value="11.10.2020_1" />
     <MESSAGE value="11.10.2020_2" />
     <MESSAGE value="11.10.2020_3" />
-    <option name="LAST_COMMIT_MESSAGE" value="11.10.2020_3" />
+    <MESSAGE value="11.10.2020_4" />
+    <option name="LAST_COMMIT_MESSAGE" value="11.10.2020_4" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -555,10 +580,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1602415818043">
+    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1602419405865">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602415818043" />
+    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602419405865" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600519766620" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1602091044288" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />

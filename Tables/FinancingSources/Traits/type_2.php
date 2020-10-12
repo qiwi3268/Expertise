@@ -52,7 +52,7 @@ trait type_2
         $table = self::$tableName;
 
         $bindParams = [$id_main_document, $full_name, $INN, $KPP, $OGRN, $address, $location, $telephone, $email, $no_data, $percent];
-        $values = TableHelper::getValuesWithoutNull($bindParams);
+        $values = TableHelper::getValuesWithoutNullForInsert($bindParams);
 
         $query = "INSERT INTO `{$table}`
                     (`id_main_document`, `full_name`, `INN`, `KPP`, `OGRN`, `address`, `location`, `telephone`, `email`, `no_data`, `percent`, `date_creation`)

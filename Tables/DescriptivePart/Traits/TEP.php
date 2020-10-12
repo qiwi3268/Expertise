@@ -40,7 +40,7 @@ trait TEP
         $table = self::$tableName;
 
         $bindParams = [$id_main_document, $id_author, $indicator, $measure, $value, $note];
-        $values = TableHelper::getValuesWithoutNull($bindParams);
+        $values = TableHelper::getValuesWithoutNullForInsert($bindParams);
 
         $query = "INSERT INTO `{$table}`
                      (`id_main_document`, `id_author`, `indicator`, `measure`, `value`, `note`, `date_creation`)

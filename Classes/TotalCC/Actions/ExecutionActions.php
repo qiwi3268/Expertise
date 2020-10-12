@@ -12,6 +12,7 @@ use Tables\Exceptions\Tables as TablesEx;
 use ReflectionException;
 
 use Lib\Actions\ExecutionActions as MainExecutionActions;
+use Lib\Actions\ExecutionActionsResult;
 use Lib\DataBase\Transaction;
 use Lib\Singles\FinancingSourcesHandler;
 use Lib\Singles\Helpers\PageAddress;
@@ -24,7 +25,7 @@ class ExecutionActions extends MainExecutionActions
     /**
      * Действие <i>Создать общую часть</i>
      *
-     * @return string
+     * @return ExecutionActionsResult
      * @throws DataBaseEx
      * @throws MiscValidatorEx
      * @throws SelfEx
@@ -32,7 +33,7 @@ class ExecutionActions extends MainExecutionActions
      * @throws ReflectionException
      * @throws TablesEx
      */
-    public function action_1(): string
+    public function action_1(): ExecutionActionsResult
     {
 
         try {
@@ -42,7 +43,7 @@ class ExecutionActions extends MainExecutionActions
             $financingSourcesHandler->validateArray();
         } catch (PrimitiveValidatorEx $e) {
 
-            throw new SelfEx("Произошла при декодировании / валидации входной json-строки с источниками финансирования: {$e->getMessage()}, {$e->getCode()}", 6);
+            throw new SelfEx("Произошла при декодировании / валидации входной json-строки с источниками финансирования: {$e->getMessage()}, {$e->getCode()}", 3005);
         }
 
         $financingSourcesAggregator = new FinancingSourcesAggregator(FinancingSourcesAggregator::COMMON_PART_TABLE_TYPE, CURRENT_DOCUMENT_ID);
@@ -57,7 +58,8 @@ class ExecutionActions extends MainExecutionActions
 
         $test = $transaction->getLastResults();
 
-        return PageAddress::createCardRef(CURRENT_DOCUMENT_ID, 'total_cc', 'view');
+        $methodResult = new ExecutionActionsResult(PageAddress::createCardRef(CURRENT_DOCUMENT_ID, 'total_cc', 'view'));
+        return $methodResult;
     }
 
 
@@ -65,8 +67,10 @@ class ExecutionActions extends MainExecutionActions
      * Действие <i>{@todo}</i>
      * @return string
      */
-    public function action_2(): string
+    public function action_2(): ExecutionActionsResult
     {
+        $methodResult = new ExecutionActionsResult('todo');
+        return $methodResult;
         //todo удалять источников финансирования записи из таблицы
     }
 }

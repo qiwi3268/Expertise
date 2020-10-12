@@ -139,25 +139,6 @@ class TypeOfObjectTableLocator
      * в зависимости от вида объекта
      *
      * @return string
-     * {@see \Tables\Comment\VersionFiles\documentation_1}<br>
-     * или<br>
-     * {@see \Tables\Comment\VersionFiles\documentation_2}
-     */
-    public function getCommentVersionFiles(): string
-    {
-        if ($this->typeOfObjectId == 1) {
-            return '\Tables\Comment\VersionFiles\documentation_1';
-        } else {
-            return '\Tables\Comment\VersionFiles\documentation_2';
-        }
-    }
-
-
-    /**
-     * Предназначен для получения названия класса таблицы
-     * в зависимости от вида объекта
-     *
-     * @return string
      * {@see \Tables\assigned_expert_section_documentation_1}<br>
      * или<br>
      * {@see \Tables\assigned_expert_section_documentation_2}
@@ -207,8 +188,26 @@ class TypeOfObjectTableLocator
         if ($this->typeOfObjectId == 1) {
             return '\Tables\Responsible\type_4\section_documentation_1';
         } else {
-            //todo на вырост
             return '\Tables\Responsible\type_4\section_documentation_2';
+        }
+    }
+
+
+    /**
+     * Предназначен для получения названия класса таблицы
+     * в зависимости от вида объекта
+     *
+     * @return string
+     * {@see \Tables\Responsible\type_4\comment_documentation_1}<br>
+     * или<br>
+     * {@see \Tables\Responsible\type_4\comment_documentation_2}
+     */
+    public function getResponsibleType4Comment(): string
+    {
+        if ($this->typeOfObjectId == 1) {
+            return '\Tables\Responsible\type_4\comment_documentation_1';
+        } else {
+            return '\Tables\Responsible\type_4\comment_documentation_2';
         }
     }
 

@@ -6,6 +6,7 @@ namespace Classes\RouteCallbacks;
 use Lib\Exceptions\Actions as ActionsEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
 use Tables\Exceptions\Tables as TablesEx;
+use Lib\Exceptions\DocumentTreeHandler as DocumentTreeHandlerEx;
 use ReflectionException;
 use core\Classes\Session;
 use Lib\Actions\Locator;
@@ -35,6 +36,7 @@ class ActionChecker
      * @throws ActionsEx
      * @throws DataBaseEx
      * @throws TablesEx
+     * @throws DocumentTreeHandlerEx
      */
     public function construct(): void
     {

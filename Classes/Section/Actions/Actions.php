@@ -30,7 +30,7 @@ class Actions extends MainActions
      * id вида объекта
      *
      */
-    private int $typeOfObjectId;
+    public int $typeOfObjectId;
 
     public DocumentTreeHandler $documentTreeHandler;
     public TypeOfObjectTableLocator $typeOfObjectTableLocator;
@@ -51,19 +51,21 @@ class Actions extends MainActions
     {
         try {
 
-            $typeOfObjectId = DocumentTreeHandler::getInstanceByKey('AccessToDocumentTree')->getTypeOfObjectId();
+            $documentTreeHandler = DocumentTreeHandler::getInstanceByKey('AccessToDocumentTree');
         } catch (DocumentTreeHandlerEx $e) {
 
             // Экземпляр класса не существует в хранилище
             if ($e->getCode() == 2) {
-                $typeOfObjectId = DocumentTreeHandler::setInstanceByKey('SectionActions', CURRENT_DOCUMENT_TYPE, CURRENT_DOCUMENT_ID)->getTypeOfObjectId();
+                $documentTreeHandler = DocumentTreeHandler::setInstanceByKey('SectionActions', CURRENT_DOCUMENT_TYPE, CURRENT_DOCUMENT_ID);
             } else {
                 throw new DocumentTreeHandlerEx($e->getMessage(), $e->getCode());
             }
         }
 
+        $typeOfObjectId = $documentTreeHandler->getTypeOfObjectId();
 
 
+        $this->documentTreeHandler = $documentTreeHandler;
         $this->typeOfObjectId = $typeOfObjectId;
 
         // Вспомогательные объекты

@@ -39,9 +39,9 @@ trait FileTableType2
         $table = self::$tableName;
 
         $query = "INSERT INTO `{$table}`
-                    (`id`, `id_main_document`, `id_structure_node`, `file_name`, `file_size`, `hash`)
+                     (`id`, `id_main_document`, `id_previous_version`, `id_structure_node`, `file_name`, `file_size`, `hash`)
                   VALUES
-                    (NULL, ?, ?, ?, ?, ?)";
+                     (NULL, ?, NULL, ?, ?, ?, ?)";
         return ParametrizedQuery::set($query, [$id_main_document, $id_structure_node, $file_name, $file_size, $hash]);
     }
 }

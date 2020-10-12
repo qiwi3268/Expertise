@@ -12,6 +12,7 @@ use ReflectionException;
 
 use core\Classes\Session;
 use Lib\Actions\ExecutionActions as MainExecutionActions;
+use Lib\Actions\ExecutionActionsResult;
 use Lib\DataBase\Transaction;
 use Lib\Singles\Helpers\PageAddress;
 use Tables\Docs\application;
@@ -25,30 +26,30 @@ use Tables\Locators\TypeOfObjectTableLocator;
 class ExecutionActions extends MainExecutionActions
 {
 
-    public function action_1(): string
+    public function action_1(): ExecutionActionsResult
     {
-        return true;
+        return new ExecutionActionsResult('todo');
     }
 
 
     /**
      * Действие <i>Назначить экспертов</i>
      *
-     * @return string
+     * @return ExecutionActionsResult
      * @throws SelfEx
      * @throws TablesEx
      * @throws TransactionEx
      * @throws DataBaseEx
      * @throws ReflectionException
      */
-    public function action_2(): string
+    public function action_2(): ExecutionActionsResult
     {
 
         // Декодирование json'а
         try {
             $experts = $this->primitiveValidator->getAssocArrayFromJson($this->getRequiredPOSTParameter('experts'));
         } catch (PrimitiveValidatorEx $e) {
-            throw new SelfEx("Произошла ошибка при декодировании входной json-строки с назначенными экспертами: {$e->getMessage()}", 6);
+            throw new SelfEx("Произошла ошибка при декодировании входной json-строки с назначенными экспертами: {$e->getMessage()}", 3005);
         }
 
         // Валидация входного массива
@@ -68,17 +69,17 @@ class ExecutionActions extends MainExecutionActions
                 }
             } catch (PrimitiveValidatorEx $e) {
 
-                throw new SelfEx("Произошла ошибка при валидации массива с назначенными экспертами: {$e->getMessage()}", 6);
+                throw new SelfEx("Произошла ошибка при валидации массива с назначенными экспертами: {$e->getMessage()}", 3005);
             }
         }
 
         // Проверка назначенных экспертов
         $leadCount = arrayEntry($experts, 'lead', true)['count'];
         if ($leadCount != 1) {
-            throw new SelfEx("Количество ведущих экспертов: {$leadCount}, в то время как должно быть 1", 6);
+            throw new SelfEx("Количество ведущих экспертов: {$leadCount}, в то время как должно быть 1", 3005);
         }
         if (arrayEntry($experts, 'common_part', true)['count'] == 0) {
-            throw new SelfEx("Количество экспертов на общую часть равно 0", 6);
+            throw new SelfEx("Количество экспертов на общую часть равно 0", 3005);
         }
 
         $tableLocator = new TypeOfObjectTableLocator(application::getIdTypeOfObjectById(CURRENT_DOCUMENT_ID));
@@ -201,6 +202,8 @@ class ExecutionActions extends MainExecutionActions
         // todo ???КД на заявлении
         // todo ??? ответственные на заявлении
         // todo ???КД на сводном
-        return PageAddress::createCardRef($totalCCId, 'total_cc', 'view');
+
+        $methodResult = new ExecutionActionsResult(PageAddress::createCardRef($totalCCId, 'total_cc', 'view'));
+        return $methodResult;
     }
 }

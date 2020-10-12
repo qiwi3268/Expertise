@@ -37,9 +37,9 @@ trait FileTableType1
         $table = self::$tableName;
 
         $query = "INSERT INTO `{$table}`
-                    (`id`, `id_main_document`, `file_name`, `file_size`, `hash`)
+                     (`id`, `id_main_document`, `file_name`, `file_size`, `hash`)
                   VALUES
-                    (NULL, ?, ?, ?, ?)";
+                     (NULL, ?, ?, ?, ?)";
         return ParametrizedQuery::set($query, [$id_main_document, $file_name, $file_size, $hash]);
     }
 }

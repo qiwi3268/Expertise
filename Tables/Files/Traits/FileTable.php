@@ -69,7 +69,7 @@ trait FileTable
 
         $query = "SELECT *
                   FROM `{$table}`
-                  where `id`=?";
+                  WHERE `id`=?";
         $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
         return $result ? $result[0] : null;
     }
@@ -90,7 +90,7 @@ trait FileTable
 
         $query = "SELECT *
                   FROM `{$table}`
-                  where `id_main_document`=? AND `hash`=?";
+                  WHERE `id_main_document`=? AND `hash`=?";
         $result = ParametrizedQuery::getFetchAssoc($query, [$id_main_document, $hash]);
         return $result ? $result[0] : null;
     }
@@ -111,7 +111,7 @@ trait FileTable
 
         $query = "SELECT `id`
                   FROM `{$table}`
-                  where `id_main_document`=? AND `hash`=?";
+                  WHERE `id_main_document`=? AND `hash`=?";
         $result = ParametrizedQuery::getSimpleArray($query, [$id_main_document, $hash]);
         return $result ? $result[0] : null;
     }

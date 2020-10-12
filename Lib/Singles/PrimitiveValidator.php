@@ -469,4 +469,51 @@ class PrimitiveValidator
             throw new SelfEx("Переданный метод: '{$method}' не существует'", 23);
         }
     }
+
+
+    /**
+     * Предназначен для проверки типов данных значений элементов массива на разрешенные типы
+     *
+     * @param array $array исходный массив
+     * @param string ...$types <i>перечисление</i> элементов согласно результату функции {@see gettype()}
+     * @throws SelfEx
+     */
+    public function checkTypeArrayValues(array $array, string ...$types): void
+    {
+        foreach ($array as $key => $value) {
+
+            $elementType = gettype($value);
+
+            if (!in_array($elementType, $types)) {
+
+                $debug = implode(', ', $types);
+                throw new SelfEx("Элемент массива по ключу (индексу): {$key} имеет тип: '$elementType', в то время как допустимые типы: '{$debug}'", 24);
+            }
+        }
+    }
+
+
+    /**
+     * Предназначен для проверки массива на уникальные значения
+     *
+     * @param array $array исходный массив, значения которого могут быть типами:
+     * integer / string / double
+     * @throws SelfEx
+     */
+    public function checkUniquenessArrayValues(array $array): void
+    {
+        $this->checkTypeArrayValues($array, 'integer', 'string', 'double');
+
+        $elements = [];
+
+        foreach ($array as $value) $elements[$value] = true;
+
+        if (
+            ($count_1 = count($elements))
+            != ($count_2 = count($array))
+        ) {
+            $diff = $count_2 - $count_1 + 1;
+            throw new SelfEx("В массиве присутствуют: {$diff} одинаковых элемента", 25);
+        }
+    }
 }

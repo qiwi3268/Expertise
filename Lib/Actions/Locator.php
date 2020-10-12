@@ -60,7 +60,7 @@ class Locator
                 break;
 
             default :
-                throw new SelfEx('Методу Lib\Actions\Locator::__construct не удалось распознать тип документа', 1);
+                throw new SelfEx('Методу Lib\Actions\Locator::__construct не удалось распознать тип документа', 1001);
         }
     }
 
