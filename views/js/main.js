@@ -22,7 +22,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
    });
 
+   handleAlertModal();
+
 });
+
+
+function handleAlertModal () {
+   let alert_overlay = document.querySelector('.save-overlay');
+   alert_overlay.addEventListener('click', () => {
+      closeSaveModal(alert_overlay);
+   });
+
+   let save_close_button = document.querySelector('.save-modal__close');
+   save_close_button.addEventListener('click', () => {
+      closeSaveModal(alert_overlay);
+   });
+}
+
+function closeSaveModal (alert_overlay) {
+   let alert_modal = document.querySelector('.save-modal');
+   alert_modal.classList.remove('active');
+   alert_overlay.classList.remove('active');
+}
+
+function showAlertModal () {
+   let alert_modal = document.querySelector('.save-modal');
+   let alert_overlay = document.querySelector('.save-overlay');
+   alert_modal.classList.add('active');
+   alert_overlay.classList.add('active');
+}
+
 
 function mQS (element, selector, error_code) {
    let result = element.querySelector(selector);

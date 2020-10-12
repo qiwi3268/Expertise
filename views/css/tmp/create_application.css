@@ -388,6 +388,7 @@ textarea.form-field__input.invalid {
 /* card-form =================================================================== */
 /* save-modal =================================================================== */
 
+/*todo объединить с alert-modal*/
 .save-modal {
    padding: 10px;
    font-size: 18px;

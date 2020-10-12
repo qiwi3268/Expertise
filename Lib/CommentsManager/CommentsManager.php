@@ -6,12 +6,14 @@ namespace Lib\CommentsManager;
 use Lib\Exceptions\CommentsManager as SelfEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Exceptions\Transaction as TransactionEx;
+use Lib\Exceptions\Responsible as ResponsibleEx;
 use Lib\Exceptions\MiscValidator as MiscValidatorEx;
 use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
 use Tables\Exceptions\Tables as TablesEx;
 use ReflectionException;
 
 use Lib\DataBase\Transaction;
+use Lib\Responsible\Responsible;
 use Lib\Miscs\Validation\SingleMisc;
 use Lib\Singles\PrimitiveValidator;
 use Lib\Singles\PrimitiveValidatorBoolWrapper;
@@ -33,6 +35,28 @@ class CommentsManager
      *
      */
     private Transaction $transaction;
+
+    /**
+     * id раздела
+     *
+     * id из doc_section_documentation_1 или doc_section_documentation_2
+     *
+     */
+    private int $sectionId;
+
+    /**
+     * id вида объекта
+     *
+     */
+    private int $typeOfObjectId;
+
+    /**
+     * id автора
+     *
+     * id из `user`, по которому будут создавать новые замечания и обрабатываться старые
+     *
+     */
+    private int $authorId;
 
     /**
      * Экземпляр класса {@see \Tables\Locators\TypeOfObjectTableLocator}
@@ -87,19 +111,28 @@ class CommentsManager
     private string $attachedFileTable;
 
 
+
     /**
      * Конструктор класса
      *
      * @param array $comments
      * @param Transaction $transaction
-     * @param int $typeOfObjectId
+     * @param int $sectionId id раздела, в контексте которого ведется работа с замечаниями
+     * @param int $typeOfObjectId id вида объекта
+     * @param int $authorId id автора, по которому будут создавать новые замечания
+     * и обрабатываться старые
      * @throws SelfEx
      * @throws MiscValidatorEx
      * @throws TablesEx
      *
      */
-    public function __construct(array $comments, Transaction $transaction, int $typeOfObjectId)
-    {
+    public function __construct(
+        array $comments,
+        Transaction $transaction,
+        int $sectionId,
+        int $typeOfObjectId,
+        int $authorId
+    ) {
         $primitiveValidator = new PrimitiveValidator();
         $primitiveValidatorBoolWrapper = new PrimitiveValidatorBoolWrapper($primitiveValidator);
 
@@ -166,6 +199,11 @@ class CommentsManager
         }
 
         $this->transaction = $transaction;
+
+        $this->sectionId = $sectionId;
+        $this->typeOfObjectId = $typeOfObjectId;
+        $this->authorId = $authorId;
+
         $this->typeOfObjectTableLocator = new TypeOfObjectTableLocator($typeOfObjectId);
         $this->primitiveValidator = $primitiveValidator;
         $this->primitiveValidatorBoolWrapper = $primitiveValidatorBoolWrapper;
@@ -179,20 +217,19 @@ class CommentsManager
     /**
      * Предназначен для создания замечаний
      *
-     * Выполняет следующие операции
+     * Выполняет следующие операции:
      * - Создание записей в таблице документа "Замечание"
-     * - Создание записей в таблице прикрепленных к замечанию фапйлов
+     * - Создание записей в таблице прикрепленных к замечанию файлов
      * - Назначение пользователя ответственным
      *
-     * @param int $mainDocumentId id главного документа.
-     * id из doc_section_documentation_1 или doc_section_documentation_2
-     * @param int $authorId id автора
      * @return $this
      * @throws TransactionEx
      * @throws ReflectionException
      */
-    public function create(int $mainDocumentId, int $authorId): self
+    public function create(): self
     {
+        $authorId = $this->authorId;
+
         foreach ($this->nullComments as $comment) {
 
             // Создание записи замечания
@@ -200,7 +237,7 @@ class CommentsManager
                 $this->docCommentTable,
                 'create',
                 [
-                    $mainDocumentId,
+                    $this->sectionId,
                     $authorId,
                     $comment['text'],
                     $comment['normative_document'],
@@ -239,9 +276,20 @@ class CommentsManager
     }
 
 
+    /**
+     * Предназначен для обновления замечаний
+     *
+     * Выполняет следующие операции:
+     * - Обновление все полей в БД к записи замечания
+     * - Удаление / создание записей в таблице прикрепленных к замечанию файлов
+     *
+     * @return $this
+     * @throws ReflectionException
+     * @throws SelfEx
+     * @throws TransactionEx
+     */
     public function update(): self
     {
-
         foreach ($this->notNullComments as $comment) {
 
             // Проверка существования замечания в БД (без транзакции)
@@ -251,7 +299,7 @@ class CommentsManager
                 throw new SelfEx("Запись замечания, находящаяся во входном json'е с id: '{$commentId}', не существует в БД", 6);
             }
 
-            // Обновление все полей в записи замечания
+            // Обновление всех полей в записи замечания
             $this->transaction->add(
                 $this->docCommentTable,
                 'updateById',
@@ -265,9 +313,99 @@ class CommentsManager
                 ]
             );
 
-            // todo вычисление файлов, которые требуется удалить
-            // todo написать метод в аттач файл тейбл getIdsByIdMainDocument
+            // Вычисление прикрепленных файлов, записи которых нужно удалить / создать
+            //
+            // id прикрепленных файлов к замечанию из БД
+            $db_attachedFilesId = $this->attachedFileTable::getIdFilesByIdMainDocument($commentId) ?? [];
+            // id прикрепленных файлов к замечанию из входного json'а
+            $js_attachedFilesId = $comment['files'];
 
+
+            list(
+                'delete' => $toDelete,
+                'create' => $toCreate
+                ) = calculateDeleteAndCreateIds($db_attachedFilesId, $js_attachedFilesId);
+
+            foreach ($toDelete as $fileId) {
+
+                $this->transaction->add(
+                    $this->attachedFileTable,
+                    'deleteByIdFile',
+                    [$fileId]
+                );
+            }
+
+            foreach ($toCreate as $fileId) {
+
+                $this->transaction->add(
+                    $this->attachedFileTable,
+                    'create',
+                    [
+                        $commentId,
+                        $this->authorId,
+                        $fileId
+                    ]
+                );
+            }
+        }
+        return $this;
+    }
+
+
+    /**
+     * Предназначен для удаления замечаний
+     *
+     * Выполняет следующие операции:
+     * - Удаление записей в таблице документа "Замечание"
+     * - Удаление записей в таблице прикрепленных к замечанию файлов
+     * - Удаление текущих ответственных пользователей к замечанию
+     *
+     * @return $this
+     * @throws ReflectionException
+     * @throws ResponsibleEx
+     * @throws SelfEx
+     * @throws TransactionEx
+     */
+    public function delete(): self
+    {
+        // Удаление записей замечания
+        //
+        $db_docCommentEntriesId = $this->docCommentTable::getIdsByIdMainDocumentAndIdAuthor($this->sectionId, $this->authorId) ?? [];
+        $js_docCommentEntriesId = compressArrayByKey($this->notNullComments, 'id');
+
+        list(
+            'delete' => $toDelete,
+            'create' => $toCreate
+            ) = calculateDeleteAndCreateIds($db_docCommentEntriesId, $js_docCommentEntriesId);
+
+        // Каждая запись из входного json'а должна существовать в полученной из выборке БД
+        if (!empty($toCreate)) {
+            $debug = implode(', ', $toCreate);
+            throw new SelfEx("Во входном json'e присутствуют замечания с id: '{$debug}', которых нет в БД", 7);
+        }
+
+        $commentDocumentType = DOCUMENT_TYPE_BY_TYPE_OF_OBJECT_ID['comment'][$this->typeOfObjectId];
+
+        foreach ($toDelete as $commentId) {
+
+            $this->transaction->add(
+                $this->docCommentTable,
+                'deleteById',
+                [$commentId]
+            );
+
+            // Удаление прикрепленных файлов к замечанию
+            //
+            $this->transaction->add(
+                $this->attachedFileTable,
+                'deleteAllByIdMainDocument',
+                [$commentId]
+            );
+
+            // Удаление ответственных с замечания
+            //
+            $responsible = new Responsible($commentId, $commentDocumentType);
+            $responsible->deleteCurrentResponsible($this->transaction, false);
         }
         return $this;
     }

@@ -33,32 +33,6 @@ class Responsible
 
     static private XMLReader $XMLReader;
 
-    /**
-     * Кеширование ответственных
-     *
-     */
-    static private array $cacheResponsible = [
-        'application' => [
-            'type_2' => null,
-            'type_3' => null,
-            'type_4' => null
-        ],
-        'total_cc' => [
-            'type_2' => null,
-            'type_3' => null,
-            'type_4' => null
-        ],
-        'section_documentation_1' => [
-            'type_2' => null,
-            'type_3' => null,
-            'type_4' => null
-        ],
-        'section_documentation_2' => [
-            'type_2' => null,
-            'type_3' => null,
-            'type_4' => null
-        ],
-    ];
 
     /**
      * Текущий тип ответственных
@@ -73,10 +47,10 @@ class Responsible
     private int $documentId;
 
     /**
-     * Текущий тип документа
+     * Тип текущего документа
      *
      */
-    private string $currentDocumentType;
+    private string $DT;
 
 
     /**
@@ -104,7 +78,7 @@ class Responsible
 
         $this->currentResponsibleType = $getResponsibleTypeClass::$getResponsibleTypeMethod($documentId);
         $this->documentId = $documentId;
-        $this->currentDocumentType = $documentType;
+        $this->DT = $documentType;
     }
 
 
@@ -123,23 +97,13 @@ class Responsible
             $responsible = null;
         } else {
 
-            if (isset(self::$cacheResponsible[$this->currentDocumentType][$this->currentResponsibleType])) {
+            // Метод получения ответственных
+            list(
+                'class'  => $getResponsibleClass,
+                'method' => $getResponsibleMethod
+                ) = self::$XMLReader->getResponsible($this->DT, $this->currentResponsibleType);
 
-                // Берем ответственных из кэша
-                $responsible = self::$cacheResponsible[$this->currentDocumentType][$this->currentResponsibleType];
-            } else {
-
-                // Метод получения ответственных
-                list(
-                    'class'  => $getResponsibleClass,
-                    'method' => $getResponsibleMethod
-                    ) = self::$XMLReader->getResponsible($this->currentDocumentType, $this->currentResponsibleType);
-
-                $responsible = $getResponsibleClass::$getResponsibleMethod($this->documentId);
-
-                // Добавляем ответственных в кэш
-                self::$cacheResponsible[$this->currentDocumentType][$this->currentResponsibleType] = $responsible;
-            }
+            $responsible = $getResponsibleClass::$getResponsibleMethod($this->documentId);
         }
 
         return [
@@ -152,12 +116,13 @@ class Responsible
     /**
      * Предназначен для удаления текущих ответственных
      *
-     * Используется в клиентском коде
-     *
+     * @param Transaction $transaction транзакция, в которую будут записаны результаты метода
      * @param bool $needUpdateResponsibleType нужно ли обновлять тип ответственных в текущем документе на type_1
+     * @throws ReflectionException
      * @throws SelfEx
+     * @throws TransactionEx
      */
-    public function deleteCurrentResponsible(bool $needUpdateResponsibleType = true): void
+    public function deleteCurrentResponsible(Transaction $transaction, bool $needUpdateResponsibleType = true): void
     {
         if ($this->currentResponsibleType == 'type_1') {
             return;
@@ -167,75 +132,35 @@ class Responsible
         list(
             'class'  => $deleteResponsibleClass,
             'method' => $deleteResponsibleMethod
-            ) = self::$XMLReader->deleteResponsible($this->currentDocumentType, $this->currentResponsibleType);
+            ) = self::$XMLReader->deleteResponsible($this->DT, $this->currentResponsibleType);
 
-        $deleteResponsibleClass::$deleteResponsibleMethod($this->documentId);
+        $transaction->add($deleteResponsibleClass, $deleteResponsibleMethod, [$this->documentId]);
+
 
         // Устанавливаем в главном документе в БД тип ответственных "Никто"
         if ($needUpdateResponsibleType) {
 
-            list(
-                'class'  => $updateResponsibleTypeClass,
-                'method' => $updateResponsibleTypeMethod
-                ) = self::$XMLReader->updateResponsibleType($this->currentDocumentType);
-
-            $updateResponsibleTypeClass::$updateResponsibleTypeMethod($this->documentId, 'type_1');
+            $this->updateCurrentResponsibleType($transaction, 'type_1');
         }
-
-        // Обновляем кэш (обнуляем ответственных из того типа, который удалили)
-        self::$cacheResponsible[$this->currentDocumentType][$this->currentResponsibleType] = null;
-
         $this->currentResponsibleType = 'type_1';
     }
 
 
     /**
-     * Предназначен для добавления к транзакции метода удаления текущих ответственных
+     * Предназначен для создания ответственных "Ответственные группы заявителей"
      *
-     * Используется в методах createNewResponsible этого класса
+     * <b>****</b> Перед использованием метода требуется вручную удалить текущих ответственных
      *
-     * @param Transaction $transaction
-     * @throws SelfEx
-     * @throws TransactionEx
-     * @throws ReflectionException
-     */
-    private function addDeletionCurrentResponsibleToTransaction(Transaction $transaction): void
-    {
-        if ($this->currentResponsibleType != 'type_1') {
-
-            // Метод удаления ответственных
-            list(
-                'class'  => $deleteResponsibleClass,
-                'method' => $deleteResponsibleMethod
-                ) = self::$XMLReader->deleteResponsible($this->currentDocumentType, $this->currentResponsibleType);
-
-            // Обновляем кэш (обнуляем ответственных из того типа, который добавили в транзакцию)
-            self::$cacheResponsible[$this->currentDocumentType][$this->currentResponsibleType] = null;
-
-            $transaction->add($deleteResponsibleClass, $deleteResponsibleMethod, [$this->documentId]);
-        }
-    }
-
-
-    /**
-     * Предназначен для создания новых ответственных "Ответственные группы заявителей"
-     *
-     * <b>*</b> Перед использованием метода не требуется вручную удалять текущих ответственных
-     *
+     * @param Transaction $transaction транзакция, в которую будут записаны результаты метода
      * @param string[] $accessGroupNames индексный массив названий групп ответственных заявителей
-     * @return array индексный массив id созданных записей ответственных групп заявителей
-     * @throws DataBaseEx
+     * @param bool $needUpdateCurrentResponsibleType требуется ли обновлять `responsible_type` у документа в БД
+     * @return void
      * @throws ReflectionException
      * @throws SelfEx
      * @throws TransactionEx
      */
-    public function createNewResponsibleType3(array $accessGroupNames): array
+    public function createResponsibleType3(Transaction $transaction, array $accessGroupNames, bool $needUpdateCurrentResponsibleType = true): void
     {
-        $transaction = new Transaction();
-
-        // Добавляем удаление текущих ответственных в траназакцию
-        $this->addDeletionCurrentResponsibleToTransaction($transaction);
-
         // Получение id групп ответственных из принятых названий
         $accessGroupIds = [];
         foreach ($accessGroupNames as $accessGroupName) {
@@ -250,70 +175,75 @@ class Responsible
         list(
             'class'  => $createResponsibleClass,
             'method' => $createResponsibleMethod
-            ) = self::$XMLReader->createResponsible($this->currentDocumentType, 'type_3');
+            ) = self::$XMLReader->createResponsible($this->DT, 'type_3');
 
-        foreach ($accessGroupIds as $id) $transaction->add($createResponsibleClass, $createResponsibleMethod, [$this->documentId, $id]);
+        foreach ($accessGroupIds as $id) {
 
-        // Обновляем текущий тип ответственных у документа в БД и классе
-        if ($this->currentResponsibleType != 'type_3') {
-
-            // Метод обновления типа ответственных
-            list(
-                'class'  => $updateResponsibleTypeClass,
-                'method' => $updateResponsibleTypeMethod
-                ) = self::$XMLReader->updateResponsibleType($this->currentDocumentType);
-
-            $transaction->add($updateResponsibleTypeClass, $updateResponsibleTypeMethod, [$this->documentId, 'type_3']);
-
-            $this->currentResponsibleType = 'type_3';
+            $transaction->add($createResponsibleClass, $createResponsibleMethod, [$this->documentId, $id]);
         }
 
-        return $transaction->start()->getLastResults()[$createResponsibleClass][$createResponsibleMethod];
+        if ($needUpdateCurrentResponsibleType) {
+
+            $this->updateCurrentResponsibleType($transaction, 'type_3');
+        }
+        $this->currentResponsibleType = 'type_3';
     }
 
 
     /**
-     * Предназначен для создания новых ответственных "Ответственные пользователи"
+     * Предназначен для создания ответственных "Ответственные пользователи"
      *
-     * <b>*</b> Перед использованием метода не требуется вручную удалять текущих ответственных
+     * <b>****</b> Перед использованием метода требуется вручную удалить текущих ответственных
      *
+     * @param Transaction $transaction транзакция, в которую будут записаны результаты метода
      * @param int[] индексный массив id пользователей, которых необходимо сделать ответственными
-     * @return array
-     * @throws DataBaseEx
+     * @param bool $needUpdateCurrentResponsibleType требуется ли обновлять `responsible_type` у документа в БД
+     * @return void
      * @throws ReflectionException
      * @throws SelfEx
      * @throws TransactionEx
      */
-    public function createNewResponsibleType4(array $usersId): array
+    public function createResponsibleType4(Transaction $transaction, array $usersId, bool $needUpdateCurrentResponsibleType = true): void
     {
-        $transaction = new Transaction();
-
-        // Добавляем удаление текущих ответственных в траназакцию
-        $this->addDeletionCurrentResponsibleToTransaction($transaction);
-
         // Метод создания ответственных
         list(
             'class'  => $createResponsibleClass,
             'method' => $createResponsibleMethod
-            ) = self::$XMLReader->createResponsible($this->currentDocumentType, 'type_4');
+            ) = self::$XMLReader->createResponsible($this->DT, 'type_4');
 
-        foreach ($usersId as $id) $transaction->add($createResponsibleClass, $createResponsibleMethod, [$this->documentId, $id]);
+        foreach ($usersId as $id) {
 
-        // Обновляем текущий тип ответственных у документа в БД и классе
-        if ($this->currentResponsibleType != 'type_4') {
-
-            // Метод обновления типа ответственных
-            list(
-                'class'  => $updateResponsibleTypeClass,
-                'method' => $updateResponsibleTypeMethod
-                ) = self::$XMLReader->updateResponsibleType($this->currentDocumentType);
-
-            $transaction->add($updateResponsibleTypeClass, $updateResponsibleTypeMethod, [$this->documentId, 'type_4']);
-
-            $this->currentResponsibleType = 'type_4';
+            $transaction->add($createResponsibleClass, $createResponsibleMethod, [$this->documentId, $id]);
         }
 
-        return $transaction->start()->getLastResults()[$createResponsibleClass][$createResponsibleMethod];
+        if ($needUpdateCurrentResponsibleType) {
+
+            $this->updateCurrentResponsibleType($transaction, 'type_4');
+        }
+        $this->currentResponsibleType = 'type_4';
+    }
+
+
+    /**
+     * Предназначен для обновления поля `responsible_type` в записи документа
+     *
+     * Проверка на тип ответственных опускается, т.к. данный метод недоступен клиентскому коду
+     *
+     * @param Transaction $transaction транзакция, в которую будут записаны результаты метода
+     * @param string $newType новый тип ответственных
+     * @throws ReflectionException
+     * @throws SelfEx
+     * @throws TransactionEx
+     */
+    private function updateCurrentResponsibleType(Transaction $transaction, string $newType): void
+    {
+        // Метод обновления типа ответственных
+        list(
+            'class'  => $class,
+            'method' => $method
+            ) = self::$XMLReader->updateResponsibleType($this->DT);
+
+        $transaction->add($class, $method, [$this->documentId, $newType]);
     }
 
 

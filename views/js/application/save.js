@@ -5,27 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
       saveApplication();
    });
 
-   let save_overlay = document.querySelector('.save-overlay');
-   save_overlay.addEventListener('click', () => {
-      closeSaveModal(save_overlay);
-   });
 
-   let save_close_button = document.querySelector('.save-modal__close');
-   save_close_button.addEventListener('click', () => {
-      closeSaveModal(save_overlay);
-   });
+
 });
-
-function closeSaveModal (save_overlay) {
-   let save_modal = document.querySelector('.save-modal');
-   save_modal.classList.remove('active');
-   save_overlay.classList.remove('active');
-}
 
 function saveApplication () {
    FileNeeds.putFilesToFileNeeds();
 
    let form_data = getSaveApplicationFormData();
+   let multiple_blocks = MultipleBlock.appendMultipleBlocks(form_data);
 
    console.log(new Map(form_data));
 
@@ -44,10 +32,11 @@ function saveApplication () {
 
             switch (response.result) {
                case 8:
+                  MultipleBlock.saveMultipleBlocks(multiple_blocks);
                   if (FileNeeds.hasFiles()) {
                      API.updateFileNeeds();
                   }
-                  showSaveModal();
+                  showAlertModal();
                   break;
                case 1:
                   ErrorModal.open('Ошибка при сохранении заявления', 'Нет обязательных параметров POST запроса');
@@ -69,12 +58,10 @@ function saveApplication () {
       });
 }
 
-
-
 function getSaveApplicationFormData() {
    let form_data = new FormData();
 
-   MultipleBlock.saveMultipleBlocks(form_data);
+   // MultipleBlock.appendMultipleBlocks(form_data);
 
    let id_application = document.querySelector('[name="id_application"]').value;
    form_data.append('id_application', id_application);
@@ -93,9 +80,6 @@ function getSaveApplicationFormData() {
    return form_data;
 }
 
-function showSaveModal () {
-   let save_modal = document.querySelector('.save-modal');
-   let save_overlay = document.querySelector('.save-overlay');
-   save_modal.classList.add('active');
-   save_overlay.classList.add('active');
-}
+
+
+

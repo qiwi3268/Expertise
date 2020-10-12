@@ -104,7 +104,9 @@ class MultipleBlock {
       return JSON.stringify(parts);
    }
 
-   static saveMultipleBlocks (form_data) {
+   static appendMultipleBlocks (form_data) {
+
+      let multiple_blocks_to_save = [];
 
       let multiple_blocks = document.querySelectorAll('[data-block][data-type="multiple"]');
       multiple_blocks.forEach(block => {
@@ -112,7 +114,10 @@ class MultipleBlock {
          let multiple_block = MultipleBlock.getBlockByName(block.dataset.name);
 
          if (multiple_block.element.dataset.saved !== 'true') {
-            multiple_block.element.dataset.saved = 'true';
+
+            // multiple_block.element.dataset.saved = 'true';
+            multiple_blocks_to_save.push(multiple_block);
+
             form_data.append(`${block.dataset.name}_exist_flag`, '1');
             form_data.append(block.dataset.name, multiple_block.getPartsDataJSON());
          } else {
@@ -120,8 +125,13 @@ class MultipleBlock {
             form_data.append(block.dataset.name, '');
          }
 
-
       });
+
+      return multiple_blocks_to_save;
+   }
+
+   static saveMultipleBlocks (multiple_blocks) {
+      multiple_blocks.forEach(block => block.element.dataset.saved = 'true')
    }
 
 }

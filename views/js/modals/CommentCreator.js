@@ -69,8 +69,6 @@ class CommentCreator {
       this.table_body = document.getElementById('comments_table_body');
       this.files_container = document.getElementById('documentation');
 
-      console.log(this.files_container);
-
 
       let save_button = this.modal.querySelector('[data-save_comment]');
       save_button.addEventListener('click', () => {
@@ -79,6 +77,8 @@ class CommentCreator {
 
          let field_inputs = this.modal.querySelectorAll('.field-result');
          field_inputs.forEach(input => comment[input.name] = input.value || null);
+
+         console.log(comment);
 
          comment.files = Array.from(this.marked_files.keys());
          comment.criticality_name = this.criticality_name.innerHTML;
@@ -110,11 +110,11 @@ class CommentCreator {
          this.editTableComment(comment);
       }
 
+
       resizeCard(this.comments_table);
       comment.hash = this.comment_hash;
 
       this.comments.set(this.comment_hash, comment);
-
       this.modal.classList.remove('active');
       this.overlay.classList.remove('active');
 
@@ -140,10 +140,11 @@ class CommentCreator {
 
    addCommentToTable (comment) {
       this.comments_table.dataset.active = 'true';
+      let comment_hash = this.comment_hash;
 
       let data_row = document.createElement('TR');
       data_row.classList.add('comments-table__row');
-      data_row.setAttribute('data-comment_hash', this.comment_hash);
+      data_row.setAttribute('data-comment_hash', comment_hash);
 
       this.table_body.appendChild(data_row);
 
@@ -190,22 +191,18 @@ class CommentCreator {
       action_row.classList.add('comments-table__row');
       let delete_button = this.createActionColumn('delete');
       delete_button.addEventListener('click', () => {
-         this.comments.delete(this.comment_hash);
+
+         this.comments.delete(comment_hash);
          data_row.remove();
          action_row.remove();
-
-         // console.log(this.table_body);
-         console.log(this.table_body.childNodes.length);
 
          if (!this.table_body.querySelector('tr')) {
             this.comments_table.dataset.active = 'false';
          }
+
       });
 
-
       action_row.appendChild(delete_button);
-
-
       this.table_body.appendChild(action_row);
    }
 
@@ -306,19 +303,9 @@ class CommentCreator {
       checkbox.classList.remove('fa-square', 'far');
    }
 
-/*   handleOverlay () {
-      this.overlay = document.querySelector('.comment-overlay');
-      this.overlay.addEventListener('click', () => {
-         this.modal.classList.remove('active');
-         this.overlay.classList.remove('active');
-      });
-   }*/
-
    open (comment = null) {
       this.modal.classList.add('active');
       this.overlay.classList.add('active');
-
-      // this.marked_files = new Map();
 
       this.initFields(comment);
    }

@@ -7,8 +7,10 @@ use core\Classes\Session;
 use Lib\Exceptions\Actions as SelfEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Exceptions\Transaction as TransactionEx;
+use Lib\Exceptions\CommentsManager as CommentsManagerEx;
 use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
 use ReflectionException;
+use Exception;
 
 use Lib\Actions\ExecutionActions as MainExecutionActions;
 use Lib\Actions\ExecutionActionsResult;
@@ -95,8 +97,16 @@ class ExecutionActions extends MainExecutionActions
             throw new SelfEx("Произошла ошибка при декодировании входной json-строки с написанными замечаниями: {$e->getMessage()}", 3005);
         }
 
-        $commentsManager = new CommentsManager($comments, $transaction, $this->actions->typeOfObjectId);
-        $commentsManager->create(CURRENT_DOCUMENT_ID, $userId);
+        try {
+            $commentsManager = new CommentsManager($comments, $transaction, CURRENT_DOCUMENT_ID, $this->actions->typeOfObjectId, $userId);
+            $commentsManager->delete()->create()->update();
+
+        } catch (CommentsManagerEx $e) {
+            throw new SelfEx("Ошибка класса управления массивом замечаний. Message: '{$e->getMessage()}'. Code: '{$e->getCode()}'", 3005);
+        } catch (Exception $e) {
+            throw new SelfEx("Ошибка при обработке замечаний. Message: '{$e->getMessage()}'. Code: '{$e->getCode()}'", 3005);
+        }
+
 
         //$transaction->start();
 

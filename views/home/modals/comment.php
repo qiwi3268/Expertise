@@ -140,3 +140,15 @@
 
 </div>
 
+
+<div class="alert-overlay"></div>
+<div class="modal alert-modal" data-name="delete_comment">
+    <div class="alert-modal__info">
+        <i class="alert-modal__icon fas fa-check"></i>
+        <span class="alert-modal__text">Удалить замечание?</span>
+    </div>
+    <div class="alert-modal__actions">
+        <span class="save-modal__close application-button">Удалить</span>
+        <span class="save-modal__link application-button">Отмена</span>
+    </div>
+</div>

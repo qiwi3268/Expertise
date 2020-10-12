@@ -62,7 +62,7 @@ function initEditor () {
 function saveSection () {
    let form_data = new FormData();
 
-   MultipleBlock.saveMultipleBlocks(form_data);
+   let multiple_blocks = MultipleBlock.appendMultipleBlocks(form_data);
 
    form_data.append('description', tinymce.get('description').getContent());
 
@@ -74,7 +74,12 @@ function saveSection () {
    form_data.append('comments', JSON.stringify(comments_to_json));
 
    API.executeAction(form_data)
-      .then((response) => {
+      .then(result => {
+         MultipleBlock.saveMultipleBlocks(multiple_blocks);
+
+
+         setCommentIDs(result.add.created_ids)
+
 
 
       })
@@ -86,4 +91,12 @@ function saveSection () {
    console.log(new Map(form_data));
 }
 
+function setCommentIDs (created_comments_ids) {
+   created_comments_ids.forEach(comment_data => {
+      console.log(comment_data);
+      let comment = CommentCreator.getInstance().comments.get(comment_data.hash);
+      comment.id = comment_data.id.toString();
+      console.log(comment);
 
+   })
+}

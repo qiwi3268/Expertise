@@ -8,8 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
 function saveCommonPart () {
    let form_data = getCommonPartFormData();
 
+   let multiple_blocks = MultipleBlock.appendMultipleBlocks(form_data);
+
    API.executeAction(form_data)
       .then(response => {
+         MultipleBlock.saveMultipleBlocks(multiple_blocks);
+
          location.href = response.ref;
       })
       .catch(exc => {
@@ -22,7 +26,6 @@ function saveCommonPart () {
 function getCommonPartFormData () {
    let form_data = new FormData();
 
-   MultipleBlock.saveMultipleBlocks(form_data);
 
    console.log(new Map(form_data));
 
