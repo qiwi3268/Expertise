@@ -115,8 +115,8 @@
                             <div class="documentation__files files">
                                 <?php foreach ($node['files'] as $file): ?>
                                     <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" style="padding-left: <?= $node['depth']*25 + 7 ?>px" data-validate_results='<?= $file['validate_results'] ?>'>
-                                        <i class="files__checkbox far fa-square"></i>
                                         <div class="files__info">
+                                            <i class="files__checkbox far fa-square"></i>
                                             <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
                                             <div class="files__description">
                                                 <span class="files__name"><?= $file['file_name'] ?></span>

@@ -141,13 +141,14 @@
    font-size: 18px;
 }
 
-.files__checkbox.far {
+.files__checkbox {
+   color: #6180A4;
 }
 
 .files__checkbox.fas {
-   color: #007bff;
-
    /*color: #007bff;*/
+   /*color: #567EAD;*/
+   /*color: #6180A4;*/
 }
 
 .comment-modal__actions {

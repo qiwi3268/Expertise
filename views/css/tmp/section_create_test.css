@@ -83,7 +83,7 @@
 }
 
 .comments-table__row {
-   cursor: pointer;
+   /*cursor: pointer;*/
 }
 
 .comments-table__row td:not(:first-child) {
@@ -91,7 +91,7 @@
 }
 
 .comments-table__row:hover td:not(:first-child) {
-   background-color: #F3F5F6;
+   /*background-color: #F3F5F6;*/
    background-color: #F9FBFC;
 }
 
@@ -120,17 +120,22 @@
    padding: 0;
 }
 
-.comments-table .files__info {
+/*.comments-table .files__info {
    padding: 3px 0px;
-}
-
-.comments-table .files__info:hover {
-   background-color: unset;
-
-}
+}*/
 
 td.comments-table__action {
    padding: 5px;
+   width: 4%;
+}
+
+td.comments-table__files {
+   padding: 5px;
+}
+
+td.comments-table__files .files__icon {
+   font-size: 18px;
+   margin: 0px 6px 0px 0px;
 }
 
 .application-actions {
@@ -178,7 +183,9 @@ td.comments-table__action {
 }
 
 
-
+.files__checkbox {
+   margin: 0px 10px 0px 0px;
+}
 
 
 

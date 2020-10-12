@@ -99,7 +99,6 @@ class CommentCreator {
 
    saveComment (comment) {
 
-
       if (this.comment_hash === null) {
          console.log('save_comment');
 
@@ -109,7 +108,6 @@ class CommentCreator {
       } else {
          console.log('edit comment');
          this.editTableComment(comment);
-
       }
 
       resizeCard(this.comments_table);
@@ -133,7 +131,9 @@ class CommentCreator {
       let criticality_column = table_row.querySelector('[data-comment_criticality]');
       criticality_column.innerHTML = comment.criticality_name;
 
+      // todo сделать проверку на совпадение с уже добавленными файлами
       let files_block = table_row.querySelector('[data-comment_files]');
+      files_block.innerHTML = '';
       this.addFilesToTable(comment, files_block);
 
    }
@@ -172,6 +172,7 @@ class CommentCreator {
 
       let files_column = document.createElement('TD');
       files_column.setAttribute('rowspan', '2');
+      files_column.classList.add('comments-table__files');
       data_row.appendChild(files_column);
 
       let files_block = document.createElement('DIV');
@@ -192,7 +193,15 @@ class CommentCreator {
          this.comments.delete(this.comment_hash);
          data_row.remove();
          action_row.remove();
+
+         // console.log(this.table_body);
+         console.log(this.table_body.childNodes.length);
+
+         if (!this.table_body.querySelector('tr')) {
+            this.comments_table.dataset.active = 'false';
+         }
       });
+
 
       action_row.appendChild(delete_button);
 

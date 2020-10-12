@@ -123,6 +123,12 @@ class SignView {
       let file_info = ge_file.element.querySelector('.files__info');
       let sign_file = this.modal.querySelector('.sign-modal__file');
       sign_file.innerHTML = file_info.innerHTML;
+
+      // todo ридумать что-то с этим
+      let checkbox = sign_file.querySelector('.files__checkbox');
+      if (checkbox) {
+         checkbox.remove();
+      }
    }
 
    /**
