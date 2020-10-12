@@ -31,13 +31,34 @@ define('ROLE', [
 ]);
 
 
-// Обозначения типов документов
+// Типы документов
 define('DOCUMENT_TYPE', [
     'application'             => 'application', // Заявление
     'contract'                => 'contract',    // Договор
     'total_cc'                => 'total_cc',    // Сводное замечание / заключение
     'section_documentation_1' => 'section_documentation_1', // Раздел для вида объекта "Производственные / непроизводстсвенные"
-    'section_documentation_2' => 'section_documentation_2'  // Раздел для вида объекта "Линейные"
+    'section_documentation_2' => 'section_documentation_2', // Раздел для вида объекта "Линейные"
+    'comment_documentation_1' => 'comment_documentation_1', // Замечание для вида объекта "Производственные / непроизводстсвенные"
+    'comment_documentation_2' => 'comment_documentation_2'  // Замечание для вида объекта "Линейные"
+]);
+
+// Тип документа по родительскому документу
+define('DOCUMENT_TYPE_BY_PARENT', [
+    'section_documentation_1' => 'comment_documentation_1',
+    'section_documentation_2' => 'comment_documentation_2'
+]);
+
+// Тип документа по id вида объекта
+define('DOCUMENT_TYPE_BY_TYPE_OF_OBJECT_ID', [
+    'section' => [
+        1 => 'section_documentation_1',
+        2 => 'section_documentation_2'
+    ],
+    'comment' => [
+        1 => 'comment_documentation_1',
+        2 => 'comment_documentation_2'
+    ],
+
 ]);
 
 

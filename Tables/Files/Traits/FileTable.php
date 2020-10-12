@@ -6,6 +6,7 @@ namespace Tables\Files\Traits;
 use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\DataBase\SimpleQuery;
 use Lib\DataBase\ParametrizedQuery;
+use Tables\CommonTraits\deleteById as deleteByIdTrait;
 
 
 
@@ -22,19 +23,8 @@ trait FileTable
     /**
      * Реализация метода интерфейса
      * {@see \Tables\Files\Interfaces\FileTable::deleteById()}
-     *
-     * @param int $id
-     * @throws DataBaseEx
      */
-    static public function deleteById(int $id): void
-    {
-        $table = self::$tableName;
-
-        $query = "DELETE
-                  FROM `{$table}`
-                  WHERE `id`=?";
-        ParametrizedQuery::set($query, [$id]);
-    }
+    use deleteByIdTrait;
 
 
     /**

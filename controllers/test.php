@@ -23,15 +23,31 @@ use Lib\Singles\DocumentationFilesFacade;
 use Lib\Miscs\Validation\SingleMisc;
 use Lib\Actions\ExecutionActionsResult;
 
-$params = [
-    'test' => 1,
-    'test2' => NULL,
-    'test3' => 3,
-    'test4' => NULL,
-    'tuc' => 0,
-    'lala' => NULL
-];
+$db = [1, 2, 3, 4, 5];
+$js = [3, 4, 5, 6, 7];
 
-$a = Helper::getValuesWithoutNullForUpdate($params);
+list(
+    'delete' => $toDelete,
+    'create' => $toCreate
+    ) = calculateDeleteAndCreateIds($db, $js);
 
-vd($a);
+if (!empty($toCreate)) {
+    $debug = implode(', ', $toCreate);
+    throw new Exception("Во входном json'e присутствуют замечания с id: '{$debug}', которых нет в БД", 7);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

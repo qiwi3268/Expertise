@@ -19,6 +19,27 @@ trait ResponsibleType4
 
     /**
      * Реализация метода интерфейса
+     * {@see \Tables\Responsible\type_4\Interfaces\ResponsibleType4::create()}
+     *
+     * @param int $id_main_document
+     * @param int $id_user
+     * @return int
+     * @throws DataBaseEx
+     */
+    static public function create(int $id_main_document, int $id_user): int
+    {
+        $table = self::$tableName;
+
+        $query = "INSERT INTO `{$table}`
+                    (`id_main_document`, `id_user`)
+                  VALUES
+                    (?, ?)";
+        return ParametrizedQuery::set($query, [$id_main_document, $id_user]);
+    }
+
+
+    /**
+     * Реализация метода интерфейса
      * {@see \Tables\Responsible\type_4\Interfaces\ResponsibleType4::deleteResponsibleByIdMainDocument()}
      *
      * @param int $id_main_document
@@ -56,27 +77,6 @@ trait ResponsibleType4
                   WHERE `id_main_document`=?";
         $result = ParametrizedQuery::getFetchAssoc($query, [$id_main_document]);
         return $result ? $result : null;
-    }
-
-
-    /**
-     * Реализация метода интерфейса
-     * {@see \Tables\Responsible\type_4\Interfaces\ResponsibleType4::create()}
-     *
-     * @param int $id_main_document
-     * @param int $id_user
-     * @return int
-     * @throws DataBaseEx
-     */
-    static public function create(int $id_main_document, int $id_user): int
-    {
-        $table = self::$tableName;
-
-        $query = "INSERT INTO `{$table}`
-                    (`id_main_document`, `id_user`)
-                  VALUES
-                    (?, ?)";
-        return ParametrizedQuery::set($query, [$id_main_document, $id_user]);
     }
 }
 

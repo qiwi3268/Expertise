@@ -68,6 +68,9 @@ class ErrorModal {
       this.modal.classList.add('active');
       this.overlay.classList.add('active');
 
+      console.error(title);
+      console.error(message);
+
       this.title.innerHTML = title;
       this.message.innerHTML = message;
 

@@ -9,6 +9,10 @@ getAssoc                          ассоциативный массив одн
 getAssocWhereActiveByPageName
 getAllSimple                      простой (индексный) массив
 
+getIdsByIdMainDocument
+getIdsByIdMainDocumentAndIdAuthor
+getIdFilesByIdMainDocument
+
 getResponsibleTypeById
 
 updateResponsibleTypeById

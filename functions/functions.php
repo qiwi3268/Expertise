@@ -297,6 +297,55 @@ function getArrayWithReplacedNullValues(array $array, $newValue): array
 
 
 /**
+ * Предназначен для получения индексного массива, в котором находятся значения,
+ * полученные по ключам ассоциативных массивов
+ *
+ * @param array $array индексный массив с ассоциативными массива внутри
+ * @param string $key ключ из ассоциативного массива
+ * @return array индексный массив, хранящий только значения по ключам из ассоциативного массива
+ */
+function compressArrayByKey(array $array, string $key): array
+{
+    $result = [];
+
+    foreach ($array as $value) {
+
+        if (isset($value[$key])) {
+            $result[] = $value[$key];
+        }
+    }
+    return $result;
+}
+
+
+/**
+ * Предназначен для получения id записей, которые нужно удалить / создать на основе
+ * расхождения массивов с id из БД и id входных данных
+ *
+ * Если записи для удаления / создания отсутствуют, то будет пустой массив
+ *
+ * @param array $dataBase индексный массив с id из БД
+ * @param array $inputData индексный массив с id входных данных
+ * @return array ассоциативный массив формата:<br>
+ * 'delete' => [1,2]<br>
+ * 'create' => [3,4]
+ */
+function calculateDeleteAndCreateIds(array $dataBase, array $inputData): array
+{
+    // id записей, которые есть в БД, но нет во входных данных
+    $toDelete = array_diff($dataBase, $inputData);
+
+    // id записей, которые есть во входных данных, но нет в БД
+    $toCreate = array_diff($inputData, $dataBase);
+
+    return [
+        'delete' => $toDelete,
+        'create' => $toCreate
+    ];
+}
+
+
+/**
  * Предназначен для получения имени вызывающей функции из функции
  *
  * Вызывать данную функцию требуется из функции, чтобы узнать,

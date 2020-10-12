@@ -17,6 +17,7 @@ use Lib\Actions\ExecutionActionsResult;
 use Lib\DataBase\Transaction;
 use Lib\Miscs\Validation\SingleMisc;
 use Lib\CommentsManager\CommentsManager;
+use Lib\Singles\Helpers\PageAddress;
 
 
 /**
@@ -99,7 +100,7 @@ class ExecutionActions extends MainExecutionActions
 
         try {
             $commentsManager = new CommentsManager($comments, $transaction, CURRENT_DOCUMENT_ID, $this->actions->typeOfObjectId, $userId);
-            $commentsManager->delete()->create()->update();
+            $commentsManager->delete()->update()->create();
 
         } catch (CommentsManagerEx $e) {
             throw new SelfEx("Ошибка класса управления массивом замечаний. Message: '{$e->getMessage()}'. Code: '{$e->getCode()}'", 3005);
@@ -107,10 +108,28 @@ class ExecutionActions extends MainExecutionActions
             throw new SelfEx("Ошибка при обработке замечаний. Message: '{$e->getMessage()}'. Code: '{$e->getCode()}'", 3005);
         }
 
+        $transactionResults = $transaction->start()->getLastResults();
 
-        //$transaction->start();
+        $createdIds = [];
 
-        $methodResult = new ExecutionActionsResult('todo');
+        // Заполняем массив createdIds только при условии, что nullComments не пустые.
+        // То есть на предыдущем шаге выполнялись действия добавлению записей в БД
+        if (!empty($nullComments = $commentsManager->getNullComments())) {
+
+            $commentsId = $transactionResults[$commentsManager->getDocCommentTable()]['create'];
+
+            for ($l = 0; $l < count($nullComments); $l++) {
+
+                $createdIds[] = [
+                    'hash' => $nullComments[$l]['hash'],
+                    'id'   => $commentsId[$l]
+                ];
+            }
+        }
+
+        $methodResult = new ExecutionActionsResult(PageAddress::createCardRef(CURRENT_DOCUMENT_ID, 'total_cc', 'view'));
+        $methodResult->addAdditionalParameter('created_ids', $createdIds);
+
         return $methodResult;
     }
 }

@@ -428,24 +428,19 @@ try {
     // Предмет экспертизы (радио, можно сбросить) ----------------------------------------------
 
     // Предметы экспертизы, которые уже есть у заявления
-
-    $db_expertiseSubjects = expertise_subject::getIdsByIdApplication($form_applicationID);
-
-    $db_expertiseSubjects ??= [];    // Если с БД пришел null, то приравниваем к пустому массиву для array_diff
-    $expertiseSubjectsToDelete = []; // Массив с id предметов экспертизы, которые нужно удалить
-    $expertiseSubjectsToCreate = []; // Массив с id предметов экспертизы, которые нужно создать к заявлению
+    $db_expertiseSubjects = expertise_subject::getIdsByIdApplication($form_applicationID) ?? [];
 
     if ($P_expertise_subjects != '') {
 
-        // id предметов, которые есть в БД, но нет в пришедшей форме
-        $expertiseSubjectsToDelete = array_diff($db_expertiseSubjects, $expertiseSubjects);
+        list (
+            'delete' => $expertiseSubjectsToDelete,
+            'create' => $expertiseSubjectsToCreate
+            ) = calculateDeleteAndCreateIds($db_expertiseSubjects, $expertiseSubjects);
 
-        // id предметов, которые есть в пришедшей форме, но нет в БД
-        $expertiseSubjectsToCreate = array_diff($expertiseSubjects, $db_expertiseSubjects);
-
-        // Из формы пришло пустое значение, удаляем все предметы экспертизы
     } else {
+        // Из формы пришло пустое значение, удаляем все предметы экспертизы
         $expertiseSubjectsToDelete = $db_expertiseSubjects;
+        $expertiseSubjectsToCreate = [];
     }
 
     // Удаляем и записываем в БД новые записи о предмете экспертизы

@@ -105,5 +105,74 @@
         </queries>
     </document>
 
+    <document name="comment_documentation_1">
+        <queries>
+            <getResponsibleType>
+                <class name="\Tables\Docs\comment_documentation_1" />
+                <method name="getResponsibleTypeById" />
+            </getResponsibleType>
+
+            <updateResponsibleType>
+                <class name="\Tables\Docs\comment_documentation_1" />
+                <method name="updateResponsibleTypeById" />
+            </updateResponsibleType>
+
+            <createResponsible>
+                <type_4>
+                    <class name="\Tables\Responsible\type_4\comment_documentation_1" />
+                    <method name="create" />
+                </type_4>
+            </createResponsible>
+
+            <getResponsible>
+                <type_4>
+                    <class name="\Tables\Responsible\type_4\comment_documentation_1" />
+                    <method name="getResponsibleByIdMainDocument" />
+                </type_4>
+            </getResponsible>
+
+            <deleteResponsible>
+                <type_4>
+                    <class name="\Tables\Responsible\type_4\comment_documentation_1" />
+                    <method name="deleteResponsibleByIdMainDocument" />
+                </type_4>
+            </deleteResponsible>
+        </queries>
+    </document>
+
+    <document name="comment_documentation_2">
+        <queries>
+            <getResponsibleType>
+                <class name="\Tables\Docs\comment_documentation_2" />
+                <method name="getResponsibleTypeById" />
+            </getResponsibleType>
+
+            <updateResponsibleType>
+                <class name="\Tables\Docs\comment_documentation_2" />
+                <method name="updateResponsibleTypeById" />
+            </updateResponsibleType>
+
+            <createResponsible>
+                <type_4>
+                    <class name="\Tables\Responsible\type_4\comment_documentation_2" />
+                    <method name="create" />
+                </type_4>
+            </createResponsible>
+
+            <getResponsible>
+                <type_4>
+                    <class name="\Tables\Responsible\type_4\comment_documentation_2" />
+                    <method name="getResponsibleByIdMainDocument" />
+                </type_4>
+            </getResponsible>
+
+            <deleteResponsible>
+                <type_4>
+                    <class name="\Tables\Responsible\type_4\comment_documentation_2" />
+                    <method name="deleteResponsibleByIdMainDocument" />
+                </type_4>
+            </deleteResponsible>
+        </queries>
+    </document>
 
 </responsible>

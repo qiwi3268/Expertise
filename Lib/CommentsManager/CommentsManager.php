@@ -122,7 +122,7 @@ class CommentsManager
      * @param int $authorId id автора, по которому будут создавать новые замечания
      * и обрабатываться старые
      * @throws SelfEx
-     * @throws MiscValidatorEx
+     * @throws MiscValidatorEx выбрасывается в методе {@see \Lib\Singles\PrimitiveValidator::validateAssociativeArray()}
      * @throws TablesEx
      *
      */
@@ -208,9 +208,34 @@ class CommentsManager
         $this->primitiveValidator = $primitiveValidator;
         $this->primitiveValidatorBoolWrapper = $primitiveValidatorBoolWrapper;
 
+        $this->nullComments = $nullComments;
+        $this->notNullComments = $notNullComments;
+
         $this->docCommentTable = $this->typeOfObjectTableLocator->getDocsComment();
         $this->responsibleType4Table = $this->typeOfObjectTableLocator->getResponsibleType4Comment();
         $this->attachedFileTable = $this->typeOfObjectTableLocator->getCommentAttachedFiles();
+    }
+
+
+    /**
+     * Предназначен для получения таблицы документа замечания
+     *
+     * @return string
+     */
+    public function getDocCommentTable(): string
+    {
+        return $this->docCommentTable;
+    }
+
+
+    /**
+     * Массив с замечаниями, у которых поле 'id' - null
+     *
+     * @return array
+     */
+    public function getNullComments(): array
+    {
+        return $this->nullComments;
     }
 
 
@@ -241,7 +266,7 @@ class CommentsManager
                     $authorId,
                     $comment['text'],
                     $comment['normative_document'],
-                    $comment['no_files'],
+                    is_null($comment['no_files']) ? 0 : 1,
                     $comment['note'],
                     $comment['comment_criticality']
                 ],
@@ -260,7 +285,7 @@ class CommentsManager
             if (is_null($comment['no_files'])) {
 
                 // Создание записи файлов
-                foreach ($comment['files'] as ['id' => $fileId]) {
+                foreach ($comment['files'] as $fileId) {
 
                     $this->transaction->add(
                         $this->attachedFileTable,
@@ -292,9 +317,9 @@ class CommentsManager
     {
         foreach ($this->notNullComments as $comment) {
 
-            // Проверка существования замечания в БД (без транзакции)
             $commentId = $comment['id'];
 
+             // Проверка существования замечания в БД
             if (!$this->docCommentTable::checkExistById($commentId)) {
                 throw new SelfEx("Запись замечания, находящаяся во входном json'е с id: '{$commentId}', не существует в БД", 6);
             }
@@ -307,7 +332,7 @@ class CommentsManager
                     $commentId,
                     $comment['text'],
                     $comment['normative_document'],
-                    $comment['no_files'],
+                    is_null($comment['no_files']) ? 0 : 1,
                     $comment['note'],
                     $comment['comment_criticality']
                 ]
@@ -368,8 +393,6 @@ class CommentsManager
      */
     public function delete(): self
     {
-        // Удаление записей замечания
-        //
         $db_docCommentEntriesId = $this->docCommentTable::getIdsByIdMainDocumentAndIdAuthor($this->sectionId, $this->authorId) ?? [];
         $js_docCommentEntriesId = compressArrayByKey($this->notNullComments, 'id');
 
@@ -388,12 +411,6 @@ class CommentsManager
 
         foreach ($toDelete as $commentId) {
 
-            $this->transaction->add(
-                $this->docCommentTable,
-                'deleteById',
-                [$commentId]
-            );
-
             // Удаление прикрепленных файлов к замечанию
             //
             $this->transaction->add(
@@ -406,6 +423,16 @@ class CommentsManager
             //
             $responsible = new Responsible($commentId, $commentDocumentType);
             $responsible->deleteCurrentResponsible($this->transaction, false);
+
+            // Удаление записей замечания
+            // Удаление замечания должно идти после удаления прикрепленных файлов и ответственных, т.к.
+            // иначе будет ошибка внешних ключей
+            //
+            $this->transaction->add(
+                $this->docCommentTable,
+                'deleteById',
+                [$commentId]
+            );
         }
         return $this;
     }

@@ -1,6 +1,7 @@
 <?php
 
 use core\Classes\Session;
+use Lib\DataBase\Transaction;
 use Lib\Singles\NodeStructure;
 use Lib\Responsible\Responsible;
 use Lib\Singles\VariableTransfer;
@@ -19,9 +20,11 @@ $variablesTV = VariableTransfer::getInstance();
 
 $userId = Session::getUserId();
 
+$transaction = new Transaction();
 
 // Инкрементируем и получаем внутренний счетчик заявления
 application_counter::incrementInternal();
+
 $internalCounter = application_counter::getInternal();
 
 // Числовое имя
@@ -29,12 +32,15 @@ $appNumName = ApplicationHelper::getInternalAppNumName($internalCounter);
 
 $applicationId = application::createTemporary($userId, $appNumName);
 
-
 // Записываем текущего пользователя в группу доступа "Полный доступ" к заявлению
 applicant_access_group::createFullAccess($applicationId, $userId);
+
 // Устанавливаем ответственную группу доступа "Полный доступ"
 $responsible = new Responsible($applicationId, DOCUMENT_TYPE['application']);
-$responsible->createNewResponsibleType3(['full_access']);
+
+$responsible->createResponsibleType3($transaction, ['full_access'], false);
+
+$transaction->start();
 
 // Создание директории заявления
 if (!mkdir(APPLICATIONS_FILES . "/$applicationId")) {
