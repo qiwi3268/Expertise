@@ -454,6 +454,8 @@
                     <file name="footer" />
                 </dir>
                 <dir path="/views/home/modals/" ext=".php">
+                    <file name="view_sign" />
+                    <file name="comment" />
                     <file name="error" />
                 </dir>
             </files>
@@ -600,4 +602,3 @@
 
     </callback_templates>
 </routes>
-

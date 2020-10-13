@@ -359,7 +359,6 @@ class CommentCreator {
 
       } else {
          this.comment_hash = null;
-         this.no_files_checkbox.dataset.selected = 'false';
 
          this.id_input.value = null;
          this.text.value = '';

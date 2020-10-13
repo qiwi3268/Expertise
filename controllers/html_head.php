@@ -17,7 +17,7 @@ $sourcesFiles = [];
 $pageName = '';
 
 switch (URN) {
-
+    
     case '' :
         $pageName = 'АИС';
         $sourcesFiles = [...GetFontAwesome5Case(),
@@ -26,10 +26,10 @@ switch (URN) {
             ...CreateSource('js', ROOT_JS, 'ErrorHandler.js', 'BrowserHelper.js', 'API_login.js'),
             ...CreateSource('js', MODALS_JS, 'ErrorModal.js'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
-
+        
         ];
         break;
-
+    
     case 'home/application/create' :
         $pageName = 'АИС_create';
         $sourcesFiles = [...GetFontAwesome5Case(),
@@ -42,7 +42,7 @@ switch (URN) {
             ...CreateSource('js', APPLICATION_JS, 'create.js', 'save.js', 'sidebar.js'),
         ];
         break;
-
+    
     case 'home/expertise_cards/application/view' :
         $pageName = 'АИС_view';
         $sourcesFiles = [...GetFontAwesome5Case(),
@@ -54,7 +54,7 @@ switch (URN) {
             ...CreateSource('js', MODALS_JS, 'ErrorModal.js', 'SignView.js', 'Tooltip.js'),
         ];
         break;
-
+    
     case 'home/application/edit' :
         $pageName = 'АИС';
         $sourcesFiles = [...GetFontAwesome5Case(),
@@ -65,26 +65,35 @@ switch (URN) {
             ...CreateSource('js', TMP_JS, 'sidebar.js', 'section.js', 'validation.js', 'cards.js', 'calendar.js', 'radio.js', 'save_application.js', 'test.js')
         ];
         break;
-
+    
     case 'home/expertise_cards/total_cc/view' :
+        $pageName = 'АИС_view';
+        $sourcesFiles = [...GetFontAwesome5Case(),
+            ...CreateSource('css', ROOT_CSS, 'entry.css'),
+            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'create_application.css', 'view_application.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'action_sidebar.css', 'radio.css', 'sign_modal.css', 'tooltip.css', 'total_cc_view.css'),
+            ...CreateSource('js', ROOT_JS, 'main.js', 'section.js'),
+            ...CreateSource('js', MODALS_JS, 'Tooltip.js', 'ErrorModal.js'),
+        ];
+        break;
+    
+    
     case 'home/expertise_cards/section_documentation_1/view' :
         $pageName = 'АИС_view';
         $sourcesFiles = [...GetFontAwesome5Case(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
-            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'action_sidebar.css', 'radio.css', 'sign_modal.css', 'tooltip.css'),
-            ...CreateSource('js', ROOT_JS, 'main.js'),
-            ...CreateSource('js', MODALS_JS, 'Tooltip.js'),
+            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'create_application.css', 'view_application.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'action_sidebar.css', 'tooltip.css', 'section_view.css'),
+            ...CreateSource('js', ROOT_JS, 'main.js', 'section.js'),
+            ...CreateSource('js', MODALS_JS, 'Tooltip.js', 'ErrorModal.js'),
         ];
         break;
-
-
+    
     case 'tmp/form_to_file_download' :
         $pageName = 'Загрузка файлов на сервер';
         $sourcesFiles = [...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
             ...CreateSource('js', TMP_JS, 'file_download.js')
         ];
         break;
-
+    
     case 'tmp/documentation_structure' :
         $pageName = 'Документация';
         $sourcesFiles = [...GetFontAwesome5Case(),
@@ -93,7 +102,7 @@ switch (URN) {
             ...CreateSource('css', TMP_CSS, 'documentation.css')
         ];
         break;
-
+    
     case 'home/navigation' :
         $pageName = 'Навигация';
         $sourcesFiles = [...GetFontAwesome5Case(),
@@ -104,7 +113,7 @@ switch (URN) {
             ...CreateSource('js', ROOT_JS, 'sorting.js')
         ];
         break;
-
+    
     case 'home/expertise_cards/application/actions/action_2' :
         $pageName = 'Action_2';
         $sourcesFiles = [...GetFontAwesome5Case(),
@@ -117,7 +126,7 @@ switch (URN) {
             ...CreateSource('js', MODALS_JS,'SignView.js', 'Misc.js', 'ErrorModal.js')
         ];
         break;
-
+    
     case 'home/test_1' :
         $pageName = 'Тест';
         $sourcesFiles = [...GetFontAwesome5Case(),
@@ -126,18 +135,21 @@ switch (URN) {
             ...CreateSource('css', TMP_CSS, 'action_sidebar.css', 'test_1.css')
         ];
         break;
-
-    case 'home/section_create_test' :
+    
+    case 'home/expertise_cards/section_documentation_1/actions/action_1' :
         $pageName = 'Раздел';
         $sourcesFiles = [...GetFontAwesome5Case(),
             ...GetTinyMCECase(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'action_header.css'),
-            ...CreateSource('css', TMP_CSS,'section_create_test.css'),
-            ...CreateSource('js', TMP_JS, 'section_create_test.js')
+            ...CreateSource('css', TMP_CSS,'radio.css', 'files.css', 'documentation.css', 'multiple_block.css', 'modal.css', 'sign.css', 'tooltip.css', 'create_application.css', 'comment_modal.css', 'section_create_test.css'),
+            ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
+            ...CreateSource('js', ROOT_JS, 'section.js', 'main.js', 'API.js', 'DependenciesHandler.js', 'MultipleBlock.js', 'PartBlock.js', 'radio.js', 'GeFile.js', 'validation.js'),
+            ...CreateSource('js', MODALS_JS,'ErrorModal.js', 'CommentCreator.js', 'SignView.js', 'Misc.js', 'Tooltip.js'),
+            ...CreateSource('js', ROOT_JS . 'expertise_cards/documents/section/actions/', 'action_1.js'),
         ];
         break;
-
+    
     case 'home/expertise_cards/total_cc/actions/action_1' :
         $pageName = 'Общая часть';
         $sourcesFiles = [...GetFontAwesome5Case(),
@@ -146,10 +158,11 @@ switch (URN) {
             ...CreateSource('css', TMP_CSS,'multiple_block.css', 'create_application.css', 'action_3.css', 'modal.css', 'radio.css'),
             ...CreateSource('js', ROOT_JS, 'main.js', 'API.js', 'section.js', 'DependenciesHandler.js', 'radio.js', 'MultipleBlock.js', 'PartBlock.js', 'validation.js'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
-            ...CreateSource('js', MODALS_JS,'SignView.js', 'Misc.js', 'ErrorModal.js'),
+            ...CreateSource('js', MODALS_JS, 'ErrorModal.js', 'SignView.js', 'Misc.js'),
             ...CreateSource('js', ROOT_JS . 'total_cc/actions/', 'action_1.js'),
         ];
         break;
+    
 }
 
 $variablesTV = \Lib\Singles\VariableTransfer::getInstance();
@@ -167,17 +180,17 @@ $variablesTV->setValue('sourcesFiles', $sourcesFiles);
 //
 function CreateSource(string $type, string $path, string ...$names): array
 {
-
+    
     $sources = [
         'css' => ['<link rel="stylesheet" href="', '">'],
         'js' => ['<script src="', '"></script>']
     ];
-
+    
     $str = $sources[$type];
-
+    
     $arr = [];
     foreach ($names as $name) {
-
+        
         $arr[] = $str[0] . $path . $name . $str[1];
     }
     return $arr;
@@ -199,4 +212,3 @@ function GetTinyMCECase(): array
 {
     return CreateSource('js', ROOT_LIB_JS . 'tinymce/js/tinymce/', 'tinymce.min.js');
 }
-
