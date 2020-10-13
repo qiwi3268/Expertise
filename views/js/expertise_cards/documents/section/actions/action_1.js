@@ -5,8 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
    initEditor();
 
-
-
 });
 
 function initEditor () {
@@ -77,10 +75,7 @@ function saveSection () {
       .then(result => {
          MultipleBlock.saveMultipleBlocks(multiple_blocks);
 
-
-         setCommentIDs(result.add.created_ids)
-
-
+         setCommentIDs(result.add.created_ids);
 
       })
       .catch((exc) => {

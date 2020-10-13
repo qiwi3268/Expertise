@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
       card_header.addEventListener('click', () => expandCard(card));
    });
 
+
    handleTextAreasResize();
 });
 
 // Сразу делаем блоки раскрытыми без анимации развертывания
 window.addEventListener('load', () => {
-   // console.log('tut2');
 
    let cards_view = document.querySelectorAll('.card-body.expanded');
    cards_view.forEach(card_body => {

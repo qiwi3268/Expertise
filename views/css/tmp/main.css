@@ -331,7 +331,8 @@ textarea.form-field__input.invalid {
    transition: .3s;
 }
 
-
-
+.card-body.expanded {
+   max-height: none;
+}
 
 
