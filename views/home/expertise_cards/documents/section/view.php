@@ -102,7 +102,47 @@
     
     <div class="view-section__card">
         <div class="view-section__body">
-        
+            <table id="comments_table" class="comments-table">
+                <thead class="comments-table__header">
+                <tr>
+                    <th style="width: 10%">Автор</th>
+                    <th style="width: 40%">Текст замечания</th>
+                    <th style="width: 15%">Нормативный документ</th>
+                    <th style="width: 30%">Отмеченные файлы</th>
+                    <th style="width: 10%">Вывод/Последний комментарий</th>
+                </tr>
+                </thead>
+                <tbody id="comments_table_body" class="comments-table__body">
+                    <tr class="comments-table__row" data-comment_hash="1602587915838">
+                        <td>Автор</td>
+                        <td>asdsa</td>
+                        <td>dsadsa</td>
+                        <td class="comments-table__files">
+                            <div class="documentation__files files filled" data-comment_files="" data-id_file_field="1"
+                                 data-mapping_level_1="2" data-mapping_level_2="1">
+                                <div class="files__item" data-read_only="true" data-id="1078" data-validate_results=""
+                                     data-state="not_signed">
+                                    <div class="files__info">
+                            
+                                        <i class="files__icon fas fa-file-excel"></i>
+                                        <div class="files__description">
+                                            <span class="files__name">Отчет Объекты в работе от 08.09.2020.xlsx</span>
+                                            <span class="files__size">168,75 Кб</span>
+                                        </div>
+                                    </div>
+                                    <div class="files__state">
+                                        <i class="files__state-icon fas fa-pen-alt"></i>
+                                    </div>
+                                    <div class="files__actions">
+                                        <i class="files__unload fas fa-download"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Исправлено что-то</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     

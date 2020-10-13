@@ -36,7 +36,7 @@
 
                     <div class="responsible" data-tooltip_content hidden>
                         <?php foreach ($variablesTV->getValue('responsibleUsers') as $FIO): ?>
-                            <span class="responsible__name"><?= $FIO ?></span>
+                            <div class="responsible__name"><?= $FIO ?></div>
                         <?php endforeach; ?>
                     </div>
                 </div>
