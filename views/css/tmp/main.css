@@ -235,6 +235,7 @@ textarea.form-field__input.invalid {
 .modal-overlay,
 .file-overlay,
 .save-overlay,
+.alert_overlay,
 .sign-overlay,
 .error-overlay,
 .comment-overlay {
@@ -257,6 +258,7 @@ textarea.form-field__input.invalid {
 .file-overlay.active,
 .modal__close.active,
 .save-overlay.active,
+.alert_overlay.active,
 .sign-overlay.active,
 .error-overlay.active,
 .comment-overlay.active {

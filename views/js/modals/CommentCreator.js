@@ -191,6 +191,30 @@ class CommentCreator {
       let delete_button = this.createActionColumn('delete');
       delete_button.addEventListener('click', () => {
 
+         this.showAlert(comment_hash, data_row, action_row);
+     /*    this.comments.delete(comment_hash);
+         data_row.remove();
+         action_row.remove();
+
+         if (!this.table_body.querySelector('tr')) {
+            this.comments_table.dataset.active = 'false';
+         }*/
+
+      });
+
+      action_row.appendChild(delete_button);
+      this.table_body.appendChild(action_row);
+   }
+
+   showAlert(comment_hash, data_row, action_row) {
+      let alert_modal = document.getElementById('alert_modal');
+      let alert_overlay = document.getElementById('alert_overlay');
+
+      alert_modal.classList.add('active');
+      alert_overlay.classList.add('active');
+
+      let confirm_button = document.getElementById('alert_confirm');
+      confirm_button.addEventListener('click', () => {
          this.comments.delete(comment_hash);
          data_row.remove();
          action_row.remove();
@@ -198,11 +222,13 @@ class CommentCreator {
          if (!this.table_body.querySelector('tr')) {
             this.comments_table.dataset.active = 'false';
          }
-
       });
 
-      action_row.appendChild(delete_button);
-      this.table_body.appendChild(action_row);
+      let cancel_button = document.getElementById('alert_cancel');
+      cancel_button.addEventListener('click', () => {
+         alert_modal.modal.classList.remove('active');
+         alert_overlay.overlay.classList.remove('active');
+      });
    }
 
    addFilesToTable (comment, files_block) {

@@ -22,7 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
    });
 
-   // handleAlertModal();
+
+   // todo вынести
+   handleAlertModal();
+
 
 });
 

@@ -908,15 +908,15 @@
 
 <div id="misc_overlay" class="modal-overlay"></div>
 
-<!--<div class="alert-overlay"></div>
-<div class="modal alert-modal">
+<!--<div id="alert_overlay" class="alert-overlay"></div>
+<div id="alert_modal" class="alert-modal modal">
     <div class="alert-modal__info">
         <i class="alert-modal__icon fas fa-check"></i>
         <span class="alert-modal__text">Заявление сохранено</span>
     </div>
     <div class="alert-modal__actions">
-        <span class="alert-modal__button application-button">Продолжить редактирование</span>
-        <a href="/home/navigation" class="alert-modal__button application-button">Выйти в личный кабинет</a>
+        <div id="alert_confirm" class="alert-modal__button application-button">Продолжить редактирование</div>
+        <div id="alert_cancel" class="alert-modal__button application-button" data-action="navigation">Выйти в личный кабинет</div>
     </div>
 </div>-->
 

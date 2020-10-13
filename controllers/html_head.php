@@ -81,7 +81,7 @@ switch (URN) {
         $pageName = 'АИС_view';
         $sourcesFiles = [...GetFontAwesome5Case(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
-            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'create_application.css', 'view_application.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'action_sidebar.css', 'tooltip.css', 'section_view.css'),
+            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'create_application.css', 'view_application.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'action_sidebar.css', 'tooltip.css', 'section_view.css', 'statistics.css'),
             ...CreateSource('js', ROOT_JS, 'main.js', 'section.js'),
             ...CreateSource('js', MODALS_JS, 'Tooltip.js', 'ErrorModal.js'),
         ];
@@ -144,9 +144,10 @@ switch (URN) {
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'action_header.css'),
             ...CreateSource('css', TMP_CSS,'radio.css', 'files.css', 'documentation.css', 'multiple_block.css', 'modal.css', 'sign.css', 'tooltip.css', 'create_application.css', 'comment_modal.css', 'section_create_test.css'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
+            ...CreateSource('js', ROOT_JS . 'expertise_cards/documents/section/actions/', 'action_1.js'),
             ...CreateSource('js', ROOT_JS, 'section.js', 'main.js', 'API.js', 'DependenciesHandler.js', 'MultipleBlock.js', 'PartBlock.js', 'radio.js', 'GeFile.js', 'validation.js'),
             ...CreateSource('js', MODALS_JS,'ErrorModal.js', 'CommentCreator.js', 'SignView.js', 'Misc.js', 'Tooltip.js'),
-            ...CreateSource('js', ROOT_JS . 'expertise_cards/documents/section/actions/', 'action_1.js'),
+            
         ];
         break;
     

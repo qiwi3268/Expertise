@@ -421,6 +421,40 @@ textarea.form-field__input.invalid {
    margin: 0px 10px 0px 0px;
 }
 
+/*================*/
+
+.alert-modal {
+   padding: 10px;
+   font-size: 18px;
+}
+
+.alert-modal__info {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 10px 0px;
+}
+
+.alert-modal__icon {
+   font-size: 22px;
+   color: #87c596;
+   margin: 0px 10px 0px 0px;
+}
+
+.alert-modal__actions {
+   display: flex;
+   padding: 10px 0px 0px;
+}
+
+.alert-modal__button {
+   flex-grow: 1;
+}
+
+.alert-modal__button:first-child {
+   margin: 0px 10px 0px 0px;
+}
+
+
 /* save-modal =================================================================== */
 
 /* tmp ========================================================================= */

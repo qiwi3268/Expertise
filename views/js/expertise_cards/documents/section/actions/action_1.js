@@ -69,7 +69,46 @@ function saveSection () {
       return Object.assign({}, comment, {criticality_name: undefined});
    });
 
-   form_data.append('comments', JSON.stringify(comments_to_json));
+   let str = [
+      {
+         "id": null,
+         "text": "Замечание1",
+         "normative_document": "Норматив1",
+         "no_files": null,
+         "comment_criticality": "1",
+         "note": null,
+         "files": [
+            1077,
+            10000
+         ],
+         "hash": 1602585278184
+      },
+      {
+         "id": null,
+         "text": "Зам2",
+         "normative_document": "Норм2",
+         "no_files": "1",
+         "comment_criticality": "1",
+         "note": "заметка",
+         "files": [],
+         "hash": 1602585295792
+      },
+      {
+         "id": null,
+         "text": "3243243",
+         "normative_document": "аукаука",
+         "no_files": null,
+         "comment_criticality": "1",
+         "note": null,
+         "files": [
+            1077
+         ],
+         "hash": 1602585304752
+      }
+   ];
+
+   // form_data.append('comments', JSON.stringify(comments_to_json));
+   form_data.append('comments', JSON.stringify(str));
 
    API.executeAction(form_data)
       .then(result => {
