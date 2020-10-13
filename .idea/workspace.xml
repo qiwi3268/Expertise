@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Section/Actions/ExecutionActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Section/Actions/ExecutionActions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/CommentsManager/CommentsManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/CommentsManager/CommentsManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/CommentsManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/CommentsManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lib/Responsible/Responsible.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Responsible/Responsible.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/modals/comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/modals/comment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/MultipleBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/MultipleBlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/application/save.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/application/save.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/expertise_cards/documents/section/actions/action_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/expertise_cards/documents/section/actions/action_1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/modals/CommentCreator.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/CommentCreator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/total_cc/actions/action_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/total_cc/actions/action_1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/application/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/application/create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
