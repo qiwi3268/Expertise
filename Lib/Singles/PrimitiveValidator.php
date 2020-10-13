@@ -7,6 +7,7 @@ use Lib\Exceptions\PrimitiveValidator as SelfEx;
 use functions\Exceptions\Functions as FunctionsEx;
 use ReflectionMethod;
 use ReflectionFunction;
+use ReflectionException;
 use jsonException;
 use BadMethodCallException;
 use BadFunctionCallException;
@@ -331,7 +332,7 @@ class PrimitiveValidator
      * @param string|null $type <i>string:</i> требуемый тип, формата 'string' / '?int' ..<br>
      * <i>null:</i> в методе / функции должно отсутствовать объявление типа возвращаемого значения
      * @throws SelfEx
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function validateReturnType($function, ?string $type): void
     {
@@ -410,7 +411,7 @@ class PrimitiveValidator
             !is_string($value)
             || mb_strlen($value) == 0
         ) {
-            throw new selfEx("Значение: '{$value}' не является не пустой строкой", 21);
+            throw new selfEx("Значение: '{$value}' не строка или пустая строка", 21);
         }
     }
 

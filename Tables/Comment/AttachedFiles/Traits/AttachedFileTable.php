@@ -15,9 +15,10 @@ use Tables\CommonTraits\deleteById as deleteByIdTrait;
  * статическое свойство <i>tableName</i> с соответствующим именем таблицы
  *
  */
-trait  AttachedFileTable
+trait AttachedFileTable
 {
     use deleteByIdTrait;
+
 
     /**
      * Предназначен для создания записи в таблице приклепленных файлов к замечанию
@@ -95,6 +96,7 @@ trait  AttachedFileTable
         $result = ParametrizedQuery::getSimpleArray($query, [$id_main_document]);
         return $result ? $result : null;
     }
+
 
     /**
      * Предназначен для получения простого массива id прикрепленных файлов по id замечания

@@ -57,7 +57,7 @@ class HtmlDependenciesManagerApplicationForm extends HtmlDependenciesManager
                 0 => ['national_project' => false],
                 1 => ['national_project' => true]
             ],
-            
+
 
             // Зависимости множественных блоков --------------------------------------------------------
 
@@ -98,9 +98,7 @@ class HtmlDependenciesManagerApplicationForm extends HtmlDependenciesManager
             'financing_source_no_data' => [
                 '' => ['percent' => true],
                 1  => ['percent' => false],
-            ],
-            
-            
+            ]
         ];
     }
 

@@ -110,7 +110,6 @@ class CommentCreator {
          this.editTableComment(comment);
       }
 
-
       resizeCard(this.comments_table);
       comment.hash = this.comment_hash;
 

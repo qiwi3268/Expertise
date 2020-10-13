@@ -99,9 +99,9 @@ class ExecutionActions extends MainExecutionActions
         }
 
         try {
+
             $commentsManager = new CommentsManager($comments, $transaction, CURRENT_DOCUMENT_ID, $this->actions->typeOfObjectId, $userId);
             $commentsManager->delete()->update()->create();
-
         } catch (CommentsManagerEx $e) {
             throw new SelfEx("Ошибка класса управления массивом замечаний. Message: '{$e->getMessage()}'. Code: '{$e->getCode()}'", 3005);
         } catch (Exception $e) {
@@ -116,13 +116,13 @@ class ExecutionActions extends MainExecutionActions
         // То есть на предыдущем шаге выполнялись действия добавлению записей в БД
         if (!empty($nullComments = $commentsManager->getNullComments())) {
 
-            $commentsId = $transactionResults[$commentsManager->getDocCommentTable()]['create'];
+            $commentIds = $transactionResults[$commentsManager->getDocCommentTable()]['create'];
 
             for ($l = 0; $l < count($nullComments); $l++) {
 
                 $createdIds[] = [
                     'hash' => $nullComments[$l]['hash'],
-                    'id'   => $commentsId[$l]
+                    'id'   => $commentIds[$l]
                 ];
             }
         }

@@ -111,7 +111,6 @@ class CommentsManager
     private string $attachedFileTable;
 
 
-
     /**
      * Конструктор класса
      *
@@ -255,6 +254,8 @@ class CommentsManager
     {
         $authorId = $this->authorId;
 
+        $count = 1; // Счетчик для создания уникальных ключей
+
         foreach ($this->nullComments as $comment) {
 
             // Создание записи замечания
@@ -270,7 +271,7 @@ class CommentsManager
                     $comment['note'],
                     $comment['comment_criticality']
                 ],
-                'id_comment'
+                "comment_id_{$count}"
             );
 
             // Назначение пользователя ответственным на замечание
@@ -279,7 +280,7 @@ class CommentsManager
                 'create',
                 [$authorId],
                 null,
-                'id_comment'
+                "comment_id_{$count}"
             );
 
             if (is_null($comment['no_files'])) {
@@ -292,10 +293,11 @@ class CommentsManager
                         'create',
                         [$authorId, $fileId],
                         null,
-                        'id_comment'
+                        "comment_id_{$count}"
                     );
                 }
             }
+            $count++;
         }
         return $this;
     }
