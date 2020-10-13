@@ -101,20 +101,26 @@
     </div>
     
     <div class="view-section__card">
+        <div class="view-section__header">Замечания на стороне эксперта</div>
         <div class="view-section__body">
             <table id="comments_table" class="comments-table">
                 <thead class="comments-table__header">
                 <tr>
-                    <th style="width: 10%">Автор</th>
-                    <th style="width: 40%">Текст замечания</th>
-                    <th style="width: 15%">Нормативный документ</th>
-                    <th style="width: 30%">Отмеченные файлы</th>
-                    <th style="width: 10%">Вывод/Последний комментарий</th>
+                    <th style="width: 7%">Автор</th>
+                    <th style="width: 25%">Текст замечания</th>
+                    <th style="width: 10%">Нормативный документ</th>
+                    <th style="width: 23%">Отмеченные файлы</th>
+                    <th style="width: 25%">Ответ заявителя</th>
                 </tr>
                 </thead>
                 <tbody id="comments_table_body" class="comments-table__body">
                     <tr class="comments-table__row" data-comment_hash="1602587915838">
-                        <td>Автор</td>
+                        <td>
+<!--                            <i class="comments-table__icon fas fa-user-tie"></i>-->
+                            <div class="comments-table__text">
+                                Автор
+                            </div>
+                        </td>
                         <td>asdsa</td>
                         <td>dsadsa</td>
                         <td class="comments-table__files">
@@ -161,7 +167,7 @@
         <div class="view-section__body">
             <?php if (!empty($_TEPsByAuthors)): ?>
                 <table class="tep-table">
-                    <thead>
+                    <thead class="tep-table__header">
                         <tr>
                             <th class="tep-table__author">Автор</th>
                             <th>Показатель</th>

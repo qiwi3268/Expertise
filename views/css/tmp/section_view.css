@@ -88,6 +88,10 @@
 
 }
 
+.tep-table__header {
+   border-bottom: 2px solid #93b0d1;
+}
+
 .tep-table__author {
    width: 15%;
 }

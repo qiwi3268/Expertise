@@ -69,6 +69,18 @@
    margin: unset;
 }
 
+.comments-table .files__actions {
+   margin: 0px 0px 0px 3px;
+}
+
+.comments-table .files__info {
+   padding: 3px 0px 3px 10px;
+   margin: 0px 3px 0px 0px
+}
+
+.comments-table__icon {
+   font-size: 18px;
+}
 /*.comments-table .files__info {
    padding: 3px 0px;
 }*/
