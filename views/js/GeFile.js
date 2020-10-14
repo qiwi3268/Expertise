@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-   FileField.validate_results_storage = new Map();
+   GeFile.validate_results_storage = new Map();
 
-   console.log(FileField.validate_results_storage);
+   console.log(GeFile.validate_results_storage);
 
    let file_blocks = document.querySelectorAll('.files');
    file_blocks.forEach(block => {
@@ -201,7 +201,7 @@ class GeFile {
       let validate_results;
 
       console.log(this.id);
-      console.log(FileField.validate_results_storage);
+      console.log(GeFile.validate_results_storage);
 
       if (this.element.hasAttribute('data-validate_results')) {
 
@@ -209,8 +209,8 @@ class GeFile {
          this.setValidateResults(validate_results);
          this.element.removeAttribute('data-validate_results');
 
-      } else if (FileField.validate_results_storage.has(this.id)) {
-         validate_results = FileField.validate_results_storage.get(this.id);
+      } else if (GeFile.validate_results_storage.has(this.id)) {
+         validate_results = GeFile.validate_results_storage.get(this.id);
       } else {
          validate_results = '';
       }
@@ -231,7 +231,7 @@ class GeFile {
     * @param {HTMLElement} files_block - файловый блок, к которому относится файл
     */
    constructor (file_element, files_block) {
-      console.log(FileField.validate_results_storage);
+      console.log(GeFile.validate_results_storage);
 
       this.element = file_element;
       this.id = parseInt(this.element.dataset.id);
