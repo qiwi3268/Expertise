@@ -189,20 +189,20 @@
         
     </div>
     
-    <div class="view-section__card">
-        <div class="view-section__header">
+    <div class="view-section__card card">
+        <div class="view-section__header card-expand">
             <div class="view-section__label">
                 <i class="view-section__icon-label fab fa-sistrix"></i>
                 <div class="view-section__amount">10</div>
             </div>
             <div class="view-section__title">Замечания на рассмотрении эксперта</div>
         </div>
-        <div class="view-section__body">
+        <div class="view-section__body card-body expanded">
             <table id="comments_table" class="comments-table">
                 <thead class="comments-table__header">
                 <tr>
                     <th style="width: 1%">№</th>
-                    <th style="width: 7%">Автор А.А.</th>
+                    <th style="width: 7%">Автор</th>
                     <th style="width: 25%">Текст замечания</th>
                     <th style="width: 10%">Нормативный документ</th>
                     <th style="width: 22%">Отмеченные файлы</th>
@@ -234,7 +234,7 @@
                                         <i class="files__state-icon fas fa-pen-alt"></i>
                                     </div>
                                     <div class="files__actions">
-                                        <i class="files__unload fas fa-download"></i>
+                                        <i class="files__unload fas fa-angle-double-down"></i>
                                     </div>
                                 </div>
                             </div>
@@ -265,7 +265,7 @@
                                         <i class="files__state-icon fas fa-pen-alt"></i>
                                     </div>
                                     <div class="files__actions">
-                                        <i class="files__unload fas fa-download"></i>
+                                        <i class="files__unload fas fa-angle-double-down"></i>
                                     </div>
                                 </div>
                             </div>
@@ -296,7 +296,7 @@
                                         <i class="files__state-icon fas fa-pen-alt"></i>
                                     </div>
                                     <div class="files__actions">
-                                        <i class="files__unload fas fa-download"></i>
+                                        <i class="files__unload fas fa-angle-double-down"></i>
                                     </div>
                                 </div>
                             </div>
@@ -327,7 +327,7 @@
                                         <i class="files__state-icon fas fa-pen-alt"></i>
                                     </div>
                                     <div class="files__actions">
-                                        <i class="files__unload fas fa-download"></i>
+                                        <i class="files__unload fas fa-angle-double-down"></i>
                                     </div>
                                 </div>
                             </div>
@@ -339,8 +339,8 @@
         </div>
     </div>
     
-    <div class="view-section__card">
-        <div class="view-section__header">
+    <div class="view-section__card card">
+        <div class="view-section__header card-expand">
             <div class="view-section__label">
                 <i class="view-section__icon-label fas fa-briefcase"></i>
                 <div class="view-section__amount">4</div>
@@ -348,12 +348,12 @@
             <div class="view-section__title">Замечания на стороне заявителя</div>
             
         </div>
-        <div class="view-section__body">
+        <div class="view-section__body card-body expanded">
             <table id="comments_table" class="comments-table">
                 <thead class="comments-table__header">
                 <tr>
                     <th style="width: 1%">№</th>
-                    <th style="width: 7%">Автор А.А.</th>
+                    <th style="width: 7%">Автор</th>
                     <th style="width: 25%">Текст замечания</th>
                     <th style="width: 10%">Нормативный документ</th>
                     <th style="width: 22%">Отмеченные файлы</th>
@@ -385,7 +385,7 @@
                                     <i class="files__state-icon fas fa-pen-alt"></i>
                                 </div>
                                 <div class="files__actions">
-                                    <i class="files__unload fas fa-download"></i>
+                                    <i class="files__unload fas fa-angle-double-down"></i>
                                 </div>
                             </div>
                         </div>
@@ -416,7 +416,7 @@
                                     <i class="files__state-icon fas fa-pen-alt"></i>
                                 </div>
                                 <div class="files__actions">
-                                    <i class="files__unload fas fa-download"></i>
+                                    <i class="files__unload fas fa-angle-double-down"></i>
                                 </div>
                             </div>
                         </div>
@@ -447,7 +447,7 @@
                                     <i class="files__state-icon fas fa-pen-alt"></i>
                                 </div>
                                 <div class="files__actions">
-                                    <i class="files__unload fas fa-download"></i>
+                                    <i class="files__unload fas fa-angle-double-down"></i>
                                 </div>
                             </div>
                         </div>
@@ -478,7 +478,7 @@
                                     <i class="files__state-icon fas fa-pen-alt"></i>
                                 </div>
                                 <div class="files__actions">
-                                    <i class="files__unload fas fa-download"></i>
+                                    <i class="files__unload fas fa-angle-double-down"></i>
                                 </div>
                             </div>
                         </div>
@@ -490,8 +490,8 @@
         </div>
     </div>
     
-    <div class="view-section__card">
-        <div class="view-section__header">
+    <div class="view-section__card card">
+        <div class="view-section__header card-expand">
             <div class="view-section__label">
                 <i class="view-section__icon-label fas fa-check"></i>
                 <div class="view-section__amount">4</div>
@@ -499,12 +499,12 @@
             <div class="view-section__title">Снятые замечания</div>
         
         </div>
-        <div class="view-section__body">
+        <div class="view-section__body card-body expanded">
             <table id="comments_table" class="comments-table">
                 <thead class="comments-table__header">
                 <tr>
                     <th style="width: 1%">№</th>
-                    <th style="width: 7%">Автор А.А.</th>
+                    <th style="width: 7%">Автор</th>
                     <th style="width: 25%">Текст замечания</th>
                     <th style="width: 10%">Нормативный документ</th>
                     <th style="width: 22%">Отмеченные файлы</th>
@@ -536,7 +536,7 @@
                                     <i class="files__state-icon fas fa-pen-alt"></i>
                                 </div>
                                 <div class="files__actions">
-                                    <i class="files__unload fas fa-download"></i>
+                                    <i class="files__unload fas fa-angle-double-down"></i>
                                 </div>
                             </div>
                         </div>
@@ -567,7 +567,7 @@
                                     <i class="files__state-icon fas fa-pen-alt"></i>
                                 </div>
                                 <div class="files__actions">
-                                    <i class="files__unload fas fa-download"></i>
+                                    <i class="files__unload fas fa-angle-double-down"></i>
                                 </div>
                             </div>
                         </div>
@@ -598,7 +598,7 @@
                                     <i class="files__state-icon fas fa-pen-alt"></i>
                                 </div>
                                 <div class="files__actions">
-                                    <i class="files__unload fas fa-download"></i>
+                                    <i class="files__unload fas fa-angle-double-down"></i>
                                 </div>
                             </div>
                         </div>
@@ -629,7 +629,7 @@
                                     <i class="files__state-icon fas fa-pen-alt"></i>
                                 </div>
                                 <div class="files__actions">
-                                    <i class="files__unload fas fa-download"></i>
+                                    <i class="files__unload fas fa-angle-double-down"></i>
                                 </div>
                             </div>
                         </div>
@@ -651,9 +651,11 @@
             </div>
         <?php endif;?>
     <?php endforeach; ?>
-    <div class="view-section__card">
-        <div class="view-section__header">Технико-экономические показатели</div>
-        <div class="view-section__body">
+    <div class="view-section__card card">
+        <div class="view-section__header card-expand">
+            <div class="view-section__title">Технико-экономические показатели</div>
+        </div>
+        <div class="view-section__body card-body expanded">
             <?php if (!empty($_TEPsByAuthors)): ?>
                 <table class="tep-table">
                     <thead class="tep-table__header">

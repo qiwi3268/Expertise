@@ -445,7 +445,8 @@ class GeFile {
       this.element.appendChild(this.actions);
 
       let unload_button = document.createElement('I');
-      unload_button.classList.add('files__unload', 'fas', 'fa-download');
+      // unload_button.classList.add('files__unload', 'fas', 'fa-download');
+      unload_button.classList.add('files__unload', 'fas', 'fa-angle-double-down');
       this.actions.appendChild(unload_button);
 
       let delete_button = document.createElement('I');

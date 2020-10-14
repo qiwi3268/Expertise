@@ -15,28 +15,28 @@
                 <div class="view__item">
                     <i class="view__icon fas fa-file-alt"></i>
                     <div class="view__info">
-                        <span class="view__label">Стадия</span>
+                        <span class="view-actions__label">Стадия</span>
                         <span class="view__text">Формирование сводного замечания</span>
                     </div>
                 </div>
                 <div class="view__item">
                     <i class="view__icon fas fa-calendar-week"></i>
                     <div class="view__info">
-                        <span class="view__label">Контрольный срок заявления</span>
+                        <span class="view-actions__label">Контрольный срок заявления</span>
                         <span class="view__text">25.10.2020</span>
                     </div>
                 </div>
                 <div class="view__item">
                     <i class="view__icon fas fa-calendar-day"></i>
                     <div class="view__info">
-                        <span class="view__label">Контрольный срок стадии</span>
+                        <span class="view-actions__label">Контрольный срок стадии</span>
                         <span class="view__text">20.09.2020</span>
                     </div>
                 </div>
                 <div class="view__item">
                     <i class="view__icon fas fa-user-edit"></i>
                     <div class="view__info">
-                        <span class="view__label">Ответственные</span>
+                        <span class="view-actions__label">Ответственные</span>
                         <span class="view__text">Заявитель</span>
                     </div>
                 </div>

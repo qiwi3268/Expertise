@@ -222,7 +222,7 @@
                                     </div>
                                     <div class="files__state"></div>
                                     <div class="files__actions">
-                                        <i class="files__unload fas fa-download"></i>
+                                        <i class="files__unload fas fa-angle-double-down"></i>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -324,7 +324,7 @@
                                                 </div>
                                                 <div class="files__state"></div>
                                                 <div class="files__actions">
-                                                    <i class="files__unload fas fa-download"></i>
+                                                    <i class="files__unload fas fa-angle-double-down"></i>
                                                 </div>
                                             </div>
                                         <?php endforeach; ?>
