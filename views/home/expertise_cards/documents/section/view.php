@@ -352,58 +352,58 @@
         <?php if (!empty($_comments)): ?>
             <div class="view-section__body card-body expanded">
                 <table id="comments_table" class="comments-table">
-                        <thead class="comments-table__header">
-                        <tr>
-                            <th style="width: 1%">№</th>
-                            <th style="width: 7%">Автор</th>
-                            <th style="width: 25%">Текст замечания</th>
-                            <th style="width: 10%">Нормативный документ</th>
-                            <th style="width: 22%">Отмеченные файлы</th>
-                            <th style="width: 25%">Ответ эксперта</th>
-                        </tr>
-                        </thead>
-                        <tbody id="comments_table_body" class="comments-table__body">
+                    <thead class="comments-table__header">
+                    <tr>
+                        <th style="width: 1%">№</th>
+                        <th style="width: 7%">Автор</th>
+                        <th style="width: 25%">Текст замечания</th>
+                        <th style="width: 10%">Нормативный документ</th>
+                        <th style="width: 22%">Отмеченные файлы</th>
+                        <th style="width: 25%">Ответ эксперта</th>
+                    </tr>
+                    </thead>
+                    <tbody id="comments_table_body" class="comments-table__body">
                         <?php foreach ($_comments as $number => $comment): ?>
                             <tr class="comments-table__row" data-criticality="<?= $comment['comment_criticality']['id'] ?>">
-                                <td class="comments-table__criticality-border red"><?= $number ?></td>
-                                <td><?= $comment['author'] ?></td>
+                                <td class="comments-table__number"><?= $number ?></td>
+                                <td class="comments-table__author"><?= $comment['author'] ?></td>
                                 <td><?= $comment['text'] ?></td>
                                 <td><?= $comment['normative_document'] ?></td>
-                                <td class="comments-table__files">
-                                    <?php if (!empty($comment['files'])): ?>
-                                        <div class="documentation__files files filled">
-                                            <?php foreach ($comment['files'] as $file): ?>
-                                                <div class="files__item"
-                                                     data-read_only="true"
-                                                     data-id="<?= $file['id'] ?>"
-                                                    <?php if (isset($file['validate_results'])): ?>
-                                                        data-validate_results='<?= $file['validate_results'] ?>'
-                                                    <?php endif; ?>
-                                                >
-                                                    <div class="files__info">
-                                                        <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
-                                                        <div class="files__description">
-                                                            <span class="files__name"><?= $file['file_name'] ?></span>
-                                                            <span class="files__size"><?= $file['human_file_size'] ?></span>
+                                    <td>
+                                        <?php if (!empty($comment['files'])): ?>
+                                            <div class="documentation__files files filled">
+                                                <?php foreach ($comment['files'] as $file): ?>
+                                                    <div class="files__item"
+                                                         data-read_only="true"
+                                                         data-id="<?= $file['id'] ?>"
+                                                        <?php if (isset($file['validate_results'])): ?>
+                                                            data-validate_results='<?= $file['validate_results'] ?>'
+                                                        <?php endif; ?>
+                                                    >
+                                                        <div class="files__info">
+                                                            <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
+                                                            <div class="files__description">
+                                                                <span class="files__name"><?= $file['file_name'] ?></span>
+                                                                <span class="files__size"><?= $file['human_file_size'] ?></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="files__state"></div>
+                                                        <div class="files__actions">
+                                                            <i class="files__unload fas fa-angle-double-down"></i>
                                                         </div>
                                                     </div>
-                                                    <div class="files__state"></div>
-                                                    <div class="files__actions">
-                                                        <i class="files__unload fas fa-download"></i>
-                                                    </div>
-                                                </div>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    <?php else: ?>
-                                        Отсутствуют
-                                    <?php endif; ?>
-                                </td>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        <?php else: ?>
+                                            Отсутствуют
+                                        <?php endif; ?>
+                                    </td>
                                 <!--todo чето придумать-->
                                 <td>Ответ</td>
                             </tr>
                         <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                    </tbody>
+                </table>
             </div>
         <?php endif; ?>
     </div>

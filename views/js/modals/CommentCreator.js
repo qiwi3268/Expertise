@@ -169,7 +169,6 @@ class CommentCreator {
 
       let files_column = document.createElement('TD');
       files_column.setAttribute('rowspan', '2');
-      files_column.classList.add('comments-table__files');
       data_row.appendChild(files_column);
 
       let files_block = document.createElement('DIV');

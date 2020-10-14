@@ -146,21 +146,6 @@
 
 }
 
-td.comments-table__row[data-criticality='1'] {
-   /*border-left: 2px solid #65B277;*/
-   border-left: 2px solid #87c596;
-}
-
-td.comments-table__row[data-criticality='2'] {
-   /*border-left: 2px solid #498BD6;*/
-   border-left: 2px solid #93b0d1;
-}
-
-td.comments-table__row[data-criticality='3'] {
-   /*border-left: 2px solid #E24C4C;*/
-   border-left: 2px solid #E28383;
-}
-
 
 
 

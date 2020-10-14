@@ -144,8 +144,8 @@
 <div id="alert_overlay" class="alert-overlay"></div>
 <div id="alert_modal" class="alert-modal modal">
     <div class="alert-modal__info">
-        <i class="alert-modal__icon fas fa-check"></i>
-        <span class="alert-modal__text">Удалить замечание</span>
+        <i class="alert-modal__icon warning fas fa-exclamation"></i>
+        <span class="alert-modal__text">Удалить замечание?</span>
     </div>
     <div class="alert-modal__actions">
         <div id="alert_confirm" class="alert-modal__button application-button">Удалить</div>

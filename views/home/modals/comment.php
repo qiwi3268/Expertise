@@ -125,7 +125,7 @@
                                         </div>
                                         <div class="files__state"></div>
                                         <div class="files__actions">
-                                            <i class="files__unload fas fa-download"></i>
+                                            <i class="files__unload fas fa-angle-double-down"></i>
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
@@ -140,15 +140,3 @@
 
 </div>
 
-
-<div class="alert-overlay"></div>
-<div class="modal alert-modal" data-name="delete_comment">
-    <div class="alert-modal__info">
-        <i class="alert-modal__icon warning fas fa-exclamation"></i>
-        <span class="alert-modal__text">Удалить замечание?</span>
-    </div>
-    <div class="alert-modal__actions">
-        <span class="save-modal__close application-button">Удалить</span>
-        <span class="save-modal__link application-button">Отмена</span>
-    </div>
-</div>
