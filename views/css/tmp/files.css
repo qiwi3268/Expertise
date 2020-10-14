@@ -162,6 +162,10 @@
    margin: 0px 3px 0px 0px;
 }
 
+.files__state.short .files__state-icon {
+   margin: unset;
+}
+
 .files[data-depth='0'] > .files__item {
    padding-left: 10px;
 }

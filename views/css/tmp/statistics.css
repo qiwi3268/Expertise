@@ -8,6 +8,10 @@
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
    overflow: hidden;
+   width: 25%;
+}
+
+.statistics__card:first-child {
    width: 50%;
 }
 
@@ -20,10 +24,10 @@
 }
 
 .statistics__diagram {
-   padding: 15px 50px 5px;
+   padding: 15px 5px 5px;
 }
 
-.statistics__card:first-child {
+.statistics__card:not(:last-child) {
    margin: 0px 10px 0px 0px;
 }
 
@@ -82,6 +86,10 @@
 }
 
 
+.diagram[data-col_width="30"] .diagram__col {
+   width: 30px;
+}
+
 .diagram__row {
    /*width: 50px;*/
    flex-grow: 1;
@@ -104,8 +112,14 @@
    background-color: #E28383;
 }
 
+.diagram__col[data-color="yellow"] .diagram__row.filled {
+   background-color: #FDDD7E;
+}
 
 
+.diagram__col[data-color="purple"] .diagram__row.filled {
+   background-color: #C3A3FF;
+}
 
 
 

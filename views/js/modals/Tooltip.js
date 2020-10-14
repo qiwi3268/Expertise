@@ -25,11 +25,12 @@ class Tooltip {
       this.setContent(this.target);
       this.target.appendChild(this.element);
       this.element.classList.add('tooltip', 'active');
-      // this.element.style.top = this.target.offsetHeight / 2 - this.element.offsetHeight + 'px';
+
+      this.element.style.top = this.target.offsetHeight / 2 - this.element.offsetHeight + 'px';
       // this.element.style.top = 0;
 
       // this.element.style.left = this.target.offsetWidth + 10 + 'px';
-      let coordinates = this.target.getBoundingClientRect();
+      // let coordinates = this.target.getBoundingClientRect();
 
       // console.log(coordinates);
       // console.log(this.target.clientWidth);
@@ -42,8 +43,8 @@ class Tooltip {
 
       // console.log(this.element.clientWidth);
 
-      this.element.style.left = coordinates.left + coordinates.width + 7 + "px";
-      this.element.style.top = coordinates.top + "px";
+      // this.element.style.left = coordinates.left + coordinates.width + 7 + "px";
+      // this.element.style.top = coordinates.top + "px";
 
 
       this.target.addEventListener('mouseleave', () => this.close(), { once: true });
