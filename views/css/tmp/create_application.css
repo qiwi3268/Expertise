@@ -441,6 +441,11 @@ textarea.form-field__input.invalid {
    margin: 0px 10px 0px 0px;
 }
 
+.alert-modal__icon.warning {
+   color: #bd4949;
+}
+
+
 .alert-modal__actions {
    display: flex;
    padding: 10px 0px 0px;

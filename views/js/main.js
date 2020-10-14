@@ -24,7 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
    // todo вынести
-   handleAlertModal();
+   let alert_modal = document.querySelector('.save-modal');
+   if (alert_modal) {
+      handleAlertModal();
+   }
 
 
 });

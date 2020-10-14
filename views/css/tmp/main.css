@@ -226,16 +226,16 @@ textarea.form-field__input.invalid {
    transition: 0.3s all;
 }
 
-.alert-modal {
+/*.alert-modal {
    flex-direction: row;
    align-items: center;
    justify-content: flex-start;
-}
+}*/
 
 .modal-overlay,
 .file-overlay,
 .save-overlay,
-.alert_overlay,
+.alert-overlay,
 .sign-overlay,
 .error-overlay,
 .comment-overlay {
@@ -258,7 +258,7 @@ textarea.form-field__input.invalid {
 .file-overlay.active,
 .modal__close.active,
 .save-overlay.active,
-.alert_overlay.active,
+.alert-overlay.active,
 .sign-overlay.active,
 .error-overlay.active,
 .comment-overlay.active {

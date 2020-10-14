@@ -210,6 +210,10 @@ class CommentCreator {
       let alert_modal = document.getElementById('alert_modal');
       let alert_overlay = document.getElementById('alert_overlay');
 
+      console.log(alert_modal);
+      console.log(alert_overlay);
+
+
       alert_modal.classList.add('active');
       alert_overlay.classList.add('active');
 

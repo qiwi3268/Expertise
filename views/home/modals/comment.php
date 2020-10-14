@@ -144,7 +144,7 @@
 <div class="alert-overlay"></div>
 <div class="modal alert-modal" data-name="delete_comment">
     <div class="alert-modal__info">
-        <i class="alert-modal__icon fas fa-check"></i>
+        <i class="alert-modal__icon warning fas fa-exclamation"></i>
         <span class="alert-modal__text">Удалить замечание?</span>
     </div>
     <div class="alert-modal__actions">
