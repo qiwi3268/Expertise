@@ -108,8 +108,9 @@ class SignView {
 
       this.addFileElement(ge_file);
 
-      if (ge_file.element.dataset.validate_results) {
-         this.fillSignsInfo(ge_file.element.dataset.validate_results);
+      let validate_results = ge_file.getValidateResults();
+      if (validate_results) {
+         this.fillSignsInfo(validate_results);
       }
 
    }
@@ -211,11 +212,11 @@ class SignView {
     * @param {GeFile} ge_file - файл, для которого отображается статус подписания
     */
    static validateFileField (ge_file) {
-      let results_json = ge_file.element.dataset.validate_results;
+      let validate_results = ge_file.getValidateResults();
       let sign_state = 'not_signed';
 
-      if (results_json) {
-         let results = JSON.parse(results_json);
+      if (validate_results) {
+         let results = JSON.parse(validate_results);
 
          for (let result of results) {
             if (result.signature_verify.result && result.certificate_verify.result) {

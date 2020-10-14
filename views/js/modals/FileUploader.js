@@ -375,7 +375,8 @@ class FileUploader {
 
             if (validate_results) {
 
-               ge_file.element.dataset.validate_results = JSON.stringify(validate_results);
+               // ge_file.element.dataset.validate_results = JSON.stringify(validate_results);
+               ge_file.setValidateResults(JSON.stringify(validate_results));
                ge_file.element.dataset.is_internal = 'true';
                SignView.validateFileField(ge_file);
 

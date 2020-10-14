@@ -472,7 +472,8 @@ class SignHandler extends SignView{
 
       this.ge_file.id_sign = id_sign;
       this.ge_file.element.dataset.id_sign = id_sign;
-      this.ge_file.element.dataset.validate_results = results_json;
+      this.ge_file.setValidateResults(results_json);
+      // this.ge_file.element.dataset.validate_results = results_json;
 
       // Добавляем статус подписания в поле с файлом
       SignView.validateFileField(this.ge_file);
@@ -595,14 +596,15 @@ class SignHandler extends SignView{
       this.ge_file = ge_file;
       this.addFileElement(ge_file);
 
-      if (!ge_file.element.dataset.validate_results) {
+      let validate_results = ge_file.getValidateResults();
+      if (!validate_results) {
 
          this.create_sign_btn.dataset.active = 'true';
          this.upload_sign_btn.dataset.active = 'true';
 
       } else {
 
-         this.fillSignsInfo(ge_file.element.dataset.validate_results);
+         this.fillSignsInfo(validate_results);
 
          if (ge_file.element.dataset.is_internal !== 'true') {
             this.delete_sign_btn.dataset.active = 'true';

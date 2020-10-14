@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
+   FileField.validate_results_storage = new Map();
+
+   console.log(FileField.validate_results_storage);
+
    let file_blocks = document.querySelectorAll('.files');
    file_blocks.forEach(block => {
 
@@ -22,29 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
  * Представляет собой поле для файла, либо блок с документацией
  */
 class FileField {
-
-   static validate_results_storage = new Map();
-
-   getValidateResult () {
-      let validate_results;
-
-      if (this.element.hasAttribute('data-validate_results')) {
-
-         validate_results = this.element.dataset.validate_results;
-
-      } else if (1) {
-
-      }
-
-      // let validate_result = this.validate_results_storage.get(parseInt(file_id));
-
-      // if ()
-
-      // if (this.validate_results_storage.has(parseInt(file_id))) {
-      //    validate_result = this.validate_results_storage.get(parseInt(file_id));
-      // } else if ()
-
-   }
 
    /**
     * Поля с файлами
@@ -213,6 +194,36 @@ class GeFile {
     */
    id_structure_node;
 
+
+   static validate_results_storage;
+
+   getValidateResults () {
+      let validate_results;
+
+      console.log(this.id);
+      console.log(FileField.validate_results_storage);
+
+      if (this.element.hasAttribute('data-validate_results')) {
+
+         validate_results = this.element.dataset.validate_results;
+         this.setValidateResults(validate_results);
+         this.element.removeAttribute('data-validate_results');
+
+      } else if (FileField.validate_results_storage.has(this.id)) {
+         validate_results = FileField.validate_results_storage.get(this.id);
+      } else {
+         validate_results = '';
+      }
+
+      return validate_results;
+   }
+
+   setValidateResults (validate_results) {
+      if (!GeFile.validate_results_storage.has(this.id)) {
+         GeFile.validate_results_storage.set(this.id, validate_results);
+      }
+   }
+
    /**
     * Создает объект загруженного на страницу файла
     *
@@ -220,6 +231,8 @@ class GeFile {
     * @param {HTMLElement} files_block - файловый блок, к которому относится файл
     */
    constructor (file_element, files_block) {
+      console.log(FileField.validate_results_storage);
+
       this.element = file_element;
       this.id = parseInt(this.element.dataset.id);
 

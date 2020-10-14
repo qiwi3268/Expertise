@@ -1,6 +1,7 @@
 .statistic {
-   display: flex;
    margin: 0px 0px 10px 0px;
+   display: grid;
+   grid-template-columns: 2fr 1fr 1fr;
 }
 
 .statistic__card {
@@ -8,11 +9,13 @@
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
    overflow: hidden;
-   width: 25%;
+   /*width: 25%;*/
+
+
 }
 
 .statistic__card:first-child {
-   width: 50%;
+   /*width: 50%;*/
 }
 
 .statistic__header {
@@ -100,24 +103,23 @@
    border-radius: 3px 3px 0px 0px;
 }
 
-.diagram__col[data-color="green"] .diagram__row.filled {
+.diagram__col[data-color="green"] .diagram__row[data-filled='1'] {
    background-color: #87c596;
 }
 
-.diagram__col[data-color="blue"] .diagram__row.filled {
+.diagram__col[data-color="blue"] .diagram__row[data-filled='1'] {
    background-color: #93b0d1;
 }
 
-.diagram__col[data-color="red"] .diagram__row.filled {
+.diagram__col[data-color="red"] .diagram__row[data-filled='1'] {
    background-color: #E28383;
 }
 
-.diagram__col[data-color="yellow"] .diagram__row.filled {
+.diagram__col[data-color="yellow"] .diagram__row[data-filled='1'] {
    background-color: #FDDD7E;
 }
 
-
-.diagram__col[data-color="purple"] .diagram__row.filled {
+.diagram__col[data-color="purple"] .diagram__row[data-filled='1'] {
    background-color: #C3A3FF;
 }
 
