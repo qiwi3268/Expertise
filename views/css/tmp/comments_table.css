@@ -50,9 +50,8 @@
    background-color: #F8F5F5;
 }*/
 
-.comments-table__header {
-   border-bottom: 2px solid #93b0d1;
-}
+
+
 
 .comments-table__criticality {
    text-align: center;
@@ -141,22 +140,4 @@ td.comments-table__files .files__icon {
    background-color: #FCF6F6;
 }
 
-/*.comments-table__text:before {
-   content: '*';
-   color: #db5151;
-}*/
 
-td.comments-table__criticality-border {
-   /*border-left: 2px solid #498BD6;*/
-   border-left: 2px solid #93b0d1;
-}
-
-td.comments-table__criticality-border.red {
-   /*border-left: 2px solid #E24C4C;*/
-   border-left: 2px solid #E28383;
-}
-
-td.comments-table__criticality-border.green {
-   /*border-left: 2px solid #65B277;*/
-   border-left: 2px solid #87c596;
-}

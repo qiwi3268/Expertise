@@ -23,6 +23,29 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 class FileField {
 
+   static validate_results_storage = new Map();
+
+   getValidateResult () {
+      let validate_results;
+
+      if (this.element.hasAttribute('data-validate_results')) {
+
+         validate_results = this.element.dataset.validate_results;
+
+      } else if (1) {
+
+      }
+
+      // let validate_result = this.validate_results_storage.get(parseInt(file_id));
+
+      // if ()
+
+      // if (this.validate_results_storage.has(parseInt(file_id))) {
+      //    validate_result = this.validate_results_storage.get(parseInt(file_id));
+      // } else if ()
+
+   }
+
    /**
     * Поля с файлами
     *
@@ -445,7 +468,6 @@ class GeFile {
       this.element.appendChild(this.actions);
 
       let unload_button = document.createElement('I');
-      // unload_button.classList.add('files__unload', 'fas', 'fa-download');
       unload_button.classList.add('files__unload', 'fas', 'fa-angle-double-down');
       this.actions.appendChild(unload_button);
 

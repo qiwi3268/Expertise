@@ -1,9 +1,9 @@
-.statistics {
+.statistic {
    display: flex;
    margin: 0px 0px 10px 0px;
 }
 
-.statistics__card {
+.statistic__card {
    background-color: #ffffff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
@@ -11,11 +11,11 @@
    width: 25%;
 }
 
-.statistics__card:first-child {
+.statistic__card:first-child {
    width: 50%;
 }
 
-.statistics__header {
+.statistic__header {
    padding: 10px;
    background-color: #f6f8fa;
    border-bottom: 2px solid #93b0d1;
@@ -23,11 +23,11 @@
    font-weight: 700;
 }
 
-.statistics__diagram {
+.statistic__diagram {
    padding: 15px 5px 5px;
 }
 
-.statistics__card:not(:last-child) {
+.statistic__card:not(:last-child) {
    margin: 0px 10px 0px 0px;
 }
 

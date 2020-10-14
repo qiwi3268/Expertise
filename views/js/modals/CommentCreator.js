@@ -78,8 +78,6 @@ class CommentCreator {
          let field_inputs = this.modal.querySelectorAll('.field-result');
          field_inputs.forEach(input => comment[input.name] = input.value || null);
 
-         console.log(comment);
-
          comment.files = Array.from(this.marked_files.keys());
          comment.criticality_name = this.criticality_name.innerHTML;
 
@@ -93,7 +91,6 @@ class CommentCreator {
          this.overlay.classList.remove('active');
       });
 
-      // this.handleOverlay();
       this.handleFiles();
    }
 
@@ -206,12 +203,11 @@ class CommentCreator {
       this.table_body.appendChild(action_row);
    }
 
+
+   // todo убрать
    showAlert(comment_hash, data_row, action_row) {
       let alert_modal = document.getElementById('alert_modal');
       let alert_overlay = document.getElementById('alert_overlay');
-
-      console.log(alert_modal);
-      console.log(alert_overlay);
 
 
       alert_modal.classList.add('active');
@@ -226,12 +222,15 @@ class CommentCreator {
          if (!this.table_body.querySelector('tr')) {
             this.comments_table.dataset.active = 'false';
          }
+
+         alert_modal.classList.remove('active');
+         alert_overlay.classList.remove('active');
       });
 
       let cancel_button = document.getElementById('alert_cancel');
       cancel_button.addEventListener('click', () => {
-         alert_modal.modal.classList.remove('active');
-         alert_overlay.overlay.classList.remove('active');
+         alert_modal.classList.remove('active');
+         alert_overlay.classList.remove('active');
       });
    }
 

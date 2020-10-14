@@ -54,6 +54,10 @@
    flex-direction: column;
 }
 
+.descriptive-part__comments .comments-table__header {
+   border-bottom: 2px solid #93b0d1;
+}
+
 .files__checkbox {
    margin: 0px 10px 0px 0px;
 }
