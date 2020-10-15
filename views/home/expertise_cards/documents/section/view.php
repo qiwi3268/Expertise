@@ -36,7 +36,6 @@
     </div>
     
     <div class="view-section__statistic statistic">
-    
         <div class="statistic__card">
             <div class="statistic__header">Критичность всех замечаний</div>
             <div class="diagram statistic__diagram" data-col_width="30">
@@ -78,48 +77,47 @@
         </div>
         <div class="statistic__card">
             <div class="statistic__header">Критичность активных замечаний</div>
-<!--            <div class="diagram statistic__diagram" data-col_width="30">-->
-<!--                <div class="diagram__body">-->
-<!--                    <div class="diagram__col grid" data-color="green" style="grid-template-rows: 2fr 5fr;">-->
-<!--                        <div class="diagram__row"></div>-->
-<!--                        <div class="diagram__row" data-filled="1"></div>-->
-<!--                    </div>-->
-<!--                    <div class="diagram__col" data-color="blue">-->
-<!--                        <div class="diagram__row"></div>-->
-<!--                        <div class="diagram__row" data-filled="1"></div>-->
-<!--                        <div class="diagram__row" data-filled="1"></div>-->
-<!--                        <div class="diagram__row" data-filled="1"></div>-->
-<!--                        <div class="diagram__row" data-filled="1"></div>-->
-<!--                        <div class="diagram__row" data-filled="1"></div>-->
-<!--                    </div>-->
-<!--                    <div class="diagram__col" data-color="red">-->
-<!--                        <div class="diagram__row"></div>-->
-<!--                        <div class="diagram__row"></div>-->
-<!--                        <div class="diagram__row"></div>-->
-<!--                        <div class="diagram__row"></div>-->
-<!--                        <div class="diagram__row"></div>-->
-<!--                        <div class="diagram__row" data-filled="1"></div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="diagram__footer">-->
-<!--                    <div class="diagram__col">-->
-<!--                        <span class="diagram__number">2</span>-->
-<!--                        <span class="diagram__label">Техническая ошибка</span>-->
-<!--                    </div>-->
-<!--                    <div class="diagram__col">-->
-<!--                        <span class="diagram__number">5</span>-->
-<!--                        <span class="diagram__label">Критическая ошибка</span>-->
-<!--                    </div>-->
-<!--                    <div class="diagram__col">-->
-<!--                        <span class="diagram__number">1</span>-->
-<!--                        <span class="diagram__label">Неустранимая ошибка</span>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div class="diagram statistic__diagram" data-col_width="30">
+                <div class="diagram__body">
+                    <div class="diagram__col"
+                         data-color="green"
+                         style="grid-template-rows: 30fr 70fr;">
+                        <div class="diagram__row"></div>
+                        <div class="diagram__row filled"></div>
+                    </div>
+                    <div class="diagram__col"
+                         data-color="blue"
+                         style="grid-template-rows: 80fr 20fr;">
+                        <div class="diagram__row"></div>
+                        <div class="diagram__row filled"></div>
+                    </div>
+                    <div class="diagram__col"
+                         data-color="red"
+                         style="grid-template-rows: 90fr 10fr;">
+                        <div class="diagram__row"></div>
+                        <div class="diagram__row filled"></div>
+                    </div>
+                </div>
+                <div class="diagram__footer">
+                    <div class="diagram__col">
+                        <span class="diagram__number">70</span>
+                        <span class="diagram__label">Техническая ошибка</span>
+                    </div>
+                    <div class="diagram__col">
+                        <span class="diagram__number">20</span>
+                        <span class="diagram__label">Критическая ошибка</span>
+                    </div>
+                    <div class="diagram__col">
+                        <span class="diagram__number">10</span>
+                        <span class="diagram__label">Неустранимая ошибка</span>
+                    </div>
+                </div>
+            </div>
         </div>
         
     </div>
     
+    <!--
     <div class="view-section__card card">
         <div class="view-section__header card-expand">
             <div class="view-section__label">
@@ -269,6 +267,7 @@
             </table>
         </div>
     </div>
+    -->
     
     <div class="view-section__card card">
         <div class="view-section__header card-expand">
@@ -301,7 +300,7 @@
                                 <td><?= $comment['normative_document'] ?></td>
                                     <td>
                                         <?php if (!empty($comment['files'])): ?>
-                                            <div class="documentation__files files filled">
+                                            <div class="documentation__files files filled" data-id_file_field>
                                                 <?php foreach ($comment['files'] as $file): ?>
                                                     <div class="files__item"
                                                          data-read_only="true"
@@ -338,6 +337,7 @@
         <?php endif; ?>
     </div>
     
+    <!--
     <div class="view-section__card card">
         <div class="view-section__header card-expand">
             <div class="view-section__label">
@@ -488,12 +488,15 @@
             </table>
         </div>
     </div>
+    -->
     
     <?php foreach ($_VT->getValue('descriptions') as $author => $description): ?>
         <?php if (!empty($description)): ?>
-            <div class="view-section__card">
-                <div class="view-section__header"><?= $author ?></div>
-                <div class="view-section__body">
+            <div class="view-section__card card">
+                <div class="view-section__header card-expand">
+                    <div class="view-section__title"><?= $author ?></div>
+                </div>
+                <div class="view-section__body card-body expanded">
                     <div class="view-section__description"><?= $description ?></div>
                 </div>
             </div>

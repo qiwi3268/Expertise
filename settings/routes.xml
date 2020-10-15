@@ -345,6 +345,7 @@
                     <file name="actions" />
                 </dir>
                 <dir path="/views/home/modals/" ext=".php">
+                    <file name="view_sign" />
                     <file name="error" />
                 </dir>
                 <dir path="/views/home/" ext=".php">
