@@ -163,7 +163,7 @@ class SignHandler extends SignView{
       ge_file.element.removeAttribute('data-id_sign');
       ge_file.element.removeAttribute('data-validate_results');
 
-      GeFile.setSignState(ge_file, 'not_signed');
+      ge_file.setSignState('not_signed');
    }
 
    /**
@@ -476,7 +476,7 @@ class SignHandler extends SignView{
       // this.ge_file.element.dataset.validate_results = results_json;
 
       // Добавляем статус подписания в поле с файлом
-      SignView.validateFileField(this.ge_file);
+      this.ge_file.validateFileField();
 
       FileNeeds.putSignToSave(this.ge_file);
 

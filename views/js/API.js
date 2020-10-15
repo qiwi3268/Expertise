@@ -1,5 +1,7 @@
 class API {
 
+   static is_in_progress = false;
+
    static uploadFiles (files, mapping_1, mapping_2, id_structure_node = null, upload_callback = null) {
 
       return new Promise((resolve, reject) => {
@@ -313,31 +315,40 @@ class API {
 
       return new Promise((resolve, reject) => {
 
-         XHR(
-            'post',
-            '/home/API_action_executor',
-            form_data,
-            null,
-            'json'
-         )
-            .then(response => {
+         if (!this.is_in_progress) {
+            this.is_in_progress = true;
 
-               if (response.result !== undefined) {
-                  if (response.result === 19) {
-                     resolve(response);
-                  } else if (response.error_message !== undefined) {
-                     reject(response.error_message);
+            XHR(
+               'post',
+               '/home/API_action_executor',
+               form_data,
+               null,
+               'json'
+            )
+               .then(response => {
+
+                  this.is_in_progress = false;
+
+                  if (response.result !== undefined) {
+                     if (response.result === 19) {
+                        resolve(response);
+                     } else if (response.error_message !== undefined) {
+                        reject(response.error_message);
+                     } else {
+                        reject(response.message);
+                     }
                   } else {
-                     reject(response.message);
+                     reject('Отсутствует результат выполнения действия');
                   }
-               } else {
-                  reject('Отсутствует результат выполнения действия');
-               }
 
-            })
-            .catch(exc => {
-               reject(exc);
-            });
+               })
+               .catch(exc => {
+                  this.is_in_progress = false;
+                  reject(exc);
+               });
+         } else {
+            reject('В настоящий момент выполняется действие');
+         }
 
       });
 

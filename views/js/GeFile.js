@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Добавляем результаты проверок подписей и обработку кнопок действий
       files.forEach(file_element => {
          let ge_file = new GeFile(file_element, block);
-         SignView.validateFileField(ge_file);
+         ge_file.validateFileField();
          ge_file.handleActionButtons();
       });
    });
@@ -393,7 +393,7 @@ class GeFile {
       let sign_state = document.createElement('DIV');
       sign_state.classList.add('files__state');
       this.element.appendChild(sign_state);
-      GeFile.setSignState(this, 'checking');
+      this.setSignState('checking');
       this.spinStateIcon(this);
    }
 
@@ -421,18 +421,17 @@ class GeFile {
    /**
     * Устанавливает статус подписи файла
     *
-    * @param {GeFile} ge_file - файл, которому устанавливается статус подписи
     * @param {string} state - строковое значение статуса подписи
     */
-   static setSignState(ge_file, state) {
-      let file_state = ge_file.element.querySelector('.files__state');
+   setSignState(state) {
+      let file_state = this.element.querySelector('.files__state');
       file_state.innerHTML = '';
 
       let state_icon = document.createElement('I');
       state_icon.classList.add('files__state-icon', 'fas');
       file_state.appendChild(state_icon);
 
-      ge_file.element.dataset.state = state;
+      this.element.dataset.state = state;
 
       if (file_state.dataset.type !== 'short') {
          let state_text = document.createElement('SPAN');
@@ -523,6 +522,33 @@ class GeFile {
       }
 
       return icon_class;
+   }
+
+   /**
+    * Отображает состояние проверки подписи в поле с файлом
+    *
+    */
+   validateFileField () {
+      let validate_results = this.getValidateResults();
+      let sign_state = 'not_signed';
+
+      if (validate_results) {
+         let results = JSON.parse(validate_results);
+
+         for (let result of results) {
+            if (result.signature_verify.result && result.certificate_verify.result) {
+               sign_state = 'valid';
+            } else if (result.signature_verify.result) {
+               sign_state = 'warning';
+               break;
+            } else {
+               sign_state = 'invalid';
+               break;
+            }
+         }
+
+      }
+      this.setSignState(sign_state);
    }
 
 }

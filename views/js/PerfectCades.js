@@ -23,7 +23,7 @@ class GeCades {
                }
 
 
-               let CurrentPluginVersion
+               let CurrentPluginVersion;
                try {
                   CurrentPluginVersion = yield oAbout.PluginVersion;  // Версия плагина
                } catch (exc) {
@@ -39,7 +39,7 @@ class GeCades {
                   // reject('Отсутствует криптопровайдер');
                }
 
-               let CurrentPluginVersion_string
+               let CurrentPluginVersion_string;
 
                try {
                   CurrentPluginVersion_string = (yield CurrentPluginVersion.toString());
@@ -153,7 +153,7 @@ class GeCades {
 
                let valid_from_date; // Дата выдачи
                let valid_to_date;   // Срок действия
-               let subject_name;   // Описание сертификата
+               let subject_name;    // Владелец
 
                try {
 

@@ -184,7 +184,7 @@ class SignView {
     * @param {boolean|null} state - статус проверки подписи или сертификата
     * @returns {HTMLElement} элемент строки блока с информацией о подписи
     */
-   createInfoRow (label, text, state = null) {
+   createInfoRow (label, text, state= null) {
       let row = document.createElement('DIV');
       row.classList.add('sign-modal__sign-row');
 
@@ -196,7 +196,7 @@ class SignView {
       text_span.classList.add('sign-modal__text');
       text_span.innerHTML = text;
 
-      if (state !== null) {
+      if (state) {
          text_span.dataset.state = state;
       }
 
@@ -206,32 +206,5 @@ class SignView {
       return row;
    }
 
-   /**
-    * Отображает состояние проверки подписи в поле с файлом
-    *
-    * @param {GeFile} ge_file - файл, для которого отображается статус подписания
-    */
-   static validateFileField (ge_file) {
-      let validate_results = ge_file.getValidateResults();
-      let sign_state = 'not_signed';
-
-      if (validate_results) {
-         let results = JSON.parse(validate_results);
-
-         for (let result of results) {
-            if (result.signature_verify.result && result.certificate_verify.result) {
-               sign_state = 'valid';
-            } else if (result.signature_verify.result) {
-               sign_state = 'warning';
-               break;
-            } else {
-               sign_state = 'invalid';
-               break;
-            }
-         }
-
-      }
-      GeFile.setSignState(ge_file, sign_state);
-   }
 }
 
