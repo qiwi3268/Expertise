@@ -7,10 +7,77 @@
 
 <div class="view-section">
     
+    <div class="statistic__card full">
+        <div class="statistic__panel-header">Замечания по типу</div>
+        <div class="panel statistic__panel" data-col_width="50">
+            <div class="panel__body">
+                <div class="panel__item">
+                    <div class="panel__number">120</div>
+                    <div class="panel__label">Всего</div>
+                </div>
+                <div class="panel__item">
+                    <div class="panel__number">40</div>
+                    <div class="panel__label">Активные</div>
+                </div>
+                <div class="panel__item">
+                    <div class="panel__number">80</div>
+                    <div class="panel__label">Снятые</div>
+                </div>
+                <div class="panel__item">
+                    <div class="panel__number">15</div>
+                    <div class="panel__label">Рассмотрение эксперта</div>
+                </div>
+                <div class="panel__item">
+                    <div class="panel__number">5</div>
+                    <div class="panel__label">Сторона заявителя</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <div class="view-section__statistic statistic">
+    
+<!--        <div class="statistic__card">-->
+<!--            <div class="statistic__header">Замечания по типу</div>-->
+<!--            <div class="squares statistic__diagram" data-col_width="50">-->
+<!--                <div class="squares__body">-->
+<!--                    <div class="squares__item" data-color="blue">-->
+<!--                        <div class="squares__text">10</div>-->
+<!--                    </div>-->
+<!--                    <div class="squares__item" data-color="blue">-->
+<!--                        <div class="squares__text">2</div>-->
+<!--                    </div>-->
+<!--                    <div class="squares__item" data-color="blue">-->
+<!--                        <div class="squares__text">5</div>-->
+<!--                    </div>-->
+<!--                    <div class="squares__item" data-color="blue">-->
+<!--                        <div class="squares__text">1</div>-->
+<!--                    </div>-->
+<!--                    <div class="squares__item" data-color="blue">-->
+<!--                        <div class="squares__text">9</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="diagram__footer">-->
+<!--                    <div class="diagram__col">-->
+<!--                        <span class="diagram__label">Всего</span>-->
+<!--                    </div>-->
+<!--                    <div class="diagram__col">-->
+<!--                        <span class="diagram__label">Активные</span>-->
+<!--                    </div>-->
+<!--                    <div class="diagram__col">-->
+<!--                        <span class="diagram__label">Снятые</span>-->
+<!--                    </div>-->
+<!--                    <div class="diagram__col">-->
+<!--                        <span class="diagram__label">Рассмотрение эксперта</span>-->
+<!--                    </div>-->
+<!--                    <div class="diagram__col">-->
+<!--                        <span class="diagram__label">Сторона заявителя</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
         
-        <div class="statistic__card">
-            
+<!--        <div class="statistic__card">
             <div class="statistic__header">Замечания по типу</div>
             <div class="diagram statistic__diagram" data-col_width="30">
                 <div class="diagram__body">
@@ -98,7 +165,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         
         <div class="statistic__card">
             <div class="statistic__header">Критичность всех замечаний</div>
