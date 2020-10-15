@@ -110,6 +110,12 @@ class CommentsManager
      */
     private string $attachedFileTable;
 
+    /**
+     * Таблица с файлами документации в зависимости от вида объекта
+     *
+     */
+    private string $documentationTable;
+
 
     /**
      * Конструктор класса
@@ -123,6 +129,7 @@ class CommentsManager
      * @throws SelfEx
      * @throws MiscValidatorEx выбрасывается в методе {@see \Lib\Singles\PrimitiveValidator::validateAssociativeArray()}
      * @throws TablesEx
+     * @throws DataBaseEx
      *
      */
     public function __construct(
@@ -149,8 +156,6 @@ class CommentsManager
                 throw new SelfEx("'files' имеет тип: '{$type}', в то время как должен быть 'array'", 1);
             }
 
-            $commentCriticality = new SingleMisc($comment['comment_criticality'], '\Tables\Miscs\comment_criticality');
-
             try {
 
                 $primitiveValidator->validateAssociativeArray(
@@ -162,7 +167,7 @@ class CommentsManager
                         'normative_document'  => [[$primitiveValidator, 'validateNoEmptyString']],
                         'no_files'            => [[$primitiveValidator, 'validateSomeInclusions', null, '1']],
                         'note'                => ['is_null', [$primitiveValidator, 'validateNoEmptyString']],
-                        'comment_criticality' => [[$commentCriticality, 'validate']],
+                        'comment_criticality' => [[$primitiveValidator, 'validateNoEmptyString']],
                         'files'               => [[$primitiveValidator, 'validateArrayValues', 'is_numeric']]
                     ]
                 );
@@ -171,16 +176,20 @@ class CommentsManager
                 throw new SelfEx("Произошла ошибка при валидации массива с замечаниями: {$e->getMessage()}", 2);
             }
 
+            $commentCriticality = new SingleMisc($comment['comment_criticality'], '\Tables\Miscs\comment_criticality');
+            $commentCriticality->validate();
+
             if (!$commentCriticality->isExist()) {
 
                 throw new SelfEx("Справочник критичности замечания является обязательным к заполнению", 3);
             }
 
-            if (
-                $comment['no_files'] === '1'
-                && !empty($comment['files'])
-            ) {
+            if ($comment['no_files'] === '1' && !empty($comment['files'])) {
+
                 throw new SelfEx("Массив отмеченных файлов должен быть пустым при выбранной опции: 'Отметка файлов не требуется'", 4);
+            } elseif (is_null($comment['no_files']) && empty($comment['files'])) {
+
+                throw new SelfEx("Массив отмеченных файлов не должен быть пустым, если не выбрана опция: 'Отметка файлов не требуется'", 5);
             }
 
             if (is_null($comment['id'])) {
@@ -194,7 +203,7 @@ class CommentsManager
 
         if (!$primitiveValidatorBoolWrapper->checkUniquenessArrayValues($hashes)) {
 
-            throw new SelfEx("Присутствуют повторяющиеся hash'и замечаний", 5);
+            throw new SelfEx("Присутствуют повторяющиеся hash'и замечаний", 6);
         }
 
         $this->transaction = $transaction;
@@ -213,6 +222,7 @@ class CommentsManager
         $this->docCommentTable = $this->typeOfObjectTableLocator->getDocsComment();
         $this->responsibleType4Table = $this->typeOfObjectTableLocator->getResponsibleType4Comment();
         $this->attachedFileTable = $this->typeOfObjectTableLocator->getCommentAttachedFiles();
+        $this->documentationTable = $this->typeOfObjectTableLocator->getFilesDocumentation();
     }
 
 
@@ -249,6 +259,7 @@ class CommentsManager
      * @return $this
      * @throws TransactionEx
      * @throws ReflectionException
+     * @throws SelfEx
      */
     public function create(): self
     {
@@ -288,6 +299,9 @@ class CommentsManager
                 // Создание записи файлов
                 foreach ($comment['files'] as $fileId) {
 
+                    // Проверка существования файла
+                    $this->checkFileExist($fileId);
+
                     $this->transaction->add(
                         $this->attachedFileTable,
                         'create',
@@ -323,7 +337,7 @@ class CommentsManager
 
              // Проверка существования замечания в БД
             if (!$this->docCommentTable::checkExistById($commentId)) {
-                throw new SelfEx("Запись замечания, находящаяся во входном json'е с id: '{$commentId}', не существует в БД", 6);
+                throw new SelfEx("Запись замечания, находящаяся во входном json'е с id: '{$commentId}', не существует в БД", 8);
             }
 
             // Обновление всех полей в записи замечания
@@ -357,12 +371,15 @@ class CommentsManager
 
                 $this->transaction->add(
                     $this->attachedFileTable,
-                    'deleteByIdFile',
-                    [$fileId]
+                    'deleteByIdMainDocumentAndIdFile',
+                    [$commentId, $fileId]
                 );
             }
 
             foreach ($toCreate as $fileId) {
+
+                // Проверка существования файла
+                $this->checkFileExist($fileId);
 
                 $this->transaction->add(
                     $this->attachedFileTable,
@@ -406,7 +423,7 @@ class CommentsManager
         // Каждая запись из входного json'а должна существовать в полученной из выборке БД
         if (!empty($toCreate)) {
             $debug = implode(', ', $toCreate);
-            throw new SelfEx("Во входном json'e присутствуют замечания с id: '{$debug}', которых нет в БД", 7);
+            throw new SelfEx("Во входном json'e присутствуют замечания с id: '{$debug}', которых нет в БД", 9);
         }
 
         $commentDocumentType = DOCUMENT_TYPE_BY_TYPE_OF_OBJECT_ID['comment'][$this->typeOfObjectId];
@@ -437,5 +454,20 @@ class CommentsManager
             );
         }
         return $this;
+    }
+
+
+    /**
+     * Предназначен для проверки существования записи файла по его id
+     *
+     * @param int $fileId id файла
+     * @throws SelfEx
+     */
+    private function checkFileExist(int $fileId): void
+    {
+        if (!$this->documentationTable::checkExistById($fileId)) {
+
+            throw new SelfEx("Запись файла с id:'{$fileId}' не существует в таблице класса: '{$this->documentationTable}'", 7);
+        }
     }
 }

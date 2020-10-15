@@ -324,7 +324,7 @@ final class application implements Document, Existent, Responsible
 
         $query = "DELETE
                   FROM `doc_application`
-                  WHERE `id` IN ($condition)";
+                  WHERE `id` IN ({$condition})";
         SimpleQuery::set($query);
     }
 }

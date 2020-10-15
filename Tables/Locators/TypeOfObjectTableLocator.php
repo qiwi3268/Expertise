@@ -159,6 +159,25 @@ class TypeOfObjectTableLocator
      * в зависимости от вида объекта
      *
      * @return string
+     * {@see \Tables\Files\documentation_1}<br>
+     * или<br>
+     * {@see \Tables\Files\documentation_2}
+     */
+    public function getFilesDocumentation(): string
+    {
+        if ($this->typeOfObjectId == 1) {
+            return '\Tables\Files\documentation_1';
+        } else {
+            return '\Tables\Files\documentation_2';
+        }
+    }
+
+
+    /**
+     * Предназначен для получения названия класса таблицы
+     * в зависимости от вида объекта
+     *
+     * @return string
      * {@see \Tables\order_341\main_block_documentation_1}<br>
      * или<br>
      * {@see \Tables\order_341\main_block_documentation_2}

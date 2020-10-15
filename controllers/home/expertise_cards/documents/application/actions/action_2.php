@@ -8,7 +8,7 @@
 
 use Lib\Singles\VariableTransfer;
 use Lib\Singles\DocumentTreeHandler;
-use Lib\Singles\DocumentationFilesFacade;
+use Classes\Application\Files\Initialization\DocumentationFilesFacade;
 use Classes\Application\Actions\Miscs\Initialization\action_2 as MiscInitializer;
 use Tables\user;
 

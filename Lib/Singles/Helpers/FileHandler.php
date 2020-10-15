@@ -78,6 +78,34 @@ class FileHandler
 
 
     /**
+     * Предназначен для установки результатов валидации подписи с учетом повторяющихся файлов
+     *
+     * Передает методу {@see \Lib\Singles\Helpers\FileHandler::setValidateResultJSON()}
+     * только уникальные файлы, которым будет записано свойство <i>validate_results</i>
+     *
+     * @param array $files <i>ссылка</i> на массив с файлами
+     */
+    static public function calculateLinkValidateResultJSON(array &$files): void
+    {
+        $handleIds = [];
+        $links = [];
+
+        foreach ($files as &$file) {
+
+            $fileId = $file['id'];
+
+            if (!isset($handleIds[$fileId])) {
+
+                $handleIds[$fileId] = true;
+                $links[] = &$file;
+            }
+        }
+        unset($file);
+        self::setValidateResultJSON($links);
+    }
+
+
+    /**
      * Предназначен для установки человекопонятного размера файла в свойство <i>human_file_size</i>
      *
      * @param array $files <i>ссылка</i> на массив с файлами

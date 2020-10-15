@@ -1,10 +1,9 @@
 <?php
 
 
-use Lib\Files\Mappings\RequiredMappingsSetter;
 use Lib\Singles\VariableTransfer;
-use Lib\Singles\DocumentationFilesFacade;
-use Classes\Application\Files\Initialization\Initializer as FilesInitializer;
+use Classes\Application\Files\Initialization\DocumentationFilesFacade;
+use Classes\Application\Files\Initialization\FormFilesInitializer;
 use Tables\Docs\application;
 
 
@@ -34,12 +33,9 @@ foreach ($applicationAssoc as $property => $value) {
 
 
 // Сохраненные файлы анкеты (не включая документацию)
-$requiredMappings = new RequiredMappingsSetter();
-$requiredMappings->setMappingLevel1(1);
+$formFilesInitializer = new FormFilesInitializer(CURRENT_DOCUMENT_ID);
 
-$filesInitializer = new FilesInitializer($requiredMappings, CURRENT_DOCUMENT_ID);
-
-$needsFiles = $filesInitializer->getNeedsFilesWithSigns();
+$needsFiles = $formFilesInitializer->getNeedsFilesWithSigns();
 
 
 // Обработка файловых массивов
@@ -52,6 +48,8 @@ foreach ($needsFiles as &$mapping_level_2) {
     unset($files);
 }
 unset($mapping_level_2);
+
+vd($needsFiles);
 
 $VT->setValue('form_files', $needsFiles);
 

@@ -5,6 +5,8 @@ getAllAssoc                       индексный массив с ассоц�
 getAllAssocWhereActive
 getAllAssocWhereActiveByPageName
 getAllAssocFIOByIdSection         индексный массив с ассоциативными массивами ФИО по id раздела
+getAllAssocFileByIdsMainDocument  индексный массив с ассоциативными массивами прикрепленных
+                                  к замечанию файлов по массиву с id замечаниями
 getAssoc                          ассоциативный массив одной записи
 getAssocWhereActiveByPageName
 getAllSimple                      простой (индексный) массив
@@ -21,3 +23,6 @@ deleteAllByIdMainDocument
 
 checkExistById
 checkExistByIdWhereIdTypeOfObjectNN
+
+
+getCommentCriticalityGroupsByIdMainDocument операции, связанные с GROUP BY, в данном случае группировка по крптичности замечания

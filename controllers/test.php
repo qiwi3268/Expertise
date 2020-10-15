@@ -19,28 +19,39 @@ use Tables\Helpers\Helper;
 use Lib\DataBase\Transaction;
 use Tables\test;
 use Tables\Locators\DocumentTypeTableLocator;
-use Lib\Singles\DocumentationFilesFacade;
+use Classes\Application\Files\Initialization\DocumentationFilesFacade;
 use Lib\Miscs\Validation\SingleMisc;
 use Lib\Actions\ExecutionActionsResult;
 
-$db = [1, 2, 3, 4, 5];
-$js = [3, 4, 5, 6, 7];
+$result = [
+    'Всего' => [
+        'count' => 6,
+        'data'  => [
+            0 => 1,
+            1 => 1,
+            2 => 1,
+            3 => 1,
+            4 => 1,
+            5 => 1
+        ]
+    ],
+    'Активные' => [
+        'count' => 1,
+        'data'  => [
+            0 => 0,
+            1 => 0,
+            2 => 0,
+            3 => 0,
+            4 => 0,
+            5 => 1
+        ]
+    ]
+];
 
-list(
-    'delete' => $toDelete,
-    'create' => $toCreate
-    ) = calculateDeleteAndCreateIds($db, $js);
-
-if (!empty($toCreate)) {
-    $debug = implode(', ', $toCreate);
-    throw new Exception("Во входном json'e присутствуют замечания с id: '{$debug}', которых нет в БД", 7);
-}
-
-
-
-
-
-
+$a = new StatisticDiagram(1);
+$a->addColumn('test', 500);
+$b = $a->getDiagram();
+vd($b);
 
 
 

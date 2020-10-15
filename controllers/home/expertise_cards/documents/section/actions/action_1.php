@@ -9,7 +9,7 @@
 use Lib\Singles\VariableTransfer;
 use Lib\Miscs\Initialization\Initializer as MiscsInitializer;
 use Lib\Singles\DocumentTreeHandler;
-use Lib\Singles\DocumentationFilesFacade;
+use Classes\Application\Files\Initialization\DocumentationFilesFacade;
 
 
 $VT = VariableTransfer::getInstance();

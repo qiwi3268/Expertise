@@ -11,8 +11,10 @@ use Tables\CommonTraits\deleteById as deleteByIdTrait;
 /**
  * Реализует общие методы для таблиц прикрепленных файлов к замечанию
  *
- * <b>*</b> Для использования трейта необходимо, чтобы перед его включением было объявлено
- * статическое свойство <i>tableName</i> с соответствующим именем таблицы
+ * <b>*</b> Для использования трейта необходимо, чтобы перед его включением были объявлены
+ * статические свойства:
+ * - tableName с соответствующим именем таблицы
+ * - documentationTableName с именем таблицы, в которой находятся прикрепленные файлы
  *
  */
 trait AttachedFileTable
@@ -62,6 +64,25 @@ trait AttachedFileTable
 
 
     /**
+     * Предназначен для удаления записи из таблицы прикрепленных файлов к замечанию
+     * по id замечания и id файла
+     *
+     * @param int $id_main_document id главного документа
+     * @param int $id_file id файла
+     * @throws DataBaseEx
+     */
+    static public function deleteByIdMainDocumentAndIdFile(int $id_main_document, int $id_file): void
+    {
+        $table = self::$tableName;
+
+        $query = "DELETE
+                  FROM `{$table}`
+                  WHERE `id_main_document`=? AND `id_file`=?";
+        ParametrizedQuery::set($query, [$id_main_document, $id_file]);
+    }
+
+
+    /**
      * Предназначен для удаления всех записей из таблицы прикрепленных файлов по id замечания
      *
      * @param int $id_main_document id главного документа
@@ -94,6 +115,34 @@ trait AttachedFileTable
                   FROM `{$table}`
                   WHERE `id_main_document`=?";
         $result = ParametrizedQuery::getSimpleArray($query, [$id_main_document]);
+        return $result ? $result : null;
+    }
+
+
+    /**
+     * Предназначен для получения ассоциативных массивов прикрепленных файлов к замечанию
+     * по массиву с id замечаниями
+     *
+     * @param int[] $ids индексный массив с id замечаний
+     * @return array|null <b>array</b> индексный массив с ассоциативными массива внутри, если записи существуют<br>
+     * <b>null</b> в противном случае
+     * @throws DataBaseEx
+     */
+    static public function getAllAssocFileByIdsMainDocument(array $ids): ?array
+    {
+        $table = self::$tableName;
+        $documentationTable = self::$documentationTableName;
+
+        $condition = implode(',', array_fill(0, count($ids), '?'));
+
+        $query = "SELECT `{$documentationTable}`.*,
+	                     `{$table}`.`id_main_document` AS `id_comment`
+                  FROM `{$documentationTable}`
+                  JOIN `{$table}`
+                     ON (`{$documentationTable}`.`id`=`{$table}`.`id_file`)
+                  WHERE `{$table}`.`id_main_document` IN ({$condition})";
+
+        $result = ParametrizedQuery::getFetchAssoc($query, $ids);
         return $result ? $result : null;
     }
 

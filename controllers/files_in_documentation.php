@@ -3,7 +3,7 @@
 
 use Lib\Files\Mappings\RequiredMappingsSetter;
 use Lib\Singles\NodeStructure;
-use Classes\Application\Files\Initialization\Initializer;
+use Classes\Application\Files\Initialization\DocumentationFileInitializer;
 use Tables\Structures\documentation_1;
 use Tables\Structures\documentation_2;
 

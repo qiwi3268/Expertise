@@ -4,7 +4,10 @@
 namespace Tables\Docs\Traits;
 
 use Lib\Exceptions\DataBase as DataBaseEx;
+use Tables\Exceptions\Tables as TablesEx;
+
 use Lib\DataBase\ParametrizedQuery;
+use Lib\DataBase\SimpleQuery;
 use Tables\CommonTraits\deleteById as deleteByIdTrait;
 use Tables\Helpers\Helper as TableHelper;
 
@@ -13,8 +16,9 @@ use Tables\Helpers\Helper as TableHelper;
  * Реализует общие методы для таблиц документа "Замечание"
  *
  * <b>*</b> Для использования трейта необходимо, чтобы перед его включением были объявлены
- * статические свойства
+ * статические свойства:
  * - tableName с соответствующим именем таблицы
+ * - stageTableName с именем таблицы стадий для данного документа
  *
  */
 trait CommentTable
@@ -66,6 +70,102 @@ trait CommentTable
                   VALUES
                      ({$values}, UNIX_TIMESTAMP())";
         return ParametrizedQuery::set($query, $bindParams);
+    }
+
+
+    /**
+     * Предназначен для получения ассоциативных массивов замечаний по id главного документа
+     *
+     * @param int $id_main_document id главного документа
+     * @return array|null <b>array</b> индексный массив с ассоциативными массива внутри, если записи существуют<br>
+     * <b>null</b> в противном случае
+     * @throws DataBaseEx
+     * @throws TablesEx
+     */
+    static public function getAllAssocByIdMainDocument(int $id_main_document): ?array
+    {
+        $table = self::$tableName;
+        $stageTable = self::$stageTableName;
+
+        $query = "SELECT `{$table}`.`id`,
+                         `{$table}`.`id_main_document`,
+                         `user`.`id` as `author_id`,
+                         `user`.`last_name`,
+	                     `user`.`first_name`,
+                         `user`.`middle_name`,
+                         `{$stageTable}`.`name` as `stage_name`,
+                         `{$stageTable}`.`description` as `stage_description`,
+                         `{$table}`.`text`,
+                         `{$table}`.`normative_document`,
+                         `{$table}`.`no_files`,
+                         `{$table}`.`note`,
+                         `{$table}`.`id_comment_criticality`,
+                         `misc_comment_criticality`.`name` as `name_comment_criticality`
+                  FROM `{$table}`
+                  JOIN (`user`)
+                     ON (`{$table}`.`id_author`=`user`.`id`)
+                  JOIN (`{$stageTable}`)
+                     ON (`{$table}`.`id_stage`=`{$stageTable}`.`id`)
+                  JOIN (`misc_comment_criticality`)
+                     ON (`{$table}`.`id_comment_criticality`=`misc_comment_criticality`.`id`)
+                  WHERE `{$table}`.`id_main_document`=?";
+        $result = ParametrizedQuery::getFetchAssoc($query, [$id_main_document]);
+
+        if (empty($result)) {
+            return null;
+        }
+        foreach ($result as &$arr) {
+            TableHelper::restructureMiscToSubarray($arr, 'id_comment_criticality', 'name_comment_criticality', 'comment_criticality');
+        }
+        unset($arr);
+
+        return $result;
+    }
+
+
+    /**
+     * Предназначен для получения сгруппированной статистики по критичности замечаний по id замечания
+     *
+     * @param int $id_main_document id главного документа
+     * @return array индексный массив, с ассоциативными массивами формата:<br>
+     * ['name' => 'Техническая ошибка', 'count' => 1], ...
+     * @throws DataBaseEx
+     */
+    static public function getCommentCriticalityGroupsByIdMainDocument(int $id_main_document): array
+    {
+        $table = self::$tableName;
+
+        $query = "SELECT `id`,
+                         `name`
+                  FROM `misc_comment_criticality`";
+        $miscs = SimpleQuery::getFetchAssoc($query);
+
+        $query = "SELECT `misc_comment_criticality`.`id`,
+	                     COUNT(*) AS `count`
+                  FROM `{$table}`
+                  JOIN `misc_comment_criticality`
+                     ON (`{$table}`.`id_comment_criticality`=`misc_comment_criticality`.`id`)
+                  WHERE `{$table}`.`id_main_document`=?
+                  GROUP BY `id_comment_criticality`";
+        $groupResult = ParametrizedQuery::getFetchAssoc($query, [$id_main_document]);
+
+        $result = [];
+
+        foreach ($miscs as $misc) {
+
+            if (!is_null($index = getFirstArrayEntryIndex($groupResult, 'id', $misc['id']))) {
+                $result[] = [
+                    'name'  => $misc['name'],
+                    'count' => $groupResult[$index]['count']
+                ];
+            } else {
+                $result[] = [
+                    'name'  => $misc['name'],
+                    'count' => 0
+                ];
+            }
+        }
+        return $result;
     }
 
 

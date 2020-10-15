@@ -22,27 +22,27 @@ abstract class Initializer
      * Массив нужных маппингов файловых таблиц
      *
      */
-    private array $filesRequiredMappings;
+    private array $filesMappings;
 
     /**
      * Массив нужных маппингов таблиц подписей
      *
      */
-    private array $signsRequiredMappings;
+    private array $signsMappings;
 
 
     /**
      * Конструктор класса
      *
-     * @param RequiredMappingsSetter $filesRequiredMappings объект класса с установленными ранее нужными маппингами
+     * @param RequiredMappingsSetter $requiredMappingsSetter объект класса с установленными ранее нужными маппингами
      * @throws SelfEx
      */
-    protected function __construct(RequiredMappingsSetter $filesRequiredMappings)
+    protected function __construct(RequiredMappingsSetter $requiredMappingsSetter)
     {
-        $signsRequiredMappings = [];
+        $signsMappings = [];
 
         // Проверка классов нужных маппингов
-        foreach ($filesRequiredMappings->getMappings() as $mapping_level_1_code => $mapping_level_2) {
+        foreach ($requiredMappingsSetter->getMappings() as $mapping_level_1_code => $mapping_level_2) {
 
             foreach ($mapping_level_2 as $mapping_level_2_code => $className) {
 
@@ -53,68 +53,108 @@ abstract class Initializer
                 }
                 unset($filesMapping);
 
-                // Формирование маппингов для таблиц подписей, аналогичных по стркутуре с filesRequiredMappings
+                // Формирование маппингов для таблиц подписей, аналогичных по стркутуре с filesMappings
                 $signsMapping = new SignsTableMapping($mapping_level_1_code, $mapping_level_2_code);
 
                 $signsMappingErrorCode = $signsMapping->getErrorCode();
 
                 if (is_null($signsMappingErrorCode)) {
-                    $signsRequiredMappings[$mapping_level_1_code][$mapping_level_2_code] = $signsMapping->getClassName();
+                    $signsMappings[$mapping_level_1_code][$mapping_level_2_code] = $signsMapping->getClassName();
                 } elseif ($signsMappingErrorCode == 1) {
                     // Не существует соответствующего класса таблицы подписей к классу файловой таблицы
-                    $signsRequiredMappings[$mapping_level_1_code][$mapping_level_2_code] = null;
+                    $signsMappings[$mapping_level_1_code][$mapping_level_2_code] = null;
                 } else {
                     throw new SelfEx("Ошибка в маппинг таблице (подписей) в классе '{$className}': '{$signsMapping->getErrorText()}'", $signsMappingErrorCode);
                 }
                 unset($signsMapping);
             }
         }
-        $this->filesRequiredMappings = $filesRequiredMappings->getMappings();
-        $this->signsRequiredMappings = $signsRequiredMappings;
+        $this->filesMappings = $requiredMappingsSetter->getMappings();
+        $this->signsMappings = $signsMappings;
+    }
+
+
+    /**
+     * Предназначен для получения массива маппингов файловых таблиц
+     *
+     * @return array
+     */
+    public function getFilesMappings(): array
+    {
+        return $this->filesMappings;
+    }
+
+
+    /**
+     * Предназначен для получения первых маппингов маппингов первого и второго уровня файловых таблиц
+     *
+     * Фактически метод является синтаксическим сахаром для случаев, когда установлен всего 1 маппинг
+     *
+     * @return array ассоциативный массив с ключами '1' и '2', в которых находятся
+     * int значения соответствующих маппингов
+     */
+    public function getFirstFilesMappings(): array
+    {
+        $mapping_level_1 = array_key_first($this->filesMappings);
+        $mapping_level_2 = array_key_first($this->filesMappings[$mapping_level_1]);
+
+        return [
+            1 => $mapping_level_1,
+            2 => $mapping_level_2
+        ];
     }
 
 
     /**
      * Предназначен для полученя нужных (is_needs=1) файлов и подписей к ним,
-     * находящихся в документе и в требуемых маппингах filesRequiredMappings
+     * находящихся в документе и в маппингах filesMappings
      *
      * У кажого файла есть свойство 'signs', которое:<br>
-     * null, если для данного маппинга файловой таблицы не предусмотрены подписи;<br>
-     * включает в себя массивы подписей встроенных и открепленных: 'internal' = [], 'external' = []<br>
+     * - null, если для данного маппинга файловой таблицы не предусмотрены подписи;<br>
+     * - включает в себя массивы подписей встроенных и открепленных: 'internal' = [], 'external' = []<br>
      * <b>***</b> Из массива файлов будут автоматически удалены файлы, которые являются открепленными подписями
      *
-     * @return array структура массива аналогична <i>filesRequiredMappings</i>. Вместо названия класса - массив с нужные файлами / null
+     * @return array структура массива аналогична <i>filesMappings</i>. Вместо названия класса - массив с нужные файлами / null
      * @throws SelfEx
      */
     public function getNeedsFilesWithSigns(): array
     {
         $result = [];
 
-        foreach ($this->filesRequiredMappings as $mapping_level_1_code => $mapping_level_2) {
+        foreach ($this->filesMappings as $mapping_level_1_code => $mapping_level_2) {
 
             foreach ($mapping_level_2 as $mapping_level_2_code => $fileClassName) {
 
-                $files = $fileClassName::getAllAssocWhereNeedsByIdMainDocument($this->getMainDocumentId());
-
-                if (is_null($files)) {
+                if (is_null($files = $this->getFiles($fileClassName))) {
                     $result[$mapping_level_1_code][$mapping_level_2_code] = null;
                     continue;
                 }
 
+                // Формирование id файлов для запроса IN
+                $ids = compressArrayByKey($files, 'id');
+
                 $files = new ArrayIterator($files);
 
-                // Формирование id файлов для запроса IN
-                $ids = [];
-                foreach ($files as ['id' => $id]) {
-                    $ids[] = $id;
+                $signClassName = $this->signsMappings[$mapping_level_1_code][$mapping_level_2_code];
+
+                // Значение для выхода из текущей итерации
+                $exitValue = false;
+
+                if (is_null($signClassName)) {
+
+                    $exitValue = null;
+                } elseif (is_null($signs = $signClassName::getAllAssocByIds($ids))) {
+
+                    $exitValue = [
+                      'internal' => [],
+                      'external' => []
+                    ];
                 }
 
-                $signClassName = $this->signsRequiredMappings[$mapping_level_1_code][$mapping_level_2_code];
-
-                if (is_null($signClassName) || is_null($signs = $signClassName::getAllAssocByIds($ids))) {
+                if ($exitValue !== false) {
 
                     foreach ($files as $index => $file) {
-                        $files[$index]['signs'] = null;
+                        $files[$index]['signs'] = $exitValue;
                     }
                     $result[$mapping_level_1_code][$mapping_level_2_code] = $files->getArrayCopy();
                     unset($files);
@@ -247,9 +287,16 @@ abstract class Initializer
 
 
     /**
-     * Предназначен для получения id главного документа
+     * Предназначен для получения индексного массива с ассоциативными массивами файлов,
+     * которые нужны для реализующего класса
      *
-     * @return int id главного документа
+     * @param string $fileClassName является названием класса таблицы,
+     * лежащем в установленном маппинге {@see FILE_TABLE_MAPPING}.
+     * <br>
+     * Таким образом, при реализации данного метода требуется предусмотреть, что имена таблиц будут
+     * <b>разными</b>, если было передано более 1 маппинга
+     * @return array|null <b>array</b> индексный массив с ассоциативными массива внутри, если записи существуют<br>
+     * <b>null</b> в противном случае
      */
-    abstract protected function getMainDocumentId(): int;
+    abstract protected function getFiles(string $fileClassName): ?array;
 }
