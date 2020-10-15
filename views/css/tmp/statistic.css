@@ -1,10 +1,9 @@
 .statistic {
    margin: 0px 0px 10px 0px;
    /*display: grid;*/
-   /*grid-template-columns: repeat(3, 1fr);*/
+   /*grid-template-rows: 1fr 2fr;*/
    display: flex;
 }
-
 
 
 .statistic__card {
@@ -20,11 +19,6 @@
    margin: 0px 0px 10px 0px;
 
    width: 100%;
-}
-
-
-.statistic__card:first-child {
-   /*width: 50%;*/
 }
 
 .statistic__header {
@@ -85,21 +79,16 @@
    margin: 0px 3px 0px 0px;
 }
 
-
-
 .diagram__body {
-   /*box-shadow: 0px 5px 5px -7px rgba(0,0,0,0.75);*/
    box-shadow: 0px 5px 5px -7px rgba(0,0,0,0.75);
 }
 
 .diagram__body .diagram__col {
-   /*width: 50px;*/
-   display: flex;
-   flex-direction: column;
+   display: grid;
+   border-radius: 3px 3px 0px 0px;
+   overflow: hidden;
    height: 70px;
 }
-
-
 
 .diagram__footer .diagram__col {
    text-align: center;
@@ -115,19 +104,10 @@
 
 .diagram__number {
    font-weight: 700;
-   /*text-align: center;*/
 }
 
 .diagram__label {
-   /*text-align: center;*/
    font-size: 14px;
-}
-
-.diagram__footer {
-   /*margin: 5px 0px 0px;*/
-   /*border-top: 2px solid #e0e0e0;*/
-   /*border-top: 2px solid #93b0d1;*/
-   /*border-top: 2px solid #F6F6F6;*/
 }
 
 .diagram__footer .diagram__col {
@@ -135,7 +115,6 @@
    flex-direction: column;
    display: flex;
 }
-
 
 .diagram[data-col_width="50"] .diagram__col {
    width: 50px;
@@ -153,87 +132,23 @@
    background-color: #F6F6F6;
 }
 
-.diagram__row:first-child {
-   border-radius: 3px 3px 0px 0px;
-}
-
-.diagram__col[data-color="green"] .diagram__row[data-filled='1'] {
+.diagram__col[data-color="green"] .diagram__row.filled {
    background-color: #87c596;
 }
 
-.diagram__col[data-color="blue"] .diagram__row[data-filled='1'] {
+.diagram__col[data-color="blue"] .diagram__row.filled {
    background-color: #93b0d1;
 }
 
-.diagram__col[data-color="red"] .diagram__row[data-filled='1'] {
+.diagram__col[data-color="red"] .diagram__row.filled {
    background-color: #E28383;
 }
 
-.diagram__col[data-color="yellow"] .diagram__row[data-filled='1'] {
+.diagram__col[data-color="yellow"] .diagram__row.filled {
    background-color: #FDDD7E;
 }
 
-.diagram__col[data-color="purple"] .diagram__row[data-filled='1'] {
+.diagram__col[data-color="purple"] .diagram__row.filled {
    background-color: #C3A3FF;
 }
 
-
-
-.squares__body {
-   display: flex;
-   justify-content: space-around;
-}
-
-.squares__item {
-   width: 70px;
-   height: 70px;
-   display: flex;
-   align-items: center;
-   border-radius: 5px;
-}
-
-.squares__item[data-color="green"] {
-   background-color: #87c596;
-}
-
-.squares__item[data-color="blue"] {
-   /*background-color: #93b0d1;*/
-   background-color: #ABC2E0;
-}
-
-.squares__item[data-color="red"] {
-   background-color: #E28383;
-}
-
-.squares__item[data-color="yellow"] {
-   background-color: #FDDD7E;
-}
-
-.squares__item[data-color="purple"] {
-   background-color: #C3A3FF;
-}
-
-.squares__text {
-   flex-grow: 1;
-   font-size: 28px;
-   font-weight: 700;
-   text-align: center;
-   /*color: #ffffff;*/
-}
-
-.diagram__footer {
-   /*display: grid;*/
-   /*grid-template-columns: 1fr 1fr 1fr 1fr 1fr;*/
-
-
-}
-
-.squares[data-col_width="50"] .diagram__col,
-.squares[data-col_width="50"] .squares__item {
-   width: 70px;
-}
-
-.diagram__footer {
-   display: flex;
-   align-items: center;
-}

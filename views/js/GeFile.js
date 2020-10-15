@@ -432,36 +432,37 @@ class GeFile {
       state_icon.classList.add('files__state-icon', 'fas');
       file_state.appendChild(state_icon);
 
-      let state_text = document.createElement('SPAN');
-      state_text.classList.add('files__state-text');
-      file_state.appendChild(state_text);
+      ge_file.element.dataset.state = state;
 
-      switch (state) {
-         case 'checking':
-            state_icon.classList.add('fa-spinner');
-            state_text.innerHTML = 'Проверка';
-            ge_file.element.dataset.state = 'checking';
-            break;
-         case 'valid':
-            state_icon.classList.add('fa-pen-alt');
-            state_text.innerHTML = 'Подписано';
-            ge_file.element.dataset.state = 'valid';
-            break;
-         case 'invalid':
-            state_icon.classList.add('fa-times');
-            state_text.innerHTML = 'Подпись недействительна';
-            ge_file.element.dataset.state = 'invalid';
-            break;
-         case 'not_signed':
-            state_icon.classList.add('fa-times');
-            state_text.innerHTML = 'Не подписано';
-            ge_file.element.dataset.state = 'not_signed';
-            break;
-         case 'warning':
-            state_icon.classList.add('fa-exclamation');
-            state_text.innerHTML = 'Ошибка сертификата';
-            ge_file.element.dataset.state = 'warning';
-            break;
+      if (file_state.dataset.type !== 'short') {
+         let state_text = document.createElement('SPAN');
+         state_text.classList.add('files__state-text');
+         file_state.appendChild(state_text);
+
+         switch (state) {
+            case 'checking':
+               state_icon.classList.add('fa-spinner');
+               state_text.innerHTML = 'Проверка';
+               break;
+            case 'valid':
+               state_icon.classList.add('fa-pen-alt');
+               state_text.innerHTML = 'Подписано';
+               break;
+            case 'invalid':
+               state_icon.classList.add('fa-times');
+               state_text.innerHTML = 'Подпись недействительна';
+               break;
+            case 'not_signed':
+               state_icon.classList.add('fa-times');
+               state_text.innerHTML = 'Не подписано';
+               break;
+            case 'warning':
+               state_icon.classList.add('fa-exclamation');
+               state_text.innerHTML = 'Ошибка сертификата';
+               break;
+         }
+      } else {
+         state_icon.classList.add('fa-pen-alt');
       }
 
    }

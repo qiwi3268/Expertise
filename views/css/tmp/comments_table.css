@@ -117,7 +117,6 @@ td.comments-table__action {
 
 .application-actions__text {
    font-size: 12px;
-
 }
 
 .application-actions__icon {
@@ -148,6 +147,7 @@ td.comments-table__action {
 }
 
 .comments-table__author {
+   white-space: nowrap;
    text-align: center;
 }
 

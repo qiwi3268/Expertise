@@ -28,7 +28,7 @@
                     <div class="panel__label">Рассмотрение эксперта</div>
                 </div>
                 <div class="panel__item">
-                    <div class="panel__number">5</div>
+                    <div class="panel__number">25</div>
                     <div class="panel__label">Сторона заявителя</div>
                 </div>
             </div>
@@ -37,179 +37,40 @@
     
     <div class="view-section__statistic statistic">
     
-<!--        <div class="statistic__card">-->
-<!--            <div class="statistic__header">Замечания по типу</div>-->
-<!--            <div class="squares statistic__diagram" data-col_width="50">-->
-<!--                <div class="squares__body">-->
-<!--                    <div class="squares__item" data-color="blue">-->
-<!--                        <div class="squares__text">10</div>-->
-<!--                    </div>-->
-<!--                    <div class="squares__item" data-color="blue">-->
-<!--                        <div class="squares__text">2</div>-->
-<!--                    </div>-->
-<!--                    <div class="squares__item" data-color="blue">-->
-<!--                        <div class="squares__text">5</div>-->
-<!--                    </div>-->
-<!--                    <div class="squares__item" data-color="blue">-->
-<!--                        <div class="squares__text">1</div>-->
-<!--                    </div>-->
-<!--                    <div class="squares__item" data-color="blue">-->
-<!--                        <div class="squares__text">9</div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="diagram__footer">-->
-<!--                    <div class="diagram__col">-->
-<!--                        <span class="diagram__label">Всего</span>-->
-<!--                    </div>-->
-<!--                    <div class="diagram__col">-->
-<!--                        <span class="diagram__label">Активные</span>-->
-<!--                    </div>-->
-<!--                    <div class="diagram__col">-->
-<!--                        <span class="diagram__label">Снятые</span>-->
-<!--                    </div>-->
-<!--                    <div class="diagram__col">-->
-<!--                        <span class="diagram__label">Рассмотрение эксперта</span>-->
-<!--                    </div>-->
-<!--                    <div class="diagram__col">-->
-<!--                        <span class="diagram__label">Сторона заявителя</span>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-        
-<!--        <div class="statistic__card">
-            <div class="statistic__header">Замечания по типу</div>
-            <div class="diagram statistic__diagram" data-col_width="30">
-                <div class="diagram__body">
-                    <div class="diagram__col" data-color="blue">
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                    </div>
-                    <div class="diagram__col" data-color="red">
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                    </div>
-                    <div class="diagram__col" data-color="green">
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                    </div>
-                    <div class="diagram__col" data-color="yellow">
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                    </div>
-                    <div class="diagram__col" data-color="purple">
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                    </div>
-                </div>
-                <div class="diagram__footer">
-                    <div class="diagram__col">
-                        <span class="diagram__number">10</span>
-                        <span class="diagram__label">Всего</span>
-                    </div>
-                    <div class="diagram__col">
-                        <span class="diagram__number">6</span>
-                        <span class="diagram__label">Активные</span>
-                    </div>
-                    <div class="diagram__col">
-                        <span class="diagram__number">4</span>
-                        <span class="diagram__label">Снятые</span>
-                    </div>
-                    <div class="diagram__col">
-                        <span class="diagram__number">2</span>
-                        <span class="diagram__label">Рассмотрение эксперта</span>
-                    </div>
-                    <div class="diagram__col">
-                        <span class="diagram__number">4</span>
-                        <span class="diagram__label">Сторона заявителя</span>
-                    </div>
-                </div>
-            </div>
-        </div>-->
-        
         <div class="statistic__card">
             <div class="statistic__header">Критичность всех замечаний</div>
             <div class="diagram statistic__diagram" data-col_width="30">
                 <div class="diagram__body">
-                    <div class="diagram__col" data-color="green">
-                        <?php if (!empty($_data = $_allCommentsDiagram['Техническая ошибка']['data'])): ?>
-                            <?php foreach ($_data as $isFilled): ?>
-                                <div class="diagram__row" data-filled="<?= $isFilled ?>"></div>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <div class="diagram__row"></div>
-                        <?php endif; ?>
+                    <div class="diagram__col"
+                         data-color="green"
+                         style="grid-template-rows: <?= $_allCommentsDiagram['Техническая ошибка']['non_filled'] ?>fr <?= $_allCommentsDiagram['Техническая ошибка']['filled'] ?>fr;">
+                        <div class="diagram__row"></div>
+                        <div class="diagram__row filled"></div>
                     </div>
-                    <div class="diagram__col" data-color="blue">
-                        <?php if (!empty($_data = $_allCommentsDiagram['Критическая ошибка']['data'])): ?>
-                            <?php foreach ($_data as $isFilled): ?>
-                                <div class="diagram__row" data-filled="<?= $isFilled ?>"></div>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <div class="diagram__row"></div>
-                        <?php endif; ?>
+                    <div class="diagram__col"
+                         data-color="blue"
+                         style="grid-template-rows: <?= $_allCommentsDiagram['Критическая ошибка']['non_filled'] ?>fr <?= $_allCommentsDiagram['Критическая ошибка']['filled'] ?>fr;">
+                        <div class="diagram__row"></div>
+                        <div class="diagram__row filled"></div>
                     </div>
-                    <div class="diagram__col" data-color="red">
-                        <?php if (!empty($_data = $_allCommentsDiagram['Неустранимая ошибка']['data'])): ?>
-                            <?php foreach ($_data as $isFilled): ?>
-                                <div class="diagram__row" data-filled="<?= $isFilled ?>"></div>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <div class="diagram__row"></div>
-                        <?php endif; ?>
+                    <div class="diagram__col"
+                         data-color="red"
+                         style="grid-template-rows: <?= $_allCommentsDiagram['Неустранимая ошибка']['non_filled'] ?>fr <?= $_allCommentsDiagram['Неустранимая ошибка']['filled'] ?>fr;">
+                        <div class="diagram__row"></div>
+                        <div class="diagram__row filled"></div>
                     </div>
                 </div>
                 <div class="diagram__footer">
                     <div class="diagram__col">
-                        <span class="diagram__number"><?= $_allCommentsDiagram['Техническая ошибка']['count'] ?></span>
+                        <span class="diagram__number"><?= $_allCommentsDiagram['Техническая ошибка']['filled'] ?></span>
                         <span class="diagram__label">Техническая ошибка</span>
                     </div>
                     <div class="diagram__col">
-                        <span class="diagram__number"><?= $_allCommentsDiagram['Критическая ошибка']['count'] ?></span>
+                        <span class="diagram__number"><?= $_allCommentsDiagram['Критическая ошибка']['filled'] ?></span>
                         <span class="diagram__label">Критическая ошибка</span>
                     </div>
                     <div class="diagram__col">
-                        <span class="diagram__number"><?= $_allCommentsDiagram['Неустранимая ошибка']['count'] ?></span>
+                        <span class="diagram__number"><?= $_allCommentsDiagram['Неустранимая ошибка']['filled'] ?></span>
                         <span class="diagram__label">Неустранимая ошибка</span>
                     </div>
                 </div>
@@ -217,48 +78,44 @@
         </div>
         <div class="statistic__card">
             <div class="statistic__header">Критичность активных замечаний</div>
-            <div class="diagram statistic__diagram" data-col_width="30">
-                <div class="diagram__body">
-                    <div class="diagram__col" data-color="green">
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                    </div>
-                    <div class="diagram__col" data-color="blue">
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                    </div>
-                    <div class="diagram__col" data-color="red">
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row"></div>
-                        <div class="diagram__row" data-filled="1"></div>
-                    </div>
-                </div>
-                <div class="diagram__footer">
-                    <div class="diagram__col">
-                        <span class="diagram__number">2</span>
-                        <span class="diagram__label">Техническая ошибка</span>
-                    </div>
-                    <div class="diagram__col">
-                        <span class="diagram__number">5</span>
-                        <span class="diagram__label">Критическая ошибка</span>
-                    </div>
-                    <div class="diagram__col">
-                        <span class="diagram__number">1</span>
-                        <span class="diagram__label">Неустранимая ошибка</span>
-                    </div>
-                </div>
-            </div>
+<!--            <div class="diagram statistic__diagram" data-col_width="30">-->
+<!--                <div class="diagram__body">-->
+<!--                    <div class="diagram__col grid" data-color="green" style="grid-template-rows: 2fr 5fr;">-->
+<!--                        <div class="diagram__row"></div>-->
+<!--                        <div class="diagram__row" data-filled="1"></div>-->
+<!--                    </div>-->
+<!--                    <div class="diagram__col" data-color="blue">-->
+<!--                        <div class="diagram__row"></div>-->
+<!--                        <div class="diagram__row" data-filled="1"></div>-->
+<!--                        <div class="diagram__row" data-filled="1"></div>-->
+<!--                        <div class="diagram__row" data-filled="1"></div>-->
+<!--                        <div class="diagram__row" data-filled="1"></div>-->
+<!--                        <div class="diagram__row" data-filled="1"></div>-->
+<!--                    </div>-->
+<!--                    <div class="diagram__col" data-color="red">-->
+<!--                        <div class="diagram__row"></div>-->
+<!--                        <div class="diagram__row"></div>-->
+<!--                        <div class="diagram__row"></div>-->
+<!--                        <div class="diagram__row"></div>-->
+<!--                        <div class="diagram__row"></div>-->
+<!--                        <div class="diagram__row" data-filled="1"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="diagram__footer">-->
+<!--                    <div class="diagram__col">-->
+<!--                        <span class="diagram__number">2</span>-->
+<!--                        <span class="diagram__label">Техническая ошибка</span>-->
+<!--                    </div>-->
+<!--                    <div class="diagram__col">-->
+<!--                        <span class="diagram__number">5</span>-->
+<!--                        <span class="diagram__label">Критическая ошибка</span>-->
+<!--                    </div>-->
+<!--                    <div class="diagram__col">-->
+<!--                        <span class="diagram__number">1</span>-->
+<!--                        <span class="diagram__label">Неустранимая ошибка</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
         
     </div>
@@ -460,7 +317,7 @@
                                                                 <span class="files__size"><?= $file['human_file_size'] ?></span>
                                                             </div>
                                                         </div>
-                                                        <div class="files__state"></div>
+                                                        <div class="files__state" data-type="short"></div>
                                                         <div class="files__actions">
                                                             <i class="files__unload fas fa-angle-double-down"></i>
                                                         </div>

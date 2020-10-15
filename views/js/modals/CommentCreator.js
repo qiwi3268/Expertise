@@ -188,13 +188,6 @@ class CommentCreator {
       delete_button.addEventListener('click', () => {
 
          this.showAlert(comment_hash, data_row, action_row);
-     /*    this.comments.delete(comment_hash);
-         data_row.remove();
-         action_row.remove();
-
-         if (!this.table_body.querySelector('tr')) {
-            this.comments_table.dataset.active = 'false';
-         }*/
 
       });
 
@@ -208,12 +201,10 @@ class CommentCreator {
       let alert_modal = document.getElementById('alert_modal');
       let alert_overlay = document.getElementById('alert_overlay');
 
-
       alert_modal.classList.add('active');
       alert_overlay.classList.add('active');
 
-      let confirm_button = document.getElementById('alert_confirm');
-      confirm_button.addEventListener('click', () => {
+      let delete_comment = () => {
          this.comments.delete(comment_hash);
          data_row.remove();
          action_row.remove();
@@ -224,13 +215,19 @@ class CommentCreator {
 
          alert_modal.classList.remove('active');
          alert_overlay.classList.remove('active');
-      });
+      };
+
+      let confirm_button = document.getElementById('alert_confirm');
+      confirm_button.addEventListener('click', delete_comment, {once: true});
 
       let cancel_button = document.getElementById('alert_cancel');
       cancel_button.addEventListener('click', () => {
          alert_modal.classList.remove('active');
          alert_overlay.classList.remove('active');
-      });
+         confirm_button.removeEventListener('click', delete_comment);
+
+      }, {once: true});
+
    }
 
    addFilesToTable (comment, files_block) {
