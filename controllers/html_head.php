@@ -70,7 +70,7 @@ switch (URN) {
         $pageName = 'АИС_view';
         $sourcesFiles = [...GetFontAwesome5Case(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
-            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'create_application.css', 'view_application.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'action_sidebar.css', 'radio.css', 'sign_modal.css', 'tooltip.css', 'total_cc_view.css'),
+            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'create_application.css', 'view_application.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'action_sidebar.css', 'radio.css', 'sign_modal.css', 'tooltip.css', 'comments_table.css','total_cc_view.css'),
             ...CreateSource('js', ROOT_JS, 'main.js', 'section.js'),
             ...CreateSource('js', MODALS_JS, 'Tooltip.js', 'ErrorModal.js'),
         ];
