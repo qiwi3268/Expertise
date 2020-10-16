@@ -3,6 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Section/Actions/AccessActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Section/Actions/AccessActions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Section/Actions/ExecutionActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Section/Actions/ExecutionActions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/expertise_cards/documents/section/actions/action_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/expertise_cards/documents/section/actions/action_1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/routes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/settings/routes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/section_view.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/section_view.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/documents/section/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/section/view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,6 +148,8 @@
       <workItem from="1602087210480" duration="4691000" />
       <workItem from="1602560786171" duration="78655000" />
       <workItem from="1602819002630" duration="441000" />
+      <workItem from="1602820876991" duration="621000" />
+      <workItem from="1602822320110" duration="6560000" />
     </task>
     <task id="LOCAL-00164" summary="05.10.2020_1">
       <created>1601871851483</created>
@@ -559,10 +567,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1602765679185">
+    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1602819593186">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602765679185" />
+    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602819593186" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600519766620" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1602091044288" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
@@ -615,10 +623,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="92" y="92" width="2376" height="1216" key="dock-window-2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600964609575" />
-    <state x="397" y="90" width="1169" height="814" key="find.popup" timestamp="1602765637021">
+    <state x="397" y="90" width="1169" height="814" key="find.popup" timestamp="1602829563635">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="397" y="90" width="1169" height="814" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602765637021" />
+    <state x="397" y="90" width="1169" height="814" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602829563635" />
     <state x="-1180" y="531" width="555" height="534" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600791294528" />
     <state x="571" y="185" width="1495" height="1020" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1602089698623" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />

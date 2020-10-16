@@ -62,7 +62,7 @@ foreach ($filesInStructure as $node) {
     }
 }
 
-// Сортировка id разделов по возрастанию, чтобы стркутура отображалась корректно
+// Сортировка id разделов по возрастанию, чтобы структура отображалась корректно
 sort($uniqueIds, SORT_NUMERIC);
 
 $filesInStructure = array_filter($filesInStructure, fn($node) => (in_array($node['id'], $uniqueIds)));

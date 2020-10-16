@@ -132,4 +132,15 @@ class ExecutionActions extends MainExecutionActions
 
         return $methodResult;
     }
+
+
+    /**
+     * Редактировать <i>Редактировать описательную часть</i>
+     *
+     * @uses {@todo}
+     */
+    public function action_2(): ExecutionActionsResult
+    {
+        return $this->action_1();
+    }
 }

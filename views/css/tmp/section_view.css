@@ -127,6 +127,7 @@
 
 .tep-table__author {
    width: 15%;
+   white-space: nowrap;
 }
 
 .tep-table td,
@@ -143,10 +144,7 @@
 .view-section__description {
    /*margin: 10px;*/
    /*border-bottom: 1px solid #e0e0e0;*/
-
 }
-
-
 
 
 

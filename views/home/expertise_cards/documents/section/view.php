@@ -506,6 +506,7 @@
         <div class="view-section__header card-expand">
             <div class="view-section__title">Технико-экономические показатели</div>
         </div>
+        
         <div class="view-section__body card-body expanded">
             <?php if (!empty($_TEPsByAuthors)): ?>
                 <table class="tep-table">
@@ -538,9 +539,5 @@
             <?php endif; ?>
         </div>
     </div>
-    
-    
-
-    
     
 </div>
