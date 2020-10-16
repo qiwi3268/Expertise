@@ -58,7 +58,6 @@ class HtmlDependenciesManagerApplicationForm extends HtmlDependenciesManager
                 1 => ['national_project' => true]
             ],
 
-
             // Зависимости множественных блоков --------------------------------------------------------
 
             'financing_type' => [

@@ -451,7 +451,7 @@
                 <dir path="/views/home/expertise_cards/documents/section/actions/" ext=".php">
                     <file name="action_1" />
                 </dir>
-                <dir path="/views/home/expertise_cards/documents/total_cc/actions/" ext=".php">
+                <dir path="/views/home/expertise_cards/documents/section/actions/" ext=".php">
                     <file name="action_1_dependencies" />
                 </dir>
                 <dir path="/views/home/" ext=".php">

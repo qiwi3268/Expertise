@@ -32,30 +32,6 @@
                 <span class="form-field__error field-error">Поле обязательно для заполнения</span>
             </div>
     
-            <div class="field-card field" data-name="normative_document" data-required="true" data-pattern="text">
-                <div class="field-card__header">
-                    <div class="field-card__title">Ссылка на нормативный документ</div>
-                </div>
-                <div class="field-card__body">
-                    <textarea id="normative_document" class="field-card__input field-result" name="normative_document"></textarea>
-                </div>
-                <span class="form-field__error field-error">Поле обязательно для заполнения</span>
-            </div>
-            
-            <div class="form-field field" data-name="no_files" data-misc_field>
-                <div class="form-field__item">
-                    <div class="radio form-field__body">
-                        <div class="radio__body">
-                            <div id="no_files" class="radio__item" data-id="1">
-                                <i class="radio__icon far fa-square"></i>
-                                <span class="radio__text">Отметка файлов не требуется</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <input class="form-field__result field-result" type="hidden" name="no_files">
-            </div>
-    
             <div class="form-field field" data-misc_field data-name="comment_criticality" data-required="true">
                 <span class="form-field__title field-title">Критичность замечания</span>
                 <div class="form-field__item">
@@ -82,6 +58,34 @@
                 </div>
                 <input id="comment_criticality_value" class="form-field__result field-result" type="hidden" data-misc_result name="comment_criticality">
             </div>
+            
+            <div class="comment-modal__block" data-block data-name="normative_document" data-active="true">
+                <div class="field-card field" data-name="normative_document" data-required="true" data-pattern="text">
+                    <div class="field-card__header">
+                        <div class="field-card__title">Ссылка на нормативный документ</div>
+                    </div>
+                    <div class="field-card__body">
+                        <textarea id="normative_document" class="field-card__input field-result" name="normative_document"></textarea>
+                    </div>
+                    <span class="form-field__error field-error">Поле обязательно для заполнения</span>
+                </div>
+            </div>
+           
+            
+            <div class="form-field field" data-name="no_files" data-misc_field>
+                <div class="form-field__item">
+                    <div class="radio form-field__body">
+                        <div class="radio__body">
+                            <div id="no_files" class="radio__item" data-id="1">
+                                <i class="radio__icon far fa-square"></i>
+                                <span class="radio__text">Отметка файлов не требуется</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input class="form-field__result field-result" type="hidden" name="no_files">
+            </div>
+    
             <div id="note" class="field-card field" data-name="note" data-required="false" data-pattern="text" data-tooltip_container>
     
                 <div class="field-card__header">

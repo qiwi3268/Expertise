@@ -78,9 +78,6 @@ class CommentCreator {
          let field_inputs = this.modal.querySelectorAll('.field-result');
          field_inputs.forEach(input => comment[input.name] = input.value || null);
 
-         comment.files = Array.from(this.marked_files.keys());
-         comment.criticality_name = this.criticality_name.innerHTML;
-
          this.validateComment(comment);
 
       });
@@ -94,7 +91,28 @@ class CommentCreator {
       this.handleFiles();
    }
 
+   validateComment (comment) {
+
+      validateBlock(this.modal);
+
+      comment.files = Array.from(this.marked_files.keys());
+      comment.criticality_name = this.criticality_name.innerHTML;
+
+      if (!comment.text || !comment.normative_document || !comment.comment_criticality) {
+         ErrorModal.open('Ошибка при сохранении замечания', 'Не заполнены обязательные поля');
+      } else if (this.marked_files.keys().length === 0 && comment.no_files === null) {
+         ErrorModal.open('Ошибка при сохранении замечания', 'Не отмечены файлы к замечанию');
+      } else {
+         this.saveComment(comment);
+      }
+
+   }
+
    saveComment (comment) {
+
+      for (let i = 0; i < 10; i++) {
+         console.log(Date.now());
+      }
 
       if (this.comment_hash === null) {
          console.log('save_comment');
@@ -264,20 +282,6 @@ class CommentCreator {
       action_item.appendChild(action_text);
 
       return action_column;
-   }
-
-   validateComment (comment) {
-
-      validateBlock(this.modal);
-
-      if (!comment.text || !comment.normative_document || !comment.comment_criticality) {
-         ErrorModal.open('Ошибка при сохранении замечания', 'Не заполнены обязательные поля');
-      } else if (comment.files.length === 0 && comment.no_files === null) {
-         ErrorModal.open('Ошибка при сохранении замечания', 'Не отмечены файлы к замечанию');
-      } else {
-         this.saveComment(comment);
-      }
-
    }
 
    handleFiles () {

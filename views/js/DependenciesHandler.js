@@ -1,7 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
    DependenciesHandler.radio_dependency = document.querySelector('.radio__content-change-logic');
-   DependenciesHandler.block_dependencies = JSON.parse(document.getElementById('block_dependencies').value);
-   DependenciesHandler.require_dependencies = JSON.parse(document.getElementById('require_dependencies').value);
+
+   let block_dependencies = document.getElementById('block_dependencies');
+   if (block_dependencies) {
+      DependenciesHandler.block_dependencies = JSON.parse(block_dependencies.value);
+   }
+
+   let require_dependencies = document.getElementById('require_dependencies');
+   if (require_dependencies) {
+      DependenciesHandler.require_dependencies = JSON.parse(require_dependencies.value);
+   }
 
    DependenciesHandler.handleClearFieldButtons();
 });
@@ -33,6 +41,7 @@ class DependenciesHandler {
       }
    }
 
+   //todo разбить на несколько классов
    static handleDependencies (result_input) {
       this.initialize(result_input);
 
@@ -40,6 +49,7 @@ class DependenciesHandler {
 
       let block_dependencies = this.block_dependencies[field_name];
 
+      console.log(this.block_dependencies);
       if (block_dependencies) {
          this.handleBlockDependencies(block_dependencies)
       }
@@ -48,9 +58,11 @@ class DependenciesHandler {
          this.handleRadioDependencies();
       }
 
-      let require_dependencies = this.require_dependencies[field_name];
-      if (require_dependencies) {
-         this.handleRequireDependencies(require_dependencies);
+      if (this.require_dependencies) {
+         let require_dependencies = this.require_dependencies[field_name];
+         if (require_dependencies) {
+            this.handleRequireDependencies(require_dependencies);
+         }
       }
 
       resizeCard(this.result_input);
