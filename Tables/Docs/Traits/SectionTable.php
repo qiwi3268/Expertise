@@ -43,7 +43,6 @@ trait SectionTable
     /**
      * Предназначен для получения name и short_name блока из 341 приказа по id записи раздела
      *
-     *
      * @param int $id id записи
      * @return array
      * @throws DataBaseEx

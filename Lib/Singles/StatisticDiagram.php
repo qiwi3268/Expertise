@@ -11,7 +11,7 @@ use LogicException;
  */
 class StatisticDiagram
 {
-    
+
     private ?int $maxCount;
 
     /**
@@ -59,12 +59,12 @@ class StatisticDiagram
     /**
      * Предназначен для получения массива диаграммы
      *
-     * Данные в выходном массиве во многом повторяются. Это сделано для удобства обработки на стороне view
-     *
      * @return array ассоциативный массив формата:<br>
      * ключ - название столбца<br>
      * значение - ассоциативный массив формата:<br>
-     * ['count' => количество данных в столбце, 'data' => [0, 0, 0, 1, 1]]
+     * ['non_filled' => 2, 'filled' => 4], где:<br>
+     * - non_filled - разница между максимальным количеством данных и данных из текущего столбца<br>
+     * - filled - количество данных из текущего столбца
      * @throws LogicException
      */
     public function getDiagram(): array
@@ -92,19 +92,9 @@ class StatisticDiagram
 
         foreach ($columns as $label => $count) {
 
-            $data = [];
-            $diff = $maxCount - $count;
-
-            for ($l = 0; $l < $diff; $l++) {
-                $data[$l] = 0;
-            }
-            for ($l = $diff; $l < $maxCount; $l++) {
-                $data[$l] = 1;
-            }
-
             $result[$label] = [
-                'count' => $count,
-                'data'  => $data
+                'non_filled'  => $maxCount - $count,
+                'filled'      => $count
             ];
         }
         return $result;

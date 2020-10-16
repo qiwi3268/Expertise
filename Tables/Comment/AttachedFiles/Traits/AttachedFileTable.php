@@ -4,6 +4,8 @@
 namespace Tables\Comment\AttachedFiles\Traits;
 
 use Lib\Exceptions\DataBase as DataBaseEx;
+
+use Tables\Helpers\Helper as TableHelper;
 use Lib\DataBase\ParametrizedQuery;
 use Tables\CommonTraits\deleteById as deleteByIdTrait;
 
@@ -133,7 +135,7 @@ trait AttachedFileTable
         $table = self::$tableName;
         $documentationTable = self::$documentationTableName;
 
-        $condition = implode(',', array_fill(0, count($ids), '?'));
+        $condition = TableHelper::getConditionForIN($ids);
 
         $query = "SELECT `{$documentationTable}`.*,
 	                     `{$table}`.`id_main_document` AS `id_comment`

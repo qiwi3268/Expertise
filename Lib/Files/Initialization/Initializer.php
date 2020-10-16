@@ -131,7 +131,7 @@ abstract class Initializer
                 }
 
                 // Формирование id файлов для запроса IN
-                $ids = compressArrayByKey($files, 'id');
+                $ids = compressArrayValuesByKey($files, 'id');
 
                 $files = new ArrayIterator($files);
 

@@ -64,12 +64,12 @@ $VT->setValue('TEPs_by_authors', $TEPsByAuthorsTV);
 //
 $docCommentTable = $typeOfObjectTableLocator->getDocsComment();
 
-$comments = $docCommentTable::getAllAssocByIdMainDocument(CURRENT_DOCUMENT_ID);
+$comments = $docCommentTable::getAllAssocByIdsMainDocument([CURRENT_DOCUMENT_ID]);
 $commentsTV = [];
 //todo тут подумать насчет того, чтобы из дерева что-то получить? или в дереве обрубить детей у раздела
 if (!is_null($comments)) {
 
-    $commentIds = compressArrayByKey($comments, 'id');
+    $commentIds = compressArrayValuesByKey($comments, 'id');
 
     $attachedFilesInitializer = new AttachedFilesFacade($commentIds, $typeOfObjectId);
 
@@ -100,7 +100,7 @@ if (!is_null($comments)) {
 
 $criticalityGroups = $docCommentTable::getCommentCriticalityGroupsByIdMainDocument(CURRENT_DOCUMENT_ID);
 
-$criticalityDiagram = new StatisticDiagram(array_sum(compressArrayByKey($criticalityGroups, 'count')));
+$criticalityDiagram = new StatisticDiagram(array_sum(compressArrayValuesByKey($criticalityGroups, 'count')));
 
 
 
@@ -108,6 +108,7 @@ foreach ($criticalityGroups as ['name' => $label, 'count' => $count]) {
     $criticalityDiagram->addColumn($label, $count);
 }
 
+//vd($criticalityDiagram->getDiagram());
 $VT->setValue('criticality_all_comments_diagram', $criticalityDiagram->getDiagram());
 
 //vd($comments);

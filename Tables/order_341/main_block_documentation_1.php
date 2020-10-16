@@ -3,6 +3,7 @@
 
 namespace Tables\order_341;
 
+use Tables\Helpers\Helper as TableHelper;
 use Lib\DataBase\ParametrizedQuery;
 use Lib\Exceptions\DataBase as DataBaseEx;
 
@@ -26,7 +27,7 @@ final class main_block_documentation_1
      */
     static public function getAllAssocWhereIdNotInIds(array $ids): ?array
     {
-        $condition = implode(', ', array_fill(0, count($ids), '?'));
+        $condition = TableHelper::getConditionForIN($ids);
 
         $query = "SELECT `id`,
                          `name`

@@ -32,6 +32,29 @@ final class total_cc implements Document, Existent, Responsible
 
 
     /**
+     * Предназначен для получения ассоциативного массива с названиями
+     * дочерних таблиц в зависимости от вида объекта
+     *
+     * @param int $typeOfObjectId id вида объекта
+     * @return array
+     */
+    static private function getChildTables(int $typeOfObjectId): array
+    {
+        $tables = [
+            1 => [
+                'doc_section' => 'doc_section_documentation_1',
+                'doc_comment' => 'doc_comment_documentation_1'
+            ],
+            2 => [
+                'doc_section' => 'doc_section_documentation_2',
+                'doc_comment' => 'doc_comment_documentation_2'
+            ]
+        ];
+        return $tables[$typeOfObjectId];
+    }
+
+
+    /**
      * Предназначен для создания записи в таблице
      *
      * @param int $id_main_document id главного документа
@@ -62,5 +85,56 @@ final class total_cc implements Document, Existent, Responsible
 				  FROM `doc_total_cc`
                   WHERE `doc_total_cc`.`id`=?";
         return ParametrizedQuery::getSimpleArray($query, [$id])[0];
+    }
+
+
+    /**
+     * Предназначен для получения индексного массива id дочерних разделов
+     *
+     * @param int $id id записи
+     * @param int $typeOfObjectId id вида объекта для получения дочерней таблицы
+     * @return array|null <b>array</b> индексный массив, если записи существуют<br>
+     * <b>null</b> в противном случае
+     * @throws DataBaseEx
+     */
+    static public function getIdSectionsById(int $id, int $typeOfObjectId): ?array
+    {
+        $sectionTable = self::getChildTables($typeOfObjectId)['doc_section'];
+
+        $query = "SELECT `{$sectionTable}`.`id`
+                  FROM `{$sectionTable}`
+                  WHERE `{$sectionTable}`.`id_main_document`=?";
+        $result = ParametrizedQuery::getSimpleArray($query, [$id]);
+        return $result ? $result : null;
+    }
+
+
+    /**
+     * Предназначен для получения индексного массива id дочерних замечаний
+     *
+     * @param int $id id записи
+     * @param int $typeOfObjectId id вида объекта для получения дочерних таблиц
+     * @return array|null <b>array</b> индексный массив, если записи существуют<br>
+     * <b>null</b> в противном случае
+     * @throws DataBaseEx
+     */
+    static public function getIdCommentsById(int $id, int $typeOfObjectId): ?array
+    {
+        list(
+            'doc_section' => $sectionTable,
+            'doc_comment' => $commentTable
+        ) = self::getChildTables($typeOfObjectId);
+
+        $query = "SELECT `{$commentTable}`.`id`
+                  FROM `{$commentTable}`
+                  WHERE `{$commentTable}`.`id_main_document` IN
+                  (
+                     SELECT `{$sectionTable}`.`id`
+                     FROM `{$sectionTable}`
+                     WHERE `{$sectionTable}`.`id_main_document`=?
+                  )
+                  ORDER BY `{$commentTable}`.`id`";
+        $result = ParametrizedQuery::getSimpleArray($query, [$id]);
+        return $result ? $result : null;
     }
 }

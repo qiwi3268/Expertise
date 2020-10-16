@@ -39,6 +39,7 @@ class Helper
         return implode(', ', $result);
     }
 
+
     /**
      * Предназначен для получения строки SET формата "`param1`=?, `param2`=NULL, `param3`=?"
      * и массива bindParams
@@ -70,6 +71,18 @@ class Helper
             'SETPart'    => implode(', ', $SETPart),
             'bindParams' => $bindParams
         ];
+    }
+
+
+    /**
+     * Предназначен для получения условия, которое находится в блоке IN
+     *
+     * @param array $arr индексный массив с условиями для IN
+     * @return string строка формата "?, ?, ?, ?"
+     */
+    static public function getConditionForIN(array $arr): string
+    {
+        return implode(', ', array_fill(0, count($arr), '?'));
     }
 
 

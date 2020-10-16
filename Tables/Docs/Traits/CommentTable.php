@@ -25,6 +25,7 @@ trait CommentTable
 {
     use deleteByIdTrait;
 
+
     /**
      * Предназначен для создания записи в таблице документа замечания
      *
@@ -74,18 +75,20 @@ trait CommentTable
 
 
     /**
-     * Предназначен для получения ассоциативных массивов замечаний по id главного документа
+     * Предназначен для получения ассоциативных массивов замечаний по id главных документов
      *
-     * @param int $id_main_document id главного документа
+     * @param int[] $ids индексный массив с id главных документов (разделов)
      * @return array|null <b>array</b> индексный массив с ассоциативными массива внутри, если записи существуют<br>
      * <b>null</b> в противном случае
      * @throws DataBaseEx
      * @throws TablesEx
      */
-    static public function getAllAssocByIdMainDocument(int $id_main_document): ?array
+    static public function getAllAssocByIdsMainDocument(array $ids): ?array
     {
         $table = self::$tableName;
         $stageTable = self::$stageTableName;
+
+        $condition = TableHelper::getConditionForIN($ids);
 
         $query = "SELECT `{$table}`.`id`,
                          `{$table}`.`id_main_document`,
@@ -108,8 +111,8 @@ trait CommentTable
                      ON (`{$table}`.`id_stage`=`{$stageTable}`.`id`)
                   JOIN (`misc_comment_criticality`)
                      ON (`{$table}`.`id_comment_criticality`=`misc_comment_criticality`.`id`)
-                  WHERE `{$table}`.`id_main_document`=?";
-        $result = ParametrizedQuery::getFetchAssoc($query, [$id_main_document]);
+                  WHERE `{$table}`.`id_main_document` IN ({$condition})";
+        $result = ParametrizedQuery::getFetchAssoc($query, $ids);
 
         if (empty($result)) {
             return null;

@@ -304,14 +304,41 @@ function getArrayWithReplacedNullValues(array $array, $newValue): array
  * @param string $key ключ из ассоциативного массива
  * @return array индексный массив, хранящий только значения по ключам из ассоциативного массива
  */
-function compressArrayByKey(array $array, string $key): array
+function compressArrayValuesByKey(array $array, string $key): array
 {
     $result = [];
 
-    foreach ($array as $value) {
+    foreach ($array as $assoc) {
 
-        if (isset($value[$key])) {
-            $result[] = $value[$key];
+        if (isset($assoc[$key])) {
+            $result[] = $assoc[$key];
+        }
+    }
+    return $result;
+}
+
+
+/**
+ * Предназначен для получения индексного массива, в котором находятся <b>только уникальные</b> значения,
+ * полученные по ключам ассоциативных массивов
+ *
+ * <b>*</b> Уникальность значений проверяется строгим равенством без приведения типов
+ *
+ * @param array $array индексный массив с ассоциативными массива внутри
+ * @param string $key ключ из ассоциативного массива
+ * @return array индексный массив, хранящий только значения по ключам из ассоциативного массива
+ */
+function compressUniquenessArrayValuesByKey(array $array, string $key): array
+{
+    $result = [];
+
+    foreach ($array as $assoc) {
+
+        if (
+            isset($assoc[$key])
+            && !in_array($assoc[$key], $result, true)
+        ) {
+            $result[] = $assoc[$key];
         }
     }
     return $result;

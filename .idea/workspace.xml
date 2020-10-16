@@ -3,13 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/API.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/GeFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/GeFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/PerfectCades.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/PerfectCades.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/modals/ErrorModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/ErrorModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/modals/FileUploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/FileUploader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/modals/SignHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/SignHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/modals/SignView.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/SignView.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,6 +141,7 @@
       <workItem from="1601955341134" duration="33695000" />
       <workItem from="1602087210480" duration="4691000" />
       <workItem from="1602560786171" duration="78655000" />
+      <workItem from="1602819002630" duration="441000" />
     </task>
     <task id="LOCAL-00164" summary="05.10.2020_1">
       <created>1601871851483</created>
@@ -565,10 +559,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1602756268659">
+    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1602765679185">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602756268658" />
+    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602765679185" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1600519766620" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1602091044288" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />

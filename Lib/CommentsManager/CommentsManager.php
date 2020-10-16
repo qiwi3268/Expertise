@@ -413,7 +413,7 @@ class CommentsManager
     public function delete(): self
     {
         $db_docCommentEntriesId = $this->docCommentTable::getIdsByIdMainDocumentAndIdAuthor($this->sectionId, $this->authorId) ?? [];
-        $js_docCommentEntriesId = compressArrayByKey($this->notNullComments, 'id');
+        $js_docCommentEntriesId = compressArrayValuesByKey($this->notNullComments, 'id');
 
         list(
             'delete' => $toDelete,

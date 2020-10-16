@@ -14,6 +14,7 @@ getAllSimple                      простой (индексный) масси
 getIdsByIdMainDocument
 getIdsByIdMainDocumentAndIdAuthor
 getIdFilesByIdMainDocument
+getIdCommentsById
 
 getResponsibleTypeById
 
