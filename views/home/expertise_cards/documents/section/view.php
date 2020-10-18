@@ -510,44 +510,6 @@
 
         <div class="view-section__body card-body expanded">
             <?php if (!empty($_TEPsByAuthors)): ?>
-                <table class="tep-table">
-                    <thead class="tep-table__header">
-                    <tr>
-                        <th class="tep-table__author">Автор</th>
-                        <th>Показатель</th>
-                        <th>Значение</th>
-                        <th>Примечание</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach ($_TEPsByAuthors as $author => $TEPs): ?>
-                        <tr>
-                            <td class="tep-table__author" rowspan="<?= count($TEPs) ?>"><?= $author ?></td>
-                            <td><?= $TEPs[0]['indicator'] ?></td>
-                            <td><?= $TEPs[0]['value'] ?></td>
-                            <td><?= $TEPs[0]['note'] ?></td>
-                        </tr>
-                        <?php for ($l = 1; $l < count($TEPs); $l++): ?>
-                            <tr>
-                                <td><?= $TEPs[$l]['indicator'] ?></td>
-                                <td><?= $TEPs[$l]['value'] ?></td>
-                                <td><?= $TEPs[$l]['note'] ?></td>
-                            </tr>
-                        <?php endfor; ?>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
-            <?php endif; ?>
-        </div>
-    </div>
-
-    <div class="view-section__card card">
-        <div class="view-section__header card-expand">
-            <div class="view-section__title">Технико-экономические показатели</div>
-        </div>
-
-        <div class="view-section__body card-body expanded">
-            <?php if (!empty($_TEPsByAuthors)): ?>
                 <div class="tep-grid">
                     <div class="tep-grid__header">
                         <div class="tep-grid__item">Автор</div>
