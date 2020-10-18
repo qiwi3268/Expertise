@@ -48,7 +48,6 @@ class ExecutionActions extends MainExecutionActions
 
         $financingSourcesAggregator = new FinancingSourcesAggregator(FinancingSourcesAggregator::COMMON_PART_TABLE_TYPE, CURRENT_DOCUMENT_ID);
 
-
         $transaction = new Transaction();
 
         $transaction->add($financingSourcesAggregator, 'deleteAll');

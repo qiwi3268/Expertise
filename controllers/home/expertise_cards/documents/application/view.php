@@ -49,8 +49,6 @@ foreach ($needsFiles as &$mapping_level_2) {
 }
 unset($mapping_level_2);
 
-vd($needsFiles);
-
 $VT->setValue('form_files', $needsFiles);
 
 // Сохранен вид объекта, показываем документацию

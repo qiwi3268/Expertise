@@ -143,4 +143,35 @@ class ExecutionActions extends MainExecutionActions
     {
         return $this->action_1();
     }
+
+
+    /**
+     * Редактировать <i>Закончить подготовку раздела</i>
+     *
+     */
+    public function action_3(): ExecutionActionsResult
+    {
+        // Ставим отметку о законченности работы над разделом
+
+        // Если все остальные эксперты закончили работу с разделом, то переводим раздел
+        // на стадию "Раздел подготовлен
+        //"
+        $methodResult = new ExecutionActionsResult('todo');
+        return $methodResult;
+    }
+
+
+    /**
+     * Редактировать <i>Возобновить подготовку раздела</i>
+     *
+     */
+    public function action_4(): ExecutionActionsResult
+    {
+        // Ставим "работа с разделом текущим пользователем не закончена"
+
+        // Если раздел находится на стадии "Раздел подготовлен", то переводим
+        // его на стадию "Подготовка раздела"
+        $methodResult = new ExecutionActionsResult('todo');
+        return $methodResult;
+    }
 }

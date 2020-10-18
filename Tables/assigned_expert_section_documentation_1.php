@@ -25,9 +25,9 @@ final class assigned_expert_section_documentation_1
     static public function create(int $id_section, int $id_expert): int
     {
         $query = "INSERT INTO `assigned_expert_section_documentation_1`
-                    (`id_section`, `id_expert`)
+                    (`id_section`, `id_expert`, `is_section_preparation_finished`)
                   VALUES
-                    (?, ?)";
+                    (?, ?, 0)";
         return ParametrizedQuery::set($query, [$id_section, $id_expert]);
     }
 

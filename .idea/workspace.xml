@@ -2,14 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="16.10.2020_2">
-      <change afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/section/actions/action_1_dependencies.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/HtmlDependenciesManagerApplicationForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/HtmlDependenciesManagerApplicationForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/html_head.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/html_head.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings/routes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/settings/routes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/modals/comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/modals/comment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Section/Actions/AccessActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Section/Actions/AccessActions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Section/Actions/ExecutionActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Section/Actions/ExecutionActions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/TotalCC/Actions/ExecutionActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/TotalCC/Actions/ExecutionActions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/assigned_expert_section_documentation_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/assigned_expert_section_documentation_1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/files_in_documentation.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/files_in_documentation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/expertise_cards/documents/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/expertise_cards/documents/application/actions/action_2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/expertise_cards/documents/application/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/expertise_cards/documents/application/view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/modal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/sidebars/actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/sidebars/actions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/API.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/DependenciesHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/DependenciesHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/modals/CommentCreator.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/CommentCreator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/PerfectCades.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/PerfectCades.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/section.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/section.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,9 +26,7 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -93,10 +99,7 @@
       <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\js" />
     </key>
   </component>
-  <component name="ServiceViewManager">
-    <option name="showServicesTree" value="false" />
-  </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -151,6 +154,7 @@
       <workItem from="1602819002630" duration="441000" />
       <workItem from="1602820876991" duration="621000" />
       <workItem from="1602822320110" duration="11988000" />
+      <workItem from="1602999585171" duration="611000" />
     </task>
     <task id="LOCAL-00166" summary="05.10.2020_3">
       <created>1601886704331</created>
@@ -499,7 +503,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
