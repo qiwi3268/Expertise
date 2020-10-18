@@ -49,7 +49,6 @@ class DependenciesHandler {
 
       let block_dependencies = this.block_dependencies[field_name];
 
-      console.log(this.block_dependencies);
       if (block_dependencies) {
          this.handleBlockDependencies(block_dependencies)
       }
@@ -109,6 +108,7 @@ class DependenciesHandler {
 
                let dependent_blocks = document.querySelectorAll(`[data-block][data-name="${name}"]`);
                dependent_blocks.forEach(block => {
+
                   block.dataset.active = is_active;
                   resizeCard(block);
                });

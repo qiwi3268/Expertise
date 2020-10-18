@@ -22,9 +22,9 @@ class HtmlDependenciesManagerAction1 extends HtmlDependenciesManager
     {
         $this->blockDependencies = [
             'comment_criticality' => [
-                1 => ['normative_document', false],
-                2 => ['normative_document', true],
-                3 => ['normative_document', true]
+                1 => ['normative_document' => false],
+                2 => ['normative_document' => true],
+                3 => ['normative_document' => true]
             ],
         ];
     }

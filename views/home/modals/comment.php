@@ -2,15 +2,15 @@
 
 <div class="comment-overlay"></div>
 <div class="modal comment-modal">
-    
+
     <input id="comment_id" class="comment-modal__id field-result" name="id" type="hidden">
     <div class="comment-modal__form">
-    
+
         <div class="comment-modal__header">
             <div class="comment-modal__title">Замечание</div>
         </div>
         <div class="comment-modal__body">
-            
+
             <div class="comment-modal__actions">
                 <div class="comment-modal__button" data-save_comment>
                     <span class="comment-modal__label-button">Сохранить замечание</span>
@@ -21,7 +21,7 @@
                     <i class="comment-modal__icon-button fas fa-times"></i>
                 </div>
             </div>
-            
+
             <div class="field-card field" data-name="text" data-required="true" data-pattern="text">
                 <div class="field-card__header">
                     <div class="field-card__title">Текст замечания</div>
@@ -31,7 +31,7 @@
                 </div>
                 <span class="form-field__error field-error">Поле обязательно для заполнения</span>
             </div>
-    
+
             <div class="form-field field" data-misc_field data-name="comment_criticality" data-required="true">
                 <span class="form-field__title field-title">Критичность замечания</span>
                 <div class="form-field__item">
@@ -58,8 +58,8 @@
                 </div>
                 <input id="comment_criticality_value" class="form-field__result field-result" type="hidden" data-misc_result name="comment_criticality">
             </div>
-            
-            <div class="comment-modal__block" data-block data-name="normative_document" data-active="true">
+
+            <div class="comment-modal__block" data-block data-name="normative_document" data-active="false">
                 <div class="field-card field" data-name="normative_document" data-required="true" data-pattern="text">
                     <div class="field-card__header">
                         <div class="field-card__title">Ссылка на нормативный документ</div>
@@ -70,8 +70,8 @@
                     <span class="form-field__error field-error">Поле обязательно для заполнения</span>
                 </div>
             </div>
-           
-            
+
+
             <div class="form-field field" data-name="no_files" data-misc_field>
                 <div class="form-field__item">
                     <div class="radio form-field__body">
@@ -85,9 +85,9 @@
                 </div>
                 <input class="form-field__result field-result" type="hidden" name="no_files">
             </div>
-    
+
             <div id="note" class="field-card field" data-name="note" data-required="false" data-pattern="text" data-tooltip_container>
-    
+
                 <div class="field-card__header">
                     <div class="field-card__title">Личная заметка</div>
                     <i class="field-card__icon-tooltip fas fa-user-secret" data-tooltip></i>
@@ -98,12 +98,12 @@
                 <span class="form-field__error field-error">Поле обязательно для заполнения</span>
                 <div class="comment-modal__note-tooltip" data-tooltip_content hidden>Это поле будет видно только Вам</div>
             </div>
-    
-            
+
+
         </div>
-        
+
     </div>
-    
+
     <div class="comment-modal__files">
         <div class="comment-modal__header">
             <div class="comment-modal__title">Документация</div>

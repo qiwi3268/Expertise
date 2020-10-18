@@ -6,7 +6,7 @@
 
 
 <div class="view-section">
-    
+
     <div class="statistic__card full">
         <div class="statistic__panel-header">Замечания по типу</div>
         <div class="panel statistic__panel" data-col_width="50">
@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="view-section__statistic statistic">
         <div class="statistic__card">
             <div class="statistic__header">Критичность всех замечаний</div>
@@ -114,9 +114,9 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
-    
+
     <!--
     <div class="view-section__card card">
         <div class="view-section__header card-expand">
@@ -152,7 +152,7 @@
                                 <div class="files__item" data-read_only="true" data-id="1078" data-validate_results=""
                                      data-state="not_signed">
                                     <div class="files__info">
-                            
+
                                         <i class="files__icon fas fa-file-excel"></i>
                                         <div class="files__description">
                                             <span class="files__name">Отчет Объекты в работе от 08.09.2020.xlsx</span>
@@ -183,7 +183,7 @@
                                 <div class="files__item" data-read_only="true" data-id="1078" data-validate_results=""
                                      data-state="not_signed">
                                     <div class="files__info">
-                    
+
                                         <i class="files__icon fas fa-file-excel"></i>
                                         <div class="files__description">
                                             <span class="files__name">Отчет Объекты в работе от 08.09.2020.xlsx</span>
@@ -214,7 +214,7 @@
                                 <div class="files__item" data-read_only="true" data-id="1078" data-validate_results=""
                                      data-state="not_signed">
                                     <div class="files__info">
-                    
+
                                         <i class="files__icon fas fa-file-excel"></i>
                                         <div class="files__description">
                                             <span class="files__name">Отчет Объекты в работе от 08.09.2020.xlsx</span>
@@ -245,7 +245,7 @@
                                 <div class="files__item" data-read_only="true" data-id="1078" data-validate_results=""
                                      data-state="not_signed">
                                     <div class="files__info">
-                    
+
                                         <i class="files__icon fas fa-file-excel"></i>
                                         <div class="files__description">
                                             <span class="files__name">Отчет Объекты в работе от 08.09.2020.xlsx</span>
@@ -268,7 +268,7 @@
         </div>
     </div>
     -->
-    
+
     <div class="view-section__card card">
         <div class="view-section__header card-expand">
             <div class="view-section__label">
@@ -276,7 +276,7 @@
                 <div class="view-section__amount"><?= count($_comments) ?></div>
             </div>
             <div class="view-section__title">Замечания на стороне заявителя</div>
-            
+
         </div>
         <?php if (!empty($_comments)): ?>
             <div class="view-section__body card-body expanded">
@@ -336,7 +336,7 @@
             </div>
         <?php endif; ?>
     </div>
-    
+
     <!--
     <div class="view-section__card card">
         <div class="view-section__header card-expand">
@@ -345,7 +345,7 @@
                 <div class="view-section__amount">4</div>
             </div>
             <div class="view-section__title">Снятые замечания</div>
-        
+
         </div>
         <div class="view-section__body card-body expanded">
             <table id="comments_table" class="comments-table">
@@ -373,7 +373,7 @@
                             <div class="files__item" data-read_only="true" data-id="1078" data-validate_results=""
                                  data-state="not_signed">
                                 <div class="files__info">
-                                    
+
                                     <i class="files__icon fas fa-file-excel"></i>
                                     <div class="files__description">
                                         <span class="files__name">Отчет Объекты в работе от 08.09.2020.xlsx</span>
@@ -404,7 +404,7 @@
                             <div class="files__item" data-read_only="true" data-id="1078" data-validate_results=""
                                  data-state="not_signed">
                                 <div class="files__info">
-                                    
+
                                     <i class="files__icon fas fa-file-excel"></i>
                                     <div class="files__description">
                                         <span class="files__name">Отчет Объекты в работе от 08.09.2020.xlsx</span>
@@ -435,7 +435,7 @@
                             <div class="files__item" data-read_only="true" data-id="1078" data-validate_results=""
                                  data-state="not_signed">
                                 <div class="files__info">
-                                    
+
                                     <i class="files__icon fas fa-file-excel"></i>
                                     <div class="files__description">
                                         <span class="files__name">Отчет Объекты в работе от 08.09.2020.xlsx</span>
@@ -466,7 +466,7 @@
                             <div class="files__item" data-read_only="true" data-id="1078" data-validate_results=""
                                  data-state="not_signed">
                                 <div class="files__info">
-                                    
+
                                     <i class="files__icon fas fa-file-excel"></i>
                                     <div class="files__description">
                                         <span class="files__name">Отчет Объекты в работе от 08.09.2020.xlsx</span>
@@ -489,7 +489,7 @@
         </div>
     </div>
     -->
-    
+
     <?php foreach ($_VT->getValue('descriptions') as $author => $description): ?>
         <?php if (!empty($description)): ?>
             <div class="view-section__card card">
@@ -502,21 +502,22 @@
             </div>
         <?php endif;?>
     <?php endforeach; ?>
+
     <div class="view-section__card card">
         <div class="view-section__header card-expand">
             <div class="view-section__title">Технико-экономические показатели</div>
         </div>
-        
+
         <div class="view-section__body card-body expanded">
             <?php if (!empty($_TEPsByAuthors)): ?>
                 <table class="tep-table">
                     <thead class="tep-table__header">
-                        <tr>
-                            <th class="tep-table__author">Автор</th>
-                            <th>Показатель</th>
-                            <th>Значение</th>
-                            <th>Примечание</th>
-                        </tr>
+                    <tr>
+                        <th class="tep-table__author">Автор</th>
+                        <th>Показатель</th>
+                        <th>Значение</th>
+                        <th>Примечание</th>
+                    </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($_TEPsByAuthors as $author => $TEPs): ?>
@@ -539,5 +540,36 @@
             <?php endif; ?>
         </div>
     </div>
-    
+
+    <div class="view-section__card card">
+        <div class="view-section__header card-expand">
+            <div class="view-section__title">Технико-экономические показатели</div>
+        </div>
+
+        <div class="view-section__body card-body expanded">
+            <?php if (!empty($_TEPsByAuthors)): ?>
+                <div class="tep-grid">
+                    <div class="tep-grid__header">
+                        <div class="tep-grid__item">Автор</div>
+                        <div class="tep-grid__item">Показатель</div>
+                        <div class="tep-grid__item">Значение</div>
+                        <div class="tep-grid__item">Примечание</div>
+                    </div>
+                    <div class="tep-grid__body">
+                        <?php foreach ($_TEPsByAuthors as $author => $TEPs): ?>
+                            <div class="tep-grid__item tep-grid__author"><?= $author ?></div>
+                            <div class="tep-grid__values">
+                                <?php for ($l = 0; $l < count($TEPs); $l++): ?>
+                                    <div class="tep-grid__item"><?= $TEPs[$l]['indicator'] ?></div>
+                                    <div class="tep-grid__item"><?= $TEPs[$l]['value'] ?></div>
+                                    <div class="tep-grid__item"><?= $TEPs[$l]['note'] ?></div>
+                                <?php endfor; ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+
 </div>

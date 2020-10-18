@@ -110,6 +110,8 @@ class CommentCreator {
 
    saveComment (comment) {
 
+
+      
       for (let i = 0; i < 10; i++) {
          console.log(Date.now());
       }
