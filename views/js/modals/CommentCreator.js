@@ -100,9 +100,16 @@ class CommentCreator {
 
       comment.criticality_name = this.criticality_name.innerHTML;
 
-      if (!comment.text || !comment.comment_criticality || (!comment.normative_document && comment.comment_criticality !== '1')) {
+      // console.log(this.marked_files.size === 0);
+      // console.log(comment.no_files === null);
+
+      if (
+         !comment.text
+         || !comment.comment_criticality
+         || (!comment.normative_document && comment.comment_criticality !== '1')
+      ) {
          ErrorModal.open('Ошибка при сохранении замечания', 'Не заполнены обязательные поля');
-      } else if (this.marked_files.keys().length === 0 && comment.no_files === null) {
+      } else if (this.marked_files.size === 0 && comment.no_files === null) {
          ErrorModal.open('Ошибка при сохранении замечания', 'Не отмечены файлы к замечанию');
       } else {
          this.saveComment(comment);
@@ -132,27 +139,48 @@ class CommentCreator {
 
       } else {
 
-         let file_id = parseInt(this.saved_file.dataset.id);
+         // let file_id = parseInt(this.saved_file.dataset.id);
          hash = this.comment_hash;
 
-         if (this.marked_files.has(file_id)) {
+         if (this.saved_file && this.marked_files.has(parseInt(this.saved_file.dataset.id))) {
 
-            console.log('with_file');
+            console.log('comment');
 
-            this.marked_files.delete(file_id);
-            comment.file = null;
+            this.marked_files.delete(parseInt(this.saved_file.dataset.id));
+            // comment.file = null;
 
             this.editTableComment(comment, hash, this.saved_file);
 
+         // } else if (this.marked_files.size > 0) {
+         } else if (this.marked_files.size > 0) {
+            console.log('edit_with_file_old_comment');
+            // comment.file = null;
+            // this.editTableComment(comment, hash);
+
+            let iterator = this.marked_files.entries();
+            let first_file = iterator.next().value;
+            // console.log(first_file);
+            // console.log(first_file[0]);
+            // console.log(first_file[1]);
+            comment.file = first_file[0];
+            this.editTableComment(comment, hash, first_file[1]);
+
+            this.marked_files.delete(first_file[0]);
+
+            // console.log(this.marked_files);
+            // let table_row = this.comments_table.querySelector(`[data-comment_hash="${hash}"]`);
+            // table_row.remove();
+            // this.comments.delete(hash);
+
          } else {
-            console.log('no_file');
-            comment.file = null;
+            console.log('edit_old_comment');
             this.editTableComment(comment, hash);
 
          }
 
+         counter = 1;
          this.marked_files.forEach(file => {
-
+            console.log('copy');
             let comment_copy = Object.assign({}, comment, {file: undefined});
             comment_copy.file = parseInt(file.dataset.id);
             this.addCommentToTable(comment_copy, hash + counter++, file);
@@ -174,6 +202,7 @@ class CommentCreator {
 
       comment.hash = hash;
       this.comments.set(hash, comment);
+
       // let comment_hash = this.comment_hash;
 
       let data_row = document.createElement('TR');
@@ -189,7 +218,7 @@ class CommentCreator {
       let text_column = document.createElement('TD');
       text_column.setAttribute('rowspan', '2');
       text_column.setAttribute('data-comment_text', '');
-      text_column.innerHTML = comment.text;
+      text_column.innerHTML = comment.text + ' ' + comment.hash;
       data_row.appendChild(text_column);
 
       let normative_column = document.createElement('TD');
@@ -209,13 +238,22 @@ class CommentCreator {
       files_column.setAttribute('rowspan', '2');
       data_row.appendChild(files_column);
 
+      // todo добавлять, если появляются файлы на редактировании
+      let files_block = document.createElement('DIV');
+      files_block.classList.add('documentation__files', 'files', 'filled');
+      files_block.setAttribute('data-comment_files', '');
+      files_block.setAttribute('data-id_file_field', '');
+      files_block.setAttribute('data-mapping_level_1', this.files_container.dataset.mapping_level_1);
+      files_block.setAttribute('data-mapping_level_2', this.files_container.dataset.mapping_level_2);
+      files_column.appendChild(files_block);
+
       if (file !== null) {
-         let files_block = document.createElement('DIV');
-         files_block.classList.add('documentation__files', 'files', 'filled');
-         files_block.setAttribute('data-comment_files', '');
-         files_block.setAttribute('data-id_file_field', '');
-         files_block.setAttribute('data-mapping_level_1', this.files_container.dataset.mapping_level_1);
-         files_block.setAttribute('data-mapping_level_2', this.files_container.dataset.mapping_level_2);
+         // let files_block = document.createElement('DIV');
+         // files_block.classList.add('documentation__files', 'files', 'filled');
+         // files_block.setAttribute('data-comment_files', '');
+         // files_block.setAttribute('data-id_file_field', '');
+         // files_block.setAttribute('data-mapping_level_1', this.files_container.dataset.mapping_level_1);
+         // files_block.setAttribute('data-mapping_level_2', this.files_container.dataset.mapping_level_2);
 
          files_column.appendChild(files_block);
 
@@ -265,9 +303,13 @@ class CommentCreator {
 
 
    editTableComment (comment, hash, file = null) {
+
+      comment.hash = hash;
+      this.comments.set(hash, comment);
+
       let table_row = this.comments_table.querySelector(`[data-comment_hash="${hash}"]`);
       let text_column = table_row.querySelector('[data-comment_text]');
-      text_column.innerHTML = comment.text;
+      text_column.innerHTML = comment.text + ' ' + comment.hash;
 
       let normative_column = table_row.querySelector('[data-comment_normative_document]');
       normative_column.innerHTML = comment.normative_document;
@@ -277,7 +319,9 @@ class CommentCreator {
 
       // todo сделать проверку на совпадение с уже добавленными файлами
       let files_block = table_row.querySelector('[data-comment_files]');
-      files_block.innerHTML = '';
+      if (files_block) {
+         files_block.innerHTML = '';
+      }
 
       //=== save file
       if (file !== null) {
@@ -427,6 +471,8 @@ class CommentCreator {
          this.comment_hash = parseInt(comment_element.dataset.comment_hash);
          let comment = this.comments.get(this.comment_hash);
 
+         console.log(this.comment_hash);
+
          this.id_input.value = comment.id;
          this.text.value = comment.text;
          this.normative_document.value = comment.normative_document;
@@ -455,6 +501,7 @@ class CommentCreator {
             this.saved_file = file;
          }
 
+         // console.log(comment);
 
          this.note.value = comment.note;
 
