@@ -87,7 +87,7 @@ function validateField (field, input, pattern) {
          error_message = 'Значение должно быть числом из 10 или 12 символов';
          break;
       default :
-         regex = '^\\S+\.*$';
+         regex = '\\S+\.*';
          error_message = 'Значение должно начинаться с непробельного символа';
    }
 

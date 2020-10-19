@@ -11,6 +11,8 @@
 
    /*background-color: #000;*/
    font-size: 14px;
+   /*display: grid;*/
+   /*grid-template-columns: 1fr 7fr 25fr 10fr 22fr 25fr;*/
 
 
 }
@@ -20,7 +22,7 @@
    background-color: #fff;
 }
 
-.comments-table .comments-table__column:first-child {
+.descriptive-part__card .comments-table .comments-table__column:first-child {
    grid-row: 1 / 3;
 }
 
@@ -29,12 +31,25 @@
    display: grid;
    /*background-color: #000;*/
    /*grid-gap: 1px;*/
-   border-top: 1px solid #e0e0e0;
-   grid-template-columns: 8fr 3fr 1fr 8fr;
+   align-items: center;
+   border-bottom: 2px solid #93b0d1;
+   grid-template-columns: 1fr 7fr 25fr 10fr 22fr 25fr;
+}
+
+.descriptive-part__card .comments-table__header {
+   grid-template-columns: 40fr 15fr 5fr 40fr;
+}
+
+.comments-table__header .comments-table__column {
+   /*display: flex;*/
+   /*align-items: center;*/
+   text-align: center;
 }
 
 .comments-table__column {
    padding: 5px;
+   overflow: hidden;
+
 }
 
 .comments-table__header .comments-table__column {
@@ -56,7 +71,7 @@
    display: grid;
    /*background-color: #000;*/
    /*grid-gap: 1px;*/
-   grid-template-columns: 1fr 7fr 3fr 1fr 8fr;
+   grid-template-columns: 8fr 3fr 1fr 8fr;
 }
 
 .comments-table__row:not(:last-child) {
@@ -71,9 +86,14 @@
 
 .comments-table__body {
    display: grid;
-   grid-template-columns: 1fr 7fr 3fr 1fr 8fr;
+   grid-template-columns: 1fr 7fr 25fr 10fr 22fr 25fr;
    grid-gap: 1px;
    background-color: #e0e0e0;
+}
+
+.descriptive-part__card .comments-table__body {
+   grid-template-columns: 1fr 7fr 3fr 1fr 8fr;
+
 }
 
 .comments-table__criticality {
@@ -84,17 +104,17 @@
    text-align: center;
 }
 
-.comments-table__row[data-criticality='1'] {
+.comments-table__column[data-criticality='1'] {
    /*border-left: 2px solid #65B277;*/
    border-left: 2px solid #87c596;
 }
 
-.comments-table__row[data-criticality='2'] {
+.comments-table__column[data-criticality='2'] {
    /*border-left: 2px solid #498BD6;*/
    border-left: 2px solid #93b0d1;
 }
 
-.comments-table__row[data-criticality='3'] {
+.comments-table__column[data-criticality='3'] {
    /*border-left: 2px solid #E24C4C;*/
    border-left: 2px solid #E28383;
 }

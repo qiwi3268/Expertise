@@ -12,23 +12,23 @@
         <div class="panel statistic__panel" data-col_width="50">
             <div class="panel__body">
                 <div class="panel__item">
-                    <div class="panel__number">120</div>
+                    <div class="panel__number">7</div>
                     <div class="panel__label">Всего</div>
                 </div>
                 <div class="panel__item">
-                    <div class="panel__number">40</div>
+                    <div class="panel__number">7</div>
                     <div class="panel__label">Активные</div>
                 </div>
                 <div class="panel__item">
-                    <div class="panel__number">80</div>
+                    <div class="panel__number">0</div>
                     <div class="panel__label">Снятые</div>
                 </div>
                 <div class="panel__item">
-                    <div class="panel__number">15</div>
+                    <div class="panel__number">0</div>
                     <div class="panel__label">Рассмотрение эксперта</div>
                 </div>
                 <div class="panel__item">
-                    <div class="panel__number">25</div>
+                    <div class="panel__number">7</div>
                     <div class="panel__label">Сторона заявителя</div>
                 </div>
             </div>
@@ -81,34 +81,34 @@
                 <div class="diagram__body">
                     <div class="diagram__col"
                          data-color="green"
-                         style="grid-template-rows: 30fr 70fr;">
+                         style="grid-template-rows: 5fr 2fr;">
                         <div class="diagram__row"></div>
                         <div class="diagram__row filled"></div>
                     </div>
                     <div class="diagram__col"
                          data-color="blue"
-                         style="grid-template-rows: 80fr 20fr;">
+                         style="grid-template-rows: 3fr 4fr;">
                         <div class="diagram__row"></div>
                         <div class="diagram__row filled"></div>
                     </div>
                     <div class="diagram__col"
                          data-color="red"
-                         style="grid-template-rows: 90fr 10fr;">
+                         style="grid-template-rows: 6fr 1fr;">
                         <div class="diagram__row"></div>
                         <div class="diagram__row filled"></div>
                     </div>
                 </div>
                 <div class="diagram__footer">
                     <div class="diagram__col">
-                        <span class="diagram__number">70</span>
+                        <span class="diagram__number">2</span>
                         <span class="diagram__label">Техническая ошибка</span>
                     </div>
                     <div class="diagram__col">
-                        <span class="diagram__number">20</span>
+                        <span class="diagram__number">4</span>
                         <span class="diagram__label">Критическая ошибка</span>
                     </div>
                     <div class="diagram__col">
-                        <span class="diagram__number">10</span>
+                        <span class="diagram__number">1</span>
                         <span class="diagram__label">Неустранимая ошибка</span>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
                     <th style="width: 7%">Автор</th>
                     <th style="width: 25%">Текст замечания</th>
                     <th style="width: 10%">Нормативный документ</th>
-                    <th style="width: 22%">Отмеченные файлы</th>
+                    <th style="width: 22%">Отмеченный файл</th>
                     <th style="width: 25%">Ответ заявителя</th>
                 </tr>
                 </thead>
@@ -278,63 +278,61 @@
             <div class="view-section__title">Замечания на стороне заявителя</div>
 
         </div>
+    
         <?php if (!empty($_comments)): ?>
             <div class="view-section__body card-body expanded">
-                <table id="comments_table" class="comments-table">
-                    <thead class="comments-table__header">
-                    <tr>
-                        <th style="width: 1%">№</th>
-                        <th style="width: 7%">Автор</th>
-                        <th style="width: 25%">Текст замечания</th>
-                        <th style="width: 10%">Нормативный документ</th>
-                        <th style="width: 22%">Отмеченные файлы</th>
-                        <th style="width: 25%">Ответ эксперта</th>
-                    </tr>
-                    </thead>
-                    <tbody id="comments_table_body" class="comments-table__body">
-                        <?php foreach ($_comments as $number => $comment): ?>
-                            <tr class="comments-table__row" data-criticality="<?= $comment['comment_criticality']['id'] ?>">
-                                <td class="comments-table__number"><?= $number ?></td>
-                                <td class="comments-table__author"><?= $comment['author'] ?></td>
-                                <td><?= $comment['text'] ?></td>
-                                <td><?= $comment['normative_document'] ?></td>
-                                    <td>
-                                        <?php if (!empty($comment['files'])): ?>
-                                            <div class="documentation__files files filled" data-id_file_field>
-                                                <?php foreach ($comment['files'] as $file): ?>
-                                                    <div class="files__item"
-                                                         data-read_only="true"
-                                                         data-id="<?= $file['id'] ?>"
-                                                        <?php if (isset($file['validate_results'])): ?>
-                                                            data-validate_results='<?= $file['validate_results'] ?>'
-                                                        <?php endif; ?>
-                                                    >
-                                                        <div class="files__info">
-                                                            <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
-                                                            <div class="files__description">
-                                                                <span class="files__name"><?= $file['file_name'] ?></span>
-                                                                <span class="files__size"><?= $file['human_file_size'] ?></span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="files__state" data-type="short"></div>
-                                                        <div class="files__actions">
-                                                            <i class="files__unload fas fa-angle-double-down"></i>
-                                                        </div>
-                                                    </div>
-                                                <?php endforeach; ?>
+                <div id="comments_table" class="comments-table">
+                    <div class="comments-table__header">
+                        <div class="comments-table__column">№</div>
+                        <div class="comments-table__column">Автор</div>
+                        <div class="comments-table__column">Текст замечания</div>
+                        <div class="comments-table__column">Нормативный документ</div>
+                        <div class="comments-table__column">Отмеченный файл</div>
+                        <div class="comments-table__column">Ответ эксперта</div>
+                    </div>
+                    <div class="comments-table__body">
+                        <?php foreach ($_comments as $comment): ?>
+                            <div data-criticality="<?= $comment['comment_criticality']['id'] ?>" class="comments-table__column comments-table__number"><?= $comment['number'] ?></div>
+                            <div class="comments-table__column comments-table__author"><?= $comment['author'] ?></div>
+                            <div class="comments-table__column"><?= $comment['text'] ?></div>
+                            <div class="comments-table__column"><?= $comment['normative_document'] ?></div>
+                            <div class="comments-table__column">
+                                <?php if (!empty($_file = $comment['file'])): ?>
+                                
+                                    <div class="documentation__files files filled" data-id_file_field>
+                                        <div class="files__item"
+                                             data-read_only="true"
+                                             data-id="<?= $_file['id'] ?>"
+                                            <?php if (isset($_file['validate_results'])): ?>
+                                                data-validate_results='<?= $_file['validate_results'] ?>'
+                                            <?php endif; ?>
+                                        >
+                                            <div class="files__info">
+                                                <i class="files__icon fas <?= $_file['file_icon'] ?>"></i>
+                                                <div class="files__description">
+                                                    <span class="files__name"><?= $_file['file_name'] ?></span>
+                                                    <span class="files__size"><?= $_file['human_file_size'] ?></span>
+                                                </div>
                                             </div>
-                                        <?php else: ?>
-                                            Отсутствуют
-                                        <?php endif; ?>
-                                    </td>
-                                <!--todo чето придумать-->
-                                <td>Ответ</td>
-                            </tr>
+                                            <div class="files__state" data-type="short"></div>
+                                            <div class="files__actions">
+                                                <i class="files__unload fas fa-angle-double-down"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php else: ?>
+                                    Отсутствует
+                                <?php endif; ?>
+                            </div>
+                            <!--todo чето придумать-->
+                            <div class="comments-table__column">Ответ</div>
                         <?php endforeach; ?>
-                    </tbody>
-                </table>
+                    </div>
+                </div>
             </div>
         <?php endif; ?>
+    
+    
     </div>
 
     <!--
@@ -355,7 +353,7 @@
                     <th style="width: 7%">Автор</th>
                     <th style="width: 25%">Текст замечания</th>
                     <th style="width: 10%">Нормативный документ</th>
-                    <th style="width: 22%">Отмеченные файлы</th>
+                    <th style="width: 22%">Отмеченный файл</th>
                     <th style="width: 25%">Вывод</th>
                 </tr>
                 </thead>
@@ -510,21 +508,21 @@
 
         <div class="view-section__body card-body expanded">
             <?php if (!empty($_TEPsByAuthors)): ?>
-                <div class="tep-grid">
-                    <div class="tep-grid__header">
-                        <div class="tep-grid__item">Автор</div>
-                        <div class="tep-grid__item">Показатель</div>
-                        <div class="tep-grid__item">Значение</div>
-                        <div class="tep-grid__item">Примечание</div>
+                <div class="tep-table">
+                    <div class="tep-table__header">
+                        <div class="tep-table__item">Автор</div>
+                        <div class="tep-table__item">Показатель</div>
+                        <div class="tep-table__item">Значение</div>
+                        <div class="tep-table__item">Примечание</div>
                     </div>
-                    <div class="tep-grid__body">
+                    <div class="tep-table__body">
                         <?php foreach ($_TEPsByAuthors as $author => $TEPs): ?>
-                            <div class="tep-grid__item tep-grid__author"><?= $author ?></div>
-                            <div class="tep-grid__values">
+                            <div class="tep-table__item tep-table__author"><?= $author ?></div>
+                            <div class="tep-table__values">
                                 <?php for ($l = 0; $l < count($TEPs); $l++): ?>
-                                    <div class="tep-grid__item"><?= $TEPs[$l]['indicator'] ?></div>
-                                    <div class="tep-grid__item"><?= $TEPs[$l]['value'] ?></div>
-                                    <div class="tep-grid__item"><?= $TEPs[$l]['note'] ?></div>
+                                    <div class="tep-table__item"><?= $TEPs[$l]['indicator'] ?></div>
+                                    <div class="tep-table__item"><?= $TEPs[$l]['value'] ?></div>
+                                    <div class="tep-table__item"><?= $TEPs[$l]['note'] ?></div>
                                 <?php endfor; ?>
                             </div>
                         <?php endforeach; ?>

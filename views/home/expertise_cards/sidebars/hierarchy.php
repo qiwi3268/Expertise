@@ -2,7 +2,7 @@
 <?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
 
-<div class="view__object">"Капитальный ремонт по замене системы АПС"в Муниципальном общеобразовательном учреждении «Школа-интернат для детей-сирот и детей, оставшихся без попечения родителей «Семья» г. Магнитогорска, расположенного по адресу: 455026, Челябинская область, г. Магнитогорск, ул. Дружбы, 25»</div>
+<div class="view__object">Реконструкция системы теплоснабжения старой части г. Сатка, в том числе: реконструкция сетей теплоснабжения старой части г. Сатка, строительство газовой котельной с подводящими сетями</div>
 
 <div class="view__header">
     <div class="view__title">Заявление на экспертизу 123</div>
@@ -36,7 +36,7 @@
 
                     <div class="responsible" data-tooltip_content hidden>
                         <?php foreach ($variablesTV->getValue('responsibleUsers') as $FIO): ?>
-                            <div class="responsible__name"><?= $FIO ?></div>
+                            <dive class="responsible__name"><?= $FIO ?></dive>
                         <?php endforeach; ?>
                     </div>
                 </div>
