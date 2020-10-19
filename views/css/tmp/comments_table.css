@@ -1,12 +1,64 @@
 
 .comments-table {
-   margin: 10px;
-
+   /*margin: 10px;
    color: #343a40;
-   /*width: 100%;*/
    border: 1px solid #e0e0e0;
    border-collapse: collapse;
+   font-size: 14px;*/
+
+   /*display: grid;*/
+
+
+   /*background-color: #000;*/
    font-size: 14px;
+
+
+}
+
+.comments-table__column,
+.comments-table__action {
+   background-color: #fff;
+}
+
+.comments-table .comments-table__column:first-child {
+   grid-row: 1 / 3;
+}
+
+/*.comments-table__header .comments-table__column {*/
+.comments-table__header {
+   display: grid;
+   /*background-color: #000;*/
+   /*grid-gap: 1px;*/
+   border-top: 1px solid #e0e0e0;
+   grid-template-columns: 8fr 3fr 1fr 8fr;
+}
+
+.comments-table__header .comments-table__column {
+   font-weight: 700;
+   text-align: center;
+}
+
+.comments-table__column {
+   padding: 5px;
+
+}
+
+.comments-table__action {
+   padding: 5px;
+}
+
+/*.comments-table__row .comments-table__column {*/
+.comments-table__row {
+   display: grid;
+   /*background-color: #000;*/
+   /*grid-gap: 1px;*/
+   grid-template-columns: 1fr 7fr 3fr 1fr 8fr;
+}
+
+.comments-table__row .comments-table__column {
+   border-left: 1px solid #e0e0e0;
+   display: flex;
+   align-items: center;
 }
 
 
@@ -49,9 +101,9 @@
    text-align: center;
 }
 
-.comments-table__row {
-   border-left: 2px solid #e0e0e0;
-}
+/*.comments-table__row {*/
+/*   border-left: 2px solid #e0e0e0;*/
+/*}*/
 
 .comments-table__row[data-criticality='1'] {
    /*border-left: 2px solid #65B277;*/
@@ -67,7 +119,6 @@
    /*border-left: 2px solid #E24C4C;*/
    border-left: 2px solid #E28383;
 }
-
 
 .comments-table .documentation__files {
    border: unset;
@@ -101,33 +152,39 @@ td.comments-table__action {
    width: 4%;
 }
 
-.application-actions {
+.comments-table__actions {
    display: flex;
    flex-direction: column;
    justify-content: space-between;
 }
 
-.application-actions__item {
+.comments-table__action {
    display: flex;
    flex-direction: column;
    align-items: center;
+   cursor: pointer;
 }
 
-.application-actions__text {
+.comments-table__action:not(:last-child) {
+   border-bottom: 1px solid #e0e0e0;
+}
+
+
+.comments-table__label-action {
    font-size: 12px;
 }
 
-.application-actions__icon {
+.comments-table__icon-action {
    font-size: 18px;
 }
 
-.comments-table__action.edit .application-actions__icon,
-.comments-table__action.edit .application-actions__text  {
+.comments-table__action.edit .comments-table__icon-action,
+.comments-table__action.edit .comments-table__label-action  {
    color: #1c3959;
 }
 
-.comments-table__action.delete .application-actions__icon,
-.comments-table__action.delete .application-actions__text {
+.comments-table__action.delete .comments-table__icon-action,
+.comments-table__action.delete .comments-table__label-action {
    color: #a93d3d;
 }
 
