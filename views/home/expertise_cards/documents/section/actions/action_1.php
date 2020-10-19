@@ -121,31 +121,16 @@
                 <i class="multiple-block__icon fas fa-plus"></i>
             </div>
     
-            <div id="comments_table" class="comments-table" data-active="true">
+            <div id="comments_table" class="comments-table" data-active="false">
                 <div class="comments-table__header">
                     <div class="comments-table__column">Текст замечания</div>
                     <div class="comments-table__column">Нормативный документ</div>
                     <div class="comments-table__column">Критичность</div>
-                    <div class="comments-table__column">Отмеченные файлы</div>
+                    <div class="comments-table__column">Отмеченный файл</div>
                 </div>
                 
-                <div class="comments-table__body">
-                    <div class="comments-table__row">
-                        <div class="comments-table__actions">
-                            <div class="comments-table__action edit">
-                                <i class="comments-table__icon-action fas fa-pen-alt"></i>
-                                <div class="comments-table__label-action">Изменить</div>
-                            </div>
-                            <div class="comments-table__action delete">
-                                <i class="comments-table__icon-action fas fa-times"></i>
-                                <div class="comments-table__label-action">Удалить</div>
-                            </div>
-                        </div>
-                        <div class="comments-table__column">Текст замечания</div>
-                        <div class="comments-table__column">Нормативный документ</div>
-                        <div class="comments-table__column">Критичность</div>
-                        <div class="comments-table__column">Отмеченные файлы</div>
-                    </div>
+                <div id="comments_table_body" class="comments-table__body">
+                
                 </div>
                 
                 <!--
@@ -231,7 +216,7 @@
             </div>
             
             
-            <table id="comments_table" class="comments-table" data-active="false">
+   <!--         <table id="comments_table" class="comments-table" data-active="false">
                 <thead class="comments-table__header">
                     <tr>
                         <th style="width: 40%" colspan="2">Текст замечания</th>
@@ -242,7 +227,7 @@
                 </thead>
                 <tbody id="comments_table_body" class="comments-table__body">
                 </tbody>
-            </table>
+            </table>-->
             
             
         </div>

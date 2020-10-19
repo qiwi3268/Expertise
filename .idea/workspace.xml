@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/css/tmp/comments_table.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/comments_table.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/documents/section/actions/action_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/section/actions/action_1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/modals/CommentCreator.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/CommentCreator.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,13 +146,7 @@
       <workItem from="1602822320110" duration="11988000" />
       <workItem from="1602999585171" duration="4613000" />
       <workItem from="1603013976339" duration="12516000" />
-    </task>
-    <task id="LOCAL-00170" summary="07.10.2020">
-      <created>1602042255813</created>
-      <option name="number" value="00170" />
-      <option name="presentableId" value="LOCAL-00170" />
-      <option name="project" value="LOCAL" />
-      <updated>1602042255813</updated>
+      <workItem from="1603089702031" duration="8372000" />
     </task>
     <task id="LOCAL-00171" summary="07.10.2020_1">
       <created>1602062819563</created>
@@ -489,11 +484,18 @@
       <option name="project" value="LOCAL" />
       <updated>1603084422292</updated>
     </task>
-    <option name="localTasksCounter" value="219" />
+    <task id="LOCAL-00219" summary="18.10.2020_4">
+      <created>1603089853160</created>
+      <option name="number" value="00219" />
+      <option name="presentableId" value="LOCAL-00219" />
+      <option name="project" value="LOCAL" />
+      <updated>1603089853161</updated>
+    </task>
+    <option name="localTasksCounter" value="220" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -506,7 +508,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="12.10.2020_2" />
     <MESSAGE value="13.10.2020" />
     <MESSAGE value="13.10.2020_1" />
     <MESSAGE value="13.10.2020_2" />
@@ -531,7 +532,8 @@
     <MESSAGE value="18.10.2020_1" />
     <MESSAGE value="18.10.2020_2" />
     <MESSAGE value="18.10.2020_3" />
-    <option name="LAST_COMMIT_MESSAGE" value="18.10.2020_3" />
+    <MESSAGE value="18.10.2020_4" />
+    <option name="LAST_COMMIT_MESSAGE" value="18.10.2020_4" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -562,10 +564,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1603084418988">
+    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1603089847936">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603084418988" />
+    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603089847936" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1603032169697" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603003964512" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
@@ -586,10 +588,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="735" y="231" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598853548198" />
-    <state x="506" y="215" key="SettingsEditor" timestamp="1603089804666">
+    <state x="506" y="215" key="SettingsEditor" timestamp="1603089909258">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="506" y="215" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603089804666" />
+    <state x="506" y="215" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603089909258" />
     <state x="1060" y="462" key="SettingsEditor/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603013966371" />
     <state width="254" height="198" key="ShowFilterAction_Filter_Popup" timestamp="1602482515341">
       <screen x="0" y="0" width="1920" height="1040" />
