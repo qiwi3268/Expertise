@@ -69,6 +69,8 @@ function saveSection () {
       return Object.assign({}, comment, {criticality_name: undefined});
    });
 
+   console.log(comments_to_json);
+
    form_data.append('comments', JSON.stringify(comments_to_json));
 
    API.executeAction(form_data)

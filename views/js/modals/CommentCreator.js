@@ -126,78 +126,53 @@ class CommentCreator {
    }
 
    saveComment (comment) {
-      let counter = 0;
-      let hash;
+      // let counter = 0;
+      // let hash;
 
       if (this.comment_hash === null) {
-         hash = Date.now();
 
          if (this.marked_files.size > 0) {
 
             this.marked_files.forEach(file => {
-               let comment_copy = Object.assign({}, comment);
-               comment_copy.file = parseInt(file.dataset.id);
+               let comment_copy = Object.assign({}, comment, {id: null});
+               comment_copy.attached_file = parseInt(file.dataset.id);
                // this.addCommentToTable(comment_copy, hash + counter++, file);
                this.addCommentToTable(comment_copy, CommentCreator.hash++, file);
             });
 
          } else {
-            comment.file = null;
+            comment.attached_file = null;
             this.addCommentToTable(comment, CommentCreator.hash++);
+
+            // console.log(comment);
          }
 
       } else {
 
-         // let file_id = parseInt(this.saved_file.dataset.id);
-         // hash = this.comment_hash;
-
-        /* if (this.saved_file && this.marked_files.has(parseInt(this.saved_file.dataset.id))) {
-
-            console.log('comment');
-
-            this.marked_files.delete(parseInt(this.saved_file.dataset.id));
-            // comment.file = null;
-
-            this.editTableComment(comment, hash, this.saved_file);
-*/
-         // } else if (this.marked_files.size > 0) {
-         // } else if (this.marked_files.size > 0) {
          if (this.marked_files.size > 0) {
-            console.log('edit_with_file_old_comment');
-            // comment.file = null;
-            // this.editTableComment(comment, hash);
+            // console.log('edit_with_file_old_comment');
 
             let iterator = this.marked_files.entries();
             let first_file = iterator.next().value;
-            // console.log(first_file);
-            // console.log(first_file[0]);
-            // console.log(first_file[1]);
-            comment.file = first_file[0];
+            comment.attached_file = first_file[0];
             this.editTableComment(comment, this.comment_hash, first_file[1]);
 
             this.marked_files.delete(first_file[0]);
 
-            // console.log(this.marked_files);
-            // let table_row = this.comments_table.querySelector(`[data-comment_hash="${hash}"]`);
-            // table_row.remove();
-            // this.comments.delete(hash);
-
          } else {
-            console.log('edit_old_comment');
+            // console.log('edit_old_comment');
+            comment.attached_file = null;
             this.editTableComment(comment, this.comment_hash);
 
          }
 
-         counter = 1;
          this.marked_files.forEach(file => {
-            console.log('copy');
-            let comment_copy = Object.assign({}, comment, {file: undefined});
-            comment_copy.file = parseInt(file.dataset.id);
+            // console.log('copy');
+            let comment_copy = Object.assign({}, comment, {file: undefined, id:null});
+            comment_copy.attached_file = parseInt(file.dataset.id);
             this.addCommentToTable(comment_copy, CommentCreator.hash++, file);
          });
       }
-
-      // console.log(CommentCreator.getInstance().comments);
 
       resizeCard(this.comments_table);
 
@@ -210,12 +185,6 @@ class CommentCreator {
 
       comment.hash = hash;
       this.comments.set(hash, comment);
-
-      // let data_row = document.createElement('DIV');
-      // data_row.classList.add('comments-table__row');
-      // data_row.setAttribute('data-comment_hash', hash);
-
-      // this.table_body.appendChild(data_row);
 
       let actions = document.createElement('DIV');
       actions.classList.add('comments-table__actions');
@@ -235,7 +204,7 @@ class CommentCreator {
       text_column.classList.add('comments-table__column');
       text_column.setAttribute('data-comment_text', '');
       text_column.setAttribute('data-comment_hash', hash);
-      text_column.innerHTML = comment.text + ' ' + comment.hash;
+      text_column.innerHTML = comment.text;
       // data_row.appendChild(text_column);
       this.table_body.appendChild(text_column);
 
@@ -292,7 +261,6 @@ class CommentCreator {
 
       }
 
-      // this.table_body.appendChild(action_row);
    }
 
    addFilesToTable (comment, files_block) {
@@ -316,9 +284,9 @@ class CommentCreator {
       comment.hash = hash;
       this.comments.set(hash, comment);
 
-      let table_row = this.comments_table.querySelector(`[data-comment_hash="${hash}"]`);
+      // let table_row = this.comments_table.querySelector(`[data-comment_hash="${hash}"]`);
       let text_column = this.comments_table.querySelector(`[data-comment_hash="${hash}"][data-comment_text]`);
-      text_column.innerHTML = comment.text + ' ' + comment.hash;
+      text_column.innerHTML = comment.text;
 
       let normative_column = this.comments_table.querySelector(`[data-comment_hash="${hash}"][data-comment_normative_document]`);
       normative_column.innerHTML = comment.normative_document;
@@ -331,8 +299,6 @@ class CommentCreator {
       let files_block = files_column.querySelector('.files');
       if (files_block) {
          files_block.innerHTML = '';
-      } else {
-
       }
 
       //=== save file
@@ -482,15 +448,12 @@ class CommentCreator {
          this.comment_hash = hash;
          let comment = this.comments.get(this.comment_hash);
 
-         console.log(comment);
-
-
-         console.log(this.comment_hash);
+         // console.log(comment);
+         // console.log(this.comment_hash);
 
          this.id_input.value = comment.id;
          this.text.value = comment.text;
          this.normative_document.value = comment.normative_document;
-
 
          if (comment.no_files === null) {
             this.no_files_checkbox.dataset.selected = 'false';
@@ -508,14 +471,17 @@ class CommentCreator {
          this.criticality_value.value = comment.comment_criticality;
          criticality_field.classList.add('filled');
 
-         // if ()
+         if (this.criticality_value.value !== '1') {
+            normative_block.dataset.active = 'true';
+         } else {
+            normative_block.dataset.active = 'false';
+         }
 
          // let marked_files = comment.file;
-         if (comment.file) {
-            console.log(comment.file);
-            let file = this.modal.querySelector(`.files__item[data-id="${comment.file}"]`);
+         if (comment.attached_file) {
+            let file = this.modal.querySelector(`.files__item[data-id="${comment.attached_file}"]`);
             this.setFileCheckbox(file);
-            this.marked_files.set(comment.file, file);
+            this.marked_files.set(comment.attached_file, file);
             this.saved_file = file;
          }
 
@@ -529,6 +495,7 @@ class CommentCreator {
          this.id_input.value = null;
          this.text.value = '';
          this.normative_document.value = '';
+         normative_block.dataset.active = 'false';
 
          this.criticality_name.innerHTML = 'Выберите критичность';
          this.criticality_value.value = '';

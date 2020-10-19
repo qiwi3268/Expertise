@@ -111,34 +111,7 @@
 
 }
 
-.tep-table,
-.view-section__description table {
-   font-size: 14px;
-   margin: 10px;
-
-   color: #343a40;
-   width: calc(100% - 20px);
-   /*width: 100%;*/
-   border: 1px solid #e0e0e0;
-   border-collapse: collapse;
-
-}
-
-.tep-table__header {
-   border-bottom: 2px solid #93b0d1;
-}
-
-.tep-table__author {
-   max-width: 200px;
-   width: 15%;
-   white-space: nowrap;
-   overflow: hidden;
-   text-overflow: ellipsis;
-}
-
-.tep-table td,
 .view-section__description td,
-.tep-table th,
 .view-section__description th
 {
    /*border: solid #e0e0e0;*/
