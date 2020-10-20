@@ -8,7 +8,7 @@ use Tables\assigned_expert_section_documentation_1;
 use Tables\Docs\section_documentation_1;
 use Tables\Docs\comment_documentation_1;
 
-$totalCCId = 40;
+$totalCCId = 38;
 $typeOfObjectId = 1;
 
 // Временный контроллер для перевода проекта на стадию устранения замечаний
@@ -35,56 +35,55 @@ foreach ($sectionIds as $sectionId) {
 
 //      { Действие "Закончить подготовку раздела"
 
-        $transaction = new Transaction();
+            $transaction = new Transaction();
 
-        // Заканчиваем подготовку раздела
-        $transaction->add(
-            '\Tables\assigned_expert_section_documentation_1',
-            'setSectionPreparationFinishedByIdSectionAndIdExpert',
-            [$sectionId, $expertId]
-        );
-
-        // Перевод всех замечаний на стадию "Замечание подготовлено"
-        //todo только замечаний от этого автора
-        $transaction->add(
-            '\Tables\Docs\comment_documentation_1',
-            'updateIdStageByIdMainDocument',
-            [2, $sectionId]
-        );
-
-        // Не осталось незакончивших работу с разделом экспертов
-        if (!assigned_expert_section_documentation_1::checkExistWhereNotSectionPreparationFinishedByIdSection($sectionId)) {
-
-            // Перевод раздела на стадию "Раздел подготовлен"
+            // Завершаем работу с разделом (+)
             $transaction->add(
-                '\Tables\Docs\section_documentation_1',
-                'updateIdStageById',
+                '\Tables\assigned_expert_section_documentation_1',
+                'setSectionPreparationFinishedByIdSectionAndIdExpert',
+                [$sectionId, $expertId]
+            );
+
+            // Перевод всех замечаний на стадию "Замечание подготовлено"
+            $transaction->add(
+                '\Tables\Docs\comment_documentation_1',
+                'updateIdStageByIdMainDocument',
                 [2, $sectionId]
             );
 
-            // Не осталось неподготовленных разделов
-            if (!section_documentation_1::checkExistByIdMainDocumentAndIdStage($totalCCId, 2)) {
+            // Не осталось незакончивших работу с разделом экспертов
+            if (!assigned_expert_section_documentation_1::checkExistWhereNotSectionPreparationFinishedByIdSection($sectionId)) {
 
-                // Перевод сводного замечания / заключения на стадию "Подготовка сводного замечания ПТО"
+                // Перевод раздела на стадию "Раздел подготовлен"
                 $transaction->add(
-                    '\Tables\Docs\total_cc',
+                    '\Tables\Docs\section_documentation_1',
                     'updateIdStageById',
-                    [2, $totalCCId]
+                    [2, $sectionId]
                 );
 
-                $responsible = new Responsible($sectionId, DOCUMENT_TYPE['total_cc']);
+                // Не осталось неподготовленных разделов
+                if (!section_documentation_1::checkExistByIdMainDocumentAndIdStage($totalCCId, 2)) {
 
-                // Удаление предыдущих ответственных
-                $responsible->deleteCurrentResponsible($transaction, false);
+                    // Перевод сводного замечания / заключения на стадию "Подготовка сводного замечания ПТО"
+                    $transaction->add(
+                        '\Tables\Docs\total_cc',
+                        'updateIdStageById',
+                        [2, $totalCCId]
+                    );
 
-                // Установка отвественных сотрудников ПТО
-                $responsible->createResponsibleType2($transaction, ROLE_ID['EMP_PTO']);
+                    $responsible = new Responsible($sectionId, DOCUMENT_TYPE['total_cc']);
+
+                    // Удаление предыдущих ответственных
+                    $responsible->deleteCurrentResponsible($transaction, false);
+
+                    // Установка отвественных сотрудников ПТО
+                    $responsible->createResponsibleType2($transaction, ROLE_ID['EMP_PTO']);
+                }
             }
-        }
 
-        $transactionResults = $transaction->start()->getLastResults();
-        vd($transactionResults);
-        unset($transaction); // (-)
+            $transactionResults = $transaction->start()->getLastResults();
+            vd($transactionResults);
+            unset($transaction); // (-)
 //      }
     }
 }

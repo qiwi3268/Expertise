@@ -5,11 +5,11 @@ namespace Tables\Docs;
 
 use Lib\Exceptions\DataBase as DataBaseEx;
 
-use Tables\Docs\Interfaces\Document;
+use Tables\Docs\Interfaces\ChildDocument;
 use Tables\Docs\Interfaces\Responsible;
 use Tables\CommonInterfaces\Existent;
 
-use Tables\Docs\Traits\Document as DocumentTrait;
+use Tables\Docs\Traits\ChildDocument as ChildDocumentTrait;
 use Tables\Docs\Traits\Responsible as ResponsibleTrait;
 use Tables\CommonTraits\Existent as ExistentTrait;
 
@@ -20,13 +20,13 @@ use Lib\DataBase\ParametrizedQuery;
  * Таблица: <i>'doc_total_cc'</i>
  *
  */
-final class total_cc implements Document, Existent, Responsible
+final class total_cc implements ChildDocument, Existent, Responsible
 {
 
     static private string $tableName = 'doc_total_cc';
     static private string $stageTableName = 'stage_total_cc';
 
-    use DocumentTrait;
+    use ChildDocumentTrait;
     use ExistentTrait;
     use ResponsibleTrait;
 

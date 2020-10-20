@@ -17,7 +17,8 @@ use Lib\Exceptions\Traits\MainTrait;
  * {@see \Lib\Files\Initialization\Initializer}<br>
  * ошибка в маппинг таблице (файлов)<br>
  * ошибка в маппинг таблице (подписей)<br>
- * осталась(лись) подпись, которая не подошла ни к одному из файлов<br>
+ * метод: '...::getAllAssocWhereNeedsByIds' не смог выполнить добор недостающих файлов
+ * метод: '...::getAllAssocWhereNeedsByIds' не смог выполнить недостающих файлов с id: ...
  * в массиве файлов не найден нужный id
  *
  */

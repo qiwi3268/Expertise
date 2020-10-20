@@ -104,7 +104,7 @@ trait  SignTable
         $query = "SELECT *
                   FROM `{$table}`
                   WHERE (
-                            (`is_external`=1 AND `id_file` IS NOT NULL AND (`id_sign` IN {$in} AND `id_file` IN {$in}))
+                            (`is_external`=1 AND `id_file` IS NOT NULL AND (`id_file` IN {$in}))
                             OR
                             (`is_external`=0 AND `id_file` IS NULL AND (`id_sign` IN {$in}))
                         )";

@@ -48,6 +48,10 @@
             </updateResponsibleType>
 
             <createResponsible>
+                <type_2>
+                    <class name="\Tables\Responsible\type_2\total_cc" />
+                    <method name="create" />
+                </type_2>
                 <type_4>
                     <class name="\Tables\Responsible\type_4\total_cc" />
                     <method name="create" />
@@ -55,6 +59,10 @@
             </createResponsible>
 
             <getResponsible>
+                <type_2>
+                    <class name="\Tables\Responsible\type_2\total_cc" />
+                    <method name="getResponsibleByIdMainDocument" />
+                </type_2>
                 <type_4>
                     <class name="\Tables\Responsible\type_4\total_cc" />
                     <method name="getResponsibleByIdMainDocument" />
@@ -62,6 +70,10 @@
             </getResponsible>
 
             <deleteResponsible>
+                <type_2>
+                    <class name="\Tables\Responsible\type_2\total_cc" />
+                    <method name="deleteResponsibleByIdMainDocument" />
+                </type_2>
                 <type_4>
                     <class name="\Tables\Responsible\type_4\total_cc" />
                     <method name="deleteResponsibleByIdMainDocument" />

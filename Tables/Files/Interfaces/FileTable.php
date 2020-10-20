@@ -37,6 +37,16 @@ interface FileTable
 
 
     /**
+     * Предназначен для получения ассоциативных массивов нужных файлов по их id
+     *
+     * @param int[] $ids индексный массив с id файлов
+     * @return array|null <b>array</b> индексный массив с ассоциативными массива внутри, если записи существуют<br>
+     * <b>null</b> в противном случае
+     */
+    static public function getAllAssocWhereNeedsByIds(array $ids): ?array;
+
+
+    /**
      * Предназначен для получения ассоциативного массива записи по по id главного документа и её hash'у
      *
      * @param int $id_main_document id главного документа

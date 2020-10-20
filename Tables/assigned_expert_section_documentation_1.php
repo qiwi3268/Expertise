@@ -92,6 +92,25 @@ final class assigned_expert_section_documentation_1
 
 
     /**
+     * Предназначен для провреки существования записей назначенных экспертов, которы не закончили работу
+     * по подготовке раздела по id раздела
+     *
+     * @param int $id_section id раздела
+     * @return bool
+     * @throws DataBaseEx
+     */
+    static public function checkExistWhereNotSectionPreparationFinishedByIdSection(int $id_section): bool
+    {
+        $query = "SELECT COUNT(*)>0
+                  FROM `assigned_expert_section_documentation_1`
+                  WHERE `id_section`=? AND `is_section_preparation_finished`='0'";
+        // Автоматическое преобразование к bool типу
+        return ParametrizedQuery::getSimpleArray($query, [$id_section])[0];
+    }
+
+
+
+    /**
      * Предназначен для установки флага, что работа по подготовке раздела закочена
      *
      * @param int $id_section id раздела

@@ -117,12 +117,12 @@ class Responsible
      * Предназначен для удаления текущих ответственных
      *
      * @param Transaction $transaction транзакция, в которую будут записаны результаты метода
-     * @param bool $needUpdateResponsibleType нужно ли обновлять тип ответственных в текущем документе на type_1
+     * @param bool $needUpdateCurrentResponsibleType требуется ли обновлять `responsible_type` у документа в БД на type_1
      * @throws ReflectionException
      * @throws SelfEx
      * @throws TransactionEx
      */
-    public function deleteCurrentResponsible(Transaction $transaction, bool $needUpdateResponsibleType = true): void
+    public function deleteCurrentResponsible(Transaction $transaction, bool $needUpdateCurrentResponsibleType = true): void
     {
         if ($this->currentResponsibleType == 'type_1') {
             return;
@@ -138,11 +138,42 @@ class Responsible
 
 
         // Устанавливаем в главном документе в БД тип ответственных "Никто"
-        if ($needUpdateResponsibleType) {
+        if ($needUpdateCurrentResponsibleType) {
 
             $this->updateCurrentResponsibleType($transaction, 'type_1');
         }
         $this->currentResponsibleType = 'type_1';
+    }
+
+
+    /**
+     * Предназначен для создания ответственных "Ответственные роли"
+     *
+     * <b>****</b> Перед использованием метода требуется вручную удалить текущих ответственных
+     *
+     * @param Transaction $transaction транзакция, в которую будут записаны результаты метода
+     * @param int $roleId id роли из таблицы `user_info_role`
+     * @param bool $needUpdateCurrentResponsibleType требуется ли обновлять `responsible_type` у документа в БД на type_2
+     * @throws ReflectionException
+     * @throws SelfEx
+     * @throws TransactionEx
+     */
+    public function createResponsibleType2(Transaction $transaction, int $roleId, bool $needUpdateCurrentResponsibleType = true): void
+    {
+        // Метод создания ответственных
+        list(
+            'class'  => $createResponsibleClass,
+            'method' => $createResponsibleMethod
+            ) = self::$XMLReader->createResponsible($this->DT, 'type_2');
+
+        $transaction->add($createResponsibleClass, $createResponsibleMethod, [$this->documentId, $roleId]);
+
+
+        if ($needUpdateCurrentResponsibleType) {
+
+            $this->updateCurrentResponsibleType($transaction, 'type_2');
+        }
+        $this->currentResponsibleType = 'type_2';
     }
 
 
@@ -153,7 +184,7 @@ class Responsible
      *
      * @param Transaction $transaction транзакция, в которую будут записаны результаты метода
      * @param string[] $accessGroupNames индексный массив названий групп ответственных заявителей
-     * @param bool $needUpdateCurrentResponsibleType требуется ли обновлять `responsible_type` у документа в БД
+     * @param bool $needUpdateCurrentResponsibleType требуется ли обновлять `responsible_type` у документа в БД на type_3
      * @return void
      * @throws ReflectionException
      * @throws SelfEx
@@ -197,7 +228,7 @@ class Responsible
      *
      * @param Transaction $transaction транзакция, в которую будут записаны результаты метода
      * @param int[] индексный массив id пользователей, которых необходимо сделать ответственными
-     * @param bool $needUpdateCurrentResponsibleType требуется ли обновлять `responsible_type` у документа в БД
+     * @param bool $needUpdateCurrentResponsibleType требуется ли обновлять `responsible_type` у документа в БД на type_4
      * @return void
      * @throws ReflectionException
      * @throws SelfEx

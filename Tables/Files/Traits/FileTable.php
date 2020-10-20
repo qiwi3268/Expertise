@@ -6,6 +6,7 @@ namespace Tables\Files\Traits;
 use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\DataBase\SimpleQuery;
 use Lib\DataBase\ParametrizedQuery;
+use Tables\Helpers\Helper as TableHelper;
 use Tables\CommonTraits\deleteById as deleteByIdTrait;
 
 
@@ -62,6 +63,28 @@ trait FileTable
                   WHERE `id`=?";
         $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
         return $result ? $result[0] : null;
+    }
+
+
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Files\Interfaces\FileTable::getAllAssocByIds()}
+     *
+     * @param int[] $ids
+     * @return array
+     * @throws DataBaseEx
+     */
+    static public function getAllAssocWhereNeedsByIds(array $ids): ?array
+    {
+        $table = self::$tableName;
+
+        $condition = TableHelper::getConditionForIN($ids);
+
+        $query = "SELECT *
+                  FROM `{$table}`
+                  WHERE `id` IN ({$condition}) AND `is_needs`='1'";
+        $result = ParametrizedQuery::getFetchAssoc($query, $ids);
+        return $result ? $result : null;
     }
 
 

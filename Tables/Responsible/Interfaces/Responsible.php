@@ -12,14 +12,6 @@ interface Responsible
 {
 
     /**
-     * Предназначен для удаления всех ответственных с документа
-     *
-     * @param int $id_main_document id главного документа
-     */
-    static public function deleteResponsibleByIdMainDocument(int $id_main_document): void;
-
-
-    /**
      * Предназначен для получения ассоциативных массивов с ответственными пользователями
      *
      * Ассоциативный массив пользователя должен включать в себя поля:
@@ -33,4 +25,12 @@ interface Responsible
      * <b>null</b> в противном случае
      */
     static public function getResponsibleByIdMainDocument(int $id_main_document): ?array;
+
+
+    /**
+     * Предназначен для удаления всех ответственных с документа
+     *
+     * @param int $id_main_document id главного документа
+     */
+    static public function deleteResponsibleByIdMainDocument(int $id_main_document): void;
 }
