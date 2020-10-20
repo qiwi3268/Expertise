@@ -39,5 +39,24 @@ trait Document
                   WHERE `{$table}`.`id`=?";
         return ParametrizedQuery::getSimpleArray($query, [$id])[0];
     }
+
+
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Docs\Interfaces\Document::updateIdStageById()}
+     *
+     * @param int $id_stage
+     * @param int $id
+     * @throws DataBaseEx
+     */
+    static public function updateIdStageById(int $id_stage, int $id): void
+    {
+        $table = self::$tableName;
+
+        $query = "UPDATE `{$table}`
+                  SET `id_stage`=?
+                  WHERE `id`=?";
+        ParametrizedQuery::set($query, [$id_stage, $id]);
+    }
 }
 

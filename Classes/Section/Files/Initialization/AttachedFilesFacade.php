@@ -91,21 +91,19 @@ class AttachedFilesFacade
 
         foreach ($this->commentIds as $commentId) {
 
-            $result[$commentId] = [];
-
             list(
-                'count'   => $count,
-                'indexes' => $indexes
+                'count'     => $count,
+                'first_key' => $firstKey
                 ) = arrayEntry($files, 'id_comment', $commentId);
 
-            if ($count > 0) {
+            if ($count == 1) {
 
-                foreach ($indexes as $index) {
-
-                    $result[$commentId][] = $files[$index];
-                    unset($files[$index]);
-                }
+                $result[$commentId] = $files[$firstKey];
+                unset($files[$firstKey]);
                 $entryCount += $count;
+            } else {
+
+                $result[$commentId] = [];
             }
         }
         if ($entryCount != $filesCount) {

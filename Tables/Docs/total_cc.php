@@ -97,7 +97,7 @@ final class total_cc implements Document, Existent, Responsible
      * <b>null</b> в противном случае
      * @throws DataBaseEx
      */
-    static public function getIdSectionsById(int $id, int $typeOfObjectId): ?array
+    static public function getSectionIdsById(int $id, int $typeOfObjectId): ?array
     {
         $sectionTable = self::getChildTables($typeOfObjectId)['doc_section'];
 
@@ -118,7 +118,7 @@ final class total_cc implements Document, Existent, Responsible
      * <b>null</b> в противном случае
      * @throws DataBaseEx
      */
-    static public function getIdCommentsById(int $id, int $typeOfObjectId): ?array
+    static public function getCommentIdsById(int $id, int $typeOfObjectId): ?array
     {
         list(
             'doc_section' => $sectionTable,

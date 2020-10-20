@@ -120,25 +120,6 @@ class TypeOfObjectTableLocator
      * в зависимости от вида объекта
      *
      * @return string
-     * {@see \Tables\Comment\AttachedFiles\documentation_1}<br>
-     * или<br>
-     * {@see \Tables\Comment\AttachedFiles\documentation_2}
-     */
-    public function getCommentAttachedFiles(): string
-    {
-        if ($this->typeOfObjectId == 1) {
-            return '\Tables\Comment\AttachedFiles\documentation_1';
-        } else {
-            return '\Tables\Comment\AttachedFiles\documentation_2';
-        }
-    }
-
-
-    /**
-     * Предназначен для получения названия класса таблицы
-     * в зависимости от вида объекта
-     *
-     * @return string
      * {@see \Tables\assigned_expert_section_documentation_1}<br>
      * или<br>
      * {@see \Tables\assigned_expert_section_documentation_2}

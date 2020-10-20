@@ -16,6 +16,10 @@ getIdsByIdMainDocumentAndIdAuthor
 getIdFilesByIdMainDocument
 getIdCommentsById
 
+getSectionIdsById
+getCommentIdsById
+getExpertIdsByIdSection
+
 getResponsibleTypeById
 
 updateResponsibleTypeById

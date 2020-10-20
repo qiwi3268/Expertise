@@ -19,6 +19,7 @@ use Tables\Helpers\Helper as TableHelper;
  * статические свойства:
  * - tableName с соответствующим именем таблицы
  * - stageTableName с именем таблицы стадий для данного документа
+ * - documentationTableName с именем таблицы, в которой находятся прикрепленные файлы
  *
  */
 trait CommentTable
@@ -31,9 +32,9 @@ trait CommentTable
      *
      * @param int $id_main_document id главного документа
      * @param int $id_author id автора
+     * @param int|null $id_attached_file id прикрепленного файла
      * @param string $text текст замечания
-     * @param string $normative_document ссылка на нормативный документ
-     * @param int $no_files отметка файлов не требуется
+     * @param string|null $normative_document ссылка на нормативный документ
      * @param string|null $note личная заметка
      * @param int $id_comment_criticality справочник критичности замечания
      * @return int id созданной записи
@@ -42,9 +43,9 @@ trait CommentTable
     static public function create(
         int $id_main_document,
         int $id_author,
+        ?int $id_attached_file,
         string $text,
-        string $normative_document,
-        int $no_files,
+        ?string $normative_document,
         ?string $note,
         int $id_comment_criticality
     ): int {
@@ -53,7 +54,7 @@ trait CommentTable
 
         // id_stage - 1
         // responsible_type - type_4
-        $bindParams = [$id_main_document, $id_author, 1, 'type_4', $text, $normative_document, $no_files, $note, $id_comment_criticality];
+        $bindParams = [$id_main_document, $id_author, 1, 'type_4', $id_attached_file, $text, $normative_document, $note, $id_comment_criticality];
         $values = TableHelper::getValuesWithoutNullForInsert($bindParams);
 
 
@@ -62,9 +63,9 @@ trait CommentTable
                       `id_author`,
                       `id_stage`,
                       `responsible_type`,
+                      `id_attached_file`,
                       `text`,
                       `normative_document`,
-                      `no_files`,
                       `note`,
                       `id_comment_criticality`,
                       `date_creation`)
@@ -98,9 +99,9 @@ trait CommentTable
                          `user`.`middle_name`,
                          `{$stageTable}`.`name` as `stage_name`,
                          `{$stageTable}`.`description` as `stage_description`,
+                         `{$table}`.`number`,
                          `{$table}`.`text`,
                          `{$table}`.`normative_document`,
-                         `{$table}`.`no_files`,
                          `{$table}`.`note`,
                          `{$table}`.`id_comment_criticality`,
                          `misc_comment_criticality`.`name` as `name_comment_criticality`
@@ -176,18 +177,18 @@ trait CommentTable
      * Предназначен для обновления записи в таблице документа замечания
      *
      * @param int $id id записи
+     * @param int|null $id_attached_file id прикрепленного файла
      * @param string $text текст замечания
-     * @param string $normative_document ссылка на нормативный документ
-     * @param int $no_files отметка файлов не требуется
+     * @param string|null $normative_document ссылка на нормативный документ
      * @param string|null $note личная заметка
      * @param int $id_comment_criticality справочник критичности замечания
      * @throws DataBaseEx
      */
     static public function updateById(
         int $id,
+        ?int $id_attached_file,
         string $text,
-        string $normative_document,
-        int $no_files,
+        ?string $normative_document,
         ?string $note,
         int $id_comment_criticality
     ): void {
@@ -195,9 +196,9 @@ trait CommentTable
         $table = self::$tableName;
 
         $params = [
+            'id_attached_file'       => $id_attached_file,
             'text'                   => $text,
             'normative_document'     => $normative_document,
-            'no_files'               => $no_files,
             'note'                   => $note,
             'id_comment_criticality' => $id_comment_criticality
         ];
@@ -212,6 +213,24 @@ trait CommentTable
                   WHERE `id`=?";
 
         ParametrizedQuery::set($query, [...$bindParams, $id]);
+    }
+
+
+    /**
+     * Предназначен для обновления стадий у всех документов по id главного документа
+     *
+     * @param int $id_stage id стадии
+     * @param int $id_main_document id главного документа
+     * @throws DataBaseEx
+     */
+    static public function updateIdStageByIdMainDocument(int $id_stage, int $id_main_document): void
+    {
+        $table = self::$tableName;
+
+        $query = "UPDATE `{$table}`
+                  SET `id_stage`=?
+                  WHERE `id_main_document`=?";
+        ParametrizedQuery::set($query, [$id_stage, $id_main_document]);
     }
 
 
@@ -232,6 +251,34 @@ trait CommentTable
                   FROM `{$table}`
                   WHERE `id_main_document`=? AND `id_author`=?";
         $result = ParametrizedQuery::getSimpleArray($query, [$id_main_document, $id_author]);
+        return $result ? $result : null;
+    }
+
+
+    /**
+     * Предназначен для получения индексного массива с ассоциативными массивами
+     * прикрепленных файлов по массиву с id замечаний
+     *
+     * @param int[] $ids индексный массив с id замечаний
+     * @return array|null <b>array</b> индексный массив с ассоциативными массива внутри, если записи существуют<br>
+     * <b>null</b> в противном случае
+     * @throws DataBaseEx
+     */
+    static public function getAssocAttachedFileByIds(array $ids): ?array
+    {
+        $table = self::$tableName;
+        $documentationTable = self::$documentationTableName;
+
+        $condition = TableHelper::getConditionForIN($ids);
+
+        $query = "SELECT `{$documentationTable}`.*,
+	                     `{$table}`.`id` AS `id_comment`
+                  FROM `{$documentationTable}`
+                  JOIN `{$table}`
+                     ON (`{$documentationTable}`.`id`=`{$table}`.`id_attached_file`)
+                  WHERE `{$table}`.`id` IN ({$condition})";
+
+        $result = ParametrizedQuery::getFetchAssoc($query, $ids);
         return $result ? $result : null;
     }
 }

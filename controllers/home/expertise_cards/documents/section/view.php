@@ -64,10 +64,10 @@ $VT->setValue('TEPs_by_authors', $TEPsByAuthorsTV);
 //
 $docCommentTable = $typeOfObjectTableLocator->getDocsComment();
 
-$comments = $docCommentTable::getAllAssocByIdsMainDocument([CURRENT_DOCUMENT_ID]);
-$commentsTV = [];
+$comments = $docCommentTable::getAllAssocByIdsMainDocument([CURRENT_DOCUMENT_ID]) ?? [];
+
 //todo тут подумать насчет того, чтобы из дерева что-то получить? или в дереве обрубить детей у раздела
-if (!is_null($comments)) {
+if (!empty($comments)) {
 
     $commentIds = compressArrayValuesByKey($comments, 'id');
 
@@ -75,22 +75,16 @@ if (!is_null($comments)) {
 
     $attachedFiles = $attachedFilesInitializer->getNeedsFilesWithSigns();
     AttachedFilesFacade::handleFiles($attachedFiles);
+
     $packedAttachedFiles = $attachedFilesInitializer->packFilesToCommentIds($attachedFiles);
 
     foreach ($comments as &$comment) {
 
         $comment['author'] = getFIO($comment);
-        $comment['files'] =  $packedAttachedFiles[$comment['id']];
+        $comment['file'] = $packedAttachedFiles[$comment['id']];
+        $comment['number'] ??= '-';
     }
     unset($comment);
-
-    $index = 1;
-    foreach ($comments as $comment) {
-        $commentsTV[$index] = $comment;
-        $index++;
-    }
-
-    //vd($commentTV);
 }
 
     // Сгруппированная статистика по критичности замечаний\
@@ -113,5 +107,5 @@ $VT->setValue('criticality_all_comments_diagram', $criticalityDiagram->getDiagra
 
 //vd($comments);
 //todo пока комментс потом уже на разные таблицы
-$VT->setValue('comments', $commentsTV);
+$VT->setValue('comments', $comments);
 //если есть выборка то тогда делаем запросы на карточки

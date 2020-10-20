@@ -22,6 +22,7 @@ final class comment_documentation_1 implements Document, Existent, Responsible
 
     static private string $tableName = 'doc_comment_documentation_1';
     static private string $stageTableName = 'stage_comment_documentation_1';
+    static private string $documentationTableName = 'file_documentation_1';
 
     use CommentTableTrait;
     use DocumentTrait;

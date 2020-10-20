@@ -6,14 +6,12 @@ namespace Lib\CommentsManager;
 use Lib\Exceptions\CommentsManager as SelfEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Exceptions\Transaction as TransactionEx;
-use Lib\Exceptions\Responsible as ResponsibleEx;
 use Lib\Exceptions\MiscValidator as MiscValidatorEx;
 use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
 use Tables\Exceptions\Tables as TablesEx;
 use ReflectionException;
 
 use Lib\DataBase\Transaction;
-use Lib\Responsible\Responsible;
 use Lib\Miscs\Validation\SingleMisc;
 use Lib\Singles\PrimitiveValidator;
 use Lib\Singles\PrimitiveValidatorBoolWrapper;
@@ -105,12 +103,6 @@ class CommentsManager
     private string $responsibleType4Table;
 
     /**
-     * Таблица прикрепленных файлов к замечанию в зависимости от вида объекта
-     *
-     */
-    private string $attachedFileTable;
-
-    /**
      * Таблица с файлами документации в зависимости от вида объекта
      *
      */
@@ -150,12 +142,6 @@ class CommentsManager
 
         foreach ($comments as $comment) {
 
-            if (!is_array($comment['files'])) {
-
-                $type = gettype($comment['files']);
-                throw new SelfEx("'files' имеет тип: '{$type}', в то время как должен быть 'array'", 1);
-            }
-
             try {
 
                 $primitiveValidator->validateAssociativeArray(
@@ -164,16 +150,16 @@ class CommentsManager
                         'id'                  => ['is_null', [$primitiveValidator, 'validateNoEmptyString']],
                         'hash'                => ['is_int'],
                         'text'                => [[$primitiveValidator, 'validateNoEmptyString']],
-                        'normative_document'  => [[$primitiveValidator, 'validateNoEmptyString']],
+                        'normative_document'  => ['is_null', [$primitiveValidator, 'validateNoEmptyString']],
                         'no_files'            => [[$primitiveValidator, 'validateSomeInclusions', null, '1']],
                         'note'                => ['is_null', [$primitiveValidator, 'validateNoEmptyString']],
                         'comment_criticality' => [[$primitiveValidator, 'validateNoEmptyString']],
-                        'files'               => [[$primitiveValidator, 'validateArrayValues', 'is_numeric']]
+                        'attached_file'       => ['is_null', 'is_int']
                     ]
                 );
             } catch (PrimitiveValidatorEx $e) {
 
-                throw new SelfEx("Произошла ошибка при валидации массива с замечаниями: {$e->getMessage()}", 2);
+                throw new SelfEx("Произошла ошибка при валидации массива с замечаниями: {$e->getMessage()}", 1);
             }
 
             $commentCriticality = new SingleMisc($comment['comment_criticality'], '\Tables\Miscs\comment_criticality');
@@ -181,15 +167,24 @@ class CommentsManager
 
             if (!$commentCriticality->isExist()) {
 
-                throw new SelfEx("Справочник критичности замечания является обязательным к заполнению", 3);
+                throw new SelfEx("Справочник критичности замечания является обязательным к заполнению", 2);
             }
 
-            if ($comment['no_files'] === '1' && !empty($comment['files'])) {
+            if ($comment['no_files'] === '1' && !is_null($comment['attached_file'])) {
 
-                throw new SelfEx("Массив отмеченных файлов должен быть пустым при выбранной опции: 'Отметка файлов не требуется'", 4);
-            } elseif (is_null($comment['no_files']) && empty($comment['files'])) {
+                throw new SelfEx("Не должно быть отмеченного файла при выбранной опции: 'Отметка файлов не требуется'", 3);
+            } elseif (is_null($comment['no_files']) && is_null($comment['attached_file'])) {
 
-                throw new SelfEx("Массив отмеченных файлов не должен быть пустым, если не выбрана опция: 'Отметка файлов не требуется'", 5);
+                throw new SelfEx("Должен быть отмеченный файл, если не выбрана опция: 'Отметка файлов не требуется'", 4);
+            }
+
+            // Явно ставим null для ссылки на нормативный документ, если выбрано "Техническая ошибка"
+            if ($commentCriticality->getIntValue() === 1) {
+
+                $comment['normative_document'] = null;
+            } elseif(is_null($comment['normative_document'])) {
+
+                throw new SelfEx("Отсутствует ссылка на нормативный документ", 5);
             }
 
             if (is_null($comment['id'])) {
@@ -221,7 +216,6 @@ class CommentsManager
 
         $this->docCommentTable = $this->typeOfObjectTableLocator->getDocsComment();
         $this->responsibleType4Table = $this->typeOfObjectTableLocator->getResponsibleType4Comment();
-        $this->attachedFileTable = $this->typeOfObjectTableLocator->getCommentAttachedFiles();
         $this->documentationTable = $this->typeOfObjectTableLocator->getFilesDocumentation();
     }
 
@@ -269,6 +263,12 @@ class CommentsManager
 
         foreach ($this->nullComments as $comment) {
 
+            // Проверка существования файла
+            if (is_int($comment['attached_file'])) {
+
+                $this->checkFileExist($comment['attached_file']);
+            }
+
             // Создание записи замечания
             $this->transaction->add(
                 $this->docCommentTable,
@@ -276,9 +276,9 @@ class CommentsManager
                 [
                     $this->sectionId,
                     $authorId,
+                    $comment['attached_file'],
                     $comment['text'],
                     $comment['normative_document'],
-                    is_null($comment['no_files']) ? 0 : 1,
                     $comment['note'],
                     $comment['comment_criticality']
                 ],
@@ -293,24 +293,6 @@ class CommentsManager
                 null,
                 "comment_id_{$count}"
             );
-
-            if (is_null($comment['no_files'])) {
-
-                // Создание записи файлов
-                foreach ($comment['files'] as $fileId) {
-
-                    // Проверка существования файла
-                    $this->checkFileExist($fileId);
-
-                    $this->transaction->add(
-                        $this->attachedFileTable,
-                        'create',
-                        [$authorId, $fileId],
-                        null,
-                        "comment_id_{$count}"
-                    );
-                }
-            }
             $count++;
         }
         return $this;
@@ -335,9 +317,15 @@ class CommentsManager
 
             $commentId = $comment['id'];
 
-             // Проверка существования замечания в БД
+             // Проверка существования замечания
             if (!$this->docCommentTable::checkExistById($commentId)) {
                 throw new SelfEx("Запись замечания, находящаяся во входном json'е с id: '{$commentId}', не существует в БД", 8);
+            }
+
+            // Проверка существования файла
+            if (is_int($comment['attached_file'])) {
+
+                $this->checkFileExist($comment['attached_file']);
             }
 
             // Обновление всех полей в записи замечания
@@ -346,51 +334,13 @@ class CommentsManager
                 'updateById',
                 [
                     $commentId,
+                    $comment['attached_file'],
                     $comment['text'],
                     $comment['normative_document'],
-                    is_null($comment['no_files']) ? 0 : 1,
                     $comment['note'],
                     $comment['comment_criticality']
                 ]
             );
-
-            // Вычисление прикрепленных файлов, записи которых нужно удалить / создать
-            //
-            // id прикрепленных файлов к замечанию из БД
-            $db_attachedFilesId = $this->attachedFileTable::getIdFilesByIdMainDocument($commentId) ?? [];
-            // id прикрепленных файлов к замечанию из входного json'а
-            $js_attachedFilesId = $comment['files'];
-
-
-            list(
-                'delete' => $toDelete,
-                'create' => $toCreate
-                ) = calculateDeleteAndCreateIds($db_attachedFilesId, $js_attachedFilesId);
-
-            foreach ($toDelete as $fileId) {
-
-                $this->transaction->add(
-                    $this->attachedFileTable,
-                    'deleteByIdMainDocumentAndIdFile',
-                    [$commentId, $fileId]
-                );
-            }
-
-            foreach ($toCreate as $fileId) {
-
-                // Проверка существования файла
-                $this->checkFileExist($fileId);
-
-                $this->transaction->add(
-                    $this->attachedFileTable,
-                    'create',
-                    [
-                        $commentId,
-                        $this->authorId,
-                        $fileId
-                    ]
-                );
-            }
         }
         return $this;
     }
@@ -402,11 +352,10 @@ class CommentsManager
      * Выполняет следующие операции:
      * - Удаление записей в таблице документа "Замечание"
      * - Удаление записей в таблице прикрепленных к замечанию файлов
-     * - Удаление текущих ответственных пользователей к замечанию
+     * - Удаление текущих ответственных пользователей к замечанию (происходит автоматически на уровне БД)
      *
      * @return $this
      * @throws ReflectionException
-     * @throws ResponsibleEx
      * @throws SelfEx
      * @throws TransactionEx
      */
@@ -426,27 +375,9 @@ class CommentsManager
             throw new SelfEx("Во входном json'e присутствуют замечания с id: '{$debug}', которых нет в БД", 9);
         }
 
-        $commentDocumentType = DOCUMENT_TYPE_BY_TYPE_OF_OBJECT_ID['comment'][$this->typeOfObjectId];
-
         foreach ($toDelete as $commentId) {
 
-            // Удаление прикрепленных файлов к замечанию
-            //
-            $this->transaction->add(
-                $this->attachedFileTable,
-                'deleteAllByIdMainDocument',
-                [$commentId]
-            );
-
-            // Удаление ответственных с замечания
-            //
-            $responsible = new Responsible($commentId, $commentDocumentType);
-            $responsible->deleteCurrentResponsible($this->transaction, false);
-
-            // Удаление записей замечания
-            // Удаление замечания должно идти после удаления прикрепленных файлов и ответственных, т.к.
-            // иначе будет ошибка внешних ключей
-            //
+            // Удаление записи замечания
             $this->transaction->add(
                 $this->docCommentTable,
                 'deleteById',
@@ -467,7 +398,7 @@ class CommentsManager
     {
         if (!$this->documentationTable::checkExistById($fileId)) {
 
-            throw new SelfEx("Запись файла с id:'{$fileId}' не существует в таблице класса: '{$this->documentationTable}'", 7);
+            throw new SelfEx("Запись файла с id: '{$fileId}' не существует в таблице класса: '{$this->documentationTable}'", 7);
         }
     }
 }

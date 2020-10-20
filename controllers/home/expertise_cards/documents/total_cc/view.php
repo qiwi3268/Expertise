@@ -32,7 +32,7 @@ $docSectionTable = $typeOfObjectTableLocator->getDocsSection();
 $docCommentTable = $typeOfObjectTableLocator->getDocsComment();
 
 
-$sectionIds = total_cc::getIdSectionsById(CURRENT_DOCUMENT_ID, $typeOfObjectId);
+$sectionIds = total_cc::getSectionIdsById(CURRENT_DOCUMENT_ID, $typeOfObjectId);
 
 $comments = $docCommentTable::getAllAssocByIdsMainDocument($sectionIds);
 
