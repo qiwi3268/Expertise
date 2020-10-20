@@ -1,6 +1,12 @@
 class API {
 
-   static is_in_progress = false;
+   static get is_in_progress() {
+      return this._is_in_progress;
+   }
+
+   static set is_in_progress(is_in_progress) {
+      this._is_in_progress = is_in_progress;
+   }
 
    static uploadFiles (files, mapping_1, mapping_2, id_structure_node = null, upload_callback = null) {
 
