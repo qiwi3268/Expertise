@@ -140,7 +140,6 @@
 .tep-table__author {
    display: flex;
    align-items: center;
-   /*padding: 5px;*/
 }
 
 .tep-table__body {

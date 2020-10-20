@@ -153,6 +153,7 @@ function validateBlock (block) {
    fields.forEach(field => {
 
       // console.log(field);
+      // if (!field.closest('[data-block][data-active="false"]'))
 
       if (field.hasAttribute('data-misc_field')) {
          validateMisc(Misc.getMiscBySelect(field.querySelector('[data-misc_select]')));
