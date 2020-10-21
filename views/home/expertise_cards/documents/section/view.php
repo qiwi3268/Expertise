@@ -125,11 +125,11 @@
             </div>
             <div class="view-section__title">Замечания на стороне заявителя</div>
         </div>
-    
+
         <?php if (!empty($_comments)): ?>
             <div class="view-section__body card-body expanded">
                 <div class="comments-table">
-                    <div class="comments-table__header">
+                    <div class="comments-table__row">
                         <div class="comments-table__column">№</div>
                         <div class="comments-table__column">Автор</div>
                         <div class="comments-table__column">Текст замечания</div>
@@ -137,15 +137,15 @@
                         <div class="comments-table__column">Отмеченный файл</div>
                         <div class="comments-table__column">Ответ эксперта</div>
                     </div>
-                    <div class="comments-table__body">
-                        <?php foreach ($_comments as $comment): ?>
+                    <?php foreach ($_comments as $comment): ?>
+                        <div class="comments-table__row">
                             <div data-criticality="<?= $comment['comment_criticality']['id'] ?>" class="comments-table__column comments-table__number"><?= $comment['number'] ?></div>
                             <div class="comments-table__column comments-table__author"><?= $comment['author'] ?></div>
                             <div class="comments-table__column"><?= $comment['text'] ?></div>
                             <div class="comments-table__column"><?= $comment['normative_document'] ?></div>
                             <div class="comments-table__column">
                                 <?php if (!empty($_file = $comment['file'])): ?>
-                                
+
                                     <div class="documentation__files files filled" data-id_file_field>
                                         <div class="files__item"
                                              data-read_only="true"
@@ -172,8 +172,8 @@
                                 <?php endif; ?>
                             </div>
                             <div class="comments-table__column">Ответ</div>
-                        <?php endforeach; ?>
-                    </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         <?php endif; ?>
