@@ -1,22 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
    // GeFile.validate_results_storage = new Map();
 
-   let file_blocks = document.querySelectorAll('.files');
-   file_blocks.forEach(block => {
-
-      // На просмотре отображаем блоки с файлами
-      let files = block.querySelectorAll('.files__item');
-      if (files.length > 0) {
-         block.classList.add('filled');
-      }
-
-      // Добавляем результаты проверок подписей и обработку кнопок действий
-      files.forEach(file_element => {
-         let ge_file = new GeFile(file_element, block);
-         ge_file.validateFileField();
-         ge_file.handleActionButtons();
-      });
-   });
+   GeFile.initFiles();
 
 });
 
@@ -192,19 +177,44 @@ class GeFile {
     */
    id_structure_node;
 
+   static initFiles () {
+      let ge_files = [];
+      let file_blocks = document.querySelectorAll('.files');
+      file_blocks.forEach(block => {
+
+         // todo убрать после изменения css
+         // На просмотре отображаем блоки с файлами
+         let files = block.querySelectorAll('.files__item');
+         if (files.length > 0) {
+            block.classList.add('filled');
+         }
+
+         files.forEach(file_element => {
+            let ge_file = new GeFile(file_element, block);
+            ge_files.push(ge_file);
+            // ge_file.validateFileField();
+            ge_file.handleActionButtons();
+
+            if (ge_file.element.hasAttribute('data-validate_results')) {
+               let validate_results = ge_file.element.dataset.validate_results;
+               ge_file.setValidateResults(validate_results);
+               ge_file.element.removeAttribute('data-validate_results');
+            }
+
+         });
+
+      });
+
+      ge_files.forEach(ge_file => ge_file.validateFileField());
+
+   }
 
    static validate_results_storage = new Map();
 
    getValidateResults () {
       let validate_results;
 
-      if (this.element.hasAttribute('data-validate_results')) {
-
-         validate_results = this.element.dataset.validate_results;
-         this.setValidateResults(validate_results);
-         this.element.removeAttribute('data-validate_results');
-
-      } else if (GeFile.validate_results_storage.has(this.id)) {
+      if (GeFile.validate_results_storage.has(this.id)) {
          validate_results = GeFile.validate_results_storage.get(this.id);
       } else {
          validate_results = '';
@@ -214,7 +224,7 @@ class GeFile {
    }
 
    setValidateResults (validate_results) {
-      if (!GeFile.validate_results_storage.has(this.id)) {
+      if (!GeFile.validate_results_storage.has(this.id) || validate_results !== '') {
          GeFile.validate_results_storage.set(this.id, validate_results);
       }
    }

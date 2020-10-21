@@ -373,11 +373,15 @@ class FileUploader {
          })
          .then(validate_results => {
 
+            // todo можно не проверять, если приходит пустая строка
             if (validate_results) {
 
                // ge_file.element.dataset.validate_results = JSON.stringify(validate_results);
                ge_file.setValidateResults(JSON.stringify(validate_results));
+
+               // todo можно хранить в объекте
                ge_file.element.dataset.is_internal = 'true';
+
                ge_file.validateFileField();
 
             } else {
