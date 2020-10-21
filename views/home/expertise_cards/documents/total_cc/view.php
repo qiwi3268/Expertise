@@ -64,14 +64,18 @@
                         <div class="comments-table__column">Нормативный документ</div>
                     </div>
                     <div class="comments-table__body">
-                        <div data-criticality="1" class="comments-table__column comments-table__number">123</div>
-                        <div class="comments-table__column comments-table__author">Слугин А.А.</div>
-                        <div class="comments-table__column">3а43</div>
-                        <div class="comments-table__column">fjheroifwej fpoijewfoiewj</div>
-                        <div data-criticality="1" class="comments-table__column comments-table__number">1</div>
-                        <div class="comments-table__column comments-table__author">Слугин А.А.</div>
-                        <div class="comments-table__column">3а43</div>
-                        <div class="comments-table__column">fjheroifwej fpoijewfoiewj</div>
+                        <div class="comments-table__row">
+                            <div data-criticality="1" class="comments-table__column comments-table__number">123</div>
+                            <div class="comments-table__column comments-table__author">Слугин А.А.</div>
+                            <div class="comments-table__column">3а43</div>
+                            <div class="comments-table__column">fjheroifwej fpoijewfoiewj</div>
+                        </div>
+                        <div class="comments-table__row">
+                            <div data-criticality="1" class="comments-table__column comments-table__number">1</div>
+                            <div class="comments-table__column comments-table__author">Слугин А.А.</div>
+                            <div class="comments-table__column">3а43</div>
+                            <div class="comments-table__column">fjheroifwej fpoijewfoiewj</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -104,14 +108,45 @@
                         <div class="comments-table__column">Нормативный документ</div>
                     </div>
                     <div class="comments-table__body">
-                        <div data-criticality="1" class="comments-table__column comments-table__number">123</div>
-                        <div class="comments-table__column comments-table__author">Слугин А.А.</div>
-                        <div class="comments-table__column">3а43</div>
-                        <div class="comments-table__column">fjheroifwej fpoijewfoiewj</div>
-                        <div data-criticality="1" class="comments-table__column comments-table__number">1</div>
-                        <div class="comments-table__column comments-table__author">Слугин А.А.</div>
-                        <div class="comments-table__column">3а43</div>
-                        <div class="comments-table__column">fjheroifwej fpoijewfoiewj</div>
+                        <div class="comments-table__row">
+                            <div data-criticality="1" class="comments-table__column comments-table__number">123</div>
+                            <div class="comments-table__column comments-table__author">Слугин А.А.</div>
+                            <div class="comments-table__column">3а43</div>
+                            <div class="comments-table__column">fjheroifwej fpoijewfoiewj</div>
+                        </div>
+                        <div class="comments-table__row">
+                            <div data-criticality="1" class="comments-table__column comments-table__number">1</div>
+                            <div class="comments-table__column comments-table__author">Слугин А.А.</div>
+                            <div class="comments-table__column">3а43</div>
+                            <div class="comments-table__column">fjheroifwej fpoijewfoiewj</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="total-cc-card__group comments-group">
+                <div class="comments-group__header">
+                    <div class="comments-group__title">Замечания без файлов</div>
+                </div>
+                <div class="comments-group__comments comments-table">
+                    <div class="comments-table__header">
+                        <div class="comments-table__column">№</div>
+                        <div class="comments-table__column">Автор</div>
+                        <div class="comments-table__column">Текст замечания</div>
+                        <div class="comments-table__column">Нормативный документ</div>
+                    </div>
+                    <div class="comments-table__body">
+                        <div class="comments-table__row">
+                            <div data-criticality="1" class="comments-table__column comments-table__number">123</div>
+                            <div class="comments-table__column comments-table__author">Слугин А.А.</div>
+                            <div class="comments-table__column">3а43</div>
+                            <div class="comments-table__column">fjheroifwej fpoijewfoiewj</div>
+                        </div>
+                        <div class="comments-table__row">
+                            <div data-criticality="1" class="comments-table__column comments-table__number">1</div>
+                            <div class="comments-table__column comments-table__author">Слугин А.А.</div>
+                            <div class="comments-table__column">3а43</div>
+                            <div class="comments-table__column">fjheroifwej fpoijewfoiewj</div>
+                        </div>
                     </div>
                 </div>
             </div>

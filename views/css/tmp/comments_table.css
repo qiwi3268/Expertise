@@ -90,29 +90,40 @@
 }
 
 
-.comments-table__row {
+.descriptive-part__card .comments-table__body {
+   background-color: #e0e0e0;
+   grid-gap: 1px;
+}
+
+.view-section__body .comments-table__row {
    display: grid;
    grid-gap: 1px;
    /*grid-template-columns: 3fr 9fr 25fr 10fr 22fr 25fr;*/
    grid-template-columns: 1fr 9fr 25fr 10fr 22fr 25fr;
 }
 
-.comments-table__row:not(:first-child) {
+.view-section__body .comments-table__row:not(:first-child) {
    background-color: #e0e0e0;
 }
 
-.comments-table__row:first-child {
+.view-section__body .comments-table__row:first-child {
    font-weight: 700;
 }
 
-.comments-table__body {
+.descriptive-part__card .comments-table__body,
+.total-cc-card .comments-table__row
+{
    display: grid;
-   background-color: #e0e0e0;
    grid-gap: 1px;
+   background-color: #e0e0e0;
+   cursor: pointer;
 }
 
-.total-cc-card .comments-table__body {
+.total-cc-card .comments-table__row:hover {
+   /*background-color: red;*/
+}
 
+.total-cc-card .comments-table__row {
    grid-template-columns: minmax(35px, auto) 5fr 20fr 15fr;
 }
 
