@@ -121,7 +121,7 @@
             </div>
     
             <div id="comments_table" class="comments-table" data-active="false">
-                <div class="comments-table__header">
+                <div class="comments-table__row">
                     <div class="comments-table__column">Текст замечания</div>
                     <div class="comments-table__column">Нормативный документ</div>
                     <div class="comments-table__column">Критичность</div>
@@ -235,7 +235,7 @@
     
 </div>
 
-<div id="alert_overlay" class="alert-overlay"></div>
+<div id="alert_overlay" class="overlay alert-overlay"></div>
 <div id="alert_modal" class="alert-modal modal">
     <div class="alert-modal__info">
         <i class="alert-modal__icon warning fas fa-exclamation"></i>

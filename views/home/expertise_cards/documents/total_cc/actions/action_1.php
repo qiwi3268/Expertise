@@ -218,4 +218,4 @@
 
 </div>
 
-<div id="misc_overlay" class="modal-overlay"></div>
+<div id="misc_overlay" class="overlay modal-overlay"></div>

@@ -906,7 +906,7 @@
     </div>
 </div>
 
-<div id="misc_overlay" class="modal-overlay"></div>
+<div id="misc_overlay" class="overlay modal-overlay"></div>
 
 <!--<div id="alert_overlay" class="alert-overlay"></div>
 <div id="alert_modal" class="alert-modal modal">
@@ -920,7 +920,7 @@
     </div>
 </div>-->
 
-<div class="save-overlay"></div>
+<div class="overlay save-overlay"></div>
 <div class="modal save-modal">
     <div class="save-modal__info">
         <i class="save-modal__icon fas fa-check"></i>

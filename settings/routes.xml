@@ -420,6 +420,10 @@
                     <file name="test_1" />
                     <file name="footer" />
                 </dir>
+                <dir path="/views/home/modals/" ext=".php">
+                    <file name="comments_group" />
+                    <file name="error" />
+                </dir>
             </files>
         </page>
 

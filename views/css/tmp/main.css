@@ -113,17 +113,20 @@ a {
    width: 8px;
 }
 
-.field textarea::-webkit-scrollbar-track {
+.field textarea::-webkit-scrollbar-track,
+.modal ::-webkit-scrollbar-track {
    background: #f1f1f1;
    border-radius: unset;
 }
 
-.field textarea::-webkit-scrollbar-thumb {
+.field textarea::-webkit-scrollbar-thumb,
+.modal ::-webkit-scrollbar-thumb {
    background: #DEDEDE;
    border-radius: unset;
 }
 
-.field textarea::-webkit-scrollbar-thumb:hover {
+.field textarea::-webkit-scrollbar-thumb:hover,
+.modal ::-webkit-scrollbar-thumb:hover {
    background: #cccccc;
 }
 
@@ -205,8 +208,7 @@ textarea.form-field__input.invalid {
    background: #FFC828;
 }
 
-.modal,
-.alert-modal {
+.modal {
    visibility: hidden;
    opacity: 0;
    display: flex;
@@ -232,13 +234,7 @@ textarea.form-field__input.invalid {
    justify-content: flex-start;
 }*/
 
-.modal-overlay,
-.file-overlay,
-.save-overlay,
-.alert-overlay,
-.sign-overlay,
-.error-overlay,
-.comment-overlay {
+.overlay {
    visibility: hidden;
    opacity: 0;
    position: fixed;
@@ -251,17 +247,10 @@ textarea.form-field__input.invalid {
    transition: .3s all;
 }
 
-.alert-modal.active,
 .modal.active,
 .modal__pagination.active,
-.modal-overlay.active,
-.file-overlay.active,
-.modal__close.active,
-.save-overlay.active,
-.alert-overlay.active,
-.sign-overlay.active,
-.error-overlay.active,
-.comment-overlay.active {
+.overlay.active,
+.modal__close.active {
    visibility: visible;
    opacity: 1;
 }

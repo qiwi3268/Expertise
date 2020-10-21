@@ -1,0 +1,21 @@
+.comment-group {
+   background-color: #fff;
+   border-radius: 4px;
+   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+   overflow: hidden;
+   margin: 0px 0px 10px 0px;
+}
+
+
+.comment-groups {
+   flex-grow: 1;
+}
+
+.comments-group__header {
+   background-color: #f6f8fa;
+   border-bottom: 1px solid #e0e0e0;
+}
+
+.comment-group .files__info:hover {
+   background-color: unset;
+}

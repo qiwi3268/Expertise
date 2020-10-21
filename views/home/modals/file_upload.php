@@ -1,4 +1,4 @@
-<div class="file-overlay"></div>
+<div class="overlay file-overlay"></div>
 <div class="modal file-modal">
     <i class="modal__close active fas fa-times"></i>
 

@@ -1,4 +1,4 @@
-<div class="error-overlay"></div>
+<div class="overlay error-overlay"></div>
 
 <div class="modal error-modal">
     <div class="error-modal__header">

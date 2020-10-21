@@ -1,4 +1,4 @@
-<div class="sign-overlay"></div>
+<div class="overlay sign-overlay"></div>
 <div class="modal sign-modal" data-plugin_loaded="false">
     <div class="sign-modal__file-body">
         <div class="sign-modal__file-info">

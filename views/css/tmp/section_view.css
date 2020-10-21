@@ -145,6 +145,7 @@
 .tep-table__author {
    display: flex;
    align-items: center;
+   justify-content: center;
 }
 
 .tep-table__body {

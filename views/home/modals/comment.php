@@ -1,6 +1,6 @@
 <?php $_VT = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
-<div class="comment-overlay"></div>
+<div class="overlay comment-overlay"></div>
 <div class="modal comment-modal">
 
     <input id="comment_id" class="comment-modal__id field-result" name="id" type="hidden">
@@ -139,7 +139,7 @@
             </div>
         </div>
     </div>
-    <div id="misc_overlay" class="modal-overlay"></div>
+    <div id="misc_overlay" class="overlay modal-overlay"></div>
 
 </div>
 
