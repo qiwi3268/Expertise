@@ -22,6 +22,7 @@
 
 .group-modal__body {
    display: flex;
+   flex-grow: 1;
 }
 
 .group-modal__messages {
