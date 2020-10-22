@@ -331,5 +331,44 @@ textarea.form-field__input.invalid {
    max-height: none;
 }
 
+.form-button {
+   justify-content: space-between;
+   display: flex;
+   align-items: center;
+   padding: 10px;
+   border: 1px solid #cccccc;
+   border-radius: 4px;
+   font-size: 14px;
+   cursor: pointer;
+   transition: box-shadow .10s;
+   color: #1c3959;
+}
 
+.form-button:hover {
+   box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
+   border-color: #80bdff;
+}
 
+.form-button:not(:last-child) {
+   margin: 0px 10px 0px 0px;
+}
+
+.form-button__label {
+   margin: 0px 8px 0px 0px;
+}
+
+.form-button__icon.fa-eraser {
+   font-size: 16px;
+}
+
+.form-button__icon {
+   color: #6081a8;
+}
+
+.form-button.save .form-button__icon {
+   color: #87c596;
+}
+
+.form-button.delete .form-button__icon{
+   color: #a93d3d;
+}

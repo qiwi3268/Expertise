@@ -29,9 +29,9 @@
             
             <!--Технико-экономические показатели-->
             <div class="multiple-block descriptive-part__multiple-block" data-block data-type="multiple" data-name="TEP" data-saved="true">
-                <div class="multiple-block__add" data-multiple_add="add_tep">
-                    <span class="multiple-block__text">Добавить технико-экономический показатель</span>
-                    <i class="multiple-block__icon fas fa-plus"></i>
+                <div class="form-button multiple-block__add" data-multiple_add="add_tep">
+                    <span class="form-button__label">Добавить технико-экономический показатель</span>
+                    <i class="form-button__icon fas fa-plus"></i>
                 </div>
                 <!--Шаблоны ТЭПа-->
                 <div class="multiple-block__item" data-block data-name="templates_container">
@@ -82,13 +82,13 @@
                             <!--Шаблон действий-->
                             <div class="multiple-block__item" data-block data-name="actions">
                                 <div class="multiple-block__actions">
-                                    <div class="multiple-block__button save">
-                                        <span class="multiple-block__text">Сохранить ТЭП</span>
-                                        <i class="multiple-block__icon fas fa-check"></i>
+                                    <div class="multiple-block__action form-button save" data-multiple_save>
+                                        <span class="form-button__label">Сохранить ТЭП</span>
+                                        <i class="form-button__icon fas fa-check"></i>
                                     </div>
-                                    <div class="multiple-block__button cancel">
-                                        <span class="multiple-block__text">Отмена</span>
-                                        <i class="multiple-block__icon fas fa-times"></i>
+                                    <div class="multiple-block__action form-button delete" data-multiple_cancel>
+                                        <span class="form-button__label">Отмена</span>
+                                        <i class="form-button__icon fas fa-times"></i>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                     <!--Шаблон сохраненного блока-->
                     <div class="multiple-block__item" data-block data-name="part_short" data-active="false">
                         <div class="multiple-block__short part-short">
-                            <span class="multiple-block__info" data-part_info></span>
+                            <span class="multiple-block__info form-button" data-part_info></span>
                             <i class="multiple-block__delete fas fa-times delete"></i>
                         </div>
                     </div>
@@ -115,9 +115,9 @@
         <div class="descriptive-part__header card-expand">Замечания</div>
         <div class="descriptive-part__comments expanded card-body">
             
-            <div class="multiple-block__add" data-add_comment>
-                <span class="multiple-block__text">Создать замечание</span>
-                <i class="multiple-block__icon fas fa-plus"></i>
+            <div class="descriptive-part__add form-button" data-add_comment>
+                <span class="form-button__label">Создать замечание</span>
+                <i class="form-button__icon fas fa-plus"></i>
             </div>
     
             <div id="comments_table" class="comments-table" data-active="false">

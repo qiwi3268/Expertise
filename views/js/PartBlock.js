@@ -53,7 +53,7 @@ class PartBlock {
 
    handleSaveButton () {
 
-      let save_btn = this.actions.querySelector('.save');
+      let save_btn = this.actions.querySelector('[data-multiple_save]');
       save_btn.addEventListener('click', () => {
 
          this.data = new PartData(this.element);
@@ -133,7 +133,7 @@ class PartBlock {
    }
 
    handleCancelButton () {
-      this.cancel_btn = this.actions.querySelector('.cancel');
+      this.cancel_btn = this.actions.querySelector('[data-multiple_cancel]');
       if (this.cancel_btn) {
          this.cancel_btn.addEventListener('click', () => {
             this.element.remove();

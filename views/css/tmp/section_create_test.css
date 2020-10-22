@@ -56,6 +56,11 @@
    flex-direction: column;
 }
 
+.descriptive-part__add.form-button {
+   margin: 10px;
+   align-self: flex-start;
+}
+
 .descriptive-part__comments .comments-table__header {
    border-bottom: 2px solid #93b0d1;
 }

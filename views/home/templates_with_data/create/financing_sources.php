@@ -1,8 +1,8 @@
 <?php $_data = \Lib\Singles\TemplateMaker::getSelfData(); ?>
 
-<div class="multiple-block__add" data-multiple_add="add_financing_source">
-    <span class="multiple-block__text">Добавить источник финансирования</span>
-    <i class="multiple-block__icon fas fa-plus"></i>
+<div class="form-button multiple-block__add" data-multiple_add="add_financing_source">
+    <span class="form-button__label">Добавить источник финансирования</span>
+    <i class="form-button__icon fas fa-plus"></i>
 </div>
 
 <!--Шаблоны источников финансирования-->
@@ -298,13 +298,13 @@
     <!--Шаблон действий-->
     <div class="multiple-block__item" data-block data-name="actions" data-active="false">
         <div class="multiple-block__actions">
-            <div class="multiple-block__button save">
-                <span class="multiple-block__text">Сохранить источник финансирования</span>
-                <i class="multiple-block__icon fas fa-check"></i>
+            <div class="multiple-block__action form-button save" data-multiple_save>
+                <span class="form-button__label">Сохранить источник финансирования</span>
+                <i class="form-button__icon fas fa-check"></i>
             </div>
-            <div class="multiple-block__button cancel">
-                <span class="multiple-block__text">Отмена</span>
-                <i class="multiple-block__icon fas fa-times"></i>
+            <div class="multiple-block__action form-button delete" data-multiple_cancel>
+                <span class="form-button__label">Отмена</span>
+                <i class="form-button__icon fas fa-times"></i>
             </div>
         </div>
     </div>
@@ -312,7 +312,7 @@
     <!--Шаблон сохраненного блока-->
     <div class="multiple-block__item" data-block data-name="part_short" data-active="false">
         <div class="multiple-block__short part-short">
-            <span class="multiple-block__info" data-part_info></span>
+            <span class="multiple-block__info form-button" data-part_info></span>
             <i class="multiple-block__delete fas fa-times delete"></i>
         </div>
     </div>

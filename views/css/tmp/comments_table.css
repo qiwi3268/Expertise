@@ -243,9 +243,8 @@
    color: #a93d3d;
 }
 
-
 .comments-table__action.edit:hover {
-   background-color: #F0F6F9;
+   background-color: #f6f8fa;
 }
 
 .comments-table__action.delete:hover {

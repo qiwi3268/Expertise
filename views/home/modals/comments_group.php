@@ -21,21 +21,21 @@
         </div>
         <div class="group-modal__actions">
             <!--todo переделать классы-->
-            <div class="comment-modal__button" data-replace_file>
-                <span class="comment-modal__label-button">Заменить файл</span>
-                <i class="comment-modal__icon-button fas fa-sync-alt"></i>
+            <div class="group-modal__action form-button" data-replace_file>
+                <span class="form-button__label">Заменить файл</span>
+                <i class="form-button__icon fas fa-sync-alt"></i>
             </div>
-            <div class="comment-modal__button" data-delete_file data-active="false">
-                <span class="comment-modal__label-button">Отменить замену</span>
-                <i class="comment-modal__icon-button fas fa-eraser"></i>
+            <div class="group-modal__action form-button delete" data-delete_file data-active="false">
+                <span class="form-button__label">Отменить замену</span>
+                <i class="form-button__icon fas fa-eraser"></i>
             </div>
-            <div class="comment-modal__button" data-save_group>
-                <span class="comment-modal__label-button">Сохранить ответ</span>
-                <i class="comment-modal__icon-button fas fa-check"></i>
+            <div class="group-modal__action form-button save" data-save_group>
+                <span class="form-button__label">Сохранить ответ</span>
+                <i class="form-button__icon fas fa-check"></i>
             </div>
-            <div class="comment-modal__button" data-close_group>
-                <span class="comment-modal__text">Отмена</span>
-                <i class="comment-modal__icon-button fas fa-times"></i>
+            <div class="group-modal__action form-button delete" data-close_group>
+                <span class="form-button__label">Отмена</span>
+                <i class="form-button__icon fas fa-times"></i>
             </div>
         </div>
     </div>

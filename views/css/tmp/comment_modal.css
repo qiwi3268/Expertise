@@ -155,7 +155,11 @@
    margin: 10px 20px;
 }
 
-.comment-modal__button {
+.comment-modal__action.form-button {
+   min-width: 180px;
+}
+
+/*.comment-modal__button {
    min-width: 180px;
    justify-content: space-between;
    display: flex;
@@ -167,20 +171,19 @@
    cursor: pointer;
    transition: box-shadow .10s;
    color: #1c3959;
-}
+}*/
 
 
-
-.comment-modal__button:not(:last-child) {
+/*.comment-modal .form-button:not(:last-child) {
    margin: 0px 10px 0px 0px;
-}
+}*/
 
-.comment-modal__button:hover {
+/*.comment-modal__button:hover {
    box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
    border-color: #80bdff;
-}
+}*/
 
-.comment-modal__button[data-save_comment] > .comment-modal__icon-button,
+/*.comment-modal__button[data-save_comment] > .comment-modal__icon-button,
 .comment-modal__button[data-save_group] > .comment-modal__icon-button
 {
    color: #87c596;
@@ -190,11 +193,13 @@
 .comment-modal__button[data-close_group] > .comment-modal__icon-button
 {
    color: #a93d3d;
-}
+}*/
 
+/*
 .comment-modal__icon-button.fa-eraser {
    font-size: 16px;
 }
+*/
 
 .field-card__icon-secret {
    font-size: 18px;

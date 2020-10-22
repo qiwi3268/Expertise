@@ -98,6 +98,9 @@
    white-space: nowrap;
 }
 
+.group-modal__action.form-button {
+   min-width: 130px;
+}
 
 [data-active='false'] {
    display: none;

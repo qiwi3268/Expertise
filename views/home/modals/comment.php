@@ -12,13 +12,13 @@
         <div class="comment-modal__body">
 
             <div class="comment-modal__actions">
-                <div class="comment-modal__button" data-save_comment>
-                    <span class="comment-modal__label-button">Сохранить замечание</span>
-                    <i class="comment-modal__icon-button fas fa-check"></i>
+                <div class="comment-modal__action form-button save" data-save_comment>
+                    <span class="form-button__label">Сохранить замечание</span>
+                    <i class="form-button__icon fas fa-check"></i>
                 </div>
-                <div class="comment-modal__button" data-delete_comment>
-                    <span class="comment-modal__text">Отмена</span>
-                    <i class="comment-modal__icon-button fas fa-times"></i>
+                <div class="comment-modal__action form-button delete" data-delete_comment>
+                    <span class="form-button__label">Отмена</span>
+                    <i class="form-button__icon fas fa-times"></i>
                 </div>
             </div>
 
