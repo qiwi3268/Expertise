@@ -112,7 +112,8 @@ trait CommentTable
                      ON (`{$table}`.`id_stage`=`{$stageTable}`.`id`)
                   JOIN (`misc_comment_criticality`)
                      ON (`{$table}`.`id_comment_criticality`=`misc_comment_criticality`.`id`)
-                  WHERE `{$table}`.`id_main_document` IN ({$condition})";
+                  WHERE `{$table}`.`id_main_document` IN ({$condition})
+                  ORDER BY `{$table}`.`number`";
         $result = ParametrizedQuery::getFetchAssoc($query, $ids);
 
         if (empty($result)) {
@@ -217,20 +218,39 @@ trait CommentTable
 
 
     /**
-     * Предназначен для обновления стадий у всех документов по id главного документа
+     * Предназначен для обновления стадий у всех замечаний по id главного документа
      *
      * @param int $id_stage id стадии
      * @param int $id_main_document id главного документа
+     * @param int $id_author id автора
      * @throws DataBaseEx
      */
-    static public function updateIdStageByIdMainDocument(int $id_stage, int $id_main_document): void
+    static public function updateIdStageByIdMainDocumentAndIdAuthor(int $id_stage, int $id_main_document, int $id_author): void
     {
         $table = self::$tableName;
 
         $query = "UPDATE `{$table}`
                   SET `id_stage`=?
-                  WHERE `id_main_document`=?";
-        ParametrizedQuery::set($query, [$id_stage, $id_main_document]);
+                  WHERE `id_main_document`=? AND `id_author`=?";
+        ParametrizedQuery::set($query, [$id_stage, $id_main_document, $id_author]);
+    }
+
+
+    /**
+     * Предназначен для обновления сквозной нумерации в размках сводного замечания / заключения
+     *
+     * @param int $number сквозная нумерация
+     * @param int $id id записи
+     * @throws DataBaseEx
+     */
+    static public function updateNumberById(int $number, int $id): void
+    {
+        $table = self::$tableName;
+
+        $query = "UPDATE `{$table}`
+                  SET `number`=?
+                  WHERE `id`=?";
+        ParametrizedQuery::set($query, [$number, $id]);
     }
 
 

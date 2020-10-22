@@ -92,19 +92,18 @@ final class assigned_expert_section_documentation_1
 
 
     /**
-     * Предназначен для провреки существования записей назначенных экспертов, которы не закончили работу
-     * по подготовке раздела по id раздела
+     * Предназначен для получения количества записей назначенных экспертов,
+     * которые не закончили работу по подготовке раздела по id раздела
      *
      * @param int $id_section id раздела
-     * @return bool
+     * @return int количество записей
      * @throws DataBaseEx
      */
-    static public function checkExistWhereNotSectionPreparationFinishedByIdSection(int $id_section): bool
+    static public function getCountWhereNotSectionPreparationFinishedByIdSection(int $id_section): int
     {
-        $query = "SELECT COUNT(*)>0
+        $query = "SELECT COUNT(*)
                   FROM `assigned_expert_section_documentation_1`
                   WHERE `id_section`=? AND `is_section_preparation_finished`='0'";
-        // Автоматическое преобразование к bool типу
         return ParametrizedQuery::getSimpleArray($query, [$id_section])[0];
     }
 

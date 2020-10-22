@@ -41,5 +41,25 @@ trait ChildDocument
         // Автоматическое преобразование к bool типу
         return ParametrizedQuery::getSimpleArray($query, [$id_main_document, $id_stage])[0];
     }
+
+
+    /**
+     * Реализация метода интерфейса
+     * {@see \Tables\Docs\Interfaces\ChildDocument::getCountByIdMainDocumentAndIdStage()}
+     *
+     * @param int $id_main_document
+     * @param int $id_stage
+     * @return int
+     * @throws DataBaseEx
+     */
+    static public function getCountByIdMainDocumentAndIdStage(int $id_main_document, int $id_stage): int
+    {
+        $table = self::$tableName;
+
+        $query = "SELECT COUNT(*)
+                  FROM `{$table}`
+                  WHERE `id_main_document`=? AND `id_stage`=?";
+        return ParametrizedQuery::getSimpleArray($query, [$id_main_document, $id_stage])[0];
+    }
 }
 

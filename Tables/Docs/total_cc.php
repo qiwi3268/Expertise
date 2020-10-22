@@ -101,9 +101,10 @@ final class total_cc implements ChildDocument, Existent, Responsible
     {
         $sectionTable = self::getChildTables($typeOfObjectId)['doc_section'];
 
-        $query = "SELECT `{$sectionTable}`.`id`
+        $query = "SELECT `id`
                   FROM `{$sectionTable}`
-                  WHERE `{$sectionTable}`.`id_main_document`=?";
+                  WHERE `id_main_document`=?
+                  ORDER BY `id`";
         $result = ParametrizedQuery::getSimpleArray($query, [$id]);
         return $result ? $result : null;
     }

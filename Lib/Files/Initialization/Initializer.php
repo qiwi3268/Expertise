@@ -113,7 +113,14 @@ abstract class Initializer
      * - null, если для данного маппинга файловой таблицы не предусмотрены подписи;<br>
      * - включает в себя массивы подписей встроенных и открепленных: 'internal' = [], 'external' = []<br>
      * <b>***</b> Из массива файлов будут автоматически удалены файлы, которые являются открепленными подписями
-     *
+     * <br>
+     * <br>
+     * <b>**</b> Метод выполняет добор файлов открепленных подписей, в случае,
+     * если реализация {@see \Lib\Files\Initialization\Initializer::getFiles()} возвращает только целевые файлы
+     * <br>
+     * <br>
+     * <b>**</b> Если реализация {@see \Lib\Files\Initialization\Initializer::getFiles()} возвращает повторяющиеся файлы,
+     * то подпись будет записана только первому из них
      * @return array структура массива аналогична <i>filesMappings</i>. Вместо названия класса - массив с нужные файлами / null
      * @throws SelfEx
      */
@@ -131,19 +138,7 @@ abstract class Initializer
                 }
 
                 // Формирование id файлов для запроса IN
-                $fileIds = compressArrayValuesByKey($files, 'id');
-
-                /*
-                 * 1. сначала я хотел размножить подпись, но подумал, что она одна и так же запишется как две штуки к одному файлу
-                 * 2. потом я хотел уже в цикле не удалять подпись из итератора, если она есть для еще дублирующегося файла
-                 * 3. потом я подумал, у нас же ссылки на подписи
-                 *
-                 * */
-                // Количество повторений id файлов
-                // Требуется в том случае, когда из реализации абстрактного метода getFiles пришли повторяющиеся записи
-                $countFileIds = array_count_values($fileIds);
-
-                $fileIds = array_unique($fileIds);
+                $fileIds = compressUniquenessArrayValuesByKey($files, 'id');
 
                 $signClassName = $this->signsMappings[$mapping_level_1_code][$mapping_level_2_code];
 
@@ -176,8 +171,6 @@ abstract class Initializer
 
                 foreach ($signs as $sign) {
 
-                    // Копирование подписи для повторяющихся файлов
-
                     if ($sign['is_external']) {
 
                         $all_fileIds[] = $sign['id_file'];
@@ -190,21 +183,27 @@ abstract class Initializer
 
                 $missingFileIds = array_diff($all_fileIds, $fileIds);
 
+                //todo тут надо высчитать и посмотреть на ситуацию, когда будет передан только файл открепленной подписи без самого файла
+                //todo это является ошибкой и нужно выбрасывать исключение
+
                 if (!empty($missingFileIds)) {
 
-                    // Добирание недостающих нужных файлов
-                    $assoc = $fileClassName::getAllAssocWhereNeedsByIds($missingFileIds);
+                    // Добирание недостающих файлов открепленных подписей
+                    $assoc = $fileClassName::getAllAssocWhereNeedsByIds($missingFileIds) ?? [];
 
-                    if (is_null($assoc)) {
+                    // Открепленные подписи, которые не получилось добрать
+                    $missingExternalSignIds = array_diff($missingFileIds, compressArrayValuesByKey($assoc, 'id'));
 
-                        throw new SelfEx("Метод: '{$fileClassName}::getAllAssocWhereNeedsByIds' не смог выполнить добор недостающих файлов");
-                    } elseif(count($missingFileIds) != count($assoc)) {
+                    // Удаление записей подписей, в которых не получилось добрать файлы открепленных подписей
+                    if (!empty($missingExternalSignIds)) {
 
-                        $debug = implode(', ', array_diff($missingFileIds, compressArrayValuesByKey($assoc, 'id')));
-                        throw new SelfEx("Метод: '{$fileClassName}::getAllAssocWhereNeedsByIds' не смог выполнить недостающих файлов с id: '{$debug}'");
+                        $signs = array_filter($signs, function($sign) use ($missingExternalSignIds): bool
+                        {
+                            return ($sign['is_external'] == 0) ? true : !in_array($sign['id_sign'], $missingExternalSignIds);
+                        });
                     }
 
-                    $files = [...$files, ...$fileClassName::getAllAssocWhereNeedsByIds($missingFileIds)];
+                    $files = [...$files, ...$assoc];
                     $fileIds = $all_fileIds;
                 }
 
@@ -246,14 +245,10 @@ abstract class Initializer
 
                             $files[$fi]['signs']['external'][] = $sign;
 
-                            $files->offsetUnset($ind); // Удаляем file открепленной подписи
+                            unset($idsHash[$sign['id_sign']]); // Удаляем file открепленной подписи из хэш-массива id файлов
 
-                            //if (isset($countFileIds[$sign['id_file']]) && $countFileIds[$sign['id_file']] > 0) {
-                                //$countFileIds[$sign['id_file']]--;
-                            //} else {
-                                $signs->offsetUnset($si);
-                                unset($idsHash[$sign['id_sign']]); // Удаляем file открепленной подписи из хэш-массива id файлов
-                            //}
+                            $files->offsetUnset($ind); // Удаляем file открепленной подписи
+                            $signs->offsetUnset($si);
                             continue;
 
                         // Итерируемый file является открепленной подписью к другому file
@@ -273,6 +268,16 @@ abstract class Initializer
                         $signs->next();
                     }
                     $files->next();
+                }
+                if ($signs->count() > 0) {
+
+                    $ids = [];
+                    foreach ($signs as ['id' => $id]) {
+                        $ids[] = $id;
+                    }
+                    $ids = implode(', ', $ids);
+                    // Вероятнее всего, требуемый файл не попал в выборку getAllAssocWhereNeedsByIdMainDocument по причине is_needs=0
+                    throw new SelfEx("Осталась(лись) подпись с id: '{$ids}' из таблицы подписей: '{$signClassName}', которая не подошла ни к одному из файлов");
                 }
                 $result[$mapping_level_1_code][$mapping_level_2_code] = $files->getArrayCopy();
             }
@@ -332,7 +337,7 @@ abstract class Initializer
      * которые нужны для реализующего класса
      *
      * <b>***</b> Данный метод может возвращать только целевые файлы, в данном случае
-     * алгоритм выполнит "добор" недостающих файлов открепленных подписей
+     * алгоритм выполнит добор недостающих файлов открепленных подписей
      *
      * @param string $fileClassName является названием класса таблицы,
      * лежащем в установленном маппинге {@see FILE_TABLE_MAPPING}.

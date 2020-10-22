@@ -26,6 +26,7 @@ vd($sectionIds);
 
 
 
+/*
 foreach ($sectionIds as $sectionId) {
 
     // --- получаем id назначенных на раздел экспертов
@@ -37,6 +38,13 @@ foreach ($sectionIds as $sectionId) {
 
         $transaction = new Transaction();
 
+        // Перевод всех замечаний из этого раздела на стадию "Замечание подготовлено"
+        $transaction->add(
+            '\Tables\Docs\comment_documentation_1',
+            'updateIdStageByIdMainDocumentAndIdAuthor',
+            [2, $sectionId, $expertId]
+        );
+
         // Заканчиваем подготовку раздела
         $transaction->add(
             '\Tables\assigned_expert_section_documentation_1',
@@ -44,16 +52,8 @@ foreach ($sectionIds as $sectionId) {
             [$sectionId, $expertId]
         );
 
-        // Перевод всех замечаний на стадию "Замечание подготовлено"
-        //todo только замечаний от этого автора
-        $transaction->add(
-            '\Tables\Docs\comment_documentation_1',
-            'updateIdStageByIdMainDocument',
-            [2, $sectionId]
-        );
-
-        // Не осталось незакончивших работу с разделом экспертов
-        if (!assigned_expert_section_documentation_1::checkExistWhereNotSectionPreparationFinishedByIdSection($sectionId)) {
+        // Не осталось незакончивших работу с разделом экспертов (с учетом данных в транзакции)
+        if (assigned_expert_section_documentation_1::getCountWhereNotSectionPreparationFinishedByIdSection($sectionId) == 1) {
 
             // Перевод раздела на стадию "Раздел подготовлен"
             $transaction->add(
@@ -62,8 +62,8 @@ foreach ($sectionIds as $sectionId) {
                 [2, $sectionId]
             );
 
-            // Не осталось неподготовленных разделов
-            if (!section_documentation_1::checkExistByIdMainDocumentAndIdStage($totalCCId, 2)) {
+            // Не осталось разделов на стадии "Подготовка раздела" (с учетом данных в транзакции)
+            if (section_documentation_1::getCountByIdMainDocumentAndIdStage($totalCCId, 1) == 1) {
 
                 // Перевод сводного замечания / заключения на стадию "Подготовка сводного замечания ПТО"
                 $transaction->add(
@@ -72,7 +72,7 @@ foreach ($sectionIds as $sectionId) {
                     [2, $totalCCId]
                 );
 
-                $responsible = new Responsible($sectionId, DOCUMENT_TYPE['total_cc']);
+                $responsible = new Responsible($totalCCId, DOCUMENT_TYPE['total_cc']);
 
                 // Удаление предыдущих ответственных
                 $responsible->deleteCurrentResponsible($transaction, false);
@@ -83,14 +83,29 @@ foreach ($sectionIds as $sectionId) {
         }
 
         $transactionResults = $transaction->start()->getLastResults();
-        vd($transactionResults);
         unset($transaction); // (-)
 //      }
     }
 }
+*/
 
 //      { Действие пто по переводу на устранение замечаний (до этого подписания и т.д.)
 
+        // Получение всех замечаний
+        $commentIds = total_cc::getCommentIdsById($totalCCId, 1);
+
+        $number = 1;
+
+        foreach ($commentIds as $id) {
+            comment_documentation_1::updateNumberById($number++, $id);
+        }
+
+        vd($commentIds);
+
+
+// todo сквозная нумерация
+
+        // Формирование групп
 
 //      }
 

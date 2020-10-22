@@ -21,4 +21,14 @@ interface ChildDocument extends Document
      * @return bool
      */
     static public function checkExistByIdMainDocumentAndIdStage(int $id_main_document, int $id_stage): bool;
+
+
+    /**
+     * Предназначен для получения количества записей по id главного документа и id стадии
+     *
+     * @param int $id_main_document id главного документа
+     * @param int $id_stage id стадии
+     * @return int количество записей
+     */
+    static public function getCountByIdMainDocumentAndIdStage(int $id_main_document, int $id_stage): int;
 }
