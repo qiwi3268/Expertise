@@ -113,6 +113,11 @@ a {
    width: 8px;
 }
 
+.modal ::-webkit-scrollbar {
+   width: 4px;
+   max-height: 5px;
+}
+
 .field textarea::-webkit-scrollbar-track,
 .modal ::-webkit-scrollbar-track {
    background: #f1f1f1;
@@ -325,5 +330,6 @@ textarea.form-field__input.invalid {
 .card-body.expanded {
    max-height: none;
 }
+
 
 

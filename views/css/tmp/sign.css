@@ -39,6 +39,7 @@
     /*justify-content: space-between;*/
 }
 
+/*
 .sign-modal__cert-list {
     display: flex;
     flex-direction: column;
@@ -57,6 +58,7 @@
     font-family: 'Roboto Condensed', sans-serif;
 
 }
+*/
 
 .sign-modal__title {
     padding: 5px;

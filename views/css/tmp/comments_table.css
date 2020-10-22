@@ -111,7 +111,8 @@
    display: grid;
    grid-gap: 1px;
    /*grid-template-columns: 3fr 9fr 25fr 10fr 22fr 25fr;*/
-   grid-template-columns: 1fr 9fr 25fr 10fr 22fr 25fr;
+   /*grid-template-columns: 1fr 9fr 25fr 10fr 22fr 25fr;*/
+   grid-template-columns: 2fr 9fr 25fr 10fr 22fr 25fr;
 }
 
 .view-section__body .comments-table__row:not(:first-child) {
