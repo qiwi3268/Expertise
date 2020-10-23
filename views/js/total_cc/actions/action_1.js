@@ -30,7 +30,7 @@ function getCommonPartFormData () {
    console.log(new Map(form_data));
 
    //todo вынести
-   let fields = document.querySelectorAll('.field-result:not([data-multiple_block_field])');
+   let fields = document.querySelectorAll('[data-field_result]:not([data-multiple_block_field])');
    fields.forEach(field => {
 
       if (!field.closest('[data-block][data-active="false"]')) {

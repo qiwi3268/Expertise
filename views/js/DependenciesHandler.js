@@ -177,7 +177,7 @@ class DependenciesHandler {
 
          if (dependent_radio) {
             let radio_body = dependent_radio.querySelector('.radio__body');
-            let result_input = dependent_row.querySelector('.field-result');
+            let result_input = dependent_row.querySelector('[data-field_result]');
 
             result_input.value = '';
             radio_body.innerHTML = '';
@@ -217,7 +217,7 @@ class DependenciesHandler {
 
             let parent_field = button.closest('.field');
 
-            let field_result = parent_field.querySelector('.field-result');
+            let field_result = parent_field.querySelector('[data-field_result]');
             this.handleDependencies(field_result);
 
             if (field_result.value) {
@@ -242,14 +242,14 @@ class DependenciesHandler {
 
    static removeRowValue (field, select) {
       // Удаляем записанное значение в зависимом поле
-      field.querySelector('.field-result').value = '';
+      field.querySelector('[data-field_result]').value = '';
       field.classList.remove('filled');
 
       // let select = field.querySelector('.field-select');
       if (select) {
          // select.classList.remove('filled');
 
-         let value = field.querySelector('.field-value');
+         let value = field.querySelector('[data-field_value]');
          // Если зависимое поле - дата, удаляем отображаемую дату
          if (select.dataset.modal_select === 'calendar') {
             value.innerHTML = 'Выберите дату';

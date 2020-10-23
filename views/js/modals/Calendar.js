@@ -68,13 +68,13 @@ class Calendar {
    constructor (select) {
       this.select = select;
 
-      this.field_value = mQS(this.select, '.field-value', 4);
+      this.field_value = mQS(this.select, '[data-field_value]', 4);
       this.parent_field = mClosest(this.select, '.field', 5);
       this.element = mQS(document, '.calendar', 6);
       this.body = mQS(this.element, '.calendar__body', 7);
       this.title = mQS(this.element, '.calendar__title', 8);
       this.selected_date_label = mQS(this.element, '.calendar__selected_label', 9);
-      this.result_input = mQS(this.parent_field, '.field-result', 10);
+      this.result_input = mQS(this.parent_field, '[data-field_result]', 10);
 
       this.current_date = new Date();
 
@@ -183,7 +183,8 @@ class Calendar {
             this.changeCurrentMonth(day_element.dataset.month);
          }
 
-         this.select.classList.add('filled');
+         // this.select.classList.add('filled');
+         this.parent_field.classList.add('filled');
 
          this.setSelectedDate(day_element);
          this.removeSelectedItem();
@@ -389,7 +390,7 @@ class Calendar {
    // select         Element : родительское поле
    // result_input   Element : поле с выбранной датой
    clear (select, result_input) {
-      let field_value = mQS(select, '.field-value', 11);
+      let field_value = mQS(select, '[data-field_value]', 11);
 
       Calendar.instance.current_date = result_input.value ? getDateFromString(result_input.value) : new Date();
 
@@ -490,7 +491,7 @@ class Calendar {
       calendar_fields.forEach(field => {
          field.addEventListener('click', () => {
             let calendar_field = mClosest(field, '.field', 1);
-            let result_input = mQS(calendar_field, '.field-result', 2);
+            let result_input = mQS(calendar_field, '[data-field_result]', 2);
 
             let calendar = Calendar.getInstance(field);
             calendar.clear(field, result_input);

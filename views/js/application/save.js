@@ -66,7 +66,7 @@ function getSaveApplicationFormData() {
    let id_application = document.querySelector('[name="id_application"]').value;
    form_data.append('id_application', id_application);
 
-   let fields = document.querySelectorAll('.field-result:not([data-multiple_block_field])');
+   let fields = document.querySelectorAll('[data-field_result]:not([data-multiple_block_field])');
    fields.forEach(field => {
 
       if (!field.closest('[data-block][data-active="false"]')) {

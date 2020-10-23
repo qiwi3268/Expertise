@@ -5,17 +5,20 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/application/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/create.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/documents/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/application/actions/action_2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/documents/section/actions/action_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/section/actions/action_1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/documents/total_cc/actions/action_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/total_cc/actions/action_1.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/modals/comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/modals/comment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/templates_with_data/create/financing_sources.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/templates_with_data/create/financing_sources.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/templates_with_data/create/miscs/type_of_object.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/templates_with_data/create/miscs/type_of_object.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/templates_with_data/edit/financing_sources.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/templates_with_data/edit/financing_sources.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/DependenciesHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/DependenciesHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/GeFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/GeFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/MultipleBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/MultipleBlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/application/actions/action_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/application/actions/action_2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/PartBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/PartBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/application/save.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/application/save.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/modals/Calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/Calendar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/modals/FileUploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/FileUploader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/modals/CommentCreator.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/CommentCreator.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/modals/Misc.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/Misc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/radio.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/radio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/total_cc/actions/action_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/total_cc/actions/action_1.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/validation.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -158,14 +161,7 @@
       <workItem from="1602999585171" duration="4613000" />
       <workItem from="1603013976339" duration="12516000" />
       <workItem from="1603089702031" duration="39472000" />
-      <workItem from="1603251755490" duration="48213000" />
-    </task>
-    <task id="LOCAL-00186" summary="10.10.2020_2">
-      <created>1602336278098</created>
-      <option name="number" value="00186" />
-      <option name="presentableId" value="LOCAL-00186" />
-      <option name="project" value="LOCAL" />
-      <updated>1602336278098</updated>
+      <workItem from="1603251755490" duration="51341000" />
     </task>
     <task id="LOCAL-00187" summary="11.10.2020">
       <created>1602387144122</created>
@@ -503,7 +499,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603428366865</updated>
     </task>
-    <option name="localTasksCounter" value="235" />
+    <task id="LOCAL-00235" summary="23.10.2020_2">
+      <created>1603429927937</created>
+      <option name="number" value="00235" />
+      <option name="presentableId" value="LOCAL-00235" />
+      <option name="project" value="LOCAL" />
+      <updated>1603429927937</updated>
+    </task>
+    <option name="localTasksCounter" value="236" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -520,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="15.10.2020_1" />
     <MESSAGE value="15.10.2020_2" />
     <MESSAGE value="15.10.2020_3" />
     <MESSAGE value="16.10.2020_1" />
@@ -545,7 +547,8 @@
     <MESSAGE value="22.10.2020_3" />
     <MESSAGE value="23.10.2020" />
     <MESSAGE value="23.10.2020_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="23.10.2020_1" />
+    <MESSAGE value="23.10.2020_2" />
+    <option name="LAST_COMMIT_MESSAGE" value="23.10.2020_2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -576,10 +579,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1603428362286">
+    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1603429924452">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603428362286" />
+    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603429924452" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1603032169697" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603003964512" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
@@ -636,10 +639,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="92" y="92" width="2376" height="1216" key="dock-window-2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600964609575" />
-    <state x="296" y="98" width="1169" height="814" key="find.popup" timestamp="1603429912014">
+    <state x="296" y="98" width="1169" height="814" key="find.popup" timestamp="1603432494790">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="296" y="98" width="1169" height="814" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1603429912014" />
+    <state x="0" y="174" width="1080" height="814" key="find.popup/0.0.1080.1880@0.0.1080.1880" timestamp="1603431303093" />
+    <state x="296" y="98" width="1169" height="814" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1603432494790" />
     <state x="-1611" y="272" width="1346" height="792" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1603031973447" />
     <state x="571" y="185" width="1495" height="1020" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603043323490" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />

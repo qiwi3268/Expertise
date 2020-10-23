@@ -28,7 +28,7 @@ function initRadioItems (radio_elem, result_callback) {
       let required = radio_elem.dataset.required === 'true';
 
       // Скрытый инпут, в который записывается json с выбранными элементами
-      let result_input = parent_field.querySelector('.field-result');
+      let result_input = parent_field.querySelector('[data-field_result]');
       let multiple = radio_elem.dataset.multiple === 'true';
       let items = radio_elem.querySelectorAll('.radio__item');
 

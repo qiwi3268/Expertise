@@ -86,7 +86,7 @@ class CommentCreator {
 
          let comment = {};
 
-         let field_inputs = this.modal.querySelectorAll('.field-result');
+         let field_inputs = this.modal.querySelectorAll('[data-field_result]');
          field_inputs.forEach(input => comment[input.name] = input.value || null);
 
          this.validateComment(comment);
@@ -429,7 +429,7 @@ class CommentCreator {
    initFields (hash) {
       let checkbox_icon = this.no_files_checkbox.querySelector('.radio__icon');
       let checkbox_field = this.no_files_checkbox.closest('.field[data-name="no_files"]');
-      let checkbox_input = checkbox_field.querySelector('.field-result');
+      let checkbox_input = checkbox_field.querySelector('[data-field_result]');
       let criticality_field = this.criticality_name.closest('.field');
 
 

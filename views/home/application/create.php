@@ -69,7 +69,7 @@
                         <div class="form-field__item">
                             <div class="form-field__body">
                                 <div class="form-field__select" data-modal_select="misc">
-                                    <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
+                                    <span class="form-field__value" data-field_value>Выберите значение</span>
                                     <i class="form-field__icon-misc fas fa-bars"></i>
                                     <i class="form-field__icon-filled fas fa-check"></i>
                                 </div>
@@ -89,7 +89,7 @@
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <input class="form-field__result field-result" type="hidden" data-misc_result name="expertise_purpose">
+                        <input class="form-field__result" data-field_result type="hidden" data-misc_result name="expertise_purpose">
                     </div>
                     <!--//Цель обращения//-->
 
@@ -103,7 +103,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input class="form-field__result field-result" type="hidden" data-misc_result name="expertise_subjects" value="">
+                        <input class="form-field__result" data-field_result type="hidden" data-misc_result name="expertise_subjects" value="">
                     </div>
                     <!--//Предмет экспертизы//-->
 
@@ -112,7 +112,7 @@
                         <span class="form-field__title">Дополнительная информация</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
-                                <textarea class="form-field__input field-result" name="additional_information"></textarea>
+                                <textarea class="form-field__input" data-field_result name="additional_information"></textarea>
                             </div>
                             <span class="form-field__error field-error"></span>
                         </div>
@@ -132,7 +132,7 @@
                         <span class="form-field__title">Наименование объекта</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
-                                <textarea class="form-field__input field-result" name="object_name"></textarea>
+                                <textarea class="form-field__input" data-field_result name="object_name"></textarea>
                             </div>
                             <span class="form-field__error field-error"></span>
                         </div>
@@ -145,7 +145,7 @@
                         <div class="form-field__item">
                             <div class="form-field__body">
                                 <div class="form-field__select" data-modal_select="misc">
-                                    <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
+                                    <span class="form-field__value" data-field_value>Выберите значение</span>
                                     <i class="form-field__icon-misc fas fa-bars"></i>
                                     <i class="form-field__icon-filled fas fa-check"></i>
                                 </div>
@@ -164,7 +164,7 @@
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <input class="form-field__result field-result" type="hidden" data-misc_result name="type_of_object">
+                        <input class="form-field__result" data-field_result type="hidden" data-misc_result name="type_of_object">
                     </div>
                     <!--//Вид объекта//-->
 
@@ -174,7 +174,7 @@
                         <div class="form-field__item">
                             <div class="form-field__body">
                                 <div class="form-field__select" data-modal_select="misc">
-                                    <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
+                                    <span class="form-field__value" data-field_value>Выберите значение</span>
                                     <i class="form-field__icon-misc fas fa-bars"></i>
                                     <i class="form-field__icon-filled fas fa-check"></i>
                                 </div>
@@ -193,7 +193,7 @@
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <input class="form-field__result field-result" type="hidden" data-misc_result name="functional_purpose">
+                        <input class="form-field__result" data-field_result type="hidden" data-misc_result name="functional_purpose">
                     </div>
                     <!--//Функциональное назначение//-->
 
@@ -203,7 +203,7 @@
                         <div class="form-field__item">
                             <div class="form-field__body">
                                 <div class="form-field__select" data-modal_select="misc">
-                                    <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
+                                    <span class="form-field__value" data-field_value>Выберите значение</span>
                                     <i class="form-field__icon-misc fas fa-bars"></i>
                                     <i class="form-field__icon-filled fas fa-check"></i>
                                 </div>
@@ -215,7 +215,7 @@
                             <i class="modal__close fas fa-times" data-misc_close></i>
                             <div class="modal__items" data-misc_body></div>
                         </div>
-                        <input class="form-field__result field-result" type="hidden" data-misc_result name="functional_purpose_subsector">
+                        <input class="form-field__result" data-field_result type="hidden" data-misc_result name="functional_purpose_subsector">
                     </div>
                     <!--//Функциональное назначение. Подотрасль//-->
 
@@ -225,7 +225,7 @@
                         <div class="form-field__item">
                             <div class="form-field__body">
                                 <div class="form-field__select" data-modal_select="misc">
-                                    <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
+                                    <span class="form-field__value" data-field_value>Выберите значение</span>
                                     <i class="form-field__icon-misc fas fa-bars"></i>
                                     <i class="form-field__icon-filled fas fa-check"></i>
                                 </div>
@@ -237,7 +237,7 @@
                             <i class="modal__close fas fa-times" data-misc_close></i>
                             <div class="modal__items" data-misc_body></div>
                         </div>
-                        <input class="form-field__result field-result" type="hidden" data-misc_result name="functional_purpose_group">
+                        <input class="form-field__result" data-field_result type="hidden" data-misc_result name="functional_purpose_group">
                     </div>
                     <!--//Функциональное назначение. Группа//-->
 
@@ -248,7 +248,7 @@
                             <span class="form-field__title">Номер утверждения документации по планировке территории</span>
                             <div class="form-field__item">
                                 <div class="form-field__body">
-                                    <input class="form-field__input field-result" type="text" name="number_planning_documentation_approval" placeholder="Введите значение">
+                                    <input class="form-field__input" data-field_result type="text" name="number_planning_documentation_approval" placeholder="Введите значение">
                                 </div>
                                 <span class="form-field__error field-error"></span>
                             </div>
@@ -260,14 +260,14 @@
                             <div class="form-field__item">
                                 <div class="form-field__body">
                                     <div class="form-field__select" data-modal_select="calendar">
-                                        <span class="form-field__value field-value">Выберите дату</span>
+                                        <span class="form-field__value" data-field_value>Выберите дату</span>
                                         <i class="form-field__icon-misc fas fa-calendar-alt"></i>
                                         <i class="form-field__icon-filled fas fa-check"></i>
                                     </div>
                                     <i class="form-field__icon-clear fas fa-times"></i>
                                 </div>
                             </div>
-                            <input class="form-field__result field-result" type="hidden" name="date_planning_documentation_approval">
+                            <input class="form-field__result" data-field_result type="hidden" name="date_planning_documentation_approval">
                         </div>
                         <!--//Дата утверждения документации по планировке территории//-->
                     </div>
@@ -280,7 +280,7 @@
                             <span class="form-field__title">Номер ГПЗУ</span>
                             <div class="form-field__item">
                                 <div class="form-field__body">
-                                    <input class="form-field__input field-result" type="text" name="number_GPZU" placeholder="Введите значение">
+                                    <input class="form-field__input" data-field_result type="text" name="number_GPZU" placeholder="Введите значение">
                                     <span class="form-field__error field-error"></span>
                                 </div>
                             </div>
@@ -292,14 +292,14 @@
                             <div class="form-field__item">
                                 <div class="form-field__body">
                                     <div class="form-field__select" data-modal_select="calendar">
-                                        <span class="form-field__value field-value">Выберите дату</span>
+                                        <span class="form-field__value" data-field_value>Выберите дату</span>
                                         <i class="form-field__icon-misc fas fa-calendar-alt"></i>
                                         <i class="form-field__icon-filled fas fa-check"></i>
                                     </div>
                                     <i class="form-field__icon-clear fas fa-times"></i>
                                 </div>
                             </div>
-                            <input class="form-field__result field-result" type="hidden" name="date_GPZU">
+                            <input class="form-field__result" data-field_result type="hidden" name="date_GPZU">
                         </div>
                         <!--//Дата ГПЗУ//-->
                     </div>
@@ -311,7 +311,7 @@
                         <div class="form-field__item">
                             <div class="form-field__body">
                                 <div class="form-field__select" data-modal_select="misc">
-                                    <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
+                                    <span class="form-field__value" data-field_value>Выберите значение</span>
                                     <i class="form-field__icon-misc fas fa-bars"></i>
                                     <i class="form-field__icon-filled fas fa-check"></i>
                                 </div>
@@ -323,7 +323,7 @@
                             <i class="modal__close fas fa-times" data-misc_close></i>
                             <div class="modal__items" data-misc_body></div>
                         </div>
-                        <input class="form-field__result field-result" type="hidden" data-misc_result name="type_of_work">
+                        <input class="form-field__result" data-field_result type="hidden" data-misc_result name="type_of_work">
                     </div>
                     <!--//Вид работ//-->
 
@@ -334,7 +334,7 @@
                             <span class="form-field__title">Сведения о сметной или предполагаемой (предельной) стоимости объекта капитального строительства, содержащиеся в решении по объекту или письме. тыс. руб.</span>
                             <div class="form-field__item">
                                 <div class="form-field__body">
-                                    <input class="form-field__input field-result" type="text" name="estimate_cost" placeholder="Введите значение">
+                                    <input class="form-field__input" data-field_result type="text" name="estimate_cost" placeholder="Введите значение">
                                 </div>
                                 <span class="form-field__error field-error"></span>
                             </div>
@@ -355,7 +355,7 @@
                                 </div>
                                 <span class="form-field__error field-error"></span>
                             </div>
-                            <input class="form-field__result field-result" type="hidden" name="file_grbs">
+                            <input class="form-field__result" data-field_result type="hidden" name="file_grbs">
                         </div>
                         <!--Файл ГРБС-->
                     </div>
@@ -366,7 +366,7 @@
                         <span class="form-field__title">Кадастровый номер земельного участка</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
-                                <input class="form-field__input field-result" type="text" name="cadastral_number" placeholder="Введите значение">
+                                <input class="form-field__input" data-field_result type="text" name="cadastral_number" placeholder="Введите значение">
                             </div>
                             <span class="form-field__error field-error"></span>
                         </div>
@@ -390,7 +390,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input class="form-field__result field-result" type="hidden" name="cultural_object_type_checkbox">
+                        <input class="form-field__result" data-field_result type="hidden" name="cultural_object_type_checkbox">
                     </div>
                     <!--//CHECKBOX Объект культурного наследия//-->
 
@@ -402,7 +402,7 @@
                             <div class="form-field__item">
                                 <div class="form-field__body">
                                     <div class="form-field__select" data-modal_select="misc">
-                                        <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
+                                        <span class="form-field__value" data-field_value>Выберите значение</span>
                                         <i class="form-field__icon-misc fas fa-bars"></i>
                                         <i class="form-field__icon-filled fas fa-check"></i>
                                     </div>
@@ -422,7 +422,7 @@
                                     <?php endforeach; ?>
                                 </div>
                             </div>
-                            <input class="form-field__result field-result" type="hidden" data-misc_result name="cultural_object_type">
+                            <input class="form-field__result" data-field_result type="hidden" data-misc_result name="cultural_object_type">
                         </div>
                         <!--//Тип объекта культурного наследия//-->
                     </div>
@@ -445,7 +445,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input class="form-field__result field-result" type="hidden" name="national_project_checkbox">
+                        <input class="form-field__result" data-field_result type="hidden" name="national_project_checkbox">
                     </div>
                     <!--//CHECKBOX Национальный проект//-->
 
@@ -457,7 +457,7 @@
                             <div class="form-field__item">
                                 <div class="form-field__body">
                                     <div class="form-field__select" data-modal_select="misc">
-                                        <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
+                                        <span class="form-field__value" data-field_value>Выберите значение</span>
                                         <i class="form-field__icon-misc fas fa-bars"></i>
                                         <i class="form-field__icon-filled fas fa-check"></i>
                                     </div>
@@ -477,7 +477,7 @@
                                     <?php endforeach; ?>
                                 </div>
                             </div>
-                            <input class="form-field__result field-result" data-misc_result type="hidden" name="national_project">
+                            <input class="form-field__result" data-field_result data-misc_result type="hidden" name="national_project">
                         </div>
                         <!--//Название национального проекта//-->
 
@@ -487,7 +487,7 @@
                             <div class="form-field__item">
                                 <div class="form-field__body">
                                     <div class="form-field__select" data-modal_select="misc">
-                                        <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
+                                        <span class="form-field__value" data-field_value>Выберите значение</span>
                                         <i class="form-field__icon-misc fas fa-bars"></i>
                                         <i class="form-field__icon-filled fas fa-check"></i>
                                     </div>
@@ -499,7 +499,7 @@
                                 <i class="modal__close fas fa-times" data-misc_close></i>
                                 <div class="modal__items" data-misc_body></div>
                             </div>
-                            <input class="form-field__result field-result" data-misc_result type="hidden" name="federal_project">
+                            <input class="form-field__result" data-field_result data-misc_result type="hidden" name="federal_project">
                         </div>
                         <!--//Название федерального проекта//-->
 
@@ -509,14 +509,14 @@
                             <div class="form-field__item">
                                 <div class="form-field__body">
                                     <div class="form-field__select" data-modal_select="calendar">
-                                        <span class="form-field__value field-value">Выберите дату</span>
+                                        <span class="form-field__value" data-field_value>Выберите дату</span>
                                         <i class="form-field__icon-misc fas fa-calendar-alt"></i>
                                         <i class="form-field__icon-filled fas fa-check"></i>
                                     </div>
                                     <i class="form-field__icon-clear fas fa-times"></i>
                                 </div>
                             </div>
-                            <input class="form-field__result field-result" type="hidden" name="date_finish_building">
+                            <input class="form-field__result" data-field_result type="hidden" name="date_finish_building">
                         </div>
                         <!--//Дата окончания строительства//-->
                     </div>
@@ -528,7 +528,7 @@
                         <div class="form-field__item">
                             <div class="form-field__body">
                                 <div class="form-field__select" data-modal_select="misc">
-                                    <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
+                                    <span class="form-field__value" data-field_value>Выберите значение</span>
                                     <i class="form-field__icon-misc fas fa-bars"></i>
                                     <i class="form-field__icon-filled fas fa-check"></i>
                                 </div>
@@ -547,7 +547,7 @@
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <input class="form-field__result field-result" type="hidden" data-misc_result name="curator">
+                        <input class="form-field__result" data-field_result type="hidden" data-misc_result name="curator">
                     </div>
                     <!--//Куратор//-->
                 </div>
@@ -601,7 +601,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input class="form-field__result field-result" type="hidden" data-multiple_block_field="type" name="financing_type">
+                                    <input class="form-field__result" data-field_result type="hidden" data-multiple_block_field="type" name="financing_type">
                                 </div>
                             </div>
                             <!--//Шаблон "Вид финансирования"//-->
@@ -612,7 +612,7 @@
                                     <div class="form-field__item">
                                         <div class="form-field__body">
                                             <div class="form-field__select" data-modal_select="misc">
-                                                <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
+                                                <span class="form-field__value" data-field_value>Выберите значение</span>
                                                 <i class="form-field__icon-misc fas fa-bars"></i>
                                                 <i class="form-field__icon-filled fas fa-check"></i>
                                             </div>
@@ -631,7 +631,7 @@
                                             <?php endforeach; ?>
                                         </div>
                                     </div>
-                                    <input class="form-field__result field-result" data-misc_result type="hidden" data-multiple_block_field="budget_level" name="budget_level">
+                                    <input class="form-field__result" data-field_result data-misc_result type="hidden" data-multiple_block_field="budget_level" name="budget_level">
                                 </div>
                                 <div class="multiple-block__item" data-block data-type="template" data-name="financing_source_no_data" data-active="false">
                                     <div class="form-field field" data-name="financing_source_no_data">
@@ -646,14 +646,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input class="form-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="financing_source_no_data">
+                                        <input class="form-field__result" data-field_result type="hidden" data-multiple_block_field="no_data" name="financing_source_no_data">
                                     </div>
                                     <div class="multiple-block__item" data-block data-type="template" data-name="percent" data-active="true">
                                         <div class="form-field field" data-required="true" data-name="percent" data-pattern="number">
                                             <span class="form-field__title">Процент финансирования</span>
                                             <div class="form-field__item">
                                                 <div class="form-field__body">
-                                                    <input class="form-field__input field-result" type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
+                                                    <input class="form-field__input" data-field_result type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                                                 </div>
                                                 <span class="form-field__error field-error"></span>
                                             </div>
@@ -668,7 +668,7 @@
                                     <span class="form-field__title">Полное наименование</span>
                                     <div class="form-field__item">
                                         <div class="form-field__body">
-                                            <input class="form-field__input field-result" type="text" data-multiple_block_field="full_name" name="full_name" placeholder="Введите значение">
+                                            <input class="form-field__input" data-field_result type="text" data-multiple_block_field="full_name" name="full_name" placeholder="Введите значение">
                                         </div>
                                         <span class="form-field__error field-error"></span>
                                     </div>
@@ -677,7 +677,7 @@
                                     <span class="form-field__title">ИНН</span>
                                     <div class="form-field__item">
                                         <div class="form-field__body">
-                                            <input class="form-field__input field-result" type="text" data-multiple_block_field="INN" name="INN" placeholder="Введите значение">
+                                            <input class="form-field__input" data-field_result type="text" data-multiple_block_field="INN" name="INN" placeholder="Введите значение">
                                         </div>
                                         <span class="form-field__error field-error"></span>
                                     </div>
@@ -686,7 +686,7 @@
                                     <span class="form-field__title">КПП</span>
                                     <div class="form-field__item">
                                         <div class="form-field__body">
-                                            <input class="form-field__input field-result" type="text" data-multiple_block_field="KPP" name="KPP" placeholder="Введите значение">
+                                            <input class="form-field__input" data-field_result type="text" data-multiple_block_field="KPP" name="KPP" placeholder="Введите значение">
                                         </div>
                                         <span class="form-field__error field-error"></span>
                                     </div>
@@ -695,7 +695,7 @@
                                     <span class="form-field__title">ОГРН</span>
                                     <div class="form-field__item">
                                         <div class="form-field__body">
-                                            <input class="form-field__input field-result" type="text" data-multiple_block_field="OGRN" name="OGRN" placeholder="Введите значение">
+                                            <input class="form-field__input" data-field_result type="text" data-multiple_block_field="OGRN" name="OGRN" placeholder="Введите значение">
                                         </div>
                                         <span class="form-field__error field-error"></span>
                                     </div>
@@ -704,7 +704,7 @@
                                     <span class="form-field__title">Адрес</span>
                                     <div class="form-field__item">
                                         <div class="form-field__body">
-                                            <input class="form-field__input field-result" type="text" data-multiple_block_field="address" name="address" placeholder="Введите значение">
+                                            <input class="form-field__input" data-field_result type="text" data-multiple_block_field="address" name="address" placeholder="Введите значение">
                                         </div>
                                         <span class="form-field__error field-error"></span>
                                     </div>
@@ -713,7 +713,7 @@
                                     <span class="form-field__title">Место нахождения</span>
                                     <div class="form-field__item">
                                         <div class="form-field__body">
-                                            <input class="form-field__input field-result" type="text" data-multiple_block_field="location" name="location" placeholder="Введите значение">
+                                            <input class="form-field__input" data-field_result type="text" data-multiple_block_field="location" name="location" placeholder="Введите значение">
                                         </div>
                                         <span class="form-field__error field-error"></span>
                                     </div>
@@ -722,7 +722,7 @@
                                     <span class="form-field__title">Телефон</span>
                                     <div class="form-field__item">
                                         <div class="form-field__body">
-                                            <input class="form-field__input field-result" type="text" data-multiple_block_field="telephone" name="telephone" placeholder="Введите значение">
+                                            <input class="form-field__input" data-field_result type="text" data-multiple_block_field="telephone" name="telephone" placeholder="Введите значение">
                                         </div>
                                         <span class="form-field__error field-error"></span>
                                     </div>
@@ -731,7 +731,7 @@
                                     <span class="form-field__title">Адрес электронной почты</span>
                                     <div class="form-field__item">
                                         <div class="form-field__body">
-                                            <input class="form-field__input field-result" type="text" data-multiple_block_field="email" name="email" placeholder="Введите значение">
+                                            <input class="form-field__input" data-field_result type="text" data-multiple_block_field="email" name="email" placeholder="Введите значение">
                                         </div>
                                         <span class="form-field__error field-error"></span>
                                     </div>
@@ -749,14 +749,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input class="form-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="financing_source_no_data">
+                                        <input class="form-field__result" data-field_result type="hidden" data-multiple_block_field="no_data" name="financing_source_no_data">
                                     </div>
                                     <div class="multiple-block__item" data-block data-type="template" data-name="percent" data-active="true">
                                         <div class="form-field field" data-required="true" data-name="percent" data-pattern="number">
                                             <span class="form-field__title">Процент финансирования</span>
                                             <div class="form-field__item">
                                                 <div class="form-field__body">
-                                                    <input class="form-field__input field-result" type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
+                                                    <input class="form-field__input" data-field_result type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                                                 </div>
                                                 <span class="form-field__error field-error"></span>
                                             </div>
@@ -780,14 +780,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input class="form-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="financing_source_no_data">
+                                        <input class="form-field__result" data-field_result type="hidden" data-multiple_block_field="no_data" name="financing_source_no_data">
                                     </div>
                                     <div class="multiple-block__item" data-block data-type="template" data-name="percent" data-active="true">
                                         <div class="form-field field" data-required="true" data-name="percent" data-pattern="number">
                                             <span class="form-field__title">Процент финансирования</span>
                                             <div class="form-field__item">
                                                 <div class="form-field__body">
-                                                    <input class="form-field__input field-result" type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
+                                                    <input class="form-field__input" data-field_result type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                                                 </div>
                                                 <span class="form-field__error field-error"></span>
                                             </div>
@@ -811,14 +811,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input class="form-field__result field-result" type="hidden" data-multiple_block_field="no_data" name="financing_source_no_data">
+                                        <input class="form-field__result" data-field_result type="hidden" data-multiple_block_field="no_data" name="financing_source_no_data">
                                     </div>
                                     <div class="multiple-block__item" data-block data-type="template" data-name="percent" data-active="true">
                                         <div class="form-field field" data-required="true" data-name="percent" data-pattern="number">
                                             <span class="form-field__title">Процент финансирования</span>
                                             <div class="form-field__item">
                                                 <div class="form-field__body">
-                                                    <input class="form-field__input field-result" type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
+                                                    <input class="form-field__input" data-field_result type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                                                 </div>
                                                 <span class="form-field__error field-error"></span>
                                             </div>

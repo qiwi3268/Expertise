@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // Поля, для которых нужна валидация
    let pattern_fields = document.querySelectorAll('[data-pattern]');
    pattern_fields.forEach(field => {
-      let input = field.querySelector('.field-result:not([type="hidden"])');
+      let input = field.querySelector('[data-field_result]:not([type="hidden"])');
 
       if (input) {
          let pattern = field.dataset.pattern;
@@ -158,7 +158,7 @@ function validateBlock (block) {
          if (field.hasAttribute('data-misc_field')) {
             validateMisc(Misc.getMiscBySelect(field.querySelector('[data-modal_select="misc"]')));
          } else {
-            let input = field.querySelector('.field-result:not([type="hidden"])');
+            let input = field.querySelector('[data-field_result]:not([type="hidden"])');
             validateField(field, input, input.dataset.pattern);
          }
 
@@ -212,7 +212,7 @@ function hasInvalidFields (card) {
    return required_fields.find(field => {
 
       if (!field.closest('[data-block][data-active="false"]')) {
-         let field_value = field.querySelector('.field-result');
+         let field_value = field.querySelector('[data-field_result]');
 
          if (!field_value.value) {
             return true;
@@ -239,7 +239,7 @@ function findInvalidField (card) {
 
          } else {
 
-            let field_value = field.querySelector('.field-result');
+            let field_value = field.querySelector('[data-field_result]');
             if (!field_value.value) {
 
                console.log(field);

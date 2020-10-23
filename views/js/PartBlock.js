@@ -163,7 +163,7 @@ function createTEP (multiple_block) {
 }
 
 function PartData (part_block, is_initialization) {
-   let field_inputs = part_block.querySelectorAll('.field-result[data-multiple_block_field]');
+   let field_inputs = part_block.querySelectorAll('[data-field_result][data-multiple_block_field]');
    field_inputs.forEach(input => {
 
       if (!input.closest('[data-block][data-active="false"]') || is_initialization) {

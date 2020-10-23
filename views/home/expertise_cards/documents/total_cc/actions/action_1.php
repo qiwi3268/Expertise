@@ -51,7 +51,7 @@
                     <span class="form-field__title">Полное наименование</span>
                     <div class="form-field__item">
                         <div class="form-field__body filled">
-                            <textarea class="form-field__input field-result" name=""></textarea>
+                            <textarea class="form-field__input" data-field_result name=""></textarea>
                         </div>
                         <span class="form-field__error field-error"></span>
                     </div>
@@ -63,7 +63,7 @@
                     <span class="form-field__title">ИНН</span>
                     <div class="form-field__item">
                         <div class="form-field__body filled">
-                            <input class="form-field__input field-result" type="text" name="INN" placeholder="Введите значение" value="1123499884">
+                            <input class="form-field__input" data-field_result type="text" name="INN" placeholder="Введите значение" value="1123499884">
                         </div>
 
                         <span class="form-field__error field-error"></span>
@@ -76,7 +76,7 @@
                     <span class="form-field__title">КПП</span>
                     <div class="form-field__item">
                         <div class="form-field__body filled">
-                            <input class="form-field__input field-result" type="text" name="KPP" placeholder="Введите значение" value="54459884">
+                            <input class="form-field__input" data-field_result type="text" name="KPP" placeholder="Введите значение" value="54459884">
                         </div>
 
                         <span class="form-field__error field-error"></span>
@@ -89,7 +89,7 @@
                     <span class="form-field__title">ОГРН</span>
                     <div class="form-field__item">
                         <div class="form-field__body filled">
-                            <input class="form-field__input field-result" type="text" name="OGRN" placeholder="Введите значение" value="789959884">
+                            <input class="form-field__input" data-field_result type="text" name="OGRN" placeholder="Введите значение" value="789959884">
                         </div>
 
                         <span class="form-field__error field-error"></span>
@@ -102,7 +102,7 @@
                     <span class="form-field__title">Адрес</span>
                     <div class="form-field__item">
                         <div class="form-field__body filled">
-                            <textarea class="form-field__input field-result" name="">Челябинск</textarea>
+                            <textarea class="form-field__input" data-field_result name="">Челябинск</textarea>
                         </div>
                         <span class="form-field__error field-error"></span>
                     </div>
@@ -114,7 +114,7 @@
                     <span class="form-field__title">Место нахождения</span>
                     <div class="form-field__item">
                         <div class="form-field__body filled">
-                            <textarea class="form-field__input field-result" name="">Челябинск</textarea>
+                            <textarea class="form-field__input" data-field_result name="">Челябинск</textarea>
                         </div>
                         <span class="form-field__error field-error"></span>
                     </div>
@@ -126,7 +126,7 @@
                     <span class="form-field__title">Электронная почта</span>
                     <div class="form-field__item">
                         <div class="form-field__body filled">
-                            <input class="form-field__input field-result" type="text" name="" placeholder="Введите значение" value="test@test.com">
+                            <input class="form-field__input" data-field_result type="text" name="" placeholder="Введите значение" value="test@test.com">
                         </div>
 
                         <span class="form-field__error field-error"></span>
@@ -139,7 +139,7 @@
                     <span class="form-field__title">Телефон</span>
                     <div class="form-field__item">
                         <div class="form-field__body filled">
-                            <input class="form-field__input field-result" type="text" name="KPP" placeholder="Введите значение" value="89122332423">
+                            <input class="form-field__input" data-field_result type="text" name="KPP" placeholder="Введите значение" value="89122332423">
                         </div>
 
                         <span class="form-field__error field-error"></span>
@@ -161,9 +161,9 @@
                     <span class="form-field__title">Договор</span>
                     <div class="form-field__item">
                         <div class="card-form__list filled" >
-                            <input class="card-form__cell field-result" type="text" name="contract" placeholder="Введите значение" value="Договор №123">
-                            <input class="card-form__cell field-result" type="text" name="contract" placeholder="Введите значение" value="Договор №123">
-                            <input class="card-form__cell field-result" type="text" name="contract" placeholder="Введите значение" value="Договор №123">
+                            <input class="card-form__cell" data-field_result type="text" name="contract" placeholder="Введите значение" value="Договор №123">
+                            <input class="card-form__cell" data-field_result type="text" name="contract" placeholder="Введите значение" value="Договор №123">
+                            <input class="card-form__cell" data-field_result type="text" name="contract" placeholder="Введите значение" value="Договор №123">
                         </div>
                         <span class="form-field__error field-error"></span>
                     </div>
@@ -174,7 +174,7 @@
                     <span class="form-field__title">Дополнительное соглашение</span>
                     <div class="form-field__item">
                         <div class="form-field__body filled">
-                            <input class="form-field__input field-result" type="text" name="INN" placeholder="Введите значение" value="Дополнительное соглашение №345">
+                            <input class="form-field__input" data-field_result type="text" name="INN" placeholder="Введите значение" value="Дополнительное соглашение №345">
                         </div>
                         <span class="form-field__error field-error"></span>
                     </div>
@@ -185,7 +185,7 @@
                     <span class="form-field__title">Доверенность</span>
                     <div class="form-field__item">
                         <div class="form-field__body filled">
-                            <input class="form-field__input field-result" type="text" name="INN" placeholder="Введите значение" value="Доверенность №123">
+                            <input class="form-field__input" data-field_result type="text" name="INN" placeholder="Введите значение" value="Доверенность №123">
                         </div>
                         <span class="form-field__error field-error"></span>
                     </div>

@@ -420,9 +420,10 @@ class Misc {
 
       misc.result_input = misc.field.querySelector('[data-misc_result]');
       misc.result_input.value = '';
-      misc.select.classList.remove('filled');
+      // misc.select.classList.remove('filled');
+      misc.field.classList.remove('filled');
 
-      let select_value = misc.select.querySelector('[data-misc_value]');
+      let select_value = misc.select.querySelector('[data-field_value]');
       select_value.innerHTML = 'Выберите значение';
       misc.select.removeAttribute('data-id_misc');
       Misc.miscs.delete(misc.id);
@@ -624,7 +625,7 @@ function setDocumentFieldValue (selected_item, misc) {
 
    // misc.select.classList.add('filled');
    misc.field.classList.add('filled');
-   let misc_value = misc.field.querySelector('[data-misc_value]');
+   let misc_value = misc.field.querySelector('[data-field_value]');
    misc_value.innerHTML = selected_item.innerHTML;
 
    // Показываем или скрываем блоки, зависящие от выбранного значения
@@ -651,7 +652,7 @@ function setAdditionalSection (selected_item, misc) {
       misc.field.dataset.id = selected_item.dataset.id;
       misc.field.dataset.drop_area = '';
       misc.select.classList.remove('empty');
-      let misc_value = misc.select.querySelector('[data-misc_value]');
+      let misc_value = misc.select.querySelector('[data-field_value]');
       misc_value.innerHTML = selected_item.innerHTML;
    } else {
       let section = selected_item.closest('[data-misc_field]');

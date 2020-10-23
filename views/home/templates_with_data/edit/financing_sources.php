@@ -33,7 +33,7 @@
                             </div>
                         </div>
                     </div>
-                    <input class="form-field__result field-result" type="hidden" data-multiple_block_field="type"
+                    <input class="form-field__result" data-field_result type="hidden" data-multiple_block_field="type"
                            name="financing_type" value="1">
                 </div>
                 <div class="multiple-block__item" data-block data-type="template" data-name="budget" data-active="true">
@@ -42,8 +42,8 @@
                         <div class="form-field__item">
                             <div class="form-field__body">
                                 <div class="form-field__select filled" data-modal_select="misc">
-                                    <span class="form-field__value field-value"
-                                          data-misc_value><?= !empty($source['budget_level']) ? $source['budget_level']['name'] : 'Не выбрано';  ?></span>
+                                    <span class="form-field__value"
+                                          data-field_value><?= !empty($source['budget_level']) ? $source['budget_level']['name'] : 'Не выбрано';  ?></span>
                                     <i class="form-field__icon-misc fas fa-bars"></i>
                                     <i class="form-field__icon-filled fas fa-check"></i>
                                 </div>
@@ -62,7 +62,7 @@
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <input class="form-field__result field-result" data-misc_result type="hidden"
+                        <input class="form-field__result" data-field_result data-misc_result type="hidden"
                                data-multiple_block_field="budget_level" name="budget_level" value="<?= !empty($source['budget_level']) ? $source['budget_level']['id'] : ''; ?>">
                     </div>
                     <div class="multiple-block__item" data-block data-type="template" data-name="financing_source_no_data"
@@ -86,7 +86,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <input class="form-field__result field-result" type="hidden"
+                            <input class="form-field__result" data-field_result type="hidden"
                                    data-multiple_block_field="no_data" name="financing_source_no_data" value="<?php if ($source['no_data']): ?>1<?php endif; ?>">
                         </div>
                         <div class="multiple-block__item" data-block data-type="template" data-name="percent"
@@ -96,7 +96,7 @@
                                 <span class="form-field__title">Процент финансирования</span>
                                 <div class="form-field__item">
                                     <div class="form-field__body">
-                                        <input class="form-field__input field-result" type="text"
+                                        <input class="form-field__input" data-field_result type="text"
                                                data-multiple_block_field="percent" name="percent"
                                                placeholder="Не указан" value="<?= $source['percent'] ?>">
                                     </div>
@@ -154,7 +154,7 @@
                             </div>
                         </div>
                     </div>
-                    <input class="form-field__result field-result" type="hidden" data-multiple_block_field="type"
+                    <input class="form-field__result" data-field_result type="hidden" data-multiple_block_field="type"
                            name="financing_type" value="2">
                 </div>
                 <div class="multiple-block__item" data-block data-type="template" data-name="organization"
@@ -163,7 +163,7 @@
                         <span class="form-field__title">Полное наименование</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
-                                <input class="form-field__input field-result" type="text"
+                                <input class="form-field__input" data-field_result type="text"
                                        data-multiple_block_field="full_name" name="full_name"
                                        placeholder="Не указано" value="<?= $source['full_name'] ?>">
                             </div>
@@ -174,7 +174,7 @@
                         <span class="form-field__title">ИНН</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
-                                <input class="form-field__input field-result" type="text"
+                                <input class="form-field__input" data-field_result type="text"
                                        data-multiple_block_field="INN" name="INN" placeholder="Не указан" value="<?= $source['INN'] ?>">
                             </div>
                             <span class="form-field__error field-error"></span>
@@ -184,7 +184,7 @@
                         <span class="form-field__title">КПП</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
-                                <input class="form-field__input field-result" type="text"
+                                <input class="form-field__input" data-field_result type="text"
                                        data-multiple_block_field="KPP" name="KPP" placeholder="Не указан" value="<?= $source['KPP'] ?>">
                             </div>
                             <span class="form-field__error field-error"></span>
@@ -194,7 +194,7 @@
                         <span class="form-field__title">ОГРН</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
-                                <input class="form-field__input field-result" type="text"
+                                <input class="form-field__input" data-field_result type="text"
                                        data-multiple_block_field="OGRN" name="OGRN" placeholder="Не указан" value="<?= $source['OGRN'] ?>">
                             </div>
                             <span class="form-field__error field-error"></span>
@@ -204,7 +204,7 @@
                         <span class="form-field__title">Адрес</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
-                                <input class="form-field__input field-result" type="text"
+                                <input class="form-field__input" data-field_result type="text"
                                        data-multiple_block_field="address" name="address"
                                        placeholder="Не указан" value="<?= $source['address'] ?>">
                             </div>
@@ -215,7 +215,7 @@
                         <span class="form-field__title">Место нахождения</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
-                                <input class="form-field__input field-result" type="text"
+                                <input class="form-field__input" data-field_result type="text"
                                        data-multiple_block_field="location" name="location"
                                        placeholder="Не указано" value="<?= $source['location'] ?>">
                             </div>
@@ -226,7 +226,7 @@
                         <span class="form-field__title">Телефон</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
-                                <input class="form-field__input field-result" type="text"
+                                <input class="form-field__input" data-field_result type="text"
                                        data-multiple_block_field="telephone" name="telephone"
                                        placeholder="Не указан" value="<?= $source['telephone'] ?>">
                             </div>
@@ -237,7 +237,7 @@
                         <span class="form-field__title">Адрес электронной почты</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
-                                <input class="form-field__input field-result" type="text"
+                                <input class="form-field__input" data-field_result type="text"
                                        data-multiple_block_field="email" name="email" placeholder="Не указан" value="<?= $source['email'] ?>">
                             </div>
                             <span class="form-field__error field-error"></span>
@@ -264,7 +264,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <input class="form-field__result field-result" type="hidden"
+                            <input class="form-field__result" data-field_result type="hidden"
                                    data-multiple_block_field="no_data" name="financing_source_no_data" value="<?php if ($source['no_data']): ?>1<?php endif; ?>">
                         </div>
                         <div class="multiple-block__item" data-block data-type="template" data-name="percent"
@@ -274,7 +274,7 @@
                                 <span class="form-field__title">Процент финансирования</span>
                                 <div class="form-field__item">
                                     <div class="form-field__body">
-                                        <input class="form-field__input field-result" type="text"
+                                        <input class="form-field__input" data-field_result type="text"
                                                data-multiple_block_field="percent" name="percent"
                                                placeholder="Не указан" value="<?= $source['percent'] ?>">
                                     </div>
@@ -333,7 +333,7 @@
                             </div>
                         </div>
                     </div>
-                    <input class="form-field__result field-result" type="hidden" data-multiple_block_field="type"
+                    <input class="form-field__result" data-field_result type="hidden" data-multiple_block_field="type"
                            name="financing_type" value="3">
                 </div>
                 <div class="multiple-block__item" data-block data-type="template" data-name="builder_source"
@@ -359,7 +359,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <input class="form-field__result field-result" type="hidden"
+                            <input class="form-field__result" data-field_result type="hidden"
                                    data-multiple_block_field="no_data" name="financing_source_no_data" value="<?php if ($source['no_data']): ?>1<?php endif; ?>">
                         </div>
                         <div class="multiple-block__item" data-block data-type="template" data-name="percent"
@@ -369,7 +369,7 @@
                                 <span class="form-field__title">Процент финансирования</span>
                                 <div class="form-field__item">
                                     <div class="form-field__body">
-                                        <input class="form-field__input field-result" type="text"
+                                        <input class="form-field__input" data-field_result type="text"
                                                data-multiple_block_field="percent" name="percent"
                                                placeholder="Не указан" value="<?= $source['percent'] ?>">
                                     </div>
@@ -427,7 +427,7 @@
                             </div>
                         </div>
                     </div>
-                    <input class="form-field__result field-result" type="hidden" data-multiple_block_field="type"
+                    <input class="form-field__result" data-field_result type="hidden" data-multiple_block_field="type"
                            name="financing_type" value="4">
                 </div>
                 <div class="multiple-block__item" data-block data-type="template" data-name="builder_source"
@@ -453,7 +453,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <input class="form-field__result field-result" type="hidden"
+                            <input class="form-field__result" data-field_result type="hidden"
                                    data-multiple_block_field="no_data" name="financing_source_no_data" value="<?php if ($source['no_data']): ?>1<?php endif; ?>">
                         </div>
                         <div class="multiple-block__item" data-block data-type="template" data-name="percent"
@@ -463,7 +463,7 @@
                                 <span class="form-field__title">Процент финансирования</span>
                                 <div class="form-field__item">
                                     <div class="form-field__body">
-                                        <input class="form-field__input field-result" type="text"
+                                        <input class="form-field__input" data-field_result type="text"
                                                data-multiple_block_field="percent" name="percent"
                                                placeholder="Не указан" value="<?= $source['percent'] ?>">
                                     </div>

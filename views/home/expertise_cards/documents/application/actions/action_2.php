@@ -148,7 +148,7 @@
             >
                 <div class="section__header empty" data-modal_select="misc">
                     <i class="section__folder fas fa-book"></i>
-                    <span class="section__title" data-misc_value>Выберите раздел</span>
+                    <span class="section__title" data-field_value>Выберите раздел</span>
                     <i class="section__remove fas fa-minus"></i>
                 </div>
                 <div class="section__body">

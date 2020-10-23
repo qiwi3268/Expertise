@@ -45,7 +45,7 @@
                                     <span class="form-field__title">Показатель</span>
                                     <div class="form-field__item">
                                         <div class="form-field__body">
-                                            <input class="form-field__input field-result" type="text" data-multiple_block_field="indicator" name="indicator" placeholder="Введите показатель" data-multiple_title>
+                                            <input class="form-field__input" data-field_result type="text" data-multiple_block_field="indicator" name="indicator" placeholder="Введите показатель" data-multiple_title>
                                         </div>
                                         <span class="form-field__error field-error"></span>
                                     </div>
@@ -54,7 +54,7 @@
                                     <span class="form-field__title">Единица измерения</span>
                                     <div class="form-field__item">
                                         <div class="form-field__body">
-                                            <input class="form-field__input field-result" type="text" data-multiple_block_field="measure" name="measure" placeholder="Введите единицу измерения">
+                                            <input class="form-field__input" data-field_result type="text" data-multiple_block_field="measure" name="measure" placeholder="Введите единицу измерения">
                                         </div>
                                         <span class="form-field__error field-error"></span>
                                     </div>
@@ -63,7 +63,7 @@
                                     <span class="form-field__title">Значение</span>
                                     <div class="form-field__item">
                                         <div class="form-field__body">
-                                            <input class="form-field__input field-result" type="text" data-multiple_block_field="value" name="value" placeholder="Введите значение">
+                                            <input class="form-field__input" data-field_result type="text" data-multiple_block_field="value" name="value" placeholder="Введите значение">
                                         </div>
                                         <span class="form-field__error field-error"></span>
                                     </div>
@@ -72,7 +72,7 @@
                                     <span class="form-field__title">Примечание</span>
                                     <div class="form-field__item">
                                         <div class="form-field__body">
-                                            <input class="form-field__input field-result" type="text" data-multiple_block_field="note" name="note" placeholder="Введите примечание">
+                                            <input class="form-field__input" data-field_result type="text" data-multiple_block_field="note" name="note" placeholder="Введите примечание">
                                         </div>
                                         <span class="form-field__error field-error"></span>
                                     </div>

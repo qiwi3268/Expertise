@@ -3,7 +3,7 @@
 <div class="overlay comment-overlay"></div>
 <div class="modal comment-modal">
 
-    <input id="comment_id" class="comment-modal__id field-result" name="id" type="hidden">
+    <input id="comment_id" class="comment-modal__id" data-field_result name="id" type="hidden">
     <div class="comment-modal__form">
 
         <div class="comment-modal__header">
@@ -27,7 +27,7 @@
                     <div class="field-card__title">Текст замечания</div>
                 </div>
                 <div class="field-card__body">
-                    <textarea id="comment_text" class="field-card__input field-result" name="text" rows="10"></textarea>
+                    <textarea id="comment_text" class="field-card__input" data-field_result name="text" rows="10"></textarea>
                 </div>
                 <span class="form-field__error field-error">Поле обязательно для заполнения</span>
             </div>
@@ -37,7 +37,7 @@
                 <div class="form-field__item">
                     <div class="form-field__body">
                         <div class="form-field__select" data-modal_select="misc">
-                            <span id="comment_criticality_name" class="form-field__value field-value" data-misc_value>Выберите критичность</span>
+                            <span id="comment_criticality_name" class="form-field__value" data-field_value>Выберите критичность</span>
                             <i class="form-field__icon-misc fas fa-bars"></i>
                             <i class="form-field__icon-filled fas fa-check"></i>
                         </div>
@@ -56,7 +56,7 @@
                         <?php endforeach; ?>
                     </div>
                 </div>
-                <input id="comment_criticality_value" class="form-field__result field-result" type="hidden" data-misc_result name="comment_criticality">
+                <input id="comment_criticality_value" class="form-field__result" data-field_result type="hidden" data-misc_result name="comment_criticality">
             </div>
 
             <div class="comment-modal__block" data-block data-name="normative_document" data-active="false">
@@ -65,7 +65,7 @@
                         <div class="field-card__title">Ссылка на нормативный документ</div>
                     </div>
                     <div class="field-card__body">
-                        <textarea id="normative_document" class="field-card__input field-result" name="normative_document"></textarea>
+                        <textarea id="normative_document" class="field-card__input" data-field_result name="normative_document"></textarea>
                     </div>
                     <span class="form-field__error field-error">Поле обязательно для заполнения</span>
                 </div>
@@ -83,7 +83,7 @@
                         </div>
                     </div>
                 </div>
-                <input class="form-field__result field-result" type="hidden" name="no_files">
+                <input class="form-field__result" data-field_result type="hidden" name="no_files">
             </div>
 
             <div id="note" class="field-card field" data-name="note" data-required="false" data-pattern="text">
@@ -93,7 +93,7 @@
                     <i class="field-card__icon-secret fas fa-user-secret"></i>
                 </div>
                 <div class="field-card__body">
-                    <textarea id="comment_note" class="field-card__input field-result" name="note"></textarea>
+                    <textarea id="comment_note" class="field-card__input" data-field_result name="note"></textarea>
                 </div>
                 <span class="form-field__error field-error">Поле обязательно для заполнения</span>
             </div>

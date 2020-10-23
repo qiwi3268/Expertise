@@ -7,7 +7,7 @@
     <div class="form-field__item">
         <div class="form-field__body">
             <div class="form-field__select" data-modal_select="misc">
-                <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
+                <span class="form-field__value" data-field_value>Выберите значение</span>
                 <i class="form-field__icon-misc fas fa-bars"></i>
                 <i class="form-field__icon-filled fas fa-check"></i>
             </div>
@@ -27,6 +27,6 @@
             <?php endforeach; ?>
         </div>
     </div>
-    <input data-form="application" class="form-field__result field-result" type="hidden" data-misc_result name="type_of_object">
+    <input data-form="application" class="form-field__result" data-field_result type="hidden" data-misc_result name="type_of_object">
 </div>
 <!--//Вид объекта//-->
