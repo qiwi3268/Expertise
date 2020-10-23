@@ -15,7 +15,7 @@
                     <span class="files__state-text">Не подписано</span>
                 </div>
                 <div class="files__actions">
-                    <i class="files__unload fas fa-angle-double-down"></i>
+                    <i class="files__action unload fas fa-angle-double-down" data-file_unload></i>
                 </div>
             </div>
         </div>

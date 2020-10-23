@@ -220,10 +220,10 @@ class DependenciesHandler {
             let field_result = parent_field.querySelector('.field-result');
             this.handleDependencies(field_result);
 
-            let parent_select = parent_field.querySelector('[data-misc_select]');
             if (field_result.value) {
+               let parent_select = parent_field.querySelector('[data-misc_select]');
 
-               this.removeRowValue(parent_field);
+               this.removeRowValue(parent_field, parent_select);
 
 
                let related_modal = parent_field.querySelector('[data-misc_modal]');
@@ -240,12 +240,12 @@ class DependenciesHandler {
       });
    }
 
-   static removeRowValue (field) {
+   static removeRowValue (field, select) {
       // Удаляем записанное значение в зависимом поле
       field.querySelector('.field-result').value = '';
       field.classList.remove('filled');
 
-      let select = field.querySelector('.field-select');
+      // let select = field.querySelector('.field-select');
       if (select) {
          // select.classList.remove('filled');
 

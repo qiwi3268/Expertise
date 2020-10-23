@@ -2,7 +2,7 @@
 <?php $_data = TemplateMaker::getSelfData(); ?>
 
 <div class="form-field field" data-misc_field data-name="type_of_object" data-required="true">
-    <span class="form-field__title field-title">Вид объекта</span>
+    <span class="form-field__title" data-misc_title>Вид объекта</span>
     
     <div class="form-field__item">
         <div class="form-field__body">

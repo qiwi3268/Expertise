@@ -65,7 +65,7 @@
                 <div class="card-form__body card-body">
                     <!--Цель обращения-->
                     <div class="form-field field" data-misc_field data-name="expertise_purpose" data-required="true">
-                        <span class="form-field__title field-title">Цель обращения</span>
+                        <span class="form-field__title" data-misc_title>Цель обращения</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
                                 <div class="form-field__select field-select" data-misc_select>
@@ -141,7 +141,7 @@
 
                     <!--Вид объекта-->
                     <div class="form-field field" data-misc_field data-name="type_of_object" data-required="true">
-                        <span class="form-field__title field-title">Вид объекта</span>
+                        <span class="form-field__title" data-misc_title>Вид объекта</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
                                 <div class="form-field__select field-select" data-misc_select>
@@ -170,7 +170,7 @@
 
                     <!--Функциональное назначение-->
                     <div class="form-field field" data-misc_field data-name="functional_purpose" data-required="true">
-                        <span class="form-field__title field-title">Функциональное назначение</span>
+                        <span class="form-field__title" data-misc_title>Функциональное назначение</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
                                 <div class="form-field__select field-select" data-misc_select>
@@ -199,7 +199,7 @@
 
                     <!--Функциональное назначение. Подотрасль-->
                     <div class="form-field field" data-misc_field data-name="functional_purpose_subsector" data-required="true">
-                        <span class="form-field__title field-title">Функциональное назначение. Подотрасль</span>
+                        <span class="form-field__title" data-misc_title>Функциональное назначение. Подотрасль</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
                                 <div class="form-field__select field-select" data-misc_select>
@@ -221,7 +221,7 @@
 
                     <!--Функциональное назначение. Группа-->
                     <div class="form-field field" data-misc_field data-name="functional_purpose_group" data-required="true">
-                        <span class="form-field__title field-title">Функциональное назначение. Группа</span>
+                        <span class="form-field__title" data-misc_title>Функциональное назначение. Группа</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
                                 <div class="form-field__select field-select" data-misc_select>
@@ -307,7 +307,7 @@
 
                     <!--Вид работ-->
                     <div class="form-field field" data-misc_field data-name="type_of_work" data-required="true">
-                        <span class="form-field__title field-title">Вид работ</span>
+                        <span class="form-field__title" data-misc_title>Вид работ</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
                                 <div class="form-field__select field-select" data-misc_select>
@@ -346,7 +346,7 @@
                             <span class="form-field__title">Файл ГРБС</span>
                             <div class="form-field__item">
                                 <div class="form-field__file-block">
-                                    <div class="form-field__select field-select modal-file">
+                                    <div class="form-field__select file-select" data-file_select>
                                         <span class="form-field__value">Загрузите файлы</span>
                                         <i class="form-field__icon-misc fas fa-file"></i>
                                         <i class="form-field__icon-filled fas fa-check"></i>
@@ -398,7 +398,7 @@
                     <div class="card-form__block" data-block data-name="cultural_object_type" data-active="false">
                         <!--Тип объекта культурного наследия-->
                         <div class="form-field field" data-misc_field data-name="cultural_object_type" data-required="true">
-                            <span class="form-field__title field-title">Тип объекта культурного наследия</span>
+                            <span class="form-field__title" data-misc_title>Тип объекта культурного наследия</span>
                             <div class="form-field__item">
                                 <div class="form-field__body">
                                     <div class="form-field__select field-select" data-misc_select>
@@ -453,7 +453,7 @@
                     <div class="card-form__block" data-block data-name="national_project" data-active="false">
                         <!--Название национального проекта-->
                         <div class="form-field field" data-misc_field data-name="national_project" data-required="true">
-                            <span class="form-field__title field-title">Название национального проекта</span>
+                            <span class="form-field__title" data-misc_title>Название национального проекта</span>
                             <div class="form-field__item">
                                 <div class="form-field__body">
                                     <div class="form-field__select field-select" data-misc_select>
@@ -483,7 +483,7 @@
 
                         <!--Название федерального проекта-->
                         <div class="form-field field" data-misc_field data-name="federal_project" data-required="true">
-                            <span class="form-field__title field-title">Название федерального проекта</span>
+                            <span class="form-field__title" data-misc_title>Название федерального проекта</span>
                             <div class="form-field__item">
                                 <div class="form-field__body">
                                     <div class="form-field__select field-select" data-misc_select>
@@ -524,7 +524,7 @@
 
                     <!--Куратор-->
                     <div class="form-field field" data-misc_field data-name="curator" data-required="true">
-                        <span class="form-field__title field-title">Куратор</span>
+                        <span class="form-field__title" data-misc_title>Куратор</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
                                 <div class="form-field__select field-select" data-misc_select>
@@ -578,7 +578,7 @@
                             <!--Шаблон "Вид финансирования"-->
                             <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="false">
                                 <div class="form-field field" data-name="financing_type" data-required="true">
-                                    <span class="form-field__title field-title">Вид финансирования</span>
+                                    <span class="form-field__title">Вид финансирования</span>
                                     <div class="form-field__item">
                                         <div class="radio form-field__body" data-required="true" data-result_callback="financing_type">
                                             <div class="radio__body">
@@ -608,7 +608,7 @@
                             <!--Шаблон "Бюджетные средства"-->
                             <div class="multiple-block__item" data-block data-type="template" data-name="budget" data-active="false">
                                 <div class="form-field field" data-misc_field data-name="budget_level" data-required="true">
-                                    <span class="form-field__title field-title">Уровень бюджета</span>
+                                    <span class="form-field__title" data-misc_title>Уровень бюджета</span>
                                     <div class="form-field__item">
                                         <div class="form-field__body">
                                             <div class="form-field__select field-select" data-misc_select>
@@ -878,7 +878,7 @@
                                 <div class="documentation__header" data-title="<?= $node['is_header'] ? 'true' : 'false' ?>">
                                     <span class="documentation__name" style="padding-left: <?= $node['depth']*25 + 15 ?>px"><?= $node['name'] ?></span>
                                     <?php if (!$node['is_header']): ?>
-                                        <i class="documentation__icon modal-file fas fa-plus"></i>
+                                        <i class="documentation__icon fas fa-plus" data-file_select></i>
                                     <?php endif; ?>
                                 </div>
                                 <div class="documentation__files files" data-depth="<?= $node['depth'] ?>"></div>
@@ -893,7 +893,7 @@
                                 <div class="documentation__header" data-title="<?= $node['is_header'] ? 'true' : 'false' ?>">
                                     <span class="documentation__name" style="padding-left: <?= $node['depth']*25 + 15 ?>px"><?= $node['name'] ?></span>
                                     <?php if (!$node['is_header']): ?>
-                                        <i class="documentation__icon modal-file fas fa-plus"></i>
+                                        <i class="documentation__icon fas fa-plus" data-file_select></i>
                                     <?php endif; ?>
                                 </div>
                                 <div class="documentation__files files" data-depth="<?= $node['depth'] ?>"></div>

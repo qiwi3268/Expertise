@@ -472,6 +472,11 @@ textarea.form-field__input.invalid {
 
 /* tmp ========================================================================= */
 
+.field.filled .form-field__select.file-select {
+   border-radius: 4px 4px 0px 0px;
+}
+
+
 .files {
    display: none;
    border: 1px solid #cccccc;

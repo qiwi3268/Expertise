@@ -1,16 +1,22 @@
 .files {
-   border-radius: 0px 0px 4px 4px;
+   /*border-radius: 0px 0px 4px 4px;*/
 }
 
-.field.filled .field-select.modal-file {
-   border-radius: 4px 4px 0px 0px;
+.files__item {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   /*padding: 5px 8px;*/
+   padding: 3px;
+   transition: background-color 0.5s;
 }
 
 .files__info {
    display: flex;
    align-items: center;
    flex-grow: 1;
-   padding: 3px 10px;
+   /*padding: 3px 10px;*/
+   padding: 3px 8px;
    margin: 0px 5px 0px 0px;
    transition: .15s;
    border-radius: 4px;
@@ -27,7 +33,7 @@
 
 .files__icon {
    font-size: 20px;
-   margin: 0px 10px 0px 0px;
+   margin: 0px 7px 0px 0px;
    cursor: pointer;
 
    color: #3b516b;
@@ -35,36 +41,31 @@
 
 .files__actions {
    display: flex;
-   margin: 0px 0px 0px 10px;
+   margin: 0px 0px 0px 3px
 }
 
-.files__actions > .fas {
+.files__actions .fas {
+}
+
+.files__action {
    padding: 5px;
-}
-
-.files__delete,
-.files__unload,
-.files__sign {
-   padding: 8px;
-   /*border: 2px solid #ffffff;*/
    border-radius: 4px;
    color: #6e6e6e;
    cursor: pointer;
-   transition: 0.15s;
+   transition: background-color 0.15s;
    font-size: 16px;
 }
 
-.files__delete {
+.files__action.delete {
    color: #a33c3c;
 }
 
-.files__delete:hover {
-   /*border-color: #ffb0b0;*/
+.files__action.delete:hover {
    background-color: #ffb0b0;
    color: #a93d3d;
 }
 
-.files__unload:hover,
+.files__action:hover,
 .files__sign:hover {
    border-color: #A4D0FF;
    background-color: #A4D0FF;
@@ -75,15 +76,6 @@
    display: block;
 }
 
-
-.files__item {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   padding: 5px 8px;
-
-   transition: 0.5s;
-}
 
 .files__item:not(:last-child) {
    border-bottom: 1px solid #e1e1e1;

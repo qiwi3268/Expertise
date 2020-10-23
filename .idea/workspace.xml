@@ -3,14 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/AccessToDocument/AccessToApplication.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/AccessToDocument/AccessToApplication.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Application/Actions/ExecutionActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/Actions/ExecutionActions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/TotalCC/Actions/AccessActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/TotalCC/Actions/AccessActions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Docs/total_cc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Docs/total_cc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/Locators/TypeOfObjectTableLocator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Locators/TypeOfObjectTableLocator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tables/readmy" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/readmy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/expertise_cards/sidebars/hierarchy.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/expertise_cards/sidebars/hierarchy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/documentation.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/documentation.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/files.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/files.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/application/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/documents/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/application/actions/action_2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/documents/application/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/application/view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/documents/section/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/section/view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/documents/total_cc/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/total_cc/view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/modals/comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/modals/comment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/modals/comments_group.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/modals/comments_group.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/templates_with_data/create/financing_sources.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/templates_with_data/create/financing_sources.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/templates_with_data/create/miscs/type_of_object.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/templates_with_data/create/miscs/type_of_object.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/templates_with_data/edit/financing_sources.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/templates_with_data/edit/financing_sources.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/test_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/test_1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/DependenciesHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/DependenciesHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/GeFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/GeFile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/modals/FileUploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/FileUploader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/modals/Misc.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/Misc.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,14 +162,7 @@
       <workItem from="1602999585171" duration="4613000" />
       <workItem from="1603013976339" duration="12516000" />
       <workItem from="1603089702031" duration="39472000" />
-      <workItem from="1603251755490" duration="42090000" />
-    </task>
-    <task id="LOCAL-00184" summary="10.10.2020">
-      <created>1602304973346</created>
-      <option name="number" value="00184" />
-      <option name="presentableId" value="LOCAL-00184" />
-      <option name="project" value="LOCAL" />
-      <updated>1602304973347</updated>
+      <workItem from="1603251755490" duration="46668000" />
     </task>
     <task id="LOCAL-00185" summary="10.10.2020_1">
       <created>1602308111457</created>
@@ -497,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603369952879</updated>
     </task>
-    <option name="localTasksCounter" value="233" />
+    <task id="LOCAL-00233" summary="23.10.2020">
+      <created>1603423570135</created>
+      <option name="number" value="00233" />
+      <option name="presentableId" value="LOCAL-00233" />
+      <option name="project" value="LOCAL" />
+      <updated>1603423570135</updated>
+    </task>
+    <option name="localTasksCounter" value="234" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -514,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="14.10.2020_6" />
     <MESSAGE value="15.10.2020" />
     <MESSAGE value="15.10.2020_1" />
     <MESSAGE value="15.10.2020_2" />
@@ -539,7 +548,8 @@
     <MESSAGE value="22.10.2020_1" />
     <MESSAGE value="22.10.2020_2" />
     <MESSAGE value="22.10.2020_3" />
-    <option name="LAST_COMMIT_MESSAGE" value="22.10.2020_3" />
+    <MESSAGE value="23.10.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="23.10.2020" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -630,10 +640,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="92" y="92" width="2376" height="1216" key="dock-window-2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600964609575" />
-    <state x="440" y="104" width="1169" height="814" key="find.popup" timestamp="1603369256589">
+    <state x="296" y="98" width="1169" height="814" key="find.popup" timestamp="1603428346769">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="440" y="104" width="1169" height="814" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1603369256589" />
+    <state x="296" y="98" width="1169" height="814" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1603428346769" />
     <state x="-1611" y="272" width="1346" height="792" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1603031973447" />
     <state x="571" y="185" width="1495" height="1020" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603043323490" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />

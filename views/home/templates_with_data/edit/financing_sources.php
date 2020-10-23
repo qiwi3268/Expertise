@@ -9,7 +9,7 @@
             <div class="multiple-block__title" data-multiple_title>Бюджетные средства</div>
             <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="false">
                 <div class="form-field field" data-name="financing_type" data-required="true">
-                    <span class="form-field__title field-title">Вид финансирования</span>
+                    <span class="form-field__title">Вид финансирования</span>
                     <div class="form-field__item">
                         <div class="radio form-field__body" data-required="true" data-result_callback="financing_type">
                             <div class="radio__body">
@@ -38,7 +38,7 @@
                 </div>
                 <div class="multiple-block__item" data-block data-type="template" data-name="budget" data-active="true">
                     <div class="form-field field" data-misc_field data-name="budget_level" data-required="true">
-                        <span class="form-field__title field-title">Уровень бюджета</span>
+                        <span class="form-field__title" data-misc_title>Уровень бюджета</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
                                 <div class="form-field__select field-select filled" data-misc_select>
@@ -130,7 +130,7 @@
             <div class="multiple-block__title" data-multiple_title>Средства юридических лиц, указанных в ч. 2 статьи 48.2 ГрК</div>
             <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="false">
                 <div class="form-field field" data-name="financing_type" data-required="true">
-                    <span class="form-field__title field-title">Вид финансирования</span>
+                    <span class="form-field__title">Вид финансирования</span>
                     <div class="form-field__item">
                         <div class="radio form-field__body" data-required="true" data-result_callback="financing_type">
                             <div class="radio__body">
@@ -309,7 +309,7 @@
             <div class="multiple-block__title" data-multiple_title>Собственные средства застройщика</div>
             <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="false">
                 <div class="form-field field" data-name="financing_type" data-required="true">
-                    <span class="form-field__title field-title">Вид финансирования</span>
+                    <span class="form-field__title">Вид финансирования</span>
                     <div class="form-field__item">
                         <div class="radio form-field__body" data-required="true" data-result_callback="financing_type">
                             <div class="radio__body">
@@ -403,7 +403,7 @@
             <div class="multiple-block__title" data-multiple_title>Средства инвестора</div>
             <div class="multiple-block__item" data-block data-type="template" data-name="type" data-active="false">
                 <div class="form-field field" data-name="financing_type" data-required="true">
-                    <span class="form-field__title field-title">Вид финансирования</span>
+                    <span class="form-field__title">Вид финансирования</span>
                     <div class="form-field__item">
                         <div class="radio form-field__body" data-required="true" data-result_callback="financing_type">
                             <div class="radio__body">

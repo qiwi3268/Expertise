@@ -33,7 +33,7 @@
             </div>
 
             <div class="form-field field" data-misc_field data-name="comment_criticality" data-required="true">
-                <span class="form-field__title field-title">Критичность замечания</span>
+                <span class="form-field__title" data-misc_title>Критичность замечания</span>
                 <div class="form-field__item">
                     <div class="form-field__body">
                         <div class="form-field__select field-select" data-misc_select>
@@ -128,7 +128,7 @@
                                         </div>
                                         <div class="files__state"></div>
                                         <div class="files__actions">
-                                            <i class="files__unload fas fa-angle-double-down"></i>
+                                            <i class="files__action unload fas fa-angle-double-down" data-file_unload></i>
                                         </div>
                                     </div>
                                 <?php endforeach; ?>

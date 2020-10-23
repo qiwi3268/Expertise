@@ -222,7 +222,7 @@ class Misc {
                // Создаем сообщение, в котором записываем поле, которое нужно заполнить
                this.is_empty = true;
                let related_field = parent_misc_result.closest('.field');
-               let related_field_name = related_field.querySelector('.field-title').innerHTML;
+               let related_field_name = related_field.querySelector('[data-misc_title]').innerHTML;
                this.error_message = `Выберите ${related_field_name.toLowerCase()}`;
             }
          }

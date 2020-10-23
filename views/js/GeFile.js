@@ -259,12 +259,12 @@ class GeFile {
    handleActionButtons () {
       this.actions = this.element.querySelector('.files__actions');
 
-      this.unload_button = this.actions.querySelector('.files__unload');
+      this.unload_button = this.actions.querySelector('[data-file_unload]');
       if (this.unload_button) {
          this.handleUnloadButton();
       }
 
-      this.delete_button = this.actions.querySelector('.files__delete');
+      this.delete_button = this.actions.querySelector('[data-file_delete]');
       if (this.delete_button) {
          this.handleDeleteButton();
       }
@@ -320,7 +320,7 @@ class GeFile {
       if (!this.container.querySelector('.files__item')) {
          this.container.classList.remove('filled');
 
-         let parent_select = this.field.element.querySelector('.modal-file');
+         let parent_select = this.field.element.querySelector('[data-file_select]');
          if (parent_select) {
             parent_select.classList.remove('filled');
          }
@@ -485,11 +485,13 @@ class GeFile {
       this.element.appendChild(this.actions);
 
       let unload_button = document.createElement('I');
-      unload_button.classList.add('files__unload', 'fas', 'fa-angle-double-down');
+      unload_button.classList.add('files__action', 'unload', 'fas', 'fa-angle-double-down');
+      unload_button.setAttribute('data-file_unload', '');
       this.actions.appendChild(unload_button);
 
       let delete_button = document.createElement('I');
-      delete_button.classList.add('files__delete', 'fas', 'fa-minus');
+      delete_button.classList.add('files__action', 'delete', 'fas', 'fa-minus');
+      delete_button.setAttribute('data-file_delete', '');
       this.actions.appendChild(delete_button);
 
       this.handleActionButtons();
