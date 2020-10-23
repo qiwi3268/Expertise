@@ -146,7 +146,7 @@
                  data-result_callback="experts_json"
                  data-add_element_callback="add_expert"
             >
-                <div class="section__header empty" data-misc_select>
+                <div class="section__header empty" data-modal_select="misc">
                     <i class="section__folder fas fa-book"></i>
                     <span class="section__title" data-misc_value>Выберите раздел</span>
                     <i class="section__remove fas fa-minus"></i>

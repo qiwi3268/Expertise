@@ -333,7 +333,7 @@ class Misc {
     * @static
     */
    static initializeMiscSelects (block) {
-      let misc_selects = block.querySelectorAll('[data-misc_select]');
+      let misc_selects = block.querySelectorAll('[data-modal_select="misc"]');
       misc_selects.forEach(this.handleMiscSelect);
    }
 

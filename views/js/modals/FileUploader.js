@@ -1,7 +1,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-   let file_selects = document.querySelectorAll('[data-file_select]');
+   let file_selects = document.querySelectorAll('[data-modal_select="file"]');
 
    file_selects.forEach(select => {
       select.addEventListener('click', () => {

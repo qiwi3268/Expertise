@@ -36,7 +36,7 @@
                 <span class="form-field__title" data-misc_title>Критичность замечания</span>
                 <div class="form-field__item">
                     <div class="form-field__body">
-                        <div class="form-field__select field-select" data-misc_select>
+                        <div class="form-field__select" data-modal_select="misc">
                             <span id="comment_criticality_name" class="form-field__value field-value" data-misc_value>Выберите критичность</span>
                             <i class="form-field__icon-misc fas fa-bars"></i>
                             <i class="form-field__icon-filled fas fa-check"></i>

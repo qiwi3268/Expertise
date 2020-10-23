@@ -41,7 +41,7 @@
                         <span class="form-field__title" data-misc_title>Уровень бюджета</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
-                                <div class="form-field__select field-select filled" data-misc_select>
+                                <div class="form-field__select filled" data-modal_select="misc">
                                     <span class="form-field__value field-value"
                                           data-misc_value><?= !empty($source['budget_level']) ? $source['budget_level']['name'] : 'Не выбрано';  ?></span>
                                     <i class="form-field__icon-misc fas fa-bars"></i>

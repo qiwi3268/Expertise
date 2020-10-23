@@ -485,7 +485,7 @@ class Calendar {
    // Предназначен для добавления обработки клика по полям, в которые записывается дата
    static handleFields () {
       // Поля, в которые записываются даты
-      let calendar_fields = document.querySelectorAll('.modal-calendar');
+      let calendar_fields = document.querySelectorAll('[data-modal_select="calendar"]');
 
       calendar_fields.forEach(field => {
          field.addEventListener('click', () => {

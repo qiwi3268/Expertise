@@ -89,7 +89,7 @@ class MultipleBlock {
    addEventListeners (new_block) {
       // todo придумать что-то с этим
       // вынести в callback создания части
-      if (new_block.querySelector('[data-misc_select]')) {
+      if (new_block.querySelector('[data-modal_select="misc"]')) {
          Misc.initializeMiscSelects(new_block);
       }
 

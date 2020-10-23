@@ -68,7 +68,7 @@
                         <span class="form-field__title" data-misc_title>Цель обращения</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
-                                <div class="form-field__select field-select" data-misc_select>
+                                <div class="form-field__select" data-modal_select="misc">
                                     <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
                                     <i class="form-field__icon-misc fas fa-bars"></i>
                                     <i class="form-field__icon-filled fas fa-check"></i>
@@ -144,7 +144,7 @@
                         <span class="form-field__title" data-misc_title>Вид объекта</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
-                                <div class="form-field__select field-select" data-misc_select>
+                                <div class="form-field__select" data-modal_select="misc">
                                     <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
                                     <i class="form-field__icon-misc fas fa-bars"></i>
                                     <i class="form-field__icon-filled fas fa-check"></i>
@@ -173,7 +173,7 @@
                         <span class="form-field__title" data-misc_title>Функциональное назначение</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
-                                <div class="form-field__select field-select" data-misc_select>
+                                <div class="form-field__select" data-modal_select="misc">
                                     <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
                                     <i class="form-field__icon-misc fas fa-bars"></i>
                                     <i class="form-field__icon-filled fas fa-check"></i>
@@ -202,7 +202,7 @@
                         <span class="form-field__title" data-misc_title>Функциональное назначение. Подотрасль</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
-                                <div class="form-field__select field-select" data-misc_select>
+                                <div class="form-field__select" data-modal_select="misc">
                                     <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
                                     <i class="form-field__icon-misc fas fa-bars"></i>
                                     <i class="form-field__icon-filled fas fa-check"></i>
@@ -224,7 +224,7 @@
                         <span class="form-field__title" data-misc_title>Функциональное назначение. Группа</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
-                                <div class="form-field__select field-select" data-misc_select>
+                                <div class="form-field__select" data-modal_select="misc">
                                     <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
                                     <i class="form-field__icon-misc fas fa-bars"></i>
                                     <i class="form-field__icon-filled fas fa-check"></i>
@@ -259,7 +259,7 @@
                             <span class="form-field__title">Дата утверждения документации по планировке территории</span>
                             <div class="form-field__item">
                                 <div class="form-field__body">
-                                    <div class="form-field__select field-select modal-calendar">
+                                    <div class="form-field__select" data-modal_select="calendar">
                                         <span class="form-field__value field-value">Выберите дату</span>
                                         <i class="form-field__icon-misc fas fa-calendar-alt"></i>
                                         <i class="form-field__icon-filled fas fa-check"></i>
@@ -291,7 +291,7 @@
                             <span class="form-field__title">Дата ГПЗУ</span>
                             <div class="form-field__item">
                                 <div class="form-field__body">
-                                    <div class="form-field__select field-select modal-calendar">
+                                    <div class="form-field__select" data-modal_select="calendar">
                                         <span class="form-field__value field-value">Выберите дату</span>
                                         <i class="form-field__icon-misc fas fa-calendar-alt"></i>
                                         <i class="form-field__icon-filled fas fa-check"></i>
@@ -310,7 +310,7 @@
                         <span class="form-field__title" data-misc_title>Вид работ</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
-                                <div class="form-field__select field-select" data-misc_select>
+                                <div class="form-field__select" data-modal_select="misc">
                                     <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
                                     <i class="form-field__icon-misc fas fa-bars"></i>
                                     <i class="form-field__icon-filled fas fa-check"></i>
@@ -346,7 +346,7 @@
                             <span class="form-field__title">Файл ГРБС</span>
                             <div class="form-field__item">
                                 <div class="form-field__file-block">
-                                    <div class="form-field__select file-select" data-file_select>
+                                    <div class="form-field__select file-select" data-modal_select="file">
                                         <span class="form-field__value">Загрузите файлы</span>
                                         <i class="form-field__icon-misc fas fa-file"></i>
                                         <i class="form-field__icon-filled fas fa-check"></i>
@@ -401,7 +401,7 @@
                             <span class="form-field__title" data-misc_title>Тип объекта культурного наследия</span>
                             <div class="form-field__item">
                                 <div class="form-field__body">
-                                    <div class="form-field__select field-select" data-misc_select>
+                                    <div class="form-field__select" data-modal_select="misc">
                                         <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
                                         <i class="form-field__icon-misc fas fa-bars"></i>
                                         <i class="form-field__icon-filled fas fa-check"></i>
@@ -456,7 +456,7 @@
                             <span class="form-field__title" data-misc_title>Название национального проекта</span>
                             <div class="form-field__item">
                                 <div class="form-field__body">
-                                    <div class="form-field__select field-select" data-misc_select>
+                                    <div class="form-field__select" data-modal_select="misc">
                                         <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
                                         <i class="form-field__icon-misc fas fa-bars"></i>
                                         <i class="form-field__icon-filled fas fa-check"></i>
@@ -486,7 +486,7 @@
                             <span class="form-field__title" data-misc_title>Название федерального проекта</span>
                             <div class="form-field__item">
                                 <div class="form-field__body">
-                                    <div class="form-field__select field-select" data-misc_select>
+                                    <div class="form-field__select" data-modal_select="misc">
                                         <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
                                         <i class="form-field__icon-misc fas fa-bars"></i>
                                         <i class="form-field__icon-filled fas fa-check"></i>
@@ -508,7 +508,7 @@
                             <span class="form-field__title">Дата окончания строительства</span>
                             <div class="form-field__item">
                                 <div class="form-field__body">
-                                    <div class="form-field__select field-select modal-calendar">
+                                    <div class="form-field__select" data-modal_select="calendar">
                                         <span class="form-field__value field-value">Выберите дату</span>
                                         <i class="form-field__icon-misc fas fa-calendar-alt"></i>
                                         <i class="form-field__icon-filled fas fa-check"></i>
@@ -527,7 +527,7 @@
                         <span class="form-field__title" data-misc_title>Куратор</span>
                         <div class="form-field__item">
                             <div class="form-field__body">
-                                <div class="form-field__select field-select" data-misc_select>
+                                <div class="form-field__select" data-modal_select="misc">
                                     <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
                                     <i class="form-field__icon-misc fas fa-bars"></i>
                                     <i class="form-field__icon-filled fas fa-check"></i>
@@ -611,7 +611,7 @@
                                     <span class="form-field__title" data-misc_title>Уровень бюджета</span>
                                     <div class="form-field__item">
                                         <div class="form-field__body">
-                                            <div class="form-field__select field-select" data-misc_select>
+                                            <div class="form-field__select" data-modal_select="misc">
                                                 <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
                                                 <i class="form-field__icon-misc fas fa-bars"></i>
                                                 <i class="form-field__icon-filled fas fa-check"></i>
@@ -878,7 +878,7 @@
                                 <div class="documentation__header" data-title="<?= $node['is_header'] ? 'true' : 'false' ?>">
                                     <span class="documentation__name" style="padding-left: <?= $node['depth']*25 + 15 ?>px"><?= $node['name'] ?></span>
                                     <?php if (!$node['is_header']): ?>
-                                        <i class="documentation__icon fas fa-plus" data-file_select></i>
+                                        <i class="documentation__icon fas fa-plus" data-modal_select="file"></i>
                                     <?php endif; ?>
                                 </div>
                                 <div class="documentation__files files" data-depth="<?= $node['depth'] ?>"></div>
@@ -893,7 +893,7 @@
                                 <div class="documentation__header" data-title="<?= $node['is_header'] ? 'true' : 'false' ?>">
                                     <span class="documentation__name" style="padding-left: <?= $node['depth']*25 + 15 ?>px"><?= $node['name'] ?></span>
                                     <?php if (!$node['is_header']): ?>
-                                        <i class="documentation__icon fas fa-plus" data-file_select></i>
+                                        <i class="documentation__icon fas fa-plus" data-modal_select="file"></i>
                                     <?php endif; ?>
                                 </div>
                                 <div class="documentation__files files" data-depth="<?= $node['depth'] ?>"></div>

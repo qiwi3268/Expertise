@@ -156,7 +156,7 @@ function validateBlock (block) {
       if (!field.closest('[data-block][data-active="false"]')) {
 
          if (field.hasAttribute('data-misc_field')) {
-            validateMisc(Misc.getMiscBySelect(field.querySelector('[data-misc_select]')));
+            validateMisc(Misc.getMiscBySelect(field.querySelector('[data-modal_select="misc"]')));
          } else {
             let input = field.querySelector('.field-result:not([type="hidden"])');
             validateField(field, input, input.dataset.pattern);

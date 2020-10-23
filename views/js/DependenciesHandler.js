@@ -221,7 +221,7 @@ class DependenciesHandler {
             this.handleDependencies(field_result);
 
             if (field_result.value) {
-               let parent_select = parent_field.querySelector('[data-misc_select]');
+               let parent_select = parent_field.querySelector('[data-modal_select]');
 
                this.removeRowValue(parent_field, parent_select);
 
@@ -251,7 +251,7 @@ class DependenciesHandler {
 
          let value = field.querySelector('.field-value');
          // Если зависимое поле - дата, удаляем отображаемую дату
-         if (select.classList.contains('modal-calendar')) {
+         if (select.dataset.modal_select === 'calendar') {
             value.innerHTML = 'Выберите дату';
          } else if (value) {
             value.innerHTML = 'Выберите значение';

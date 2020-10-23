@@ -320,7 +320,7 @@ class GeFile {
       if (!this.container.querySelector('.files__item')) {
          this.container.classList.remove('filled');
 
-         let parent_select = this.field.element.querySelector('[data-file_select]');
+         let parent_select = this.field.element.querySelector('[data-modal_select="file"]');
          if (parent_select) {
             parent_select.classList.remove('filled');
          }

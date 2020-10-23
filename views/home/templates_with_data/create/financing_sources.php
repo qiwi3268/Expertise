@@ -48,7 +48,7 @@
             <span class="form-field__title" data-misc_title>Уровень бюджета</span>
             <div class="form-field__item">
                 <div class="form-field__body">
-                    <div class="form-field__select field-select" data-misc_select>
+                    <div class="form-field__select" data-modal_select="misc">
                         <span class="form-field__value field-value" data-misc_value>Выберите значение</span>
                         <i class="form-field__icon-misc fas fa-bars"></i>
                         <i class="form-field__icon-filled fas fa-check"></i>

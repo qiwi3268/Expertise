@@ -49,7 +49,7 @@ function createSection (section_container, additional_sections) {
    new_section.removeAttribute('id');
    new_section.dataset.active = 'true';
 
-   let modal_select = new_section.querySelector('[data-misc_select]');
+   let modal_select = new_section.querySelector('[data-modal_select="misc"]');
    modal_select.addEventListener('click', event => {
 
       if (!event.target.classList.contains('section__remove')) {
