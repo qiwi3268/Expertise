@@ -10,7 +10,7 @@ use core\Classes\Session;
 use Lib\AccessToDocument\AccessToDocument;
 use Tables\applicant_access_group;
 use Tables\Docs\Relations\total_cc;
-use Tables\assigned_expert_total_cc;
+use Tables\AssignedExperts\total_cc as assigned_expert_total_cc;
 
 
 /**

@@ -8,7 +8,7 @@ use Tables\Exceptions\Tables as TablesEx;
 
 use core\Classes\Session;
 use Lib\Actions\AccessActions as MainAccessActions;
-use Tables\assigned_expert_total_cc;
+use Tables\AssignedExperts\total_cc as assigned_expert_total_cc;
 use Tables\LoggingActions\total_cc as log_action_total_cc;
 
 

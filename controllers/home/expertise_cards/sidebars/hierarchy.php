@@ -10,7 +10,7 @@ use Lib\Singles\Helpers\PageAddress;
 use Lib\Singles\DocumentTreeHandler;
 use Tables\Locators\DocumentTypeTableLocator;
 use Tables\Locators\TypeOfObjectTableLocator;
-use Tables\assigned_expert_total_cc;
+use Tables\AssignedExperts\total_cc as assigned_expert_total_cc;
 
 
 $VT = VariableTransfer::getInstance();
@@ -211,7 +211,7 @@ if ($treeHandler->ce_application()) {
                     $docSectionTable = $sectionTableLocator->getDocs();
 
                     // Таблица назначенных на раздел экспертов
-                    $assignedExpertTable = $typeOfObjectTableLocator->getAssignedExpertSection();
+                    $assignedExpertTable = $typeOfObjectTableLocator->getAssignedExpertsSection();
 
                     // Флаг того, что отсутствует раздел, который был проверен в route callback
                     // Этим экономим вызовы замыкания $isDocumentChecked, поскольку одновременно только

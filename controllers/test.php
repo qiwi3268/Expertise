@@ -4,16 +4,19 @@ use Lib\DataBase\Transaction;
 use Lib\Singles\DocumentTreeHandler;
 use Lib\Responsible\Responsible;
 use Tables\Docs\total_cc;
-use Tables\assigned_expert_section_documentation_1;
+use Tables\AssignedExperts\total_cc as assigned_expert_total_cc;
 use Tables\Docs\section_documentation_1;
 use Tables\Docs\comment_documentation_1;
+use Tables\Locators\TypeOfObjectTableLocator;
 
-$totalCCId = 40;
-$typeOfObjectId = 1;
+
 
 // Временный контроллер для перевода проекта на стадию устранения замечаний
 // --- искусственное действие для моделирования
 // +++ действие, которое должно быть произойти у пользователя
+
+$totalCCId = 40;
+$typeOfObjectId = 1;
 
 
 // --------------------------------------------------------------------------------------
@@ -21,16 +24,23 @@ $typeOfObjectId = 1;
 // --------------------------------------------------------------------------------------
 
 // --- получаем id разделов
+
+$typeOfObjectTableLocator = new TypeOfObjectTableLocator($typeOfObjectId);
+$docCommentTable = $typeOfObjectTableLocator->getDocsComment();
+$docSectionTable = $typeOfObjectTableLocator->getDocsSection();
+$assignedExpertSectionTable = $typeOfObjectTableLocator->getAssignedExpertsSection();
+
+/*
+
 $sectionIds = total_cc::getSectionIdsById($totalCCId, 1);
 vd($sectionIds);
 
 
 
-/*
 foreach ($sectionIds as $sectionId) {
 
     // --- получаем id назначенных на раздел экспертов
-    $assignedExpertIds = assigned_expert_section_documentation_1::getExpertIdsByIdSection($sectionId);
+    $assignedExpertIds = $assignedExpertSectionTable::getExpertIdsByIdSection($sectionId);
 
     foreach ($assignedExpertIds as $expertId) {
 
@@ -40,30 +50,30 @@ foreach ($sectionIds as $sectionId) {
 
         // Перевод всех замечаний из этого раздела на стадию "Замечание подготовлено"
         $transaction->add(
-            '\Tables\Docs\comment_documentation_1',
+            $docCommentTable,
             'updateIdStageByIdMainDocumentAndIdAuthor',
             [2, $sectionId, $expertId]
         );
 
         // Заканчиваем подготовку раздела
         $transaction->add(
-            '\Tables\assigned_expert_section_documentation_1',
+            $assignedExpertSectionTable,
             'setSectionPreparationFinishedByIdSectionAndIdExpert',
             [$sectionId, $expertId]
         );
 
         // Не осталось незакончивших работу с разделом экспертов (с учетом данных в транзакции)
-        if (assigned_expert_section_documentation_1::getCountWhereNotSectionPreparationFinishedByIdSection($sectionId) == 1) {
+        if ($assignedExpertSectionTable::getCountWhereNotSectionPreparationFinishedByIdSection($sectionId) == 1) {
 
             // Перевод раздела на стадию "Раздел подготовлен"
             $transaction->add(
-                '\Tables\Docs\section_documentation_1',
+                $docSectionTable,
                 'updateIdStageById',
                 [2, $sectionId]
             );
 
             // Не осталось разделов на стадии "Подготовка раздела" (с учетом данных в транзакции)
-            if (section_documentation_1::getCountByIdMainDocumentAndIdStage($totalCCId, 1) == 1) {
+            if ($docSectionTable::getCountByIdMainDocumentAndIdStage($totalCCId, 1) == 1) {
 
                 // Перевод сводного замечания / заключения на стадию "Подготовка сводного замечания ПТО"
                 $transaction->add(
@@ -86,32 +96,82 @@ foreach ($sectionIds as $sectionId) {
         unset($transaction); // (-)
 //      }
     }
-}
-*/
-
-//      { Действие пто по переводу на устранение замечаний (до этого подписания и т.д.)
-
-        // Получение всех замечаний
-        $commentIds = total_cc::getCommentIdsById($totalCCId, 1);
-
-        $number = 1;
-
-        foreach ($commentIds as $id) {
-            comment_documentation_1::updateNumberById($number++, $id);
-        }
-
-        vd($commentIds);
-
-
-// todo сквозная нумерация
-
-        // Формирование групп
-
-//      }
-
-
+}*/
 // после того, как эксперт на разделе нажимает действие "Закончить работу с разделом" должен вызваться
 // приватный метод проверки по переводу раздела со стадии "Подготовка раздела" на "Раздел подготовлен"
 
 // на действии возобновить работу с разделом перевести все замечания на стадию "Подготовка замечания" одним запросом
 // при добавлении замечания после выдачи не забыть ему нумерацию делать
+
+
+
+
+//      { Действие пто по переводу на устранение замечаний (до этого подписания и т.д.)
+
+    $docGroupTable = $typeOfObjectTableLocator->getDocsGroup();
+    $commentInGroupTable = $typeOfObjectTableLocator->getCommentsInGroup();
+    $docCommentTable = $typeOfObjectTableLocator->getDocsComment();
+    $docSectionTable = $typeOfObjectTableLocator->getDocsSection();
+    $assignedExpertSectionTable = $typeOfObjectTableLocator->getAssignedExpertsSection();
+
+    $transaction = new Transaction();
+
+
+    // Замечания к текущему сводному замечанию / заключению
+    $comments = total_cc::getAllAssocCommentIdAndIdAttachedFileById($totalCCId, 1);
+
+    vd($comments);
+    $number = 1;
+
+    $groups = [];
+
+    foreach ($comments as ['id' => $id, 'id_attached_file' => $attachedFileId]) {
+
+        // Сквозная нумерация
+        $transaction->add(
+            $docCommentTable,
+            'updateNumberById',
+            [$number++, $id]
+        );
+
+        // Формирование массива групп
+        $groups[$attachedFileId ?? 'no_file'][] = $id;
+    }
+
+    vd($groups);
+
+    $groupCount = 1;
+
+    foreach ($groups as $attachedFileId => $commentIds) {
+
+        $getterKey = "group_id_{$groupCount}";
+
+        if ($attachedFileId == 'no_file') $attachedFileId = null;
+
+        // Создание группы
+        $transaction->add(
+            $docGroupTable,
+            'create',
+            [$totalCCId, $attachedFileId],
+            $getterKey
+        );
+
+        foreach ($commentIds as $commentId) {
+
+            // Создание связи комментариев и группы
+            $transaction->add(
+                $commentInGroupTable,
+                'create',
+                [$commentId],
+                null,
+                $getterKey
+            );
+        }
+        $groupCount++;
+    }
+
+    $transactionResult = $transaction->start()->getLastResults();
+
+    vd($transactionResult);
+
+

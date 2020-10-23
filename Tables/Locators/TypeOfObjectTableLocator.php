@@ -100,6 +100,25 @@ class TypeOfObjectTableLocator
      * в зависимости от вида объекта
      *
      * @return string
+     * {@see \Tables\Docs\group_documentation_1}<br>
+     * или<br>
+     * {@see \Tables\Docs\group_documentation_2}
+     */
+    public function getDocsGroup(): string
+    {
+        if ($this->typeOfObjectId == 1) {
+            return '\Tables\Docs\group_documentation_1';
+        } else {
+            return '\Tables\Docs\group_documentation_2';
+        }
+    }
+
+
+    /**
+     * Предназначен для получения названия класса таблицы
+     * в зависимости от вида объекта
+     *
+     * @return string
      * {@see \Tables\Docs\Relations\section_documentation_1}<br>
      * или<br>
      * {@see \Tables\Docs\Relations\section_documentation_2}
@@ -120,17 +139,16 @@ class TypeOfObjectTableLocator
      * в зависимости от вида объекта
      *
      * @return string
-     * {@see \Tables\assigned_expert_section_documentation_1}<br>
+     * {@see \Tables\AssignedExperts\section_documentation_1}<br>
      * или<br>
-     * {@see \Tables\assigned_expert_section_documentation_2}
+     * {@see \Tables\AssignedExperts\section_documentation_2}
      */
-    public function getAssignedExpertSection(): string
+    public function getAssignedExpertsSection(): string
     {
         if ($this->typeOfObjectId == 1) {
-            return '\Tables\assigned_expert_section_documentation_1';
+            return '\Tables\AssignedExperts\section_documentation_1';
         } else {
-            //todo на вырост
-            return '\Tables\assigned_expert_section_documentation_2';
+            return '\Tables\AssignedExperts\section_documentation_2';
         }
     }
 
@@ -159,17 +177,16 @@ class TypeOfObjectTableLocator
      * в зависимости от вида объекта
      *
      * @return string
-     * {@see \Tables\order_341\main_block_documentation_1}<br>
+     * {@see \Tables\Order341\main_block_documentation_1}<br>
      * или<br>
-     * {@see \Tables\order_341\main_block_documentation_2}
+     * {@see \Tables\Order341\main_block_documentation_2}
      */
     public function getOrder341MainBlock(): string
     {
         if ($this->typeOfObjectId == 1) {
-            return '\Tables\order_341\main_block_documentation_1';
+            return '\Tables\Order341\main_block_documentation_1';
         } else {
-            //todo на вырост
-            return '\Tables\order_341\main_block_documentation_2';
+            return '\Tables\Order341\main_block_documentation_2';
         }
     }
 
@@ -226,8 +243,26 @@ class TypeOfObjectTableLocator
         if ($this->typeOfObjectId == 1) {
             return '\Tables\Structures\documentation_1';
         } else {
-            //todo на вырост
             return '\Tables\Structures\documentation_2';
+        }
+    }
+
+
+    /**
+     * Предназначен для получения названия класса таблицы
+     * в зависимости от вида объекта
+     *
+     * @return string
+     * {@see \Tables\CommentsInGroup\documentation_1}<br>
+     * или<br>
+     * {@see \Tables\CommentsInGroup\documentation_2}
+     */
+    public function getCommentsInGroup(): string
+    {
+        if ($this->typeOfObjectId == 1) {
+            return '\Tables\CommentsInGroup\documentation_1';
+        } else {
+            return '\Tables\CommentsInGroup\documentation_2';
         }
     }
 

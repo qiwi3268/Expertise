@@ -7,14 +7,17 @@ getAllAssocWhereActiveByPageName
 getAllAssocFIOByIdSection         индексный массив с ассоциативными массивами ФИО по id раздела
 getAllAssocFileByIdsMainDocument  индексный массив с ассоциативными массивами прикрепленных
                                   к замечанию файлов по массиву с id замечаниями
+
+getAllAssocCommentIdAndIdAttachedFileById индексный массив с ассоциативными массивами из comment - id и id_attached_file по id
+
 getAssoc                          ассоциативный массив одной записи
 getAssocWhereActiveByPageName
 getAllSimple                      простой (индексный) массив
 
 getIdsByIdMainDocument
 getIdsByIdMainDocumentAndIdAuthor
-getIdFilesByIdMainDocument
-getIdCommentsById
+getFileIdsByIdMainDocument
+
 
 getSectionIdsById
 getCommentIdsById

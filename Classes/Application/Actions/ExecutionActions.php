@@ -88,7 +88,7 @@ class ExecutionActions extends MainExecutionActions
             // Создание сводного замечания / заключения
             'doc_total_cc'             => '\Tables\Docs\total_cc',
             // Назначенные эксперты на сводное замечание / заключение (включая информацию ведущий / общая часть)
-            'assigned_expert_total_cc' => '\Tables\assigned_expert_total_cc',
+            'assigned_expert_total_cc' => 'Tables\AssignedExperts\total_cc',
             // Назначение ответственных на сводное замечание / заключение
             'resp_total_cc'            => '\Tables\Responsible\type_4\total_cc',
             // Создание разделов
@@ -96,7 +96,7 @@ class ExecutionActions extends MainExecutionActions
             // Назначение ответственных на каждый из разделов
             'resp_section'             => $tableLocator->getResponsibleType4Section(),
             // Связь эксперта и разделов, на которые он был назначен
-            'assigned_expert_section'  => $tableLocator->getAssignedExpertSection()
+            'assigned_expert_section'  => $tableLocator->getAssignedExpertsSection()
         ];
 
         // resp_section и assigned_expert_section похожи, но ответственные на разделе в ходе процесса будут меняться

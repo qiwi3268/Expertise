@@ -119,14 +119,15 @@ final class total_cc implements ChildDocument, Existent, Responsible
      * <b>null</b> в противном случае
      * @throws DataBaseEx
      */
-    static public function getCommentIdsById(int $id, int $typeOfObjectId): ?array
+    static public function getAllAssocCommentIdAndIdAttachedFileById(int $id, int $typeOfObjectId): ?array
     {
         list(
             'doc_section' => $sectionTable,
             'doc_comment' => $commentTable
         ) = self::getChildTables($typeOfObjectId);
 
-        $query = "SELECT `{$commentTable}`.`id`
+        $query = "SELECT `{$commentTable}`.`id`,
+                         `{$commentTable}`.`id_attached_file`
                   FROM `{$commentTable}`
                   WHERE `{$commentTable}`.`id_main_document` IN
                   (
@@ -135,7 +136,7 @@ final class total_cc implements ChildDocument, Existent, Responsible
                      WHERE `{$sectionTable}`.`id_main_document`=?
                   )
                   ORDER BY `{$commentTable}`.`id`";
-        $result = ParametrizedQuery::getSimpleArray($query, [$id]);
+        $result = ParametrizedQuery::getFetchAssoc($query, [$id]);
         return $result ? $result : null;
     }
 }
