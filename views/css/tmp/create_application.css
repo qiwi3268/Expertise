@@ -211,7 +211,7 @@
    margin: 0px 20px 0px 0px;
 }
 
-.form-field[data-required='true'] > .form-field__title::after {
+.form-field[data-required='true'] .form-field__title::after {
    content: '*';
    color: #bd4949;
 }
@@ -341,7 +341,7 @@ textarea.form-field__input.invalid {
    box-shadow: 0px 0px 0px 3px rgba(255,176,176,1);
 }
 
-.field.invalid .form-field__error.active {
+.field.invalid .form-field__error {
    display: block;
 }
 

@@ -54,7 +54,7 @@
                         <i class="form-field__icon-filled fas fa-check"></i>
                     </div>
                 </div>
-                <span class="form-field__error field-error">Поле обязательно для заполнения</span>
+                <span class="form-field__error" data-field_error>Поле обязательно для заполнения</span>
             </div>
             <div class="modal" data-misc_modal data-result_callback="document_field">
                 <i class="modal__close fas fa-times" data-misc_close></i>
@@ -92,7 +92,7 @@
                         <div class="form-field__body">
                             <input class="form-field__input" data-field_result type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                         </div>
-                        <span class="form-field__error field-error"></span>
+                        <span class="form-field__error" data-field_error></span>
                     </div>
                 </div>
             </div>
@@ -107,7 +107,7 @@
                 <div class="form-field__body">
                     <input class="form-field__input" data-field_result type="text" data-multiple_block_field="full_name" name="full_name" placeholder="Введите значение">
                 </div>
-                <span class="form-field__error field-error"></span>
+                <span class="form-field__error" data-field_error></span>
             </div>
         </div>
         <div class="form-field field" data-required="true" data-name="INN" data-pattern="inn">
@@ -116,7 +116,7 @@
                 <div class="form-field__body">
                     <input class="form-field__input" data-field_result type="text" data-multiple_block_field="INN" name="INN" placeholder="Введите значение">
                 </div>
-                <span class="form-field__error field-error"></span>
+                <span class="form-field__error" data-field_error></span>
             </div>
         </div>
         <div class="form-field field" data-required="true" data-name="KPP">
@@ -125,7 +125,7 @@
                 <div class="form-field__body">
                     <input class="form-field__input" data-field_result type="text" data-multiple_block_field="KPP" name="KPP" placeholder="Введите значение">
                 </div>
-                <span class="form-field__error field-error"></span>
+                <span class="form-field__error" data-field_error></span>
             </div>
         </div>
         <div class="form-field field" data-required="true" data-name="OGRN">
@@ -134,7 +134,7 @@
                 <div class="form-field__body">
                     <input class="form-field__input" data-field_result type="text" data-multiple_block_field="OGRN" name="OGRN" placeholder="Введите значение">
                 </div>
-                <span class="form-field__error field-error"></span>
+                <span class="form-field__error" data-field_error></span>
             </div>
         </div>
         <div class="form-field field" data-required="true" data-name="address">
@@ -143,7 +143,7 @@
                 <div class="form-field__body">
                     <input class="form-field__input" data-field_result type="text" data-multiple_block_field="address" name="address" placeholder="Введите значение">
                 </div>
-                <span class="form-field__error field-error"></span>
+                <span class="form-field__error" data-field_error></span>
             </div>
         </div>
         <div class="form-field field" data-required="true" data-name="location">
@@ -152,7 +152,7 @@
                 <div class="form-field__body">
                     <input class="form-field__input" data-field_result type="text" data-multiple_block_field="location" name="location" placeholder="Введите значение">
                 </div>
-                <span class="form-field__error field-error"></span>
+                <span class="form-field__error" data-field_error></span>
             </div>
         </div>
         <div class="form-field field" data-required="true" data-name="telephone">
@@ -161,7 +161,7 @@
                 <div class="form-field__body">
                     <input class="form-field__input" data-field_result type="text" data-multiple_block_field="telephone" name="telephone" placeholder="Введите значение">
                 </div>
-                <span class="form-field__error field-error"></span>
+                <span class="form-field__error" data-field_error></span>
             </div>
         </div>
         <div class="form-field field" data-required="true" data-name="email">
@@ -170,7 +170,7 @@
                 <div class="form-field__body">
                     <input class="form-field__input" data-field_result type="text" data-multiple_block_field="email" name="email" placeholder="Введите значение">
                 </div>
-                <span class="form-field__error field-error"></span>
+                <span class="form-field__error" data-field_error></span>
             </div>
         </div>
         <div class="multiple-block__item" data-block data-type="template" data-name="financing_source_no_data" data-active="false">
@@ -195,7 +195,7 @@
                         <div class="form-field__body">
                             <input class="form-field__input" data-field_result type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                         </div>
-                        <span class="form-field__error field-error"></span>
+                        <span class="form-field__error" data-field_error></span>
                     </div>
                 </div>
             </div>
@@ -226,7 +226,7 @@
                         <div class="form-field__body">
                             <input class="form-field__input" data-field_result type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                         </div>
-                        <span class="form-field__error field-error"></span>
+                        <span class="form-field__error" data-field_error></span>
                     </div>
                 </div>
             </div>
@@ -257,7 +257,7 @@
                         <div class="form-field__body">
                             <input class="form-field__input" data-field_result type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                         </div>
-                        <span class="form-field__error field-error"></span>
+                        <span class="form-field__error" data-field_error></span>
                     </div>
                 </div>
             </div>
@@ -290,7 +290,7 @@
                 <div class="form-field__body">
                     <input class="form-field__input" data-field_result type="text" data-multiple_block_field="percent" name="percent" placeholder="Введите процент">
                 </div>
-                <span class="form-field__error field-error"></span>
+                <span class="form-field__error" data-field_error></span>
             </div>
         </div>
     </div>

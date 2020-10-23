@@ -29,7 +29,7 @@
                 <div class="field-card__body">
                     <textarea id="comment_text" class="field-card__input" data-field_result name="text" rows="10"></textarea>
                 </div>
-                <span class="form-field__error field-error">Поле обязательно для заполнения</span>
+                <span class="form-field__error" data-field_error>Поле обязательно для заполнения</span>
             </div>
 
             <div class="form-field field" data-misc_field data-name="comment_criticality" data-required="true">
@@ -42,7 +42,7 @@
                             <i class="form-field__icon-filled fas fa-check"></i>
                         </div>
                     </div>
-                    <span class="form-field__error field-error">Поле обязательно для заполнения</span>
+                    <span class="form-field__error" data-field_error>Поле обязательно для заполнения</span>
                 </div>
                 <div class="modal" data-misc_modal data-result_callback="document_field">
                     <i class="modal__close fas fa-times" data-misc_close></i>
@@ -67,7 +67,7 @@
                     <div class="field-card__body">
                         <textarea id="normative_document" class="field-card__input" data-field_result name="normative_document"></textarea>
                     </div>
-                    <span class="form-field__error field-error">Поле обязательно для заполнения</span>
+                    <span class="form-field__error" data-field_error>Поле обязательно для заполнения</span>
                 </div>
             </div>
 
@@ -95,7 +95,7 @@
                 <div class="field-card__body">
                     <textarea id="comment_note" class="field-card__input" data-field_result name="note"></textarea>
                 </div>
-                <span class="form-field__error field-error">Поле обязательно для заполнения</span>
+                <span class="form-field__error" data-field_error>Поле обязательно для заполнения</span>
             </div>
 
 

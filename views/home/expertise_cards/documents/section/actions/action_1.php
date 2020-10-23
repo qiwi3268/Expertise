@@ -47,7 +47,7 @@
                                         <div class="form-field__body">
                                             <input class="form-field__input" data-field_result type="text" data-multiple_block_field="indicator" name="indicator" placeholder="Введите показатель" data-multiple_title>
                                         </div>
-                                        <span class="form-field__error field-error"></span>
+                                        <span class="form-field__error" data-field_error></span>
                                     </div>
                                 </div>
                                 <div class="form-field field" data-required="true" data-name="measure">
@@ -56,7 +56,7 @@
                                         <div class="form-field__body">
                                             <input class="form-field__input" data-field_result type="text" data-multiple_block_field="measure" name="measure" placeholder="Введите единицу измерения">
                                         </div>
-                                        <span class="form-field__error field-error"></span>
+                                        <span class="form-field__error" data-field_error></span>
                                     </div>
                                 </div>
                                 <div class="form-field field" data-required="true" data-name="value">
@@ -65,7 +65,7 @@
                                         <div class="form-field__body">
                                             <input class="form-field__input" data-field_result type="text" data-multiple_block_field="value" name="value" placeholder="Введите значение">
                                         </div>
-                                        <span class="form-field__error field-error"></span>
+                                        <span class="form-field__error" data-field_error></span>
                                     </div>
                                 </div>
                                 <div class="form-field field" data-required="false" data-name="note">
@@ -74,7 +74,7 @@
                                         <div class="form-field__body">
                                             <input class="form-field__input" data-field_result type="text" data-multiple_block_field="note" name="note" placeholder="Введите примечание">
                                         </div>
-                                        <span class="form-field__error field-error"></span>
+                                        <span class="form-field__error" data-field_error></span>
                                     </div>
                                 </div>
                             </div>

@@ -31,19 +31,19 @@ document.addEventListener('DOMContentLoaded', () => {
 function validateMisc (misc) {
    if (misc.field.dataset.required === 'true') {
       //todo определить в класса
-      let error = misc.field.querySelector('.field-error');
+      let error = misc.field.querySelector('[data-field_error]');
 
       // Если не выбрано значение
       if (!misc.result_input || !misc.result_input.value) {
          // misc.select.classList.add('invalid');
          misc.field.classList.add('invalid');
          // misc.field.classList.remove('filled');
-         error.classList.add('active');
+         // error.classList.add('active');
          resizeCard(misc.field);
       } else {
          // misc.select.classList.remove('invalid');
          misc.field.classList.remove('invalid');
-         error.classList.remove('active');
+         // error.classList.remove('active');
       }
 
       let parent_card = misc.select.closest('.card-form');
@@ -102,7 +102,7 @@ function validateField (field, input, pattern) {
 function validateInput (field, input, regex, message) {
    let value = input.value;
    let parent_field = input.closest('.field');
-   let error_element = parent_field.querySelector('.field-error');
+   let error_element = parent_field.querySelector('[data-field_error]');
 
    let is_required = parent_field.dataset.required === 'true';
    let is_invalid = !value.match(regex) && (is_required || value);
@@ -111,7 +111,7 @@ function validateInput (field, input, regex, message) {
       // input.classList.add('invalid');
       field.classList.add('invalid');
 
-      error_element.classList.add('active');
+      // error_element.classList.add('active');
 
       // Если поле непустое
       if (value) {
@@ -124,7 +124,7 @@ function validateInput (field, input, regex, message) {
    } else {
       // input.classList.remove('invalid');
       field.classList.remove('invalid');
-      error_element.classList.remove('active');
+      // error_element.classList.remove('active');
    }
 
 }

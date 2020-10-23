@@ -12,7 +12,7 @@
                 <i class="form-field__icon-filled fas fa-check"></i>
             </div>
         </div>
-        <span class="form-field__error field-error">Поле обязательно для заполнения</span>
+        <span class="form-field__error" data-field_error>Поле обязательно для заполнения</span>
     </div>
     
     <div class="modal" data-misc_modal data-result_callback="document_field">

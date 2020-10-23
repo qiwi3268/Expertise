@@ -48,7 +48,7 @@
                                     <i class="form-field__icon-filled fas fa-check"></i>
                                 </div>
                             </div>
-                            <span class="form-field__error field-error">Поле обязательно для заполнения</span>
+                            <span class="form-field__error" data-field_error>Поле обязательно для заполнения</span>
                         </div>
                         <div class="modal" data-misc_modal data-result_callback="document_field">
                             <i class="modal__close fas fa-times" data-misc_close></i>
@@ -100,7 +100,7 @@
                                                data-multiple_block_field="percent" name="percent"
                                                placeholder="Не указан" value="<?= $source['percent'] ?>">
                                     </div>
-                                    <span class="form-field__error field-error"></span>
+                                    <span class="form-field__error" data-field_error></span>
                                 </div>
                             </div>
                         </div>
@@ -167,7 +167,7 @@
                                        data-multiple_block_field="full_name" name="full_name"
                                        placeholder="Не указано" value="<?= $source['full_name'] ?>">
                             </div>
-                            <span class="form-field__error field-error"></span>
+                            <span class="form-field__error" data-field_error></span>
                         </div>
                     </div>
                     <div class="form-field field" data-required="true" data-name="INN" data-pattern="inn">
@@ -177,7 +177,7 @@
                                 <input class="form-field__input" data-field_result type="text"
                                        data-multiple_block_field="INN" name="INN" placeholder="Не указан" value="<?= $source['INN'] ?>">
                             </div>
-                            <span class="form-field__error field-error"></span>
+                            <span class="form-field__error" data-field_error></span>
                         </div>
                     </div>
                     <div class="form-field field" data-required="true" data-name="KPP">
@@ -187,7 +187,7 @@
                                 <input class="form-field__input" data-field_result type="text"
                                        data-multiple_block_field="KPP" name="KPP" placeholder="Не указан" value="<?= $source['KPP'] ?>">
                             </div>
-                            <span class="form-field__error field-error"></span>
+                            <span class="form-field__error" data-field_error></span>
                         </div>
                     </div>
                     <div class="form-field field" data-required="true" data-name="OGRN">
@@ -197,7 +197,7 @@
                                 <input class="form-field__input" data-field_result type="text"
                                        data-multiple_block_field="OGRN" name="OGRN" placeholder="Не указан" value="<?= $source['OGRN'] ?>">
                             </div>
-                            <span class="form-field__error field-error"></span>
+                            <span class="form-field__error" data-field_error></span>
                         </div>
                     </div>
                     <div class="form-field field" data-required="true" data-name="address">
@@ -208,7 +208,7 @@
                                        data-multiple_block_field="address" name="address"
                                        placeholder="Не указан" value="<?= $source['address'] ?>">
                             </div>
-                            <span class="form-field__error field-error"></span>
+                            <span class="form-field__error" data-field_error></span>
                         </div>
                     </div>
                     <div class="form-field field" data-required="true" data-name="location">
@@ -219,7 +219,7 @@
                                        data-multiple_block_field="location" name="location"
                                        placeholder="Не указано" value="<?= $source['location'] ?>">
                             </div>
-                            <span class="form-field__error field-error"></span>
+                            <span class="form-field__error" data-field_error></span>
                         </div>
                     </div>
                     <div class="form-field field" data-required="true" data-name="telephone">
@@ -230,7 +230,7 @@
                                        data-multiple_block_field="telephone" name="telephone"
                                        placeholder="Не указан" value="<?= $source['telephone'] ?>">
                             </div>
-                            <span class="form-field__error field-error"></span>
+                            <span class="form-field__error" data-field_error></span>
                         </div>
                     </div>
                     <div class="form-field field" data-required="true" data-name="email">
@@ -240,7 +240,7 @@
                                 <input class="form-field__input" data-field_result type="text"
                                        data-multiple_block_field="email" name="email" placeholder="Не указан" value="<?= $source['email'] ?>">
                             </div>
-                            <span class="form-field__error field-error"></span>
+                            <span class="form-field__error" data-field_error></span>
                         </div>
                     </div>
                     <div class="multiple-block__item" data-block data-type="template" data-name="financing_source_no_data"
@@ -278,7 +278,7 @@
                                                data-multiple_block_field="percent" name="percent"
                                                placeholder="Не указан" value="<?= $source['percent'] ?>">
                                     </div>
-                                    <span class="form-field__error field-error"></span>
+                                    <span class="form-field__error" data-field_error></span>
                                 </div>
                             </div>
                         </div>
@@ -373,7 +373,7 @@
                                                data-multiple_block_field="percent" name="percent"
                                                placeholder="Не указан" value="<?= $source['percent'] ?>">
                                     </div>
-                                    <span class="form-field__error field-error"></span>
+                                    <span class="form-field__error" data-field_error></span>
                                 </div>
                             </div>
                         </div>
@@ -467,7 +467,7 @@
                                                data-multiple_block_field="percent" name="percent"
                                                placeholder="Не указан" value="<?= $source['percent'] ?>">
                                     </div>
-                                    <span class="form-field__error field-error"></span>
+                                    <span class="form-field__error" data-field_error></span>
                                 </div>
                             </div>
                         </div>
