@@ -81,14 +81,14 @@ class TypeOfObjectTableLocator
      * в зависимости от вида объекта
      *
      * @return string
-     * {@see \Tables\Docs\comment_documentation_1}<br>
+     * {@see \Tables\Docs\applicant_documentation_1}<br>
      * или<br>
      * {@see \Tables\Docs\comment_documentation_2}
      */
     public function getDocsComment(): string
     {
         if ($this->typeOfObjectId == 1) {
-            return '\Tables\Docs\comment_documentation_1';
+            return '\Tables\Docs\applicant_documentation_1';
         } else {
             return '\Tables\Docs\comment_documentation_2';
         }
@@ -244,6 +244,44 @@ class TypeOfObjectTableLocator
             return '\Tables\Structures\documentation_1';
         } else {
             return '\Tables\Structures\documentation_2';
+        }
+    }
+
+
+    /**
+     * Предназначен для получения названия класса таблицы
+     * в зависимости от вида объекта
+     *
+     * @return string
+     * {@see \Tables\Messages\applicant_documentation_1}<br>
+     * или<br>
+     * {@see \Tables\Messages\applicant_documentation_2}
+     */
+    public function getMessagesApplicant(): string
+    {
+        if ($this->typeOfObjectId == 1) {
+            return '\Tables\Messages\applicant_documentation_1';
+        } else {
+            return '\Tables\Messages\applicant_documentation_2';
+        }
+    }
+
+
+    /**
+     * Предназначен для получения названия класса таблицы
+     * в зависимости от вида объекта
+     *
+     * @return string
+     * {@see \Tables\Messages\expert_documentation_1}<br>
+     * или<br>
+     * {@see \Tables\Messages\expert_documentation_2}
+     */
+    public function getMessagesExpert(): string
+    {
+        if ($this->typeOfObjectId == 1) {
+            return '\Tables\Messages\expert_documentation_1';
+        } else {
+            return '\Tables\Messages\expert_documentation_2';
         }
     }
 

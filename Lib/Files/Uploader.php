@@ -111,7 +111,8 @@ class Uploader
     /**
      * Предназначен для проверки файлов на предмет ошибки в момент загрузки на сервер
      *
-     * @return bool <b>true</b> нет ошибок<br><b>false</b> есть ошибки
+     * @return bool <b>true</b> нет ошибок<br>
+     * <b>false</b> есть ошибки
      */
     public function checkServerUploadErrors(): bool
     {

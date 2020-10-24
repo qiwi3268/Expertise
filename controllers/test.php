@@ -6,7 +6,7 @@ use Lib\Responsible\Responsible;
 use Tables\Docs\total_cc;
 use Tables\AssignedExperts\total_cc as assigned_expert_total_cc;
 use Tables\Docs\section_documentation_1;
-use Tables\Docs\comment_documentation_1;
+use Tables\Docs\applicant_documentation_1;
 use Tables\Locators\TypeOfObjectTableLocator;
 
 

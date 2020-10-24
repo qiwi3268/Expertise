@@ -475,6 +475,18 @@ function getHashArray(array $array): array
 
 
 /**
+ * Предназначен для получения строки с сообщением и кодом исключения
+ *
+ * @param Exception $e
+ * @return string строка формата 'Message: '___'. Code: ___'
+ */
+function getExceptionMessageAndCode(Exception $e): string
+{
+    return "Message: '{$e->getMessage()}'. Code: {$e->getCode()}";
+}
+
+
+/**
  * Предназначен для форматированного вывода var_dump
  *
  * Вывод виден только тем пользователем, у которых в <b>get</b>-параметре присутствует <i>debug=1</i>

@@ -20,10 +20,10 @@ class FilesTableMapping
     /**
      * Конструктор класса
      *
-     * @param string $mappingLevel1 маппинг 1-го уровня константного массива FILE_TABLE_MAPPING
-     * @param string $mappingLevel2 маппинг 2-го уровня константного массива FILE_TABLE_MAPPING
+     * @param int $mappingLevel1 маппинг 1-го уровня константного массива FILE_TABLE_MAPPING
+     * @param int $mappingLevel2 маппинг 2-го уровня константного массива FILE_TABLE_MAPPING
      */
-    public function __construct(string $mappingLevel1, string $mappingLevel2)
+    public function __construct(int $mappingLevel1, int $mappingLevel2)
     {
         // Проверка существования маппинга
         if (!isset(FILE_TABLE_MAPPING[$mappingLevel1][$mappingLevel2])) {

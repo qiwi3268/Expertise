@@ -6,7 +6,7 @@ use Lib\Responsible\Responsible;
 use Tables\Docs\total_cc;
 use Tables\assigned_expert_section_documentation_1;
 use Tables\Docs\section_documentation_1;
-use Tables\Docs\comment_documentation_1;
+use Tables\Docs\applicant_documentation_1;
 
 $totalCCId = 38;
 $typeOfObjectId = 1;
@@ -46,7 +46,7 @@ foreach ($sectionIds as $sectionId) {
 
             // Перевод всех замечаний на стадию "Замечание подготовлено"
             $transaction->add(
-                '\Tables\Docs\comment_documentation_1',
+                '\Tables\Docs\applicant_documentation_1',
                 'updateIdStageByIdMainDocument',
                 [2, $sectionId]
             );
