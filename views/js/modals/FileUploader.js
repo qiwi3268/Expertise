@@ -354,9 +354,7 @@ class FileUploader {
 
       for (let file of files) {
 
-         // let actions = [GeFile.unload, GeFile.delete];
          let ge_file = GeFile.createElement(file, files_body);
-
          this.putFile(ge_file, files_body);
          resizeCard(this.parent_field);
 
@@ -373,15 +371,10 @@ class FileUploader {
          })
          .then(validate_results => {
 
-            // todo можно не проверять, если приходит пустая строка
             if (validate_results) {
 
-               // ge_file.element.dataset.validate_results = JSON.stringify(validate_results);
                ge_file.setValidateResults(JSON.stringify(validate_results));
-
-               // todo можно хранить в объекте
-               ge_file.element.dataset.is_internal = 'true';
-
+               ge_file.is_internal_sign = true;
                ge_file.validateFileField();
 
             } else {
@@ -391,9 +384,6 @@ class FileUploader {
          })
          .catch(exc => {
             ErrorModal.open('Ошибка при проверке подписи файла', exc);
-            // console.error('Ошибка при проверке подписи файла:\n' + exc);
-            // let ge_file = new GeFile(file_item, files_body);
-            // ge_file.removeElement();
             ge_file.removeElement();
          });
    }

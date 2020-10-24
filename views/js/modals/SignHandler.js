@@ -160,8 +160,8 @@ class SignHandler extends SignView{
 
       FileNeeds.putSignToDelete(ge_file);
 
-      ge_file.element.removeAttribute('data-id_sign');
-      ge_file.element.removeAttribute('data-validate_results');
+      // ge_file.element.removeAttribute('data-id_sign');
+      // ge_file.element.removeAttribute('data-validate_results');
 
       ge_file.setSignState('not_signed');
    }
@@ -471,7 +471,7 @@ class SignHandler extends SignView{
       let results_json = JSON.stringify(validate_results);
 
       this.ge_file.id_sign = id_sign;
-      this.ge_file.element.dataset.id_sign = id_sign;
+      // this.ge_file.element.dataset.id_sign = id_sign;
       this.ge_file.setValidateResults(results_json);
       // this.ge_file.element.dataset.validate_results = results_json;
 
@@ -606,7 +606,7 @@ class SignHandler extends SignView{
 
          this.fillSignsInfo(validate_results);
 
-         if (ge_file.element.dataset.is_internal !== 'true') {
+         if (ge_file.is_internal_sign) {
             this.delete_sign_btn.dataset.active = 'true';
          }
 

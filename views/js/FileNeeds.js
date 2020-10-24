@@ -106,7 +106,7 @@ class FileNeeds {
 
          FileNeeds.putFileToDelete(ge_file);
 
-         // Если есть открпленная подпись, удаляем ее тоже
+         // Если есть открепленная подпись, удаляем ее тоже
          if (ge_file.id_sign) {
             SignHandler.removeSign(ge_file);
          }

@@ -121,6 +121,16 @@ class GeFile {
    id_sign;
 
    /**
+    * Флаг указывающий, содержит ли файл встроенную подпись
+    *
+    * Равен undefined для всех файлов на страницах, на которых
+    * нет возможности загружать файлы
+    *
+    * @type {boolean}
+    */
+   is_internal_sign;
+
+   /**
     * Блок с файлами
     *
     * @type {HTMLElement}
@@ -128,7 +138,7 @@ class GeFile {
    container;
 
    /**
-    * Блок файла на странице
+    * Элемент файла на странице
     *
     * @type {HTMLElement}
     */
@@ -177,6 +187,8 @@ class GeFile {
     */
    id_structure_node;
 
+   static validate_results_storage = new Map();
+
    static initFiles () {
       let ge_files = [];
       let file_blocks = document.querySelectorAll('.files');
@@ -206,10 +218,8 @@ class GeFile {
       });
 
       ge_files.forEach(ge_file => ge_file.validateFileField());
-
    }
 
-   static validate_results_storage = new Map();
 
    getValidateResults () {
       let validate_results;
