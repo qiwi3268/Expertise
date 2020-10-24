@@ -184,7 +184,7 @@ class SignView {
     * @param {boolean|null} state - статус проверки подписи или сертификата
     * @returns {HTMLElement} элемент строки блока с информацией о подписи
     */
-   createInfoRow (label, text, state= null) {
+   createInfoRow (label, text, state = null) {
       let row = document.createElement('DIV');
       row.classList.add('sign-modal__sign-row');
 
@@ -196,7 +196,7 @@ class SignView {
       text_span.classList.add('sign-modal__text');
       text_span.innerHTML = text;
 
-      if (state) {
+      if (state !== null) {
          text_span.dataset.state = state;
       }
 

@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-   // GeFile.validate_results_storage = new Map();
 
    GeFile.initFiles();
 
@@ -203,8 +202,6 @@ class GeFile {
 
          files.forEach(file_element => {
             let ge_file = new GeFile(file_element, block);
-            ge_files.push(ge_file);
-            // ge_file.validateFileField();
             ge_file.handleActionButtons();
 
             if (ge_file.element.hasAttribute('data-validate_results')) {
@@ -213,6 +210,7 @@ class GeFile {
                ge_file.element.removeAttribute('data-validate_results');
             }
 
+            ge_files.push(ge_file);
          });
 
       });
@@ -220,14 +218,11 @@ class GeFile {
       ge_files.forEach(ge_file => ge_file.validateFileField());
    }
 
-
    getValidateResults () {
-      let validate_results;
+      let validate_results = null;
 
       if (GeFile.validate_results_storage.has(this.id)) {
          validate_results = GeFile.validate_results_storage.get(this.id);
-      } else {
-         validate_results = '';
       }
 
       return validate_results;

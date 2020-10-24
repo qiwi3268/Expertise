@@ -160,6 +160,9 @@ class SignHandler extends SignView{
 
       FileNeeds.putSignToDelete(ge_file);
 
+      // ge_file.is_internal_sign = false;
+
+      GeFile.validate_results_storage.delete(ge_file.id);
       // ge_file.element.removeAttribute('data-id_sign');
       // ge_file.element.removeAttribute('data-validate_results');
 
@@ -194,14 +197,16 @@ class SignHandler extends SignView{
     * Закрывает модальное окно модуля подписания
     */
    closeModal () {
-      this.modal.classList.remove('active');
-      this.overlay.classList.remove('active');
+      if (!this.is_signing) {
+         this.modal.classList.remove('active');
+         this.overlay.classList.remove('active');
 
-      this.create_sign_btn.dataset.active = 'false';
-      this.upload_sign_btn.dataset.active = 'false';
-      this.delete_sign_btn.dataset.active = 'false';
+         this.create_sign_btn.dataset.active = 'false';
+         this.upload_sign_btn.dataset.active = 'false';
+         this.delete_sign_btn.dataset.active = 'false';
 
-      this.closeInfoBlocks();
+         this.closeInfoBlocks();
+      }
    }
 
    /**
@@ -606,7 +611,7 @@ class SignHandler extends SignView{
 
          this.fillSignsInfo(validate_results);
 
-         if (ge_file.is_internal_sign) {
+         if (!ge_file.is_internal_sign) {
             this.delete_sign_btn.dataset.active = 'true';
          }
 
