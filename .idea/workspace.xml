@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/views/js/GeComment.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/html_head.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/html_head.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/documents/application/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/application/view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/modals/comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/modals/comment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/GeComment.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/GeComment.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/modals/CommentCreator.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/CommentCreator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/tmp/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +86,7 @@
       <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\home\expertise_cards\documents\section\actions" />
     </key>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -149,13 +145,7 @@
       <workItem from="1603013976339" duration="12516000" />
       <workItem from="1603089702031" duration="39472000" />
       <workItem from="1603251755490" duration="55946000" />
-    </task>
-    <task id="LOCAL-00191" summary="11.10.2020_4">
-      <created>1602419409991</created>
-      <option name="number" value="00191" />
-      <option name="presentableId" value="LOCAL-00191" />
-      <option name="project" value="LOCAL" />
-      <updated>1602419409991</updated>
+      <workItem from="1603625827572" duration="5162000" />
     </task>
     <task id="LOCAL-00192" summary="12.10.2020">
       <created>1602473493042</created>
@@ -493,7 +483,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603538561298</updated>
     </task>
-    <option name="localTasksCounter" value="240" />
+    <task id="LOCAL-00240" summary="25.10.2020">
+      <created>1603625951496</created>
+      <option name="number" value="00240" />
+      <option name="presentableId" value="LOCAL-00240" />
+      <option name="project" value="LOCAL" />
+      <updated>1603625951499</updated>
+    </task>
+    <option name="localTasksCounter" value="241" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -510,7 +507,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="18.10.2020" />
     <MESSAGE value="18.10.2020_1" />
     <MESSAGE value="18.10.2020_2" />
     <MESSAGE value="18.10.2020_3" />
@@ -535,7 +531,8 @@
     <MESSAGE value="24.10.2020" />
     <MESSAGE value="24.10.2020_1" />
     <MESSAGE value="24.10.2020_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="24.10.2020_2" />
+    <MESSAGE value="25.10.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="25.10.2020" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -566,12 +563,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1603538560905">
+    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1603625950946">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603433000793" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1603032169697" />
-    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603538560905" />
+    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603625950946" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog" timestamp="1603166837735">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -608,10 +605,11 @@
       <screen x="-1920" y="209" width="1920" height="1040" />
     </state>
     <state x="-1368" y="461" key="Vcs.Push.Dialog.v2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1603032156629" />
-    <state x="-4" y="110" width="1787" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1603429322891">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="15" y="151" width="2383" height="1153" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1603626161464">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="-4" y="110" width="1787" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603429322891" />
+    <state x="15" y="151" width="2383" height="1153" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603626161464" />
     <state x="823" y="455" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603105863959">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
