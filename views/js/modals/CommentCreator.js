@@ -8,11 +8,11 @@ class CommentCreator {
    modal;
    overlay;
 
-   comments;
+   // comments;
 
    marked_files;
 
-   comment_hash;
+   // comment_hash;
 
    id_input;
    text_input;
@@ -27,7 +27,9 @@ class CommentCreator {
    // table_body;
    // files_container;
 
-   saved_file;
+   editable_comment;
+
+   // saved_file;
 
    is_editing;
 
@@ -70,7 +72,7 @@ class CommentCreator {
       this.criticality_value_input = document.getElementById('comment_criticality_value');
       this.note_input = document.getElementById('comment_note');
 
-      this.comments = new Map();
+      // this.comments = new Map();
       CommentCreator.hash = Date.now();
 
       this.no_files_checkbox.addEventListener('click', () => {
@@ -79,9 +81,9 @@ class CommentCreator {
       });
 
 
-      this.comments_table = document.getElementById('comments_table');
-      this.table_body = document.getElementById('comments_table_body');
-      this.files_container = document.getElementById('documentation');
+      // this.comments_table = document.getElementById('comments_table');
+      // this.table_body = document.getElementById('comments_table_body');
+      // this.files_container = document.getElementById('documentation');
 
 
       let save_button = this.modal.querySelector('[data-save_comment]');
@@ -124,7 +126,6 @@ class CommentCreator {
          ErrorModal.open('Ошибка при сохранении замечания', 'Не отмечены файлы к замечанию');
       } else {
          result = true;
-         // this.saveComment(comment_data);
       }
 
       return result;
@@ -132,81 +133,13 @@ class CommentCreator {
 
 
    saveComment () {
-      this.is_editing ? GeComment.create(this) : GeComment.edit(this);
-
-
-   }
-
-   saveComment (comment) {
-      // let counter = 0;
-      // let hash;
-
-      if (!this.is_editing) {
-
-
-
-      } else {
-
-         if (this.marked_files.size > 0) {
-            // console.log('edit_with_file_old_comment');
-
-            let iterator = this.marked_files.entries();
-            let first_file = iterator.next().value;
-            comment.attached_file = first_file[0];
-            this.editTableComment(comment, this.comment_hash, first_file[1]);
-
-            this.marked_files.delete(first_file[0]);
-
-         } else {
-            // console.log('edit_old_comment');
-            comment.attached_file = null;
-            this.editTableComment(comment, this.comment_hash);
-
-         }
-
-         this.marked_files.forEach(file => {
-            // console.log('copy');
-            let comment_copy = Object.assign({}, comment, {file: undefined, id:null});
-            comment_copy.attached_file = parseInt(file.dataset.id);
-            this.addCommentToTable(comment_copy, CommentCreator.hash++, file);
-         });
-      }
+      this.is_editing ? GeComment.create(this) : GeComment.edit(this, this.editable_comment);
 
       resizeCard(this.comments_table);
 
       this.modal.classList.remove('active');
       this.overlay.classList.remove('active');
    }
-
-
-   editTableComment (comment, hash, file = null) {
-
-      comment.hash = hash;
-      this.comments.set(hash, comment);
-
-      // let table_row = this.comments_table.querySelector(`[data-comment_hash="${hash}"]`);
-      let text_column = this.comments_table.querySelector(`[data-comment_hash="${hash}"][data-comment_text]`);
-      text_column.innerHTML = comment.text;
-
-      let normative_column = this.comments_table.querySelector(`[data-comment_hash="${hash}"][data-comment_normative_document]`);
-      normative_column.innerHTML = comment.normative_document;
-
-      let criticality_column = this.comments_table.querySelector(`[data-comment_hash="${hash}"][data-comment_criticality]`);
-      criticality_column.innerHTML = comment.criticality_name;
-
-      let files_column = this.comments_table.querySelector(`[data-comment_hash="${hash}"][data-comment_files]`);
-      let files_block = files_column.querySelector('.files');
-      if (files_block) {
-         files_block.innerHTML = '';
-      } else {
-         files_column.appendChild(this.createFileBlock());
-      }
-
-      if (file !== null) {
-         this.addFileToTable(file, files_block);
-      }
-   }
-
 
 
    handleFiles () {
@@ -265,6 +198,31 @@ class CommentCreator {
       this.init(comment);
    }
 
+   init (comment) {
+
+      this.clearModal();
+
+      this.setFieldValues(comment);
+
+      let criticality_field = this.criticality_name_input.closest('.field');
+      if (comment !== null) {
+
+         this.editable_comment = comment;
+         this.is_editing = true;
+
+         criticality_field.classList.add('filled');
+         if (this.editable_comment.attached_file) {
+            let file = this.modal.querySelector(`.files__item[data-id="${this.editable_comment.attached_file}"]`);
+            this.setFileCheckbox(file);
+            this.marked_files.set(this.editable_comment.attached_file, file);
+         }
+
+      } else {
+         criticality_field.classList.remove('filled');
+         this.is_editing = false;
+      }
+   }
+
    clearModal() {
       this.marked_files = new Map();
       let files = this.modal.querySelectorAll('.files__item');
@@ -302,28 +260,7 @@ class CommentCreator {
       this.note_input.value = comment.note || null;
    }
 
-   init (comment) {
 
-      this.clearModal();
-
-      this.setFieldValues(comment);
-
-      let criticality_field = this.criticality_name_input.closest('.field');
-      if (comment !== null) {
-
-         this.is_editing = true;
-         criticality_field.classList.add('filled');
-         if (comment.attached_file) {
-            let file = this.modal.querySelector(`.files__item[data-id="${comment.attached_file}"]`);
-            this.setFileCheckbox(file);
-            this.marked_files.set(comment.attached_file, file);
-         }
-
-      } else {
-         criticality_field.classList.remove('filled');
-         this.is_editing = false;
-      }
-   }
 
    // todo убрать в отдельный модуль
    showAlert(comment_hash) {
@@ -334,14 +271,10 @@ class CommentCreator {
       alert_overlay.classList.add('active');
 
       let delete_comment = () => {
-         this.comments.delete(comment_hash);
 
-         let comment_columns = this.comments_table.querySelectorAll(`[data-comment_hash="${comment_hash}"]`);
-         comment_columns.forEach(column => column.remove());
-
-         if (!this.table_body.querySelector('[data-comment_hash]')) {
-            this.comments_table.dataset.active = 'false';
-         }
+         GeComment.comments.delete(comment_hash);
+         // this.comments.delete(comment_hash);
+         CommentsTable.getInstance().removeComment(comment_hash);
 
          alert_modal.classList.remove('active');
          alert_overlay.classList.remove('active');
@@ -361,6 +294,8 @@ class CommentCreator {
    }
 
 }
+
+
 
 class CommentsTable {
    element;
@@ -431,6 +366,39 @@ class CommentsTable {
       }
    }
 
+   editComment (comment, file = null) {
+
+      let text_column = this.element.querySelector(`[data-comment_hash="${comment.hash}"][data-comment_text]`);
+      text_column.innerHTML = comment.text;
+
+      let normative_column = this.element.querySelector(`[data-comment_hash="${comment.hash}"][data-comment_normative_document]`);
+      normative_column.innerHTML = comment.normative_document;
+
+      let criticality_column = this.element.querySelector(`[data-comment_hash="${comment.hash}"][data-comment_criticality]`);
+      criticality_column.innerHTML = comment.criticality_name;
+
+      let files_column = this.element.querySelector(`[data-comment_hash="${comment.hash}"][data-comment_files]`);
+      let files_block = files_column.querySelector('.files');
+      if (files_block) {
+         files_block.innerHTML = '';
+      } else {
+         files_block = this.createFileBlock();
+      }
+
+      if (file !== null) {
+         this.addFile(file, files_block);
+      }
+   }
+
+   removeComment (comment_hash) {
+      let comment_columns = this.element.querySelectorAll(`[data-comment_hash="${comment_hash}"]`);
+      comment_columns.forEach(column => column.remove());
+
+      if (!this.body.querySelector('[data-comment_hash]')) {
+         this.element.dataset.active = 'false';
+      }
+   }
+
    addFile (file, files_block) {
       let file_copy = file.cloneNode(true);
       file_copy.removeAttribute('style');
@@ -490,6 +458,8 @@ class CommentsTable {
 
       return action;
    }
+
+
 
 }
 

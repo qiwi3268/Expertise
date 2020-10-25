@@ -145,14 +145,7 @@
       <workItem from="1603013976339" duration="12516000" />
       <workItem from="1603089702031" duration="39472000" />
       <workItem from="1603251755490" duration="55946000" />
-      <workItem from="1603625827572" duration="5162000" />
-    </task>
-    <task id="LOCAL-00192" summary="12.10.2020">
-      <created>1602473493042</created>
-      <option name="number" value="00192" />
-      <option name="presentableId" value="LOCAL-00192" />
-      <option name="project" value="LOCAL" />
-      <updated>1602473493042</updated>
+      <workItem from="1603625827572" duration="7052000" />
     </task>
     <task id="LOCAL-00193" summary="12.10.2020_1">
       <created>1602485466567</created>
@@ -490,7 +483,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603625951499</updated>
     </task>
-    <option name="localTasksCounter" value="241" />
+    <task id="LOCAL-00241" summary="25.10.2020_1">
+      <created>1603631014315</created>
+      <option name="number" value="00241" />
+      <option name="presentableId" value="LOCAL-00241" />
+      <option name="project" value="LOCAL" />
+      <updated>1603631014315</updated>
+    </task>
+    <option name="localTasksCounter" value="242" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -507,7 +507,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="18.10.2020_1" />
     <MESSAGE value="18.10.2020_2" />
     <MESSAGE value="18.10.2020_3" />
     <MESSAGE value="18.10.2020_4" />
@@ -532,7 +531,8 @@
     <MESSAGE value="24.10.2020_1" />
     <MESSAGE value="24.10.2020_2" />
     <MESSAGE value="25.10.2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="25.10.2020" />
+    <MESSAGE value="25.10.2020_1" />
+    <option name="LAST_COMMIT_MESSAGE" value="25.10.2020_1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -563,12 +563,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1603625950946">
+    <state x="905" y="266" key="CommitChangelistDialog2" timestamp="1603631013916">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603433000793" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1603032169697" />
-    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603625950946" />
+    <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603631013916" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog" timestamp="1603166837735">
       <screen x="0" y="0" width="1920" height="1040" />

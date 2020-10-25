@@ -39,8 +39,6 @@ class GeComment {
    }
 
    static create (comment_creator) {
-      let comments = [];
-
       if (comment_creator.marked_files.size > 0) {
 
          comment_creator.marked_files.marked_files.forEach(file => {
@@ -50,35 +48,33 @@ class GeComment {
       } else {
          new GeComment(comment_creator.comment_data, null);
       }
-
-      return comments;
    }
 
 
-   static edit (comment_creator) {
-
+   static edit (comment_creator, comment) {
+      let comment_table = CommentsTable.getInstance();
 
       if (comment_creator.marked_files.size > 0) {
 
          let iterator = comment_creator.marked_files.entries();
          let first_file = iterator.next().value;
          comment.attached_file = first_file[0];
-         this.editTableComment(comment, this.comment_hash, first_file[1]);
+         comment_table.editComment(comment, first_file[1]);
 
-         this.marked_files.delete(first_file[0]);
+         comment_creator.marked_files.delete(first_file[0]);
 
       } else {
-         // console.log('edit_old_comment');
          comment.attached_file = null;
-         this.editTableComment(comment, this.comment_hash);
+         comment_table.editComment(comment);
 
       }
 
-      this.marked_files.forEach(file => {
-         // console.log('copy');
+      GeComment.comments.set(comment.hash, comment);
+
+      comment_creator.marked_files.forEach(file => {
          let comment_copy = Object.assign({}, comment, {file: undefined, id:null});
          comment_copy.attached_file = parseInt(file.dataset.id);
-         this.addCommentToTable(comment_copy, CommentCreator.hash++, file);
+         new GeComment(comment_creator.comment_data, file);
       });
 
    }
