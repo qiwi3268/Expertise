@@ -1,7 +1,5 @@
 <?php $_VT = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
-<?php var_dump($_VT->getValue('documentation_files_in_structure'));?>
-
 <div class="view__body">
     <div class="application-form__cards">
 

@@ -1,7 +1,7 @@
 <?php $_VT = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
-<div class="overlay comment-overlay"></div>
-<div class="modal comment-modal">
+<div id="comment_overlay" class="overlay comment-overlay"></div>
+<div id="comment_modal" class="modal comment-modal">
 
     <input id="comment_id" class="comment-modal__id" data-field_result name="id" type="hidden">
     <div class="comment-modal__form">

@@ -15,18 +15,21 @@ class CommentCreator {
    comment_hash;
 
    id_input;
-   text;
-   normative_document;
+   text_input;
+   normative_document_input;
+
    no_files_checkbox;
-   criticality_name;
-   criticality_value;
-   note;
+   criticality_name_input;
+   criticality_value_input;
+   note_input;
 
    comments_table;
    table_body;
    files_container;
 
    saved_file;
+
+   is_editing;
 
    static get hash() {
       return this._hash;
@@ -54,18 +57,18 @@ class CommentCreator {
    }
 
    constructor () {
-      this.modal = document.querySelector('.comment-modal');
-      this.overlay = document.querySelector('.comment-overlay');
+      this.modal = document.getElementById('comment_modal');
+      this.overlay = document.getElementById('comment_overlay')
 
       this.id_input = document.getElementById('comment_id');
 
-      this.text = document.getElementById('comment_text');
-      this.normative_document = document.getElementById('normative_document');
+      this.text_input = document.getElementById('comment_text');
+      this.normative_document_input = document.getElementById('normative_document');
       this.no_files_checkbox = document.getElementById('no_files');
 
-      this.criticality_name = document.getElementById('comment_criticality_name');
-      this.criticality_value = document.getElementById('comment_criticality_value');
-      this.note = document.getElementById('comment_note');
+      this.criticality_name_input = document.getElementById('comment_criticality_name');
+      this.criticality_value_input = document.getElementById('comment_criticality_value');
+      this.note_input = document.getElementById('comment_note');
 
       this.comments = new Map();
       CommentCreator.hash = Date.now();
@@ -83,14 +86,7 @@ class CommentCreator {
 
       let save_button = this.modal.querySelector('[data-save_comment]');
       save_button.addEventListener('click', () => {
-
-         let comment = {};
-
-         let field_inputs = this.modal.querySelectorAll('[data-field_result]');
-         field_inputs.forEach(input => comment[input.name] = input.value || null);
-
-         this.validateComment(comment);
-
+         this.save();
       });
 
       let cancel_button = this.modal.querySelector('[data-delete_comment]');
@@ -102,22 +98,28 @@ class CommentCreator {
       this.handleFiles();
    }
 
-   validateComment (comment) {
+   save() {
+      let comment_data = new CommentData(this.modal);
 
       validateBlock(this.modal);
 
-      comment.criticality_name = this.criticality_name.innerHTML;
+      this.validateComment(comment_data);
+   }
 
-      // console.log(this.marked_files.size === 0);
-      // console.log(comment.no_files === null);
+   validateComment (comment_data) {
+
+      validateBlock(this.modal);
+
+      comment_data.criticality_name = this.criticality_name_input.innerHTML;
+
 
       if (
-         !comment.text
-         || !comment.comment_criticality
-         || (!comment.normative_document && comment.comment_criticality !== '1')
+         !comment_data.text
+         || !comment_data.comment_criticality
+         || (!comment_data.normative_document && comment_data.comment_criticality !== '1')
       ) {
          ErrorModal.open('Ошибка при сохранении замечания', 'Не заполнены обязательные поля');
-      } else if (this.marked_files.size === 0 && comment.no_files === null) {
+      } else if (this.marked_files.size === 0 && comment_data.no_files === null) {
          ErrorModal.open('Ошибка при сохранении замечания', 'Не отмечены файлы к замечанию');
       } else {
          this.saveComment(comment);
@@ -180,11 +182,14 @@ class CommentCreator {
       this.overlay.classList.remove('active');
    }
 
+
+
    addCommentToTable (comment, hash, file = null) {
       this.comments_table.dataset.active = 'true';
 
       comment.hash = hash;
-      this.comments.set(hash, comment);
+
+      GeComment.comments.set(hash, comment);
 
       let actions = document.createElement('DIV');
       actions.classList.add('comments-table__actions');
@@ -193,7 +198,7 @@ class CommentCreator {
       this.table_body.appendChild(actions);
 
       let edit_button = this.createActionButton('edit');
-      edit_button.addEventListener('click', () => CommentCreator.getInstance().open(hash));
+      edit_button.addEventListener('click', () => CommentCreator.getInstance().open(comment));
       actions.appendChild(edit_button);
 
       let delete_button = this.createActionButton('delete');
@@ -377,26 +382,28 @@ class CommentCreator {
       files.forEach(file => {
 
          let file_info = file.querySelector('.files__info');
-         file_info.addEventListener('click', () => {
-            let file_id = parseInt(file.dataset.id);
+         file_info.addEventListener('click', () => this.markFile(file));
 
-            if (this.no_files_checkbox.dataset.selected !== "true") {
-
-               this.marked_files.has(file_id)
-                  ? this.marked_files.delete(file_id)
-                  : this.marked_files.set(file_id, file);
-
-               this.toggleFileCheckbox(file);
-
-            } else {
-               ErrorModal.open(
-                  'Ошибка при отметке файла',
-                  'Выбрана опция: "Отметка файла не требуется"'
-               );
-            }
-
-         });
       });
+   }
+
+   markFile (file) {
+      let file_id = parseInt(file.dataset.id);
+
+      if (this.no_files_checkbox.dataset.selected !== "true") {
+
+         this.marked_files.has(file_id)
+            ? this.marked_files.delete(file_id)
+            : this.marked_files.set(file_id, file);
+
+         this.toggleFileCheckbox(file);
+
+      } else {
+         ErrorModal.open(
+            'Ошибка при отметке файла',
+            'Выбрана опция: "Отметка файла не требуется"'
+         );
+      }
    }
 
    toggleFileCheckbox (file_element) {
@@ -419,41 +426,85 @@ class CommentCreator {
       checkbox.classList.remove('fa-square', 'far');
    }
 
-   open (hash = null) {
+   open (comment = null) {
       this.modal.classList.add('active');
       this.overlay.classList.add('active');
 
-      this.initFields(hash);
+      this.init(comment);
    }
 
-   initFields (hash) {
-      let checkbox_icon = this.no_files_checkbox.querySelector('.radio__icon');
-      let checkbox_field = this.no_files_checkbox.closest('.field[data-name="no_files"]');
-      let checkbox_input = checkbox_field.querySelector('[data-field_result]');
-      let criticality_field = this.criticality_name.closest('.field');
-
-
+   clearModal() {
       this.marked_files = new Map();
       let files = this.modal.querySelectorAll('.files__item');
       files.forEach(file => this.removeFileCheckbox(file));
 
       let fields = this.modal.querySelectorAll('.field');
       fields.forEach(field => field.classList.remove('invalid'));
+   }
 
-      let normative_block = this.normative_document.closest('[data-block]');
+   setFieldValues (comment) {
+      this.id_input.value = comment.id || null;
+      this.text_input.value = comment.text || null;
+      this.normative_document_input.value = comment.normative_document || null;
+      this.criticality_name_input.innerHTML = comment.criticality_name || 'Выберите критичность';
 
-      if (hash) {
+      this.criticality_value_input.value = comment.comment_criticality || null;
+      let normative_block = this.normative_document_input.closest('[data-block]');
+      normative_block.dataset.active = this.criticality_value_input.value !== '1' ? 'true' : 'false'
+
+      let checkbox_icon = this.no_files_checkbox.querySelector('.radio__icon');
+      let checkbox_field = this.no_files_checkbox.closest('.field[data-name="no_files"]');
+      let checkbox_input = checkbox_field.querySelector('[data-field_result]');
+      if (comment === null || comment.no_files === null) {
+         this.no_files_checkbox.dataset.selected = 'false';
+         checkbox_icon.classList.add('fa-square');
+         checkbox_icon.classList.remove('fa-check-square');
+         checkbox_input.value = null;
+      } else {
+         this.no_files_checkbox.dataset.selected = 'true';
+         checkbox_icon.classList.add('fa-check-square');
+         checkbox_icon.classList.remove('fa-square');
+         checkbox_input.value = "1";
+      }
+
+      this.note_input.value = comment.note || null;
+   }
+
+   init (comment) {
+
+      this.clearModal();
+
+      this.setFieldValues(comment);
+
+
+
+      let criticality_field = this.criticality_name_input.closest('.field');
+      if (comment !== null) {
+
+         criticality_field.classList.add('filled');
+         if (comment.attached_file) {
+            let file = this.modal.querySelector(`.files__item[data-id="${comment.attached_file}"]`);
+            this.setFileCheckbox(file);
+            this.marked_files.set(comment.attached_file, file);
+         }
+
+      } else {
+         criticality_field.classList.remove('filled');
+      }
+
+      if (comment) {
 
 
          this.comment_hash = hash;
+
          let comment = this.comments.get(this.comment_hash);
 
          // console.log(comment);
          // console.log(this.comment_hash);
 
          this.id_input.value = comment.id;
-         this.text.value = comment.text;
-         this.normative_document.value = comment.normative_document;
+         this.text_input.value = comment.text;
+         this.normative_document_input.value = comment.normative_document;
 
          if (comment.no_files === null) {
             this.no_files_checkbox.dataset.selected = 'false';
@@ -467,38 +518,33 @@ class CommentCreator {
             checkbox_input.value = "1";
          }
 
-         this.criticality_name.innerHTML = comment.criticality_name;
-         this.criticality_value.value = comment.comment_criticality;
+         this.criticality_name_input.innerHTML = comment.criticality_name;
+         this.criticality_value_input.value = comment.comment_criticality;
          criticality_field.classList.add('filled');
 
-         if (this.criticality_value.value !== '1') {
+         if (this.criticality_value_input.value !== '1') {
             normative_block.dataset.active = 'true';
          } else {
             normative_block.dataset.active = 'false';
          }
 
          // let marked_files = comment.file;
-         if (comment.attached_file) {
-            let file = this.modal.querySelector(`.files__item[data-id="${comment.attached_file}"]`);
-            this.setFileCheckbox(file);
-            this.marked_files.set(comment.attached_file, file);
-            this.saved_file = file;
-         }
+
 
          // console.log(comment);
 
-         this.note.value = comment.note;
+         this.note_input.value = comment.note;
 
       } else {
          this.comment_hash = null;
 
          this.id_input.value = null;
-         this.text.value = '';
-         this.normative_document.value = '';
+         this.text_input.value = '';
+         this.normative_document_input.value = '';
          normative_block.dataset.active = 'false';
 
-         this.criticality_name.innerHTML = 'Выберите критичность';
-         this.criticality_value.value = '';
+         this.criticality_name_input.innerHTML = 'Выберите критичность';
+         this.criticality_value_input.value = '';
          criticality_field.classList.remove('filled');
 
          this.no_files_checkbox.dataset.selected = 'false';
@@ -506,10 +552,16 @@ class CommentCreator {
          checkbox_icon.classList.remove('fa-check-square');
          checkbox_input.value = null;
 
-         this.note.value = '';
+         this.note_input.value = '';
       }
 
 
    }
 
+}
+
+function CommentData(modal) {
+   let field_inputs = modal.querySelectorAll('[data-field_result]');
+   field_inputs.forEach(input => this[input.name] = input.value || null);
+   return this;
 }
