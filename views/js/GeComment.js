@@ -29,7 +29,7 @@ class GeComment {
 
    constructor (data, file = null) {
 
-      Object.assign(this, data.comment_data, {id: null});
+      Object.assign(this, data, {id: null});
       this.attached_file = file ? parseInt(file.dataset.id) : null;
 
       this.hash = CommentCreator.hash++;
@@ -41,7 +41,7 @@ class GeComment {
    static create (comment_creator) {
       if (comment_creator.marked_files.size > 0) {
 
-         comment_creator.marked_files.marked_files.forEach(file => {
+         comment_creator.marked_files.forEach(file => {
             new GeComment(comment_creator.comment_data, file);
          });
 
@@ -51,7 +51,14 @@ class GeComment {
    }
 
 
-   static edit (comment_creator, comment) {
+   static edit (comment_creator) {
+
+
+      let comment = Object.assign(comment_creator.editable_comment, comment_creator.comment_data);
+
+      console.log(comment);
+
+
       let comment_table = CommentsTable.getInstance();
 
       if (comment_creator.marked_files.size > 0) {

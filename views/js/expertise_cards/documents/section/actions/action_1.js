@@ -64,7 +64,7 @@ function saveSection () {
 
    form_data.append('description', tinymce.get('description').getContent());
 
-   let comments = Array.from(CommentCreator.getInstance().comments.values());
+   let comments = Array.from(GeComment.comments.values());
    let comments_to_json = comments.map((comment) => {
       return Object.assign({}, comment, {criticality_name: undefined});
    });
@@ -74,9 +74,10 @@ function saveSection () {
    form_data.append('comments', JSON.stringify(comments_to_json));
 
    API.executeAction(form_data)
-      .then(result => {
-         MultipleBlock.saveMultipleBlocks(multiple_blocks);
 
+      .then(result => {
+
+         MultipleBlock.saveMultipleBlocks(multiple_blocks);
          setCommentIDs(result.add.created_ids);
 
       })
@@ -91,7 +92,8 @@ function saveSection () {
 function setCommentIDs (created_comments_ids) {
    created_comments_ids.forEach(comment_data => {
       console.log(comment_data);
-      let comment = CommentCreator.getInstance().comments.get(comment_data.hash);
+      let comment = GeComment.getByHash(comment_data.hash);
+
       comment.id = comment_data.id.toString();
       console.log(comment);
 
