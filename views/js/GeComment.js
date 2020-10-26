@@ -53,11 +53,8 @@ class GeComment {
 
    static edit (comment_creator) {
 
-
+      delete comment_creator.editable_comment.normative_document;
       let comment = Object.assign(comment_creator.editable_comment, comment_creator.comment_data);
-
-      console.log(comment);
-
 
       let comment_table = CommentsTable.getInstance();
 
@@ -73,7 +70,6 @@ class GeComment {
       } else {
          comment.attached_file = null;
          comment_table.editComment(comment);
-
       }
 
       GeComment.comments.set(comment.hash, comment);

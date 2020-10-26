@@ -77,6 +77,8 @@ function saveSection () {
 
       .then(result => {
 
+         console.log(result);
+
          MultipleBlock.saveMultipleBlocks(multiple_blocks);
          setCommentIDs(result.add.created_ids);
 
@@ -91,11 +93,7 @@ function saveSection () {
 
 function setCommentIDs (created_comments_ids) {
    created_comments_ids.forEach(comment_data => {
-      console.log(comment_data);
       let comment = GeComment.getByHash(comment_data.hash);
-
       comment.id = comment_data.id.toString();
-      console.log(comment);
-
-   })
+   });
 }

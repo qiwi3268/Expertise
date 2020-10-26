@@ -50,7 +50,7 @@ class CommentCreator {
 
    constructor () {
       this.modal = document.getElementById('comment_modal');
-      this.overlay = document.getElementById('comment_overlay')
+      this.overlay = document.getElementById('comment_overlay');
 
       this.id_input = document.getElementById('comment_id');
 
@@ -62,19 +62,12 @@ class CommentCreator {
       this.criticality_value_input = document.getElementById('comment_criticality_value');
       this.note_input = document.getElementById('comment_note');
 
-      // this.comments = new Map();
       CommentCreator.hash = Date.now();
 
       this.no_files_checkbox.addEventListener('click', () => {
          this.marked_files.forEach(this.toggleFileCheckbox);
          this.marked_files.clear();
       });
-
-
-      // this.comments_table = document.getElementById('comments_table');
-      // this.table_body = document.getElementById('comments_table_body');
-      // this.files_container = document.getElementById('documentation');
-
 
       let save_button = this.modal.querySelector('[data-save_comment]');
       save_button.addEventListener('click', () => {
@@ -262,7 +255,6 @@ class CommentCreator {
       let delete_comment = () => {
 
          GeComment.comments.delete(comment_hash);
-         // this.comments.delete(comment_hash);
          CommentsTable.getInstance().removeComment(comment_hash);
 
          alert_modal.classList.remove('active');
@@ -284,10 +276,17 @@ class CommentCreator {
 
 }
 
-
 function CommentData(comment_creator) {
    let field_inputs = comment_creator.modal.querySelectorAll('[data-field_result]');
-   field_inputs.forEach(input => this[input.name] = input.value || null);
+   field_inputs.forEach(input => {
+
+      if (!input.closest('[data-active="false"]')) {
+         this[input.name] = input.value || null;
+      } else {
+         this[input.name] = null;
+      }
+
+   });
    this.criticality_name = comment_creator.criticality_name_input.innerHTML;
    return this;
 }
