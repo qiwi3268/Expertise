@@ -2,31 +2,112 @@ document.addEventListener('DOMContentLoaded', () => {
    GeComment.comments = new Map();
 });
 
+/**
+ * Класс представляет собой замечание эксперта по разделу
+ */
 class GeComment {
 
+   /**
+    * Геттер для коллекции замечаний, которые есть на странице
+    *
+    * @returns {Map<number, GeComment>} comments - коллекция
+    * с замечаниями на странице
+    */
    static get comments() {
       return this._comments;
    }
 
+   /**
+    * Сеттер для коллекции замечаний
+    *
+    * @param comments
+    */
    static set comments(comments) {
       this._comments = comments;
    }
 
+   /**
+    * Возвращает объект замечания по хэшу
+    *
+    * @param hash - хэш замечания
+    * @returns {GeComment} объект замечания
+    */
    static getByHash(hash) {
       return this.comments.get(parseInt(hash));
    }
 
+   /**
+    * id замечания сохраненного в БД
+    *
+    * @type {number}
+    */
+   id;
+
+   /**
+    * Хэш замечания, используется на странице как идентификатор
+    *
+    * @type {number}
+    */
    hash;
 
+   /**
+    * Текст замечания
+    *
+    * @type {string}
+    */
    text;
+
+   /**
+    * Ссылка на нормативный документ
+    *
+    * @type {string}
+    */
    normative_document;
+
+   /**
+    * Наименование критичности замечания
+    *
+    * @type {string}
+    */
    criticality_name;
+
+   /**
+    * id выбранного значения из справочника
+    * критичности замечаний
+    *
+    * @type {string}
+    */
    comment_criticality;
+
+   /**
+    * Текст замечания
+    *
+    * @type {string}
+    */
    note;
 
+   /**
+    * Текст замечания
+    *
+    * @type {string}
+    */
    no_files;
+
+   /**
+    * Текст замечания
+    *
+    * @type {string}
+    */
    attached_file;
 
+   /**
+    * Создает объект замечания и добавляет в таблицу замечаний на странице
+    *
+    * @param {CommentData} data - данные о замечании из полей
+    * модального окна создания замечания
+    * @param {HTMLElement|null} file - отмеченный файл,
+    * null - отметка файла не требуется
+    */
    constructor (data, file = null) {
 
       Object.assign(this, data, {id: null});
@@ -38,6 +119,11 @@ class GeComment {
       CommentsTable.getInstance().addComment(this, file);
    }
 
+   /**
+    * Создает объекты замечаний для каждого отмеченного файла
+    *
+    * @param comment_creator
+    */
    static create (comment_creator) {
       if (comment_creator.marked_files.size > 0) {
 

@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/modals/comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/modals/comment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/GeComment.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/GeComment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/expertise_cards/documents/section/actions/action_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/expertise_cards/documents/section/actions/action_1.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/modals/CommentCreator.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/CommentCreator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/modals/SignView.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/SignView.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +73,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last.edited.regexp" value="1.32.3" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/views/home/expertise_cards/documents/section/actions" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JavaScript" />
@@ -149,13 +151,6 @@
       <workItem from="1603089702031" duration="39472000" />
       <workItem from="1603251755490" duration="55946000" />
       <workItem from="1603625827572" duration="9796000" />
-    </task>
-    <task id="LOCAL-00195" summary="13.10.2020">
-      <created>1602559733676</created>
-      <option name="number" value="00195" />
-      <option name="presentableId" value="LOCAL-00195" />
-      <option name="project" value="LOCAL" />
-      <updated>1602559733676</updated>
     </task>
     <task id="LOCAL-00196" summary="13.10.2020_1">
       <created>1602560529901</created>
@@ -493,7 +488,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603683685070</updated>
     </task>
-    <option name="localTasksCounter" value="244" />
+    <task id="LOCAL-00244" summary="26.10.2020_1">
+      <created>1603686136384</created>
+      <option name="number" value="00244" />
+      <option name="presentableId" value="LOCAL-00244" />
+      <option name="project" value="LOCAL" />
+      <updated>1603686136384</updated>
+    </task>
+    <option name="localTasksCounter" value="245" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -510,7 +512,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="18.10.2020_4" />
     <MESSAGE value="18.10.2020_5" />
     <MESSAGE value="19.10.2020_1" />
     <MESSAGE value="19.10.2020_2" />
@@ -535,7 +536,8 @@
     <MESSAGE value="25.10.2020_1" />
     <MESSAGE value="25.10.2020_2" />
     <MESSAGE value="26.10.2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="26.10.2020" />
+    <MESSAGE value="26.10.2020_1" />
+    <option name="LAST_COMMIT_MESSAGE" value="26.10.2020_1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -566,10 +568,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1603686120384">
+    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1603686133833">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603686120384" />
+    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603686133833" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1603032169697" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603639279350" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
@@ -627,11 +629,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="92" y="92" width="2376" height="1216" key="dock-window-2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600964609575" />
-    <state x="283" y="99" width="1169" height="814" key="find.popup" timestamp="1603684705287">
+    <state x="283" y="99" width="1169" height="814" key="find.popup" timestamp="1603688993145">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="0" y="174" width="1080" height="814" key="find.popup/0.0.1080.1880@0.0.1080.1880" timestamp="1603431303093" />
-    <state x="283" y="99" width="1169" height="814" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1603684705287" />
+    <state x="283" y="99" width="1169" height="814" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1603688993145" />
     <state x="-1611" y="272" width="1346" height="792" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1603031973447" />
     <state x="571" y="186" width="1495" height="1020" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603641433163" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />

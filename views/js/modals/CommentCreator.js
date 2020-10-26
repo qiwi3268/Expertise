@@ -1,3 +1,15 @@
+/**
+ * @typedef CommentData
+ * @type {object}
+ * @property {string} text - текст замечания
+ * @property {string} normative_document - ссылка на нормативный документ
+ * @property {string} comment_criticality - критичность замечания
+ * @property {string} criticality_name - наименование выбранной критичности
+ * @property {string} no_files - равняется "1", если к замечанию не требуется
+ * отметка файлов, иначе - null
+ * @property {string} note - личная заметка
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
    let add_comment_btn = document.querySelector('[data-add_comment]');
    add_comment_btn.addEventListener('click', () => CommentCreator.getInstance().open());
@@ -10,15 +22,14 @@ class CommentCreator {
 
    marked_files;
 
-   id_input;
    text_input;
    normative_document_input;
-
    no_files_checkbox;
    criticality_name_input;
    criticality_value_input;
    note_input;
 
+   comment_data;
 
    editable_comment;
    is_editing;
@@ -52,8 +63,6 @@ class CommentCreator {
       this.modal = document.getElementById('comment_modal');
       this.overlay = document.getElementById('comment_overlay');
 
-      this.id_input = document.getElementById('comment_id');
-
       this.text_input = document.getElementById('comment_text');
       this.normative_document_input = document.getElementById('normative_document');
       this.no_files_checkbox = document.getElementById('no_files');
@@ -85,6 +94,8 @@ class CommentCreator {
 
    save () {
       this.comment_data = new CommentData(this);
+
+      console.log(this.comment_data);
 
       let is_valid = this.validate();
 
@@ -220,7 +231,6 @@ class CommentCreator {
    }
 
    setFieldValues (comment) {
-      this.id_input.value = comment ? comment.id : null;
       this.text_input.value = comment ? comment.text : null;
       this.normative_document_input.value = comment ? comment.normative_document : null;
       this.criticality_name_input.innerHTML = comment ? comment.criticality_name : 'Выберите критичность';

@@ -3,7 +3,6 @@
 <div id="comment_overlay" class="overlay comment-overlay"></div>
 <div id="comment_modal" class="modal comment-modal">
 
-    <input id="comment_id" class="comment-modal__id" data-field_result name="id" type="hidden">
     <div class="comment-modal__form">
 
         <div class="comment-modal__header">

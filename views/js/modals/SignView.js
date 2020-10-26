@@ -1,4 +1,5 @@
 /**
+ * Результат валидации подписей файла
  * @typedef ValidateResult
  * @type {object}
  * @property {SignatureVerify} signature_verify - результат проверки подписи
@@ -8,6 +9,7 @@
  */
 
 /**
+ * Результат проверки подписи
  * @typedef SignatureVerify
  * @type {object}
  * @property {string} user_message - сообщение о проверке подписи
@@ -15,6 +17,7 @@
  */
 
 /**
+ * Результат проверки сертификата
  * @typedef CertificateVerify
  * @type {object}
  * @property {string} user_message - сообщение о проверке сертификата
