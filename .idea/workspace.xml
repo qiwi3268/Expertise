@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/views/js/CommentsTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/html_head.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/html_head.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/GeComment.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/GeComment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/expertise_cards/documents/section/actions/action_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/expertise_cards/documents/section/actions/action_1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/modals/CommentCreator.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/CommentCreator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/test1.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/FileNeeds.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/FileNeeds.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/tmp/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/tmp/test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +14,9 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable />
+    </execution>
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
