@@ -40,6 +40,9 @@ use Lib\CSP\Validator;
 //  5.2- Произошла внутренняяя ошибка (по вине входных данных):
 //       Получен некорректный параметр (проверяется файл открепленной подписи)
 //       {result, error_message : текст ошибки}
+//  5.3- Произошла внутренняяя ошибка (по вине входных данных):
+//       Передан пустой файл
+//       {result, error_message : текст ошибки}
 //  6  - Произошла непредвиденная ошибка при работе метода 'Lib\CSP\Validator::validate'
 //       {result, message : текст ошибки, code: код ошибки}
 //  7  - Произошла ошибка при добавлении записи в таблицу подписей
@@ -168,6 +171,15 @@ try {
             exit(json_encode([
                 'result'        => 5.2,
                 'error_message' => "Получен некорректный параметр. code: '{$code}'. log time: '{$date}'"
+            ]));
+        }
+
+        //  Был передан пустой файл
+        if ($code == 4 && $validator->isCSPNotReadyToReturnData() && ($fileAssoc['file_size'] == 0)) {
+
+            exit(json_encode([
+                'result'        => 5.3,
+                'error_message' => "Передан пустой файл. code: '{$code}'. log time: '{$date}'"
             ]));
         }
 

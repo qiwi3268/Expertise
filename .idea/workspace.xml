@@ -3,10 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/modals/comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/modals/comment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/GeComment.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/GeComment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/modals/CommentCreator.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/CommentCreator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/modals/SignView.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/SignView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/home/external_signature_verifier.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/external_signature_verifier.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/home/internal_signature_verifier.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/internal_signature_verifier.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Application/HtmlDependenciesManagerApplicationForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Application/HtmlDependenciesManagerApplicationForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Section/Files/Initialization/AttachedFilesInitializer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Section/Files/Initialization/AttachedFilesInitializer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/CSP/MessageParser.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/CSP/MessageParser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/CSP/Validator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/CSP/Validator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables/Locators/TypeOfObjectTableLocator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tables/Locators/TypeOfObjectTableLocator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions/functions.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,13 +157,6 @@
       <workItem from="1603089702031" duration="39472000" />
       <workItem from="1603251755490" duration="55946000" />
       <workItem from="1603625827572" duration="9796000" />
-    </task>
-    <task id="LOCAL-00196" summary="13.10.2020_1">
-      <created>1602560529901</created>
-      <option name="number" value="00196" />
-      <option name="presentableId" value="LOCAL-00196" />
-      <option name="project" value="LOCAL" />
-      <updated>1602560529901</updated>
     </task>
     <task id="LOCAL-00197" summary="13.10.2020_2">
       <created>1602561807824</created>
@@ -495,7 +494,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603686136384</updated>
     </task>
-    <option name="localTasksCounter" value="245" />
+    <task id="LOCAL-00245" summary="26.10.2020_2">
+      <created>1603715061112</created>
+      <option name="number" value="00245" />
+      <option name="presentableId" value="LOCAL-00245" />
+      <option name="project" value="LOCAL" />
+      <updated>1603715061112</updated>
+    </task>
+    <option name="localTasksCounter" value="246" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,7 +518,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="18.10.2020_5" />
     <MESSAGE value="19.10.2020_1" />
     <MESSAGE value="19.10.2020_2" />
     <MESSAGE value="20.10.2020" />
@@ -537,7 +542,8 @@
     <MESSAGE value="25.10.2020_2" />
     <MESSAGE value="26.10.2020" />
     <MESSAGE value="26.10.2020_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="26.10.2020_1" />
+    <MESSAGE value="26.10.2020_2" />
+    <option name="LAST_COMMIT_MESSAGE" value="26.10.2020_2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -568,10 +574,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1603686133833">
+    <state x="491" y="51" key="CommitChangelistDialog2" timestamp="1603715054951">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603686133833" />
+    <state x="491" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603715054951" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1603032169697" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603639279350" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />

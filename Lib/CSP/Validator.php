@@ -184,16 +184,24 @@ class Validator
             //                  или:
             //              Сообщение об ошибке И
             //              Error: Signature.
+            //                  или:
+            //              Сообщение об ошибке И
+            //              Signer: ... (следующий подписант)
+            //      Error: ...
             //      ErrorCode: ...
-            //      Error: The parameter is incorrect.
-            //      Unknown error.
             if (containsAll($part, 'Signer:')) {
 
                 $FIO = $this->parser->getFIO($part);
 
                 // Получаем следующие элементы за Signer
-                $next_1_part = $messageParts[$l + 1]; // Signature's verified. ИЛИ Сообщение об ошибке
-                $next_2_part = $messageParts[$l + 2]; // Error: Signature. В случае если next_1_part - сообщение об ошибке
+                // Signature's verified. ИЛИ Сообщение об ошибке
+                $next_1_part = $messageParts[$l + 1];
+                // Если один ИЛИ (несколько подписантов и текущий последний)
+                //    Error: Signature. В случае если next_1_part - сообщение об ошибке
+                // Если несколько подписантов И (текущий не последний)
+                // Signer: ... (следующий подписант)
+                $next_2_part = $messageParts[$l + 2];
+
 
                 if ($next_1_part == "Signature's verified.") {
 
@@ -203,6 +211,11 @@ class Validator
 
                     $verifyResult = false;
                     $l += 2; // Перескакиваем через сообщение об ошибке и Error: Signature.
+                } elseif (icontainsAll($next_2_part, 'Signer:')) {
+
+                    $verifyResult = false;
+                    $l += 1; // Перескакиваем через сообщение об ошибке и переходим к следующему подписанту
+
                 } else {
                     throw new SelfEx("Неизвестный формат частей сообщения, следующий за Signer: next_1_part='{$next_1_part}', next_2_part='{$next_2_part}'" . $this->getDebugMessageParts($messageParts), 2);
                 }
@@ -223,6 +236,8 @@ class Validator
                 $part,
                 'Error: Invalid cryptographic message type.',
                 'Error: The parameter is incorrect.',
+                'Error: The streamed cryptographic message is not ready to return data.',
+                "Error: Can't open file",
                 'Unknown error.')
             ){
 
@@ -320,18 +335,13 @@ class Validator
 
 
     /**
-     * Предназначен для проверки <i>lastErrorCode</i> на тип ошибки, соответствующий недействительному типу криптографичесого сообщения
+     * Проверка на "Недействительный типу криптографичесого сообщения"
      *
-     * @return bool <b>true</b> последняя ошибка соответствует недействительному типу криптографичесого сообщения<br>
-     * <b>false</b> в противном случае
+     * @return bool
      */
     public function isInvalidMessageType(): bool
     {
-        $errorCode = $this->lastErrorCode;
-        if (!is_null($errorCode) && $errorCode === '0x80091004') {
-            return true;
-        }
-        return false;
+        return $this->lastErrorCode === '0x80091004';
     }
 
 
@@ -344,11 +354,33 @@ class Validator
      */
     public function isIncorrectParameter(): bool
     {
-        $errorCode = $this->lastErrorCode;
-        if (!is_null($errorCode) && $errorCode === '0x00000057') {
-            return true;
-        }
-        return false;
+        return $this->lastErrorCode === '0x00000057';
+    }
+
+
+    /**
+     * Проверка на "Потоковое криптографическое сообщение не готово для возврата данных"
+     *
+     * Данная ошибка означает, что был передан пустой файл
+     *
+     * @return bool
+     */
+    public function isCSPNotReadyToReturnData(): bool
+    {
+        return $this->lastErrorCode === '0x80091010';
+    }
+
+
+    /**
+     * Проверка на "Не удалось открыть файл"
+     *
+     * Для открепленной подписи ошибка означает, что был передан пустой файл
+     *
+     * @return bool
+     */
+    public function isCantOpenFile(): bool
+    {
+        return $this->lastErrorCode === '0x20000065';
     }
 
 
@@ -361,10 +393,6 @@ class Validator
      */
     public function isSignatureVerifyingNotStarted(): bool
     {
-        $errorCode = $this->lastErrorCode;
-        if (!is_null($errorCode) && $errorCode === '0xffffffff') {
-            return true;
-        }
-        return false;
+        return $this->lastErrorCode === '0xffffffff';
     }
 }

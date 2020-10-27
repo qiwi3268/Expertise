@@ -60,7 +60,7 @@ class AttachedFilesInitializer extends MainInitializer
     protected function getFiles(string $fileClassName): ?array
     {
         $mapping = [
-            FILE_TABLE_MAPPING[2][1] => '\Tables\Docs\applicant_documentation_1',
+            FILE_TABLE_MAPPING[2][1] => '\Tables\Docs\comment_documentation_1',
             FILE_TABLE_MAPPING[2][2] => '\Tables\Docs\comment_documentation_2'
         ];
         $class = $mapping[$fileClassName];

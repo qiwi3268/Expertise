@@ -38,6 +38,9 @@ use Lib\CSP\Validator;
 //  6.1- Произошла внутренняя ошибка (по вине входных данных):
 //       Проверка открепленной подписи не началась (вместо открепленной подписи проверялся файл без подписи)
 //       {result, error_message : текст ошибки}
+//  6.2- Произошла внутренняя ошибка (по вине входных данных):
+//       Передан пустой файл открепленной подписи
+//       {result, error_message : текст ошибки}
 //  7  - Произошла непредвиденная ошибка при работе метода 'Lib\CSP\Validator::validate'
 //       {result, message : текст ошибки, code: код ошибки}
 //  8  - Произошла ошибка при добавлении записи в таблицу подписей
@@ -125,6 +128,14 @@ try {
     $dataFileAssoc = $fileClassName::getAssocByIdMainDocumentAndHash($application_id, $hash_data);
     $signFileAssoc = $fileClassName::getAssocByIdMainDocumentAndHash($application_id, $hash_sign);
 
+    if ($signFileAssoc['file_size'] / 1024 > 20) {
+
+        exit(json_encode([
+            'result'        => 6.777,
+            'error_message' => "Загружен файл встроенной подписиtodo"
+        ]));
+    }
+
     $parser = new MessageParser(true);
     $shell = new ExternalSignature();
     $validator = new Validator($parser, $shell);
@@ -181,6 +192,15 @@ try {
             ]));
         }
 
+        //  Был передан пустой файл открепленной подписи
+        if ($code == 4 && $validator->isCantOpenFile() && ($signFileAssoc['file_size'] == 0)) {
+
+            exit(json_encode([
+                'result'        => 6.2,
+                'error_message' => "Передан пустой файл открепленной подписи. code: '{$code}'. log time: '{$date}'"
+            ]));
+        }
+
         exit(json_encode([
             'result'        => 5,
             'error_message' => "Произошла внутренняя ошибка 'Lib\Exceptions\CSPValidator'. code: '{$code}'. log time: '{$date}'"
@@ -197,6 +217,12 @@ try {
             'code'    => $errorCode
         ]));
     }
+
+
+    if (count($validateResults) > 1) {
+        $a = 1;
+    }
+
 
     $className = $mapping->getClassName();
     $id_data = $dataFileAssoc['id'];

@@ -87,17 +87,38 @@ class MessageParser
             $parts[] = getHandlePregMatch($pattern, $tmp, false)[1];
         }
 
+        $tmp = array_filter($parts, fn($part) => icontainsAll($part, 'Signature verifying...', 'Error:'));
+
+        if (!empty($tmp)) {
+
+            $tmp = array_shift($tmp);
+
+            // любой символ один и более раз
+            // Signature verifying...
+            // любой символ ноль и более раз
+            // 1 группа:
+            //    Error:
+            //    пробельный символ ноль и более раз
+            //    любой символ один и более раз
+            // - регистронезависимые
+            // - использование кодировки utf-8
+            $pattern = "/.+Signature verifying\.\.\..*(Error:\s*.+)/iu";
+            $parts[] = getHandlePregMatch($pattern, $tmp, false)[1];
+        }
+
         foreach ($parts as $part) {
 
             if (
-                //todo тут переделать на containsAny?
-                !icontainsAll($part, 'CryptCP 4.0 (c) "Crypto-Pro", 2002-2020.') &&
-                !icontainsAll($part, 'CryptCP 5.0 (c) "Crypto-Pro", 2002-2019.') &&
-                !icontainsAll($part, 'Command prompt Utility for file signature and encryption.') &&
-                !icontainsAll($part, 'Folder') &&
-                !icontainsAll($part, 'Signature verifying...') &&
-                !icontainsAll($part, 'CSPbuild') &&
-                $part !== ''
+                !icontainsAny(
+                    $part,
+                    'CryptCP 4.0 (c) "Crypto-Pro", 2002-2020.',
+                    'CryptCP 5.0 (c) "Crypto-Pro", 2002-2019.',
+                    'Command prompt Utility for file signature and encryption.',
+                    'Folder',
+                    'Signature verifying...',
+                    'CSPbuild'
+                )
+                && $part !== ''
             ) {
 
                 $result[] = trim($part); // Удаляем пробельные символы вначале и вконце строки

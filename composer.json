@@ -6,6 +6,7 @@
         "ext-gd": "*",
         "phpoffice/phpspreadsheet": "^1.12",
       "ext-simplexml": "*",
-      "ext-mysqli": "*"
+      "ext-mysqli": "*",
+      "ext-zip": "*"
     }
 }

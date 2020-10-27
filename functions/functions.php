@@ -174,13 +174,33 @@ function icontainsAll(string $haystack, string ...$needles): bool
  *
  * @param string $haystack строка, в которой производится поиск
  * @param string ...$needles <i>перечисление</i> подстрок
- * @return bool <b>true</b> все подстроки присутствуют в строке<br/>
+ * @return bool <b>true</b> хотя бы одна подстрока присутствует в строке<br/>
  * <b>false</b> в противном случае
  */
 function containsAny(string $haystack, string ...$needles): bool
 {
     foreach ($needles as $needle) {
         if (mb_strpos($haystack, $needle) !== false) return true;
+    }
+    return false;
+}
+
+
+/**
+ * Предназначен для поиска вхождения подстроки в строку
+ *
+ * <b>Регистронезависимый поиск</b><br>
+ * Если передано несколько подсрок needles, то <b>true</b> будет в случае хотя бы одной подстроки
+ *
+ * @param string $haystack строка, в которой производится поиск
+ * @param string ...$needles <i>перечисление</i> подстрок
+ * @return bool <b>true</b> хотя бы одна подстрока присутствует в строке<br/>
+ * <b>false</b> в противном случае
+ */
+function icontainsAny(string $haystack, string ...$needles): bool
+{
+    foreach ($needles as $needle) {
+        if (mb_stripos($haystack, $needle) !== false) return true;
     }
     return false;
 }

@@ -81,14 +81,14 @@ class TypeOfObjectTableLocator
      * в зависимости от вида объекта
      *
      * @return string
-     * {@see \Tables\Docs\applicant_documentation_1}<br>
+     * {@see \Tables\Docs\comment_documentation_1}<br>
      * или<br>
      * {@see \Tables\Docs\comment_documentation_2}
      */
     public function getDocsComment(): string
     {
         if ($this->typeOfObjectId == 1) {
-            return '\Tables\Docs\applicant_documentation_1';
+            return '\Tables\Docs\comment_documentation_1';
         } else {
             return '\Tables\Docs\comment_documentation_2';
         }
