@@ -96,7 +96,7 @@ class GeComment {
    /**
     * Текст замечания
     *
-    * @type {string}
+    * @type {number}
     */
    attached_file;
 

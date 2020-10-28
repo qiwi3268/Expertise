@@ -1,13 +1,13 @@
 /**
  * @typedef CommentData
  * @type {object}
- * @property {string} text - текст замечания
- * @property {string} normative_document - ссылка на нормативный документ
- * @property {string} comment_criticality - критичность замечания
- * @property {string} criticality_name - наименование выбранной критичности
- * @property {string} no_files - равняется "1", если к замечанию не требуется
+ * @property {string|null} text - текст замечания
+ * @property {string|null} normative_document - ссылка на нормативный документ
+ * @property {string|null} comment_criticality - критичность замечания
+ * @property {string|null} criticality_name - наименование выбранной критичности
+ * @property {string|null} no_files - равняется "1", если к замечанию не требуется
  * отметка файлов, иначе - null
- * @property {string} note - личная заметка
+ * @property {string|null} note - личная заметка
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,29 +15,106 @@ document.addEventListener('DOMContentLoaded', () => {
    add_comment_btn.addEventListener('click', () => CommentCreator.getInstance().open());
 });
 
+/**
+ * Класс представляет собой модальное окно формы создания замечаний
+ */
 class CommentCreator {
 
+   /**
+    * Элемент модального окна
+    *
+    * @type {HTMLElement}
+    */
    modal;
+
+   /**
+    * Фон модального окна
+    *
+    * @type {HTMLElement}
+    */
    overlay;
 
+   /**
+    * Отмеченные файлы
+    *
+    * @type {Map<number, HTMLElement>}
+    */
    marked_files;
 
+   /**
+    * Поле ввода текста замечания
+    *
+    * @type {HTMLInputElement}
+    */
    text_input;
+
+   /**
+    * Поле ввода ссылки на нормативный документ
+    *
+    * @type {HTMLInputElement}
+    */
    normative_document_input;
+
+   /**
+    * Чекбокс "Отметка файла не требуется"
+    *
+    * @type {HTMLElement}
+    */
    no_files_checkbox;
-   criticality_name_input;
+
+   /**
+    * Поле для выбора критичности замечания
+    *
+    * @type {HTMLElement}
+    */
+   criticality_name_select;
+
+   /**
+    * Скрытый инпут со значением выбранной критичности
+    *
+    * @type {HTMLInputElement}
+    */
    criticality_value_input;
+
+   /**
+    * Поле ввода личной заметки
+    *
+    * @type {HTMLInputElement}
+    */
    note_input;
 
+   /**
+    * Данные замечания из полей модального окна
+    *
+    * @type {CommentData}
+    */
    comment_data;
 
+   /**
+    * Объект редактируемого замечания
+    *
+    * @type {GeComment}
+    */
    editable_comment;
-   is_editing;
 
+   /**
+    * Геттер для хэша формы создания замечаний
+    *
+    * @returns {number}
+    */
    static get hash() {
       return this._hash;
    }
 
+   /**
+    * Сеттер для хэша формы создания замечаний
+    *
+    * Хэш представляет собой timestamp первого для текущей страницы открытия
+    * модального окна, используется как инкрементируемый идентификатор
+    * для создаваемых замечаний
+    *
+    * @param {number} hash
+    */
    static set hash(hash) {
       this._hash = hash;
    }
@@ -50,6 +127,11 @@ class CommentCreator {
       this._instance = instance;
    }
 
+   /**
+    * Возвращает единственный объект формы создания замечаний
+    *
+    * @returns {CommentCreator}
+    */
    static getInstance () {
 
       if (!this.instance) {
@@ -59,6 +141,9 @@ class CommentCreator {
       return this.instance;
    }
 
+   /**
+    * Создает объект формы создания замечаний
+    */
    constructor () {
       this.modal = document.getElementById('comment_modal');
       this.overlay = document.getElementById('comment_overlay');
@@ -67,46 +152,81 @@ class CommentCreator {
       this.normative_document_input = document.getElementById('normative_document');
       this.no_files_checkbox = document.getElementById('no_files');
 
-      this.criticality_name_input = document.getElementById('comment_criticality_name');
+      this.criticality_name_select = document.getElementById('comment_criticality_name');
       this.criticality_value_input = document.getElementById('comment_criticality_value');
       this.note_input = document.getElementById('comment_note');
+
+      this.marked_files = new Map();
 
       CommentCreator.hash = Date.now();
 
       this.no_files_checkbox.addEventListener('click', () => {
-         this.marked_files.forEach(this.toggleFileCheckbox);
+         this.marked_files.forEach(this.removeFileCheckbox);
          this.marked_files.clear();
       });
 
       let save_button = this.modal.querySelector('[data-save_comment]');
-      save_button.addEventListener('click', () => {
-         this.save();
-      });
+      save_button.addEventListener('click', () => this.save());
 
       let cancel_button = this.modal.querySelector('[data-delete_comment]');
-      cancel_button.addEventListener('click', () => {
-         this.modal.classList.remove('active');
-         this.overlay.classList.remove('active');
-      });
+      cancel_button.addEventListener('click', () => this.close());
 
       this.handleFiles();
    }
 
-   save () {
-      this.comment_data = new CommentData(this);
+   /**
+    * Снимает отметку файла
+    *
+    * @param file_element - файл, у которого снимается отметка
+    */
+   removeFileCheckbox (file_element) {
+      let checkbox = file_element.querySelector('.files__checkbox');
+      checkbox.classList.add('fa-square', 'far');
+      checkbox.classList.remove('fa-check-square', 'fas');
+   }
 
-      console.log(this.comment_data);
+   /**
+    * Обрабатывает сохранение формы
+    */
+   save () {
+      this.comment_data = this.getCommentData();
 
       let is_valid = this.validate();
-
       if (is_valid) {
          this.saveComment();
       }
-
    }
 
+   /**
+    * Возвращает объект с данными из полей формы создания замечаний
+    *
+    * @return {CommentData}
+    */
+   getCommentData () {
+      let data = {};
+
+      let field_inputs = this.modal.querySelectorAll('[data-field_result]');
+      field_inputs.forEach(input => {
+
+         if (!input.closest('[data-active="false"]')) {
+            data[input.name] = input.value || null;
+         } else {
+            data[input.name] = null;
+         }
+
+      });
+      data.criticality_name = this.criticality_name_select.innerHTML;
+
+      return data;
+   }
+
+   /**
+    * Валидирует форму создания замечаний
+    *
+    * @return {boolean} is_valid - правильно ли заполнена форма замечания
+    */
    validate () {
-      let result = false;
+      let is_valid = false;
 
       validateBlock(this.modal);
 
@@ -119,34 +239,57 @@ class CommentCreator {
       } else if (this.marked_files.size === 0 && this.comment_data.no_files === null) {
          ErrorModal.open('Ошибка при сохранении замечания', 'Не отмечены файлы к замечанию');
       } else {
-         result = true;
+         is_valid = true;
       }
 
-      return result;
+      return is_valid;
    }
 
-
+   /**
+    * Создает или обновляет объекты и таблицу замечаний
+    */
    saveComment () {
-
-      !this.is_editing ? GeComment.create(this) : GeComment.edit(this);
-
+      this.editable_comment === null ? GeComment.create(this) : GeComment.edit(this);
       resizeCard(CommentsTable.getInstance().element);
+      this.close();
+   }
 
+   /**
+    * Закрывает модальное окно формы создания замечаний
+    */
+   close () {
+      this.clearModal();
       this.modal.classList.remove('active');
       this.overlay.classList.remove('active');
    }
 
+   /**
+    * Очищает форму, снимая отметки с файлов и класс невалидности полей
+    */
+   clearModal() {
+      this.marked_files.forEach(this.removeFileCheckbox);
+      this.marked_files.clear();
 
+      let fields = this.modal.querySelectorAll('.field');
+      fields.forEach(field => field.classList.remove('invalid'));
+   }
+
+   /**
+    * Обрабатывает файлы формы создания замечаний
+    */
    handleFiles () {
       let files = this.modal.querySelectorAll('.files__item');
       files.forEach(file => {
-
          let file_info = file.querySelector('.files__info');
          file_info.addEventListener('click', () => this.markFile(file));
-
       });
    }
 
+   /**
+    * Обрабатывает отметку файла
+    *
+    * @param file - отмечаемый файл
+    */
    markFile (file) {
       let file_id = parseInt(file.dataset.id);
 
@@ -166,6 +309,11 @@ class CommentCreator {
       }
    }
 
+   /**
+    * Переключает чекбокс отметки у файла
+    *
+    * @param file_element - файл
+    */
    toggleFileCheckbox (file_element) {
       let checkbox = file_element.querySelector('.files__checkbox');
       checkbox.classList.toggle('fa-check-square');
@@ -174,18 +322,12 @@ class CommentCreator {
       checkbox.classList.toggle('fas');
    }
 
-   removeFileCheckbox (file_element) {
-      let checkbox = file_element.querySelector('.files__checkbox');
-      checkbox.classList.add('fa-square', 'far');
-      checkbox.classList.remove('fa-check-square', 'fas');
-   }
-
-   setFileCheckbox (file_element) {
-      let checkbox = file_element.querySelector('.files__checkbox');
-      checkbox.classList.add('fa-check-square', 'fas');
-      checkbox.classList.remove('fa-square', 'far');
-   }
-
+   /**
+    * Открывает модальное окно формы создания замечаний
+    *
+    * @param {GeComment|null} comment - редактируемое замечание,
+    * null - если создается новое замечание
+    */
    open (comment = null) {
       this.modal.classList.add('active');
       this.overlay.classList.add('active');
@@ -193,17 +335,20 @@ class CommentCreator {
       this.init(comment);
    }
 
+   /**
+    * Инициализирует форму создания замечаний
+    *
+    * @param {GeComment|null} comment - редактируемое замечание,
+    * null - если создается новое замечание
+    */
    init (comment) {
-
-      this.clearModal();
 
       this.setFieldValues(comment);
 
-      let criticality_field = this.criticality_name_input.closest('.field');
+      let criticality_field = this.criticality_name_select.closest('.field');
       if (comment !== null) {
 
          this.editable_comment = comment;
-         this.is_editing = true;
 
          let normative_block = this.normative_document_input.closest('[data-block]');
          normative_block.dataset.active = this.criticality_value_input.value !== '1' ? 'true' : 'false';
@@ -217,23 +362,20 @@ class CommentCreator {
 
       } else {
          criticality_field.classList.remove('filled');
-         this.is_editing = false;
+         this.editable_comment = null;
       }
    }
 
-   clearModal() {
-      this.marked_files = new Map();
-      let files = this.modal.querySelectorAll('.files__item');
-      files.forEach(file => this.removeFileCheckbox(file));
-
-      let fields = this.modal.querySelectorAll('.field');
-      fields.forEach(field => field.classList.remove('invalid'));
-   }
-
+   /**
+    * Проставляет значения полей формы создания замечаний
+    *
+    * @param {GeComment|null} comment - редактируемое замечание,
+    * null - если создается новое замечание
+    */
    setFieldValues (comment) {
       this.text_input.value = comment ? comment.text : null;
       this.normative_document_input.value = comment ? comment.normative_document : null;
-      this.criticality_name_input.innerHTML = comment ? comment.criticality_name : 'Выберите критичность';
+      this.criticality_name_select.innerHTML = comment ? comment.criticality_name : 'Выберите критичность';
       this.criticality_value_input.value = comment ? comment.comment_criticality : null;
 
       let checkbox_icon = this.no_files_checkbox.querySelector('.radio__icon');
@@ -252,6 +394,17 @@ class CommentCreator {
       }
 
       this.note_input.value = comment ? comment.note : null;
+   }
+
+   /**
+    * Проставляет отметку файла
+    *
+    * @param file_element - файл, для которого проставляется отметка
+    */
+   setFileCheckbox (file_element) {
+      let checkbox = file_element.querySelector('.files__checkbox');
+      checkbox.classList.add('fa-check-square', 'fas');
+      checkbox.classList.remove('fa-square', 'far');
    }
 
    // todo убрать в отдельный модуль
@@ -284,20 +437,5 @@ class CommentCreator {
 
    }
 
-}
-
-function CommentData(comment_creator) {
-   let field_inputs = comment_creator.modal.querySelectorAll('[data-field_result]');
-   field_inputs.forEach(input => {
-
-      if (!input.closest('[data-active="false"]')) {
-         this[input.name] = input.value || null;
-      } else {
-         this[input.name] = null;
-      }
-
-   });
-   this.criticality_name = comment_creator.criticality_name_input.innerHTML;
-   return this;
 }
 
