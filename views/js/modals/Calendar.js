@@ -1,12 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-   Calendar.handleOverlay();
-
    Calendar.handleFields();
 });
 
+/**
+ * Класс представляет собой модальное окно календаря
+ */
 class Calendar {
-   // Объект календаря
-   // static instance;
 
    static get instance() {
       return this._instance;
@@ -16,16 +15,8 @@ class Calendar {
       this._instance = instance;
    }
 
-   static get overlay() {
-      return this._overlay;
-   }
-
-   static set overlay(overlay) {
-      this._overlay = overlay;
-   }
-
    // Фон календаря
-   // static overlay;
+   overlay;
 
    // Родительское поле
    select;
@@ -70,10 +61,10 @@ class Calendar {
 
       this.field_value = mQS(this.select, '[data-field_value]', 4);
       this.parent_field = mClosest(this.select, '.field', 5);
-      this.element = mQS(document, '.calendar', 6);
-      this.body = mQS(this.element, '.calendar__body', 7);
-      this.title = mQS(this.element, '.calendar__title', 8);
-      this.selected_date_label = mQS(this.element, '.calendar__selected_label', 9);
+      this.element = document.getElementById('calendar');
+      this.body = document.getElementById('calendar_body');
+      this.title = document.getElementById('calendar_title');
+      this.selected_date_label = document.getElementById('calendar_label');
       this.result_input = mQS(this.parent_field, '[data-field_result]', 10);
 
       this.current_date = new Date();
@@ -81,6 +72,7 @@ class Calendar {
       this.init();
       this.handleDateLabel();
       this.handleArrows();
+      this.handleOverlay();
    }
 
    // Предназначен для инициализации календаря
@@ -392,13 +384,13 @@ class Calendar {
    clear (select, result_input) {
       let field_value = mQS(select, '[data-field_value]', 11);
 
-      Calendar.instance.current_date = result_input.value ? getDateFromString(result_input.value) : new Date();
+      this.current_date = result_input.value ? getDateFromString(result_input.value) : new Date();
 
-      Calendar.instance.select = select;
-      Calendar.instance.result_input = result_input;
-      Calendar.instance.field_value = field_value;
+      this.select = select;
+      this.result_input = result_input;
+      this.field_value = field_value;
 
-      Calendar.instance.init();
+      this.init();
    }
 
    // Предназначен для создания и добавления элемента календаря
@@ -464,7 +456,7 @@ class Calendar {
    // Предназначен для отображения модального окна календаря
    show () {
       this.element.classList.add('active');
-      Calendar.overlay.classList.add('active');
+      this.overlay.classList.add('active');
    }
 
    // Предназначен для позиционирования календаря возле родительского поля
@@ -478,7 +470,7 @@ class Calendar {
    // Предназначен для закрытия модального окна календаря
    close () {
       this.element.classList.remove('active');
-      Calendar.overlay.classList.remove('active');
+      this.overlay.classList.remove('active');
    }
 
    //========================================= Static methods
@@ -502,12 +494,9 @@ class Calendar {
    }
 
    // Предназначен для добавления события клика по фону календаря
-   static handleOverlay () {
-      // Фон модального окна
-      Calendar.overlay = mQS(document, '.calendar-overlay', 3);
-      Calendar.overlay.addEventListener('click', () => {
-         Calendar.getInstance().close();
-      });
+   handleOverlay () {
+      this.overlay = document.getElementById('calendar_overlay');
+      this.overlay.addEventListener('click', () => this.close());
    }
 
    // Предназначен для получения объекта календаря по родительскому полю

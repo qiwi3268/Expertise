@@ -44,7 +44,7 @@
    background-color: #ccc;
 }
 
-.calendar__selected_label {
+.calendar__selected-label {
    border-radius: 3px;
    cursor: pointer;
    flex-grow: 1;
@@ -54,7 +54,7 @@
    text-align: center;
 }
 
-.calendar__selected_label:hover {
+.calendar__selected-label:hover {
    background-color: #ccc;
 }
 
