@@ -20,7 +20,7 @@ class GeComment {
    /**
     * Сеттер для коллекции замечаний
     *
-    * @param comments
+    * @param {Map} comments
     */
    static set comments(comments) {
       this._comments = comments;
@@ -123,7 +123,8 @@ class GeComment {
     * Создает объекты замечаний для каждого отмеченного файла
     * или одно замечание, если не отмечен файл
     *
-    * @param {CommentCreator} comment_creator -
+    * @param {CommentCreator} comment_creator - Объект формы
+    * создания замечания
     */
    static create (comment_creator) {
       if (comment_creator.marked_files.size > 0) {
@@ -137,7 +138,13 @@ class GeComment {
       }
    }
 
-
+   /**
+    * Обновляет созданное замечание и создает новые,
+    * если были отмечены дополнительные файлы
+    *
+    * @param {CommentCreator} comment_creator - Объект формы
+    * создания замечания
+    */
    static edit (comment_creator) {
 
       delete comment_creator.editable_comment.normative_document;
@@ -145,6 +152,7 @@ class GeComment {
 
       let comment_table = CommentsTable.getInstance();
 
+      // Обновляем исходное замечание
       if (comment_creator.marked_files.size > 0) {
 
          let iterator = comment_creator.marked_files.entries();
@@ -161,6 +169,7 @@ class GeComment {
 
       GeComment.comments.set(comment.hash, comment);
 
+      // Для оставшихся отмеченных файлов создаем замечания
       comment_creator.marked_files.forEach(file => {
          let comment_copy = Object.assign({}, comment, {file: undefined, id:null});
          comment_copy.attached_file = parseInt(file.dataset.id);
@@ -168,8 +177,6 @@ class GeComment {
       });
 
    }
-
-
 
 
 }

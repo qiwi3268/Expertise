@@ -1,3 +1,4 @@
+/*
 document.addEventListener('DOMContentLoaded', () => {
    let add_comment_btn = document.querySelector('[data-add_comment]');
    add_comment_btn.addEventListener('click', () => CommentCreator.getInstance().open());
@@ -516,4 +517,4 @@ class CommentCreator {
 
    }
 
-}
+}*/
