@@ -1,18 +1,18 @@
 header {
-   display: flex;
    align-items: center;
-   min-height: 50px;
-   margin: 0px 0px 10px 0px;
-   border-radius: 0px 0px 4px 4px;
-   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.22);
    background-color: #1c3959;
+   border-radius: 0 0 4px 4px;
+   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.22);
    color: #ffd354;
+   display: flex;
+   margin: 0 0 10px 0;
+   min-height: 50px;
 }
 
 .header__logo {
-   display: flex;
    align-items: center;
    cursor: pointer;
+   display: flex;
 }
 
 .header__logo-text {
@@ -26,7 +26,7 @@ header {
 
 .header__logo img {
    max-height: 44px;
-   padding: 0px 10px 0px 15px;
+   padding: 0 10px 0 15px;
 }
 
 .header__home {
@@ -35,11 +35,11 @@ header {
 }
 
 .header__user {
-   text-align: right;
-   flex-grow: 1;
-   margin: 0px 15px 0px 0px;
-   font-size: 20px;
    cursor: default;
+   flex-grow: 1;
+   font-size: 20px;
+   margin: 0 15px 0 0;
+   text-align: right;
 }
 
 .header__links {
@@ -47,14 +47,14 @@ header {
 }
 
 .header__icon {
-   margin: 0px 5px 0px 0px;
-   padding: 5px 5px 5px 5px;
-   font-size: 22px;
    color: #ffd354;
-   transition: color 0.15s;
    cursor: pointer;
+   font-size: 22px;
+   margin: 0 5px 0 0;
+   padding: 5px 5px 5px 5px;
+   transition: color 0.15s;
 }
 
 .header__icon:hover {
-   color: #ffffff;
+   color: #fff;
 }

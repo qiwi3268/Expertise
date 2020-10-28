@@ -1,44 +1,42 @@
 .action-info,
 .descriptive-part__card,
 .section__indicator {
-   background-color: #ffffff;
+   background-color: #fff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
    overflow: hidden;
 }
 
-
 .action-info {
-   padding: 10px 20px;
-   margin: 0px 0px 10px;
-
    font-size: 16px;
+   margin: 0 0 10px;
+
+   padding: 10px 20px;
    text-align: center;
 
 }
 
 .descriptive-part {
    display: flex;
-   flex-grow: 1;
    flex-direction: column;
-   margin: 0px 0px 10px 0px;
+   flex-grow: 1;
+   margin: 0 0 10px 0;
 
 }
 
 .descriptive-part__card {
-   margin: 0px 0px 10px 0px;
    border-left: 3px solid #93b0d1;
-
+   margin: 0 0 10px 0;
 }
 
 .descriptive-part__header {
-   padding: 10px 15px;
-   font-weight: 700;
-   text-align: center;
-   border-bottom: 1px solid #e0e0e0;
    background-color: #f6f8fa;
-   /*border-radius: 4px 4px 0px 0px;*/
+   border-bottom: 1px solid #e0e0e0;
    cursor: pointer;
+   font-weight: 700;
+   padding: 10px 15px;
+   /*border-radius: 4px 4px 0px 0px;*/
+   text-align: center;
 }
 
 /*Переопределение свойства библиотеки текстового редактора*/
@@ -57,8 +55,8 @@
 }
 
 .descriptive-part__add.form-button {
-   margin: 10px;
    align-self: flex-start;
+   margin: 10px;
 }
 
 .descriptive-part__comments .comments-table__header {
@@ -66,7 +64,7 @@
 }
 
 .files__checkbox {
-   margin: 0px 10px 0px 0px;
+   margin: 0 10px 0 0;
 }
 
 

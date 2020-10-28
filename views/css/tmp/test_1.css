@@ -1,22 +1,22 @@
 .view {
-   flex-grow: 1;
    display: flex;
    flex-direction: column;
-   margin: 0px 0px 10px 0px;
+   flex-grow: 1;
    font-size: 16px;
+   margin: 0 0 10px 0;
 }
 
 .view__header,
 .view__subheader,
 .expertise-card__body {
-   background-color: #ffffff;
+   background-color: #fff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
 }
 
 .view__header {
+   margin: 0 0 10px 0;
    padding: 10px 10px 10px 20px;
-   margin: 0px 0px 10px 0px;
 
    /*display: flex;*/
    /*min-height: 70px;*/
@@ -28,17 +28,17 @@
 
 .view__document {
    flex-grow: 1;
-   margin: 0px 20px 0px 0px;
    font-family: 'Bebas Neue', sans-serif;
    font-size: 20px;
+   margin: 0 20px 0 0;
 
 }
 
 .view__progress {
-   width: 70%;
-   display: flex;
    align-items: center;
-   margin: 0px 15px 0px 0px;
+   display: flex;
+   margin: 0 15px 0 0;
+   width: 70%;
 
 }
 
@@ -74,31 +74,31 @@
 }
 
 .view-actions__label {
-   font-size: 14px;
    color: #6e6e6e;
+   font-size: 14px;
 }
 
 .view__icon {
    color: #6e6e6e;
-   margin: 0px 10px 0px 0px;
    font-size: 18px;
+   margin: 0 10px 0 0;
 }
 
 .view__responsible {
-   display: flex;
    align-items: center;
+   display: flex;
    justify-content: space-between;
 }
 
 .view__info {
    display: flex;
-   flex-grow: 1;
    flex-direction: column;
+   flex-grow: 1;
 }
 
 .view__text {
-   font-weight: 700;
    font-size: 14px;
+   font-weight: 700;
    /*text-align: center;*/
 }
 
@@ -107,14 +107,14 @@
 }
 
 .view__dates {
-   display: flex;
    align-items: center;
+   display: flex;
 }
 
 .view__date {
-   display: flex;
-   /*flex-direction: column;*/
    align-items: center;
+   /*flex-direction: column;*/
+   display: flex;
    /*margin: 0px 0px 0px 10px*/
 }
 
@@ -129,8 +129,8 @@
 }
 
 .view__stage {
-   display: flex;
    align-items: center;
+   display: flex;
 }
 
 .view__stage,
@@ -142,35 +142,35 @@
 
 .view__stage,
 .view__date {
-   margin: 0px 20px 0px 0px;
+   margin: 0 20px 0 0;
 }
 
 .view__state {
-   display: flex;
-   flex-direction: column;
-   background-color: #ffffff;
+   background-color: #fff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
-   margin: 0px 10px 10px 0px;
+   display: flex;
+   flex-direction: column;
+   margin: 0 10px 10px 0;
    padding: 10px;
 
 }
 
 .view__sidebar {
+   margin: 0 10px 10px 0;
    width: 16%;
-   margin: 0px 10px 10px 0px;
 
 }
 
 .view__subheader {
-   display: flex;
    align-items: center;
+   display: flex;
+   margin: 0 0 10px 0;
    padding: 15px 20px;
-   margin: 0px 0px 10px 0px;
 }
 
 .info {
-   background-color: #ffffff;
+   background-color: #fff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
 
@@ -178,13 +178,13 @@
 
    display: flex;
    flex-direction: column;
-   margin: 0px 10px 10px 0px;
+   margin: 0 10px 10px 0;
 
 }
 
 .info__header {
-   display: flex;
    align-items: center;
+   display: flex;
    justify-content: space-between;
    /* margin: 0px 0px 20px 0px; */
    /* border-bottom: 1px solid #e1e4e8; */
@@ -195,46 +195,46 @@
 }
 
 .info__title {
-  flex-grow: 1;
+   flex-grow: 1;
 }
 
 .info__icon {
-  /*color: #c2c2c2;*/
+   /*color: #c2c2c2;*/
    /*color: #1c3959;*/
-   font-size: 18px;
-   margin: 0px 10px 0px 0px;
-   /*color: #6e6e6e;*/
    color: #507095;
+   font-size: 18px;
+   /*color: #6e6e6e;*/
+   margin: 0 10px 0 0;
 }
 
 .info__text {
    /*margin: 0px 0px 15px 0px;*/
-   padding: 5px 10px;
+   background-color: #f3f5f6;
    /* font-size: 14px; */
    /* font-weight: 700; */
    /* text-align: center; */
-   background-color: #F3F5F6;
    border-left: 3px solid #93b0d1;
+   padding: 5px 10px;
 }
 
 .info__item:last-child > .info__text {
-   border-radius: 0px 0px 4px 4px;
+   border-radius: 0 0 4px 4px;
 }
 
 .view__items {
    display: flex;
    flex-direction: column;
    /*margin: 0px 30px 10px 0px;*/
-   margin: 0px 0px 5px 0px;
+   margin: 0 0 5px 0;
 }
 
 .view__item {
-   display: flex;
    align-items: center;
-   background-color: #ffffff;
+   background-color: #fff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
-   margin: 0px 0px 5px 0px;
+   display: flex;
+   margin: 0 0 5px 0;
    padding: 10px;
 }
 

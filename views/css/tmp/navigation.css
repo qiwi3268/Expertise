@@ -7,30 +7,30 @@
 }
 
 .navigation__sidebar {
-   margin: 0px 10px 0px 0px;
-
-   width: 20%;
-   min-width: 200px;
    cursor: pointer;
+
+   margin: 0 10px 0 0;
+   min-width: 200px;
+   width: 20%;
 }
 
 .sidebar-navigation__block {
-   background-color: #ffffff;
-   margin: 0px 0px 10px 0px;
+   background-color: #fff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+   margin: 0 0 10px 0;
 }
 
 .sidebar-navigation__block:last-child {
-   margin: 0px;
+   margin: 0;
 }
 
 .sidebar-navigation__header {
+   border-bottom: 2px solid #ffd354;
    font-size: 18px;
    padding: 8px 15px;
-   text-align: center;
    /*border-bottom: 2px solid #1c3959;*/
-   border-bottom: 2px solid #ffd354;
+   text-align: center;
    /*border-bottom: 2px solid #93b0d1;*/
 }
 
@@ -48,13 +48,13 @@
 /*navigation__table ===============================*/
 
 .navigation__body {
-   flex-grow: 1;
-   display: flex;
-   margin: 0px 0px 20px;
-   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
-   font-size: 14px;
-   background-color: #ffffff;
+   background-color: #fff;
    border-radius: 4px;
+   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+   display: flex;
+   flex-grow: 1;
+   font-size: 14px;
+   margin: 0 0 20px;
 }
 
 .navigation__table {
@@ -62,19 +62,19 @@
 }
 
 .table-navigation__controller {
+   border-bottom: 2px solid #93b0d1;
    display: flex;
    font-size: 14px;
-   border-bottom: 2px solid #93b0d1;
 }
 
 .navigation-table__pagination {
-   display: flex;
    align-items: center;
+   display: flex;
 }
 
 .pagination-table__arrow {
-   padding: 10px 15px;
    color: #287ab8;
+   padding: 10px 15px;
 }
 
 .pagination-table__arrow.inactive {
@@ -88,19 +88,19 @@
 }
 
 .navigation-table__size-header {
-   margin: 0px 20px;
    display: flex;
+   margin: 0 20px;
 }
 
 .navigation-table__amount {
-   padding: 12px 15px;
    cursor: pointer;
+   padding: 12px 15px;
 
 }
 
 .navigation-table__amount[data-is_selected='1'] {
    background-color: #93b0d1;
-   color: #ffffff;
+   color: #fff;
 }
 
 .navigation-table__sort-header {
@@ -108,24 +108,24 @@
 }
 
 .navigation-table__category {
+   cursor: pointer;
    padding: 12px 15px;
    transition: .1s;
-   cursor: pointer;
 }
 
 .navigation-table__category:hover {
    background-color: #93b0d1;
-   color: #ffffff;
+   color: #fff;
 }
 
 .navigation-table__sort-icon {
-   margin: 0px 0px 0px 7px;
    color: #287ab8;
+   margin: 0 0 0 7px;
    transition: .1s;
 }
 
 .navigation-table__category:hover > .navigation-table__sort-icon {
-   color: #ffffff;
+   color: #fff;
 }
 
 .table-navigation__body {
@@ -136,23 +136,23 @@
 }
 
 .table-navigation__row {
-   display: flex;
    border-bottom: 1px solid #e0e0e0;
-   border-right: 4px solid #ffffff;
-   border-left: 4px solid #ffffff;
+   border-left: 4px solid #fff;
+   border-right: 4px solid #fff;
+   display: flex;
 }
 
 .table-navigation__row:nth-child(odd) {
    background-color: #f8f8f8;
-   border-right: 4px solid #f8f8f8;
    border-left: 4px solid #f8f8f8;
+   border-right: 4px solid #f8f8f8;
 
 }
 
 .table-navigation__row:hover:not(.table-navigation__header) {
-   border-right: 4px solid #93b0d1;
+   background-color: #e3efff;
    border-left: 4px solid #93b0d1;
-   background-color: #E3EFFF;
+   border-right: 4px solid #93b0d1;
 }
 
 .table-navigation__title {
@@ -160,13 +160,13 @@
 }
 
 .table-navigation__column {
+   cursor: default;
    padding: 10px 15px;
    width: 12%;
-   cursor: default;
 }
 
 a.table-navigation__column {
-   color: #274F7C;
+   color: #274f7c;
    cursor: pointer;
 }
 
@@ -179,12 +179,12 @@ a.table-navigation__column {
 }
 
 .table-navigation__icon-sort {
-   color: #ADADAD;
+   color: #adadad;
 }
 
 .table-navigation__footer {
    border-top: 2px solid #93b0d1;
-   padding: 5px 0px;
+   padding: 5px 0;
 }
 
 

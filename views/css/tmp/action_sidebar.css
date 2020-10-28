@@ -3,20 +3,20 @@
 .info__item,
 .view__hierarchy,
 .view-actions {
-   background-color: #ffffff;
+   background-color: #fff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
 }
 
 .view__object {
+   margin: 0 0 10px 0;
    padding: 10px 10px 10px 20px;
-   margin: 0px 0px 10px 0px;
    text-align: center;
 }
 
 .view__header {
+   margin: 0 0 10px 0;
    padding: 15px 20px;
-   margin: 0px 0px 10px 0px;
 }
 
 .view__title {
@@ -32,39 +32,39 @@
 .view__sidebar {
    /*width: 15%;*/
    /*todo придумать что-то с шириной*/
-   min-width: 250px;
+   margin: 0 10px 10px 0;
    max-width: 250px;
    /*width: 250px;*/
-   margin: 0px 10px 10px 0px;
+   min-width: 250px;
 }
 
 .info {
    display: flex;
    flex-direction: column;
-   margin: 0px 0px 5px 0px;
+   margin: 0 0 5px 0;
 }
 
 .info__item {
-   display: flex;
    align-items: center;
-   background-color: #ffffff;
+   background-color: #fff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
-   margin: 0px 0px 5px 0px;
+   display: flex;
+   margin: 0 0 5px 0;
    padding: 10px;
 }
 
 .info__icon {
    color: #6081a8;;
-   margin: 0px 10px 0px 0px;
    font-size: 18px;
+   margin: 0 10px 0 0;
 
 }
 
 .info__description {
    display: flex;
-   flex-grow: 1;
    flex-direction: column;
+   flex-grow: 1;
    font-size: 14px;
 }
 
@@ -83,7 +83,7 @@
 }
 
 .hierarchy__section {
-   border-left: 4px solid #ffffff;
+   border-left: 4px solid #fff;
    padding: 7px 10px;
    /*transition: background-color, border-color .1s;*/
    /*todo убрать при загрузке страницы*/
@@ -96,16 +96,16 @@
 }
 
 .hierarchy__section:hover {
-   background-color: #F3F5F6;
+   background-color: #f3f5f6;
    border-color: #93b0d1;
 }
 
 .hierarchy__section:first-child {
-   border-radius: 4px 4px 0px 0px;
+   border-radius: 4px 4px 0 0;
 }
 
 .hierarchy__section:last-child {
-   border-radius: 0px 0px 4px 4px;
+   border-radius: 0 0 4px 4px;
 }
 
 .hierarchy__section:nth-child(1):last-child {
@@ -113,9 +113,9 @@
 }
 
 .hierarchy__item {
+   align-items: flex-start;
    display: flex;
    flex-direction: column;
-   align-items: flex-start;
 }
 
 .hierarchy__item[data-depth='1'] {
@@ -127,16 +127,16 @@
 }
 
 .hierarchy__text {
-   font-size: 14px;
    color: #6e6e6e;
+   font-size: 14px;
 }
 
 .hierarchy__description {
+   color: #6e6e6e;
    display: flex;
    flex-direction: column;
-   margin: 0px 0px 0px 11px;
    font-size: 14px;
-   color: #6e6e6e;
+   margin: 0 0 0 11px;
 }
 
 .view__body {
@@ -146,8 +146,8 @@
 
 .view-actions {
    /*width: 15%;*/
+   margin: 0 0 0 10px;
    min-width: 200px;
-   margin: 0px 0px 0px 10px;
 }
 
 .view-actions__header {
@@ -162,10 +162,10 @@
 }
 
 .view-actions__action {
+   border-right: 4px solid #fff;
    display: block;
-   padding: 10px 15px;
    font-size: 16px;
-   border-right: 4px solid #ffffff;
+   padding: 10px 15px;
 
    /*transition: background-color, border-color .1s;*/
    /*todo убрать при загрузке страницы*/
@@ -173,16 +173,16 @@
 }
 
 .view-actions__action:hover {
-   background-color: #F3F5F6;
+   background-color: #f3f5f6;
    border-color: #93b0d1;
 }
 
 .view-actions__action:first-child {
-   border-radius: 4px 4px 0px 0px;
+   border-radius: 4px 4px 0 0;
 }
 
 .view-actions__action:last-child {
-   border-radius: 0px 0px 4px 4px;
+   border-radius: 0 0 4px 4px;
 }
 
 .view-actions__action:last-child:first-child {
@@ -195,14 +195,14 @@
 
 
 .hierarchy__icon-stage {
+   color: #6c89a8;
    font-size: 8px;
-   margin: 0px 5px 0px 0px;
-   color: #6C89A8;
+   margin: 0 5px 0 0;
 }
 
 
 .hierarchy__cards {
-   border: 1px solid #CAD6E7;
+   border: 1px solid #cad6e7;
    border-radius: 4px;
 
 }
@@ -210,30 +210,28 @@
 
 .hierarchy__experts {
 
-   color: #6A7E9A;
+   color: #6a7e9a;
    display: flex;
    flex-direction: column;
 
 }
 
 .hierarchy__card {
-   display: flex;
    align-items: center;
+   display: flex;
    /*border-left: 2px solid #93b0d1;*/
 }
 
 
 .hierarchy__label {
-   padding: 2px 0px;
-   margin: 0px 5px 0px 0px;
    font-weight: 700;
+   margin: 0 5px 0 0;
+   padding: 2px 0;
 }
 
 .hierarchy__descriptions {
    white-space: nowrap;
 }
-
-
 
 
 /*.test {
@@ -254,7 +252,7 @@
 }*/
 
 .qwe {
-   background-color: #ffffff;
+   background-color: #fff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
    flex-grow: 1;

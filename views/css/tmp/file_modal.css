@@ -3,10 +3,10 @@
 }
 
 .file-modal__drop-area {
+   border: 1px solid #fff;
    flex-grow: 1;
    margin: 3px;
-   padding: 2px 2px 0px 0px;
-   border: 1px solid #ffffff;
+   padding: 2px 2px 0 0;
 }
 
 .file-modal__drop-area.active {
@@ -15,52 +15,52 @@
 }
 
 .file-modal__header {
-   display: flex;
    align-items: center;
-   position: relative;
-   height: 40px;
    border-bottom: 2px solid #ffd354;
    cursor: default;
+   display: flex;
    font-size: 18px;
+   height: 40px;
+   position: relative;
 }
 
 .file-modal__title {
-   margin: 0px 0px 0px 10px;
+   margin: 0 0 0 10px;
 }
 
 .file-modal__progress_bar {
+   background-color: #ffe69d;
+   height: 40px;
+   left: 0;
    position: absolute;
    top: 0;
-   left: 0;
-   z-index: -1;
-   height: 40px;
-   width: 0;
-   background-color: #FFE69D;
    transition: .15s;
+   width: 0;
+   z-index: -1;
 }
 
 .file-modal__body {
    flex-grow: 1;
    max-height: 440px;
-   overflow-y: auto;
    overflow-x: hidden;
+   overflow-y: auto;
 }
 
 .file-modal__item {
-   display: flex;
    align-items: center;
-   padding: 6px 0px 6px 10px;
-   margin: 0px 6px;
-   cursor: default;
-   transition: .15s;
    border-radius: 4px;
+   cursor: default;
+   display: flex;
+   margin: 0 6px;
+   padding: 6px 0 6px 10px;
+   transition: .15s;
 }
 
 .file-modal__icon {
-   font-size: 20px;
-   margin: 0px 10px 0px 0px;
-   cursor: pointer;
    color: #254160;
+   cursor: pointer;
+   font-size: 20px;
+   margin: 0 10px 0 0;
 }
 
 .file-modal__item:hover {
@@ -68,41 +68,41 @@
 }
 
 .file-modal__size {
-   font-size: 14px;
    color: #6e6e6e;
+   font-size: 14px;
 }
 
 .file-modal__delete-icon {
-   font-size: 20px;
    cursor: pointer;
-   margin: 0px 10px;
+   font-size: 20px;
+   margin: 0 10px;
 }
 
 .file-modal__actions {
-   width: 500px;
+   border-top: 2px solid #ffd354;
    display: flex;
    justify-content: space-between;
-   border-top: 2px solid #ffd354;
+   width: 500px;
 }
 
 
 .file-modal__button {
-   display: flex;
    align-items: center;
-   justify-content: center;
+   background-color: #fff;
+   cursor: pointer;
+   display: flex;
    flex-grow: 1;
    height: 50px;
-   background-color: #ffffff;
-   cursor: pointer;
+   justify-content: center;
    transition: .15s;
 }
 
 .file-modal__button:first-child {
-   border-radius: 0px 0px 0px 3px;
+   border-radius: 0 0 0 3px;
 }
 
 .file-modal__button:last-child {
-   border-radius: 0px 0px 3px 0px;
+   border-radius: 0 0 3px 0;
 }
 
 .file-modal__button:hover {

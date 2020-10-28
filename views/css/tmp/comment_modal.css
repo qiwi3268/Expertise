@@ -1,18 +1,18 @@
 .comment-modal {
+   color: #343a40;
+   flex-direction: row;
    height: 98%;
-   min-width: 1024px;
-   max-width: 1655px;
 
-   top: 50%;
+   max-width: 1655px;
    /*overflow-y: auto;*/
    /*overflow-x: hidden;*/
 
-   overflow: hidden;
+   min-width: 1024px;
    /*position: absolute;*/
 
-   color: #343a40;
+   overflow: hidden;
 
-   flex-direction: row;
+   top: 50%;
    z-index: 1000;
 }
 
@@ -26,24 +26,24 @@
 
 .comment-modal__body {
    height: 100%;
-   overflow-y: auto;
    overflow-x: hidden;
+   overflow-y: auto;
 }
 
 .comment-modal__form {
-   width: 50%;
    display: flex;
    flex-direction: column;
+   width: 50%;
 }
 
 .comment-modal__form > .comment-modal__body {
    border-right: 2px solid #93b0d1;
-   padding: 10px 0px;
+   padding: 10px 0;
 }
 
 .comment-modal__form .form-field {
-   flex-direction: column;
    align-items: flex-start;
+   flex-direction: column;
    margin: 0 20px;
 }
 
@@ -56,9 +56,9 @@
 }
 
 .comment-modal__form .form-field__title {
+   margin: 0 0 10px 0;
    text-align: left;
    width: 100%;
-   margin: 0px 0px 10px 0px;
 }
 
 .comment-modal__files {
@@ -66,8 +66,8 @@
 }
 
 .comment-modal__header {
-   padding: 10px;
    border-bottom: 2px solid #93b0d1;
+   padding: 10px;
 }
 
 .comment-modal__title {
@@ -105,21 +105,21 @@
 }
 
 .field-card {
-   margin: 10px 20px;
    border-radius: 4px;
+   margin: 10px 20px;
 }
 
 .field-card__header {
-   padding: 10px;
+   align-items: center;
    /*border: 1px solid #e0e0e0;*/
-   border: 1px solid #cccccc;
    background-color: #f6f8fa;
+   border: 1px solid #ccc;
    border-bottom: 0;
    border-radius: 4px 4px 0 0;
 
    display: flex;
    justify-content: space-between;
-   align-items: center;
+   padding: 10px;
 }
 
 .field-card__body {
@@ -127,21 +127,21 @@
 }
 
 .field-card__body textarea {
+   border-radius: 0 0 4px 4px;
    flex-grow: 1;
-   border-radius: 0px 0px 4px 4px;
    font-size: 16px;
    /*border-color: #e0e0e0;*/
    /*border: 1px solid #cccccc;*/
 }
 
 .field-card[data-required='true'] .field-card__title::after {
-   content: '*';
    color: #bd4949;
+   content: '*';
 }
 
 .files__checkbox {
+   color: #6180a4;
    font-size: 18px;
-   color: #6180A4;
 }
 
 .files__checkbox.fas {
@@ -202,9 +202,9 @@
 */
 
 .field-card__icon-secret {
-   font-size: 18px;
-   margin: 0px 5px;
    color: #3b516b;
+   font-size: 18px;
+   margin: 0 5px;
 }
 
 .comment-modal__note-tooltip {

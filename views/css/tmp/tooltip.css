@@ -10,48 +10,48 @@
 
 
 .tooltip {
-   visibility: hidden;
-   opacity: 0;
+   background-color: #fff;
+   border: 1px solid rgba(0, 0, 0, .2);
 
    /*border-radius: 6px;*/
    /* Position the tooltip */
-   position: absolute;
-   z-index: 9999;
+   border-radius: 6px;
+   box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
 
-   font-family: 'Roboto Condensed', sans-serif;
    color: #343a40;
+   font-family: 'Roboto Condensed', sans-serif;
    font-size: 16px;
    font-weight: 400;
 
-   top: 0;
    left: 103%;
+   opacity: 0;
 
    /*background-color: #F3F6F9;*/
-   background-color: #ffffff;
-   border-radius: 6px;
+   position: absolute;
+   top: 0;
    /*box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);*/
    /*box-shadow: 0px 0px 25px -5px rgba(0,0,0,0.75);*/
 
-   border: 1px solid rgba(0,0,0,.2);
-   box-shadow: 0 5px 10px rgba(0,0,0,.2);
+   visibility: hidden;
+   z-index: 9999;
 
 
 }
 
 .tooltip.active {
-   visibility: visible;
    opacity: 1;
+   visibility: visible;
 }
 
 .tooltip::after {
-   content: " ";
+   border-color: transparent #fff transparent transparent;
 
-   position: absolute;
-   top: 10px;
-   right: 100%; /* To the left of the tooltip */
-   border-width: 10px;
    border-style: solid;
-   border-color: transparent #ffffff transparent transparent;
+   border-width: 10px;
+   content: " ";
+   position: absolute;
+   right: 100%; /* To the left of the tooltip */
+   top: 10px;
 
 }
 

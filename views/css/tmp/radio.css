@@ -1,14 +1,14 @@
 .radio__body.inline {
-   display: flex;
    align-items: center;
+   display: flex;
 }
 
 .radio__icon {
-   margin: 0px 10px 0px 0px;
+   margin: 0 10px 0 0;
 }
 
 .radio__body.inline .radio__icon {
-   margin: 0px 5px 0px 0px;
+   margin: 0 5px 0 0;
 }
 
 .radio__icon {
@@ -16,17 +16,17 @@
 }
 
 .radio__item {
-   display: flex;
    align-items: center;
    cursor: pointer;
+   display: flex;
 }
 
 .radio__item.col:not(:last-child) {
-   margin: 0px 0px 10px 0px;
+   margin: 0 0 10px 0;
 }
 
-.radio__body.inline > .radio__item {
-   margin: 0px 10px 0px 0px;
+.radio__body.inline .radio__item {
+   margin: 0 10px 0 0;
 }
 
 .radio__text {

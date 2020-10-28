@@ -1,19 +1,19 @@
 .application-header {
-   display: flex;
-   justify-content: space-between;
-   min-height: 50px;
-   margin: 0px 0px 10px 0px;
+   background-color: #fff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
-   background-color: #ffffff;
+   display: flex;
+   justify-content: space-between;
+   margin: 0 0 10px 0;
+   min-height: 50px;
 }
 
 .application-header__title {
    align-self: center;
-   margin: 0px 0px 0px 20px;
    font-family: 'Bebas Neue', sans-serif;
    font-size: 20px;
    font-weight: 700;
+   margin: 0 0 0 20px;
 }
 
 .application-header__actions {
@@ -21,90 +21,90 @@
 }
 
 .application-header__button {
-   display: flex;
    align-items: center;
-   padding: 0px 15px;
-   border-bottom: 2px solid #ffffff;
+   border-bottom: 2px solid #fff;
    cursor: pointer;
+   display: flex;
+   padding: 0 15px;
    /*transition: background-color 0.15s;*/
    transition: background-color, border-color 0.15s;
 }
 
 .application-header__button:hover {
-   border-bottom: 2px solid #ffd354;
    background-color: #f2f2f2;
+   border-bottom: 2px solid #ffd354;
 }
 
 .application-header__text {
-   margin: 0px 15px 0px 0px;
    font-family: 'PT Sans Narrow', sans-serif;
    font-size: 18px;
+   margin: 0 15px 0 0;
 }
 
 .application-header__icon-save {
-   font-size: 20px;
    color: #8e8e8e;
+   font-size: 20px;
 }
 
 .application-header__icon-delete {
-   font-size: 18px;
    color: #8e8e8e;
+   font-size: 18px;
 }
 
 /* application-form__header =================================================================== */
 
 .application-form {
+   align-items: flex-start;
    display: flex;
    flex-grow: 1;
-   align-items: flex-start;
 }
 
 .application-form__sidebar {
-   margin: 0px 10px 0px 0px;
+   margin: 0 10px 0 0;
    /*max-width: 20%;*/
    min-width: 300px;
    width: 300px;
 }
 
 .sidebar-form {
+   background-color: #fff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
-   background-color: #ffffff;
    cursor: pointer;
 }
 
 .sidebar-form__row {
+   border-left: 4px solid #fff;
    padding: 7px 15px;
-   border-left: 4px solid #ffffff;
 }
 
 .sidebar-form__row:first-child {
-   border-radius: 4px 4px 0px 0px;
+   border-radius: 4px 4px 0 0;
 }
 
 .sidebar-form__row:last-child {
-   border-radius: 0px 0px 4px 4px;
+   border-radius: 0 0 4px 4px;
 }
 
 .sidebar-form__row.valid {
-   border-color: #e8ffed;
    background-color: #e8ffed;
+   border-color: #e8ffed;
 }
 
 .sidebar-form__row.warning {
-   border-color: #fefaef;
    background-color: #fefaef;
+   border-color: #fefaef;
 }
 
 .sidebar-form__row.selected {
-   border-color: #ffd354;
    background-color: #f2f2f2;
+   border-color: #ffd354;
 }
 
 
 .sidebar-form__row.selected.sidebar-form__row.valid {
-   border-color: #87c596;
    background-color: #ddfad9;
+   border-color: #87c596;
 }
 
 .sidebar-form__row.selected.sidebar-form__row.warning {
@@ -112,24 +112,25 @@
 }
 
 .sidebar-form__icon {
+   color: #87c596;
    display: none;
    font-size: 22px;
-   color: #87c596;
 }
 
 .sidebar-form__icon.valid {
-   display: block;
    color: #87c596;
+   display: block;
 }
 
 .sidebar-form__icon.warning {
-   display: block;
    color: #ffd354;
+   display: block;
 }
 
 .sidebar-form__icon.fa-exclamation {
-   margin: 0px 7px 0px 0px;
+   margin: 0 7px 0 0;
 }
+
 /* application-form__sidebar =================================================================== */
 
 .application-form__cards {
@@ -138,12 +139,12 @@
 }
 
 .card-form {
-   margin: 0px 0px 10px 0px;
+   background-color: #fff;
    /*border-left: 4px solid #ffd354;*/
    border-left: 4px solid #93b0d1;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
-   background-color: #ffffff;
+   margin: 0 0 10px 0;
 }
 
 .card-form[data-completed="true"] {
@@ -155,40 +156,40 @@
 }
 
 .card-form[data-completed="false"] {
-   border-color: #E99A9A;
+   border-color: #e99a9a;
 }
 
 .card-form[data-completed="false"] .card-form__icon-state {
-   color: #E28383;
+   color: #e28383;
 }
 
 .card-form__icon-state {
-   margin: 0px 0px 0px 15px;
    font-size: 20px;
+   margin: 0 0 0 15px;
 }
 
 .card-form__header {
-   display: flex;
    align-items: center;
-   /*min-height: 35px;*/
    border-bottom: 1px solid #e0e0e0;
+   /*min-height: 35px;*/
    color: #1c3959;
-   user-select: none;
    cursor: pointer;
+   display: flex;
+   user-select: none;
 }
 
 
 .card-form__title {
-   flex-grow: 1;
    display: flex;
-   padding: 10px 0px;
-   margin: 0px 20px 0px 10px;
+   flex-grow: 1;
    font-size: 16px;
+   margin: 0 20px 0 10px;
+   padding: 10px 0;
 }
 
 .card-form__icon-expand {
-   margin: 0px 20px 0px 0px;
    font-size: 20px;
+   margin: 0 20px 0 0;
 }
 
 /* card-form =================================================================== */
@@ -198,22 +199,22 @@
 }
 
 .form-field {
-   display: flex;
    align-items: center;
+   display: flex;
+   margin: 0 15px;
+   padding: 10px 0;
    position: relative;
-   margin: 0px 15px;
-   padding: 10px 0px;
 }
 
 .form-field__title {
+   margin: 0 20px 0 0;
    text-align: right;
    width: 30%;
-   margin: 0px 20px 0px 0px;
 }
 
 .form-field[data-required='true'] .form-field__title::after {
-   content: '*';
    color: #bd4949;
+   content: '*';
 }
 
 .form-field__title.fas {
@@ -226,22 +227,22 @@
 }
 
 .form-field__body {
-   display: flex;
    align-items: center;
+   display: flex;
 }
 
 /*todo вынести*/
 .form-field__select {
-   box-sizing: border-box;
-   display: flex;
    align-items: center;
-   flex-grow: 1;
-   padding: 10px;
-   border: 1px solid #cccccc;
+   border: 1px solid #ccc;
    border-radius: 4px;
-   font-size: 14px;
+   box-sizing: border-box;
    color: #6e6e6e;
    cursor: pointer;
+   display: flex;
+   flex-grow: 1;
+   font-size: 14px;
+   padding: 10px;
    transition: box-shadow .10s;
 }
 
@@ -249,6 +250,7 @@
    box-sizing: border-box;
    width: 100%;
 }
+
 /*
 .form-field__input:focus,
 .form-field__input:hover {
@@ -261,10 +263,10 @@
 .form-field__body.filled .form-field__input {
    /*color: #343a40;*/
    /*background-color: #f5f6fa;*/
-   color: #1c3959;
+   background-color: #f9fafe;
    /*border-color: #9ea9b3;*/
    border-color: #818e9a;
-   background-color: #f9fafe;
+   color: #1c3959;
 }
 
 .form-field.filled .form-field__select:hover,
@@ -273,15 +275,14 @@
 }
 
 /*.form-field__select.filled > .form-field__icon-misc */
-.form-field.filled .form-field__icon-misc
-{
+.form-field.filled .form-field__icon-misc {
    display: none;
 }
 
 .form-field__icon-filled {
-   display: none;
-   margin: 0px 5px 0px 10px;
    color: #1c3959;
+   display: none;
+   margin: 0 5px 0 10px;
 }
 
 /*.form-field__select.filled > .form-field__icon-filled,*/
@@ -292,8 +293,8 @@
 
 .form-field__select:hover,
 .card-form__add-button:hover {
-   box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
    border-color: #80bdff;
+   box-shadow: 0 0 0 3px rgba(191, 222, 255, 1);
 }
 
 .form-field__value {
@@ -301,16 +302,16 @@
 }
 
 .form-field__error {
-   display: none;
-   margin: 2px 0px 0px 0px;
-   font-size: 12px;
    color: #bd4949;
+   display: none;
+   font-size: 12px;
+   margin: 2px 0 0 0;
 }
 
 .form-field__input-error {
-   visibility: hidden;
-   font-size: 12px;
    color: #bd4949;
+   font-size: 12px;
+   visibility: hidden;
 }
 
 .form-field__input-error.active {
@@ -318,7 +319,7 @@
 }
 
 .card-form__icon.fa-bars {
-   margin: 0px 5px 0px 0px;
+   margin: 0 5px 0 0;
 }
 
 .card-form__icon.fa-file {
@@ -333,12 +334,11 @@ textarea.form-field__input.invalid {
 }
 
 
-
 .form-field__select.invalid:hover,
 .form-field__select.invalid:focus,
 .form-field__input.invalid:hover,
 .form-field__input.invalid:focus {
-   box-shadow: 0px 0px 0px 3px rgba(255,176,176,1);
+   box-shadow: 0 0 0 3px rgba(255, 176, 176, 1);
 }
 
 .field.invalid .form-field__error {
@@ -347,39 +347,39 @@ textarea.form-field__input.invalid {
 
 
 .form-field__icon-clear {
-   margin: 0px 0px 0px 3px;
+   border: #fff solid 2px;
    /*padding: 10px;*/
-   padding: 8px;
-   border: #ffffff solid 2px;
    border-radius: 4px;
-   /*color: #6e6e6e;*/
-   cursor: pointer;
-   transition: 0.15s;
-
    color: #a33c3c;
+   cursor: pointer;
+   /*color: #6e6e6e;*/
+   margin: 0 0 0 3px;
+   padding: 8px;
+
+   transition: .15s;
 
 }
 
-.form-field__icon-clear.fa-calendar-times{
+.form-field__icon-clear.fa-calendar-times {
    font-size: 18px;
 }
 
 .form-field__icon-clear:hover {
-   border-color: #ffb0b0;
    background-color: #ffb0b0;
+   border-color: #ffb0b0;
    color: #a93d3d;
 }
 
 .card-form__message {
-   display: flex;
    align-items: center;
+   display: flex;
    padding: 15px 10px;
 }
 
 .card-form__icon-message {
-   margin: 0px 10px 0px 10px;
-   font-size: 22px;
    color: #bd4949;
+   font-size: 22px;
+   margin: 0 10px 0 10px;
 }
 
 .card-form__message-text {
@@ -391,26 +391,26 @@ textarea.form-field__input.invalid {
 
 /*todo объединить с alert-modal*/
 .save-modal {
-   padding: 10px;
    font-size: 18px;
+   padding: 10px;
 }
 
 .save-modal__info {
-   display: flex;
    align-items: center;
+   display: flex;
    justify-content: center;
-   padding: 10px 0px;
+   padding: 10px 0;
 }
 
 .save-modal__icon {
-   font-size: 22px;
    color: #87c596;
-   margin: 0px 10px 0px 0px;
+   font-size: 22px;
+   margin: 0 10px 0 0;
 }
 
 .save-modal__actions {
    display: flex;
-   padding: 10px 0px 0px;
+   padding: 10px 0 0;
 }
 
 .save-modal__link {
@@ -419,27 +419,27 @@ textarea.form-field__input.invalid {
 
 .save-modal__close {
    flex-grow: 1;
-   margin: 0px 10px 0px 0px;
+   margin: 0 10px 0 0;
 }
 
 /*================*/
 
 .alert-modal {
-   padding: 10px;
    font-size: 18px;
+   padding: 10px;
 }
 
 .alert-modal__info {
-   display: flex;
    align-items: center;
+   display: flex;
    justify-content: center;
    padding: 10px;
 }
 
 .alert-modal__icon {
-   font-size: 22px;
    color: #87c596;
-   margin: 0px 10px 0px 0px;
+   font-size: 22px;
+   margin: 0 10px 0 0;
 }
 
 .alert-modal__icon.warning {
@@ -449,7 +449,7 @@ textarea.form-field__input.invalid {
 
 .alert-modal__actions {
    display: flex;
-   padding: 10px 0px 0px;
+   padding: 10px 0 0;
 }
 
 .alert-modal__button {
@@ -457,7 +457,7 @@ textarea.form-field__input.invalid {
 }
 
 .alert-modal__button:first-child {
-   margin: 0px 10px 0px 0px;
+   margin: 0 10px 0 0;
 }
 
 
@@ -473,18 +473,18 @@ textarea.form-field__input.invalid {
 /* tmp ========================================================================= */
 
 .field.filled .form-field__select.file-select {
-   border-radius: 4px 4px 0px 0px;
+   border-radius: 4px 4px 0 0;
 }
 
 
 .files {
+   border: 1px solid #ccc;
+   border-top: 0;
    display: none;
-   border: 1px solid #cccccc;
-   border-top: 0px;
 }
 
 .documentation__files {
-   border: 0px;
+   border: 0;
    border-top: 1px solid #e0e0e0;
 }
 

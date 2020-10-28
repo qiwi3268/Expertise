@@ -5,22 +5,22 @@
 
 .multiple-block__icon {
    font-size: 16px;
-   margin: 0px 0px 0px 15px;
+   margin: 0 0 0 15px;
 }
 
 .multiple-block__actions {
    display: flex;
    justify-content: center;
-   margin: 0px 0px 10px 0px;
+   margin: 0 0 10px 0;
 }
 
 .multiple-block__add.form-button {
-   min-width: 280px;
-   margin: 10px;
    align-self: flex-start;
+   margin: 10px;
+   min-width: 280px;
 }
 
-.multiple-block__action.form-button{
+.multiple-block__action.form-button {
    min-width: 280px;
 }
 
@@ -30,31 +30,31 @@
 
 .multiple-block__short {
    /*margin: 10px;*/
-   margin: 0px 10px 5px;
-   display: flex;
    align-items: center;
+   display: flex;
+   margin: 0 10px 5px;
 }
 
 
 .multiple-block__delete {
-   margin: 0px 0px 0px 3px;
-   padding: 8px;
-   border: #ffffff solid 2px;
+   border: #fff solid 2px;
    border-radius: 4px;
    color: #a93d3d;
    cursor: pointer;
+   margin: 0 0 0 3px;
+   padding: 8px;
    transition: 0.15s;
 }
 
 .multiple-block__delete:hover {
-   border-color: #ffb0b0;
    background-color: #ffb0b0;
+   border-color: #ffb0b0;
 }
 
 .multiple-block__part:not(.short) {
-   margin: 20px;
    border: 1px solid #e0e0e0;
    border-radius: 4px;
+   margin: 20px;
 }
 
 .multiple-block__part.short > .multiple-block__title {
@@ -62,11 +62,11 @@
 }
 
 .multiple-block__title {
-   padding: 10px 15px;
+   background-color: #f6f8fa;
    /*font-weight: 700;*/
    border-bottom: 1px solid #e0e0e0;
-   background-color: #f6f8fa;
-   border-radius: 4px 4px 0px 0px;
+   border-radius: 4px 4px 0 0;
+   padding: 10px 15px;
 }
 
 
