@@ -1,17 +1,17 @@
 .group-modal {
    height: 98%;
-   min-width: 1024px;
    max-width: 1655px;
-
-   top: 50%;
+   min-width: 1024px;
 
    overflow: hidden;
+
+   top: 50%;
 
    /*flex-direction: row;*/
 }
 
 .group-modal ::-webkit-scrollbar-thumb {
-   background: #9DB4D0;
+   background: #9db4d0;
 }
 
 .group-modal__comments {
@@ -23,14 +23,15 @@
 .group-modal__body {
    display: flex;
    flex-grow: 1;
+   overflow: hidden;
 }
 
 .group-modal__messages {
-   width: 50%;
    background-color: #f2f2f2;
-   overflow-y: auto;
    color: #343a40;
-   padding: 10px 0px 0px 0px;
+   overflow-y: auto;
+   padding: 10px 0 0 0;
+   width: 50%;
 }
 
 .group-message {
@@ -38,28 +39,28 @@
    border-radius: 8px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
    font-size: 14px;
+   margin: 0 30px 10px 5px;
    overflow: hidden;
-   margin: 0px 30px 10px 5px;
 }
 
 .group-message:nth-child(odd) {
    justify-self: flex-end;
-   margin: 0px 5px 10px 30px;
+   margin: 0 5px 10px 30px;
 }
 
 .group-modal__header {
-   border-bottom: 2px solid #93b0d1;
-   /*padding: 10px;*/
-   padding: 0px 10px 0px 0px;
-   display: flex;
    align-items: center;
-   justify-content: space-between;
+   /*padding: 10px;*/
+   border-bottom: 2px solid #93b0d1;
    color: #343a40;
+   display: flex;
+   justify-content: space-between;
+   padding: 0 10px 0 0;
 }
 
 .group-message__header {
-   display: flex;
    border-bottom: 1px solid #e0e0e0;
+   display: flex;
    /*padding: 7px 10px;*/
 }
 
@@ -68,8 +69,8 @@
 }
 
 .group-message__item {
-   display: flex;
    align-items: center;
+   display: flex;
    /*padding: 10px;*/
    padding: 7px 10px;
 }
@@ -91,8 +92,8 @@
 }
 
 .group-message__icon {
-   margin: 0px 5px 0px 0px;
    color: #6081a8;
+   margin: 0 5px 0 0;
 }
 
 .group-message__date {

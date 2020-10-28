@@ -94,6 +94,236 @@
             </div>
             <div class="group-message group-modal__message">
                 <div class="group-message__header">
+                    <div class="group-message__item group-message__date">
+                        <i class="fas fa-clock group-message__icon"></i>
+                        <div class="group-message__text">16.07.20 13:55</div>
+                    </div>
+                    <div class="group-message__item">
+                        <i class="fas fa-user group-message__icon"></i>
+                        <div class="group-message__text">Митусов А.В.</div>
+                    </div>
+                </div>
+                <div class="group-message__body">
+                    <div class="group-message__item">
+                        <div class="group-message__text">Замечание принято.
+                            На основании «Ведомости объемов земляных масс» л. 8 раздела ТП-19.048.361-ПЗУ.ГЧ, а также «Справки об объемах земляных работ и расходе основных строительных материалов2 (см. приложение 2), объем выемки грунта составляет 95 м3, объем использования грунта при обратной засыпке составит 58 м3. Таким образом, объем излишков грунта составит 37,0 м3 (67 т).
+                            См. раздел ТП-19.048.361-ООС л. 21, 22.</div>
+                    </div>
+                    <div class="group-message__item">
+                        <i class="fas fa-pencil-ruler group-message__icon"></i>
+                        <div class="group-message__text">ТП-19.048.361-ООС л. 21, 22.</div>
+                    </div>
+                    <!--
+                    <div class="group-message__item">
+                       
+                        <div class="group-message__file files filled" data-id_file_field>
+                            <div class="files__item" data-read_only="true" data-id="1114" data-state="valid">
+                                <div class="files__info">
+                                    <i class="files__icon fas fa-file-pdf"></i>
+                                    <div class="files__description">
+                                        <span class="files__name">Раздел ПД №5 Подраздел №5_АСП.025.2019-ИОС5_ИУЛ.pdf (1).sig</span>
+                                        <span class="files__size">148,97 Кб</span>
+                                    </div>
+                                </div>
+                                <div class="files__state">
+                                    <i class="files__state-icon fas fa-pen-alt"></i>
+                                    <span class="files__state-text">Не подписано</span>
+                                </div>
+                                <div class="files__actions">
+                                    <i class="files__unload fas fa-angle-double-down"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </div>
+            <div class="group-message group-modal__message">
+                <div class="group-message__header">
+                    <div class="group-message__item group-message__date">
+                        <i class="fas fa-clock group-message__icon"></i>
+                        <div class="group-message__text">16.07.20 13:55</div>
+                    </div>
+                    <div class="group-message__item">
+                        <i class="fas fa-user group-message__icon"></i>
+                        <div class="group-message__text">Митусов А.В.</div>
+                    </div>
+                </div>
+                <div class="group-message__body">
+                    <div class="group-message__item">
+                        <div class="group-message__text">Замечание принято.
+                            На основании «Ведомости объемов земляных масс» л. 8 раздела ТП-19.048.361-ПЗУ.ГЧ, а также «Справки об объемах земляных работ и расходе основных строительных материалов2 (см. приложение 2), объем выемки грунта составляет 95 м3, объем использования грунта при обратной засыпке составит 58 м3. Таким образом, объем излишков грунта составит 37,0 м3 (67 т).
+                            См. раздел ТП-19.048.361-ООС л. 21, 22.</div>
+                    </div>
+                    <div class="group-message__item">
+                        <i class="fas fa-pencil-ruler group-message__icon"></i>
+                        <div class="group-message__text">ТП-19.048.361-ООС л. 21, 22.</div>
+                    </div>
+                    <!--
+                    <div class="group-message__item">
+                       
+                        <div class="group-message__file files filled" data-id_file_field>
+                            <div class="files__item" data-read_only="true" data-id="1114" data-state="valid">
+                                <div class="files__info">
+                                    <i class="files__icon fas fa-file-pdf"></i>
+                                    <div class="files__description">
+                                        <span class="files__name">Раздел ПД №5 Подраздел №5_АСП.025.2019-ИОС5_ИУЛ.pdf (1).sig</span>
+                                        <span class="files__size">148,97 Кб</span>
+                                    </div>
+                                </div>
+                                <div class="files__state">
+                                    <i class="files__state-icon fas fa-pen-alt"></i>
+                                    <span class="files__state-text">Не подписано</span>
+                                </div>
+                                <div class="files__actions">
+                                    <i class="files__unload fas fa-angle-double-down"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </div>
+            <div class="group-message group-modal__message">
+                <div class="group-message__header">
+                    <div class="group-message__item group-message__date">
+                        <i class="fas fa-clock group-message__icon"></i>
+                        <div class="group-message__text">16.07.20 13:55</div>
+                    </div>
+                    <div class="group-message__item">
+                        <i class="fas fa-user group-message__icon"></i>
+                        <div class="group-message__text">Митусов А.В.</div>
+                    </div>
+                </div>
+                <div class="group-message__body">
+                    <div class="group-message__item">
+                        <div class="group-message__text">Замечание принято.
+                            На основании «Ведомости объемов земляных масс» л. 8 раздела ТП-19.048.361-ПЗУ.ГЧ, а также «Справки об объемах земляных работ и расходе основных строительных материалов2 (см. приложение 2), объем выемки грунта составляет 95 м3, объем использования грунта при обратной засыпке составит 58 м3. Таким образом, объем излишков грунта составит 37,0 м3 (67 т).
+                            См. раздел ТП-19.048.361-ООС л. 21, 22.</div>
+                    </div>
+                    <div class="group-message__item">
+                        <i class="fas fa-pencil-ruler group-message__icon"></i>
+                        <div class="group-message__text">ТП-19.048.361-ООС л. 21, 22.</div>
+                    </div>
+                    <!--
+                    <div class="group-message__item">
+                       
+                        <div class="group-message__file files filled" data-id_file_field>
+                            <div class="files__item" data-read_only="true" data-id="1114" data-state="valid">
+                                <div class="files__info">
+                                    <i class="files__icon fas fa-file-pdf"></i>
+                                    <div class="files__description">
+                                        <span class="files__name">Раздел ПД №5 Подраздел №5_АСП.025.2019-ИОС5_ИУЛ.pdf (1).sig</span>
+                                        <span class="files__size">148,97 Кб</span>
+                                    </div>
+                                </div>
+                                <div class="files__state">
+                                    <i class="files__state-icon fas fa-pen-alt"></i>
+                                    <span class="files__state-text">Не подписано</span>
+                                </div>
+                                <div class="files__actions">
+                                    <i class="files__unload fas fa-angle-double-down"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </div>
+            <div class="group-message group-modal__message">
+                <div class="group-message__header">
+                    <div class="group-message__item group-message__date">
+                        <i class="fas fa-clock group-message__icon"></i>
+                        <div class="group-message__text">16.07.20 13:55</div>
+                    </div>
+                    <div class="group-message__item">
+                        <i class="fas fa-user group-message__icon"></i>
+                        <div class="group-message__text">Митусов А.В.</div>
+                    </div>
+                </div>
+                <div class="group-message__body">
+                    <div class="group-message__item">
+                        <div class="group-message__text">Замечание принято.
+                            На основании «Ведомости объемов земляных масс» л. 8 раздела ТП-19.048.361-ПЗУ.ГЧ, а также «Справки об объемах земляных работ и расходе основных строительных материалов2 (см. приложение 2), объем выемки грунта составляет 95 м3, объем использования грунта при обратной засыпке составит 58 м3. Таким образом, объем излишков грунта составит 37,0 м3 (67 т).
+                            См. раздел ТП-19.048.361-ООС л. 21, 22.</div>
+                    </div>
+                    <div class="group-message__item">
+                        <i class="fas fa-pencil-ruler group-message__icon"></i>
+                        <div class="group-message__text">ТП-19.048.361-ООС л. 21, 22.</div>
+                    </div>
+                    <!--
+                    <div class="group-message__item">
+                       
+                        <div class="group-message__file files filled" data-id_file_field>
+                            <div class="files__item" data-read_only="true" data-id="1114" data-state="valid">
+                                <div class="files__info">
+                                    <i class="files__icon fas fa-file-pdf"></i>
+                                    <div class="files__description">
+                                        <span class="files__name">Раздел ПД №5 Подраздел №5_АСП.025.2019-ИОС5_ИУЛ.pdf (1).sig</span>
+                                        <span class="files__size">148,97 Кб</span>
+                                    </div>
+                                </div>
+                                <div class="files__state">
+                                    <i class="files__state-icon fas fa-pen-alt"></i>
+                                    <span class="files__state-text">Не подписано</span>
+                                </div>
+                                <div class="files__actions">
+                                    <i class="files__unload fas fa-angle-double-down"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </div>
+            <div class="group-message group-modal__message">
+                <div class="group-message__header">
+                    <div class="group-message__item group-message__date">
+                        <i class="fas fa-clock group-message__icon"></i>
+                        <div class="group-message__text">16.07.20 13:55</div>
+                    </div>
+                    <div class="group-message__item">
+                        <i class="fas fa-user group-message__icon"></i>
+                        <div class="group-message__text">Митусов А.В.</div>
+                    </div>
+                </div>
+                <div class="group-message__body">
+                    <div class="group-message__item">
+                        <div class="group-message__text">Замечание принято.
+                            На основании «Ведомости объемов земляных масс» л. 8 раздела ТП-19.048.361-ПЗУ.ГЧ, а также «Справки об объемах земляных работ и расходе основных строительных материалов2 (см. приложение 2), объем выемки грунта составляет 95 м3, объем использования грунта при обратной засыпке составит 58 м3. Таким образом, объем излишков грунта составит 37,0 м3 (67 т).
+                            См. раздел ТП-19.048.361-ООС л. 21, 22.</div>
+                    </div>
+                    <div class="group-message__item">
+                        <i class="fas fa-pencil-ruler group-message__icon"></i>
+                        <div class="group-message__text">ТП-19.048.361-ООС л. 21, 22.</div>
+                    </div>
+                    <!--
+                    <div class="group-message__item">
+                       
+                        <div class="group-message__file files filled" data-id_file_field>
+                            <div class="files__item" data-read_only="true" data-id="1114" data-state="valid">
+                                <div class="files__info">
+                                    <i class="files__icon fas fa-file-pdf"></i>
+                                    <div class="files__description">
+                                        <span class="files__name">Раздел ПД №5 Подраздел №5_АСП.025.2019-ИОС5_ИУЛ.pdf (1).sig</span>
+                                        <span class="files__size">148,97 Кб</span>
+                                    </div>
+                                </div>
+                                <div class="files__state">
+                                    <i class="files__state-icon fas fa-pen-alt"></i>
+                                    <span class="files__state-text">Не подписано</span>
+                                </div>
+                                <div class="files__actions">
+                                    <i class="files__unload fas fa-angle-double-down"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </div>
+            <div class="group-message group-modal__message">
+                <div class="group-message__header">
                     <div class="group-message__item">
                         <i class="fas fa-clock group-message__icon"></i>
                         <div class="group-message__text">16.07.20 13:55</div>
