@@ -134,6 +134,14 @@
             </files>
         </page>
 
+        <page urn="test1">
+            <files>
+                <dir path="/controllers/" ext=".php">
+                    <file name="test" />
+                </dir>
+            </files>
+        </page>
+
         <page urn="home/application/create">
 
             <callback_template id="AuthorizationChecker" />

@@ -92,7 +92,8 @@ class Validator
             //  поэтому нет смысла в повторной проверке подписи без проверки цепочки сертификатов)
             if (
                 $signer['result']
-                || (!$signer['result'] && ($signer['message'] == 'Error: Invalid Signature.' || $signer['message'] == 'Error: Invalid algorithm specified.'))
+                || (!$signer['result']
+                    && ($signer['message'] == 'Error: Invalid Signature.' || $signer['message'] == 'Error: Invalid algorithm specified.'))
             ) {
 
                 $signatureVerify = [
@@ -193,15 +194,14 @@ class Validator
 
                 $FIO = $this->parser->getFIO($part);
 
-                // Получаем следующие элементы за Signer
                 // Signature's verified. ИЛИ Сообщение об ошибке
                 $next_1_part = $messageParts[$l + 1];
-                // Если один ИЛИ (несколько подписантов и текущий последний)
-                //    Error: Signature. В случае если next_1_part - сообщение об ошибке
-                // Если несколько подписантов И (текущий не последний)
-                // Signer: ... (следующий подписант)
+                // В случае если next_1_part - сообщение об ошибке:
+                //    Если один ИЛИ (несколько подписантов и текущий последний)
+                //       Error: Signature.
+                //    Если несколько подписантов И (текущий не последний)
+                //       Signer: ... (следующий подписант)
                 $next_2_part = $messageParts[$l + 2];
-
 
                 if ($next_1_part == "Signature's verified.") {
 
@@ -215,23 +215,21 @@ class Validator
 
                     $verifyResult = false;
                     $l += 1; // Перескакиваем через сообщение об ошибке и переходим к следующему подписанту
-
                 } else {
+
                     throw new SelfEx("Неизвестный формат частей сообщения, следующий за Signer: next_1_part='{$next_1_part}', next_2_part='{$next_2_part}'" . $this->getDebugMessageParts($messageParts), 2);
                 }
 
-                // Временный массив с данными о подписи
+                // Массив с данными о подписи
                 $signers[] = [
                     'fio'         => $FIO,
                     'certificate' => $this->parser->getCertificateInfo($part),
                     'result'      => $verifyResult,
                     'message'     => $next_1_part
                 ];
-
             } elseif (containsAll($part, 'ErrorCode:')) {
 
                 $errorCodes[] = $this->parser->getErrorCode($part);
-
             } elseif (containsAny(
                 $part,
                 'Error: Invalid cryptographic message type.',
@@ -241,7 +239,7 @@ class Validator
                 'Unknown error.')
             ){
 
-                continue; // Ошибки пропускаем, т.к. дальше (в следующих итерациях) отловится ее ErrorCode
+                continue; // Ошибки пропускаем, т.к. дальше (в следующих итерациях) отловится в ErrorCode
             } else {
                 // В данную ветку ничего не должно попасть, т.к. блоки Signer и ErrorCode обрабатываются выше
                 throw new SelfEx("Неизвестная часть сообщения: '{$part}'" . $this->getDebugMessageParts($messageParts), 3);

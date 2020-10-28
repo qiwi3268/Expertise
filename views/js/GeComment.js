@@ -121,8 +121,9 @@ class GeComment {
 
    /**
     * Создает объекты замечаний для каждого отмеченного файла
+    * или одно замечание, если не отмечен файл
     *
-    * @param comment_creator
+    * @param {CommentCreator} comment_creator -
     */
    static create (comment_creator) {
       if (comment_creator.marked_files.size > 0) {
