@@ -1,7 +1,7 @@
 <div id="group_overlay" class="overlay group-overlay"></div>
 <div id="group_modal" class="modal group-modal">
     <div class="group-modal__header">
-        <div class="group-modal__file files filled" data-id_file_field>
+        <div class="group-modal__file files" data-id_file_field>
             <div class="files__item" data-read_only="true" data-id="1114" data-state="valid">
                 <div class="files__info">
                     <i class="files__icon fas fa-file-pdf"></i>
@@ -67,29 +67,6 @@
                         <i class="fas fa-pencil-ruler group-message__icon"></i>
                         <div class="group-message__text">ТП-19.048.361-ООС л. 21, 22.</div>
                     </div>
-                    <!--
-                    <div class="group-message__item">
-                       
-                        <div class="group-message__file files filled" data-id_file_field>
-                            <div class="files__item" data-read_only="true" data-id="1114" data-state="valid">
-                                <div class="files__info">
-                                    <i class="files__icon fas fa-file-pdf"></i>
-                                    <div class="files__description">
-                                        <span class="files__name">Раздел ПД №5 Подраздел №5_АСП.025.2019-ИОС5_ИУЛ.pdf (1).sig</span>
-                                        <span class="files__size">148,97 Кб</span>
-                                    </div>
-                                </div>
-                                <div class="files__state">
-                                    <i class="files__state-icon fas fa-pen-alt"></i>
-                                    <span class="files__state-text">Не подписано</span>
-                                </div>
-                                <div class="files__actions">
-                                    <i class="files__unload fas fa-angle-double-down"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    -->
                 </div>
             </div>
             <div class="group-message group-modal__message">
@@ -113,29 +90,6 @@
                         <i class="fas fa-pencil-ruler group-message__icon"></i>
                         <div class="group-message__text">ТП-19.048.361-ООС л. 21, 22.</div>
                     </div>
-                    <!--
-                    <div class="group-message__item">
-                       
-                        <div class="group-message__file files filled" data-id_file_field>
-                            <div class="files__item" data-read_only="true" data-id="1114" data-state="valid">
-                                <div class="files__info">
-                                    <i class="files__icon fas fa-file-pdf"></i>
-                                    <div class="files__description">
-                                        <span class="files__name">Раздел ПД №5 Подраздел №5_АСП.025.2019-ИОС5_ИУЛ.pdf (1).sig</span>
-                                        <span class="files__size">148,97 Кб</span>
-                                    </div>
-                                </div>
-                                <div class="files__state">
-                                    <i class="files__state-icon fas fa-pen-alt"></i>
-                                    <span class="files__state-text">Не подписано</span>
-                                </div>
-                                <div class="files__actions">
-                                    <i class="files__unload fas fa-angle-double-down"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    -->
                 </div>
             </div>
             <div class="group-message group-modal__message">
@@ -159,29 +113,6 @@
                         <i class="fas fa-pencil-ruler group-message__icon"></i>
                         <div class="group-message__text">ТП-19.048.361-ООС л. 21, 22.</div>
                     </div>
-                    <!--
-                    <div class="group-message__item">
-                       
-                        <div class="group-message__file files filled" data-id_file_field>
-                            <div class="files__item" data-read_only="true" data-id="1114" data-state="valid">
-                                <div class="files__info">
-                                    <i class="files__icon fas fa-file-pdf"></i>
-                                    <div class="files__description">
-                                        <span class="files__name">Раздел ПД №5 Подраздел №5_АСП.025.2019-ИОС5_ИУЛ.pdf (1).sig</span>
-                                        <span class="files__size">148,97 Кб</span>
-                                    </div>
-                                </div>
-                                <div class="files__state">
-                                    <i class="files__state-icon fas fa-pen-alt"></i>
-                                    <span class="files__state-text">Не подписано</span>
-                                </div>
-                                <div class="files__actions">
-                                    <i class="files__unload fas fa-angle-double-down"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    -->
                 </div>
             </div>
             <div class="group-message group-modal__message">
@@ -205,29 +136,6 @@
                         <i class="fas fa-pencil-ruler group-message__icon"></i>
                         <div class="group-message__text">ТП-19.048.361-ООС л. 21, 22.</div>
                     </div>
-                    <!--
-                    <div class="group-message__item">
-                       
-                        <div class="group-message__file files filled" data-id_file_field>
-                            <div class="files__item" data-read_only="true" data-id="1114" data-state="valid">
-                                <div class="files__info">
-                                    <i class="files__icon fas fa-file-pdf"></i>
-                                    <div class="files__description">
-                                        <span class="files__name">Раздел ПД №5 Подраздел №5_АСП.025.2019-ИОС5_ИУЛ.pdf (1).sig</span>
-                                        <span class="files__size">148,97 Кб</span>
-                                    </div>
-                                </div>
-                                <div class="files__state">
-                                    <i class="files__state-icon fas fa-pen-alt"></i>
-                                    <span class="files__state-text">Не подписано</span>
-                                </div>
-                                <div class="files__actions">
-                                    <i class="files__unload fas fa-angle-double-down"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    -->
                 </div>
             </div>
             <div class="group-message group-modal__message">
@@ -251,29 +159,6 @@
                         <i class="fas fa-pencil-ruler group-message__icon"></i>
                         <div class="group-message__text">ТП-19.048.361-ООС л. 21, 22.</div>
                     </div>
-                    <!--
-                    <div class="group-message__item">
-                       
-                        <div class="group-message__file files filled" data-id_file_field>
-                            <div class="files__item" data-read_only="true" data-id="1114" data-state="valid">
-                                <div class="files__info">
-                                    <i class="files__icon fas fa-file-pdf"></i>
-                                    <div class="files__description">
-                                        <span class="files__name">Раздел ПД №5 Подраздел №5_АСП.025.2019-ИОС5_ИУЛ.pdf (1).sig</span>
-                                        <span class="files__size">148,97 Кб</span>
-                                    </div>
-                                </div>
-                                <div class="files__state">
-                                    <i class="files__state-icon fas fa-pen-alt"></i>
-                                    <span class="files__state-text">Не подписано</span>
-                                </div>
-                                <div class="files__actions">
-                                    <i class="files__unload fas fa-angle-double-down"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    -->
                 </div>
             </div>
             <div class="group-message group-modal__message">
@@ -297,29 +182,6 @@
                         <i class="fas fa-pencil-ruler group-message__icon"></i>
                         <div class="group-message__text">ТП-19.048.361-ООС л. 21, 22.</div>
                     </div>
-                    <!--
-                    <div class="group-message__item">
-                       
-                        <div class="group-message__file files filled" data-id_file_field>
-                            <div class="files__item" data-read_only="true" data-id="1114" data-state="valid">
-                                <div class="files__info">
-                                    <i class="files__icon fas fa-file-pdf"></i>
-                                    <div class="files__description">
-                                        <span class="files__name">Раздел ПД №5 Подраздел №5_АСП.025.2019-ИОС5_ИУЛ.pdf (1).sig</span>
-                                        <span class="files__size">148,97 Кб</span>
-                                    </div>
-                                </div>
-                                <div class="files__state">
-                                    <i class="files__state-icon fas fa-pen-alt"></i>
-                                    <span class="files__state-text">Не подписано</span>
-                                </div>
-                                <div class="files__actions">
-                                    <i class="files__unload fas fa-angle-double-down"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    -->
                 </div>
             </div>
             <div class="group-message group-modal__message">

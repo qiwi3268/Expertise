@@ -29,12 +29,10 @@
 }
 
 .multiple-block__short {
-   /*margin: 10px;*/
    align-items: center;
    display: flex;
    margin: 0 10px 5px;
 }
-
 
 .multiple-block__delete {
    border: #fff solid 2px;
@@ -57,13 +55,12 @@
    margin: 20px;
 }
 
-.multiple-block__part.short > .multiple-block__title {
+.multiple-block__part.short .multiple-block__title {
    display: none;
 }
 
 .multiple-block__title {
    background-color: #f6f8fa;
-   /*font-weight: 700;*/
    border-bottom: 1px solid #e0e0e0;
    border-radius: 4px 4px 0 0;
    padding: 10px 15px;

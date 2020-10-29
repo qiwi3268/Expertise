@@ -36,7 +36,7 @@
    display: flex;
    flex-direction: column;
    font-size: 16px;
-   max-height: 170px;
+   max-height: 160px;
    overflow-x: hidden;
    overflow-y: auto;
    padding: 3px 10px;
@@ -58,15 +58,15 @@
    transition: .1s;
 }
 
-.sign-modal__cert[data-selected='true'][data-state='true'] > .sign-modal__cert-text {
+.sign-modal__cert[data-selected='true'][data-state='true'] .sign-modal__cert-text {
    background-color: #ddfad9;
 }
 
-.sign-modal__cert[data-selected='true'][data-state='false'] > .sign-modal__cert-text {
+.sign-modal__cert[data-selected='true'][data-state='false'] .sign-modal__cert-text {
    background-color: #ffe3e3;
 }
 
-.sign-modal__cert:hover > .sign-modal__cert-text {
+.sign-modal__cert:hover .sign-modal__cert-text {
    background-color: #e3efff;
 }
 

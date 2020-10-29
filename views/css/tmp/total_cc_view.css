@@ -90,7 +90,7 @@
 }
 
 .comments-group__file.files {
-   border: unset;
+   /*border: unset;*/
 }
 
 .total-cc-card__header {

@@ -193,13 +193,7 @@ class GeFile {
       let file_blocks = document.querySelectorAll('.files');
       file_blocks.forEach(block => {
 
-         // todo убрать после изменения css
-         // На просмотре отображаем блоки с файлами
          let files = block.querySelectorAll('.files__item');
-         if (files.length > 0) {
-            block.classList.add('filled');
-         }
-
          files.forEach(file_element => {
             let ge_file = new GeFile(file_element, block);
             ge_file.handleActionButtons();

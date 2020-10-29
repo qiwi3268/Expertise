@@ -135,12 +135,10 @@
 
 .application-form__cards {
    flex-grow: 1;
-   /*max-width: 80%;*/
 }
 
 .card-form {
    background-color: #fff;
-   /*border-left: 4px solid #ffd354;*/
    border-left: 4px solid #93b0d1;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
@@ -171,13 +169,11 @@
 .card-form__header {
    align-items: center;
    border-bottom: 1px solid #e0e0e0;
-   /*min-height: 35px;*/
    color: #1c3959;
    cursor: pointer;
    display: flex;
    user-select: none;
 }
-
 
 .card-form__title {
    display: flex;
@@ -222,7 +218,6 @@
 }
 
 .form-field__item {
-   /*flex-grow: 1;*/
    width: 70%;
 }
 
@@ -251,20 +246,9 @@
    width: 100%;
 }
 
-/*
-.form-field__input:focus,
-.form-field__input:hover {
-   box-shadow: 0px 0px 0px 3px rgba(191, 222, 255, 1);
-   border-color: #80bdff;
-}*/
-
-/*.form-field__select.filled,*/
 .form-field.filled .form-field__select,
 .form-field__body.filled .form-field__input {
-   /*color: #343a40;*/
-   /*background-color: #f5f6fa;*/
    background-color: #f9fafe;
-   /*border-color: #9ea9b3;*/
    border-color: #818e9a;
    color: #1c3959;
 }
@@ -274,7 +258,6 @@
    border-color: #80bdff;
 }
 
-/*.form-field__select.filled > .form-field__icon-misc */
 .form-field.filled .form-field__icon-misc {
    display: none;
 }
@@ -285,7 +268,6 @@
    margin: 0 5px 0 10px;
 }
 
-/*.form-field__select.filled > .form-field__icon-filled,*/
 .form-field.filled .form-field__icon-filled,
 .form-field__body.filled .form-field__icon-filled {
    display: block;
@@ -333,7 +315,6 @@ textarea.form-field__input.invalid {
    color: #bd4949;
 }
 
-
 .form-field__select.invalid:hover,
 .form-field__select.invalid:focus,
 .form-field__input.invalid:hover,
@@ -345,19 +326,14 @@ textarea.form-field__input.invalid {
    display: block;
 }
 
-
 .form-field__icon-clear {
    border: #fff solid 2px;
-   /*padding: 10px;*/
    border-radius: 4px;
    color: #a33c3c;
    cursor: pointer;
-   /*color: #6e6e6e;*/
    margin: 0 0 0 3px;
    padding: 8px;
-
    transition: .15s;
-
 }
 
 .form-field__icon-clear.fa-calendar-times {
@@ -460,7 +436,6 @@ textarea.form-field__input.invalid {
    margin: 0 10px 0 0;
 }
 
-
 /* save-modal =================================================================== */
 
 /* tmp ========================================================================= */
@@ -469,38 +444,32 @@ textarea.form-field__input.invalid {
    display: none;
 }
 
-
 /* tmp ========================================================================= */
 
 .field.filled .form-field__select.file-select {
    border-radius: 4px 4px 0 0;
 }
 
-
-.files {
-   border: 1px solid #ccc;
-   border-top: 0;
-   display: none;
-}
-
-.documentation__files {
-   border: 0;
+.documentation__files .files__item:first-child {
    border-top: 1px solid #e0e0e0;
 }
 
 .form-field__files {
    border-radius: 0 0 4px 4px;
+   border: 1px solid #818e9a;
+   border-top: 0;
+   display: none;
 }
 
 .form-field__files.filled {
-   border-color: #818e9a;
+   display: block;
 }
 
 .files__item:not(:last-child) {
-   border-bottom: 1px solid #818e9a;
+   border-bottom: 1px solid #e0e0e0;
 }
 
-.documentation__files > .files__item:not(:last-child) {
-   border-color: #e0e0e0;
+.form-field__files .files__item:not(:last-child) {
+   border-color: #818e9a;
 }
 

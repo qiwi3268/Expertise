@@ -89,7 +89,7 @@
                                     <span class="section__button-name card-expand">Загруженные файлы</span>
                                     <i class="section__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                                 </div>
-                                <div class="section__files files filled block card-body" data-id_file_field>
+                                <div class="section__files files block card-body" data-id_file_field>
                                     <?php if (isset($section['self_files'])): ?>
                                         <div class="files__title">Файлы по разделу</div>
                                         <?php foreach ($section['self_files'] as $file): ?>

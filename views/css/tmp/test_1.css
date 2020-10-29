@@ -17,13 +17,7 @@
 .view__header {
    margin: 0 0 10px 0;
    padding: 10px 10px 10px 20px;
-
-   /*display: flex;*/
-   /*min-height: 70px;*/
-   /*align-items: center;*/
-
    text-align: center;
-
 }
 
 .view__document {
@@ -31,7 +25,6 @@
    font-family: 'Bebas Neue', sans-serif;
    font-size: 20px;
    margin: 0 20px 0 0;
-
 }
 
 .view__progress {
@@ -39,7 +32,6 @@
    display: flex;
    margin: 0 15px 0 0;
    width: 70%;
-
 }
 
 .view__line {
@@ -53,8 +45,6 @@
 
 .view__info {
    display: flex;
-
-   /*width: 30%;*/
 }
 
 .expertise-card {
@@ -99,7 +89,6 @@
 .view__text {
    font-size: 14px;
    font-weight: 700;
-   /*text-align: center;*/
 }
 
 .view__dates-body {
@@ -113,31 +102,12 @@
 
 .view__date {
    align-items: center;
-   /*flex-direction: column;*/
    display: flex;
-   /*margin: 0px 0px 0px 10px*/
-}
-
-.view__date:not(:last-child) {
-   /*margin: 0px 0px 10px 0px;*/
-
-}
-
-.view__icon-date {
-   /*margin: 0px 10px 0px;*/
-
 }
 
 .view__stage {
    align-items: center;
    display: flex;
-}
-
-.view__stage,
-.view__date,
-.view__responsible {
-   /*margin: 0px 0px 10px 0px;*/
-   /*flex-grow: 0.333;*/
 }
 
 .view__stage,
@@ -153,13 +123,11 @@
    flex-direction: column;
    margin: 0 10px 10px 0;
    padding: 10px;
-
 }
 
 .view__sidebar {
    margin: 0 10px 10px 0;
    width: 16%;
-
 }
 
 .view__subheader {
@@ -173,9 +141,6 @@
    background-color: #fff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
-
-   /*padding: 10px 20px;*/
-
    display: flex;
    flex-direction: column;
    margin: 0 10px 10px 0;
@@ -186,12 +151,7 @@
    align-items: center;
    display: flex;
    justify-content: space-between;
-   /* margin: 0px 0px 20px 0px; */
-   /* border-bottom: 1px solid #e1e4e8; */
    padding: 5px 10px;
-   /* font-size: 14px; */
-   /* background-color: #F3F5F6; */
-   /* border-left: 3px solid #93b0d1; */
 }
 
 .info__title {
@@ -199,25 +159,18 @@
 }
 
 .info__icon {
-   /*color: #c2c2c2;*/
-   /*color: #1c3959;*/
    color: #507095;
    font-size: 18px;
-   /*color: #6e6e6e;*/
    margin: 0 10px 0 0;
 }
 
 .info__text {
-   /*margin: 0px 0px 15px 0px;*/
    background-color: #f3f5f6;
-   /* font-size: 14px; */
-   /* font-weight: 700; */
-   /* text-align: center; */
    border-left: 3px solid #93b0d1;
    padding: 5px 10px;
 }
 
-.info__item:last-child > .info__text {
+.info__item:last-child .info__text {
    border-radius: 0 0 4px 4px;
 }
 

@@ -341,7 +341,6 @@ class FileUploader {
       //    parent_select.classList.add('filled');
       // }
 
-
       let files_body;
       // Если блок с документацией
       if (this.parent_node) {

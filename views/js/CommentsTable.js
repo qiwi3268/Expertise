@@ -164,7 +164,8 @@ class CommentsTable {
       files_column.setAttribute('data-comment_files', '');
 
       let files_block = document.createElement('DIV');
-      files_block.classList.add('documentation__files', 'files', 'filled');
+      // files_block.classList.add('documentation__files', 'files', 'filled');
+      files_block.classList.add('comment-table__file', 'files');
       files_block.setAttribute('data-id_file_field', '');
       files_block.setAttribute('data-mapping_level_1', this.files_container.dataset.mapping_level_1);
       files_block.setAttribute('data-mapping_level_2', this.files_container.dataset.mapping_level_2);

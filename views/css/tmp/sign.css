@@ -47,18 +47,15 @@
    transition: .1s;
 }
 
-.sign-modal__cert[data-selected='true'][data-state='true'] > .sign-modal__cert-text {
-   /*background-color: #f2f2f2;*/
+.sign-modal__cert[data-selected='true'][data-state='true'] .sign-modal__cert-text {
    background-color: #ddfad9;
 }
 
-.sign-modal__cert[data-selected='true'][data-state='false'] > .sign-modal__cert-text {
-   /*background-color: #f2f2f2;*/
+.sign-modal__cert[data-selected='true'][data-state='false'] .sign-modal__cert-text {
    background-color: #ffe3e3;
 }
 
-.sign-modal__cert:hover > .sign-modal__cert-text {
-   /*background-color: #f2f2f2;*/
+.sign-modal__cert:hover .sign-modal__cert-text {
    background-color: #e3efff;
 }
 
@@ -92,8 +89,6 @@
    margin: 10px 5px;
    padding: 6px 8px 6px 10px;
    transition: .15s;
-   /*color: #6e6e6e;*/
-
 }
 
 .sign-modal__file:hover {
@@ -152,11 +147,8 @@
    border: 1px solid #ccc;
    border-radius: 4px;
    color: #343a40;
-
    cursor: pointer;
-
    display: flex;
-
    font-family: 'Roboto Condensed', sans-serif;
    justify-content: space-between;
    margin: 0 0 8px 0;

@@ -146,7 +146,7 @@
                             <div class="comments-table__column">
                                 <?php if (!empty($_file = $comment['file'])): ?>
 
-                                    <div class="documentation__files files filled" data-id_file_field>
+                                    <div class="comments-table__file files" data-id_file_field>
                                         <div class="files__item"
                                              data-read_only="true"
                                              data-id="<?= $_file['id'] ?>"
