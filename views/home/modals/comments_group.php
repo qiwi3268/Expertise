@@ -20,7 +20,6 @@
             </div>
         </div>
         <div class="group-modal__actions">
-            <!--todo переделать классы-->
             <div class="group-modal__action form-button" data-replace_file>
                 <span class="form-button__label">Заменить файл</span>
                 <i class="form-button__icon fas fa-sync-alt"></i>
