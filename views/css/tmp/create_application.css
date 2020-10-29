@@ -496,11 +496,11 @@ textarea.form-field__input.invalid {
    border-color: #818e9a;
 }
 
-.form-field__files .files__item:not(:last-child) {
-   border-color: #818e9a;
+.files__item:not(:last-child) {
+   border-bottom: 1px solid #818e9a;
 }
 
-.documentation__files .files__item:not(:last-child) {
+.documentation__files > .files__item:not(:last-child) {
    border-color: #e0e0e0;
 }
 
