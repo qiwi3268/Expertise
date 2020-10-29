@@ -141,6 +141,11 @@
    margin: 0 3px 0 0;
 }
 
+.files__state[data-type='short'] {
+   font-size: 12px;
+   padding: 4px;
+}
+
 .files__state[data-type='short'] .files__state-icon {
    margin: unset;
 }
@@ -161,7 +166,33 @@
    padding-left: 90px;
 }
 
+/*tmp========*/
 
+.files__additional {
+   display: flex;
+   align-items: center;
+   margin: 2px 0 0 0;
+}
+
+.files__version {
+   margin: 0 0 0 7px;
+   align-items: center;
+   border-radius: 2px;
+   cursor: pointer;
+   display: flex;
+   font-size: 12px;
+   padding: 0px 4px;
+   transition: .15s;
+   background-color: #e3efff;
+   border: 1px solid #cad6e7;
+   color: #6a7e9a;
+}
+
+.files__version:hover {
+   background-color: #d4e4fa;
+}
+
+/*tmp========*/
 
 
 
