@@ -4,15 +4,12 @@
 }
 
 .radio__icon {
+   font-size: 20px;
    margin: 0 10px 0 0;
 }
 
 .radio__body.inline .radio__icon {
    margin: 0 5px 0 0;
-}
-
-.radio__icon {
-   font-size: 20px;
 }
 
 .radio__item {

@@ -43,9 +43,101 @@
     </div>
     <div class="group-modal__body">
         <div class="group-modal__comments">
-            <div class="group-modal__comment">
-            
+           <!--
+            <div class="group-modal__comment group-comment selected">
+                <div class="group-comment__header">Выполнить описание условия нераспространения пожара в обход противопожарных преград в местах примыкания к жилым домам № 1 и № 3. Указать тип стен и заполнения проёмов. (л. 3 ПБ.ТЧ, л. 1 ПБ.ГЧ).</div>
+                <div class="group-comment__body">
+                    <textarea rows="10" name="comment_response" class="group-comment__field" placeholder="Введите ответ на замечание"></textarea>
+                    <textarea name="comment_changes" class="group-comment__field" placeholder="Введите изменения"></textarea>
+                </div>
             </div>
+            -->
+            <div class="group-modal__comment group-comment selected">
+                <div class="group-comment__header">
+                    <div class="group-comment__description">
+                        <i class="group-comment__icon fas fa-list-ul"></i>
+                        <div class="group-comment__text">Выполнить описание условия нераспространения пожара в обход противопожарных преград в местах примыкания к жилым домам № 1 и № 3. Указать тип стен и заполнения проёмов. (л. 3 ПБ.ТЧ, л. 1 ПБ.ГЧ).
+                        </div>
+                    </div>
+                    <div class="group-comment__description">
+                        <i class="group-comment__icon fas fa-book"></i>
+                        <div class="group-comment__text">(ст.ст. 78, 88 № 123-ФЗ, п. 5.4.10 СП 2.13130.2012, п. 4.11 СП 4.13130.2013).</div>
+                    </div>
+                </div>
+                <div class="group-comment__form">
+                    <textarea rows="10" name="comment_response" class="group-comment__field" placeholder="Введите ответ на замечание"></textarea>
+                    <textarea name="comment_changes" class="group-comment__field" placeholder="Введите изменения"></textarea>
+                    <div class="group-comment__no-replace form-field field" data-name="no_files" data-misc_field>
+                        <div class="form-field__item">
+                            <div class="radio form-field__body">
+                                <div class="radio__body">
+                                    <div id="no_files" class="radio__item" data-id="1">
+                                        <i class="radio__icon far fa-square"></i>
+                                        <span class="radio__text">Замена файла не требуется</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input class="form-field__result" data-field_result type="hidden" name="no_files">
+                    </div>
+                </div>
+            </div>
+            <div class="group-modal__comment group-comment selected">
+                <div class="group-comment__header">
+                    <div class="group-comment__description">
+                        <i class="group-comment__icon fas fa-list-ul"></i>
+                        <div class="group-comment__text">Уточнить, о каких помещениях санузлов идет речь в проектной документации на реконструкцию кровли. (л. 6 ПБ.ПЗ).</div>
+                    </div>
+                </div>
+                <div class="group-comment__form">
+                    <textarea rows="10" name="comment_response" class="group-comment__field" placeholder="Введите ответ на замечание"></textarea>
+                    <textarea name="comment_changes" class="group-comment__field" placeholder="Введите изменения"></textarea>
+                    <div class="group-comment__no-replace form-field field" data-name="no_files" data-misc_field>
+                        <div class="form-field__item">
+                            <div class="radio form-field__body">
+                                <div class="radio__body">
+                                    <div id="no_files" class="radio__item" data-id="1">
+                                        <i class="radio__icon far fa-square"></i>
+                                        <span class="radio__text">Замена файла не требуется</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input class="form-field__result" data-field_result type="hidden" name="no_files">
+                    </div>
+                </div>
+            </div>
+            <!--
+            <div class="group-modal__comment group-comment selected">
+                <div class="group-comment__header">
+                    <div class="group-comment__description">
+                        <i class="group-comment__icon fas fa-list-ul"></i>
+                        <div class="group-comment__text">Графическую часть раздела выполнить согласно требованиям п. 26 Постановления Правительства РФ № 87 от 26.02.2008 года. (ПБ).</div>
+                    </div>
+                    <div class="group-comment__description">
+                        <i class="group-comment__icon fas fa-book"></i>
+                        <div class="group-comment__text">п. 26 Постановления Правительства РФ № 87 от 26.02.2008 года.</div>
+                    </div>
+                </div>
+                <div class="group-comment__form">
+                    <textarea rows="10" name="comment_response" class="group-comment__field" placeholder="Введите ответ на замечание"></textarea>
+                    <textarea name="comment_changes" class="group-comment__field" placeholder="Введите изменения"></textarea>
+                    <div class="group-comment__no-replace form-field field" data-name="no_files" data-misc_field>
+                        <div class="form-field__item">
+                            <div class="radio form-field__body">
+                                <div class="radio__body">
+                                    <div id="no_files" class="radio__item" data-id="1">
+                                        <i class="radio__icon far fa-square"></i>
+                                        <span class="radio__text">Замена файла не требуется</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input class="form-field__result" data-field_result type="hidden" name="no_files">
+                    </div>
+                </div>
+            </div>
+            -->
         </div>
         <div class="group-modal__messages">
             <div class="group-message group-modal__message">
@@ -129,7 +221,7 @@
                 <div class="group-message__header">
                     <div class="group-message__item group-message__date">
                         <i class="fas fa-clock group-message__icon"></i>
-                        <div class="group-message__text">26.09.20 11:27</div>
+                        <div class="group-message__text">24.09.20 09:57</div>
                     </div>
                     <div class="group-message__item">
                         <i class="fas fa-user group-message__icon"></i>
@@ -172,7 +264,7 @@
                 <div class="group-message__header">
                     <div class="group-message__item group-message__date">
                         <i class="fas fa-clock group-message__icon"></i>
-                        <div class="group-message__text">24.09.20 09:59</div>
+                        <div class="group-message__text">23.09.20 09:59</div>
                     </div>
                     <div class="group-message__item">
                         <i class="fas fa-user group-message__icon"></i>

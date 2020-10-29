@@ -181,7 +181,7 @@
    cursor: pointer;
    display: flex;
    font-size: 12px;
-   padding: 0px 4px;
+   padding: 0 4px;
    transition: .15s;
    background-color: #e3efff;
    border: 1px solid #cad6e7;
