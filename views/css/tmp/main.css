@@ -276,6 +276,7 @@ textarea.form-field__input.invalid {
    position: absolute;
    right: -25px;
    top: -23px;
+   z-index: 10000;
 }
 
 /* Общие элементы*/

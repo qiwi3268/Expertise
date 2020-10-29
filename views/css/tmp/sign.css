@@ -1,3 +1,4 @@
+/*
 .sign-modal {
    color: #343a40;
    font-size: 16px;
@@ -80,7 +81,7 @@
    color: #db5151;
 }
 
-/*todo объеденить с file-modal*/
+!*todo объеденить с file-modal*!
 .sign-modal__file {
    align-items: center;
    border-radius: 4px;
@@ -199,3 +200,4 @@
 
 
 
+*/

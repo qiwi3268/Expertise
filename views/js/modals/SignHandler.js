@@ -452,6 +452,8 @@ class SignHandler extends SignView{
 
             this.certs.dataset.active = 'false';
             this.actions.dataset.active = 'false';
+            this.plugin_info.dataset.active = 'false';
+
             this.create_sign_btn.dataset.active = 'false';
             this.upload_sign_btn.dataset.active = 'false';
             this.delete_sign_btn.dataset.active = 'true';

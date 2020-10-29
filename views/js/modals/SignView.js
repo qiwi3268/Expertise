@@ -80,6 +80,7 @@ class SignView {
       this.validate_info = mQS(this.modal, '.sign-modal__validate', 14);
 
       this.handleOverlay();
+      this.handleCloseButton();
    }
 
    /**
@@ -97,6 +98,14 @@ class SignView {
       this.modal.classList.remove('active');
       this.overlay.classList.remove('active');
       this.validate_info.dataset.active = 'false';
+   }
+
+   /**
+    * Обрабатывает кнопку закрытия модального окна
+    */
+   handleCloseButton() {
+      let close_button = this.modal.querySelector('[data-close_button]');
+      close_button.addEventListener('click', () => this.closeModal());
    }
 
    /**

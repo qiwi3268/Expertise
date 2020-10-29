@@ -81,7 +81,7 @@ switch (URN) {
         $pageName = 'АИС_view';
         $sourcesFiles = [...GetFontAwesome5Case(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
-            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'create_application.css', 'view_application.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'sign.css', 'action_sidebar.css', 'tooltip.css', 'comments_table.css', 'section_view.css', 'statistic.css'),
+            ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'create_application.css', 'view_application.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'sign_modal.css', 'action_sidebar.css', 'tooltip.css', 'comments_table.css', 'section_view.css', 'statistic.css'),
             ...CreateSource('js', ROOT_JS, 'main.js', 'section.js', 'GeFile.js'),
             ...CreateSource('js', MODALS_JS, 'Tooltip.js', 'ErrorModal.js', 'SignView.js'),
         ];
@@ -145,7 +145,7 @@ switch (URN) {
             ...GetTinyMCECase(),
             ...CreateSource('css', ROOT_CSS, 'entry.css'),
             ...CreateSource('css', TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'action_header.css'),
-            ...CreateSource('css', TMP_CSS,'radio.css', 'files.css', 'documentation.css', 'multiple_block.css', 'modal.css', 'sign.css', 'tooltip.css', 'create_application.css', 'comment_modal.css', 'comments_table.css','section_create_test.css'),
+            ...CreateSource('css', TMP_CSS,'radio.css', 'files.css', 'documentation.css', 'multiple_block.css', 'modal.css', 'sign_modal.css', 'tooltip.css', 'create_application.css', 'comment_modal.css', 'comments_table.css','section_create_test.css'),
             ...CreateSource('js', ROOT_LIB_JS, 'lib_XHR.js'),
             ...CreateSource('js', ROOT_JS, 'section.js', 'main.js', 'API.js', 'DependenciesHandler.js', 'MultipleBlock.js', 'PartBlock.js', 'radio.js', 'GeFile.js', 'validation.js', 'CommentsTable.js', 'GeComment.js'),
             ...CreateSource('js', MODALS_JS,'ErrorModal.js', 'CommentCreator.js', 'SignView.js', 'Misc.js', 'Tooltip.js'),

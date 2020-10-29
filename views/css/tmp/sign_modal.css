@@ -2,8 +2,8 @@
    font-size: 16px;
    height: 500px;
    min-width: 800px;
-   overflow-x: hidden;
-   overflow-y: auto;
+   /*overflow-x: hidden;*/
+   /*overflow-y: auto;*/
 }
 
 .sign-modal__button:first-child {
@@ -183,7 +183,10 @@
    flex-grow: 1;
 }
 
-
+.sign-modal .modal__close {
+   right: -30px;
+   top: -28px;
+}
 
 
 
