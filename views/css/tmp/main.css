@@ -157,7 +157,6 @@ textarea.form-field__input.invalid {
    border-color: #db5151;
    color: #bd4949;
    /*color: #bd4949;*/
-
 }
 
 /*.form-field__select.invalid:hover,*/
@@ -238,6 +237,10 @@ textarea.form-field__input.invalid {
    z-index: 5000;
 }
 
+.modal.active .modal__close {
+   z-index: 6000;
+}
+
 .overlay {
    background-color: rgba(0, 0, 0, .5);
    height: 100%;
@@ -284,11 +287,11 @@ textarea.form-field__input.invalid {
    display: flex;
 }
 
-.error-modal {
+.error-modal.active {
    z-index: 100000;
 }
 
-.error-overlay {
+.error-overlay.active {
    z-index: 90000;
 }
 

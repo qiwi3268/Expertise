@@ -178,7 +178,7 @@ class GeCades {
                // if(new Date() < valid_to_date && hasPrivateKey) {
                if (new Date() < valid_to_date) {
 
-                  cert_data.text = GeCades.extractCN(subject_name) + ' Выдан: ' + GeCades.formattedDateTo_ddmmyyyy(valid_from_date);
+                  cert_data.text =  GeCades.getName(subject_name) + ', Выдан: ' + GeCades.formattedDateTo_ddmmyyyy(valid_from_date);
 
                } else {
                   continue;
@@ -230,7 +230,8 @@ class GeCades {
 
             try {
 
-               subject_name = GeCades.extractCN(yield o_certificate.SubjectName);
+               // subject_name = GeCades.extractCN(yield o_certificate.SubjectName);
+               subject_name = GeCades.getName(yield o_certificate.SubjectName);
                issuer_name = GeCades.extractCN(yield o_certificate.IssuerName);
                valid_from_date = new Date(yield o_certificate.ValidFromDate);
                valid_to_date = new Date(yield o_certificate.ValidToDate);
@@ -461,6 +462,33 @@ class GeCades {
    //
    // start блок форматирования данных для вывода -------------------------------------------------------------
    //
+
+   // Возвращает ФИО владельца
+   static getName (SubjectName) {
+      let CN = '';
+      let SN = '';
+      let G = '';
+
+      let index_CN = SubjectName.indexOf('CN=', 0);
+      if (index_CN !== -1) {
+         let CN_sep = SubjectName.indexOf(',', index_CN);
+         CN = `${SubjectName.substring(index_CN + 3, CN_sep)}`;
+      }
+
+      let index_SN = SubjectName.indexOf('SN=', 0);
+      if (index_SN !== -1) {
+         let SN_sep = SubjectName.indexOf(',', index_SN);
+         SN = `${SubjectName.substring(index_SN + 3, SN_sep)}`;
+      }
+
+      let index_G = SubjectName.indexOf('G=', 0);
+      if (index_G !== -1) {
+         let G_sep = SubjectName.indexOf(',', index_G);
+         G = `${SubjectName.substring(index_G + 2, G_sep)}`;
+      }
+
+      return `${CN}, ${SN} ${G}`;
+   }
 
    // Возвращает CN (организация) сведения
    static extractCN (SubjectName) {
