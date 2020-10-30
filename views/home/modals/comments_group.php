@@ -173,7 +173,7 @@
                         <div class="group-message__text">Текстовая часть раздела ПБ скорректирована (ТЧ л.3).<br>Графическая часть раздела ПБ дополнена прилагаемыми листами из КР (л.7, 13)</div>
                     </div>
                     <div class="group-message__item">
-                        <i class="fas fa-pencil-ruler group-message__icon"></i>
+<!--                        <i class="fas fa-pencil-ruler group-message__icon"></i>-->
                         <div class="group-message__text">ПБ изм.1 ТЧ л.3</div>
                     </div>
                     <div class="group-message__file">
@@ -233,7 +233,7 @@
                         <div class="group-message__text">Замечание принято.<br>К жилому зданию №1 существующее здание школы не примыкает см. ПБ.ГЧ л.1(изм.1).<br>Условия нераспространения пожара описаны на ПБ.ТЧ л.3 изм.1</div>
                     </div>
                     <div class="group-message__item">
-                        <i class="fas fa-pencil-ruler group-message__icon"></i>
+<!--                        <i class="fas fa-pencil-ruler group-message__icon"></i>-->
                         <div class="group-message__text">ПБ изм.1 ГЧ л.1 ПБ изм.1 ТЧ л.3</div>
                     </div>
                     <div class="group-message__file">

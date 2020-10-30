@@ -6,7 +6,10 @@ use Classes\Exceptions\DocumentParameters as SelfEx;
 
 
 /**
- *  Предназначен для объявления констант открытого документа из страницы открытого действия
+ * Предназначен для объявления констант открытого документа из страницы открытого действия:
+ *
+ * - CURRENT_DOCUMENT_TYPE
+ * - CURRENT_DOCUMENT_ID
  *
  */
 class ActionPage extends DocumentParameters
@@ -36,6 +39,6 @@ class ActionPage extends DocumentParameters
         // - использование кодировки utf-8
         $pattern = "/\Ahome\/expertise_cards\/(\S+)\/actions\/action_\d+\z/iu";
 
-        $this->validateAndDefineParameters($clearDocumentId, $pattern, URN);
+        $this->validateAndDefineParameters($clearDocumentId, $pattern, 1, URN);
     }
 }

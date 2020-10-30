@@ -3,6 +3,7 @@
 
 use functions\Exceptions\Functions as SelfEx;
 
+
 /**
  * Предназначен для включения пользовательской автозагрузки
  *
@@ -396,14 +397,19 @@ function calculateDeleteAndCreateIds(array $dataBase, array $inputData): array
  * Предназначен для преобразовании строки из змеиной нотации в верблюжью нотацию
  *
  * @param string $snake строка в змеиной нотации
+ * @param bool $fcLower <b>true</b> первый символ остается в нижнем регистре<br>
+ * <b>false</b> первый символ преобразуется к верхнему регистру
  * @return string строка в верблюжьей нотации
  */
-function snakeToCamelCase(string $snake): string
+function snakeToCamelCase(string $snake, bool $fcLower = true): string
 {
     $explode = explode('_', $snake);
-    $result = $explode[0];
 
-    for ($l = 1; $l < count($explode); $l++) {
+    $index = 0;
+
+    $result = $fcLower ? $explode[$index++] : '';
+
+    for ($l = $index; $l < count($explode); $l++) {
         $result .= mb_ucfirst($explode[$l]);
     }
     return $result;

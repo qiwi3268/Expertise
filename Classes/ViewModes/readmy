@@ -1,2 +1,2 @@
-class - view_modes->documents->document['type'] (mb_ucfirst)
-method - view_modes->documents->document['type']->mode['name'] (snakeToCamelCase)
+class - view_modes->documents->document['class']
+method - view_modes->documents->document['type']->mode['name'] (snakeToCamelCase, fcLower)

@@ -71,9 +71,15 @@
    overflow: hidden;
 }
 
+
 .group-message:nth-child(odd) {
    justify-self: flex-end;
    margin: 0 5px 10px 30px;
+}
+
+.group-message:nth-child(even) .group-message__icon,
+.group-message:nth-child(even) .files__icon {
+   color: #AD6B70;
 }
 
 .group-modal__header {

@@ -9,7 +9,11 @@ use Exception;
 
 
 /**
- *  Предназначен для объявления констант открытого документа из API выполнений действий
+ * Предназначен для объявления констант открытого документа из API выполнений действий:
+ *
+ * - CURRENT_DOCUMENT_TYPE
+ * - CURRENT_DOCUMENT_ID
+ * - CURRENT_PAGE_NAME
  *
  */
 class APIActionExecutor extends DocumentParameters
@@ -36,19 +40,24 @@ class APIActionExecutor extends DocumentParameters
             list('path_name' => $path_name, 'id_document' => $clearDocumentId) = clearHtmlArr($_POST);
 
             // начало текста
-            // /home/expertise_cards/
+            // /
             // 1 группа:
-            //   любой не пробельный символ один и более раз
-            // /actions/action_
-            // любая цифра один и более раз
+            //    home/expertise_cards/
+            //    2 группа:
+            //       любой не пробельный символ один и более раз
+            //    /actions/action_
+            //    любая цифра один и более раз
             // конец текста
             // - регистронезависимые
             // - использование кодировки utf-8
-            $pattern = "/\A\/home\/expertise_cards\/(\S+)\/actions\/action_\d+\z/iu";
+            $pattern = "/\A\/(home\/expertise_cards\/(\S+)\/actions\/action_\d+)\z/iu";
 
             try {
 
-                $this->validateAndDefineParameters($clearDocumentId, $pattern, $path_name);
+                define(
+                    'CURRENT_PAGE_NAME',
+                    $this->validateAndDefineParameters($clearDocumentId, $pattern, 2, $path_name)[1]
+                );
             } catch (SelfEx $e) {
 
                 $e_message = $e->getMessage();
@@ -79,20 +88,6 @@ class APIActionExecutor extends DocumentParameters
                             'error_message' => "Неизвестная ошибка Classes\Exceptions\DocumentParameters. message: '{$e_message}', code: '{$e_code}'"
                         ]));
                 }
-            }
-
-            try {
-
-                define(
-                    'CURRENT_PAGE_NAME',
-                    getHandlePregMatch("/\A\/(.+)\z/", $path_name, false)[1]
-                );
-            } catch (FunctionsEx $e) {
-
-                exit(json_encode([
-                    'result'        => 6,
-                    'error_message' => 'Произошла ошибка при определении CURRENT_PAGE_NAME'
-                ]));
             }
         } catch (Exception $e) {
 

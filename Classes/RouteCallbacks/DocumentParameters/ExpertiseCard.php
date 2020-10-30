@@ -6,7 +6,11 @@ use Classes\Exceptions\DocumentParameters as SelfEx;
 
 
 /**
- *  Предназначен для объявления констант открытого документа из карточек экспертизы
+ * Предназначен для объявления констант открытого документа из карточек экспертизы:
+ *
+ * - CURRENT_DOCUMENT_TYPE
+ * - CURRENT_DOCUMENT_ID
+ * - CURRENT_VIEW_MODE
  *
  */
 class ExpertiseCard extends DocumentParameters
@@ -27,15 +31,19 @@ class ExpertiseCard extends DocumentParameters
 
         // начало текста
         // home/expertise_cards/
-        // 1 группа:
-        //   любой не пробельный символ один и более раз
+        // 1 группа
+        //    любой не пробельный символ один и более раз
         // /
-        // любой не пробельный символ один и более раз
+        // 2 группа:
+        //    любой не пробельный символ один и более раз
         // конец текста
         // - регистронезависимые
         // - использование кодировки utf-8
-        $pattern = "/\Ahome\/expertise_cards\/(\S+)\/\S+\z/iu";
+        $pattern = "/\Ahome\/expertise_cards\/(\S+)\/(\S+)\z/iu";
 
-        $this->validateAndDefineParameters($clearDocumentId, $pattern, URN);
+        define(
+            'CURRENT_VIEW_MODE',
+            $this->validateAndDefineParameters($clearDocumentId, $pattern, 1,URN)[2]
+        );
     }
 }

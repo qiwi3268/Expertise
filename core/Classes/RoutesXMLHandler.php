@@ -48,6 +48,7 @@ final class RoutesXMLHandler
         if (($data = simplexml_load_file(SETTINGS . '/routes.xml')) === false) {
             throw new SelfEx("Ошибка при инициализации XML схемы маршрутизации", 1);
         }
+
         $this->data = $data;
         $this->XMLValidator = new XMLValidator();
         $this->primitiveValidator = new PrimitiveValidator();

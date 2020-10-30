@@ -107,38 +107,15 @@ class ViewModes
 
 
     /**
-     * Предназначен для проверки доступа к режиму просмотра по URN страницы
+     * Предназначен для проверки доступа к режиму просмотра для типа документа,
+     * которым был инициализирован данный класс
      *
-     * @param string $URN URN страницы
+     * @param string $modeName name режим просмотра
      * @return bool результат вызова метода проверки доступа
      * @throws SelfEx
      */
-    public function checkAccessToViewModeByURN(string $URN): bool
+    public function checkAccessToViewMode(string $modeName): bool
     {
-        // начало текста
-        // home/expertise_cards/
-        // 1 группа
-        //    любой не пробельный символ один и более раз
-        // /
-        // 2 группа:
-        //    любой не пробельный символ один и более раз
-        // конец текста
-        // - регистронезависимые
-        // - использование кодировки utf-8
-        $pattern = "/\Ahome\/expertise_cards\/(\S+)\/(\S+)\z/iu";
-
-        try {
-            list(
-                1 => $documentType,
-                2 => $modeName) = getHandlePregMatch($pattern, $URN, false);
-        } catch (FunctionsEx $e) {
-            throw new SelfEx("Произошла ошибка при обработке URN, для проверки доступа к режиму просмотра", 2003);
-        }
-
-        if ($documentType != $this->documentType) {
-            throw new SelfEx("documentType из URN: '{$documentType}' не равен documentType: '{$this->documentType}', полученному при инициализации класса", 2004);
-        }
-
         foreach ($this->modes as &$mode) {
 
             if ($mode['name'] == $modeName) {
@@ -151,7 +128,7 @@ class ViewModes
         }
         unset($mode);
 
-        throw new SelfEx("Определенный mode['name']: '{$modeName}' не найден среди массивов с режимами просмотра", 2005);
+        throw new SelfEx("Определенный mode['name']: '{$modeName}' не найден среди массивов с режимами просмотра", 2003);
     }
 
 

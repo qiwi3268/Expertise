@@ -24,8 +24,6 @@ use Tables\Locators\DocumentTypeTableLocator;
 //       {result, error_message : текст ошибки}
 //	5  - Неизвестная ошибка Classes\Exceptions\DocumentParameters
 //       {result, error_message : текст ошибки}
-//	6  - Произошла ошибка при определении CURRENT_PAGE_NAME
-//       {result, error_message : текст ошибки}
 //  7  - Непредвиденная ошибка метода Classes\DocumentParameters\APIActionExecutor::defineDocumentParameters
 //       {result, message : текст ошибки, code: код ошибки}
 // ---------------------------------------------------------------------

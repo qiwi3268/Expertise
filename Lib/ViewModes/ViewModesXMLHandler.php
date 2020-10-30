@@ -69,8 +69,7 @@ class ViewModesXMLHandler
      */
     public function validateDocumentStructure(SimpleXMLElement $document): void
     {
-
-        $this->XMLValidator->validateAttributes($document, '<document />', ['type']);
+        $this->XMLValidator->validateAttributes($document, '<document />', ['type', 'class']);
         $this->XMLValidator->validateChildren($document, '<document />', ['mode']);
 
         foreach ($document->children() as $mode) {
@@ -100,7 +99,7 @@ class ViewModesXMLHandler
     {
         $result = [];
 
-        $class = "{$namespace}\\" . mb_ucfirst((string)$document['type']);
+        $class = "{$namespace}\\{$document['class']}";
 
         if (!class_exists($class)) {
             throw new SelfEx("Класс проверки доступа к режимам просмотра '{$class}' не существует", 1002);

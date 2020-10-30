@@ -55,4 +55,4 @@ if (!is_null($comments)) {
     }
     unset($comment);
 }
-vd($comments);
+//vd($comments);

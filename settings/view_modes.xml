@@ -1,20 +1,33 @@
 <view_modes>
     <documents>
         <!--
-        document['type']. Строка, с маленькой буквы
+        document['type']
+           Должно соответствововать константе DOCUMENT_TYPE
+        document['class']
            Наименование класса из пакета \Classes\ViewModes
-           Должна соответствововать константе DOCUMENT_TYPE
-        mode['name']. Строка, с маленькой буквы, змеиная нотация
+        mode['name']
+           Строка, с маленькой буквы, змеиная нотация
            Наименование метода из document['type'] класса
            У каждого документа должна быть mode['name'] == 'view' - это режим просмотра по умолчанию
            По своей сути mode['name'] является последней вложенностью page['urn'] из XML-схемы маршрутизации
            у тех page, где page['type'] == 'card'
         -->
 
-        <document type="application">
+        <document type="application" class="Application">
             <mode name="view" label="Анкета заявления"/>
         </document>
 
+        <document type="total_cc" class="TotalCC">
+            <mode name="view" label="Сводные таблицы замечаний"/>
+        </document>
+
+        <document type="section_documentation_1" class="SectionDocumentation1">
+            <mode name="view" label="Замечания по разделу"/>
+        </document>
+
+        <document type="section_documentation_2" class="SectionDocumentation2">
+            <mode name="view" label="Замечания по разделу"/>
+        </document>
 
     </documents>
 </view_modes>
