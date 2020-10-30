@@ -393,6 +393,38 @@ function calculateDeleteAndCreateIds(array $dataBase, array $inputData): array
 
 
 /**
+ * Предназначен для преобразовании строки из змеиной нотации в верблюжью нотацию
+ *
+ * @param string $snake строка в змеиной нотации
+ * @return string строка в верблюжьей нотации
+ */
+function snakeToCamelCase(string $snake): string
+{
+    $explode = explode('_', $snake);
+    $result = $explode[0];
+
+    for ($l = 1; $l < count($explode); $l++) {
+        $result .= mb_ucfirst($explode[$l]);
+    }
+    return $result;
+}
+
+
+/**
+ * Предназначен для преобразования первого символ строки в верхний регистр с учетом
+ * многобайтовых кодировок
+ *
+ * @param string $str
+ * @return string
+ */
+function mb_ucfirst(string $str): string
+{
+    $fc = mb_strtoupper(mb_substr($str, 0, 1));
+    return $fc.mb_substr($str, 1);
+}
+
+
+/**
  * Предназначен для получения имени вызывающей функции из функции
  *
  * Вызывать данную функцию требуется из функции, чтобы узнать,

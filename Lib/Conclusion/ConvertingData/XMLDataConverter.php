@@ -7,7 +7,7 @@ use Conclusion\ReceivingData\XMLDataRecipient;
 
 
 /**
- * Предназначен для преобразования полученных данных для формирования XML-заключения
+ * Предназначен для преобразования полученных данных для формирования XML заключения
  *
  */
 class XMLDataConverter extends DataConverter

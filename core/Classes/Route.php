@@ -4,7 +4,6 @@
 namespace core\Classes;
 
 use Lib\Exceptions\XMLValidator as XMLValidatorEx;
-use core\Classes\RoutesXMLHandler as RoutesXMLHandler;
 use SimpleXMLElement;
 
 

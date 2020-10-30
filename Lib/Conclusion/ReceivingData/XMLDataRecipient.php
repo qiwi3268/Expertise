@@ -5,7 +5,7 @@ namespace Conclusion\ReceivingData;
 
 
 /**
- * Предназначен для получения данных для формирования XML-заключения
+ * Предназначен для получения данных для формирования XML заключения
  *
  */
 class XMLDataRecipient extends DataRecipient

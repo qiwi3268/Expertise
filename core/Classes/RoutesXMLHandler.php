@@ -53,9 +53,9 @@ final class RoutesXMLHandler
 
 
     /**
-     * Предназначен для получения узла page по аттрибуту urn
+     * Предназначен для получения узла page по аттрибуту URN
      *
-     * @param string $urn urn страницы
+     * @param string $urn URN страницы
      * @return SimpleXMLElement найденный узел page
      * @throws XMLValidatorEx
      */
@@ -88,7 +88,7 @@ final class RoutesXMLHandler
      */
     public function validatePageStructure(SimpleXMLElement $page): void
     {
-        $this->XMLValidator->validateAttributes($page, '<page />', ['urn']);
+        $this->XMLValidator->validateAttributes($page, '<page />', ['urn'], ['type']);
         $this->XMLValidator->validateChildren($page, '<page />', [], ['files', 'callbacks', 'callback_template']);
 
         foreach ($page->children() as $children_page) {
@@ -202,6 +202,12 @@ final class RoutesXMLHandler
      */
     public function handleValidatedPageValues(SimpleXMLElement $page): void
     {
+        $pageType = (string)$page['type'];
+
+        if (!empty($pageType)) {
+
+        }
+
         $XMLHandler_result = [];
 
         foreach ($page->children() as $children_page) {
@@ -210,7 +216,7 @@ final class RoutesXMLHandler
 
             if ($children_page_name == 'files') {
 
-                $this->handleFilesValues($children_page, $XMLHandler_result);
+                $this->handleFilesValue($children_page, $XMLHandler_result);
             } elseif ($children_page_name == 'callbacks') {
 
                 $this->handleCallbacksValue($children_page, $XMLHandler_result);
@@ -247,7 +253,7 @@ final class RoutesXMLHandler
      * @param array $XMLHandler_result <i>ссылка</i> на массив результатов
      * @throws SelfEx
      */
-    private function handleFilesValues(SimpleXMLElement $files, array &$XMLHandler_result): void
+    private function handleFilesValue(SimpleXMLElement $files, array &$XMLHandler_result): void
     {
         foreach ($files->children() as $dir) {
 

@@ -134,7 +134,7 @@
             </files>
         </page>
 
-        <page urn="test1">
+        <page urn="home/expertise_cards/section_documentation_1/view_1" type="card">
             <files>
                 <dir path="/controllers/" ext=".php">
                     <file name="test" />
