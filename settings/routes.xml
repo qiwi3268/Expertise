@@ -134,7 +134,7 @@
             </files>
         </page>
 
-        <page urn="home/expertise_cards/section_documentation_1/view_1" type="card">
+        <page urn="home/expertise_cards/section_documentation_1/view_1">
             <files>
                 <dir path="/controllers/" ext=".php">
                     <file name="test" />
@@ -217,6 +217,8 @@
             <callback_template id="DocumentParameters_ExpertiseCard" />
             <callback_template id="DocumentExistChecker" />
             <callback_template id="AccessToDocumentTreeChecker" />
+            <callback_template id="AccessToViewModeChecker" />
+
 
             <files>
                 <dir path="/controllers/" ext=".php">
@@ -234,6 +236,7 @@
                     <file name="validation_block_application_form" />
                 </dir>
                 <dir path="/controllers/home/expertise_cards/sidebars/" ext=".php">
+                    <file name="view_modes" />
                     <file name="actions" />
                 </dir>
 
@@ -556,6 +559,17 @@
                     <class name="AccessToDocumentTreeChecker" type="instance">
                         <method name="construct"/>
                         <method name="checkAccessToDocumentTree"/>
+                    </class>
+                </namespace>
+            </callbacks>
+        </template>
+
+        <!-- Проверяет доступ ользователя к текущему режиму просмотра -->
+        <template id="AccessToViewModeChecker">
+            <callbacks>
+                <namespace name="\Classes\RouteCallbacks">
+                    <class name="AccessToViewModeChecker" type="static">
+                        <method name="checkAccessViewMode"/>
                     </class>
                 </namespace>
             </callbacks>

@@ -3,22 +3,18 @@
         <!--
         document['type']. Строка, с маленькой буквы
            Наименование класса из пакета \Classes\ViewModes
+           Должна соответствововать константе DOCUMENT_TYPE
         mode['name']. Строка, с маленькой буквы, змеиная нотация
            Наименование метода из document['type'] класса
+           У каждого документа должна быть mode['name'] == 'view' - это режим просмотра по умолчанию
            По своей сути mode['name'] является последней вложенностью page['urn'] из XML-схемы маршрутизации
            у тех page, где page['type'] == 'card'
         -->
 
         <document type="application">
-            <mode name="view_1" label="режим первого просмотра"/>
-            <mode name="test_lala_lal_1" label="режим второго просмотра"/>
+            <mode name="view" label="Анкета заявления"/>
         </document>
 
-        <document type="application1">
-            <mode name="view_1" label="режим первого просмотра"/>
-            <mode name="view_2" label="режим второго просмотра"/>
-            <mode name="view_3" label="режим третьего просмотра"/>
-        </document>
 
     </documents>
 </view_modes>

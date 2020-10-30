@@ -112,6 +112,9 @@ class ViewModesXMLHandler
         $tmp_labels = [];
         $tmp_names = [];
 
+        // Флаг существования режима просмотра по умолчанию (mode['name'] = 'view')
+        $issetDefaultMode = false;
+
         foreach ($document->children() as $mode) {
 
             $name = (string)$mode['name'];
@@ -144,11 +147,19 @@ class ViewModesXMLHandler
                 $tmp_labels[$label] = true;
             }
 
+            if (!$issetDefaultMode && $name == 'view') {
+                $issetDefaultMode = true;
+            }
+
             $result['modes'][] = [
                 'method' => $method,
                 'name'   => $name,
                 'label'  => $label
             ];
+        }
+
+        if (!$issetDefaultMode) {
+            throw new SelfEx("Не объявлен режим просмотра по умолчанию с name == 'view'", 1008);
         }
         return $result;
     }

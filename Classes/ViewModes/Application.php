@@ -3,18 +3,14 @@
 
 namespace Classes\ViewModes;
 
+use Lib\ViewModes\DocumentViewModes;
 
-class Application
+
+/**
+ * Предназначен для проверки доступа к режимам просмотра для типа документа <i>Заявление</i>
+ *
+ */
+class Application extends DocumentViewModes
 {
-
-    public function view1(): bool
-    {
-        return false;
-    }
-
-    public function testLalaLal1(): bool
-    {
-        return false;
-    }
 
 }

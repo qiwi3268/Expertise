@@ -1,3 +1,2 @@
 class - view_modes->documents->document['type'] (mb_ucfirst)
 method - view_modes->documents->document['type']->mode['name'] (snakeToCamelCase)
-Методы вызываются в контексте view_modes из xml-схемы

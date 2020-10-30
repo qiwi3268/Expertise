@@ -6,7 +6,9 @@ namespace core\Classes;
 use core\Classes\Exceptions\RoutesXMLHandler as SelfEx;
 use Lib\Exceptions\XMLValidator as XMLValidatorEx;
 use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
+
 use Lib\Singles\XMLValidator;
+use Lib\ViewModes\CurrentViewModesFacade;
 use Lib\Singles\PrimitiveValidator;
 use SimpleXMLElement;
 
@@ -88,7 +90,7 @@ final class RoutesXMLHandler
      */
     public function validatePageStructure(SimpleXMLElement $page): void
     {
-        $this->XMLValidator->validateAttributes($page, '<page />', ['urn'], ['type']);
+        $this->XMLValidator->validateAttributes($page, '<page />', ['urn']);
         $this->XMLValidator->validateChildren($page, '<page />', [], ['files', 'callbacks', 'callback_template']);
 
         foreach ($page->children() as $children_page) {
@@ -202,12 +204,6 @@ final class RoutesXMLHandler
      */
     public function handleValidatedPageValues(SimpleXMLElement $page): void
     {
-        $pageType = (string)$page['type'];
-
-        if (!empty($pageType)) {
-
-        }
-
         $XMLHandler_result = [];
 
         foreach ($page->children() as $children_page) {

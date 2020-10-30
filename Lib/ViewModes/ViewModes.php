@@ -8,8 +8,6 @@ use Lib\Exceptions\XMLValidator as XMLValidatorEx;
 use functions\Exceptions\Functions as FunctionsEx;
 use ReflectionException;
 
-use core\Classes\Session;
-
 
 /**
  * Предназначен для работы с режимами просмотра карточек экспертизы
@@ -41,7 +39,7 @@ class ViewModes
      * Экземпляр класса проверки доступа к режимам просмотра
      *
      */
-    private $object;
+    private DocumentViewModes $object;
 
     /**
      * Индексный массив с ассоциативными массивами режимов просмотра
@@ -162,7 +160,7 @@ class ViewModes
      *
      * @return array ассоциативные массивы доступных режимов просмотра
      */
-    public function getAvailableViewMode(): array
+    public function getAvailableViewModes(): array
     {
         $result = [];
 
@@ -181,17 +179,5 @@ class ViewModes
         }
         unset($mode);
         return $result;
-    }
-
-
-    /**
-     * Предназначен для перенаправления пользователя на страницу навигации
-     *
-     */
-    static public function redirectToNavigation(): void
-    {
-        Session::setErrorMessage("Режим просмотра, на который Вы собираетесь перейти - недоступен");
-        header('Location: /home/navigation');
-        exit();
     }
 }

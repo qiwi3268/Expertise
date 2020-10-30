@@ -257,4 +257,4 @@ if ($treeHandler->ce_application()) {
         }
     }
 }
-$VT->setValue('availableDocuments', $availableDocumentsTV);
+$VT->setValue('available_documents', $availableDocumentsTV);
