@@ -461,7 +461,7 @@ textarea.form-field__input.invalid {
    display: none;
 }
 
-.form-field__files.filled {
+.field.filled .form-field__files {
    display: block;
 }
 

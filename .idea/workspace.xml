@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/views/home/expertise_cards/sidebars/view_modes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/documents/application/actions/action_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/application/actions/action_2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/Drag&amp;Drop.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/Drag&amp;Drop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/application/actions/action_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/application/actions/action_2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/routes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/settings/routes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/action_sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/action_sidebar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/create_application.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/create_application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/sidebars/actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/sidebars/actions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/sidebars/hierarchy.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/sidebars/hierarchy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/GeFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/GeFile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/modals/FileUploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/FileUploader.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,14 +159,7 @@
       <workItem from="1603882729614" duration="18000" />
       <workItem from="1603882759293" duration="3941000" />
       <workItem from="1603942733142" duration="26394000" />
-      <workItem from="1604030589888" duration="16314000" />
-    </task>
-    <task id="LOCAL-00213" summary="16.10.2020_1">
-      <created>1602837376528</created>
-      <option name="number" value="00213" />
-      <option name="presentableId" value="LOCAL-00213" />
-      <option name="project" value="LOCAL" />
-      <updated>1602837376529</updated>
+      <workItem from="1604030589888" duration="21603000" />
     </task>
     <task id="LOCAL-00214" summary="16.10.2020_2">
       <created>1602845823263</created>
@@ -499,7 +497,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604046133872</updated>
     </task>
-    <option name="localTasksCounter" value="262" />
+    <task id="LOCAL-00262" summary="30.10.2020_4">
+      <created>1604050110588</created>
+      <option name="number" value="00262" />
+      <option name="presentableId" value="LOCAL-00262" />
+      <option name="project" value="LOCAL" />
+      <updated>1604050110589</updated>
+    </task>
+    <option name="localTasksCounter" value="263" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,7 +521,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="24.10.2020" />
     <MESSAGE value="24.10.2020_1" />
     <MESSAGE value="24.10.2020_2" />
     <MESSAGE value="25.10.2020" />
@@ -541,7 +545,8 @@
     <MESSAGE value="30.10.2020_1" />
     <MESSAGE value="30.10.2020_2" />
     <MESSAGE value="30.10.2020_3" />
-    <option name="LAST_COMMIT_MESSAGE" value="30.10.2020_3" />
+    <MESSAGE value="30.10.2020_4" />
+    <option name="LAST_COMMIT_MESSAGE" value="30.10.2020_4" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -572,11 +577,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="524" y="55" width="749" height="918" key="CommitChangelistDialog2" timestamp="1604050091629">
+    <state x="524" y="55" width="749" height="918" key="CommitChangelistDialog2" timestamp="1604050109115">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="491" y="51" width="749" height="918" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603875686112" />
-    <state x="524" y="55" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1604050091629" />
+    <state x="524" y="55" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1604050109115" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1603032169697" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603639279350" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
@@ -589,10 +594,11 @@
     </state>
     <state x="186" y="96" width="1552" height="862" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603684772279" />
     <state x="248" y="121" key="MergeDialog/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1596186835322" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1603279113811">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="847" y="474" key="NewPhpFileDialog" timestamp="1604051558088">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603279113811" />
+    <state x="847" y="474" key="NewPhpFileDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1604051558088" />
     <state x="735" y="231" key="RollbackChangesDialog" timestamp="1598853548198">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -635,12 +641,12 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="92" y="92" width="2376" height="1216" key="dock-window-2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600964609575" />
-    <state x="474" y="35" width="1280" height="960" key="find.popup" timestamp="1604047657569">
+    <state x="474" y="35" width="1280" height="960" key="find.popup" timestamp="1604054927483">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="0" y="174" width="1080" height="814" key="find.popup/0.0.1080.1880@0.0.1080.1880" timestamp="1603431303093" />
     <state x="283" y="99" width="1169" height="814" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1603879070998" />
-    <state x="474" y="35" width="1280" height="960" key="find.popup/0.0.2048.1112@0.0.2048.1112" timestamp="1604047657569" />
+    <state x="474" y="35" width="1280" height="960" key="find.popup/0.0.2048.1112@0.0.2048.1112" timestamp="1604054927483" />
     <state x="-1611" y="272" width="1346" height="792" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1603031973447" />
     <state x="571" y="186" width="1495" height="1020" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603641433163" />
     <state x="987" y="433" width="585" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1597582372437" />

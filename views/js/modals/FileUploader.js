@@ -333,13 +333,8 @@ class FileUploader {
    // Принимает параметры-------------------------------
    // files         Array[Object] : массив с файлами
    putFilesToRow (files) {
-      //todo вынести
 
       this.parent_field.classList.add('filled');
-      // let parent_select = this.parent_field.querySelector('.field-select');
-      // if (parent_select) {
-      //    parent_select.classList.add('filled');
-      // }
 
       let files_body;
       // Если блок с документацией
@@ -349,16 +344,11 @@ class FileUploader {
          files_body = this.parent_field.querySelector('.files');
       }
 
-      files_body.classList.add('filled');
-
       for (let file of files) {
-
          let ge_file = GeFile.createElement(file, files_body);
          this.putFile(ge_file, files_body);
          resizeCard(this.parent_field);
-
       }
-
 
    }
 

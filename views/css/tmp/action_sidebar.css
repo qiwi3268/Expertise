@@ -181,8 +181,7 @@
    text-align: center;
 }
 
-.view-actions__action,
-.view-actions__mode {
+.view-actions__action {
    border-right: 4px solid #fff;
    display: block;
    font-size: 16px;
@@ -193,13 +192,12 @@
    transition: background-color .1s;
 }
 
-.view-actions__mode.selected {
+.view-actions__action[data-is_selected='1'] {
    background-color: #f6f8fa;
    border-color: #b2cde9;
 }
 
-.view-actions__action:hover,
-.view-actions__mode:hover {
+.view-actions__action:hover {
    background-color: #f3f5f6;
    border-color: #93b0d1;
 }

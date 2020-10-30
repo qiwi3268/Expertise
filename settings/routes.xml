@@ -213,12 +213,7 @@
 
         <page urn="home/expertise_cards/application/view">
 
-            <callback_template id="AuthorizationChecker" />
-            <callback_template id="DocumentParameters_ExpertiseCard" />
-            <callback_template id="DocumentExistChecker" />
-            <callback_template id="AccessToDocumentTreeChecker" />
-            <callback_template id="AccessToViewModeChecker" />
-
+            <callback_template id="ExpertiseCard_ViewMode" />
 
             <files>
                 <dir path="/controllers/" ext=".php">
@@ -253,6 +248,7 @@
                     <file name="view" />
                 </dir>
                 <dir path="/views/home/expertise_cards/sidebars/" ext=".php">
+                    <file name="view_modes" />
                     <file name="actions" />
                 </dir>
                 <dir path="/views/home/" ext=".php">
@@ -267,10 +263,7 @@
 
         <page urn="home/expertise_cards/total_cc/view">
 
-            <callback_template id="AuthorizationChecker" />
-            <callback_template id="DocumentParameters_ExpertiseCard" />
-            <callback_template id="DocumentExistChecker" />
-            <callback_template id="AccessToDocumentTreeChecker" />
+            <callback_template id="ExpertiseCard_ViewMode" />
 
             <files>
                 <dir path="/controllers/" ext=".php">
@@ -287,6 +280,7 @@
                     <file name="view" />
                 </dir>
                 <dir path="/controllers/home/expertise_cards/sidebars/" ext=".php">
+                    <file name="view_modes" />
                     <file name="actions" />
                 </dir>
 
@@ -303,6 +297,7 @@
                     <file name="view" />
                 </dir>
                 <dir path="/views/home/expertise_cards/sidebars/" ext=".php">
+                    <file name="view_modes" />
                     <file name="actions" />
                 </dir>
                 <dir path="/views/home/modals/" ext=".php">
@@ -317,10 +312,7 @@
 
         <page urn="home/expertise_cards/section_documentation_1/view">
 
-            <callback_template id="AuthorizationChecker" />
-            <callback_template id="DocumentParameters_ExpertiseCard" />
-            <callback_template id="DocumentExistChecker" />
-            <callback_template id="AccessToDocumentTreeChecker" />
+            <callback_template id="ExpertiseCard_ViewMode" />
 
             <files>
                 <dir path="/controllers/" ext=".php">
@@ -337,6 +329,7 @@
                     <file name="view" />
                 </dir>
                 <dir path="/controllers/home/expertise_cards/sidebars/" ext=".php">
+                    <file name="view_modes" />
                     <file name="actions" />
                 </dir>
 
@@ -353,6 +346,7 @@
                     <file name="view" />
                 </dir>
                 <dir path="/views/home/expertise_cards/sidebars/" ext=".php">
+                    <file name="view_modes" />
                     <file name="actions" />
                 </dir>
                 <dir path="/views/home/modals/" ext=".php">
@@ -368,11 +362,7 @@
 
         <page urn="home/expertise_cards/application/actions/action_2">
 
-            <callback_template id="AuthorizationChecker" />
-            <callback_template id="DocumentParameters_ActionPage" />
-            <callback_template id="DocumentExistChecker" />
-            <callback_template id="AccessToDocumentTreeChecker" />
-            <callback_template id="ActionChecker" />
+            <callback_template id="ExpertiseCard_Action" />
 
             <files>
                 <dir path="/controllers/" ext=".php">
@@ -404,17 +394,6 @@
             </files>
         </page>
 
-        <page urn="home/test">
-            <callbacks>
-                <namespace name="\Classes\RouteCallbacks\DocumentParameters">
-                    <class name="ActionPage" type="instance">
-                        <method name="defineDocumentParameters"/>
-                    </class>
-                </namespace>
-            </callbacks>
-            <callback_template id="3" />
-        </page>
-
         <page urn="home/test_1">
             <files>
                 <dir path="/controllers/" ext=".php">
@@ -440,11 +419,7 @@
 
         <page urn="home/expertise_cards/section_documentation_1/actions/action_1">
 
-            <callback_template id="AuthorizationChecker" />
-            <callback_template id="DocumentParameters_ActionPage" />
-            <callback_template id="DocumentExistChecker" />
-            <callback_template id="AccessToDocumentTreeChecker" />
-            <callback_template id="ActionChecker" />
+            <callback_template id="ExpertiseCard_Action" />
 
             <files>
                 <dir path="/controllers/" ext=".php">
@@ -494,36 +469,65 @@
 
     <callback_templates>
 
-        <!-- Блок DocumentParameters_* определяет константы для открытого документа -->
-
-        <!-- Страница открытого действия -->
-        <template id="DocumentParameters_ActionPage">
+        <!-- Комплексная проверка для карточки экспертизы в режиме просмотра -->
+        <template id="ExpertiseCard_ViewMode">
             <callbacks>
-                <namespace name="\Classes\RouteCallbacks\DocumentParameters">
-                    <class name="ActionPage" type="instance">
-                        <method name="defineDocumentParameters" />
+                <namespace name="\Classes\RouteCallbacks">
+                    <class name="AuthorizationChecker" type="instance">
+                        <method name="checkAuthorization"/>
                     </class>
                 </namespace>
-            </callbacks>
-        </template>
 
-        <!-- Страница открытого документа из карточек экспертизы -->
-        <template id="DocumentParameters_ExpertiseCard">
-            <callbacks>
                 <namespace name="\Classes\RouteCallbacks\DocumentParameters">
                     <class name="ExpertiseCard" type="instance">
                         <method name="defineDocumentParameters" />
                     </class>
                 </namespace>
+
+                <namespace name="\Classes\RouteCallbacks">
+                    <class name="DocumentExistChecker" type="instance">
+                        <method name="construct"/>
+                        <method name="checkDocumentExist"/>
+                    </class>
+                    <class name="AccessToDocumentTreeChecker" type="instance">
+                        <method name="construct"/>
+                        <method name="checkAccessToDocumentTree"/>
+                    </class>
+                    <class name="AccessToViewModeChecker" type="static">
+                        <method name="checkAccessViewMode"/>
+                    </class>
+                </namespace>
             </callbacks>
         </template>
 
-        <!-- API выполнения действий -->
-        <template id="DocumentParameters_APIActionExecutor">
+        <!-- Комплексная проверка для карточки экспертизы в режиме действия -->
+        <template id="ExpertiseCard_Action">
             <callbacks>
+                <namespace name="\Classes\RouteCallbacks">
+                    <class name="AuthorizationChecker" type="instance">
+                        <method name="checkAuthorization"/>
+                    </class>
+                </namespace>
+
                 <namespace name="\Classes\RouteCallbacks\DocumentParameters">
-                    <class name="APIActionExecutor" type="instance">
-                        <method name="defineDocumentParameters"/>
+                    <class name="ActionPage" type="instance">
+                        <method name="defineDocumentParameters" />
+                    </class>
+                </namespace>
+
+                <namespace name="\Classes\RouteCallbacks">
+                    <class name="DocumentExistChecker" type="instance">
+                        <method name="construct"/>
+                        <method name="checkDocumentExist"/>
+                    </class>
+                    <class name="AccessToDocumentTreeChecker" type="instance">
+                        <method name="construct"/>
+                        <method name="checkAccessToDocumentTree"/>
+                    </class>
+                    <class name="ActionChecker" type="instance">
+                        <method name="construct"/>
+                        <method name="checkAccess"/>
+                        <method name="checkIssetExecutionCallback"/>
                     </class>
                 </namespace>
             </callbacks>
@@ -540,49 +544,12 @@
             </callbacks>
         </template>
 
-        <!-- Проверяет существование открытого документа -->
-        <template id="DocumentExistChecker">
+        <!-- API выполнения действий -->
+        <template id="DocumentParameters_APIActionExecutor">
             <callbacks>
-                <namespace name="\Classes\RouteCallbacks">
-                    <class name="DocumentExistChecker" type="instance">
-                        <method name="construct"/>
-                        <method name="checkDocumentExist"/>
-                    </class>
-                </namespace>
-            </callbacks>
-        </template>
-
-        <!-- Проверяет доступ пользователя к текущему документу с учетом всего дерева наследования -->
-        <template id="AccessToDocumentTreeChecker">
-            <callbacks>
-                <namespace name="\Classes\RouteCallbacks">
-                    <class name="AccessToDocumentTreeChecker" type="instance">
-                        <method name="construct"/>
-                        <method name="checkAccessToDocumentTree"/>
-                    </class>
-                </namespace>
-            </callbacks>
-        </template>
-
-        <!-- Проверяет доступ ользователя к текущему режиму просмотра -->
-        <template id="AccessToViewModeChecker">
-            <callbacks>
-                <namespace name="\Classes\RouteCallbacks">
-                    <class name="AccessToViewModeChecker" type="static">
-                        <method name="checkAccessViewMode"/>
-                    </class>
-                </namespace>
-            </callbacks>
-        </template>
-
-        <!--  -->
-        <template id="ActionChecker">
-            <callbacks>
-                <namespace name="\Classes\RouteCallbacks">
-                    <class name="ActionChecker" type="instance">
-                        <method name="construct"/>
-                        <method name="checkAccess"/>
-                        <method name="checkIssetExecutionCallback"/>
+                <namespace name="\Classes\RouteCallbacks\DocumentParameters">
+                    <class name="APIActionExecutor" type="instance">
+                        <method name="defineDocumentParameters"/>
                     </class>
                 </namespace>
             </callbacks>
