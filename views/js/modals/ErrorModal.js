@@ -50,7 +50,7 @@ class ErrorModal {
 
       let close_button = document.createElement('I');
       close_button.classList.add('modal__close', 'fas', 'fa-times');
-      close_button.classList.add('active');
+      // close_button.classList.add('active');
       this.modal.appendChild(close_button);
       close_button.addEventListener('click', this.close);
 

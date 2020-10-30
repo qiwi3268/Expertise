@@ -45,8 +45,8 @@
         </div>
 
         <div class="view__hierarchy hierarchy">
-            <?php if (isset($variablesTV->getValue('availableDocuments')['application'][0])): ?>
-                <?php $_application = $variablesTV->getValue('availableDocuments')['application'][0] ?>
+            <?php if (isset($variablesTV->getValue('available_documents')['application'][0])): ?>
+                <?php $_application = $variablesTV->getValue('available_documents')['application'][0] ?>
                 <div class="hierarchy__section" data-selected="<?= $_application['isSelected'] ?>">
                     <a href="<?= $_application['ref'] ?>" class="hierarchy__item" data-depth="0">
                         <span class="hierarchy__name"><?= $_application['label'] ?></span>
@@ -58,8 +58,8 @@
                     </a>
                 </div>
             <?php endif; ?>
-            <?php if (isset($variablesTV->getValue('availableDocuments')['total_cc'][0])): ?>
-                <?php $_total_cc = $variablesTV->getValue('availableDocuments')['total_cc'][0] ?>
+            <?php if (isset($variablesTV->getValue('available_documents')['total_cc'][0])): ?>
+                <?php $_total_cc = $variablesTV->getValue('available_documents')['total_cc'][0] ?>
                 <div class="hierarchy__section" data-selected="<?= $_total_cc['isSelected'] ?>">
                     <a href="<?= $_total_cc['ref'] ?>" class="hierarchy__item" data-depth="1">
                         <span class="hierarchy__name"><?= $_total_cc['label'] ?></span>
@@ -85,8 +85,8 @@
                     </a>
                 </div>
             <?php endif; ?>
-            <?php if (isset($variablesTV->getValue('availableDocuments')['sections'])): ?>
-                <?php $_sections = $variablesTV->getValue('availableDocuments')['sections'] ?>
+            <?php if (isset($variablesTV->getValue('available_documents')['sections'])): ?>
+                <?php $_sections = $variablesTV->getValue('available_documents')['sections'] ?>
                 <?php foreach ($_sections as $section): ?>
                     <div class="hierarchy__section" data-selected="<?= $section['isSelected'] ?>" data-tooltip_container data-tooltip>
                         <a href="<?= $section['ref'] ?>" class="hierarchy__item" data-depth="2">

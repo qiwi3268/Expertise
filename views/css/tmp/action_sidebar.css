@@ -1,11 +1,11 @@
 .view__object,
 .view__header,
 .info__item,
-.view__hierarchy,
-.view-actions {
+.view__hierarchy {
    background-color: #fff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+   overflow: hidden;
 }
 
 .view__object {
@@ -145,9 +145,31 @@
 }
 
 .view-actions {
-   /*width: 15%;*/
    margin: 0 0 0 10px;
    min-width: 200px;
+}
+
+.view-actions__card {
+   background-color: #fff;
+   border-radius: 4px;
+   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+   overflow: hidden;
+}
+
+.view-actions__card:not(:last-child) {
+   margin: 0 0 10px 0;
+}
+
+.view-actions {
+   /*width: 15%;*/
+   /*margin: 0 0 0 10px;*/
+   /*min-width: 200px;*/
+}
+
+.view-modes {
+   margin: 0 0 10px 10px;
+   min-width: 200px;
+
 }
 
 .view-actions__header {
@@ -157,11 +179,10 @@
 
    padding: 10px;
    text-align: center;
-
-
 }
 
-.view-actions__action {
+.view-actions__action,
+.view-actions__mode {
    border-right: 4px solid #fff;
    display: block;
    font-size: 16px;
@@ -172,21 +193,15 @@
    transition: background-color .1s;
 }
 
-.view-actions__action:hover {
+.view-actions__mode.selected {
+   background-color: #f6f8fa;
+   border-color: #b2cde9;
+}
+
+.view-actions__action:hover,
+.view-actions__mode:hover {
    background-color: #f3f5f6;
    border-color: #93b0d1;
-}
-
-.view-actions__action:first-child {
-   border-radius: 4px 4px 0 0;
-}
-
-.view-actions__action:last-child {
-   border-radius: 0 0 4px 4px;
-}
-
-.view-actions__action:last-child:first-child {
-   border-radius: 4px;
 }
 
 .hierarchy__info {

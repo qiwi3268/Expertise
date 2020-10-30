@@ -1,6 +1,6 @@
 <div class="overlay file-overlay"></div>
 <div class="modal file-modal">
-    <i class="modal__close active fas fa-times"></i>
+    <i class="modal__close fas fa-times"></i>
 
     <div class="file-modal__header">
         <div class="file-modal__title">Выберите или перетащите файлы</div>

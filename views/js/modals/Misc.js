@@ -166,14 +166,15 @@ class Misc {
     */
    handleCloseButton () {
       let close_btn = this.modal.querySelector('[data-misc_close]');
-      close_btn.addEventListener('click', () => this.close());
+      close_btn.addEventListener('click', () => {
+         this.close();
+      });
    }
 
    /**
     * Закрывает модальное окно справочника
     */
    close () {
-
       this.modal.classList.remove('active');
       Misc.overlay.classList.remove('active');
 

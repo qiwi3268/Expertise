@@ -330,7 +330,7 @@
                     <!--Блок смета-->
                     <div class="card-form__block" data-block data-name="estimate" data-active="true">
                         <!--Сметная стоимость-->
-                        <div class="form-field field" data-name="estimate_cost" data-pattern="number">
+                        <div class="form-field field" data-name="estimate_cost">
                             <span class="form-field__title">Сведения о сметной или предполагаемой (предельной) стоимости объекта капитального строительства, содержащиеся в решении по объекту или письме. тыс. руб.</span>
                             <div class="form-field__item">
                                 <div class="form-field__body">

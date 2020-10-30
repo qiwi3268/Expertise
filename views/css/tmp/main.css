@@ -158,8 +158,6 @@ textarea.form-field__input.invalid {
    color: #bd4949;
    /*color: #bd4949;*/
 
-   /*background-color: #ffffff;*/
-   /*background-color: #FFFAFA;*/
 }
 
 /*.form-field__select.invalid:hover,*/
@@ -233,14 +231,12 @@ textarea.form-field__input.invalid {
    transition: 0.3s all;
    visibility: hidden;
    width: 100%;
-   z-index: 5000;
+   z-index: -1;
 }
 
-/*.alert-modal {
-   flex-direction: row;
-   align-items: center;
-   justify-content: flex-start;
-}*/
+.modal.active {
+   z-index: 5000;
+}
 
 .overlay {
    background-color: rgba(0, 0, 0, .5);
@@ -252,6 +248,10 @@ textarea.form-field__input.invalid {
    transition: .3s all;
    visibility: hidden;
    width: 100%;
+   z-index: -1;
+}
+
+.overlay.active {
    z-index: 4000;
 }
 
@@ -276,7 +276,6 @@ textarea.form-field__input.invalid {
    position: absolute;
    right: -25px;
    top: -23px;
-   z-index: 10000;
 }
 
 /* Общие элементы*/

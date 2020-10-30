@@ -2,7 +2,7 @@
    background-color: #fff;
    border-radius: 4px;
    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
-
+   overflow: hidden;
 }
 
 .action-info {
@@ -130,18 +130,6 @@
 
 .section__input:not(:last-child) {
    border-bottom: 1px solid #e0e0e0;
-}
-
-.section__input:first-child {
-   border-radius: 0 4px 0 0;
-}
-
-.section__input:last-child {
-   border-radius: 0 0 4px 0;
-}
-
-.section__input:first-child:last-child {
-   border-radius: 0 4px 4px 0;
 }
 
 .section__input:hover,
