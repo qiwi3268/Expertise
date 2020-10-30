@@ -65,6 +65,7 @@
             <div class="assignment__body-sections">
                 <?php foreach ($_VT->getValue('documentation_files_in_structure') as $section): ?>
                     <div class="assignment__section section"
+                         data-section
                          data-drop_area
                          data-id="<?= $section['id_main_block_341'] ?>"
                          data-result_callback="experts_json"

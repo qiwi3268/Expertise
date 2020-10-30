@@ -269,6 +269,7 @@ function getTransformCallback (drag_container) {
 function transformExpert (expert) {
    let new_expert = document.createElement('DIV');
    new_expert.classList.add('section__expert');
+   new_expert.setAttribute('data-assigned_expert', '');
    new_expert.dataset.id = expert.dataset.id;
    new_expert.dataset.drag_element = '';
    new_expert.dataset.drop_element = '';
