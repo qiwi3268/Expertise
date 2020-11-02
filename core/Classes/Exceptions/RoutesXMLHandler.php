@@ -14,7 +14,9 @@ use Lib\Exceptions\Traits\MainTrait;
  * 4  - пространство имен должно начинться с '\\' и не должено заканчиваться на '\\'<br>
  * 5  - callback класс не существует<br>
  * 6  - тип класса должен быть 'instance' или 'static'<br>
- * 7  - callback метод не существует"
+ * 7  - callback метод не существует<br>
+ * 8  - controller класс не существует<br>
+ * 9  - controller класс не является дочерним классом от абстрактного класса<br>
  *
  */
 class RoutesXMLHandler extends \Exception

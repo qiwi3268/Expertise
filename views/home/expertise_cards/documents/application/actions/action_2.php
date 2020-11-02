@@ -86,8 +86,8 @@
                                 ></div>
                             </div>
                             <div class="section__uploaded-files card">
-                                <div class="section__expand-button">
-                                    <span class="section__button-name card-expand">Загруженные файлы</span>
+                                <div class="section__expand-button card-expand">
+                                    <span class="section__button-name">Загруженные файлы</span>
                                     <i class="section__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                                 </div>
                                 <div class="section__files files block card-body" data-id_file_field>

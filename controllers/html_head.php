@@ -135,7 +135,7 @@ switch (URN) {
             ...CreateSource('css', TMP_CSS, 'action_sidebar.css', 'test_1.css', 'radio.css', 'files.css', 'comment_groups.css', 'comment_modal.css', 'group_modal.css','action_header.css', 'comments_table.css'),
             ...CreateSource('js', ROOT_JS, 'ErrorHandler.js'),
             ...CreateSource('js', MODALS_JS,'ErrorModal.js', 'CommentGroup.js'),
-            ...CreateSource('js', ROOT_JS . 'expertise_cards/documents/total_cc/actions/', 'action_2.js'),
+            ...CreateSource('js', TMP_JS, 'test_1.js'),
         ];
         break;
 

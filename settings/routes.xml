@@ -5,8 +5,16 @@
             <files>
                 <dir path="/controllers/" ext=".php">
                     <file name="html_head" />
-                    <file name="login" />
                 </dir>
+            </files>
+
+            <controllers>
+                <namespace name="\ControllersClasses">
+                    <class name="Login" />
+                </namespace>
+            </controllers>
+
+            <files>
                 <dir path="/views/" ext=".php">
                     <file name="html_head" />
                     <file name="login" />
@@ -118,20 +126,13 @@
             </files>
         </page>
 
-        <page urn="files_in_documentation">
-            <files>
-                <dir path="/controllers/" ext=".php">
-                    <file name="files_in_documentation" />
-                </dir>
-            </files>
-        </page>
 
         <page urn="test">
-            <files>
-                <dir path="/controllers/" ext=".php">
-                    <file name="test" />
-                </dir>
-            </files>
+            <controllers>
+                <namespace name="\ControllersClasses">
+                    <class name="Test" />
+                </namespace>
+            </controllers>
         </page>
 
         <page urn="home/expertise_cards/section_documentation_1/view_1">

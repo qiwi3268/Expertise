@@ -333,7 +333,6 @@ class FileUploader {
    // Принимает параметры-------------------------------
    // files         Array[Object] : массив с файлами
    putFilesToRow (files) {
-g
       this.parent_field.classList.add('filled');
 
       let files_body;

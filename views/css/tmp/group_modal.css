@@ -33,6 +33,8 @@
    /*margin: 5px 10px;*/
    margin: 10px;
    overflow: hidden;
+   border-left: 3px solid #93b0d1;
+
 }
 /*
 .group-comment__header {
@@ -77,9 +79,13 @@
    margin: 0 5px 10px 30px;
 }
 
-.group-message:nth-child(even) .group-message__icon,
-.group-message:nth-child(even) .files__icon {
+.group-message:nth-child(odd) .group-message__icon {
+/*.group-message:nth-child(even) .files__icon {*/
    color: #AD6B70;
+}
+
+.fa-clock {
+   display: none;
 }
 
 .group-modal__header {
@@ -177,9 +183,9 @@ textarea.group-comment__field {
    padding: 10px;
 }
 
-.group-comment.selected {
+/*.group-comment.selected {
    border-left: 3px solid #93b0d1;
-}
+}*/
 
 .group-comment__no-replace {
    padding: 10px;

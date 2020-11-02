@@ -8,7 +8,6 @@ use Lib\Exceptions\XMLValidator as XMLValidatorEx;
 use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
 
 use Lib\Singles\XMLValidator;
-use Lib\ViewModes\CurrentViewModesFacade;
 use Lib\Singles\PrimitiveValidator;
 use SimpleXMLElement;
 
@@ -32,6 +31,12 @@ final class RoutesXMLHandler
      */
     private const XPATH_CALLBACK_TEMPLATE = "/routes/callback_templates/template[@id='%s']";
 
+    /**
+     * Абстрактный клас, от которого должны быть унаследованы все контроллер классы
+     *
+     */
+    private const CONTROLLER_ABSTRACT_CLASS = '\ControllersClasses\Controller';
+    private const CONTROLLER_METHOD = 'execute';
 
     private SimpleXMLElement $data;
     private XMLValidator $XMLValidator;
@@ -92,7 +97,7 @@ final class RoutesXMLHandler
     public function validatePageStructure(SimpleXMLElement $page): void
     {
         $this->XMLValidator->validateAttributes($page, '<page />', ['urn']);
-        $this->XMLValidator->validateChildren($page, '<page />', [], ['files', 'callbacks', 'callback_template']);
+        $this->XMLValidator->validateChildren($page, '<page />', [], ['files', 'controllers', 'callbacks', 'callback_template']);
 
         foreach ($page->children() as $children_page) {
 
@@ -100,6 +105,9 @@ final class RoutesXMLHandler
             if ($children_page_name == 'files') {
 
                 $this->validateFilesStructure($children_page);
+            } elseif ($children_page_name == 'controllers') {
+
+                $this->validateControllersStructure($children_page);
             } elseif ($children_page_name == 'callbacks') {
 
                 $this->validateCallbacksStructure($children_page);
@@ -131,6 +139,31 @@ final class RoutesXMLHandler
 
                 $this->XMLValidator->validateAttributes($file, '<file />', ['name']);
                 $this->XMLValidator->validateChildren($file, '<file />', []);
+            }
+        }
+    }
+
+
+    /**
+     * Предназначен для валидации <b>структуры</b> узла controllers, без проверки конкретных значений
+     *
+     * @param SimpleXMLElement $controllers узел controllers
+     * @throws XMLValidatorEx
+     */
+    private function validateControllersStructure(SimpleXMLElement $controllers): void
+    {
+        $this->XMLValidator->validateAttributes($controllers, '<controllers />', []);
+        $this->XMLValidator->validateChildren($controllers, '<controllers />', ['namespace']);
+
+        foreach ($controllers->children() as $namespace) {
+
+            $this->XMLValidator->validateAttributes($namespace, '<namespace />', ['name']);
+            $this->XMLValidator->validateChildren($namespace, '<namespace />', ['class']);
+
+            foreach ($namespace->children() as $class) {
+
+                $this->XMLValidator->validateAttributes($class, '<class />', ['name']);
+                $this->XMLValidator->validateChildren($class, '<class />', []);
             }
         }
     }
@@ -214,6 +247,9 @@ final class RoutesXMLHandler
             if ($children_page_name == 'files') {
 
                 $this->handleFilesValue($children_page, $XMLHandler_result);
+            } elseif ($children_page_name == 'controllers') {
+
+                $this->handleControllersValue($children_page, $XMLHandler_result);
             } elseif ($children_page_name == 'callbacks') {
 
                 $this->handleCallbacksValue($children_page, $XMLHandler_result);
@@ -232,7 +268,10 @@ final class RoutesXMLHandler
                 if ($XMLHandler_value['type'] == 'file') {
 
                     require_once $XMLHandler_value['fs'];
-                } else {
+                } elseif ($XMLHandler_value['type'] == 'controller') {
+
+                    call_user_func([$XMLHandler_value['object'], self::CONTROLLER_METHOD]);
+                } else { // callback
 
                     call_user_func([$XMLHandler_value['object'], $XMLHandler_value['method']]);
                 }
@@ -284,6 +323,47 @@ final class RoutesXMLHandler
 
 
     /**
+     * Предназначен для обработки <b>значений</b> узла controllers
+     *
+     * После обработки добавляет значения в результирующий массив
+     *
+     * @param SimpleXMLElement $controllers узел controllers
+     * @param array $XMLHandler_result <i>ссылка</i> на массив результатов
+     * @throws SelfEx
+     */
+    private function handleControllersValue(SimpleXMLElement $controllers, array &$XMLHandler_result): void
+    {
+        foreach ($controllers->children() as $namespace) {
+
+            $nsp = (string)$namespace['name'];
+
+            if ($nsp[0] != '\\' || $nsp[mb_strlen($nsp) - 1] == '\\') {
+                throw new SelfEx("Пространство имен: '{$nsp}' должно начинться с '\\' и не должено заканчиваться на '\\'", 4);
+            }
+
+            foreach ($namespace->children() as $class) {
+
+                $className = (string)$class['name'];
+                $fullClassName = "{$nsp}\\{$className}";
+
+                if (!class_exists($fullClassName)) {
+                    throw new SelfEx("controller класс: '{$fullClassName}' не существует", 8);
+                }
+
+                if (!is_subclass_of($fullClassName, self::CONTROLLER_ABSTRACT_CLASS)) {
+                    throw new SelfEx("controller класс: '{$fullClassName}' не является дочерним классом от абстрактного класса: '" . self::CONTROLLER_ABSTRACT_CLASS . "'", 9);
+                }
+
+                $XMLHandler_result[] = [
+                    'type'   => 'controller',
+                    'object' => new $fullClassName()
+                ];
+            }
+        }
+    }
+
+
+    /**
      * Предназначен для обработки <b>значений</b> узла callbacks
      *
      * После обработки добавляет значения в результирующий массив
@@ -307,9 +387,7 @@ final class RoutesXMLHandler
                 $className = (string)$class['name'];
                 $fullClassName = "{$nsp}\\{$className}";
 
-                try {
-                    $this->primitiveValidator->validateClassExist($fullClassName);
-                } catch (PrimitiveValidatorEx $e) {
+                if (!class_exists($fullClassName)) {
                     throw new SelfEx("callback класс: '{$fullClassName}' не существует", 5);
                 }
 
