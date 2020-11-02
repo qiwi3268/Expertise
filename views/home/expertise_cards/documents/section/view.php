@@ -12,11 +12,11 @@
         <div class="panel statistic__panel" data-col_width="50">
             <div class="panel__body">
                 <div class="panel__item">
-                    <div class="panel__number">7</div>
+                    <div class="panel__number">8</div>
                     <div class="panel__label">Всего</div>
                 </div>
                 <div class="panel__item">
-                    <div class="panel__number">7</div>
+                    <div class="panel__number">8</div>
                     <div class="panel__label">Активные</div>
                 </div>
                 <div class="panel__item">
@@ -28,7 +28,7 @@
                     <div class="panel__label">Рассмотрение экспертом</div>
                 </div>
                 <div class="panel__item">
-                    <div class="panel__number">7</div>
+                    <div class="panel__number">8</div>
                     <div class="panel__label">Устранение заявителем</div>
                 </div>
             </div>
@@ -81,26 +81,26 @@
                 <div class="diagram__body">
                     <div class="diagram__col"
                          data-color="green"
-                         style="grid-template-rows: 5fr 2fr;">
+                         style="grid-template-rows: 5fr 3fr;">
                         <div class="diagram__row"></div>
                         <div class="diagram__row filled"></div>
                     </div>
                     <div class="diagram__col"
                          data-color="blue"
-                         style="grid-template-rows: 3fr 4fr;">
+                         style="grid-template-rows: 4fr 4fr;">
                         <div class="diagram__row"></div>
                         <div class="diagram__row filled"></div>
                     </div>
                     <div class="diagram__col"
                          data-color="red"
-                         style="grid-template-rows: 6fr 1fr;">
+                         style="grid-template-rows: 7fr 1fr;">
                         <div class="diagram__row"></div>
                         <div class="diagram__row filled"></div>
                     </div>
                 </div>
                 <div class="diagram__footer">
                     <div class="diagram__col">
-                        <span class="diagram__number">2</span>
+                        <span class="diagram__number">3</span>
                         <span class="diagram__label">Техническая ошибка</span>
                     </div>
                     <div class="diagram__col">
@@ -177,7 +177,28 @@
             </div>
         <?php endif; ?>
     </div>
-
+    
+    <div class="view-section__card card">
+        <div class="view-section__header card-expand">
+            <div class="view-section__label">
+                <i class="view-section__icon-label fas fa-search"></i>
+                <div class="view-section__amount">0</div>
+            </div>
+            <div class="view-section__title">Замечания на рассмотрении эксперта</div>
+        </div>
+        
+    </div>
+    <div class="view-section__card card">
+        <div class="view-section__header card-expand">
+            <div class="view-section__label">
+                <i class="view-section__icon-label fas fa-check"></i>
+                <div class="view-section__amount">0</div>
+            </div>
+            <div class="view-section__title">Снятые замечания</div>
+        </div>
+        
+    </div>
+    
     <?php foreach ($_VT->getValue('descriptions') as $author => $description): ?>
         <?php if (!empty($description)): ?>
             <div class="view-section__card card">

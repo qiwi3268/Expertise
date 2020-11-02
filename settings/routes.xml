@@ -114,14 +114,6 @@
             </files>
         </page>
 
-        <page urn="home/documentation_structure">
-            <files>
-                <dir path="/controllers/home/" ext=".php">
-                    <file name="documentation_structure" />
-                </dir>
-            </files>
-        </page>
-
 
         <page urn="test">
             <controllers>
@@ -131,36 +123,23 @@
             </controllers>
         </page>
 
-        <page urn="home/expertise_cards/section_documentation_1/view_1">
-            <files>
-                <dir path="/controllers/" ext=".php">
-                    <file name="test" />
-                </dir>
-            </files>
-        </page>
-
         <page urn="home/application/create">
 
             <callback_template id="AuthorizationChecker" />
 
-            <files>
-                <dir path="/controllers/" ext=".php">
-                    <file name="html_head" />
-                </dir>
-            </files>
-
             <controllers>
+                <namespace name="\ControllersClasses">
+                    <class name="HtmlHead" />
+                </namespace>
                 <namespace name="\ControllersClasses\Home">
                     <class name="Header" />
                 </namespace>
+                <namespace name="\ControllersClasses\Home\Application">
+                    <class name="Create" />
+                </namespace>
             </controllers>
+
             <files>
-                <dir path="/controllers/home/" ext=".php">
-                    <file name="header" />
-                </dir>
-                <dir path="/controllers/home/application/" ext=".php">
-                    <file name="create" />
-                </dir>
 
                 <dir path="/views/" ext=".php">
                     <file name="html_head" />
@@ -190,13 +169,16 @@
 
             <callback_template id="AuthorizationChecker" />
 
+            <controllers>
+                <namespace name="\ControllersClasses">
+                    <class name="HtmlHead" />
+                </namespace>
+                <namespace name="\ControllersClasses\Home">
+                    <class name="Header" />
+                </namespace>
+            </controllers>
+
             <files>
-                <dir path="/controllers/" ext=".php">
-                    <file name="html_head" />
-                </dir>
-                <dir path="/controllers/home/" ext=".php">
-                    <file name="header" />
-                </dir>
 
                 <dir path="/views/" ext=".php">
                     <file name="html_head" />
@@ -220,26 +202,26 @@
 
             <callback_template id="ExpertiseCard_ViewMode" />
 
+            <controllers>
+                <namespace name="\ControllersClasses">
+                    <class name="HtmlHead" />
+                </namespace>
+                <namespace name="\ControllersClasses\Home">
+                    <class name="Header" />
+                </namespace>
+                <namespace name="\ControllersClasses\Home\ExpertiseCards\Sidebars">
+                    <class name="Info" />
+                    <class name="Hierarchy" />
+                    <class name="ViewModes" />
+                    <class name="Actions" />
+                </namespace>
+            </controllers>
+
             <files>
-                <dir path="/controllers/" ext=".php">
-                    <file name="html_head" />
-                </dir>
-                <dir path="/controllers/home/" ext=".php">
-                    <file name="header" />
-                </dir>
-                <dir path="/controllers/home/expertise_cards/sidebars/" ext=".php">
-                    <file name="info" />
-                    <file name="hierarchy" />
-                </dir>
                 <dir path="/controllers/home/expertise_cards/documents/application/" ext=".php">
                     <file name="view" />
                     <file name="validation_block_application_form" />
                 </dir>
-                <dir path="/controllers/home/expertise_cards/sidebars/" ext=".php">
-                    <file name="view_modes" />
-                    <file name="actions" />
-                </dir>
-
                 <dir path="/views/" ext=".php">
                     <file name="html_head" />
                 </dir>
@@ -270,25 +252,25 @@
 
             <callback_template id="ExpertiseCard_ViewMode" />
 
+            <controllers>
+                <namespace name="\ControllersClasses">
+                    <class name="HtmlHead" />
+                </namespace>
+                <namespace name="\ControllersClasses\Home">
+                    <class name="Header" />
+                </namespace>
+                <namespace name="\ControllersClasses\Home\ExpertiseCards\Sidebars">
+                    <class name="Info" />
+                    <class name="Hierarchy" />
+                    <class name="ViewModes" />
+                    <class name="Actions" />
+                </namespace>
+            </controllers>
+
             <files>
-                <dir path="/controllers/" ext=".php">
-                    <file name="html_head" />
-                </dir>
-                <dir path="/controllers/home/" ext=".php">
-                    <file name="header" />
-                </dir>
-                <dir path="/controllers/home/expertise_cards/sidebars/" ext=".php">
-                    <file name="info" />
-                    <file name="hierarchy" />
-                </dir>
                 <dir path="/controllers/home/expertise_cards/documents/total_cc/" ext=".php">
                     <file name="view" />
                 </dir>
-                <dir path="/controllers/home/expertise_cards/sidebars/" ext=".php">
-                    <file name="view_modes" />
-                    <file name="actions" />
-                </dir>
-
                 <dir path="/views/" ext=".php">
                     <file name="html_head" />
                 </dir>
@@ -319,25 +301,25 @@
 
             <callback_template id="ExpertiseCard_ViewMode" />
 
+            <controllers>
+                <namespace name="\ControllersClasses">
+                    <class name="HtmlHead" />
+                </namespace>
+                <namespace name="\ControllersClasses\Home">
+                    <class name="Header" />
+                </namespace>
+                <namespace name="\ControllersClasses\Home\ExpertiseCards\Sidebars">
+                    <class name="Info" />
+                    <class name="Hierarchy" />
+                    <class name="ViewModes" />
+                    <class name="Actions" />
+                </namespace>
+            </controllers>
+
             <files>
-                <dir path="/controllers/" ext=".php">
-                    <file name="html_head" />
-                </dir>
-                <dir path="/controllers/home/" ext=".php">
-                    <file name="header" />
-                </dir>
-                <dir path="/controllers/home/expertise_cards/sidebars/" ext=".php">
-                    <file name="info" />
-                    <file name="hierarchy" />
-                </dir>
                 <dir path="/controllers/home/expertise_cards/documents/section/" ext=".php">
                     <file name="view" />
                 </dir>
-                <dir path="/controllers/home/expertise_cards/sidebars/" ext=".php">
-                    <file name="view_modes" />
-                    <file name="actions" />
-                </dir>
-
                 <dir path="/views/" ext=".php">
                     <file name="html_head" />
                 </dir>
@@ -369,13 +351,16 @@
 
             <callback_template id="ExpertiseCard_Action" />
 
+            <controllers>
+                <namespace name="\ControllersClasses">
+                    <class name="HtmlHead" />
+                </namespace>
+                <namespace name="\ControllersClasses\Home">
+                    <class name="Header" />
+                </namespace>
+            </controllers>
+
             <files>
-                <dir path="/controllers/" ext=".php">
-                    <file name="html_head" />
-                </dir>
-                <dir path="/controllers/home/" ext=".php">
-                    <file name="header" />
-                </dir>
                 <dir path="/controllers/home/expertise_cards/documents/application/actions/" ext=".php">
                     <file name="action_2" />
                 </dir>
@@ -400,15 +385,19 @@
         </page>
 
         <page urn="home/test_1">
+
+            <controllers>
+                <namespace name="\ControllersClasses">
+                    <class name="HtmlHead" />
+                </namespace>
+                <namespace name="\ControllersClasses\Home">
+                    <class name="Header" />
+                </namespace>
+            </controllers>
+
             <files>
-                <dir path="/controllers/" ext=".php">
-                    <file name="html_head" />
-                </dir>
                 <dir path="/views/" ext=".php">
                     <file name="html_head" />
-                </dir>
-                <dir path="/controllers/home/" ext=".php">
-                    <file name="header" />
                 </dir>
                 <dir path="/views/home/" ext=".php">
                     <file name="header" />
@@ -426,13 +415,16 @@
 
             <callback_template id="ExpertiseCard_Action" />
 
+            <controllers>
+                <namespace name="\ControllersClasses">
+                    <class name="HtmlHead" />
+                </namespace>
+                <namespace name="\ControllersClasses\Home">
+                    <class name="Header" />
+                </namespace>
+            </controllers>
+
             <files>
-                <dir path="/controllers/" ext=".php">
-                    <file name="html_head" />
-                </dir>
-                <dir path="/controllers/home/" ext=".php">
-                    <file name="header" />
-                </dir>
                 <dir path="/controllers/home/expertise_cards/documents/section/actions/" ext=".php">
                     <file name="action_1" />
                 </dir>

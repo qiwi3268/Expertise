@@ -17,7 +17,7 @@ class Header extends Controller
      *
      * @throws FunctionsEx
      */
-    public function execute(): void
+    public function doExecute(): void
     {
         $this->VT->setValue('user_FIO', Session::getUserFullFIO());
     }

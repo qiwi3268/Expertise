@@ -28,7 +28,7 @@ class HtmlHead extends Controller
      * Реализация абстрактного метода
      *
      */
-    public function execute(): void
+    public function doExecute(): void
     {
         // Название страницы
         $pageName = '';

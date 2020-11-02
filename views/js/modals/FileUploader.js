@@ -7,21 +7,20 @@
  * @property {string} human_file_size - строка с размером для отображения на странице
  */
 
-
 document.addEventListener('DOMContentLoaded', () => {
 
    let file_selects = document.querySelectorAll('[data-modal_select="file"]');
 
    file_selects.forEach(select => {
       select.addEventListener('click', () => {
-         FileUploader.getInstance().show(select);
+         FileUploader.getInstance().open(select);
       });
    });
 
 });
 
 /**
- * Представляет собой модуль загрузки файлов
+ * Представляет собой файловый загрузчик
  */
 class FileUploader {
 
@@ -416,6 +415,9 @@ class FileUploader {
 
    }
 
+   /**
+    * Закрывает модальное окно файлового загрузчика
+    */
    closeModal () {
       if (!this.is_uploading) {
          this.modal.classList.remove('active');
@@ -427,6 +429,37 @@ class FileUploader {
       }
    }
 
+   /**
+    * Обрабатывает кнопку удаления выбранных файлов
+    */
+   handleDeleteButton () {
+      let delete_icon = this.modal.querySelector('.file-modal__delete');
+      delete_icon.addEventListener('click', () => {
+         if (!this.is_uploading) {
+            this.clearModal();
+         }
+      });
+   }
+
+   /**
+    * Открывает файловый загрузчик
+    *
+    * @param {HTMLElement} select - файловое поле
+    */
+   open (select) {
+      this.putFileData(select);
+      this.clearModalTitle();
+      this.modal.classList.add('active');
+      this.overlay.classList.add('active');
+      this.is_opened = true;
+      disableScroll();
+   }
+
+   /**
+    * Добавляет в файловый загрузчик данные о файловом поле
+    *
+    * @param {HTMLElement} select - файловое поле
+    */
    putFileData (select) {
       this.parent_node = select.closest('[data-id_structure_node]');
       this.parent_field = select.closest('[data-mapping_level_1]');
@@ -447,28 +480,13 @@ class FileUploader {
 
    }
 
-   show (select) {
-      this.putFileData(select);
-      this.clearModalTitle();
-      this.modal.classList.add('active');
-      this.overlay.classList.add('active');
-      this.is_opened = true;
-      disableScroll();
-   }
-
+   /**
+    * Очищает заголовок модального окна файлового загрузчика
+    */
    clearModalTitle () {
       this.progress_bar.style.transition = '0s';
       this.modal_title.innerHTML = 'Выберите или перетащите файлы';
       this.progress_bar.style.width = '0';
-   }
-
-   handleDeleteButton () {
-      let delete_icon = this.modal.querySelector('.file-modal__delete');
-      delete_icon.addEventListener('click', () => {
-         if (!this.is_uploading) {
-            this.clearModal();
-         }
-      });
    }
 
 }

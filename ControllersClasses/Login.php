@@ -12,7 +12,7 @@ class Login extends Controller
      * Реализация абстрактного метода
      *
      */
-    public function execute(): void
+    public function doExecute(): void
     {
         Session::deleteUser();
     }

@@ -7,7 +7,7 @@ namespace ControllersClasses;
 class Test extends Controller
 {
 
-    public function execute(): void
+    public function doExecute(): void
     {
         $str = 'application';
 
