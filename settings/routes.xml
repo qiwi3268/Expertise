@@ -2,14 +2,10 @@
     <pages>
 
         <page urn="">
-            <files>
-                <dir path="/controllers/" ext=".php">
-                    <file name="html_head" />
-                </dir>
-            </files>
 
             <controllers>
                 <namespace name="\ControllersClasses">
+                    <class name="HtmlHead" />
                     <class name="Login" />
                 </namespace>
             </controllers>
@@ -151,6 +147,14 @@
                 <dir path="/controllers/" ext=".php">
                     <file name="html_head" />
                 </dir>
+            </files>
+
+            <controllers>
+                <namespace name="\ControllersClasses\Home">
+                    <class name="Header" />
+                </namespace>
+            </controllers>
+            <files>
                 <dir path="/controllers/home/" ext=".php">
                     <file name="header" />
                 </dir>

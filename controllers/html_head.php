@@ -170,8 +170,8 @@ switch (URN) {
 }
 
 $variablesTV = \Lib\Singles\VariableTransfer::getInstance();
-$variablesTV->setValue('pageName', $pageName);
-$variablesTV->setValue('sourcesFiles', $sourcesFiles);
+$variablesTV->setValue('page_name', $pageName);
+$variablesTV->setValue('sources_files', $sourcesFiles);
 
 
 // Предназначен для создания html ссылки на ресурс

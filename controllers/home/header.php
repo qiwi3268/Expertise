@@ -7,4 +7,4 @@ use Lib\Singles\VariableTransfer;
 
 $VT = VariableTransfer::getInstance();
 
-$VT->setValue('userFIO', Session::getUserFullFIO());
+$VT->setValue('user_FIO', Session::getUserFullFIO());

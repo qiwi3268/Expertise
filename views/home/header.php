@@ -1,4 +1,4 @@
-<?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
+<?php $VT = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
 <div class="main-container">
     <header>
@@ -14,7 +14,7 @@
         <a href="/home/navigation" class="header__home">
             <i class="header__icon fas fa-home"></i>
         </a>
-        <div class="header__user"><?= $variablesTV->getValue('userFIO') ?></div>
+        <div class="header__user"><?= $VT->getValue('user_FIO') ?></div>
         <div class="header__links">
             <i class="header__icon fas fa-question-circle"></i>
             <a href="/" class="header__out">
