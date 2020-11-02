@@ -107,7 +107,7 @@
             <div class="comment-modal__title">Документация</div>
         </div>
         <div class="comment-modal__body">
-            <div id="documentation" class="documentation" data-id_file_field data-mapping_level_1="<?= $_VT->getValue('documentation_mapping_level_1') ?>" data-mapping_level_2="<?= $_VT->getValue('documentation_mapping_level_2') ?>">
+            <div id="documentation" class="documentation" data-id_file_field data-read_only data-mapping_level_1="<?= $_VT->getValue('documentation_mapping_level_1') ?>" data-mapping_level_2="<?= $_VT->getValue('documentation_mapping_level_2') ?>">
                 <?php foreach ($_VT->getValue('documentation_files_in_structure') as $node): ?>
                     <div class="documentation__node">
                         <div class="documentation__header" data-title="<?= $node['is_header'] ? 'true' : 'false' ?>">
@@ -116,7 +116,7 @@
                         <?php if (isset($node['files'])): ?>
                             <div class="documentation__files files">
                                 <?php foreach ($node['files'] as $file): ?>
-                                    <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" style="padding-left: <?= $node['depth']*25 + 7 ?>px" data-validate_results='<?= $file['validate_results'] ?>'>
+                                    <div class="files__item" data-id="<?= $file['id'] ?>" style="padding-left: <?= $node['depth']*25 + 7 ?>px" data-validate_results='<?= $file['validate_results'] ?>'>
                                         <div class="files__info">
                                             <i class="files__checkbox far fa-square"></i>
                                             <i class="files__icon fas <?= $file['file_icon'] ?>"></i>

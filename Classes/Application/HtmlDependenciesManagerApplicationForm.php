@@ -32,16 +32,16 @@ class HtmlDependenciesManagerApplicationForm extends HtmlDependenciesManager
                 1 => [
                     'planning_documentation_approval' => false,
                     'GPZU'                            => true,
-                    'structureDocumentation1'         => true,
-                    'structureDocumentation2'         => false,
+                    'structure_documentation_1'         => true,
+                    'structure_documentation_2'         => false,
                     'empty_documentation'             => false
                 ],
 
                 2 => [
                     'planning_documentation_approval' => true,
                     'GPZU'                            => false,
-                    'structureDocumentation1'         => false,
-                    'structureDocumentation2'         => true,
+                    'structure_documentation_1'         => false,
+                    'structure_documentation_2'         => true,
                     'empty_documentation'             => false
                 ]
             ],

@@ -44,6 +44,8 @@ class FileField {
     */
    mapping_2;
 
+   read_only;
+
    /**
     * Файлы, которые относятся к полю
     *
@@ -60,6 +62,7 @@ class FileField {
       this.element = element;
       this.mapping_1 = parseInt(this.element.dataset.mapping_level_1);
       this.mapping_2 = parseInt(this.element.dataset.mapping_level_2);
+      this.read_only = this.element.hasAttribute('data-read_only');
       this.files = [];
 
       let id = FileField.fields_counter++;
@@ -330,9 +333,9 @@ class GeFile {
       this.sign_button.addEventListener('click', () => {
          let sign_state = this.element.dataset.state;
 
-         if (this.element.dataset.read_only && sign_state !== 'not_signed') {
+         if (this.field.read_only && sign_state !== 'not_signed') {
             SignView.getInstance().open(this);
-         } else if (!this.element.dataset.read_only && sign_state !== 'checking') {
+         } else if (!this.field.read_only && sign_state !== 'checking') {
             SignHandler.getInstance().open(this);
          }
 

@@ -146,9 +146,8 @@
                             <div class="comments-table__column">
                                 <?php if (!empty($_file = $comment['file'])): ?>
 
-                                    <div class="comments-table__file files" data-id_file_field>
+                                    <div class="comments-table__file files" data-id_file_field data-read_only>
                                         <div class="files__item"
-                                             data-read_only="true"
                                              data-id="<?= $_file['id'] ?>"
                                             <?php if (isset($_file['validate_results'])): ?>
                                                 data-validate_results='<?= $_file['validate_results'] ?>'

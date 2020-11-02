@@ -207,11 +207,11 @@
 
                 <!--ГРБС-->
                 <?php if (!is_null($_VT->getValue('form_files')[1][1])): ?>
-                    <div class="form-field" data-id_file_field data-mapping_level_1="1" data-mapping_level_2="1">
+                    <div class="form-field" data-id_file_field data-mapping_level_1="1" data-mapping_level_2="1" data-read_only>
                         <span class="form-field__title">Файл ГРБС</span>
                         <div class="form-field__files files">
                             <?php foreach ($_VT->getValue('form_files')[1][1] as $file): ?>
-                                <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" data-validate_results='<?= $file['validate_results'] ?>'>
+                                <div class="files__item" data-id="<?= $file['id'] ?>" data-validate_results='<?= $file['validate_results'] ?>'>
 
                                     <div class="files__info">
                                         <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
@@ -305,7 +305,7 @@
                         <span class="card-form__message-text">Для отображения структуры разделов документации выберите вид объекта</span>
                     </div>
                 <?php else: ?>
-                    <div class="documentation" data-id_file_field data-mapping_level_1="<?= $_VT->getValue('documentation_mapping_level_1') ?>" data-mapping_level_2="<?= $_VT->getValue('documentation_mapping_level_2') ?>">
+                    <div class="documentation" data-id_file_field data-read_only data-mapping_level_1="<?= $_VT->getValue('documentation_mapping_level_1') ?>" data-mapping_level_2="<?= $_VT->getValue('documentation_mapping_level_2') ?>">
                         <?php foreach ($_VT->getValue('documentation_files_in_structure') as $node): ?>
                             <div class="documentation__node">
                                 <div class="documentation__header" data-title="<?= $node['is_header'] ? 'true' : 'false' ?>">
@@ -314,7 +314,7 @@
                                 <?php if (isset($node['files'])): ?>
                                     <div class="documentation__files files" >
                                         <?php foreach ($node['files'] as $file): ?>
-                                            <div class="files__item" data-read_only="true" data-id="<?= $file['id'] ?>" style="padding-left: <?= $node['depth']*25 + 7 ?>px" data-validate_results='<?= $file['validate_results'] ?>'>
+                                            <div class="files__item" data-id="<?= $file['id'] ?>" style="padding-left: <?= $node['depth']*25 + 7 ?>px" data-validate_results='<?= $file['validate_results'] ?>'>
                                                 <div class="files__info">
                                                     <i class="files__icon fas <?= $file['file_icon'] ?>"></i>
                                                     <div class="files__description">

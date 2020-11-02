@@ -15,8 +15,8 @@
     
     <div class="comment-group">
         <div class="comments-group__header">
-            <div class="comments-group__file files" data-id_file_field>
-                <div class="files__item" data-read_only="true" data-id="1114" data-state="valid">
+            <div class="comments-group__file files" data-id_file_field data-read_only>
+                <div class="files__item" data-id="1114" data-state="valid">
                     <div class="files__info">
                         <i class="files__icon fas fa-file-pdf"></i>
                         <div class="files__description">

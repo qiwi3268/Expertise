@@ -1,8 +1,8 @@
 <div id="group_overlay" class="overlay group-overlay"></div>
 <div id="group_modal" class="modal group-modal">
     <div class="group-modal__header">
-        <div class="group-modal__file files" data-id_file_field>
-            <div class="files__item" data-read_only="true" data-id="1114" data-state="valid">
+        <div class="group-modal__file files" data-id_file_field data-read_only>
+            <div class="files__item" data-id="1114" data-state="valid">
                 <div class="files__info">
                     <i class="files__icon fas fa-file-pdf"></i>
                     <div class="files__description">
@@ -143,7 +143,7 @@
                         </div>
                         <div class="group-message__file">
                             <div class="files">
-                                <div class="files__item" data-read_only="true" data-id="1114" data-state="valid">
+                                <div class="files__item" data-id="1114" data-state="valid">
                                     <div class="files__info">
                                         <i class="files__icon fas fa-file-pdf"></i>
                                         <div class="files__description">
@@ -203,7 +203,7 @@
                         </div>
                         <div class="group-message__file">
                             <div class="files">
-                                <div class="files__item" data-read_only="true" data-id="1114" data-state="valid">
+                                <div class="files__item" data-id="1114" data-state="valid">
                                     <div class="files__info">
                                         <i class="files__icon fas fa-file-pdf"></i>
                                         <div class="files__description">
@@ -282,7 +282,7 @@
                         </div>
                         <div class="group-message__file">
                             <div class="files">
-                                <div class="files__item" data-read_only="true" data-id="1114" data-state="valid">
+                                <div class="files__item" data-id="1114" data-state="valid">
                                     <div class="files__info">
                                         <i class="files__icon fas fa-file-pdf"></i>
                                         <div class="files__description">
@@ -342,7 +342,7 @@
                         </div>
                         <div class="group-message__file">
                             <div class="files">
-                                <div class="files__item" data-read_only="true" data-id="1114" data-state="valid">
+                                <div class="files__item" data-id="1114" data-state="valid">
                                     <div class="files__info">
                                         <i class="files__icon fas fa-file-pdf"></i>
                                         <div class="files__description">

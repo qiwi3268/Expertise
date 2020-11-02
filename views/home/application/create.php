@@ -871,9 +871,9 @@
                         <span class="card-form__message-text">Для отображения структуры разделов документации выберите вид объекта</span>
                     </div>
                 </div>
-                <div class="card-form__block" data-block data-name="structureDocumentation1" data-active="false">
+                <div class="card-form__block" data-block data-name="structure_documentation_1" data-active="false">
                     <div class="documentation field" data-id_file_field data-mapping_level_1="2" data-mapping_level_2="1">
-                        <?php foreach ($_VT->getValue('structureDocumentation1') as $node): ?>
+                        <?php foreach ($_VT->getValue('structure_documentation_1') as $node): ?>
                             <div class="documentation__node" data-id_structure_node="<?= $node['id'] ?>">
                                 <div class="documentation__header" data-title="<?= $node['is_header'] ? 'true' : 'false' ?>">
                                     <span class="documentation__name" style="padding-left: <?= $node['depth']*25 + 15 ?>px"><?= $node['name'] ?></span>
@@ -886,9 +886,9 @@
                         <?php endforeach; ?>
                     </div>
                 </div>
-                <div class="card-form__block" data-block data-name="structureDocumentation2" data-active="false">
+                <div class="card-form__block" data-block data-name="structure_documentation_2" data-active="false">
                     <div class="documentation field" data-id_file_field data-mapping_level_1="2" data-mapping_level_2="2">
-                        <?php foreach ($_VT->getValue('structureDocumentation2') as $node): ?>
+                        <?php foreach ($_VT->getValue('structure_documentation_2') as $node): ?>
                             <div class="documentation__node" data-id_structure_node="<?= $node['id'] ?>">
                                 <div class="documentation__header" data-title="<?= $node['is_header'] ? 'true' : 'false' ?>">
                                     <span class="documentation__name" style="padding-left: <?= $node['depth']*25 + 15 ?>px"><?= $node['name'] ?></span>
