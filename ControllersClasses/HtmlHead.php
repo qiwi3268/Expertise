@@ -51,7 +51,7 @@ class HtmlHead extends Controller
                     ->addCssSource(self::ROOT_CSS, 'entry.css')
                     ->addCssSource(self::TMP_CSS, 'null.css', 'header.css', 'footer.css', 'main.css', 'modal.css', 'radio.css', 'calendar.css', 'file_modal.css', 'files.css', 'documentation.css', 'multiple_block.css', 'sign_modal.css', 'create_application.css')
                     ->addJsSource(self::ROOT_LIB_JS, 'lib_XHR.js', 'cadesplugin_api.js')
-                    ->addJsSource(self::ROOT_JS, 'ErrorHandler.js', 'main.js', 'API.js', 'section.js', 'validation.js', 'DependenciesHandler.js', 'radio.js', 'PerfectCades.js', 'BrowserHelper.js', 'FileChecker.js', 'FileNeeds.js', 'MultipleBlock.js', 'GeFile.js', 'PartBlock.js')
+                    ->addJsSource(self::ROOT_JS, 'ErrorHandler.js', 'main.js', 'API.js', 'section.js', 'validation.js', 'DependenciesHandler.js', 'radio.js', 'PerfectCades.js', 'BrowserHelper.js', 'FileChecker.js', 'FileNeeds.js', 'MultipleBlock.js', 'FileField.js', 'GeFile.js', 'PartBlock.js')
                     ->addJsSource(self::MODALS_JS, 'Calendar.js', 'ErrorModal.js', 'FileUploader.js', 'Misc.js', 'SignView.js', 'SignHandler.js')
                     ->addJsSource(self::APPLICATION_JS, 'create.js', 'save.js', 'sidebar.js');
                 break;
@@ -62,7 +62,7 @@ class HtmlHead extends Controller
                     ->addCssSource(self::ROOT_CSS, 'entry.css')
                     ->addCssSource(self::TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'action_sidebar.css', 'radio.css', 'sign_modal.css', 'tooltip.css', 'create_application.css', 'view_application.css')
                     ->addJsSource(self::ROOT_LIB_JS, 'lib_XHR.js')
-                    ->addJsSource(self::ROOT_JS, 'section.js', 'main.js', 'API.js', 'GeFile.js', 'ErrorHandler.js')
+                    ->addJsSource(self::ROOT_JS, 'section.js', 'main.js', 'API.js', 'FileField.js', 'GeFile.js', 'ErrorHandler.js')
                     ->addJsSource(self::MODALS_JS, 'ErrorModal.js', 'SignView.js', 'Tooltip.js');
                 break;
 
@@ -89,7 +89,7 @@ class HtmlHead extends Controller
                 $this->addFontAwesome5Case()
                     ->addCssSource(self::ROOT_CSS, 'entry.css')
                     ->addCssSource(self::TMP_CSS, 'null.css', 'main.css', 'create_application.css', 'view_application.css', 'header.css', 'footer.css', 'files.css', 'documentation.css', 'sign_modal.css', 'action_sidebar.css', 'tooltip.css', 'comments_table.css', 'section_view.css', 'statistic.css')
-                    ->addJsSource(self::ROOT_JS, 'main.js', 'section.js', 'GeFile.js')
+                    ->addJsSource(self::ROOT_JS, 'main.js', 'section.js', 'FileField.js', 'GeFile.js')
                     ->addJsSource(self::MODALS_JS, 'Tooltip.js', 'ErrorModal.js', 'SignView.js');
                 break;
 
@@ -122,7 +122,7 @@ class HtmlHead extends Controller
                     ->addCssSource(self::TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'action_header.css', 'files.css', 'sign_modal.css', 'modal.css','action_2.css')
                     ->addJsSource(self::ROOT_LIB_JS, 'lib_XHR.js')
                     ->addJsSource(self::APPLICATION_JS . 'actions/', 'action_2.js')
-                    ->addJsSource(self::ROOT_JS, 'main.js', 'API.js', 'ErrorHandler.js', 'GeFile.js', 'Drag&Drop.js' , 'section.js')
+                    ->addJsSource(self::ROOT_JS, 'main.js', 'API.js', 'ErrorHandler.js', 'FileField.js', 'GeFile.js', 'Drag&Drop.js' , 'section.js')
                     ->addJsSource(self::MODALS_JS,'SignView.js', 'Misc.js', 'ErrorModal.js');
                 break;
 
@@ -143,7 +143,7 @@ class HtmlHead extends Controller
                     ->addCssSource(self::ROOT_CSS, 'entry.css')
                     ->addCssSource(self::TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'action_header.css', 'radio.css', 'files.css', 'documentation.css', 'multiple_block.css', 'modal.css', 'sign_modal.css', 'tooltip.css', 'create_application.css', 'comment_modal.css', 'comments_table.css','section_create_test.css')
                     ->addJsSource(self::ROOT_LIB_JS, 'lib_XHR.js')
-                    ->addJsSource(self::ROOT_JS, 'section.js', 'main.js', 'API.js', 'DependenciesHandler.js', 'MultipleBlock.js', 'PartBlock.js', 'radio.js', 'GeFile.js', 'validation.js', 'CommentsTable.js', 'GeComment.js')
+                    ->addJsSource(self::ROOT_JS, 'section.js', 'main.js', 'API.js', 'DependenciesHandler.js', 'MultipleBlock.js', 'PartBlock.js', 'radio.js', 'FileField.js', 'GeFile.js', 'validation.js', 'CommentsTable.js', 'GeComment.js')
                     ->addJsSource(self::MODALS_JS,'ErrorModal.js', 'CommentCreator.js', 'SignView.js', 'Misc.js', 'Tooltip.js')
                     ->addJsSource(self::ROOT_JS . 'expertise_cards/documents/section/actions/', 'action_1.js');
                 break;

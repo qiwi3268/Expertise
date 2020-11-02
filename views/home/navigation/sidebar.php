@@ -1,9 +1,9 @@
-<?php $variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
+<?php $_VT = \Lib\Singles\VariableTransfer::getInstance(); ?>
 
     <div class="navigation">
 
         <div class="navigation__sidebar sidebar-navigation">
-            <?php foreach ($variablesTV->getValue('navigationBlocks') as $block): ?>
+            <?php foreach ($_VT->getValue('navigationBlocks') as $block): ?>
                 <div class="sidebar-navigation__block">
                     <div class="sidebar-navigation__header"><?= $block['label'] ?></div>
                     <?php foreach ($block['sections'] as $section): ?>

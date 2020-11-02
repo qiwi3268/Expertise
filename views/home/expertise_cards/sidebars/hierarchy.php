@@ -31,11 +31,11 @@
                     <i class="info__icon fas fa-user-edit"></i>
                     <div class="info__description">
                         <span class="info__title">Ответственные</span>
-                        <span class="info__label"><?= $_VT->getValue('responsibleLabel') ?></span>
+                        <span class="info__label"><?= $_VT->getValue('responsible_label') ?></span>
                     </div>
 
                     <div class="responsible" data-tooltip_content hidden>
-                        <?php foreach ($_VT->getValue('responsibleUsers') as $FIO): ?>
+                        <?php foreach ($_VT->getValue('responsible_users') as $FIO): ?>
                             <dive class="responsible__name"><?= $FIO ?></dive>
                         <?php endforeach; ?>
                     </div>
