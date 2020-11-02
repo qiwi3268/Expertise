@@ -343,7 +343,7 @@
                         <!--Файл ГРБС-->
                         <!--TODO проверка на обязательность-->
                         <div class="form-field field" data-id_file_field data-name="file_grbs" data-required="false" data-multiple="true" data-mapping_level_1="1" data-mapping_level_2="1">
-                            <span class="form-field__title">Файл ГРБС</span>
+                            <span class="form-field__title">Файл: решение о подготовке и реализации бюджетных инвестиций</span>
                             <div class="form-field__item">
                                 <div class="form-field__file-block">
                                     <div class="form-field__select file-select" data-modal_select="file">

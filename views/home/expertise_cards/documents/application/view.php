@@ -208,7 +208,7 @@
                 <!--ГРБС-->
                 <?php if (!is_null($_VT->getValue('form_files')[1][1])): ?>
                     <div class="form-field" data-id_file_field data-mapping_level_1="1" data-mapping_level_2="1" data-read_only>
-                        <span class="form-field__title">Файл ГРБС</span>
+                        <span class="form-field__title">Файл: решение о подготовке и реализации бюджетных инвестиций</span>
                         <div class="form-field__files files">
                             <?php foreach ($_VT->getValue('form_files')[1][1] as $file): ?>
                                 <div class="files__item" data-id="<?= $file['id'] ?>" data-validate_results='<?= $file['validate_results'] ?>'>

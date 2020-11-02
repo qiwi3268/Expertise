@@ -36,6 +36,10 @@
    max-width: 250px;
    /*width: 250px;*/
    min-width: 250px;
+
+   position: sticky;
+   align-self: flex-start;
+   top: 5px;
 }
 
 .info {
@@ -147,6 +151,10 @@
 .view-actions {
    margin: 0 0 0 10px;
    min-width: 200px;
+
+   position: sticky;
+   align-self: flex-start;
+   top: 5px;
 }
 
 .view-actions__card {

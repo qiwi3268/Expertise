@@ -2,12 +2,12 @@
 <?php //$variablesTV = \Lib\Singles\VariableTransfer::getInstance(); ?>
 <?php //$_defaultParameters = $variablesTV->getValue('defaultParameters'); ?>
 
-<div class="action-info">Реконструкция системы теплоснабжения старой части г. Сатка, в том числе: реконструкция сетей теплоснабжения старой части г. Сатка, строительство газовой котельной с подводящими сетями</div>
+<div class="action-info">Реконструкция кровли нежилого здания по адресу: Челябинская область, Еманжелинский район, посёлок Зауральский, 2 квартал, №3-а</div>
 
 <div class="action-header">
     <div class="action-header__title">
         <span class="action-header__name">СОЗДАНИЕ ОБЩЕЙ ЧАСТИ</span>
-        <span class="action-header__document">Заявление на экспертизу № 2020-6-1179/2020-8-1025-С от 18.08.2020</span>
+        <span class="action-header__document">Заявление на экспертизу 2019-10-2035/2020-2-44-ОС от 06.02.2020</span>
     </div>
     <div class="action-header__buttons">
         <span class="action-header__button" data-action_submit>ОК</span>

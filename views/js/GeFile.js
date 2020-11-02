@@ -244,7 +244,8 @@ class GeFile {
    }
 
    /**
-    * Создает элемент и объект файла на странице
+    * Создает элемент и объект файла на странице,
+    * добавляет элемент в файловое поле
     *
     * @param file_data - данные файла, полученные с API file_uploader
     * @param files_block - файловый блок, в который добавляется файл
@@ -263,6 +264,34 @@ class GeFile {
       ge_file.addActions();
 
       return ge_file;
+   }
+
+   /**
+    * Проверяет подписи файла и отображает статус подписания
+    */
+   handleInternalSigns () {
+
+      API.checkFile(this.id, this)
+         .then(check_response => {
+            return API.internalSignatureVerify(check_response.fs_name, this);
+         })
+         .then(validate_results => {
+
+            if (validate_results) {
+
+               this.setValidateResults(JSON.stringify(validate_results));
+               this.is_internal_sign = true;
+               this.validateFileField();
+
+            } else {
+               this.setSignState('not_signed');
+            }
+
+         })
+         .catch(exc => {
+            ErrorModal.open('Ошибка при проверке подписи файла', exc);
+            this.removeElement();
+         });
    }
 
    /**

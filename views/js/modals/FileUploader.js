@@ -1,3 +1,12 @@
+/**
+ * @typedef UploadedFile
+ * @type {object}
+ * @property {number} id - id файла в БД
+ * @property {string} name - наименование файла
+ * @property {string} hash - хэш файла
+ * @property {string} human_file_size - строка с размером для отображения на странице
+ */
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -18,6 +27,7 @@ class FileUploader {
 
    /**
     * Объект модуля загрузки файлов
+    *
     * @type {FileUploader}
     */
    static get instance() {
@@ -57,7 +67,7 @@ class FileUploader {
    id_structure_node;
 
    /**
-    * Модальное окно модуля загрузки файлов
+    * Модальное окно файлового загрузчика
     *
     * @type {HTMLElement}
     */
@@ -106,18 +116,26 @@ class FileUploader {
    is_uploading = false;
 
    /**
-    * Флаг, указывающий открыт ли модуль загрузки файлов
+    * Флаг, указывающий открыт ли файловый загрузчик
     *
     * @type {boolean}
     */
    is_opened = false;
 
    /**
-    * Файловое поле, для которого открывается модуль загрузки файлов
+    * Файловое поле, для которого открывается файловый загрузчик
     */
    parent_field;
+
+   /**
+    * Раздел документации, для которого открывается файловый загрузчик
+    */
    parent_node;
 
+   /**
+    * Возвращает единственный объект файлового загрузчика
+    * @return {FileUploader}
+    */
    static getInstance () {
 
       if (!this.instance) {
@@ -127,11 +145,17 @@ class FileUploader {
       return this.instance;
    }
 
+   /**
+    * Создает объект файлового загрузчика
+    */
    constructor () {
       this.initModalElements();
       this.initActions();
    }
 
+   /**
+    * Инициализирует элементы модального окна файлового загрузчика
+    */
    initModalElements () {
       this.file_input = document.getElementById('file_uploader');
 
@@ -145,6 +169,9 @@ class FileUploader {
       this.progress_bar = this.modal.querySelector('.file-modal__progress_bar');
    }
 
+   /**
+    * Обрабатывает действия файлового загрузчика
+    */
    initActions () {
       this.clearDefaultDropEvents();
       this.handleDropArea();
@@ -158,6 +185,9 @@ class FileUploader {
       this.overlay.addEventListener('click', this.closeModal.bind(this));
    }
 
+   /**
+    * Отключает стандартные действия переноса в браузере
+    */
    clearDefaultDropEvents () {
       let events = ['dragenter', 'dragover', 'dragleave', 'drop'];
       events.forEach(event_name => {
@@ -168,6 +198,9 @@ class FileUploader {
       });
    }
 
+   /**
+    * Обрабатывает перенос файлов в файловый загрузчик
+    */
    handleDropArea () {
       ;['dragenter', 'dragover'].forEach(eventName => {
          this.drop_area.addEventListener(eventName, () => {
@@ -182,29 +215,39 @@ class FileUploader {
       });
 
       this.drop_area.addEventListener('drop', event => {
-         let files;
 
          if (
             this.file_input.hasAttribute('multiple')
             || event.dataTransfer.files.length === 1
          ) {
             this.clearModal();
-            files = event.dataTransfer.files;
+            let files = event.dataTransfer.files;
             this.file_input.files = files;
             this.addFilesToModal(files);
-         } else { // Попытка загрузить несколько файлов, где разрешен только 1
+         } else {
             ErrorModal.open('Ошибка при загрузке файлов', 'Загрузить можно только 1 файл');
          }
+
       });
    }
 
+   /**
+    * Очищает модальное окно файлового загрузчика
+    */
    clearModal () {
       this.modal_body.innerHTML = '';
       this.file_input.value = '';
    }
 
+   /**
+    * Добавляет переброшенные или выбранные файлы в модальное окно файлового загрузчика
+    *
+    * @param {FileList} files - выбранные или переброшенные файлы
+    */
    addFilesToModal (files) {
+
       for (let file_data of Array.from(files)) {
+
          if (!FileChecker.checkExtension(file_data.name)) {
 
             ErrorModal.open(
@@ -226,10 +269,17 @@ class FileUploader {
          } else {
             this.modal_body.appendChild(this.createFileModalItem(file_data));
          }
+
       }
 
    }
 
+   /**
+    * Создает файловый элемент для отображения в модальном окне файлового загрузчика
+    *
+    * @param {File} file_data
+    * @return {HTMLElement} файловый элемент
+    */
    createFileModalItem (file_data) {
       let file_item = document.createElement('DIV');
       file_item.classList.add('file-modal__item');
@@ -256,6 +306,9 @@ class FileUploader {
       return file_item;
    }
 
+   /**
+    * Обрабатывает кнопку выбора файла
+    */
    handleFileUploadButton () {
       let upload_button = this.modal.querySelector('.file-modal__upload');
 
@@ -272,6 +325,9 @@ class FileUploader {
       });
    }
 
+   /**
+    * Обрабатывает кнопку загрузки выбранных файлов на сервер
+    */
    handleSubmitButton () {
       let submit_button = this.modal.querySelector('.file-modal__submit');
       submit_button.addEventListener('click', () => {
@@ -285,6 +341,9 @@ class FileUploader {
       });
    }
 
+   /**
+    * Загружает файлы на сервер
+    */
    sendFiles () {
 
       this.progress_bar.style.transition = '.15s';
@@ -300,6 +359,8 @@ class FileUploader {
          this.uploadProgressCallback.bind(this)
       )
          .then(uploaded_files => {
+
+            console.log(uploaded_files);
 
             return this.putFilesToRow(uploaded_files);
 
@@ -320,18 +381,22 @@ class FileUploader {
 
    }
 
-   // Предназначен для анимации состояния загрузки файлов
-   // Принимает параметры-------------------------------
-   // event      ProgressEvent : объект, содержащий информацию о состоянии загрузки
+   /**
+    * Анимирует индикатор степени загрузки файлов
+    *
+    * @param {ProgressEvent} event - объект, содержащий информацию о состоянии загрузки
+    */
    uploadProgressCallback (event) {
       let download_percent = Math.round(100 * event.loaded / event.total);
       this.modal_title.innerHTML = `Загрузка ${download_percent}%`;
       this.progress_bar.style.width = download_percent + '%';
    }
 
-   // Предназначен для добавления файлов в родительское поле
-   // Принимает параметры-------------------------------
-   // files         Array[Object] : массив с файлами
+   /**
+    * Добавляет загруженные файлы в файловое поле
+    *
+    * @param {UploadedFile[]} files
+    */
    putFilesToRow (files) {
       this.parent_field.classList.add('filled');
 
@@ -345,35 +410,10 @@ class FileUploader {
 
       for (let file of files) {
          let ge_file = GeFile.createElement(file, files_body);
-         this.putFile(ge_file, files_body);
+         ge_file.handleInternalSigns();
          resizeCard(this.parent_field);
       }
 
-   }
-
-   putFile (ge_file) {
-
-      API.checkFile(ge_file.id, ge_file)
-         .then(check_response => {
-            return API.internalSignatureVerify(check_response.fs_name, ge_file);
-         })
-         .then(validate_results => {
-
-            if (validate_results) {
-
-               ge_file.setValidateResults(JSON.stringify(validate_results));
-               ge_file.is_internal_sign = true;
-               ge_file.validateFileField();
-
-            } else {
-               ge_file.setSignState('not_signed');
-            }
-
-         })
-         .catch(exc => {
-            ErrorModal.open('Ошибка при проверке подписи файла', exc);
-            ge_file.removeElement();
-         });
    }
 
    closeModal () {

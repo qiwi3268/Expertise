@@ -3,7 +3,7 @@
     
     <div class="view-actions__card">
         <div class="view-actions__header">Доступные действия</div>
-        <?php foreach($_VT->getValue('availableActions') as ['ref' => $ref, 'label' => $label]): ?>
+        <?php foreach($_VT->getValue('available_actions') as ['ref' => $ref, 'label' => $label]): ?>
             <a href="<?= $ref ?>" class="view-actions__action">
                 <div class="view-actions__label"><?= $label ?></div>
             </a>
