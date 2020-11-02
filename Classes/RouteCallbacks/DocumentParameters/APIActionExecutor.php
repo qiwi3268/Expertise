@@ -4,7 +4,6 @@
 namespace Classes\RouteCallbacks\DocumentParameters;
 
 use Classes\Exceptions\DocumentParameters as SelfEx;
-use functions\Exceptions\Functions as FunctionsEx;
 use Exception;
 
 
@@ -92,7 +91,7 @@ class APIActionExecutor extends DocumentParameters
         } catch (Exception $e) {
 
             exit(json_encode([
-                'result'  => 7,
+                'result'  => 6,
                 'message' => $e->getMessage(),
                 'code'    => $e->getCode()
             ]));

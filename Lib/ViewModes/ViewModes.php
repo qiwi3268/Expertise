@@ -5,7 +5,6 @@ namespace Lib\ViewModes;
 
 use Lib\Exceptions\ViewModes as SelfEx;
 use Lib\Exceptions\XMLValidator as XMLValidatorEx;
-use functions\Exceptions\Functions as FunctionsEx;
 use ReflectionException;
 
 
@@ -110,7 +109,7 @@ class ViewModes
      * Предназначен для проверки доступа к режиму просмотра для типа документа,
      * которым был инициализирован данный класс
      *
-     * @param string $modeName name режим просмотра
+     * @param string $modeName mode['name']
      * @return bool результат вызова метода проверки доступа
      * @throws SelfEx
      */

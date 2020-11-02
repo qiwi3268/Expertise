@@ -16,7 +16,6 @@ use Lib\ViewModes\ViewModes;
  * переходит пользователь
  *
  * Для работы класса должны быть определены константы:
- * - URN
  * - CURRENT_DOCUMENT_TYPE
  * - CURRENT_VIEW_MODE
  * - CURRENT_DOCUMENT_ID (Для внутренней работы методов проверки доступа)

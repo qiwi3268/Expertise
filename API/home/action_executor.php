@@ -24,7 +24,7 @@ use Tables\Locators\DocumentTypeTableLocator;
 //       {result, error_message : текст ошибки}
 //	5  - Неизвестная ошибка Classes\Exceptions\DocumentParameters
 //       {result, error_message : текст ошибки}
-//  7  - Непредвиденная ошибка метода Classes\DocumentParameters\APIActionExecutor::defineDocumentParameters
+//  6  - Непредвиденная ошибка метода Classes\DocumentParameters\APIActionExecutor::defineDocumentParameters
 //       {result, message : текст ошибки, code: код ошибки}
 // ---------------------------------------------------------------------
 //  8  - Отсутствует авторизация на сервере

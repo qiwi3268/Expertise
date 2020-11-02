@@ -15,12 +15,9 @@ $availableModesTV = [];
 foreach ($viewModes->getAvailableViewModes() as $mode) {
 
     $availableModesTV[] = [
-        'label' => $mode['label'],
-        'ref'   => PageAddress::createCardRef(CURRENT_DOCUMENT_ID, CURRENT_DOCUMENT_TYPE, $mode['name']),
-        'isSelected' => TRUE
+        'label'      => $mode['label'],
+        'ref'        => PageAddress::createCardRef(CURRENT_DOCUMENT_ID, CURRENT_DOCUMENT_TYPE, $mode['name']),
+        'isSelected' => $mode['name'] == CURRENT_VIEW_MODE
     ];
 }
-//todo is selected
-
-vd($availableModesTV);
 $VT->setValue('available_view_modes', $availableModesTV);
