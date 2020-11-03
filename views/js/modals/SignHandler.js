@@ -417,7 +417,8 @@ class SignHandler extends SignView{
          sign_files,
          this.ge_file.field.mapping_1,
          this.ge_file.field.mapping_2,
-         this.ge_file.id_structure_node
+         this.ge_file.id_structure_node,
+         null
       )
          // Проверяем подписываемый файл
          .then(uploaded_signs => {

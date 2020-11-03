@@ -1,13 +1,30 @@
+/**
+ * Представляет собой вспомогательный класс для работы с API
+ */
 class API {
 
+   /**
+    * Флаг, указывающий происходит ли обработка запроса на API
+    * @return {*}
+    */
    static get is_in_progress() {
       return this._is_in_progress;
    }
-
    static set is_in_progress(is_in_progress) {
       this._is_in_progress = is_in_progress;
    }
 
+   /**
+    * Отправляет файлы на API загрузки файлов
+    *
+    * @param {File[]} files - файлы для загрузки на сервер
+    * @param {number} mapping_1 - первый маппинг файлового поля
+    * @param {number} mapping_2 - второй маппинг файлового поля
+    * @param {number|null} id_structure_node - id раздела документации,
+    * null - если файл не относится к документации
+    * @param {function|null} upload_callback - callback для обработки запроса во время отправки данных на сервер
+    * @return {Promise<unknown>}
+    */
    static uploadFiles (files, mapping_1, mapping_2, id_structure_node = null, upload_callback = null) {
 
       return new Promise((resolve, reject) => {

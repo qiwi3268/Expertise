@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+
+/**
+ *
+ */
 function assignExperts () {
 
    let sections = Array.from(document.querySelectorAll('[data-section]'))
@@ -86,6 +90,11 @@ function createSection (section_container, additional_sections) {
    modal_select.click();
 }
 
+/**
+ * Возвращает наз
+ * @param sections
+ * @return {any[]}
+ */
 function getAssignedExperts (sections) {
    let experts = new Map();
 
@@ -108,6 +117,8 @@ function getAssignedExperts (sections) {
 
       });
    });
+
+   console.log(experts);
 
    return Array.from(experts.values());
 }

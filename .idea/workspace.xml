@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/FileUploader.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/expertise_cards/documents/section/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/expertise_cards/documents/section/view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/modals/FileUploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/FileUploader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/API.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/application/actions/action_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/application/actions/action_2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/modals/SignHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/SignHandler.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,13 +155,6 @@
       <workItem from="1603882759293" duration="3941000" />
       <workItem from="1603942733142" duration="26394000" />
       <workItem from="1604030589888" duration="22855000" />
-    </task>
-    <task id="LOCAL-00221" summary="19.10.2020_1">
-      <created>1603103793264</created>
-      <option name="number" value="00221" />
-      <option name="presentableId" value="LOCAL-00221" />
-      <option name="project" value="LOCAL" />
-      <updated>1603103793264</updated>
     </task>
     <task id="LOCAL-00222" summary="19.10.2020_2">
       <created>1603110700365</created>
@@ -499,7 +492,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604313510553</updated>
     </task>
-    <option name="localTasksCounter" value="270" />
+    <task id="LOCAL-00270" summary="02.11.2020_6">
+      <created>1604317312514</created>
+      <option name="number" value="00270" />
+      <option name="presentableId" value="LOCAL-00270" />
+      <option name="project" value="LOCAL" />
+      <updated>1604317312514</updated>
+    </task>
+    <option name="localTasksCounter" value="271" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,7 +516,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="26.10.2020_2" />
     <MESSAGE value="27.10.2020" />
     <MESSAGE value="28.10.2020" />
     <MESSAGE value="28.10.2020_1" />
@@ -541,7 +540,8 @@
     <MESSAGE value="02.11.2020_3" />
     <MESSAGE value="02.11.2020_4" />
     <MESSAGE value="02.11.2020_5" />
-    <option name="LAST_COMMIT_MESSAGE" value="02.11.2020_5" />
+    <MESSAGE value="02.11.2020_6" />
+    <option name="LAST_COMMIT_MESSAGE" value="02.11.2020_6" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -572,11 +572,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="524" y="55" width="749" height="918" key="CommitChangelistDialog2" timestamp="1604313508790">
+    <state x="524" y="55" width="749" height="918" key="CommitChangelistDialog2" timestamp="1604317310592">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="491" y="51" width="749" height="918" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603875686112" />
-    <state x="524" y="55" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1604313508790" />
+    <state x="524" y="55" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1604317310592" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1603032169697" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603639279350" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
