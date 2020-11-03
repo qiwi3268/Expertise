@@ -6,7 +6,7 @@ namespace ControllersClasses\Home\ExpertiseCards\Documents\Application;
 use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Exceptions\NodeStructure as NodeStructureEx;
 use Lib\Exceptions\File as FileEx;
-use Tables\Exceptions\Tables as TableEx;
+use Tables\Exceptions\Tables as TablesEx;
 use Exception;
 
 use ControllersClasses\Controller;
@@ -24,7 +24,7 @@ class View extends Controller
      * @throws DataBaseEx
      * @throws FileEx
      * @throws NodeStructureEx
-     * @throws TableEx
+     * @throws TablesEx
      * @throws Exception
      */
     public function doExecute(): void

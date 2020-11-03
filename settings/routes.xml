@@ -31,11 +31,11 @@
         </page>
 
         <page urn="home/file_unloader">
-            <files>
-                <dir path="/controllers/home/" ext=".php">
-                    <file name="file_unloader" />
-                </dir>
-            </files>
+            <controllers>
+                <namespace name="\ControllersClasses\Home">
+                    <class name="FileUnloader" />
+                </namespace>
+            </controllers>
         </page>
 
         <page urn="home/API_file_uploader">
@@ -267,12 +267,12 @@
                     <class name="ViewModes" />
                     <class name="Actions" />
                 </namespace>
+                <namespace name="\ControllersClasses\Home\ExpertiseCards\Documents\TotalCC">
+                    <class name="View" />
+                </namespace>
             </controllers>
 
             <files>
-                <dir path="/controllers/home/expertise_cards/documents/total_cc/" ext=".php">
-                    <file name="view" />
-                </dir>
                 <dir path="/views/" ext=".php">
                     <file name="html_head" />
                 </dir>
@@ -295,7 +295,6 @@
                 <dir path="/views/home/" ext=".php">
                     <file name="footer" />
                 </dir>
-
             </files>
         </page>
 
@@ -316,12 +315,12 @@
                     <class name="ViewModes" />
                     <class name="Actions" />
                 </namespace>
+                <namespace name="\ControllersClasses\Home\ExpertiseCards\Documents\Section">
+                    <class name="View" />
+                </namespace>
             </controllers>
 
             <files>
-                <dir path="/controllers/home/expertise_cards/documents/section/" ext=".php">
-                    <file name="view" />
-                </dir>
                 <dir path="/views/" ext=".php">
                     <file name="html_head" />
                 </dir>
@@ -424,12 +423,12 @@
                 <namespace name="\ControllersClasses\Home">
                     <class name="Header" />
                 </namespace>
+                <namespace name="\ControllersClasses\Home\ExpertiseCards\Documents\Section\Actions">
+                    <class name="Action1" />
+                </namespace>
             </controllers>
 
             <files>
-                <dir path="/controllers/home/expertise_cards/documents/section/actions/" ext=".php">
-                    <file name="action_1" />
-                </dir>
 
                 <dir path="/views/" ext=".php">
                     <file name="html_head" />

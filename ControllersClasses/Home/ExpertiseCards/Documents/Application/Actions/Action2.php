@@ -8,7 +8,7 @@ use Lib\Exceptions\DocumentTreeHandler as DocumentTreeHandlerEx;
 use Lib\Exceptions\NodeStructure as NodeStructureEx;
 use Lib\Exceptions\MiscInitializer as MiscInitializerEx;
 use Lib\Exceptions\File as FileEx;
-use Tables\Exceptions\Tables as TableEx;
+use Tables\Exceptions\Tables as TablesEx;
 use functions\Exceptions\Functions as FunctionsEx;
 use LogicException;
 
@@ -42,7 +42,7 @@ class Action2 extends Controller
      * @throws DocumentTreeHandlerEx
      * @throws FileEx
      * @throws NodeStructureEx
-     * @throws TableEx
+     * @throws TablesEx
      */
     public function construct(): void
     {

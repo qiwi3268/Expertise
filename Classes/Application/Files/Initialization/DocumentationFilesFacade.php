@@ -4,7 +4,7 @@
 namespace Classes\Application\Files\Initialization;
 
 use Lib\Exceptions\File as FileEx;
-use Tables\Exceptions\Tables as TableEx;
+use Tables\Exceptions\Tables as TablesEx;
 use Lib\Exceptions\NodeStructure as NodeStructureEx;
 
 use Lib\Singles\NodeStructure;
@@ -49,7 +49,7 @@ class DocumentationFilesFacade
      * @param int $applicationId id заявления
      * @param int $typeOfObjectId id вида объекта
      * @throws FileEx
-     * @throws TableEx
+     * @throws TablesEx
      * @throws NodeStructureEx
      */
     public function __construct(int $applicationId, int $typeOfObjectId)

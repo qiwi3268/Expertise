@@ -14,12 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-
 /**
- *
+ * Выполняет действие назначения экспертов
  */
 function assignExperts () {
 
+   // Берем разделы, у которых есть id блока из 341 приказа
    let sections = Array.from(document.querySelectorAll('[data-section]'))
       .filter(section => section.dataset.id !== '');
 
@@ -57,6 +57,45 @@ function assignExperts () {
 
 }
 
+/**
+ * Получает массив объектов назначенных экспертов
+ *
+ * @param {HTMLElement[]} sections - элементы разделов со страницы
+ * @return {Expert[]} массив назначенных экспертов
+ */
+function getAssignedExperts (sections) {
+   let experts = new Map();
+
+   sections.forEach(section => {
+
+      let id_section = parseInt(section.dataset.id);
+
+      let section_experts = section.querySelectorAll('[data-assigned_expert]');
+      section_experts.forEach(expert_elem => {
+         let id_expert = parseInt(expert_elem.dataset.id);
+         let expert;
+
+         if (experts.has(id_expert)) {
+            expert = experts.get(id_expert)
+         } else {
+            expert = getExpertData(expert_elem);
+            experts.set(expert.id_expert, expert);
+         }
+
+         expert.ids_main_block_341.push(id_section);
+
+      });
+   });
+
+   return Array.from(experts.values());
+}
+
+/**
+ * Создает дополнительный раздел при назначении экспертов
+ *
+ * @param section_container - контейнер с дополнительными разделами
+ * @param additional_sections - блок дополнительных разделов
+ */
 function createSection (section_container, additional_sections) {
    let section_template = document.getElementById('section_template');
    let new_section = section_template.cloneNode(true);
@@ -91,41 +130,30 @@ function createSection (section_container, additional_sections) {
 }
 
 /**
- * Возвращает наз
- * @param sections
- * @return {any[]}
+ * Объект, содержащий информацию о назначенном эксперте
+ *
+ * @typedef Expert
+ * @type {Object}
+ * @property {number} id_expert - id эксперта из БД
+ * @property {boolean} lead - отмечен ли эксперт как ведущий
+ * @property {boolean} common_part - назначен ли эксперт на общую часть
+ * @property {number[]} ids_main_block_341 - id разделов из 341 приказа,
+ * на которые назначен эксперт
  */
-function getAssignedExperts (sections) {
-   let experts = new Map();
 
-   sections.forEach(section => {
-      let id_section = parseInt(section.dataset.id);
+/**
+ * Создает объект назначенного эксперта из элемента на странице
+ *
+ * @param {HTMLElement} expert_element
+ * @returns {Expert} Объект назначенного эксперта
+ */
+function getExpertData (expert_element) {
+   let expert_data = {};
 
-      let section_experts = section.querySelectorAll('[data-assigned_expert]');
-      section_experts.forEach(expert_elem => {
-         let id_expert = parseInt(expert_elem.dataset.id);
-         let expert;
+   expert_data.id_expert = parseInt(expert_element.dataset.id);
+   expert_data.lead = expert_element.dataset.lead === 'true';
+   expert_data.common_part = expert_element.dataset.common_part === 'true';
+   expert_data.ids_main_block_341 = [];
 
-         if (experts.has(id_expert)) {
-            expert = experts.get(id_expert)
-         } else {
-            expert = new Expert(expert_elem);
-            experts.set(expert.id_expert, expert);
-         }
-
-         expert.ids_main_block_341.push(id_section);
-
-      });
-   });
-
-   console.log(experts);
-
-   return Array.from(experts.values());
-}
-
-function Expert (expert) {
-   this.id_expert = parseInt(expert.dataset.id);
-   this.lead = expert.dataset.lead === 'true';
-   this.common_part = expert.dataset.common_part === 'true';
-   this.ids_main_block_341 = [];
+   return expert_data;
 }
