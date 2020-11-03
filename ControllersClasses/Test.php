@@ -2,6 +2,7 @@
 
 
 namespace ControllersClasses;
+use core\Classes\Request\HttpRequest;
 
 
 class Test extends Controller
@@ -9,9 +10,7 @@ class Test extends Controller
 
     public function doExecute(): void
     {
-        $str = 'application';
-
-        $a = snakeToCamelCase($str, false);
+        $a = HttpRequest::getInstance();
 
         vd($a);
     }
