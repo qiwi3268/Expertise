@@ -22,7 +22,6 @@ class DropArea {
 
    drag_container;
 
-   result_callback;
    add_element_callback;
    elements;
 
@@ -74,11 +73,11 @@ class DropArea {
       return this.drop_areas.has(id) ? this.drop_areas.get(id) : new DropArea(area);
    }
 
-   getResult () {
+/*   getResult () {
       this.result_callback = this.area.dataset.result_callback;
       let get_result = getResultCallback(this);
       return get_result(this);
-   }
+   }*/
 
 }
 
@@ -265,84 +264,6 @@ function getTransformCallback (drag_container) {
    return callback
 }
 
-//todo вынести в отдельный файл
-function transformExpert (expert) {
-   let new_expert = document.createElement('DIV');
-   new_expert.classList.add('section__expert');
-   new_expert.setAttribute('data-assigned_expert', '');
-   new_expert.dataset.id = expert.dataset.id;
-   new_expert.dataset.drag_element = '';
-   new_expert.dataset.drop_element = '';
-   new_expert.dataset.drag_callback = 'section_expert';
-
-   let expert_name = document.createElement('SPAN');
-   expert_name.classList.add('section__name');
-   expert_name.innerHTML = expert.innerHTML;
-   new_expert.appendChild(expert_name);
-
-   let lead_icon = document.createElement('I');
-   lead_icon.classList.add('section__lead', 'fas', 'fa-crown');
-   lead_icon.dataset.drag_inactive = 'true';
-   lead_icon.addEventListener('click', () => changeLeadExpert(new_expert));
-   new_expert.dataset.lead = !!isLeadExpert(new_expert);
-   new_expert.appendChild(lead_icon);
-
-   let common_icon = document.createElement('I');
-   common_icon.classList.add('section__common_part', 'fas', 'fa-file-signature');
-   common_icon.dataset.drag_inactive = 'true';
-   common_icon.addEventListener('click', () => toggleCommonPart(new_expert));
-   new_expert.dataset.common_part = !!isCommonPartExpert(new_expert);
-   new_expert.appendChild(common_icon);
-
-   let remove_btn = document.createElement('SPAN');
-   remove_btn.classList.add('section__icon-remove', 'fas', 'fa-minus');
-   remove_btn.dataset.drag_inactive = '';
-   remove_btn.dataset.drop_remove = '';
-   remove_btn.dataset.remove_callback = 'remove_expert';
-   new_expert.appendChild(remove_btn);
-
-   return new_expert;
-}
-
-function changeLeadExpert (expert) {
-   if (!isLeadExpert(expert)) {
-      removeLeadExpert();
-      setLeadExpert(expert);
-   } else {
-      removeLeadExpert();
-   }
-}
-
-function isLeadExpert (expert) {
-   let lead_expert = document.querySelector('.section__expert[data-lead="true"]');
-   return lead_expert && expert.dataset.id === lead_expert.dataset.id;
-}
-
-function removeLeadExpert (expert) {
-   let lead_experts = document.querySelectorAll('.section__expert[data-lead="true"]');
-   lead_experts.forEach(lead_expert => lead_expert.dataset.lead = 'false');
-}
-
-function setLeadExpert (expert) {
-   let current_expert = document.querySelectorAll(`.section__expert[data-id='${expert.dataset.id}']`);
-   current_expert.forEach(expert_copy => {
-      expert_copy.dataset.lead = 'true';
-   });
-}
-
-function isCommonPartExpert (expert) {
-   let common_part_expert = document.querySelector('.section__expert[data-common_part="true"]');
-   return common_part_expert && expert.dataset.id === common_part_expert.dataset.id;
-}
-
-function toggleCommonPart (expert) {
-   let is_common_part = (expert.dataset.common_part !== 'true').toString();
-   let current_expert = document.querySelectorAll(`.section__expert[data-id='${expert.dataset.id}']`);
-   current_expert.forEach(expert_copy => {
-      expert_copy.dataset.common_part = is_common_part;
-   });
-}
-
 function defaultTransform (element) {
    element.style.display = null;
    return element;
@@ -351,12 +272,13 @@ function defaultTransform (element) {
 function getAvatarCreationCallback (draggable_element) {
    let callback;
 
+   //todo обработать случай, когда не найден callback
    switch (draggable_element.dataset.drag_callback) {
       case 'expert':
-         callback = expertAvatar;
+         callback = createExpertAvatar;
          break;
       case 'section_expert':
-         callback = sectionExpert;
+         callback = createSectionExpert;
          break;
       default:
          callback = defaultAvatar;
@@ -366,21 +288,6 @@ function getAvatarCreationCallback (draggable_element) {
    return callback
 }
 
-function expertAvatar (expert) {
-   let expert_avatar = expert.cloneNode(true);
-   expert_avatar.classList.remove('assignment__expert');
-   expert_avatar.classList.add('avatar');
-   return expert_avatar;
-}
-
-function sectionExpert (expert) {
-   let expert_avatar = document.createElement('DIV');
-   expert_avatar.dataset.id = expert.dataset.id;
-   expert_avatar.innerHTML = expert.querySelector('.section__name').innerHTML;
-   expert_avatar.classList.add('avatar');
-   return expert_avatar;
-}
-
 function defaultAvatar (element) {
    let avatar = element.cloneNode(true);
    avatar.classList.add('draggable');
@@ -388,7 +295,7 @@ function defaultAvatar (element) {
    return avatar;
 }
 
-function getResultCallback (drop_area) {
+/*function getResultCallback (drop_area) {
    let callback;
 
    switch (drop_area.result_callback) {
@@ -409,25 +316,20 @@ function getAssignedSectionsJSON (drop_area) {
 
    section.experts = drop_area.elements.map(expert => expert.dataset.id);
    return section;
-}
+}*/
 
 function getAddElementCallback (drop_area) {
    let callback;
 
    switch (drop_area.area.dataset.add_element_callback) {
       case 'add_expert':
-         callback = addExpert;
+         callback = showExpertsBlock;
          break;
       default:
 
    }
 
    return callback;
-}
-
-function addExpert (drop_area, expert) {
-   let assigned_experts = drop_area.area.querySelector('.section__experts');
-   assigned_experts.dataset.active = 'true';
 }
 
 function getRemoveElementCallback (remove_button) {
@@ -444,9 +346,3 @@ function getRemoveElementCallback (remove_button) {
    return callback;
 }
 
-function removeExpert (drop_area) {
-   let assigned_experts = drop_area.area.querySelector('.section__experts');
-   if (!drop_area.container.querySelector('[data-drop_element]')) {
-      assigned_experts.dataset.active = 'false';
-   }
-}
