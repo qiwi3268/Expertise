@@ -10,8 +10,12 @@ class Test extends Controller
 
     public function doExecute(): void
     {
-        $a = HttpRequest::getInstance();
+        $request = HttpRequest::getInstance();
+
+        $a = $request->isGET();
+        $b = $request->isPOST();
 
         vd($a);
+        vd($b);
     }
 }

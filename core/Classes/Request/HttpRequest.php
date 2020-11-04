@@ -7,19 +7,27 @@ use core\Classes\Exceptions\Request as SelfEx;
 
 
 /**
- * todo
+ * Обеспечивает работу с http-запросом на сервер
  *
  */
 class HttpRequest extends Request
 {
     /**
-     * Тиа запроса на сервер
+     * Тип запроса на сервер
      *
      */
     private string $requestMethod;
 
     public const GET = 'GET';
     public const POST = 'POST';
+
+    /**
+     * Параметры запроса
+     *
+     * Не очищенные и не экранированные от html-тегов и специальных символов
+     *
+     */
+    private array $dirtyProperties;
 
 
     /**
@@ -33,6 +41,7 @@ class HttpRequest extends Request
 
         switch ($method) {
             case self::GET :
+                // Удаление первого get-параметра (части запроса)
                 unset($_GET[array_key_first($_GET)]);
                 $properties = $_GET;
                 break;
@@ -43,9 +52,49 @@ class HttpRequest extends Request
                 throw new SelfEx("Получен неопределенный метод запроса на сервер: '{$method}'", 2001);
         }
 
+        $this->requestMethod = $method;
+        $this->dirtyProperties = $properties;
 
+        array_walk_recursive($properties, function(&$value)
+        {
+            $value = htmlspecialchars(strip_tags($value), ENT_NOQUOTES);
+        });
 
         $this->properties = $properties;
-        $this->requestMethod = $method;
+    }
+
+
+    /**
+     * Предназначен для проверки вызван ли текущий сценарий GET-методом
+     *
+     * @return bool
+     */
+    public function isGET(): bool
+    {
+        return $this->requestMethod == self::GET;
+    }
+
+
+    /**
+     * Предназначен для проверки вызван ли текущий сценарий POST-методом
+     *
+     * @return bool
+     */
+    public function isPOST(): bool
+    {
+        return $this->requestMethod == self::POST;
+    }
+
+
+    /**
+     * Предназначен для получения неочищенного параметра запроса
+     *
+     * @param string $key наименование параметра
+     * @return mixed
+     * @throws SelfEx
+     */
+    public function getDirty(string $key)
+    {
+        return $this->checkIsset($key)->dirtyProperties[$key];
     }
 }
