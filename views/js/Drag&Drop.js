@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
       drag_container.initElements();
    });
 
-
 });
 
 
@@ -77,7 +76,17 @@ class DropArea {
    static findByDropEvent (event) {
       // Получаем самый вложенный элемент под курсором мыши
       let deepest_elem = document.elementFromPoint(event.clientX, event.clientY);
+
+      // console.log(deepest_elem);
+
+
+      console.log('find');
+
       let drop_area = deepest_elem.closest('[data-drop_area]');
+
+      // console.log(drop_area);
+
+
       return drop_area ? DropArea.getDropArea(drop_area) : null;
    }
 

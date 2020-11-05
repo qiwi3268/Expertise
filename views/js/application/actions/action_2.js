@@ -200,7 +200,6 @@ function createExpertAvatar (expert) {
  * @return {HTMLElement} копия эксперта для переноса
  */
 function createSectionExpert (expert) {
-   console.log('section');
    let expert_avatar = document.createElement('DIV');
    expert_avatar.dataset.id = expert.dataset.id;
    expert_avatar.innerHTML = expert.querySelector('.section__name').innerHTML;
