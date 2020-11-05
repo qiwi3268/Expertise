@@ -147,6 +147,16 @@ function createErrorAlert (error_code) {
 
 }
 
-
-
+/**
+ * Отключает стандартные действия переноса в браузере
+ */
+function clearDefaultDropEvents () {
+   let events = ['dragenter', 'dragover', 'dragleave', 'drop'];
+   events.forEach(event_name => {
+      document.addEventListener(event_name, event => {
+         event.preventDefault();
+         event.stopPropagation();
+      });
+   });
+}
 

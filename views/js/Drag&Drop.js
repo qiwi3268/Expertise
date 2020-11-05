@@ -1,29 +1,213 @@
 document.addEventListener('DOMContentLoaded', () => {
-   clearDefaultDropEvents();
 
    let drag_containers = document.querySelectorAll('[data-drag_container]');
-   drag_containers.forEach(container => {
-      let drag_container = new DragContainer(container);
-      drag_container.initElements();
-   });
+   drag_containers.forEach(container => new DragContainer(container));
 
 });
 
+/**
+ * Представляет собой контейнер с элементами для переноса
+ */
+class DragContainer {
 
-class DropArea {
-   static areas_counter = 0;
-   static drop_areas = new Map();
-
-   element;
+   /**
+    * Блок с элементами для переноса
+    *
+    * @type {HTMLElement}
+    */
    container;
 
+   /**
+    * Флаг, указывающий можно ли вытащить несколько копий одного элемента
+    *
+    * @type {boolean}
+    */
    multiple;
 
-   drag_container;
+   /**
+    * callback преобразования элемента, перенесенного в область для переноса
+    *
+    * @type {HTMLElement}
+    */
+   transform_callback;
 
-   add_element_callback;
+   /**
+    * Массив с перетскиваемыми элементами
+    *
+    * @type {HTMLElement[]}
+    */
    elements;
 
+   /**
+    * Создает объект контейнера с перетаскиваемыми элементами
+    *
+    * @param {HTMLElement} drag_container - элемент контейнера
+    */
+   constructor (drag_container) {
+
+      this.container = drag_container;
+      this.multiple = this.container.dataset.drag_multiple === 'true';
+
+      this.transform_callback = this.getTransformCallback();
+
+      this.initElements();
+   }
+
+   /**
+    * Получает функцию преобразования элемента, перенесенного в область для переноса
+    *
+    * @return {Function}
+    */
+   getTransformCallback () {
+      let callback;
+
+      switch (this.container.dataset.transform_callback) {
+         case 'expert':
+            callback = transformExpert;
+            break;
+         case 'section_expert':
+            callback = transformSectionExpert;
+            break;
+      }
+
+      return callback
+   }
+
+   /**
+    * Инициализирует перетаскиваемые элементы
+    */
+   initElements () {
+      this.elements = Array.from(this.container.querySelectorAll('[data-drag_element]'));
+      this.elements.forEach(element => this.handleElement(element));
+   }
+
+   /**
+    *
+    *
+    * @param element
+    */
+   handleElement (element) {
+      element.addEventListener('mousedown', (event) => {
+         if (
+            !event.target.hasAttribute('data-drag_inactive')
+            && event.button === 0
+         ) {
+            console.log('tut');
+            new DragElement(element, event, this);
+         }
+
+      });
+   }
+
+   addElement (element) {
+      this.container.appendChild(element);
+      this.elements.push(element);
+      this.handleElement(element);
+   }
+
+
+}
+
+
+
+
+function getAvatarCreationCallback (draggable_element) {
+   let callback;
+
+   //todo обработать случай, когда не найден callback
+   switch (draggable_element.dataset.drag_callback) {
+      case 'expert':
+         callback = createExpertAvatar;
+         break;
+      case 'section_expert':
+         callback = createSectionExpertAvatar;
+         break;
+   }
+
+   return callback
+}
+
+
+
+
+function getRemoveElementCallback (remove_button) {
+   let callback;
+
+   switch (remove_button.dataset.remove_callback) {
+      case 'remove_expert':
+         callback = removeExpert;
+         break;
+      default:
+
+   }
+
+   return callback;
+}
+
+
+
+
+
+
+/**
+ * Представляет собой область на странице, в которую можно перенести элемент
+ */
+class DropArea {
+
+   /**
+    * Счетчик областей переноса, используется как инкрементируемый идентификатор
+    *
+    * @type {number}
+    */
+   static areas_counter = 0;
+
+   /**
+    * Контейней, хранящий объекты областей переноса
+    *
+    * @type {Map<number, DropArea>}
+    */
+   static drop_areas = new Map();
+
+   /**
+    * Элемент области переноса
+    *
+    * @type {HTMLElement}
+    */
+   element;
+
+   /**
+    * Блок, в который добавляются перенесенные элементы
+    *
+    * @type {HTMLElement}
+    */
+   container;
+
+   /**
+    * Флаг, указывающий могут ли переносится одинаковые элементы
+    *
+    * @type {boolean}
+    */
+   multiple;
+
+   /**
+    * Область, из которой можно перенести элементы
+    *
+    * @type {DragContainer}
+    */
+   drag_container;
+
+   /**
+    * callback для обработки добавления элемента в область
+    *
+    * @type {Function}
+    */
+   add_element_callback;
+
+   /**
+    * Создает объект области для переноса
+    *
+    * @param {HTMLElement} drop_area - элемент области
+    */
    constructor (drop_area) {
       this.element = drop_area;
 
@@ -34,13 +218,30 @@ class DropArea {
          this.drag_container = new DragContainer(this.container);
       }
 
-      this.add_element_callback = getAddElementCallback(this);
-      this.elements = [];
+      this.add_element_callback = this.getAddElementCallback();
 
       this.element.dataset.id_area = DropArea.areas_counter.toString();
       DropArea.drop_areas.set(DropArea.areas_counter++, this);
 
+   }
 
+   /**
+    * Получает функцию обработки добавления элемента в область переноса
+    *
+    * @return {Function}
+    */
+   getAddElementCallback () {
+      let callback;
+
+      switch (this.element.dataset.add_element_callback) {
+         case 'add_expert':
+            callback = showExpertsBlock;
+            break;
+         default:
+
+      }
+
+      return callback;
    }
 
    addElement (element) {
@@ -52,8 +253,6 @@ class DropArea {
          } else {
             this.container.appendChild(element);
          }
-
-         this.elements.push(element);
 
          if (this.add_element_callback) {
             this.add_element_callback(this, element);
@@ -77,14 +276,8 @@ class DropArea {
       // Получаем самый вложенный элемент под курсором мыши
       let deepest_elem = document.elementFromPoint(event.clientX, event.clientY);
 
-      // console.log(deepest_elem);
-
-
-      console.log('find');
 
       let drop_area = deepest_elem.closest('[data-drop_area]');
-
-      // console.log(drop_area);
 
 
       return drop_area ? DropArea.getDropArea(drop_area) : null;
@@ -120,6 +313,7 @@ function dropElement (event) {
    document.removeEventListener('mousemove', this.move);
 
    let is_added = false;
+
 
    if (this.avatar) {
 
@@ -199,133 +393,5 @@ class DragElement {
       }
    }
 
-}
-
-class DragContainer {
-
-   container;
-   multiple;
-   transform_callback;
-   elements;
-
-   constructor (drag_container) {
-
-      this.container = drag_container;
-      this.multiple = this.container.dataset.drag_multiple === 'true';
-
-      this.transform_callback = getTransformCallback(this.container);
-      this.elements = [];
-
-   }
-
-   initElements () {
-      this.elements = Array.from(this.container.querySelectorAll('[data-drag_element]'));
-      this.elements.forEach(element => this.handleElement(element));
-   }
-
-
-   handleElement (element) {
-      element.addEventListener('mousedown', (event) => {
-         if (
-            !event.target.hasAttribute('data-drag_inactive')
-            && event.button === 0
-         ) {
-            new DragElement(element, event, this);
-         }
-
-      });
-   }
-
-   addElement (element) {
-      this.container.appendChild(element);
-      this.elements.push(element);
-      this.handleElement(element);
-   }
-
-
-}
-
-function clearDefaultDropEvents () {
-   let events = ['dragenter', 'dragover', 'dragleave', 'drop'];
-   events.forEach(event_name => {
-      document.addEventListener(event_name, event => {
-         event.preventDefault();
-         event.stopPropagation();
-      });
-   });
-}
-
-function getTransformCallback (drag_container) {
-   let callback;
-
-   switch (drag_container.dataset.transform_callback) {
-      case 'expert':
-         callback = transformExpert;
-         break;
-      default:
-         callback = defaultTransform;
-         break;
-   }
-
-   return callback
-}
-
-function defaultTransform (element) {
-   element.style.display = null;
-   return element;
-}
-
-function getAvatarCreationCallback (draggable_element) {
-   let callback;
-
-   //todo обработать случай, когда не найден callback
-   switch (draggable_element.dataset.drag_callback) {
-      case 'expert':
-         callback = createExpertAvatar;
-         break;
-      case 'section_expert':
-         callback = createSectionExpert;
-         break;
-      default:
-         callback = defaultAvatar;
-         break;
-   }
-
-   return callback
-}
-
-function defaultAvatar (element) {
-   let avatar = element.cloneNode(true);
-   avatar.classList.add('draggable');
-   avatar.style.display = 'block';
-   return avatar;
-}
-
-function getAddElementCallback (drop_area) {
-   let callback;
-
-   switch (drop_area.element.dataset.add_element_callback) {
-      case 'add_expert':
-         callback = showExpertsBlock;
-         break;
-      default:
-
-   }
-
-   return callback;
-}
-
-function getRemoveElementCallback (remove_button) {
-   let callback;
-
-   switch (remove_button.dataset.remove_callback) {
-      case 'remove_expert':
-         callback = removeExpert;
-         break;
-      default:
-
-   }
-
-   return callback;
 }
 

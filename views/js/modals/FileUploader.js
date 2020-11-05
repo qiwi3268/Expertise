@@ -172,7 +172,7 @@ class FileUploader {
     * Обрабатывает действия файлового загрузчика
     */
    initActions () {
-      this.clearDefaultDropEvents();
+      clearDefaultDropEvents();
       this.handleDropArea();
       this.handleFileUploadButton();
       this.handleSubmitButton();
@@ -182,19 +182,6 @@ class FileUploader {
       close_button.addEventListener('click', this.closeModal.bind(this));
 
       this.overlay.addEventListener('click', this.closeModal.bind(this));
-   }
-
-   /**
-    * Отключает стандартные действия переноса в браузере
-    */
-   clearDefaultDropEvents () {
-      let events = ['dragenter', 'dragover', 'dragleave', 'drop'];
-      events.forEach(event_name => {
-         document.addEventListener(event_name, event => {
-            event.preventDefault();
-            event.stopPropagation();
-         });
-      });
    }
 
    /**

@@ -80,7 +80,7 @@ class Misc {
    /**
     * Функция обработки выбора элемента справочника
     *
-    * @type {function}
+    * @type {Function}
     */
    result_callback;
 
@@ -590,9 +590,7 @@ class Pagination {
  * Получает функцию обработки выбора элемента справочника
  *
  * @param {Misc} misc - объект справочника, в котором выбран элемент
- * @returns {function} одна из следующих функций:
- * {@link setDocumentFieldValue} - добавить значение в поле формы анкеты
- * {@link setAdditionalSection} - установить название дополнительного раздела при назначении экспертов
+ * @returns {Function}
  */
 function getMiscResultCallback (misc) {
    let callback;

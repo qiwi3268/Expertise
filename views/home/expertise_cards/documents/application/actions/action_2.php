@@ -43,7 +43,10 @@
             </div>
             <div class="assignment__expert-section">
                 <div class="assignment__type">Экспертный отдел</div>
-                <div class="assignment__expert-list" data-drag_container data-drag_multiple="false" data-transform_callback="expert">
+                <div class="assignment__expert-list"
+                     data-drag_container
+                     data-drag_multiple="true"
+                     data-transform_callback="expert">
                     <?php foreach ($_VT->getValue('experts') as $index => $expert): ?>
                         <div class="assignment__expert"
                              data-drag_element
@@ -83,6 +86,7 @@
                                      data-drop_multiple="false"
                                      data-drag_container
                                      data-drag_multiple="false"
+                                     data-transform_callback="section_expert"
                                 ></div>
                             </div>
                             <div class="section__uploaded-files card">
@@ -160,6 +164,7 @@
                              data-drop_multiple="false"
                              data-drag_container
                              data-drag_multiple="false"
+                             data-transform_callback="section_expert"
                         ></div>
                     </div>
                 </div>
