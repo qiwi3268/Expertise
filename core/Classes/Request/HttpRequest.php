@@ -55,7 +55,7 @@ class HttpRequest extends Request
         $this->requestMethod = $method;
         $this->dirtyProperties = $properties;
 
-        array_walk_recursive($properties, function(&$value)
+        array_walk_recursive($properties, function(&$value): void
         {
             $value = htmlspecialchars(strip_tags($value), ENT_NOQUOTES);
         });
@@ -65,7 +65,7 @@ class HttpRequest extends Request
 
 
     /**
-     * Предназначен для проверки вызван ли текущий сценарий GET-методом
+     * Предназначен для проверки вызван ли текущий сценарий методом GET
      *
      * @return bool
      */
@@ -76,7 +76,7 @@ class HttpRequest extends Request
 
 
     /**
-     * Предназначен для проверки вызван ли текущий сценарий POST-методом
+     * Предназначен для проверки вызван ли текущий сценарий методом POST
      *
      * @return bool
      */

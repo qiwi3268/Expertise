@@ -22,6 +22,8 @@ abstract class Request
     /**
      * Параметры запроса
      *
+     * Представляет собой ассоциативный массив
+     *
      */
     protected array $properties;
 
@@ -103,6 +105,8 @@ abstract class Request
 
     /**
      * Конструктор класса
+     *
+     * Дочерние классы должны заполнить массив параметров запроса
      *
      */
     abstract protected function __construct();
