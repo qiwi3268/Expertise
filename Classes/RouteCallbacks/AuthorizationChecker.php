@@ -20,7 +20,7 @@ class AuthorizationChecker
      * с сообщением об ошибке
      *
      */
-    public function checkAuthorization(): void
+    static public function checkAuthorization(): void
     {
         if (!Session::isAuthorized()) {
             Session::setErrorMessage('Для работы в личном кабинете Вам необходимо авторизоваться');

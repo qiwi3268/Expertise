@@ -29,16 +29,14 @@ class ActionChecker
 
 
     /**
-     * Явный конструктор класса
-     *
-     * Необходим, так как класс создается до того, как будет вызван метод, объявляющий константы
+     * Конструктор класса
      *
      * @throws ActionsEx
      * @throws DataBaseEx
      * @throws TablesEx
      * @throws DocumentTreeHandlerEx
      */
-    public function construct(): void
+    public function __construct()
     {
         $actions = Locator::getInstance(CURRENT_DOCUMENT_TYPE)->getObject();
         $this->accessActions = $actions->getAccessActions();

@@ -29,13 +29,11 @@ class DocumentExistChecker
 
 
     /**
-     * Явный конструктор класса
-     *
-     * Необходим, так как класс создается до того, как будет вызван метод, объявляющий константы
+     * Конструктор класса
      *
      * @throws TablesEx
      */
-    public function construct(): void
+    public function __construct()
     {
         $locator = new DocumentTypeTableLocator(CURRENT_DOCUMENT_TYPE);
         $this->documentTable = $locator->getDocs();

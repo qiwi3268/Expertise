@@ -25,7 +25,8 @@ class DocumentationFileUploader extends Uploader
 
 
     /**
-     * DocumentationFileUploader constructor.
+     * Конструктор класса
+     *
      * @param int $applicationId
      * @param int $structureNodeId
      * @param int $mapping_level_1

@@ -34,16 +34,14 @@ class AccessToDocumentTreeChecker
 
 
     /**
-     * Явный конструктор класса
-     *
-     * Необходим, так как класс создается до того, как будет вызван метод, объявляющий константы
+     * Конструктор класса
      *
      * @throws DataBaseEx
      * @throws AccessToDocumentEx
      * @throws TablesEx
      * @throws DocumentTreeHandlerEx
      */
-    public function construct(): void
+    public function __construct()
     {
         $this->accessToDocumentTree = new AccessToDocumentTree(CURRENT_DOCUMENT_TYPE, CURRENT_DOCUMENT_ID);
     }

@@ -183,7 +183,7 @@ abstract class Uploader
             $createdIds = $createTransaction->start()->getLastResults()[$class]['create'];
         } catch (DataBaseEx $e) {
 
-            throw new SelfEx('Ошибка при создании записи в файловую таблицу. ' . getExceptionMessageAndCode($e), 1007);
+            throw new SelfEx(exceptionToString($e, 'Ошибка при создании записи в файловую таблицу'), 1007);
         }
 
         // Загрузка файлов в указанну директорию
@@ -232,7 +232,7 @@ abstract class Uploader
             $transaction->start();
         } catch (DataBaseEx $e) {
 
-            throw new SelfEx('Загрузка файлов прошла успешно, НО не получилось обновить флаги загрузки файла на сервер в таблице. ' . getExceptionMessageAndCode($e), 10010);
+            throw new SelfEx(exceptionToString($e, 'Загрузка файлов прошла успешно, НО не получилось обновить флаги загрузки файла на сервер в таблице'), 10010);
         }
 
         // Формирование выходного результата

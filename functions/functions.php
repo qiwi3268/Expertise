@@ -471,6 +471,23 @@ function getHumanFileSize(int $bytes): string
 
 
 /**
+ * Предназначен для преобразования исключения в строку
+ *
+ * @param Exception $e исключение
+ * @param string $description дополнительное описание, идущее перед исключением.<br>
+ * <i>Без точки и пробелов в конце</i>
+ * @return string строка формата:<br>
+ * Exception class: '...'. Message: '...'. Code: ...
+ */
+function exceptionToString(Exception $e, string $description = ''): string
+{
+    if (!empty($description)) $description .= '. ';
+    $class = get_class($e);
+    return "{$description}Exception class: '{$class}'. Message: '{$e->getMessage()}'. Code: {$e->getCode()}";
+}
+
+
+/**
  * Предназначен для получения ФИО из ассоциативного массива пользователя
  *
  * @param array $userInfo ассоциативный массив, в котором есть ключи: last_name, first_name, middle_name
@@ -529,18 +546,6 @@ function getHashArray(array $array): array
         $result[$elem] = true;
     }
     return $result;
-}
-
-
-/**
- * Предназначен для получения строки с сообщением и кодом исключения
- *
- * @param Exception $e
- * @return string строка формата 'Message: '___'. Code: ___'
- */
-function getExceptionMessageAndCode(Exception $e): string
-{
-    return "Message: '{$e->getMessage()}'. Code: {$e->getCode()}";
 }
 
 

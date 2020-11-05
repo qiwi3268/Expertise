@@ -471,7 +471,7 @@
         <template id="ExpertiseCard_ViewMode">
             <callbacks>
                 <namespace name="\Classes\RouteCallbacks">
-                    <class name="AuthorizationChecker" type="instance">
+                    <class name="AuthorizationChecker" type="static">
                         <method name="checkAuthorization"/>
                     </class>
                 </namespace>
@@ -484,11 +484,9 @@
 
                 <namespace name="\Classes\RouteCallbacks">
                     <class name="DocumentExistChecker" type="instance">
-                        <method name="construct"/>
                         <method name="checkDocumentExist"/>
                     </class>
                     <class name="AccessToDocumentTreeChecker" type="instance">
-                        <method name="construct"/>
                         <method name="checkAccessToDocumentTree"/>
                     </class>
                     <class name="AccessToViewModeChecker" type="static">
@@ -502,7 +500,7 @@
         <template id="ExpertiseCard_Action">
             <callbacks>
                 <namespace name="\Classes\RouteCallbacks">
-                    <class name="AuthorizationChecker" type="instance">
+                    <class name="AuthorizationChecker" type="static">
                         <method name="checkAuthorization"/>
                     </class>
                 </namespace>
@@ -515,15 +513,12 @@
 
                 <namespace name="\Classes\RouteCallbacks">
                     <class name="DocumentExistChecker" type="instance">
-                        <method name="construct"/>
                         <method name="checkDocumentExist"/>
                     </class>
                     <class name="AccessToDocumentTreeChecker" type="instance">
-                        <method name="construct"/>
                         <method name="checkAccessToDocumentTree"/>
                     </class>
                     <class name="ActionChecker" type="instance">
-                        <method name="construct"/>
                         <method name="checkAccess"/>
                         <method name="checkIssetExecutionCallback"/>
                     </class>
@@ -535,7 +530,7 @@
         <template id="AuthorizationChecker">
             <callbacks>
                 <namespace name="\Classes\RouteCallbacks">
-                    <class name="AuthorizationChecker" type="instance">
+                    <class name="AuthorizationChecker" type="static">
                         <method name="checkAuthorization"/>
                     </class>
                 </namespace>

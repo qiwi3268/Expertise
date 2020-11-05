@@ -69,19 +69,14 @@ class Logger
      *
      * @uses \Lib\Singles\Logger::write()
      * @param Exception $e логируемое исключение
-     * @param string|null $description описание (часть перед сообщением и кода исключения).<br>
-     * <i>Без точки и пробелов в конце</i>
+     * @param string $description дополнительное описание
      * @return string временная отметка логируемого сообщения
      * @throws SelfEx
      */
-    public function writeException(Exception $e, ?string $description = null): string
+    public function writeException(Exception $e, string $description = ''): string
     {
-        $description = !is_null($description) ? "{$description}. " : "";
-
-        $class = get_class($e);
-
-        $message = "{$description}Exception: {$class}. Message: {$e->getMessage()}. Code: {$e->getCode()}";
-        return $this->write($message);
+        //todo проверить это
+        return $this->write(exceptionToString($e, $description));
     }
 
 

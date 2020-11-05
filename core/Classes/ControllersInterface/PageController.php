@@ -29,10 +29,11 @@ abstract class PageController extends Controller
     /**
      * Реализация абстрактного метода
      *
+     * <b>*</b> Должен вызываться единожды и только из контекста RoutesXMLHandler
+     *
      */
     public function execute(): void
     {
-        $this->construct();
         $this->doExecute();
     }
 }

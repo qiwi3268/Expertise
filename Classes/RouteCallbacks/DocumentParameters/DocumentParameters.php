@@ -10,7 +10,7 @@ use Lib\Singles\PrimitiveValidator;
 
 
 /**
- *  Предназначен для предоставления интерфейса дочерним классам с целью объявления констант открытого документа
+ * Предназначен для предоставления интерфейса дочерним классам с целью объявления констант открытого документа:
  *
  * - CURRENT_DOCUMENT_TYPE
  * - CURRENT_DOCUMENT_ID
@@ -44,8 +44,13 @@ abstract class DocumentParameters
      * @return array результат вызова функции {@see getHandlePregMatch()}
      * @throws SelfEx
      */
-    protected function validateAndDefineParameters(string $clearDocumentId, string $pattern, int $documentTypeIndex, string $subject): array
-    {
+    protected function validateAndDefineParameters(
+        string $clearDocumentId,
+        string $pattern,
+        int $documentTypeIndex,
+        string $subject
+    ): array {
+
         try {
             $result = getHandlePregMatch($pattern, $subject, false);
         } catch (FunctionsEx $e) {

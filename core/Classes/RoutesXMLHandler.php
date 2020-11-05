@@ -31,6 +31,10 @@ final class RoutesXMLHandler
      */
     private const XPATH_CALLBACK_TEMPLATE = "/routes/callback_templates/template[@id='%s']";
 
+    private const INSTANCE_TYPE = 'instance';
+
+    private const STATIC_TYPE = 'static';
+
     /**
      * Абстрактный клас, от которого должны быть унаследованы все контроллер классы
      *
@@ -213,7 +217,7 @@ final class RoutesXMLHandler
         $this->XMLValidator->validateAttributes($callback_template, '<callback_template />', ['id']);
         $this->XMLValidator->validateChildren($callback_template, '<callback_template />', []);
 
-        $template = $this->getTemplate((string)$callback_template['id']);
+        $template = $this->getTemplate($callback_template['id']);
 
         $this->XMLValidator->validateAttributes($template, '<template />', ['id']);
         $this->XMLValidator->validateChildren($template, '<template />', ['callbacks']);
@@ -268,12 +272,17 @@ final class RoutesXMLHandler
                 if ($XMLHandler_value['type'] == 'file') {
 
                     require_once $XMLHandler_value['fs'];
-                } elseif ($XMLHandler_value['type'] == 'controller') {
+                } else {
 
-                    call_user_func([$XMLHandler_value['object'], self::CONTROLLER_METHOD]);
-                } else { // callback
-
-                    call_user_func([$XMLHandler_value['object'], $XMLHandler_value['method']]);
+                    if ($XMLHandler_value['type'] == self::INSTANCE_TYPE) {
+                        $object = new $XMLHandler_value['class']();
+                    } else {
+                        $object = $XMLHandler_value['class'];
+                    }
+                    foreach ($XMLHandler_value['methods'] as $method) {
+                        call_user_func([$object, $method]);
+                    }
+                    unset($object);
                 }
             }
         });
@@ -355,8 +364,9 @@ final class RoutesXMLHandler
                 }
 
                 $XMLHandler_result[] = [
-                    'type'   => 'controller',
-                    'object' => new $fullClassName()
+                    'type'    => self::INSTANCE_TYPE,
+                    'class'   => $fullClassName,
+                    'methods' => [self::CONTROLLER_METHOD]
                 ];
             }
         }
@@ -394,32 +404,29 @@ final class RoutesXMLHandler
                 $classType = (string)$class['type'];
 
                 try {
-                    $this->primitiveValidator->validateSomeInclusions($classType, 'instance', 'static');
+                    $this->primitiveValidator->validateSomeInclusions($classType, self::INSTANCE_TYPE, self::STATIC_TYPE);
                 } catch (PrimitiveValidatorEx $e) {
-                    throw new SelfEx("Тип класса: '{$classType}' должен быть 'instance' или 'static'", 6);
+                    $debug = "'" . self::INSTANCE_TYPE . "' или '" . self::STATIC_TYPE . "'";
+                    throw new SelfEx("Тип класса: '{$classType}' должен быть {$debug}", 6);
                 }
 
-                if ($classType == 'instance') {
-                    $object = new $fullClassName();
-                } else { // static
-                    $object = $fullClassName;
-                }
+                $methods = [];
 
                 foreach ($class->children() as $method) {
 
                     $methodName = (string)$method['name'];
 
-                    try {
-                        $this->primitiveValidator->validateMethodExist($fullClassName, $methodName);
-                    } catch (PrimitiveValidatorEx $e) {
+                    if (!method_exists($fullClassName, $methodName)) {
                         throw new SelfEx("callback метод: '{$fullClassName}::{$methodName}' не существует", 7);
                     }
-                    $XMLHandler_result[] = [
-                        'type'   => 'callback',
-                        'object' => $object,
-                        'method' => $methodName
-                    ];
+                    $methods[] = $methodName;
                 }
+
+                $XMLHandler_result[] = [
+                    'type'    => $classType,
+                    'class'   => $fullClassName,
+                    'methods' => $methods
+                ];
             }
         }
     }
@@ -438,7 +445,7 @@ final class RoutesXMLHandler
      */
     private function handleCallbackTemplateValue(SimpleXMLElement $callback_template, array &$XMLHandler_result): void
     {
-        $template = $this->getTemplate((string)$callback_template['id']);
+        $template = $this->getTemplate($callback_template['id']);
 
         foreach ($template->children() as $callbacks) {
 
