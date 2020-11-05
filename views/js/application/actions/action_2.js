@@ -157,3 +157,166 @@ function getExpertData (expert_element) {
 
    return expert_data;
 }
+
+/**
+ * Удаляет перенесенного эксперта из раздела
+ *
+ * @param {DropArea} drop_area - область, относящаяся к разделу, в которую переносятся эксперты
+ */
+function removeExpert (drop_area) {
+   let assigned_experts = drop_area.element.querySelector('.section__experts');
+   if (!drop_area.container.querySelector('[data-drop_element]')) {
+      assigned_experts.dataset.active = 'false';
+   }
+}
+
+/**
+ * Отображает блок с экспертами раздела при переносе
+ *
+ * @param drop_area - область, относящаяся к разделу, в которую переносятся эксперты
+ */
+function showExpertsBlock (drop_area) {
+   let assigned_experts = drop_area.element.querySelector('.section__experts');
+   assigned_experts.dataset.active = 'true';
+}
+
+/**
+ * Создает переносимую копию эксперта при переносе из списка экспертов
+ *
+ * @param {HTMLElement} expert - исходный элемент эксперта
+ * @return {HTMLElement} копия эксперта для переноса
+ */
+function createExpertAvatar (expert) {
+   let expert_avatar = expert.cloneNode(true);
+   expert_avatar.classList.remove('assignment__expert');
+   expert_avatar.classList.add('avatar');
+   return expert_avatar;
+}
+
+/**
+ * Создает переносимую копию эксперта при переносе из раздела
+ *
+ * @param {HTMLElement} expert - исходный элемент эксперта
+ * @return {HTMLElement} копия эксперта для переноса
+ */
+function createSectionExpert (expert) {
+   console.log('section');
+   let expert_avatar = document.createElement('DIV');
+   expert_avatar.dataset.id = expert.dataset.id;
+   expert_avatar.innerHTML = expert.querySelector('.section__name').innerHTML;
+   expert_avatar.classList.add('avatar');
+   return expert_avatar;
+}
+
+/**
+ * Преобразует копию переносимого эксперта для отображения в разделе
+ *
+ * @param {HTMLElement} expert - исходный элемент эксперта
+ * @return {HTMLElement} элемент эксперта для отображения в разделе
+ */
+function transformExpert (expert) {
+   let new_expert = document.createElement('DIV');
+   new_expert.classList.add('section__expert');
+   new_expert.setAttribute('data-assigned_expert', '');
+   new_expert.dataset.id = expert.dataset.id;
+   new_expert.dataset.drag_element = '';
+   new_expert.dataset.drop_element = '';
+   new_expert.dataset.drag_callback = 'section_expert';
+
+   let expert_name = document.createElement('SPAN');
+   expert_name.classList.add('section__name');
+   expert_name.innerHTML = expert.innerHTML;
+   new_expert.appendChild(expert_name);
+
+   let lead_icon = document.createElement('I');
+   lead_icon.classList.add('section__lead', 'fas', 'fa-crown');
+   lead_icon.dataset.drag_inactive = 'true';
+   lead_icon.addEventListener('click', () => changeLeadExpert(new_expert));
+   new_expert.dataset.lead = !!isLeadExpert(new_expert);
+   new_expert.appendChild(lead_icon);
+
+   let common_icon = document.createElement('I');
+   common_icon.classList.add('section__common_part', 'fas', 'fa-file-signature');
+   common_icon.dataset.drag_inactive = 'true';
+   common_icon.addEventListener('click', () => toggleCommonPart(new_expert));
+   new_expert.dataset.common_part = !!isCommonPartExpert(new_expert);
+   new_expert.appendChild(common_icon);
+
+   let remove_btn = document.createElement('SPAN');
+   remove_btn.classList.add('section__icon-remove', 'fas', 'fa-minus');
+   remove_btn.dataset.drag_inactive = '';
+   remove_btn.dataset.drop_remove = '';
+   remove_btn.dataset.remove_callback = 'remove_expert';
+   new_expert.appendChild(remove_btn);
+
+   return new_expert;
+}
+
+/**
+ * Меняет метку ведущего эксперта
+ *
+ * @param {HTMLElement} expert - новый ведущий эксперт
+ */
+function changeLeadExpert (expert) {
+   if (!isLeadExpert(expert)) {
+      removeLeadExpert();
+      setLeadExpert(expert);
+   } else {
+      removeLeadExpert();
+   }
+}
+
+/**
+ * Проверяет, отмечен ли эксперт ведущим
+ *
+ * @param {HTMLElement} expert - эксперт для проверки
+ * @return {boolean} ведущий ли эксперт
+ */
+function isLeadExpert (expert) {
+   let lead_expert = document.querySelector('.section__expert[data-lead="true"]');
+   return lead_expert && expert.dataset.id === lead_expert.dataset.id;
+}
+
+/**
+ * Удаляет метку ведущего эксперта
+ */
+function removeLeadExpert () {
+   let lead_experts = document.querySelectorAll('.section__expert[data-lead="true"]');
+   lead_experts.forEach(lead_expert => lead_expert.dataset.lead = 'false');
+}
+
+/**
+ * Устанавливает метку ведущего эксперта
+ *
+ * @param {HTMLElement} expert - эксперт, которому проставляется метка
+ */
+function setLeadExpert (expert) {
+   let current_expert = document.querySelectorAll(`.section__expert[data-id='${expert.dataset.id}']`);
+   current_expert.forEach(expert_copy => {
+      expert_copy.dataset.lead = 'true';
+   });
+}
+
+/**
+ * Проверяет, назначен ли эксперт на общую часть
+ *
+ * @param {HTMLElement} expert - эксперт для проверки
+ * @return {boolean}
+ */
+function isCommonPartExpert (expert) {
+   let common_part_expert = document.querySelector('.section__expert[data-common_part="true"]');
+   return common_part_expert && expert.dataset.id === common_part_expert.dataset.id;
+}
+
+/**
+ * Переключает метку общей части у эксперта
+ *
+ * @param {HTMLElement} expert
+ */
+function toggleCommonPart (expert) {
+   let is_common_part = (expert.dataset.common_part !== 'true').toString();
+   let current_expert = document.querySelectorAll(`.section__expert[data-id='${expert.dataset.id}']`);
+   current_expert.forEach(expert_copy => {
+      expert_copy.dataset.common_part = is_common_part;
+   });
+}

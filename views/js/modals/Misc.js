@@ -651,7 +651,8 @@ function setAdditionalSection (selected_item, misc) {
       || misc.field.dataset.id === selected_item.dataset.id
    ) {
       misc.field.dataset.id = selected_item.dataset.id;
-      misc.field.dataset.drop_area = '';
+      // misc.field.dataset.drop_area = '';
+      misc.field.setAttribute('data-drop_area', '');
       misc.select.classList.remove('empty');
       let misc_value = misc.select.querySelector('[data-field_value]');
       misc_value.innerHTML = selected_item.innerHTML;

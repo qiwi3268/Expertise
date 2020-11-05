@@ -156,16 +156,16 @@ class FileUploader {
     * Инициализирует элементы модального окна файлового загрузчика
     */
    initModalElements () {
-      this.file_input = document.getElementById('file_uploader');
+      this.file_input = document.getElementById('file_uploader_input');
 
-      this.modal = document.querySelector('.modal.file-modal');
-      this.overlay = document.querySelector('.file-overlay');
+      this.modal = document.getElementById('file_modal');
+      this.overlay = document.getElementById('file_overlay');
 
-      this.drop_area = this.modal.querySelector('.file-modal__drop-area');
-      this.modal_body = this.modal.querySelector('.file-modal__body');
+      this.drop_area = document.getElementById('files_drop_area');
+      this.modal_body = document.getElementById('file_uploader_body');
 
-      this.modal_title = this.modal.querySelector('.file-modal__title');
-      this.progress_bar = this.modal.querySelector('.file-modal__progress_bar');
+      this.modal_title = document.getElementById('file_uploader_title');
+      this.progress_bar = document.getElementById('file_uploader_progress_bar');
    }
 
    /**

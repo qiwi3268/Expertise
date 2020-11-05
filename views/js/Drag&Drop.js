@@ -15,7 +15,7 @@ class DropArea {
    static areas_counter = 0;
    static drop_areas = new Map();
 
-   area;
+   element;
    container;
 
    multiple;
@@ -26,9 +26,9 @@ class DropArea {
    elements;
 
    constructor (drop_area) {
-      this.area = drop_area;
+      this.element = drop_area;
 
-      this.container = this.area.querySelector('[data-drop_container]');
+      this.container = this.element.querySelector('[data-drop_container]');
       this.multiple = this.container.dataset.drop_multiple === 'true';
 
       if (this.container.hasAttribute('data-drag_container')) {
@@ -38,8 +38,9 @@ class DropArea {
       this.add_element_callback = getAddElementCallback(this);
       this.elements = [];
 
-      this.area.dataset.id_area = DropArea.areas_counter.toString();
+      this.element.dataset.id_area = DropArea.areas_counter.toString();
       DropArea.drop_areas.set(DropArea.areas_counter++, this);
+
 
    }
 
@@ -73,11 +74,12 @@ class DropArea {
       return this.drop_areas.has(id) ? this.drop_areas.get(id) : new DropArea(area);
    }
 
-/*   getResult () {
-      this.result_callback = this.area.dataset.result_callback;
-      let get_result = getResultCallback(this);
-      return get_result(this);
-   }*/
+   static findByDropEvent (event) {
+      // Получаем самый вложенный элемент под курсором мыши
+      let deepest_elem = document.elementFromPoint(event.clientX, event.clientY);
+      let drop_area = deepest_elem.closest('[data-drop_area]');
+      return drop_area ? DropArea.getDropArea(drop_area) : null;
+   }
 
 }
 
@@ -116,7 +118,7 @@ function dropElement (event) {
 
       document.body.style.userSelect = null;
 
-      let drop_area = findDropArea(event);
+      let drop_area = DropArea.findByDropEvent(event);
       if (drop_area) {
 
          this.transformed_elem = this.drag_container.transform_callback(this.ancestor);
@@ -139,12 +141,7 @@ function dropElement (event) {
 
 }
 
-function findDropArea (event) {
-   // Получаем самый вложенный элемент под курсором мыши
-   let deepest_elem = document.elementFromPoint(event.clientX, event.clientY);
-   let drop_area = deepest_elem.closest('[data-drop_area]');
-   return drop_area ? DropArea.getDropArea(drop_area) : null;
-}
+
 
 
 class DragElement {
@@ -295,33 +292,10 @@ function defaultAvatar (element) {
    return avatar;
 }
 
-/*function getResultCallback (drop_area) {
-   let callback;
-
-   switch (drop_area.result_callback) {
-      case 'experts_json':
-         callback = getAssignedSectionsJSON;
-         break;
-      default:
-   }
-
-   return callback;
-}
-
-function getAssignedSectionsJSON (drop_area) {
-   let section = {};
-   if (drop_area.area.hasAttribute('data-id')) {
-      section.id = drop_area.area.dataset.id;
-   }
-
-   section.experts = drop_area.elements.map(expert => expert.dataset.id);
-   return section;
-}*/
-
 function getAddElementCallback (drop_area) {
    let callback;
 
-   switch (drop_area.area.dataset.add_element_callback) {
+   switch (drop_area.element.dataset.add_element_callback) {
       case 'add_expert':
          callback = showExpertsBlock;
          break;
