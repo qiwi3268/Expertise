@@ -233,14 +233,14 @@ function transformExpert (expert) {
    lead_icon.classList.add('section__lead', 'fas', 'fa-crown');
    lead_icon.dataset.drag_inactive = 'true';
    lead_icon.addEventListener('click', () => changeLeadExpert(new_expert));
-   new_expert.dataset.lead = !!isLeadExpert(new_expert);
+   new_expert.dataset.lead = isLeadExpert(new_expert);
    new_expert.appendChild(lead_icon);
 
    let common_icon = document.createElement('I');
    common_icon.classList.add('section__common_part', 'fas', 'fa-file-signature');
    common_icon.dataset.drag_inactive = 'true';
    common_icon.addEventListener('click', () => toggleCommonPart(new_expert));
-   new_expert.dataset.common_part = !!isCommonPartExpert(new_expert);
+   new_expert.dataset.common_part = isCommonPartExpert(new_expert);
    new_expert.appendChild(common_icon);
 
    let remove_btn = document.createElement('SPAN');
@@ -332,8 +332,8 @@ function setLeadExpert (expert) {
  * @return {boolean}
  */
 function isCommonPartExpert (expert) {
-   let common_part_expert = document.querySelector('.section__expert[data-common_part="true"]');
-   return common_part_expert && expert.dataset.id === common_part_expert.dataset.id;
+   let common_part_expert = document.querySelector(`.section__expert[data-common_part='true'][data-id='${expert.dataset.id}']`);
+   return common_part_expert !== null;
 }
 
 /**

@@ -11,95 +11,46 @@ use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Exceptions\File as FileEx;
 use Lib\Singles\Logger;
 
+//---------------------------------------
+
+use Exception as SelfEx;
+use Lib\Exceptions\XMLValidator as XMLValidatorEx;
+
+use SimpleXMLElement;
+use Lib\Singles\XMLValidator;
+
 
 class Test extends Controller
 {
 
     public function doExecute(): void
     {
-        $params = ['a' => 1, 'b' => 2];
-        $required = ['a', 'c', 'd'];
+        $test = new XMLHandler();
 
-        // empty []
-
-        $test = array_diff($required, array_keys($params));
-
-        vd($test);
-
-
-        /*$a = new test1();
-        $a->execute();
-
-        $b = new test2();
-        $b->execute();
-
-        $c = new test3();
-        $c->execute();*/
-    }
-
-
-}
-
-
-class test1 extends APIController
-{
-
-    /**
-     * @inheritDoc
-     */
-    protected function getErrorLogger(): Logger
-    {
-        return new Logger(ROOT . '/controllers/tmp', 'test.log');
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function doExecute(): void
-    {
-        vd('test1');
-        //$this->exit(parent::SUCCESS_RESULT, 'test1');
     }
 }
 
-class test2 extends APIController
+
+
+
+class XMLHandler
 {
+    private SimpleXMLElement $data;
+    private XMLValidator $XMLValidator;
 
     /**
-     * @inheritDoc
+     * Конструктор класса
+     *
+     * @throws SelfEx
      */
-    protected function getErrorLogger(): Logger
+    public function __construct()
     {
-        return new Logger(ROOT . '/controllers/tmp', 'test.log');
-    }
+        if (($data = simplexml_load_file(SETTINGS . '/file_table_mappings.xml')) === false) {
+            throw new SelfEx("Ошибка при инициализации XML схемы маппингов", 1);
+        }
+        vd($data);
 
-    /**
-     * @inheritDoc
-     */
-    public function doExecute(): void
-    {
-        vd('test2');
-        //$this->exit(parent::SUCCESS_RESULT, 'test2');
-    }
-}
-
-class test3 extends APIController
-{
-
-    /**
-     * @inheritDoc
-     */
-    protected function getErrorLogger(): Logger
-    {
-        return new Logger(ROOT . '/controllers/tmp', 'test.log');
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function doExecute(): void
-    {
-        vd('test3');
-      //$this->exit(parent::SUCCESS_RESULT, 'test3');
+        $this->data = $data;
+        $this->XMLValidator = new XMLValidator();
     }
 }

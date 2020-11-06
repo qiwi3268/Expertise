@@ -331,6 +331,11 @@ textarea.form-field__input.invalid {
    padding: 10px 15px;
 }
 
+.error-modal__code {
+   color: #343a40;
+   padding: 0 15px 10px;
+}
+
 .card-body {
    max-height: 0;
    overflow: hidden;

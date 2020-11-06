@@ -4,6 +4,7 @@
 namespace APIControllers;
 
 use core\Classes\Exceptions\Request as RequestEx;
+use Lib\Exceptions\DataBase;
 use Lib\Exceptions\DataBase as DataBaseEx;
 
 use core\Classes\Request\HttpRequest;
@@ -15,15 +16,14 @@ use Tables\user;
 
 /**
  * API result:
+ * - ok - ['ref']
  * - 1 - Учетная запись заблокирована
  * - 2 - Пользователь не имеет ролей в системе
  * - 3 - Не подходит логин / пароль
- * - ok - ['ref']
  *
  */
 class Login extends APIController
 {
-
 
     /**
      * Реализация абстрактного метода
@@ -33,7 +33,6 @@ class Login extends APIController
      */
     public function doExecute(): void
     {
-
         list(
             'login'    => $login,
             'password' => $password
@@ -49,7 +48,7 @@ class Login extends APIController
 
                 // Учетная запись пользователя заблокирована
                 if ($userAssoc['is_banned']) {
-                    $this->exit(1, 'Учетная запись заблокирована');
+                    $this->errorExit(1, 'Учетная запись заблокирована');
                 }
 
                 // Обнуляем счетчик неверно введенных паролей
@@ -59,14 +58,14 @@ class Login extends APIController
 
                 // Пользователь не имеет ролей
                 if (is_null($userRoles)) {
-                    $this->exit(2, 'Пользователь не имеет ролей в системе');
+                    $this->errorExit(2, 'Пользователь не имеет ролей в системе');
                 }
 
                 // Создание сессии пользователя
                 Session::createUser($userAssoc, $userRoles);
 
                 // Авторизация прошла успешно
-                $this->customExit(APIController::SUCCESS_RESULT, ['ref' => '/home/navigation']);
+                $this->successExit(['ref' => '/home/navigation']);
             }
 
             // Инкрементируем счетчик неверно введенных паролей
@@ -81,7 +80,7 @@ class Login extends APIController
                 user::setBanById($userAssoc['id']);
             }
         }
-        $this->exit(3, 'Не подходит логин / пароль');
+        $this->errorExit(3, 'Не подходит логин / пароль');
     }
 
 
@@ -91,6 +90,6 @@ class Login extends APIController
      */
     protected function getErrorLogger(): Logger
     {
-        return new Logger(LOGS_API_ERRORS, 'login.log');
+        return new Logger(LOGS_API_ERRORS, 'Login.log');
     }
 }

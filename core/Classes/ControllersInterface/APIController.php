@@ -93,71 +93,43 @@ abstract class APIController extends Controller
             $this->doExecute();
         } catch (ErrorException $e) {
 
-            $this->complexExitWithException('Uncaught ErrorException', $e, 'Необработанное исключение, полученное путем преобразования ошибки');
+            $this->logAndExceptionExit('Uncaught ErrorException', $e, 'Необработанное исключение, полученное путем преобразования ошибки');
         } catch (DataBaseEx $e) {
 
-            $this->complexExitWithException('Uncaught DataBase Exception', $e, 'Необработанное исключение базы данных');
+            $this->logAndExceptionExit('Uncaught DataBase Exception', $e, 'Необработанное исключение базы данных');
         } catch (LoggerEx $e) {
 
-            $this->exitWithException('Uncaught Logger Exception', $e, 'Необработанное исключение логгера сообщений');
+            $this->exceptionExit('Uncaught Logger Exception', $e, 'Необработанное исключение логгера сообщений');
         } catch (Exception $e) {
 
-            $this->complexExitWithException('Uncaught Exception', $e, 'Необработанное исключение');
+            $this->logAndExceptionExit('Uncaught Exception', $e, 'Необработанное исключение');
         }
 
         $debug = static::class;
-        $this->exit('No exit', "Класс: '{$debug}' не завершил свою работу выходом");
+        $this->errorExit('No exit', "Класс: '{$debug}' не завершил свою работу выходом");
     }
 
 
     /**
-     * Предназначен для комплексного завершения работы скрипта,
-     * включая логирование сообщения и обработку возможного исключения логгера
+     * Предназначен для логирования сообщения об ошибке и завершения работы скрипта
+     * с преобразованием исключения в строку
      *
      * @uses \Lib\Singles\Logger::writeException()
-     * @uses \core\Classes\ControllersInterface\APIController::exitWithException()
+     * @uses \core\Classes\ControllersInterface\APIController::exceptionExit()
      * @param string $result уникальный код выхода
      * @param Exception $e исключение
      * @param string $description дополнительное описание
      */
-    protected function complexExitWithException(string $result, Exception $e, string $description): void
+    protected function logAndExceptionExit(string $result, Exception $e, string $description): void
     {
         try {
             $this->errorLogger->writeException($e, $description);
         } catch (LoggerEx $e_logger) {
-            $description = exceptionToString($e_logger, "Произошла непредвиденная ошибка при логировании необработанного исключения с описанием: {$description}");
+
+            $desc = empty($description) ? '' : " с описанием: {$description}";
+            $description = exceptionToString($e_logger, "Произошла непредвиденная ошибка при логировании исключения{$desc}");
         }
-        $this->exitWithException($result, $e, $description);
-    }
-
-
-    /**
-     * Предназначен для завершения работы скрипта с результирующим json'ом
-     *
-     * @param string $result уникальный код выхода
-     * @param string $message выходное сообщение
-     */
-    protected function exit(string $result, string $message): void
-    {
-        exit(json_encode([
-            'result'  => $result,
-            'message' => $message
-        ]));
-    }
-
-
-    /**
-     * Предназначен для завершения работы скрипта с масивом произвольного формата
-     *
-     * @param string $result уникальный код выхода
-     * @param array $array ассоциативный массив, который будет распакован в выходной json.<br>
-     * В данном массиве <b>не должно быть элемента по ключу result</b>
-     *
-     */
-    protected function customExit(string $result, array $array): void
-    {
-        $array['result'] = $result;
-        exit(json_encode($array));
+        $this->exceptionExit($result, $e, $description);
     }
 
 
@@ -170,9 +142,52 @@ abstract class APIController extends Controller
      * @param Exception $e исключение
      * @param string $description дополнительное описание
      */
-    protected function exitWithException(string $result, Exception $e, string $description = ''): void
+    protected function exceptionExit(string $result, Exception $e, string $description = ''): void
     {
-        $this->exit($result, exceptionToString($e, $description));
+        $this->exit([
+            'result'  => $result,
+            'message' => exceptionToString($e, $description)
+        ]);
+    }
+
+
+    /**
+     * Предназначен для завершения работы скрипта при успешном выполнении
+     *
+     * @param array $additional ассоциативный массив, который будет распакован в выходной json.<br>
+     * В данном массиве <i>не должно</i> быть элемента по ключу <b>result</b>
+     */
+    protected function successExit(array $additional = []): void
+    {
+        $additional['result'] = self::SUCCESS_RESULT;
+        $this->exit($additional);
+    }
+
+
+    /**
+     * Предназначен для завершения работы скрипта при неудачном выполнении
+     *
+     * @param string $result уникальный код выхода
+     * @param string $message выходное сообщение
+     * @param array $additional ассоциативный массив, который будет распакован в выходной json.<br>
+     * В данном массиве <i>не должно</i> быть элемента по ключу <b>result</b> и <b>message</b>
+     */
+    protected function errorExit(string $result, string $message, array $additional = []): void
+    {
+        $additional['result'] = $result;
+        $additional['message'] = $message;
+        $this->exit($additional);
+    }
+
+
+    /**
+     * Предназначен для завершения работы скрипта с результирующим json'ом
+     *
+     * @param array $result массив результатов
+     */
+    private function exit(array $result): void
+    {
+        exit(json_encode($result));
     }
 
 
@@ -196,7 +211,7 @@ abstract class APIController extends Controller
         $msg = "Нет обязательных параметров {$method} запроса: " . implode(', ', $missing);
         $res = $method == HttpRequest::POST ? self::MISSING_POST_PARAMS_RESULT : self::MISSING_GET_PARAMS_RESULT;
 
-        $this->exit($res, $msg);
+        $this->errorExit($res, $msg);
     }
 
 
@@ -207,8 +222,8 @@ abstract class APIController extends Controller
      *
      * @uses \core\Classes\ControllersInterface\APIController::checkRequiredParams()
      * @param string $method требуемый тип запроса на сервер
-     * @param array $params массив необходимых параметров
-     * @return array ассоциативный массив обязательных параметров
+     * @param array $params индексный массив необходимых параметров
+     * @return array ассоциативный массив необходимых параметров
      * @throws RequestEx
      */
     protected function getCheckedRequiredParams(string $method, array $params): array

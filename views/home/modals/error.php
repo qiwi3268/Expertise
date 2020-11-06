@@ -6,4 +6,5 @@
         <span class="error-modal__title"></span>
     </div>
     <span class="error-modal__message"></span>
+    <span class="error-modal__code"></span>
 </div>

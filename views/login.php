@@ -3,7 +3,7 @@
    <div class="form-login">
       <div class="form-login__title">Вход в АИС Экспертиза</div>
 
-      <form id="form" class="form-login__body" action="" method="POST">
+      <form id="login_form" class="form-login__body" action="" method="POST">
           <div class="form-login__field field">
               <input id="login" class="form-login__input" required type="text" name="login" placeholder="Логин">
           </div>

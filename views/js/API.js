@@ -1,7 +1,46 @@
+const SUCCESS_RESULT = 'ok';
+const MISSING_POST_PARAMS_RESULT = 'mppr';
+const MISSING_GET_PARAMS_RESULT = 'mgpr';
+
 /**
  * Представляет собой вспомогательный класс для работы с API
  */
 class API {
+
+   static sendRequest (method, url, form = null, headers = null, responseType = null, timeout = 50000, uploadProgressCallback = null) {
+
+      return new Promise((resolve, reject) => {
+
+         XHR(method, url, form, headers, responseType, timeout, uploadProgressCallback)
+            .then(response => {
+
+               if (response === null) {
+                  reject({message:'Не получен ответ от сервера. Обратитесь к администратору'});
+               }
+
+               switch (response.result) {
+
+                  case SUCCESS_RESULT:
+                     resolve(response);
+                     break;
+                  case MISSING_POST_PARAMS_RESULT:
+                  case MISSING_GET_PARAMS_RESULT:
+                     response.result = null;
+                     reject(response);
+                     break;
+                  default:
+                     reject(response);
+
+               }
+
+            })
+            .catch(exc => {
+               reject(exc);
+            });
+
+      });
+
+   }
 
    /**
     * Флаг, указывающий происходит ли обработка запроса на API
@@ -12,6 +51,18 @@ class API {
    }
    static set is_in_progress(is_in_progress) {
       this._is_in_progress = is_in_progress;
+   }
+
+   static login (form) {
+
+      API.sendRequest('post', '/API_login', new FormData(form), null, 'json')
+         .then(response => {
+            location.href = response.ref;
+         })
+         .catch(exc => {
+            ErrorModal.open('Ошибка авторизации', exc.message, exc.result);
+         });
+
    }
 
    /**

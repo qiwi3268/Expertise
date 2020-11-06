@@ -42,6 +42,14 @@ class ErrorModal {
       this._message = message;
    }
 
+   static get code() {
+      return this._code;
+   }
+
+   static set code(code) {
+      this._code = code;
+   }
+
    static init () {
       this.modal = document.querySelector('.error-modal');
 
@@ -56,6 +64,7 @@ class ErrorModal {
 
       this.title = this.modal.querySelector('.error-modal__title');
       this.message = this.modal.querySelector('.error-modal__message');
+      this.code = this.modal.querySelector('.error-modal__code');
 
    }
 
@@ -64,12 +73,19 @@ class ErrorModal {
       ErrorModal.overlay.classList.remove('active');
    }
 
-   static open (title, message) {
+   static open (title, message, code = null) {
       this.modal.classList.add('active');
       this.overlay.classList.add('active');
 
       this.title.innerHTML = title;
       this.message.innerHTML = message;
+
+      if (code) {
+         this.code.innerHTML = 'Код ошибки: ' + code;
+         this.code.style.display = null;
+      } else {
+         this.code.style.display = 'none';
+      }
 
    }
 

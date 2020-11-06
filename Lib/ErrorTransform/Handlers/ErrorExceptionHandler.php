@@ -7,7 +7,7 @@ use ErrorException;
 
 
 /**
- * Предназначен для преобразования ошибок в исключение типа {@see ErrorException}
+ * Предназначен для преобразования ошибок в исключение типа {@see \ErrorException}
  *
  */
 class ErrorExceptionHandler extends ErrorHandler

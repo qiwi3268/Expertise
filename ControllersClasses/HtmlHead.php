@@ -40,7 +40,7 @@ class HtmlHead extends Controller
                 $this->addFontAwesome5Case()
                     ->addCssSource(self::TMP_CSS, 'null.css', 'main.css', 'modal.css')
                     ->addCssSource(self::ROOT_CSS, 'entry.css')
-                    ->addJsSource(self::ROOT_JS, 'ErrorHandler.js', 'BrowserHelper.js', 'API_login.js')
+                    ->addJsSource(self::ROOT_JS, 'ErrorHandler.js', 'BrowserHelper.js', 'login.js', 'API.js')
                     ->addJsSource(self::MODALS_JS, 'ErrorModal.js')
                     ->addJsSource(self::ROOT_LIB_JS, 'lib_XHR.js');
                 break;
