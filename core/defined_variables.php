@@ -3,6 +3,7 @@
 // Блок объявления констант, связанных с путями в ФС сервера
 define('ROOT', '/var/www/html');                              // Корневая директория веб-проекта
 define('LOGS', '/var/www/logs');                              // Директория логов
+define('LOGS_API_ERRORS', '/var/www/logs/API/errors');        // Директория логов ошибок API
 define('APPLICATIONS_FILES', '/var/www/applications_files');  // Директория файлов заявлений
 define('TMP_HASH_FILES', '/var/www/hash/tmp_hash');           // Директория хранения временных файлов полученных hash'ей
 

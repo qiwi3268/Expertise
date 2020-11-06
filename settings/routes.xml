@@ -23,11 +23,11 @@
         </page>
 
         <page urn="API_login">
-            <files>
-                <dir path="/API/" ext=".php">
-                    <file name="login" />
-                </dir>
-            </files>
+            <controllers>
+                <namespace name="\APIControllers">
+                    <class name="Login" />
+                </namespace>
+            </controllers>
         </page>
 
         <page urn="home/file_unloader">

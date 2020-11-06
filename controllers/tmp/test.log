@@ -8,3 +8,4 @@
 05.11.2020 19:15:09 | Пользователь не авторизован | Необработанное исключение базы данных. Exception class: 'Lib\Exceptions\DataBase'. Message: 'keke'. Code: 12. File: '/var/www/html/ControllersClasses/Test.php'. Line: 44
 05.11.2020 19:15:46 | Пользователь не авторизован | Необработанное исключение. Exception class: 'Exception'. Message: 'keke'. Code: 12. File: '/var/www/html/ControllersClasses/Test.php'. Line: 44
 05.11.2020 19:20:33 | Пользователь не авторизован | Необработанное исключение базы данных. Exception class: 'Lib\Exceptions\DataBase'. Message: '12'. Code: 12. File: '/var/www/html/ControllersClasses/Test.php'. Line: 44
+06.11.2020 10:43:49 | Пользователь не авторизован | Необработанное исключение базы данных. Exception class: 'Lib\Exceptions\DataBase'. Message: '1'. Code: 1. File: '/var/www/html/ControllersClasses/Test.php'. Line: 44

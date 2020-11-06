@@ -25,11 +25,18 @@ class DragContainer {
    multiple;
 
    /**
+    * callback преобразования элемента во время переноса
+    *
+    * @type {Function}
+    */
+   create_avatar;
+
+   /**
     * callback преобразования элемента, перенесенного в область для переноса
     *
-    * @type {HTMLElement}
+    * @type {Function}
     */
-   transform_callback;
+   transform;
 
    /**
     * Массив с перетскиваемыми элементами
@@ -48,7 +55,8 @@ class DragContainer {
       this.container = drag_container;
       this.multiple = this.container.dataset.drag_multiple === 'true';
 
-      this.transform_callback = this.getTransformCallback();
+      this.transform = this.getTransformCallback();
+      this.create_avatar = this.getAvatarCreationCallback();
 
       this.initElements();
    }
@@ -74,6 +82,27 @@ class DragContainer {
    }
 
    /**
+    * Получает фунцию преобразования элемента для переноса
+    *
+    * @return {Function}
+    */
+   getAvatarCreationCallback () {
+      let callback;
+
+      //todo обработать случай, когда не найден callback
+      switch (this.container.dataset.drag_callback) {
+         case 'expert':
+            callback = createExpertAvatar;
+            break;
+         case 'section_expert':
+            callback = createSectionExpertAvatar;
+            break;
+      }
+
+      return callback
+   }
+
+   /**
     * Инициализирует перетаскиваемые элементы
     */
    initElements () {
@@ -82,25 +111,29 @@ class DragContainer {
    }
 
    /**
+    * Обрабатывает нажатие на перетаскиваемый элемент
     *
-    *
-    * @param element
+    * @param {HTMLElement} element - перетаскиваемый элемент
     */
    handleElement (element) {
 
       element.addEventListener('mousedown', (event) => {
 
+         // Проверяем, что не нажата кнопка внутри перетаскиваемого элемента
+         // и нажата левая кнопка мыши
          if (
-            !event.target.hasAttribute('data-drag_inactive')
-            && event.button === 0
+            event.button === 0
+            && !event.target.hasAttribute('data-drag_inactive')
          ) {
 
+            let drag_container = this;
             let create_drag_element = function () {
-               new DragElement(element, this);
+               new DragElement(element, drag_container);
             };
 
             document.addEventListener('mousemove', create_drag_element, {once: true});
 
+            // Удаляем обработку создания перетаскиваемого элемента, если просто нажали на элемент
             document.addEventListener('mouseup', () => {
                document.removeEventListener('mousemove', create_drag_element);
             }, {once: true});
@@ -110,57 +143,180 @@ class DragContainer {
       });
    }
 
-
-
+   /**
+    * Добавляет в контейнер перетаскиваемый элемент
+    *
+    * @param {HTMLElement} element - добавляемый элемент
+    */
    addElement (element) {
       this.container.appendChild(element);
       this.elements.push(element);
       this.handleElement(element);
    }
 
-
 }
 
+/**
+ * Представляет собой перетаскиваемый элемент
+ */
+class DragElement {
 
+   /**
+    * Родительский элемент
+    *
+    * @type {HTMLElement}
+    */
+   ancestor;
 
+   /**
+    * Блок, из которого перетаскивается элемент
+    *
+    * @type {DragContainer}
+    */
+   drag_container;
 
-function getAvatarCreationCallback (draggable_element) {
-   let callback;
+   /**
+    * Функция изменения позиции элемента во время переноса
+    *
+    * @type {Function}
+    */
+   move;
 
-   //todo обработать случай, когда не найден callback
-   switch (draggable_element.dataset.drag_callback) {
-      case 'expert':
-         callback = createExpertAvatar;
-         break;
-      case 'section_expert':
-         callback = createSectionExpertAvatar;
-         break;
+   /**
+    * Элемент для отображения во время переноса
+    *
+    * @type {HTMLElement}
+    */
+   avatar;
+
+   /**
+    * Преобразованный элемент для добавления в область переноса
+    *
+    * @type {HTMLElement}
+    */
+   transformed_elem;
+
+   /**
+    * Создает объект перетаскиваемого элемента
+    *
+    * @param {HTMLElement} ancestor - родительский элемент
+    * @param {DragContainer} container - блок, из которого перетаскивается элемент
+    */
+   constructor (ancestor, container) {
+
+      this.ancestor = ancestor;
+      this.drag_container = container;
+      this.createAvatar();
+
+      this.move = this.moveAvatar.bind(this);
+      document.addEventListener('mousemove', this.move);
+
+      document.addEventListener('mouseup', event => this.dropElement(event), {once: true});
+
    }
 
-   return callback
-}
+   /**
+    * Создает элемент для отображения при переносе
+    */
+   createAvatar () {
 
+      this.avatar = this.drag_container.create_avatar(this.ancestor);
 
+      document.body.appendChild(this.avatar);
+      document.body.style.userSelect = 'none';
 
-
-function getRemoveElementCallback (remove_button) {
-   let callback;
-
-   switch (remove_button.dataset.remove_callback) {
-      case 'remove_expert':
-         callback = removeExpert;
-         break;
-      default:
+      // Прячем исходный элемент, если не разрешено копирование
+      if (!this.drag_container.multiple) {
+         this.ancestor.style.display = 'none';
+      }
 
    }
 
-   return callback;
+   /**
+    * Функция изменения позиции элемента во время переноса
+    *
+    * @param {MouseEvent} event - событие перемещения курсора
+    */
+   moveAvatar (event) {
+      this.avatar.style.left = event.pageX - this.avatar.offsetWidth / 2 + 'px';
+      this.avatar.style.top = event.pageY - this.avatar.offsetHeight / 2 + 'px';
+   }
+
+   /**
+    * Добавляет перетаскиваемый элемент в облать переноса
+    *
+    * @param {MouseEvent} event - событие отпускания кнопки мыши
+    */
+   dropElement (event) {
+
+      document.removeEventListener('mousemove', this.move);
+      let is_added = false;
+      document.body.style.userSelect = null;
+      this.avatar.remove();
+
+      let drop_area = DropArea.findByDropEvent(event);
+      if (drop_area) {
+
+         this.transformed_elem = this.drag_container.transform(this.ancestor);
+         if (!drop_area.contains(this.transformed_elem) || drop_area.multiple) {
+            is_added = true;
+            drop_area.addElement(this.transformed_elem);
+            this.handleRemoveButton(drop_area);
+         }
+
+      }
+
+      // Если не удалось перенести элемент и исходный элемент скрыт, показываем его
+      if (!is_added && !this.drag_container.multiple) {
+         this.ancestor.style.display = null;
+      }
+
+   }
+
+   /**
+    * Обрабатывает кнопку удаления элемента из области переноса
+    *
+    * @param {DropArea} drop_area - область из которой удаляется элемент
+    */
+   handleRemoveButton (drop_area) {
+      let remove_button = this.transformed_elem.querySelector('[data-drop_remove]');
+      if (remove_button) {
+         remove_button.addEventListener('click', () => {
+
+            let remove_callback = this.getRemoveElementCallback(remove_button);
+            remove_callback(drop_area, this);
+            this.transformed_elem.remove();
+
+            // Показываем исходный элемент, если он скрыт
+            if (!this.drag_container.multiple) {
+               this.ancestor.style.display = null;
+            }
+
+         });
+      }
+   }
+
+   /**
+    * Получает функцию удаления элемента из области для переноса
+    *
+    * @param {HTMLElement} remove_button - кнопка для удаления
+    * @return {Function}
+    */
+   getRemoveElementCallback (remove_button) {
+      let callback;
+
+      switch (remove_button.dataset.remove_callback) {
+         case 'remove_expert':
+            callback = removeExpert;
+            break;
+         default:
+
+      }
+
+      return callback;
+   }
+
 }
-
-
-
-
-
 
 /**
  * Представляет собой область на странице, в которую можно перенести элемент
@@ -257,178 +413,60 @@ class DropArea {
       return callback;
    }
 
+   /**
+    * Добавляет перенесенный элемент в контейнер
+    *
+    * @param {HTMLElement} element - перенесенный элемент
+    */
    addElement (element) {
 
-      if (!this.contains(element) || this.multiple) {
+      if (this.drag_container) {
+         this.drag_container.addElement(element);
+      } else {
+         this.container.appendChild(element);
+      }
 
-         if (this.drag_container) {
-            this.drag_container.addElement(element);
-         } else {
-            this.container.appendChild(element);
-         }
-
-         if (this.add_element_callback) {
-            this.add_element_callback(this, element);
-         }
-
+      if (this.add_element_callback) {
+         this.add_element_callback(this, element);
       }
 
    }
 
+   /**
+    * Определяет, содержится ли элемент в области
+    *
+    * @param {HTMLElement} element - элемент, который проверяется
+    * @return {boolean}
+    */
    contains (element) {
       let id = parseInt(element.dataset.id);
       return !!this.container.querySelector(`[data-drag_element][data-id='${id}']`);
    }
 
+   /**
+    * Получает объект области переноса по блоку страницы
+    *
+    * @param {HTMLElement} area - блок области
+    * @return {DropArea}
+    */
    static getDropArea (area) {
       let id = parseInt(area.dataset.id_area);
       return this.drop_areas.has(id) ? this.drop_areas.get(id) : new DropArea(area);
    }
 
+   /**
+    * Получает объект области переноса по позиции курсора при отпускании мыши
+    * во время переноса элемента
+    *
+    * @param {MouseEvent} event - событие отпускания кнопки мыши
+    * @return {DropArea | null}
+    */
    static findByDropEvent (event) {
       // Получаем самый вложенный элемент под курсором мыши
       let deepest_elem = document.elementFromPoint(event.clientX, event.clientY);
 
-
-      let drop_area = deepest_elem.closest('[data-drop_area]');
-
+      let drop_area = deepest_elem && deepest_elem.closest('[data-drop_area]');
 
       return drop_area ? DropArea.getDropArea(drop_area) : null;
    }
-
 }
-
-function move (event) {
-   this.avatar.style.left = event.pageX - this.avatar.offsetWidth / 2 + 'px';
-   this.avatar.style.top = event.pageY - this.avatar.offsetHeight / 2 + 'px';
-}
-
-/*function dropElement (event) {
-   // this.is_moving = false;
-   document.removeEventListener('mousemove', this.move);
-
-   let is_added = false;
-
-
-   if (this.avatar) {
-
-      this.avatar.remove();
-
-      document.body.style.userSelect = null;
-
-      let drop_area = DropArea.findByDropEvent(event);
-      if (drop_area) {
-
-         this.transformed_elem = this.drag_container.transform_callback(this.ancestor);
-
-         if (!drop_area.contains(this.transformed_elem) || drop_area.multiple) {
-            drop_area.addElement(this.transformed_elem);
-            this.handleRemoveButton(drop_area);
-            is_added = true;
-         }
-
-      }
-
-   }
-
-   if (!is_added && !this.drag_container.multiple) {
-      this.ancestor.style.display = null;
-   }
-
-   document.removeEventListener('mouseup', this.drop_element);
-
-}*/
-
-
-
-
-class DragElement {
-
-   ancestor;
-   drag_container;
-
-   // create_avatar;
-   move;
-   drop_element;
-
-   // is_moving;
-   avatar;
-
-   transformed_elem;
-
-   constructor (ancestor, container) {
-
-      this.ancestor = ancestor;
-      this.drag_container = container;
-      this.createAvatar();
-
-
-      this.move = move.bind(this);
-      document.addEventListener('mousemove', this.move);
-
-      document.addEventListener('mouseup', event => this.dropElement(event), {once: true});
-
-
-   }
-
-   handleRemoveButton (drop_area) {
-      let remove_button = this.transformed_elem.querySelector('[data-drop_remove]');
-      if (remove_button) {
-         remove_button.addEventListener('click', () => {
-            let remove_callback = getRemoveElementCallback(remove_button);
-            this.transformed_elem.remove();
-            remove_callback(drop_area, this);
-
-            if (!this.drag_container.multiple) {
-               this.ancestor.style.display = null;
-            }
-
-         });
-      }
-   }
-
-   createAvatar () {
-
-      let create_avatar = getAvatarCreationCallback(this.ancestor);
-      this.avatar = create_avatar(this.ancestor);
-
-      document.body.appendChild(this.avatar);
-      document.body.style.userSelect = 'none';
-
-      if (!this.drag_container.multiple) {
-         this.ancestor.style.display = 'none';
-      }
-
-   }
-
-   dropElement (event) {
-
-      document.removeEventListener('mousemove', this.move);
-      let is_added = false;
-
-      this.avatar.remove();
-
-      document.body.style.userSelect = null;
-
-      let drop_area = DropArea.findByDropEvent(event);
-      if (drop_area) {
-
-         this.transformed_elem = this.drag_container.transform_callback(this.ancestor);
-
-         if (!drop_area.contains(this.transformed_elem) || drop_area.multiple) {
-            drop_area.addElement(this.transformed_elem);
-            this.handleRemoveButton(drop_area);
-            is_added = true;
-         }
-
-      }
-
-
-      if (!is_added && !this.drag_container.multiple) {
-         this.ancestor.style.display = null;
-      }
-
-   }
-
-}
-

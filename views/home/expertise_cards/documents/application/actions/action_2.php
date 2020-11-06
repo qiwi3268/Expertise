@@ -30,12 +30,12 @@
                      data-drag_container
                      data-drag_multiple="true"
                      data-transform_callback="expert"
+                     data-drag_callback="expert"
                 >
                     <?php foreach ($_VT->getValue('experts') as $index => $expert): ?>
                         <span class="assignment__expert"
                               data-drag_element
                               data-id="<?= $expert['id'] ?>"
-                              data-drag_callback="expert"
                               style="order: <?= -$index ?>"
                         ><?= $expert['fio'] ?></span>
                     <?php endforeach; ?>
@@ -46,12 +46,13 @@
                 <div class="assignment__expert-list"
                      data-drag_container
                      data-drag_multiple="true"
-                     data-transform_callback="expert">
+                     data-transform_callback="expert"
+                     data-drag_callback="expert"
+                >
                     <?php foreach ($_VT->getValue('experts') as $index => $expert): ?>
                         <div class="assignment__expert"
                              data-drag_element
                              data-id="<?= $expert['id'] ?>"
-                             data-drag_callback="expert"
                              style="order: <?= $index ?>">
                             <?= $expert['fio'] ?>
                         </div>
@@ -87,6 +88,7 @@
                                      data-drag_container
                                      data-drag_multiple="false"
                                      data-transform_callback="section_expert"
+                                     data-drag_callback="section_expert"
                                 ></div>
                             </div>
                             <div class="section__uploaded-files card">
@@ -165,6 +167,7 @@
                              data-drag_container
                              data-drag_multiple="false"
                              data-transform_callback="section_expert"
+                             data-drag_callback="section_expert"
                         ></div>
                     </div>
                 </div>

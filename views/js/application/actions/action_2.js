@@ -42,7 +42,6 @@ function assignExperts () {
             })
             .catch(exc => {
                ErrorModal.open('Ошибка при назначении экспертов', exc);
-
             });
 
       } else if (!has_common_part) {
@@ -93,8 +92,8 @@ function getAssignedExperts (sections) {
 /**
  * Создает дополнительный раздел при назначении экспертов
  *
- * @param section_container - контейнер с дополнительными разделами
- * @param additional_sections - блок дополнительных разделов
+ * @param {HTMLElement} section_container - контейнер с дополнительными разделами
+ * @param {HTMLElement} additional_sections - блок дополнительных разделов
  */
 function createSection (section_container, additional_sections) {
    let section_template = document.getElementById('section_template');
@@ -112,6 +111,7 @@ function createSection (section_container, additional_sections) {
          Misc.instance.open();
 
       }
+
    });
 
    section_container.appendChild(new_section);
@@ -173,7 +173,7 @@ function removeExpert (drop_area) {
 /**
  * Отображает блок с экспертами раздела при переносе
  *
- * @param drop_area - область, относящаяся к разделу, в которую переносятся эксперты
+ * @param {HTMLElement} drop_area - область, относящаяся к разделу, в которую переносятся эксперты
  */
 function showExpertsBlock (drop_area) {
    let assigned_experts = drop_area.element.querySelector('.section__experts');
@@ -219,11 +219,10 @@ function transformExpert (expert) {
 
    let new_expert = document.createElement('DIV');
    new_expert.classList.add('section__expert');
-   new_expert.setAttribute('data-assigned_expert', '');
    new_expert.dataset.id = expert.dataset.id;
-   new_expert.dataset.drag_element = '';
-   new_expert.dataset.drop_element = '';
-   new_expert.dataset.drag_callback = 'section_expert';
+   new_expert.setAttribute('data-assigned_expert', '');
+   new_expert.setAttribute('data-drag_element', '');
+   new_expert.setAttribute('data-drop_element', '');
 
    let expert_name = document.createElement('SPAN');
    expert_name.classList.add('section__name');
@@ -246,8 +245,8 @@ function transformExpert (expert) {
 
    let remove_btn = document.createElement('SPAN');
    remove_btn.classList.add('section__icon-remove', 'fas', 'fa-minus');
-   remove_btn.dataset.drag_inactive = '';
-   remove_btn.dataset.drop_remove = '';
+   remove_btn.setAttribute('data-drag_inactive', '');
+   remove_btn.setAttribute('data-drop_remove', '');
    remove_btn.dataset.remove_callback = 'remove_expert';
    new_expert.appendChild(remove_btn);
 

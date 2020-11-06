@@ -65,24 +65,14 @@ class HttpRequest extends Request
 
 
     /**
-     * Предназначен для проверки вызван ли текущий сценарий методом GET
+     * Предназначен для проверки типа метода запроса
      *
+     * @param string $method метод запроса (GET/POST)
      * @return bool
      */
-    public function isGET(): bool
+    public function checkRequestMethod(string $method): bool
     {
-        return $this->requestMethod == self::GET;
-    }
-
-
-    /**
-     * Предназначен для проверки вызван ли текущий сценарий методом POST
-     *
-     * @return bool
-     */
-    public function isPOST(): bool
-    {
-        return $this->requestMethod == self::POST;
+        return $this->requestMethod == $method;
     }
 
 
