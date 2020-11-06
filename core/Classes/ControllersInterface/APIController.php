@@ -16,69 +16,93 @@ use Lib\Singles\Logger;
 /**
  * Предоставляет индерфейс для классов API-контроллеров
  *
+ * Класс устанавливает пользовательский преобразователь ошибок в исключения
+ *
  */
 abstract class APIController extends Controller
 {
 
-    private Logger $logger;
-
     /**
-     * Ссылка на преобразователь ошибок в исключения
-     *
-     * Таким образом предыдущий обработчик ошибок будет восстановлен
-     * только после уничтожения всех ссылок на текущий объект
+     * Логгер ошибок
      *
      */
-    static private ErrorTransformer $errorTransformer;
+    private Logger $errorLogger;
+
+    /**
+     * Необходим для того, чтобы преобразователь ошибок устанавливался единожды,
+     * даже если будут вызываться несколько реализующих классов
+     *
+     */
+    static private bool $errorTransformerWasSet = false;
+
+    /**
+     * Код выхода, соответствующий успешному завершению работы API
+     *
+     */
+    protected const SUCCESS_RESULT = 'ok';
 
 
     /**
      * Конструктор класса без входных параметров
      *
      */
-    final public function __construct()
+    public function __construct()
     {
-        parent::__construct();
-        $this->logger = $this->getLogger();
+        $this->errorLogger = $this->getErrorLogger();
     }
 
 
     /**
      * Реализация абстрактного метода
      *
-     * <b>*</b> Должен вызываться единожды и только из контекста RoutesXMLHandler
+     * <b>*</b> Предназначен для вызова из контекста RoutesXMLHandler
      *
      */
     public function execute(): void
     {
-        if (!isset(self::$errorTransformer)) {
-            self::$errorTransformer = new ErrorTransformer(new ErrorExceptionHandler(), true);
+        // Установка происходит единожды
+        if (!self::$errorTransformerWasSet) {
+            new ErrorTransformer(new ErrorExceptionHandler(), false);
+            self::$errorTransformerWasSet = true;
         }
 
         try {
-
             $this->doExecute();
         } catch (ErrorException $e) {
 
-            $this->complexExit('Uncaught ErrorException', $e, 'Необработанное исключение, полученное путем преобразования ошибки');
+            $this->complexExitWithException('Uncaught ErrorException', $e, 'Необработанное исключение, полученное путем преобразования ошибки');
         } catch (DataBaseEx $e) {
 
-            $this->complexExit('Uncaught DataBase Exception', $e, 'Необработанное исключение базы данных');
+            $this->complexExitWithException('Uncaught DataBase Exception', $e, 'Необработанное исключение базы данных');
+        } catch (LoggerEx $e) {
+
+            $this->exitWithException('Uncaught Logger Exception', $e, 'Необработанное исключение логгера сообщений');
         } catch (Exception $e) {
 
-            $this->complexExit('Uncaught Exception', $e, 'Необработанное исключение');
+            $this->complexExitWithException('Uncaught Exception', $e, 'Необработанное исключение');
         }
 
-        //todo проверить что тут мы не должны оказаться
+        $debug = static::class;
+        $this->exit('No exit', "Класс : '{$debug}' не завершил свою работу выходом");
     }
 
 
-    private function complexExit(string $result, Exception $e, string $description): void
+    /**
+     * Вспомогательный метод. Предназначен для комплексного завершения работы скрипта,
+     * включая логирование сообщения и обработку возможного исключения логгера
+     *
+     * @uses \Lib\Singles\Logger::writeException()
+     * @uses \core\Classes\ControllersInterface\APIController::exitWithException()
+     * @param string $result уникальный код выхода
+     * @param Exception $e исключение
+     * @param string $description дополнительное описание
+     */
+    private function complexExitWithException(string $result, Exception $e, string $description): void
     {
         try {
-            $this->logger->writeException($e, $description);
+            $this->errorLogger->writeException($e, $description);
         } catch (LoggerEx $e) {
-            $result
+            $description = exceptionToString($e, 'Произошла непредвиденная ошибка при логировании необработанного исключения') . '. ' . $description;
         }
         $this->exitWithException($result, $e, $description);
     }
@@ -93,6 +117,10 @@ abstract class APIController extends Controller
      */
     protected function exit(string $result, string $message): void
     {
+        vd([
+            'result'  => $result,
+            'message' => $message
+        ]);
         exit(json_encode([
             'result'  => $result,
             'message' => $message
@@ -101,10 +129,30 @@ abstract class APIController extends Controller
 
 
     /**
+     * Предназначен для нестандартного завершения работы скрипта
+     *
+     * @param string $result уникальный код выхода
+     * @param array $array ассоциативный массив, который будет распакован в выходной json.<br>
+     * В данном массиве <b>не должно быть элемента по ключу result</b>
+     *
+     */
+    protected function customExit(string $result, array $array): void
+    {
+        $arr['result'] = $result;
+
+        foreach ($array as $key => $value) {
+            $arr[$key] = $value;
+        }
+        exit(json_encode($arr));
+    }
+
+
+
+    /**
      * Вспомогательный метод. Предназначен для завершения
      * работы скрипта с преобразованием исключения в строку
      *
-     * @uses \core\Classes\ControllersInterface\APIController
+     * @uses \core\Classes\ControllersInterface\APIController::exit()
      * @param string $result уникальный код выхода
      * @param Exception $e исключение
      * @param string $description дополнительное описание
@@ -116,9 +164,9 @@ abstract class APIController extends Controller
 
 
     /**
-     * Предназначен для получения логгера
+     * Предназначен для получения логгера ошибок
      *
      * @return Logger
      */
-    abstract protected function getLogger(): Logger;
+    abstract protected function getErrorLogger(): Logger;
 }

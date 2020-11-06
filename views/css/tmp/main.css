@@ -267,9 +267,8 @@ textarea.form-field__input.invalid {
 }
 
 .modal__close {
-   /*visibility: hidden;*/
-   /*opacity: 0;*/
-   background-color: #fff;
+/* Старый вариант кнопки  */
+/*   background-color: #fff;
    border-radius: 3px;
    box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
    color: #343a40;
@@ -278,7 +277,22 @@ textarea.form-field__input.invalid {
    padding: 5px 10px 5px 10px;
    position: absolute;
    right: -25px;
-   top: -23px;
+   top: -23px;*/
+
+
+   border-radius: 3px;
+   color: #fff;
+   opacity: .5;
+   transition: opacity .3s;
+   cursor: pointer;
+   font-size: 34px;
+   padding: 5px 10px 5px 10px;
+   position: absolute;
+   right: -50px;
+}
+
+.modal__close:hover {
+   opacity: 1;
 }
 
 /* Общие элементы*/
