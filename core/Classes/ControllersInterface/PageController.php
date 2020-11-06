@@ -21,7 +21,6 @@ abstract class PageController extends Controller
      */
     final public function __construct()
     {
-        parent::__construct();
         $this->VT = VariableTransfer::getInstance();
     }
 
@@ -29,7 +28,7 @@ abstract class PageController extends Controller
     /**
      * Реализация абстрактного метода
      *
-     * <b>*</b> Должен вызываться единожды и только из контекста RoutesXMLHandler
+     * <b>*</b> Предназначен для вызова из контекста RoutesXMLHandler
      *
      */
     public function execute(): void

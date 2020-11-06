@@ -11,27 +11,17 @@ namespace core\Classes\ControllersInterface;
 abstract class Controller
 {
 
-    /**
-     * Конструктор класса без входных параметров
-     *
-     */
-    public function __construct()
-    {
-    }
-
 
     /**
      * Прослойка перед вызовом основного метода выполнения контроллера
      *
-     * Предназначен для однократного вызова только из RoutesXMLHandler.
-     * <br>
-     * Предназначен для реализации в промежуточном контроллере.
-     * <br>
-     * Должен поочередно вызвать методы:
-     * {@see \core\Classes\ControllersInterface\Controller::construct()}
-     * и
-     * {@see \core\Classes\ControllersInterface\Controller::doExecute()}
+     * <b>*</b> Предназначен для вызова из контекста RoutesXMLHandler.<br>
      *
+     * Предназначен для реализации в промежуточном контроллере.<br>
+     *
+     * <b>*</b> Должен вызвать метод реализующего класса:
+     * {@see \core\Classes\ControllersInterface\Controller::doExecute()}<br>
+     * (согласно паттерну <i>Template Method</i>)
      */
     abstract public function execute(): void;
 

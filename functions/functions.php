@@ -477,13 +477,13 @@ function getHumanFileSize(int $bytes): string
  * @param string $description дополнительное описание, идущее перед исключением.<br>
  * <i>Без точки и пробелов в конце</i>
  * @return string строка формата:<br>
- * Exception class: '...'. Message: '...'. Code: ...
+ * Exception class: '___'. Message: '___'. Code: ___. File: '___'. Line: ___
  */
 function exceptionToString(Exception $e, string $description = ''): string
 {
     if (!empty($description)) $description .= '. ';
     $class = get_class($e);
-    return "{$description}Exception class: '{$class}'. Message: '{$e->getMessage()}'. Code: {$e->getCode()}";
+    return "{$description}Exception class: '{$class}'. Message: '{$e->getMessage()}'. Code: {$e->getCode()}. File: '{$e->getFile()}'. Line: {$e->getLine()}";
 }
 
 
