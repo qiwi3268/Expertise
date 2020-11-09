@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="06.11.2020_2">
-      <change afterPath="$PROJECT_DIR$/views/js/login.js" afterDir="false" />
+    <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/home/get_file_hash.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/get_file_hash.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APIControllers/Home/FileChecker.php" beforeDir="false" afterPath="$PROJECT_DIR$/APIControllers/Home/FileChecker.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APIControllers/Login.php" beforeDir="false" afterPath="$PROJECT_DIR$/APIControllers/Login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ControllersClasses/HtmlHead.php" beforeDir="false" afterPath="$PROJECT_DIR$/ControllersClasses/HtmlHead.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/modals/error.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/modals/error.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/API.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/API_login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/application/actions/action_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/application/actions/action_2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/modals/ErrorModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/ErrorModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/RouteCallbacks/DocumentParameters/ActionPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/RouteCallbacks/DocumentParameters/ActionPage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/RouteCallbacks/DocumentParameters/DocumentParameters.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/RouteCallbacks/DocumentParameters/DocumentParameters.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/RouteCallbacks/DocumentParameters/ExpertiseCard.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/RouteCallbacks/DocumentParameters/ExpertiseCard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/ErrorTransform/ErrorHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/ErrorTransform/ErrorHandler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/ViewModes.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/ViewModes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Exceptions/XMLValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Exceptions/XMLValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Singles/Logger.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/Logger.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Singles/VariableTransfer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/VariableTransfer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/Singles/XMLValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/Singles/XMLValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/ViewModes/ViewModesXMLHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/ViewModes/ViewModesXMLHandler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/ControllersInterface/APIController.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/ControllersInterface/APIController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/ControllersInterface/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/ControllersInterface/PageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/Request/HttpRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/Request/HttpRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/Request/Request.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/Request/Request.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/Route.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/Route.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Classes/RoutesXMLHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Classes/RoutesXMLHandler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/routes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/settings/routes.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,14 +174,8 @@
       <workItem from="1603882759293" duration="3941000" />
       <workItem from="1603942733142" duration="26394000" />
       <workItem from="1604030589888" duration="22855000" />
-      <workItem from="1604633222918" duration="23273000" />
-    </task>
-    <task id="LOCAL-00231" summary="22.10.2020_2">
-      <created>1603368359604</created>
-      <option name="number" value="00231" />
-      <option name="presentableId" value="LOCAL-00231" />
-      <option name="project" value="LOCAL" />
-      <updated>1603368359604</updated>
+      <workItem from="1604633222918" duration="24512000" />
+      <workItem from="1604892812027" duration="652000" />
     </task>
     <task id="LOCAL-00232" summary="22.10.2020_3">
       <created>1603369952879</created>
@@ -507,7 +513,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604653575616</updated>
     </task>
-    <option name="localTasksCounter" value="280" />
+    <task id="LOCAL-00280" summary="06.11.2020_3">
+      <created>1604660652138</created>
+      <option name="number" value="00280" />
+      <option name="presentableId" value="LOCAL-00280" />
+      <option name="project" value="LOCAL" />
+      <updated>1604660652139</updated>
+    </task>
+    <option name="localTasksCounter" value="281" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -524,7 +537,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="29.10.2020_2" />
     <MESSAGE value="29.10.2020_3" />
     <MESSAGE value="29.10.2020_4" />
     <MESSAGE value="30.10.2020" />
@@ -549,7 +561,8 @@
     <MESSAGE value="06.11.2020" />
     <MESSAGE value="06.11.2020_1" />
     <MESSAGE value="06.11.2020_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="06.11.2020_2" />
+    <MESSAGE value="06.11.2020_3" />
+    <option name="LAST_COMMIT_MESSAGE" value="06.11.2020_3" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -584,11 +597,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="524" y="55" width="749" height="918" key="CommitChangelistDialog2" timestamp="1604654962270">
+    <state x="524" y="55" width="749" height="918" key="CommitChangelistDialog2" timestamp="1604660650274">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="491" y="51" width="749" height="918" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603875686112" />
-    <state x="524" y="55" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1604654962270" />
+    <state x="524" y="55" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1604660650274" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1603032169697" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603639279350" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />

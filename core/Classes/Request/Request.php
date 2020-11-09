@@ -74,6 +74,19 @@ abstract class Request
 
 
     /**
+     * Предназначен для корректных проверок на существование
+     * параметров запроса при использовании __get
+     *
+     * @param string $key наименование параметра
+     * @return bool
+     */
+    public function __isset(string $key): bool
+    {
+        return isset($this->properties[$key]);
+    }
+
+
+    /**
      * Предназначен для получения параметра запроса
      *
      * @param string $key наименование параметра
@@ -117,7 +130,7 @@ abstract class Request
     /**
      * Конструктор класса
      *
-     * Дочерние классы должны заполнить массив параметров запроса
+     * Метод, в котором дочерние классы должны заполнить массив параметров запроса
      *
      */
     abstract protected function __construct();

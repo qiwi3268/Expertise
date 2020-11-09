@@ -39,7 +39,6 @@ final class RoutesXMLHandler
      * Абстрактный клас, от которого должны быть унаследованы все контроллер классы
      *
      */
-    private const TMP_CONTROLLER_ABSTRACT_CLASS = '\ControllersClasses\Controller';
     private const CONTROLLER_ABSTRACT_CLASS = '\core\Classes\ControllersInterface\Controller';
     private const CONTROLLER_METHOD = 'execute';
 
@@ -360,10 +359,7 @@ final class RoutesXMLHandler
                     throw new SelfEx("controller класс: '{$fullClassName}' не существует", 8);
                 }
 
-                if (
-                    !is_subclass_of($fullClassName, self::TMP_CONTROLLER_ABSTRACT_CLASS)
-                    && !is_subclass_of($fullClassName, self::CONTROLLER_ABSTRACT_CLASS)
-                ) {
+                if (!is_subclass_of($fullClassName, self::CONTROLLER_ABSTRACT_CLASS)) {
                     throw new SelfEx("controller класс: '{$fullClassName}' не является дочерним классом от абстрактного класса: '" . self::CONTROLLER_ABSTRACT_CLASS . "'", 9);
                 }
 

@@ -85,7 +85,7 @@ class XMLValidator
      * @param array $optionalChildren индексный массив с перечислением названий опциональных дочерних узлов
      * @throws SelfEx
      */
-    public function validateChildren(SimpleXMLElement $node, string $debugName, array $requiredChildren, array $optionalChildren = [])
+    public function validateChildren(SimpleXMLElement $node, string $debugName, array $requiredChildren, array $optionalChildren = []): void
     {
         // Берем только названия дочерних узлов
         $childrenName = array_filter(array_keys((array)$node), fn($el) => ($el != '@attributes'));
@@ -183,5 +183,24 @@ class XMLValidator
         }
 
         return $nodes;
+    }
+
+
+    /**
+     * Предназначен для валидации того, что у проверяемого XML узла
+     * дочерний узел childName встречается не более 1 раза
+     *
+     * @param SimpleXMLElement $node проверяемый XML узел
+     * @param string $debugName имя узла для его вывода в дамп ошибки
+     * @param string $childName имя проверяемого дочернего узла
+     * @throws SelfEx
+     */
+    public function validateChildrenUniqueness(SimpleXMLElement $node, string $debugName, string $childName): void
+    {
+        $count = count($node->xpath("./{$childName}"));
+
+        if ($count > 1) {
+            throw new SelfEx("В узле: '{$debugName}' количество дочерних узлов '{$childName}': {$count}", 8);
+        }
     }
 }

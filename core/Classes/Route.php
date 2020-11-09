@@ -32,17 +32,11 @@ final class Route
     /**
      * Конструктор класса
      *
-     * @param string $requestURI URI входящего на сервер запроса
      * @throws XMLValidatorEx
      * @throws Exceptions\RoutesXMLHandler
      */
-    public function __construct(string $requestURI)
+    public function __construct()
     {
-        // Полный запрос с первым '/' и get-параметрами
-        define('URI', $requestURI);
-        // Запрос в формате без первого '/' и get-параметров
-        define('URN', mb_substr(parse_url($requestURI, PHP_URL_PATH), 1));
-
         $this->routesHandler = new RoutesXMLHandler();
 
         try {
@@ -51,14 +45,13 @@ final class Route
             $this->routeExist = true;
         } catch (XMLValidatorEx $e) {
 
-            $e_message = $e->getMessage();
-            $e_code = $e->getCode();
+            $code = $e->getCode();
 
             // Не найдено узлов по XML пути
-            if ($e_code == 6) {
+            if ($code == 6) {
                 $this->routeExist = false;
             } else {
-                throw new XMLValidatorEx($e_message, $e_code);
+                throw new XMLValidatorEx($e->getMessage(), $code);
             }
         }
     }
@@ -76,7 +69,7 @@ final class Route
 
 
     /**
-     * @uses RoutesXMLHandler::validatePageStructure()
+     * @uses \core\Classes\RoutesXMLHandler::validatePageStructure()
      * @return $this объект класса для построения цепочки вызовов
      * @throws XMLValidatorEx
      */
@@ -88,7 +81,7 @@ final class Route
 
 
     /**
-     * @uses RoutesXMLHandler::handleValidatedPageValues()
+     * @uses \core\Classes\RoutesXMLHandler::handleValidatedPageValues()
      * @throws Exceptions\RoutesXMLHandler
      * @throws XMLValidatorEx
      */

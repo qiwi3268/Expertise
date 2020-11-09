@@ -1,0 +1,21 @@
+<mappings>
+
+    <level_1 val="1">
+        <level_2 val="1">
+            <file_table class="\Tables\Files\grbs" main_document="application" />
+            <sign_table class="\Tables\Signs\grbs" />
+        </level_2>
+    </level_1>
+
+    <level_1 val="2">
+        <level_2 val="1">
+            <file_table class="\Tables\Files\documentation_1" main_document="application" />
+            <sign_table class="\Tables\Signs\documentation_1" />
+        </level_2>
+        <level_2 val="2">
+            <file_table class="\Tables\Files\documentation_2" main_document="application" />
+            <sign_table class="\Tables\Signs\documentation_2" />
+        </level_2>
+    </level_1>
+
+</mappings>

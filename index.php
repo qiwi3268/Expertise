@@ -12,10 +12,12 @@ enableAutoloadRegister();
 
 use core\Classes\Route;
 use Lib\DataBase\DataBase;
+use core\Classes\Request\HttpRequest;
 
-//phpinfo();
+// Инициализация класса для объявления общедоступных констант
+HttpRequest::getInstance();
 
-$route = new Route($_SERVER['REQUEST_URI']);
+$route = new Route();
 
 // Запрашиваемая страница не найдена
 if (!$route->isRouteExist()) {

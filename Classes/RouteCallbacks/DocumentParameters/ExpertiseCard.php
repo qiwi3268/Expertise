@@ -23,11 +23,9 @@ class ExpertiseCard extends DocumentParameters
      */
     public function defineDocumentParameters(): void
     {
-        if (!checkParamsGET('id_document')) {
+        if (!$this->request->hasInGET('id_document')) {
             throw new SelfEx("id открытого документа не существует в GET параметрах", 1);
         }
-
-        $clearDocumentId = clearHtmlArr($_GET)['id_document'];
 
         // начало текста
         // home/expertise_cards/
@@ -43,7 +41,7 @@ class ExpertiseCard extends DocumentParameters
 
         define(
             'CURRENT_VIEW_MODE',
-            $this->validateAndDefineParameters($clearDocumentId, $pattern, 1,URN)[2]
+            $this->validateAndDefineParameters($this->request->id_document, $pattern, 1,URN)[2]
         );
     }
 }

@@ -22,11 +22,9 @@ class ActionPage extends DocumentParameters
      */
     public function defineDocumentParameters(): void
     {
-        if (!checkParamsGET('id_document')) {
+        if (!$this->request->hasInGET('id_document')) {
             throw new SelfEx("id открытого документа не существует в GET параметрах", 1);
         }
-
-        $clearDocumentId = clearHtmlArr($_GET)['id_document'];
 
         // начало текста
         // home/expertise_cards/
@@ -39,6 +37,6 @@ class ActionPage extends DocumentParameters
         // - использование кодировки utf-8
         $pattern = "/\Ahome\/expertise_cards\/(\S+)\/actions\/action_\d+\z/iu";
 
-        $this->validateAndDefineParameters($clearDocumentId, $pattern, 1, URN);
+        $this->validateAndDefineParameters($this->request->id_document, $pattern, 1, URN);
     }
 }

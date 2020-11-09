@@ -21,22 +21,19 @@ abstract class ErrorHandler
     {
         $names = [];
 
-        $consts = array_flip
-        (
-            array_slice
-            (
-                get_defined_constants(true)['Core'],
-                0,
-                15,
-                true
-            )
+        $consts = array_slice(
+            get_defined_constants(true)['Core'],
+            0,
+            15,
+            true
         );
 
-        foreach ($consts as $code => $name) {
+        foreach ($consts as $name => $code) {
             if ($severity & $code) $names[] = $name;
         }
         return join(' | ', $names);
     }
+
 
     /**
      * Пользовательский обработчик ошибок

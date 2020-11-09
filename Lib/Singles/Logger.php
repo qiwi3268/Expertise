@@ -100,7 +100,7 @@ class Logger
         }
         $message = "{$date} | {$user} | {$message}" . PHP_EOL;
         if (file_put_contents("{$this->logsDir}/{$this->logsName}", $message, FILE_APPEND) === false) {
-            throw new SelfEx("Произошла ошибка при попытке записать логируемое сообщение: '<{$message}>' в файл: '{$this->logsDir}/{$this->logsName}'", 5);
+            throw new SelfEx('Произошла ошибка при попытке записать логируемое сообщение', 5);
         }
         return $date;
     }

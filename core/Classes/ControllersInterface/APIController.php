@@ -98,7 +98,7 @@ abstract class APIController extends Controller
 
             $this->logAndExceptionExit('Uncaught DataBase Exception', $e, 'Необработанное исключение базы данных');
         } catch (LoggerEx $e) {
-
+            // Не имеет смысла логировать в случае выбрасывания исключения из самого логгера
             $this->exceptionExit('Uncaught Logger Exception', $e, 'Необработанное исключение логгера сообщений');
         } catch (Exception $e) {
 
@@ -116,18 +116,16 @@ abstract class APIController extends Controller
      *
      * @uses \Lib\Singles\Logger::writeException()
      * @uses \core\Classes\ControllersInterface\APIController::exceptionExit()
-     * @param string $result уникальный код выхода
-     * @param Exception $e исключение
-     * @param string $description дополнительное описание
+     * @param string $result
+     * @param Exception $e
+     * @param string $description
      */
-    protected function logAndExceptionExit(string $result, Exception $e, string $description): void
+    protected function logAndExceptionExit(string $result, Exception $e, string $description = ''): void
     {
         try {
             $this->errorLogger->writeException($e, $description);
         } catch (LoggerEx $e_logger) {
-
-            $desc = empty($description) ? '' : " с описанием: {$description}";
-            $description = exceptionToString($e_logger, "Произошла непредвиденная ошибка при логировании исключения{$desc}");
+            $description = exceptionToString($e_logger) . '. ' . $description;
         }
         $this->exceptionExit($result, $e, $description);
     }
@@ -152,15 +150,22 @@ abstract class APIController extends Controller
 
 
     /**
-     * Предназначен для завершения работы скрипта при успешном выполнении
+     * Предназначен для логирования сообщения об ошибке и завершения работы скрипта при неудачном выполнении
      *
-     * @param array $additional ассоциативный массив, который будет распакован в выходной json.<br>
-     * В данном массиве <i>не должно</i> быть элемента по ключу <b>result</b>
+     * @uses \Lib\Singles\Logger::write()
+     * @uses \core\Classes\ControllersInterface\APIController::errorExit()
+     * @param string $result
+     * @param string $message
+     * @param array $additional
      */
-    protected function successExit(array $additional = []): void
+    protected function logAndErrorExit(string $result, string $message, array $additional = []): void
     {
-        $additional['result'] = self::SUCCESS_RESULT;
-        $this->exit($additional);
+        try {
+            $this->errorLogger->write($message);
+        } catch (LoggerEx $e_logger) {
+            $message = exceptionToString($e_logger) . '. ' . $message;
+        }
+        $this->errorExit($result, $message, $additional);
     }
 
 
@@ -181,6 +186,19 @@ abstract class APIController extends Controller
 
 
     /**
+     * Предназначен для завершения работы скрипта при успешном выполнении
+     *
+     * @param array $additional ассоциативный массив, который будет распакован в выходной json.<br>
+     * В данном массиве <i>не должно</i> быть элемента по ключу <b>result</b>
+     */
+    protected function successExit(array $additional = []): void
+    {
+        $additional['result'] = self::SUCCESS_RESULT;
+        $this->exit($additional);
+    }
+
+
+    /**
      * Предназначен для завершения работы скрипта с результирующим json'ом
      *
      * @param array $result массив результатов
@@ -194,7 +212,7 @@ abstract class APIController extends Controller
     /**
      * Предназначен для проверки наличия обязательных параметров http запроса
      *
-     * В случае отсутствия параметров производится выход с соответствующим кодом ошибки
+     * В случае отсутствия параметров производится логирование ошибки и выход с соответствующим кодом
      *
      * @param string $method требуемый тип запроса на сервер
      * @param string[] $params массив необходимых параметров
@@ -211,7 +229,7 @@ abstract class APIController extends Controller
         $msg = "Нет обязательных параметров {$method} запроса: " . implode(', ', $missing);
         $res = $method == HttpRequest::POST ? self::MISSING_POST_PARAMS_RESULT : self::MISSING_GET_PARAMS_RESULT;
 
-        $this->errorExit($res, $msg);
+        $this->logAndErrorExit($res, $msg);
     }
 
 

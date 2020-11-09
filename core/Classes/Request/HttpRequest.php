@@ -7,7 +7,9 @@ use core\Classes\Exceptions\Request as SelfEx;
 
 
 /**
- * Обеспечивает работу с http-запросом на сервер
+ * Обеспечивает работу с http запросом на сервер
+ *
+ * Объявляет константы URI и URN
  *
  */
 class HttpRequest extends Request
@@ -61,11 +63,17 @@ class HttpRequest extends Request
         });
 
         $this->properties = $properties;
+
+        // Полный запрос с первым '/' и get-параметрами
+        define('URI', $_SERVER['REQUEST_URI']);
+
+        // Запрос в формате без первого '/' и get-параметров
+        define('URN', mb_substr(parse_url(URI, PHP_URL_PATH), 1));
     }
 
 
     /**
-     * Предназначен для проверки типа метода запроса
+     * Предназначен для проверки типа запроса
      *
      * @param string $method метод запроса (GET/POST)
      * @return bool
@@ -73,6 +81,32 @@ class HttpRequest extends Request
     public function checkRequestMethod(string $method): bool
     {
         return $this->requestMethod == $method;
+    }
+
+
+    /**
+     * Предназначен для проверки существования параметров запроса
+     * с проверкой типа запроса на GET
+     *
+     * @param string ...$keys <i>перечисление</i> наименований параметров
+     * @return bool
+     */
+    public function hasInGET(string ...$keys): bool
+    {
+        return $this->requestMethod == self::GET && call_user_func_array([$this, 'has'], $keys);
+    }
+
+
+    /**
+     * Предназначен для проверки существования параметров запроса
+     * с проверкой типа запроса на POST
+     *
+     * @param string ...$keys <i>перечисление</i> наименований параметров
+     * @return bool
+     */
+    public function hasInPOST(string ...$keys): bool
+    {
+        return $this->requestMethod == self::POST && call_user_func_array([$this, 'has'], $keys);
     }
 
 
@@ -86,5 +120,16 @@ class HttpRequest extends Request
     public function getDirty(string $key)
     {
         return $this->checkIsset($key)->dirtyProperties[$key];
+    }
+
+
+    /**
+     * Предназначен для получения всех неочищенных параметров запроса
+     *
+     * @return array
+     */
+    public function getAllDirty(): array
+    {
+        return $this->dirtyProperties;
     }
 }

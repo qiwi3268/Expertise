@@ -1,0 +1,16 @@
+Файл содержит будущие направления развития системы
+
+
+1. Уход от FilesTableMapping и SignsTableMapping в сторону TableMappingsXMLHandler
+   1.1. Удалить константные массивы FILE_TABLE_MAPPING и SIGN_TABLE_MAPPING
+2. Использование параметров запросов ислючительно через класс HttpRequest
+   2.1. Отказаться от функций clearHtmlArr, checkParamsPOST, checkParamsGET и удалить их
+3. Создание библиотечного пакета для родительских классов APIControllers и PageControllers
+   3.1. Полная миграция старого исполняемого кода контроллеров на APIController и PageController
+
+
+Следить за дальнейшим развитием ------------------------------------------
+
+1. \Lib\CSP\MessageParser используется в \APIControllers\Home\FileHashGetter только ради метода getErrorCode.
+   Возможно, стоит сделать дерево наследования от MessageParser - сделав его родительским (не абстрактным),
+   и от него отдельные парсеры для валидации ЭЦП и др.

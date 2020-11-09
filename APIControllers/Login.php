@@ -33,6 +33,7 @@ class Login extends APIController
      */
     public function doExecute(): void
     {
+
         list(
             'login'    => $login,
             'password' => $password
@@ -58,7 +59,7 @@ class Login extends APIController
 
                 // Пользователь не имеет ролей
                 if (is_null($userRoles)) {
-                    $this->errorExit(2, 'Пользователь не имеет ролей в системе');
+                    $this->logAndErrorExit(2, 'Пользователь не имеет ролей в системе');
                 }
 
                 // Создание сессии пользователя

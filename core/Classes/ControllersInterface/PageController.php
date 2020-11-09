@@ -2,6 +2,8 @@
 
 
 namespace core\Classes\ControllersInterface;
+
+use core\Classes\Request\HttpRequest;
 use Lib\Singles\VariableTransfer;
 
 
@@ -12,6 +14,12 @@ use Lib\Singles\VariableTransfer;
 abstract class PageController extends Controller
 {
 
+    /**
+     * Объект http запроса на сервер
+     *
+     */
+    protected HttpRequest $request;
+
     protected VariableTransfer $VT;
 
 
@@ -19,8 +27,9 @@ abstract class PageController extends Controller
      * Конструктор класса без входных параметров
      *
      */
-    final public function __construct()
+    public function __construct()
     {
+        $this->request = HttpRequest::getInstance();
         $this->VT = VariableTransfer::getInstance();
     }
 

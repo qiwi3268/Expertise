@@ -96,23 +96,20 @@ class VariableTransfer
      *
      * @param array $container контейнер для хранения значений
      * @param string $key ключ массива. Из значения будет вырезан режим работы, если он указан
+     * @return $this
      * @throws Exception
      */
-    private function checkIssetVariable(array $container, string &$key): void
+    private function checkIssetVariable(array $container, string &$key): self
     {
-        $isHardMode = $this->isHardMode;
+        $res = getHandlePregMatch("/^(.*)(%H|%S)?$/Uu", $key, false);
 
-        if (containsAll($key, '%S')) {
-            $isHardMode = false;
-            $key = str_replace('%S', '', $key);
-        } elseif (containsAll($key, '%H')) {
-            $isHardMode = true;
-            $key = str_replace('%H', '', $key);
-        }
+        $key = $res[1];
+        $isHardMode = isset($res[2]) ? ($res[2] == '%H') : $this->isHardMode;
 
         if ($isHardMode && !isset($container[$key])) {
             throw new Exception("Ключ '{$key}' не существует в запрашиваемом контейнере");
         }
+        return $this;
     }
 
 
@@ -127,6 +124,7 @@ class VariableTransfer
         $this->existenceFlags[$key] = $value;
     }
 
+
     /**
      * Предназначен для получения флага существования
      *
@@ -137,8 +135,7 @@ class VariableTransfer
      */
     public function getExistenceFlag(string $key): ?bool
     {
-        $this->checkIssetVariable($this->existenceFlags, $key);
-        return $this->existenceFlags[$key] ?? null;
+        return $this->checkIssetVariable($this->existenceFlags, $key)->existenceFlags[$key] ?? null;
     }
 
 
@@ -164,7 +161,6 @@ class VariableTransfer
      */
     public function getValue(string $key)
     {
-        $this->checkIssetVariable($this->values, $key);
-        return $this->values[$key] ?? null;
+        return $this->checkIssetVariable($this->values, $key)->values[$key] ?? null;
     }
 }
