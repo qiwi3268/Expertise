@@ -151,7 +151,16 @@ class API {
       return new Promise((resolve, reject) => {
          let form_data = this.getFileCheckFormData(id_file, ge_file);
 
-         XHR(
+         this.sendRequest('post', '/home/API_file_checker', form_data, null, 'json')
+            .then(response => {
+               resolve(response);
+            })
+            .catch(exc => {
+               reject(exc.message);
+               console.error(exc);
+            });
+
+/*         XHR(
             'post',
             '/home/API_file_checker',
             form_data,
@@ -175,7 +184,7 @@ class API {
             })
             .catch(exc => {
                reject('Ошибка при проверке файла: ' + exc);
-            });
+            });*/
 
       });
 
@@ -349,7 +358,22 @@ class API {
 
       console.log(FileNeeds.getFileNeedsJSON());
 
-      XHR(
+      this.sendRequest('post',
+         '/home/API_file_needs_setter',
+         form_data,
+         null,
+         'json',
+         null,
+         null)
+         .then(response => {
+            console.log(response);
+            FileNeeds.clear();
+         })
+         .catch(exc => {
+            ErrorModal.open('Ошибка при обновлении file needs', exc.message);
+         });
+
+/*      XHR(
          'post',
          '/home/API_file_needs_setter',
          form_data,
@@ -372,7 +396,7 @@ class API {
          })
          .catch(error => {
             ErrorModal.open('Ошибка при обновлении file needs', error.message);
-         });
+         });*/
    }
 
    static getFilesNeedsFormData () {

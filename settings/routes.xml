@@ -47,21 +47,20 @@
         </page>
 
         <page urn="home/API_file_checker">
-            <files>
-                <dir path="/API/home/" ext=".php">
-                    <file name="file_checker" />
-                </dir>
-            </files>
+            <controllers>
+                <namespace name="\APIControllers\Home">
+                    <class name="FileChecker" />
+                </namespace>
+            </controllers>
         </page>
 
         <page urn="home/API_file_needs_setter">
-            <files>
-                <dir path="/API/home/" ext=".php">
-                    <file name="file_needs_setter" />
-                </dir>
-            </files>
+            <controllers>
+                <namespace name="\APIControllers\Home">
+                    <class name="FileNeedsSetter" />
+                </namespace>
+            </controllers>
         </page>
-
 
         <page urn="home/API_get_file_hash">
             <files>
@@ -408,6 +407,29 @@
                 <dir path="/views/home/modals/" ext=".php">
                     <file name="comments_group" />
                     <file name="error" />
+                </dir>
+            </files>
+        </page>
+
+        <page urn="home/conclusion">
+
+            <controllers>
+                <namespace name="\PageControllers">
+                    <class name="HtmlHead" />
+                </namespace>
+                <namespace name="\PageControllers\Home">
+                    <class name="Header" />
+                </namespace>
+            </controllers>
+
+            <files>
+                <dir path="/views/" ext=".php">
+                    <file name="html_head" />
+                </dir>
+                <dir path="/views/home/" ext=".php">
+                    <file name="header" />
+                    <file name="conclusion" />
+                    <file name="footer" />
                 </dir>
             </files>
         </page>

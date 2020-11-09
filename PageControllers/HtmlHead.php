@@ -137,6 +137,14 @@ class HtmlHead extends PageController
                     ->addJsSource(self::MODALS_JS,'ErrorModal.js', 'CommentGroup.js')
                     ->addJsSource(self::TMP_JS, 'test_1.js');
                 break;
+    
+            case 'home/conclusion' :
+                $pageName = 'Тест';
+                $this->addFontAwesome5Case()
+                    ->addCssSource(self::ROOT_CSS, 'entry.css')
+                    ->addCssSource(self::TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'action_sidebar.css', 'radio.css', 'files.css', 'action_header.css', 'conclusion.css', 'create_application.css', 'view_application.css');
+                break;
+                
 
             case 'home/expertise_cards/section_documentation_1/actions/action_1' :
                 $pageName = 'Раздел';

@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+//todo перенести в апи
 function saveApplication () {
    FileNeeds.putFilesToFileNeeds();
 
