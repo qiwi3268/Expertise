@@ -41,11 +41,19 @@ class DocumentationFileUploader extends Uploader
     ) {
         $this->filesTableMapping = new FilesTableMapping($mapping_level_1, $mapping_level_2);
 
+        // По умолчанию
         $this->inputName = 'download_files';
 
+        // Неизменяемую
         $this->directory = APPLICATIONS_FILES . "/{$applicationId}";
+
+        // По умолчанию
         $this->allowedFormats = ['.docx', '.doc', '.odt', '.pdf', '.xlsx', '.xls', '.ods', '.xml'];
+
+        // По умолчанию
         $this->forbiddenSymbols = [','];
+
+        // По умолчанию
         $this->maxFileSize = 80;
 
         $this->applicationId = $applicationId;
@@ -69,6 +77,7 @@ class DocumentationFileUploader extends Uploader
     {
         $transaction = new Transaction();
 
+        //class получать из свойства, не из маппинга
         $class = $this->filesTableMapping->getClassName();
 
         for ($l = 0; $l < count($filesName); $l++) {

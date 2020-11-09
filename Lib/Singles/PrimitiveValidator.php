@@ -449,7 +449,8 @@ class PrimitiveValidator
     /**
      * Предназначен для проверки массива с функцией
      *
-     * @param array $function массив с функцией, где 0 элемент - экземпляр объекта или имя класса.
+     * @param array $function массив с функцией, где:<br>
+     * 0 элемент - экземпляр объекта или имя класса<br>
      * 1 элемент - имя метода
      * @throws SelfEx
      */
@@ -479,7 +480,7 @@ class PrimitiveValidator
      * @param string ...$types <i>перечисление</i> элементов согласно результату функции {@see gettype()}
      * @throws SelfEx
      */
-    public function checkTypeArrayValues(array $array, string ...$types): void
+    public function validateTypeArrayValues(array $array, string ...$types): void
     {
         foreach ($array as $key => $value) {
 
@@ -501,9 +502,9 @@ class PrimitiveValidator
      * integer / string / double
      * @throws SelfEx
      */
-    public function checkUniquenessArrayValues(array $array): void
+    public function validateUniquenessArrayValues(array $array): void
     {
-        $this->checkTypeArrayValues($array, 'integer', 'string', 'double');
+        $this->validateTypeArrayValues($array, 'integer', 'string', 'double');
 
         $elements = [];
 
@@ -515,6 +516,28 @@ class PrimitiveValidator
         ) {
             $diff = $count_2 - $count_1 + 1;
             throw new SelfEx("В массиве присутствуют: {$diff} одинаковых элемента", 25);
+        }
+    }
+
+
+    /**
+     * Предназначен для проверки класса / интерфейса на реализацию
+     * в нем всех необходимых интерфейсов
+     *
+     * @param mixed $class объект (экземпляр класса) или строка (имя класса или интерфейса)
+     * @param string ...$interfaces <i>перечисление</i> требуемых интерфейсов
+     * @throws SelfEx
+     */
+    public function validateClassImplements($class, string ...$interfaces): void
+    {
+        if (($implementInterfaces = class_implements($class)) === false) {
+            throw new selfEx("Произошла ошибка при вызове функции 'class_implements'", 26);
+        }
+
+        if (!empty($diff = array_diff($interfaces, $implementInterfaces))) {
+            $className = is_object($class) ? get_class($class) : $class;
+            $missing = implode(', ', $diff);
+            throw new SelfEx("Класс '{$className}' не реализует требуемые интерфейсы: '{$missing}'", 27);
         }
     }
 }

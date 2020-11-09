@@ -5,9 +5,11 @@ namespace Lib\TableMappings;
 
 use Lib\Exceptions\TableMappings as SelfEx;
 use Lib\Exceptions\XMLValidator as XMLValidatorEx;
+use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
 
 use SimpleXMLElement;
 use Lib\Singles\XMLValidator;
+use Lib\Singles\PrimitiveValidator;
 
 
 /**
@@ -19,6 +21,7 @@ class TableMappingsXMLHandler
 
     private const FILE_NEEDED_INTERFACE = 'Tables\Files\Interfaces\FileTable';
     private const FILE_EXISTENT_INTERFACE = 'Tables\CommonInterfaces\Existent';
+    private const FILE_UPLOADER_ABSTRACT_CLASS = 'APIControllers\Home\FileUploader\Uploader';
     private const SIGN_NEEDED_INTERFACE = 'Tables\Signs\Interfaces\SignTable';
 
     /**
@@ -29,6 +32,7 @@ class TableMappingsXMLHandler
 
     private SimpleXMLElement $data;
     private XMLValidator $XMLValidator;
+    private PrimitiveValidator $primitiveValidator;
 
 
     /**
@@ -44,6 +48,7 @@ class TableMappingsXMLHandler
 
         $this->data = $data;
         $this->XMLValidator = new XMLValidator();
+        $this->primitiveValidator = new PrimitiveValidator();
     }
 
 
@@ -101,7 +106,8 @@ class TableMappingsXMLHandler
      * 'file_table_class' - полное наименование класса файловой таблицы<br>
      * 'sign_table_class' (string|null) - полное наименование класса таблицы подписей, если
      * он определен для текущего маппинга, null - в противном случае<br>
-     * 'main_document_type' - тип главного документа, к которому относится файловая таблица
+     * 'main_document_type' - тип главного документа, к которому относится файловая таблица<br>
+     * 'file_uploader_class' - полное наименования класса файлового загрузчика
      * @throws SelfEx
      */
     public function getHandledLevel2Value(SimpleXMLElement $level_2): array
@@ -119,13 +125,10 @@ class TableMappingsXMLHandler
                     throw new SelfEx("Класс таблицы файлов '{$class}' не существует", 1002);
                 }
 
-                if (
-                    !($interfaces = class_implements($class))
-                    || !in_array(self::FILE_NEEDED_INTERFACE, $interfaces)
-                    || !in_array(self::FILE_EXISTENT_INTERFACE, $interfaces)
-                ) {
-                    $debug = "'" . self::FILE_NEEDED_INTERFACE . "' или '" . self::FILE_EXISTENT_INTERFACE . "'";
-                    throw new SelfEx("Класс таблицы файлов '{$class}' не реализует интерфейс: {$debug}", 1003);
+                try {
+                    $this->primitiveValidator->validateClassImplements($class, self::FILE_NEEDED_INTERFACE, self::FILE_EXISTENT_INTERFACE);
+                } catch (PrimitiveValidatorEx $e) {
+                    throw new SelfEx($e->getMessage(), 1003);
                 }
 
                 $main_document = (string)$children['main_document'];
@@ -134,19 +137,29 @@ class TableMappingsXMLHandler
                     throw new SelfEx("Тип документа: '{$main_document}' не определен в константе DOCUMENT_TYPE", 1004);
                 }
 
+                $uploader_class = (string)$children['uploader_class'];
+
+                if (!class_exists($uploader_class)) {
+                    throw new SelfEx("Класс загрузчика файлов '{$uploader_class}' не существует", 1005);
+                }
+
+                if (!is_subclass_of($uploader_class, self::FILE_UPLOADER_ABSTRACT_CLASS)) {
+                    throw new SelfEx("Класс загрузчика файла: '{$uploader_class}' не является дочерним классом от абстрактного класса: '" . self::FILE_UPLOADER_ABSTRACT_CLASS . "'", 1006);
+                }
+
                 $result['file_table_class'] = $class;
                 $result['main_document_type'] = $main_document;
+                $result['file_uploader_class'] = $uploader_class;
             } else { // sign_table
 
                 if (!class_exists($class)) {
-                    throw new SelfEx("Класс таблицы подписей '{$class}' не существует", 1005);
+                    throw new SelfEx("Класс таблицы подписей '{$class}' не существует", 1007);
                 }
 
-                if (
-                    !($interfaces = class_implements($class))
-                    || !in_array(self::SIGN_NEEDED_INTERFACE, $interfaces)
-                ) {
-                    throw new SelfEx("Класс таблицы подписей '{$class}' не реализует интерфейс: '" . self::SIGN_NEEDED_INTERFACE . "'", 1006);
+                try {
+                    $this->primitiveValidator->validateClassImplements($class, self::SIGN_NEEDED_INTERFACE);
+                } catch (PrimitiveValidatorEx $e) {
+                    throw new SelfEx($e->getMessage(), 1008);
                 }
                 $result['sign_table_class'] = $class;
             }

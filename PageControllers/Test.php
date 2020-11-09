@@ -3,6 +3,7 @@
 
 namespace PageControllers;
 
+use APIControllers\Home\FileUploader\Types\Type1;
 use core\Classes\ControllersInterface\PageController;
 
 use APIControllers\Home\FileNeedsSetter;
@@ -17,6 +18,7 @@ use Lib\Singles\Logger;
 
 //---------------------------------------
 
+use Lib\Singles\PrimitiveValidator;
 use Lib\TableMappings\TableMappingsXMLHandler;
 
 
@@ -25,6 +27,10 @@ class Test extends PageController
 
     public function doExecute(): void
     {
+        $pv = new PrimitiveValidator();
+
+
+
         $handler = new TableMappingsXMLHandler();
         $level2 = $handler->getLevel2(2, 1);
 

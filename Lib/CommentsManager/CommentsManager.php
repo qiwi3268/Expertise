@@ -196,7 +196,7 @@ class CommentsManager
             $hashes[] = $comment['hash'];
         }
 
-        if (!$primitiveValidatorBoolWrapper->checkUniquenessArrayValues($hashes)) {
+        if (!$primitiveValidatorBoolWrapper->validateUniquenessArrayValues($hashes)) {
 
             throw new SelfEx("Присутствуют повторяющиеся hash'и замечаний", 6);
         }
