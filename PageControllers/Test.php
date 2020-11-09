@@ -25,15 +25,12 @@ class Test extends PageController
 
     public function doExecute(): void
     {
-        $req = HttpRequest::getInstance();
+        $handler = new TableMappingsXMLHandler();
+        $level2 = $handler->getLevel2(2, 1);
 
-        $a = $req->hasPOST('a');
+        $a = $handler->validateLevel2Structure($level2)->getHandledLevel2Value($level2);
 
         vd($a);
-
-        $b = $req->a->b->c->d;
-
-        vd($b);
     }
 }
 

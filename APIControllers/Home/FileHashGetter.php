@@ -68,13 +68,9 @@ class FileHashGetter extends APIController
         // Получаем алгоритм хэширования на основе алгоритма подписи
         $hashAlgorithm = HASH_ALGORITHMS[$sign_algorithm];
 
-        $fileHash = new FileHash();
-
         try {
-
             // Выполняем команду, на основе которой сгенерируется hash-файл
-            $message = $fileHash->execHash(TMP_HASH_FILES, $hashAlgorithm, $fs_name);
-            unset($fileHash);
+            $message = (new FileHash())->execHash(TMP_HASH_FILES, $hashAlgorithm, $fs_name);
         } catch (ShellEx $e) {
             $this->logAndExceptionExit(3, $e, "Произошла ошибка при выполнении shell-команды");
         }

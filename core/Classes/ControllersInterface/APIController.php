@@ -64,11 +64,19 @@ abstract class APIController extends Controller
 
 
     /**
-     * Конструктор класса без входных параметров
+     * Конструктор класса без входных параметров#
+     *
+     * Метод объявлен завершенным, поскольку все внутренняя логика реализующего класса
+     * должна быть внутри оболочки try / catch, находящийся в методе execute
      *
      */
-    public function __construct()
+    final public function __construct()
     {
+        // Установка происходит единожды
+        if (!self::$errorTransformerWasSet) {
+            new ErrorTransformer(new ErrorExceptionHandler(), false);
+            self::$errorTransformerWasSet = true;
+        }
         $this->request = HttpRequest::getInstance();
         $this->errorLogger = $this->getErrorLogger();
     }
@@ -82,12 +90,6 @@ abstract class APIController extends Controller
      */
     public function execute(): void
     {
-        // Установка происходит единожды
-        if (!self::$errorTransformerWasSet) {
-            new ErrorTransformer(new ErrorExceptionHandler(), false);
-            self::$errorTransformerWasSet = true;
-        }
-
         try {
 
             $this->doExecute();

@@ -4,7 +4,7 @@
 use Lib\Exceptions\DataBase as DataBaseEx;
 
 use core\Classes\Session;
-use Lib\Files\UploaderToServer;
+use Lib\Files\Uploader;
 use Lib\Files\Mappings\FilesTableMapping;
 use Lib\DataBase\Transaction;
 
@@ -70,7 +70,7 @@ try {
         //exit result 2
     }
 
-    $files = new UploaderToServer($_FILES);
+    $files = new Uploader($_FILES);
 
     if (!$files->checkFilesExist()) {
         

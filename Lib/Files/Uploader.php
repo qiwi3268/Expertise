@@ -5,262 +5,291 @@ namespace Lib\Files;
 
 use Lib\Exceptions\File as SelfEx;
 
-use Lib\Exceptions\DataBase as DataBaseEx;
-use Lib\Exceptions\Transaction as TransactionEx;
-use ReflectionException;
-
-use Lib\DataBase\Transaction;
-use Lib\Files\Mappings\FilesTableMapping;
-
 
 /**
- * Предназначен для загрузки файлов на сервер, включая проверки и создание соответствующих записей в БД
+ * Класс загрузки файлов из глобального массива $_FILES на сервер
  *
- * Наследующий класс должен инициализировать свойства:
- * - filesTableMapping
- * - inputName
- * - directory
- * - allowedFormats
- * - forbiddenSymbols
- * - maxFileSize
  */
-abstract class Uploader
+class Uploader
 {
 
-    private UploaderToServer $uploader;
-
-    protected FilesTableMapping $filesTableMapping;
-
     /**
-     * Наименование инпута, с которого будут браться файлы
+     * Массив файлов со всех input'ов
      *
      */
-    protected string $inputName;
+    private array $FILES;
 
     /**
-     * Абсолютный путь в ФС сервера до директории логов загрузки файлов
-     *
-     * Начинается на '/'. Заканчивается без '/'
+     * Ассоциативный массив количества файлов в каждом из input
      *
      */
-    protected string $directory;
+    private array $FILESCount = [];
 
     /**
-     * Массив расширений файлов, разрешенных к загрузке
+     * Массив ошибок
      *
      */
-    protected array $allowedFormats;
-
-    /**
-     * Массив запрещенных символов в наименовании файла
-     *
-     */
-    protected array $forbiddenSymbols;
-
-    /**
-     * Максимально допустимый размер файла (в Мб)
-     *
-     */
-    protected int $maxFileSize;
+    private array $errors = [];
 
 
     /**
-     * Конструктор класса
+     * Констркутор класса
      *
-     * @throws SelfEx
+     * @param array $FILES массив файлов. Обычно - суперглобальный массив $_FILES
      */
-    public function __construct()
+    public function __construct(array $FILES)
     {
-        $this->uploader = new UploaderToServer($_FILES);
-        $this->preparatoryCheck();
-    }
-
-
-    /**
-     * Предназначен для подготовоительной проверки перед неподсредственной загрузкой файлов
-     *
-     * @throws SelfEx
-     */
-    public function preparatoryCheck(): void
-    {
-        $uploader = $this->uploader;
-
-        if (!$uploader->checkFilesExist()) {
-
-            throw new SelfEx('Отсутствуют загруженные файлы', 1001);
-        }
-
-        // Проверка на ошибки при загрузке файлов на сервер
-        if (!$uploader->checkServerUploadErrors()) {
-
-            $debug = [];
-
-            foreach ($uploader->getErrors() as $error) {
-                $debug[] = "file_name: '{$error['name']}', error_text: '{$error['error']}'";
-            }
-
-            $debug = implode(', ', $debug);
-            throw new SelfEx("Произошли ошибки при загрузке файлов на сервер. {$debug}", 1002);
-        }
-
-        // Проверка на допустимые форматы файлов
-        if (!$uploader->checkFilesName($this->allowedFormats, true)) {
-
-            $debug = implode(', ', $uploader->getErrors());
-            throw new SelfEx("Не пройдены проверки на допустимые форматы файлов. {$debug}", 1003);
-        }
-
-        // Проверка на запрещенные символы в файлах
-        if (!$uploader->checkFilesName($this->forbiddenSymbols, false)) {
-
-            $debug = implode(', ', $uploader->getErrors());
-            throw new SelfEx("Не пройдены проверки на запрещенные символы. {$debug}", 1004);
-        }
-
-        // Проверка на максимальный размер файлов
-        if (!$uploader->checkMaxFilesSize($this->maxFileSize)) {
-
-            $debug = implode(', ', $uploader->getErrors());
-            throw new SelfEx("Не пройдены проверки на запрещенные символы. {$debug}", 1005);
-        }
-
-        // Проверка маппинга файловых таблиц
-        if (!is_null($this->filesTableMapping->getErrorCode())) {
-
-            $debug = $this->filesTableMapping->getErrorText();
-            throw new SelfEx("Ошибка маппинга файловой таблицы. {$debug}", 1006);
+        $this->FILES = $FILES;
+        foreach ($FILES as $inputName => $files) {
+            $this->FILESCount[$inputName] = count(array_filter($files['name'], 'strlen'));
         }
     }
 
 
     /**
-     * Предназначен для загрузки файлов на сервер, включая создание записей в БД
+     * Предназначен для получения массива ошибок
      *
-     * @return array индексный массив с ассоциативным массивом для каждого загруженного файла формата:<br>
-     * 'id' - id созданной записи для файла<br>
-     * 'name' - исходное имя файла<br>
-     * 'hash' - хэш для файла<br>
-     * 'file_size' - размер файла в байтах
-     * @throws SelfEx
-     * @throws TransactionEx
-     * @throws ReflectionException
+     * @return array массив ошибок
      */
-    public function upload(): array
+    public function getErrors(): array
     {
-        $uploader = $this->uploader;
-        $inputName = $this->inputName;
-        $directory = $this->directory;
+        return $this->errors;
+    }
 
-        // Генерация уникального хэша
-        $filesCount = $uploader->getFilesCount($inputName);
 
-        $hashes = [];
-        $uniqueHashCount = 0;
-
-        do {
-
-            $hash = bin2hex(random_bytes(40)); // Длина 80 символов
-            if (!file_exists("{$directory}/$hash")) {
-
-                $hashes[] = $hash;
-                $uniqueHashCount++;
-            }
-        } while ($uniqueHashCount != $filesCount);
-
-        $filesName = $uploader->getFilesName($inputName);
-        $filesSize = $uploader->getFilesSize($inputName);
-
-        $createTransaction = $this->getCreateTransaction(
-            $filesName,
-            $filesSize,
-            $hashes
-        );
-
-        $class = $this->filesTableMapping->getClassName();
-
-        try {
-
-            $createdIds = $createTransaction->start()->getLastResults()[$class]['create'];
-        } catch (DataBaseEx $e) {
-
-            throw new SelfEx(exceptionToString($e, 'Ошибка при создании записи в файловую таблицу'), 1007);
+    /**
+     * Предназначен для проверки наличия загруженных файлов
+     *
+     * @return bool <b>true</b> есть файлы в одном из input'ов<br><b>false</b> файлы отсутствуют
+     */
+    public function checkFilesExist(): bool
+    {
+        foreach ($this->FILESCount as $count) {
+            if ($count > 0) return true;
         }
+        return false;
+    }
 
-        // Загрузка файлов в указанну директорию
-        if (!$uploader->uploadFiles($inputName, "{$directory}/", $hashes)) {
 
-            // Массив успешно загруженных файлов
-            $successfullyUpload = array_diff($filesName, $uploader->getErrors());
+    /**
+     * Предназначен для получения массива имен файлов из определенного инпута
+     *
+     * @param string $inputName инпут, с которого будут браться файлы
+     * @return array массив имен файлов
+     */
+    public function getFilesName(string $inputName): array
+    {
+        return $this->FILES[$inputName]['name'];
+    }
 
-            $errorArr = [];
 
-            // Если часть файлов загрузилась - пробуем их удалить
-            if (count($successfullyUpload) > 0) {
 
-                foreach ($successfullyUpload as $file) {
+    /**
+     * Предназначен для получения массива размеров файлов из определенного инпута
+     *
+     * @param string $inputName инпут, с которого будут браться файлы
+     * @return array массив размеров файлов <i>(в байтах)</i>
+     */
+    public function getFilesSize(string $inputName): array
+    {
+        return $this->FILES[$inputName]['size'];
+    }
 
-                    // Имеются только имена успешно загруженных файлов. Находим их хэш
-                    $fileIndex = array_search($file, $filesName, true);
 
-                    $hash = $hashes[$fileIndex];
+    /**
+     * Предназначен для получения количества файлов из определенного инпута
+     *
+     * @param string $inputName инпут, с которого будут браться файлы
+     * @return int количество файлов
+     */
+    public function getFilesCount(string $inputName): int
+    {
+        return $this->FILESCount[$inputName];
+    }
 
-                    // Не получилось удалить файл
-                    if ($fileIndex === false || !unlink("{$directory}/{$hash}")) {
-                        $errorArr[] = $file;
+
+    /**
+     * Предназначен для проверки файлов на предмет ошибки в момент загрузки на сервер
+     *
+     * @return bool <b>true</b> нет ошибок<br>
+     * <b>false</b> есть ошибки
+     */
+    public function checkServerUploadErrors(): bool
+    {
+        $errors = [];
+
+        // Массив файлов с одного input'а
+        foreach ($this->FILES as $inputName => $files) {
+
+            for ($l = 0; $l < $this->FILESCount[$inputName]; $l++) {
+
+                if ($files['error'][$l] != 0) {
+
+                    // Определение типа ошибки к файлу
+                    switch ($files['error'][$l]) {
+                        case 1 :
+                            $errorText = 'Размер принятого файла превысил максимально допустимый размер, который задан директивой upload_max_filesize';
+                            break;
+                        case 2 :
+                            $errorText = 'Размер загружаемого файла превысил значение MAX_FILE_SIZE, указанное в HTML-форме';
+                            break;
+                        case 3 :
+                            $errorText = 'Загружаемый файл был получен только частично';
+                            break;
+                        case 4 :
+                            $errorText = 'Файл не был загружен';
+                            break;
+                        case 6 :
+                            $errorText = 'Отсутствует временная папка';
+                            break;
+                        case 7 :
+                            $errorText = 'Не удалось записать файл на диск';
+                            break;
+                        case 8 :
+                            $errorText = 'PHP-расширение остановило загрузку файла';
+                            break;
+                        default :
+                            $errorText = 'Не найден код ошибки: ' . $files['error'][$l];
+                            break;
                     }
+                    $errors[] = [
+                        'name'  => $files['name'][$l],
+                        'error' => $errorText
+                    ];
                 }
             }
-
-            // Есть файлы, которые не получилось удалить
-            if (!empty($errorArr)) {
-
-                $debug = implode(', ', $errorArr);
-                throw new SelfEx("Возникли ошибки при переносе загруженного файла в указанную директорию, и НЕ получилось удалить часть из успешно загруженных. {$debug}", 1008);
-            } else {
-
-                throw new SelfEx('Возникли ошибки при переносе загруженного файла в указанную директорию, НО получилось удалить (или их не было) успешно загруженные', 1009);
-            }
         }
 
-        // Транзакция обновления флагов загрузки файла на сервер в таблице
-        $transaction = new Transaction();
-
-        foreach ($createdIds as $id) $transaction->add($class, 'setUploadedById', [$id]);
-
-        try {
-
-            $transaction->start();
-        } catch (DataBaseEx $e) {
-
-            throw new SelfEx(exceptionToString($e, 'Загрузка файлов прошла успешно, НО не получилось обновить флаги загрузки файла на сервер в таблице'), 10010);
+        if (empty($errors)) {
+            return true;
         }
 
-        // Формирование выходного результата
-        $result = [];
-
-        for ($l = 0; $l < $filesCount; $l++) {
-
-            $result[] = [
-                'id'        => $createdIds[$l],
-                'name'      => $filesName[$l],
-                'hash'      => $hashes[$l],
-                'file_size' => $filesSize[$l]
-            ];
-        }
-        return $result;
+        $this->errors = $errors;
+        return false;
     }
 
 
     /**
-     * Предназначен для получения транзации, в которой упакованы методы для создания записей в файловой таблице
+     * Предназначен для проверки файлов на максимально допустимый размер
      *
-     * Все принимаемые параметры являются индексными массивами с одинаковой
-     * и соответствующей друг другу очередностью индексов, начинающийся с 0
-     *
-     * @param array $filesName индексный массив с названими файлов
-     * @param array $filesSize индексный массив с размерами файлов (в байт)
-     * @param array $hashes индексный массив уникальных хэшей
-     * @return Transaction транзакция, в которой упаковано создание записей в файловой таблице
+     * @param int $sizeMB максимально допустимый размер файла в Мб
+     * @return bool <b>true</b> все файлы прошли проверки<br>
+     * <b>false</b> есть файлы, превысившие размер
      */
-    abstract protected function getCreateTransaction(array $filesName, array $filesSize, array $hashes): Transaction;
+    public function checkMaxFilesSize(int $sizeMB): bool
+    {
+        $errors = [];
+
+        // Размер файла в байтах
+        $sizeB = 1024 * 1024 * $sizeMB;
+
+        // Массив файлов с одного input'а
+        foreach ($this->FILES as $inputName => $files) {
+
+            for ($l = 0; $l < $this->FILESCount[$inputName]; $l++) {
+
+                if ($files['size'][$l] > $sizeB) {
+                    $errors[] = $files['name'][$l];
+                }
+            }
+        }
+
+        if (empty($errors)) {
+            return true;
+        }
+
+        $this->errors = $errors;
+        return false;
+    }
+
+
+    /**
+     * Предназначен для проверки файлов на допустимые форматы
+     *
+     * @param array $formats индексный массив форматов
+     * @param bool $isAllowed <b>true</b> один из форматов обязательно должен присутствовать в файле<br>
+     * <b>false</b> ни один из форматов не должен присутствовать в файле
+     * @return bool <b>true</b> все файлы прошли проверки<br>
+     * <b>false</b> есть файлы, которые не прошли проверки
+     */
+    public function checkFilesName(array $formats, bool $isAllowed): bool
+    {
+        $errors = [];
+
+        // Флаг совпадения формата
+        $formatFlag = false;
+
+        // Массив файлов с одного input'а
+        foreach ($this->FILES as $inputName => $files) {
+            // Цикл по всей секции файлов
+            for ($l = 0; $l < $this->FILESCount[$inputName]; $l++) {
+
+                foreach ($formats as $format) {
+
+                    if (containsAll($files['name'][$l], $format)) {
+
+                        $formatFlag = true;
+                        break;
+                    }
+                }
+
+                // Если не было вхождения формата, а оно должно быть - ошибка
+                // Если было вхождение формата, а его не должно быть - ошибка
+                if ((!$formatFlag && $isAllowed) || ($formatFlag && !$isAllowed)) {
+                    $errors[] = $files['name'][$l];
+                }
+                $formatFlag = false;
+            }
+        }
+
+        if (empty($errors)) {
+            return true;
+        }
+
+        $this->errors = $errors;
+        return false;
+    }
+
+
+    /**
+     * Предназначен для загрузки файлов в указанну директорию
+     *
+     * @param string $inputName инпут, с которого будут браться файлы
+     * @param string $dir директория файлов для загрузки, <b>должна оканчиваться на '/'</b>
+     * @param array $uploadNames массив с именами файлов, которые будут загружены в директорию<br>
+     * в случае необходимости загружать оригинальные имена файлов - ничего не передавать
+     * @return bool <b>true</b> все файлы успешно загружены<br>
+     * <b>false</b> произошли ошибки при загрузке файлов <i>(вероятно, permission denied)</i>
+     * @throws SelfEx
+     */
+    public function uploadFiles(string $inputName, string $dir, array $uploadNames = []): bool
+    {
+        $errors = [];
+
+        if (empty($uploadNames)) {
+            $uploadNames = $this->getFilesName($inputName);
+        }
+
+        if (count($uploadNames) != $this->FILESCount[$inputName]) {
+            throw new SelfEx('Размерность массива uploadNames не соответствует имеющемуся количеству файлов');
+        }
+
+        $files = $this->FILES[$inputName];
+
+        for ($l = 0; $l < $this->FILESCount[$inputName]; $l++) {
+
+            $uploadFile = $dir . basename($uploadNames[$l]);
+
+            if (!move_uploaded_file($files['tmp_name'][$l], $uploadFile)) {
+                $errors[] = $files['name'][$l];
+            }
+        }
+
+        if (empty($errors)) {
+            return true;
+        }
+
+        $this->errors = $errors;
+        return false;
+    }
 }

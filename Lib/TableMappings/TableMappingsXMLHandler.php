@@ -81,7 +81,7 @@ class TableMappingsXMLHandler
 
             if ($children->getName() == 'file_table') {
 
-                $this->XMLValidator->validateAttributes($children, '<file_table />', ['class', 'main_document']);
+                $this->XMLValidator->validateAttributes($children, '<file_table />', ['class', 'main_document', 'uploader_class']);
                 $this->XMLValidator->validateChildren($children, '<file_table />', []);
             } else { // sign_table
 

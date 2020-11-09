@@ -4,6 +4,7 @@
 namespace APIControllers\Home;
 
 use core\Classes\Exceptions\Request as RequestEx;
+use Lib\Exceptions\DataBase;
 use Lib\Exceptions\TableMappings as TableMappingsEx;
 use Lib\Exceptions\XMLValidator as XMLValidatorEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
@@ -37,6 +38,15 @@ use Lib\Singles\PrimitiveValidator;
  */
 class FileNeedsSetter extends APIController
 {
+
+    private TableMappingsXMLHandler $XMLHandler;
+
+    /**
+     * Сохраненные наименования классов файловых таблиц
+     *
+     */
+    private array $cacheClasses = [];
+
 
     /**
      * Реализация абстрактного метода
@@ -89,18 +99,14 @@ class FileNeedsSetter extends APIController
 
         // Проверка на наличие файлов в массивах
         if (empty($fileNeedsAssoc['to_save']) && empty($fileNeedsAssoc['to_delete'])) {
-
             $this->logAndErrorExit(4, 'Переданые пустые массивы to_save и to_delete');
         }
 
         try {
-
-            $XMLHandler = new TableMappingsXMLHandler();
+            $this->XMLHandler = new TableMappingsXMLHandler();
         } catch (TableMappingsEx $e) {
-
             $this->logAndExceptionExit(5, $e);
         }
-
 
         // Проверка указанных маппингов на корректность
         // + запись свойства 'class_name' каждому файлу, для использования в дальнейшем
@@ -110,14 +116,10 @@ class FileNeedsSetter extends APIController
             foreach ($type as &$file) {
 
                 try {
-
-                    $level_2 = $XMLHandler->getLevel2($file['mapping_level_1'], $file['mapping_level_2']);
-                    $className = $XMLHandler->validateLevel2Structure($level_2)->getHandledLevel2Value($level_2)['file_table_class'];
+                    $className = $this->getClassName($file['mapping_level_1'], $file['mapping_level_2']);
                 } catch (TableMappingsEx $e) {
-
                     $this->logAndExceptionExit(6, $e, 'Ошибка при обработке XML схемы table_mappings');
                 } catch (XMLValidatorEx $e) {
-
                     $this->logAndExceptionExit(7, $e, 'Ошибка при валидации XML схемы table_mappings');
                 }
 
@@ -146,15 +148,37 @@ class FileNeedsSetter extends APIController
         }
 
         try {
-
             $transaction->start();
         } catch (DataBaseEx $e) {
-
             $this->logAndExceptionExit(9, $e, "Ошибка при обновлении флага 'is_needs'");
         }
 
         // Все прошло успешно
         $this->successExit();
+    }
+
+
+    /**
+     * Предназначен для получения полного наименования класса файловой таблицы
+     *
+     * @param int $ml_1
+     * @param int $ml_2
+     * @return string
+     * @throws TableMappingsEx
+     * @throws XMLValidatorEx
+     */
+    private function getClassName(int $ml_1, int $ml_2): string
+    {
+        if (isset($this->cacheClasses[$ml_1][$ml_2])) {
+            return $this->cacheClasses[$ml_1][$ml_2];
+        }
+
+        $level_2 = $this->XMLHandler->getLevel2($ml_1, $ml_2);
+        $className = $this->XMLHandler->validateLevel2Structure($level_2)->getHandledLevel2Value($level_2)['file_table_class'];
+
+        $this->cacheClasses[$ml_1][$ml_2] = $className;
+
+        return $className;
     }
 
 

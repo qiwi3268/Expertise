@@ -18,9 +18,7 @@
 
                 <!--Цель обращения-->
                 <div class="form-field">
-                    <div class="form-field__title">
-                        <span class="form-field__title-text">Цель обращения</span>
-                    </div>
+                    <span class="form-field__title">Цель обращения</span>
                     <span class="form-field__item">
                         <?php if ($_VT->getExistenceFlag('expertise_purpose')): ?>
                             <?= $_VT->getValue('expertise_purpose')['name'] ?>
@@ -94,9 +92,7 @@
 
                 <!--Вид объекта-->
                 <div class="form-field">
-                    <div class="form-field__title">
-                        <span class="form-field__title-text">Вид объекта</span>
-                    </div>
+                    <div class="form-field__title">Вид объекта</div>
                     <span class="form-field__item">
                         <?php if ($_VT->getExistenceFlag('type_of_object')): ?>
                             <?= $_VT->getValue('type_of_object')['name'] ?>
