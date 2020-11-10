@@ -1456,10 +1456,3 @@
     </div>
 </div>
 
-
-
-<div class="application-form__card card-form card header">
-    <div class="card-form__header card-expand">
-        <span class="card-form__title">4.2.2. Описание основных решений (мероприятий), принятых в проектной документации</span>
-    </div>
-</div>

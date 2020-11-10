@@ -15,6 +15,7 @@ use Lib\Exceptions\DataBase;
 use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Exceptions\File as FileEx;
 use Lib\Singles\Logger;
+use Lib\Singles\URIParser;
 
 //---------------------------------------
 
@@ -27,15 +28,8 @@ class Test extends PageController
 
     public function doExecute(): void
     {
-        $pv = new PrimitiveValidator();
-
-
-
-        $handler = new TableMappingsXMLHandler();
-        $level2 = $handler->getLevel2(2, 1);
-
-        $a = $handler->validateLevel2Structure($level2)->getHandledLevel2Value($level2);
-
+        $uri = "/home/expertise_cards/application/view?test[]=1&test[]=2&id_document=1905";
+        $a = URIParser::parseExpertiseCard($uri);
         vd($a);
     }
 }

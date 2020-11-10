@@ -6,7 +6,9 @@ namespace APIControllers\Home\FileUploader;
 use core\Classes\Exceptions\Request as RequestEx;
 use Lib\Exceptions\TableMappings as TableMappingsEx;
 use Lib\Exceptions\XMLValidator as XMLValidatorEx;
+use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Exceptions\File as FileEx;
+use Tables\Exceptions\Tables as TablesEx;
 
 use core\Classes\Request\HttpRequest;
 use core\Classes\ControllersInterface\APIController;
@@ -33,6 +35,8 @@ class FileUploader extends APIController
      * Реализация абстрактного метода
      *
      * @throws RequestEx
+     * @throws DataBaseEx
+     * @throws TablesEx
      */
     public function doExecute(): void
     {
