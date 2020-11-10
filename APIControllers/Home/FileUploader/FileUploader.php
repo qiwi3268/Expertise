@@ -8,12 +8,14 @@ use Lib\Exceptions\TableMappings as TableMappingsEx;
 use Lib\Exceptions\XMLValidator as XMLValidatorEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Exceptions\File as FileEx;
+use Lib\Exceptions\URIParser as URIParserEx;
 use Tables\Exceptions\Tables as TablesEx;
 
 use core\Classes\Request\HttpRequest;
 use core\Classes\ControllersInterface\APIController;
 use Lib\TableMappings\TableMappingsXMLHandler;
 use Lib\Singles\Logger;
+use Lib\Singles\URIParser;
 use Tables\Docs\Relations\ParentDocumentLinkerFacade;
 
 
@@ -43,10 +45,10 @@ class FileUploader extends APIController
 
         // Проверка параметров, которые общие для всех типов загрузчиков
         list(
-            'id_document'     => $documentId,
+            'uri'             => $URI,
             'mapping_level_1' => $ml_1,
             'mapping_level_2' => $ml_2
-            ) = $this->getCheckedRequiredParams(HttpRequest::POST, ['id_document', 'mapping_level_1', 'mapping_level_2']);
+            ) = $this->getCheckedRequiredParams(HttpRequest::POST, ['uri', 'mapping_level_1', 'mapping_level_2']);
 
 
         // Получение загрузчика
@@ -68,9 +70,25 @@ class FileUploader extends APIController
             $this->logAndExceptionExit(2, $e, 'Ошибка при валидации XML схемы table_mappings');
         }
 
-        $applicationId = (new ParentDocumentLinkerFacade($mainDocumentType, $documentId))->getApplicationId();
 
-        $uploader = new $uploaderClass($applicationId, $documentId, $fileTableClass);
+        // Определение параметров страницы, с которой был сделан запрос
+        try {
+
+            list(
+                'document_type' => $req_documentType,
+                'document_id'   => $req_documentId
+                ) = URIParser::parse($URI);
+        } catch (URIParserEx $e) {
+
+            $this->logAndExceptionExit(3, $e, 'Ошибка при разборе входного URI');
+        }
+
+        // id заявления для страницы, с которой был сделан запрос
+        $req_applicationId = (new ParentDocumentLinkerFacade($req_documentType, $req_documentId))->getApplicationId();
+
+        $dir = APPLICATIONS_FILES . "/{$req_applicationId}";
+
+        $uploader = new $uploaderClass($dir, $req_documentId, $fileTableClass);
 
         $requiredParams = $uploader->getRequiredParams();
 
@@ -84,16 +102,16 @@ class FileUploader extends APIController
         } catch (FileEx $e) {
 
             if (in_array($e->getCode(), [1001, 1002])) {
-                $this->logAndExceptionExit(3, $e, 'Ошибка при подготовительной проверке перед загрузкой файлов');
+                $this->logAndExceptionExit(4, $e, 'Ошибка при подготовительной проверке перед загрузкой файлов');
             } else {
-                $this->exceptionExit(3, $e);
+                $this->exceptionExit(4, $e);
             }
         }
 
         try {
             $this->successExit(['uploaded_files' => $uploader->upload()]);
         } catch (FileEx $e) {
-            $this->logAndExceptionExit(4, $e);
+            $this->logAndExceptionExit(5, $e);
         }
 
 

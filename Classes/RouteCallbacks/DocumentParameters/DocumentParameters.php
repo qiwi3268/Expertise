@@ -29,8 +29,8 @@ abstract class DocumentParameters
      * Конструктор класса
      *
      */
-    public function __construct(){
-
+    public function __construct()
+    {
         $this->request = HttpRequest::getInstance();
         $this->primitiveValidator = new PrimitiveValidator();
     }

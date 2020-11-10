@@ -128,6 +128,22 @@ function updateDatesTimestampToDdMmYyyy(array &$assocArray, string ...$datePrope
 
 
 /**
+ * Предназначен для проверки вхождения подстроки в строку
+ *
+ * <b>Регистрозависимый поиск</b><br>
+ *
+ * @param string $haystack строка, в которой производится поиск
+ * @param string $needle подстрока
+ * @return bool <b>true</b> подстрока присутствует в строке<br/>
+ * <b>false</b> в противном случае
+ */
+function contains(string $haystack, string $needle): bool
+{
+    return mb_stripos($haystack, $needle) !== false;
+}
+
+
+/**
  * Предназначен для поиска вхождения подстроки в строку
  *
  * <b>Регистрозависимый поиск</b><br>

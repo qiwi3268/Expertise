@@ -65,15 +65,15 @@ abstract class Uploader
     /**
      * Конструктор класса
      *
-     * @param int $applicationId id заявления
+     * @param string $directory абсолютный путь в ФС сервера до директории загрузки файлов
      * @param int $mainDocumentId id главного документа к которому загружаются файлы
      * @param string $fileTableClass полное наименование класса файловой таблицы
      */
-    public function __construct(int $applicationId, int $mainDocumentId, string $fileTableClass)
+    public function __construct(string $directory, int $mainDocumentId, string $fileTableClass)
     {
         $this->request = HttpRequest::getInstance();
         $this->uploader = new UploaderToServer($_FILES);
-        $this->directory = APPLICATIONS_FILES . "/{$applicationId}";
+        $this->directory = $directory;
         $this->mainDocumentId = $mainDocumentId;
         $this->fileTableClass = $fileTableClass;
     }

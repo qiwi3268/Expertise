@@ -9,6 +9,7 @@ namespace Tables\Files\Interfaces;
  *
  * - id
  * - id_main_document
+ * - id_previous_version
  * - id_structure_node
  * - file_name
  * - file_size
