@@ -193,7 +193,7 @@ textarea.form-field__input.invalid {
 
 ::-webkit-scrollbar {
    max-height: 5px;
-   width: 7px;
+   width: 5px;
    cursor: pointer;
 }
 

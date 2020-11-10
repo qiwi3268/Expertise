@@ -22,7 +22,8 @@
    min-width: 500px;
    max-width: 500px;
    position: sticky;
-   top: 60px;
+   /*top: 60px;*/
+   top: 10px;
 }
 
 .conclusion-body {
@@ -183,7 +184,7 @@
 .conclusion-sidebar__hierarchy {
    align-self: flex-start;
    cursor: pointer;
-   max-height: 920px;
+   max-height: 970px;
    overflow: auto;
 }
 
@@ -222,5 +223,16 @@
    background: #f3f5f6;
 }
 
+.hierarchy__section.invalid {
+   border-color: #e99a9a;
+}
 
+.scroll_to {
+   height: 100px;
+   width: 100px;
+   background-color: #93b0d1;
+}
 
+.action-header {
+   position: unset;
+}

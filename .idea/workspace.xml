@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/views/js/tmp/conclusion.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PageControllers/HtmlHead.php" beforeDir="false" afterPath="$PROJECT_DIR$/PageControllers/HtmlHead.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/conclusion.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/conclusion.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/tmp/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home/conclusion.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/conclusion.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,8 +38,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript File" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -77,15 +81,15 @@
     <property name="ts.external.directory.path" value="G:\PhpStorm 2020.1.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\home\expertise_cards\documents\section\actions" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\home\templates_with_data\create" />
       <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\home\templates_with_data\edit" />
       <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\controllers\home\expertise_cards\documents\application" />
       <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\js\tmp" />
       <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\js" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ГосЭкспертиза\Desktop\Expertise_project\views\home\expertise_cards\documents\section\actions" />
     </key>
   </component>
   <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
@@ -155,14 +159,7 @@
       <workItem from="1604030589888" duration="22855000" />
       <workItem from="1604633222918" duration="24512000" />
       <workItem from="1604892812027" duration="18672000" />
-      <workItem from="1604979789755" duration="10482000" />
-    </task>
-    <task id="LOCAL-00237" summary="24.10.2020">
-      <created>1603535409639</created>
-      <option name="number" value="00237" />
-      <option name="presentableId" value="LOCAL-00237" />
-      <option name="project" value="LOCAL" />
-      <updated>1603535409639</updated>
+      <workItem from="1604979789755" duration="27969000" />
     </task>
     <task id="LOCAL-00238" summary="24.10.2020_1">
       <created>1603537253148</created>
@@ -500,7 +497,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604991631231</updated>
     </task>
-    <option name="localTasksCounter" value="286" />
+    <task id="LOCAL-00286" summary="10.11.2020_3">
+      <created>1604991764679</created>
+      <option name="number" value="00286" />
+      <option name="presentableId" value="LOCAL-00286" />
+      <option name="project" value="LOCAL" />
+      <updated>1604991764679</updated>
+    </task>
+    <option name="localTasksCounter" value="287" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -517,7 +521,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="30.10.2020_3" />
     <MESSAGE value="30.10.2020_4" />
     <MESSAGE value="30.10.2020_5" />
     <MESSAGE value="02.11.2020" />
@@ -542,7 +545,8 @@
     <MESSAGE value="09.11.2020_3" />
     <MESSAGE value="10.11.2020" />
     <MESSAGE value="10.11.2020_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="10.11.2020_1" />
+    <MESSAGE value="10.11.2020_3" />
+    <option name="LAST_COMMIT_MESSAGE" value="10.11.2020_3" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -577,20 +581,20 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="524" y="55" width="749" height="918" key="CommitChangelistDialog2" timestamp="1604991736670">
+    <state x="524" y="55" width="749" height="918" key="CommitChangelistDialog2" timestamp="1604991763015">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="491" y="51" width="749" height="918" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603875686112" />
-    <state x="524" y="55" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1604991736670" />
+    <state x="524" y="55" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1604991763015" />
     <state x="655" y="69" key="CommitChangelistDialog2/0.0.2560.1400/-1920.150.1920.1040@0.0.2560.1400" timestamp="1604934609884" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1603032169697" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603639279350" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1597575327230" />
-    <state x="297" y="183" width="1536" height="860" key="DiffContextDialog" timestamp="1604991703477">
+    <state x="297" y="183" width="1536" height="860" key="DiffContextDialog" timestamp="1604991755622">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="278" y="171" width="1536" height="860" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603166837735" />
-    <state x="297" y="183" key="DiffContextDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1604991703477" />
+    <state x="297" y="183" key="DiffContextDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1604991755622" />
     <state x="248" y="130" width="1552" height="862" key="MergeDialog" timestamp="1604934781663">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -606,11 +610,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="735" y="231" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598853548198" />
-    <state x="730" y="180" key="SettingsEditor" timestamp="1604935203636">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="584" y="143" key="SettingsEditor" timestamp="1605009756330">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="506" y="215" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603872483895" />
-    <state x="584" y="143" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1604654909579" />
+    <state x="584" y="143" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1605009756330" />
     <state x="730" y="180" key="SettingsEditor/0.0.2560.1400/-1920.150.1920.1040@0.0.2560.1400" timestamp="1604935203636" />
     <state x="1060" y="462" key="SettingsEditor/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603554524193" />
     <state width="254" height="198" key="ShowFilterAction_Filter_Popup" timestamp="1602482515341">
@@ -646,12 +650,12 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="92" y="92" width="2376" height="1216" key="dock-window-2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600964609575" />
-    <state x="305" y="29" width="1280" height="960" key="find.popup" timestamp="1604987432949">
+    <state x="305" y="29" width="1280" height="960" key="find.popup" timestamp="1605008272909">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="0" y="174" width="1080" height="814" key="find.popup/0.0.1080.1880@0.0.1080.1880" timestamp="1603431303093" />
     <state x="283" y="99" width="1169" height="814" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1603879070998" />
-    <state x="305" y="29" width="1280" height="960" key="find.popup/0.0.2048.1112@0.0.2048.1112" timestamp="1604987432949" />
+    <state x="305" y="29" width="1280" height="960" key="find.popup/0.0.2048.1112@0.0.2048.1112" timestamp="1605008272909" />
     <state x="381" y="37" width="1600" height="1209" key="find.popup/0.0.2560.1400/-1920.150.1920.1040@0.0.2560.1400" timestamp="1604937658070" />
     <state x="-1611" y="272" width="1346" height="792" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1603031973447" />
     <state x="571" y="186" width="1495" height="1020" key="find.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603641433163" />
@@ -665,17 +669,17 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="701" y="151" key="refactoring.ChangeSignatureDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602764160573" />
-    <state x="749" y="262" key="run.anything.popup" timestamp="1604305866692">
+    <state x="749" y="262" key="run.anything.popup" timestamp="1605007885520">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="702" y="245" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602656060077" />
-    <state x="749" y="262" key="run.anything.popup/0.0.2048.1112@0.0.2048.1112" timestamp="1604305866692" />
+    <state x="749" y="262" key="run.anything.popup/0.0.2048.1112@0.0.2048.1112" timestamp="1605007885520" />
     <state x="936" y="330" key="run.anything.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603012734242" />
-    <state x="608" y="374" width="896" height="597" key="search.everywhere.popup" timestamp="1604897838522">
+    <state x="608" y="374" width="896" height="597" key="search.everywhere.popup" timestamp="1604999356906">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="570" y="350" width="840" height="558" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602484155108" />
-    <state x="608" y="374" width="896" height="597" key="search.everywhere.popup/0.0.2048.1112@0.0.2048.1112" timestamp="1604897838522" />
+    <state x="608" y="374" width="896" height="597" key="search.everywhere.popup/0.0.2048.1112@0.0.2048.1112" timestamp="1604999356906" />
     <state x="943" y="315" width="672" height="160" key="search.everywhere.popup/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1600536739645" />
   </component>
   <component name="XDebuggerManager">

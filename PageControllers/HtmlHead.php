@@ -143,7 +143,8 @@ class HtmlHead extends PageController
                 $this->addFontAwesome5Case()
                     ->addCssSource(self::ROOT_CSS, 'entry.css')
                     ->addCssSource(self::TMP_CSS, 'null.css', 'main.css', 'header.css', 'footer.css', 'action_sidebar.css', 'radio.css', 'files.css', 'action_header.css', 'create_application.css', 'view_application.css', 'action_sidebar.css', 'conclusion.css')
-                    ->addJsSource(self::ROOT_JS, 'main.js', 'section.js');
+                    ->addJsSource(self::ROOT_JS, 'main.js', 'section.js')
+                    ->addJsSource(self::TMP_JS, 'conclusion.js', 'section.js');
                 break;
                 
 

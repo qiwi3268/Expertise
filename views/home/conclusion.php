@@ -17,45 +17,45 @@
         </div>
         <div class="conclusion-sidebar__hierarchy">
             
-            <div class="hierarchy__section header" data-selected="">
+            <div class="hierarchy__section header" data-selected="" data-number="1.">
                 <a class="hierarchy__item" data-depth="0">
                     <span class="hierarchy__name">1. Общие положения и сведения о заключении экспертизы</span>
                 </a>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="1.1.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">1.1. Сведения об организации по проведению экспертизы</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="1.2.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">1.2. Сведения о заявителе
 </span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="1.3.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">1.3. Основания для проведения экспертизы</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="1.4.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">1.4. Сведения о положительном заключении государственной экологической
 экспертизы</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="1.5.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">1.5. Сведения о составе документов, представленных для проведения экспертизы
 </span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="1.6.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">1.6. Сведения о ранее выданных заключениях экспертизы в отношении объекта
 капитального строительства, проектная документация и (или) результаты
@@ -63,44 +63,44 @@
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section header" data-selected="">
+            <div class="hierarchy__section header" data-selected="" data-number="2.">
                 <a class="hierarchy__item" data-depth="0">
                     <span class="hierarchy__name">2. Сведения, содержащиеся в документах, представленных для проведения
 экспертизы проектной документации
 </span>
                 </a>
             </div>
-            <div class="hierarchy__section header" data-selected="">
+            <div class="hierarchy__section header" data-selected="" data-number="2.1.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">2.1. Сведения об объекте капитального строительства, применительно к которому
 подготовлена проектная документация</span>
                 </a>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="2.1.1.">
                 <a class="hierarchy__item" data-depth="2">
                     <span class="hierarchy__name">2.1.1. Сведения о наименовании объекта капиталь</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="2.1.2.">
                 <a class="hierarchy__item" data-depth="2">
                     <span class="hierarchy__name">2.1.2. Сведения о функциональном назначении объекта капитального строительства</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="2.1.3.">
                 <a class="hierarchy__item" data-depth="2">
                     <span class="hierarchy__name">2.1.3. Сведения о технико-экономических показателях объекта капитального
 строительства</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
-            </div><div class="hierarchy__section" data-selected="">
+            </div><div class="hierarchy__section" data-selected="" data-number="2.2.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">2.2. Сведения о зданиях (сооружениях), входящих в состав сложного объекта,
 применительно к которому подготовлена проектная документация</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
-            </div><div class="hierarchy__section" data-selected="">
+            </div><div class="hierarchy__section" data-selected="" data-number="2.3.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">2.3. Сведения об источнике (источниках) и размере финансирования строительства,
 реконструкции, капитального ремонта, сноса объекта капитального
@@ -108,35 +108,35 @@
 </span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
-            </div><div class="hierarchy__section" data-selected="">
+            </div><div class="hierarchy__section" data-selected="" data-number="2.4.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">2.4. Сведения о природных и техногенных условиях территории, на которой
 планируется осуществлять строительство
 </span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
-            </div><div class="hierarchy__section" data-selected="">
+            </div><div class="hierarchy__section" data-selected="" data-number="2.5.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">2.5. Сведения об индивидуальных предпринимателях и (или) юридических лицах,
 подготовивших проектную документацию</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="2.6.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">2.6. Сведения об использовании при подготовке проектной документации
 экономически эффективной проектной повторного использования.</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="2.7.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">2.7. Сведения о задании застройщика (технического заказчика) на разработку
 проектной документации</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="2.8.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">2.8. Сведения о документации по планировке территории, о наличии разрешений на
 отклонение от предельных параметров разрешенного строительства,
@@ -144,13 +144,13 @@
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="2.9.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">2.9. Сведения о технических условиях подключения объекта капитального
 строительства к сетям инженерно-технического обеспечения</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
-            </div><div class="hierarchy__section" data-selected="">
+            </div><div class="hierarchy__section" data-selected="" data-number="2.10.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">2.10. Кадастровый номер земельного участка (земельных участков), в пределах
 которого (которых) расположен или планируется расположение объекта
@@ -158,39 +158,39 @@
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section invalid" data-selected="" data-number="2.11.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">2.11. Сведения о застройщике (техническом заказчике), обеспечившем подготовку
 проектной документации</span>
                 </a>
-                <div class="hierarchy__stage">0%</div>
+                <div class="hierarchy__stage ">0%</div>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="3.">
                 <a class="hierarchy__item" data-depth="0">
                     <span class="hierarchy__name">3. Сведения, содержащиеся в документах, представленных для проведения
 экспертизы результатов инженерных изысканий</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section header" data-selected="">
+            <div class="hierarchy__section header" data-selected="" data-number="4.">
                 <a class="hierarchy__item" data-depth="0">
                     <span class="hierarchy__name">4. Описание рассмотренной документации (материалов)</span>
                 </a>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.1.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">4.1. Описание результатов инженерных изысканий
 </span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section header" data-selected="">
+            <div class="hierarchy__section header" data-selected="" data-number="4.2.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">4.2. Описание технической части проектной документации
 </span>
                 </a>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.2.1.">
                 <a class="hierarchy__item" data-depth="2">
                     <span class="hierarchy__name">4.2.1. Состав проектной документации (указывается отдельно по каждому разделу
 проектной документации с учетом изменений, внесенных в ходе проведения
@@ -199,68 +199,68 @@
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section header" data-selected="">
+            <div class="hierarchy__section header" data-selected="" data-number="4.2.2.">
                 <a class="hierarchy__item" data-depth="2">
                     <span class="hierarchy__name">4.2.2. Описание основных решений (мероприятий), принятых в проектной
 документации</span>
                 </a>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.2.2.1.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">4.2.2.1. Пояснительная записка</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.2.2.2.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">4.2.2.2. Архитектурные решения</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.2.2.3.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">4.2.2.3. Конструктивные и объемно-планировочные решения</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.2.2.4.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">4.2.2.4. Проект организации строительства</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.2.2.5.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">4.2.2.5. Проект организации работ по сносу или демонтажу объектов капитального
 строительства</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.2.2.6.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">4.2.2.6. Перечень мероприятий по охране окружающей среды
 </span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.2.2.7.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">4.2.2.7. Мероприятия по обеспечению пожарной безопасности</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.2.2.8.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">4.2.2.8. Смета на строительство объектов капитального строительства</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section header" data-selected="">
+            <div class="hierarchy__section header" data-selected="" data-number="4.2.2.9.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">4.2.2.9. Иная документация, в случаях, предусмотренных федеральными законами</span>
                 </a>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.2.2.9.1.">
                 <a class="hierarchy__item" data-depth="4">
                     <span class="hierarchy__name">4.2.2.9.1. Мероприятия по обеспечению санитарно-эпидемиологического
 благополучия населения (и работающих – для производственных объектов)
@@ -268,7 +268,7 @@
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.2.2.9.2.">
                 <a class="hierarchy__item" data-depth="4">
                     <span class="hierarchy__name">4.2.2.9.2. Перечень мероприятий по гражданской обороне, мероприятий по
 предупреждению чрезвычайных ситуаций природного и техногенного
@@ -276,79 +276,79 @@
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section header" data-selected="">
+            <div class="hierarchy__section header" data-selected="" data-number="4.2.3.">
                 <a class="hierarchy__item" data-depth="2">
                     <span class="hierarchy__name">4.2.3. Сведения об оперативных изменениях, внесенных заявителем в
 рассматриваемые разделы проектной документации в процессе проведения
 экспертизы</span>
                 </a>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.2.3.1.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">4.2.3.1. По разделу «Пояснительная записка»</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.2.3.2.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">4.2.3.2. По разделу «Архитектурные решения»</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section invalid" data-selected="" data-number="4.2.3.3.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">4.2.3.3. По разделу «Конструктивные и объемно-планировочные решения»</span>
                 </a>
                 <div class="hierarchy__stage">0%</div>
 
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.2.3.4.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">4.2.3.4. По разделу «Проект организации строительства»</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.2.3.5.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">4.2.3.5. По разделу «Проект организации работ по сносу или демонтажу объектов
 капитального строительства»</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section invalid" data-selected="" data-number="4.2.3.6.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">4.2.3.6. По разделу «Перечень мероприятий по охране окружающей среды»</span>
                 </a>
                 <div class="hierarchy__stage">76%</div>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section invalid" data-selected="" data-number="4.2.3.7.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">4.2.3.7. По разделу «Мероприятия по обеспечению пожарной безопасности»
 </span>
                 </a>
                 <div class="hierarchy__stage">44%</div>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.2.3.8.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">4.2.3.8. По разделу «Смета на строительство объектов капитального строительства»
 </span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section header" data-selected="">
+            <div class="hierarchy__section header" data-selected="" data-number="4.2.3.9.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">4.2.3.9. По разделу «Иная документация, в случаях, предусмотренных федеральными
 законами»</span>
                 </a>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.2.3.9.1.">
                 <a class="hierarchy__item" data-depth="4">
                     <span class="hierarchy__name">4.2.3.9.1. Мероприятия по обеспечению санитарно-эпидемиологического
 благополучия населения (и работающих – для производственных объектов)</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.2.3.9.2.">
                 <a class="hierarchy__item" data-depth="4">
                     <span class="hierarchy__name">4.2.3.9.2. Перечень мероприятий по гражданской обороне, мероприятий по
 предупреждению чрезвычайных ситуаций природного и техногенного
@@ -356,7 +356,7 @@
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section header" data-selected="">
+            <div class="hierarchy__section header" data-selected="" data-number="4.3.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">4.3. Описание сметы на строительство, реконструкцию, капитальный ремонт, снос
 объектов капитального строительства, проведение работ по сохранению объектов
@@ -364,7 +364,7 @@
 Федерации</span>
                 </a>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.3.1.">
                 <a class="hierarchy__item" data-depth="2">
                     <span class="hierarchy__name">4.3.1. Сведения о сметной стоимости строительства, реконструкции, капитального
 ремонта, сноса объекта капитального строительства, работ по сохранению
@@ -375,13 +375,13 @@
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.3.2.">
                 <a class="hierarchy__item" data-depth="2">
                     <span class="hierarchy__name">4.3.2. Информация об использованных сметных нормативах</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="4.3.3.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">4.3.3. Информация о цене строительства объектов, аналогичных по назначению,
 проектной мощности, природным и иным условиям территории, на которой
@@ -390,12 +390,12 @@
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section header" data-selected="">
+            <div class="hierarchy__section header" data-selected="" data-number="5.">
                 <a class="hierarchy__item" data-depth="0">
                     <span class="hierarchy__name">5. Выводы по результатам рассмотрения</span>
                 </a>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="5.1.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">5.1. Выводы о соответствии или несоответствии результатов инженерных изысканий
 требованиям технических регламентов
@@ -403,12 +403,12 @@
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section header" data-selected="">
+            <div class="hierarchy__section header" data-selected="" data-number="5.2.">
                 <a class="hierarchy__item" data-depth="1">
                     <span class="hierarchy__name">5.2. Выводы в отношении технической части проектной документации</span>
                 </a>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="5.2.1.">
                 <a class="hierarchy__item" data-depth="2">
                     <span class="hierarchy__name">5.2.1. Указание на результаты инженерных изысканий, на соответствие которым
 проводилась оценка проектной документации
@@ -416,7 +416,7 @@
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section header" data-selected="">
+            <div class="hierarchy__section header" data-selected="" data-number="5.2.2.">
                 <a class="hierarchy__item" data-depth="2">
                     <span class="hierarchy__name">5.2.2. Выводы о соответствии или несоответствии технической части проектной
 документации результатам инженерных изысканий, заданию застройщика или
@@ -424,14 +424,14 @@
 регламентов</span>
                 </a>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="5.2.2.1.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">5.2.2.1. Выводы о соответствии в отношении технической части проектной
 документации</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section invalid" data-selected="" data-number="5.2.2.2.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">5.2.2.2. Выводы по разделам: «Архитектурные решения», «Конструктивные и
 объемно-планировочные решения»
@@ -439,59 +439,59 @@
                 </a>
                 <div class="hierarchy__stage">0%</div>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="5.2.2.3.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">5.2.2.3. Выводы по разделу «Проект организации строительства»</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="5.2.2.4.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">5.2.2.4. Выводы по разделу «Проект организации работ по сносу или демонтажу
 объектов капитального строительства»</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section invalid" data-selected="" data-number="5.2.2.5.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">5.2.2.5. Выводы по разделу «Перечень мероприятий по охране окружающей среды»</span>
                 </a>
                 <div class="hierarchy__stage">0%</div>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section invalid" data-selected="" data-number="5.2.2.6.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">5.2.2.6. Выводы по разделу «Мероприятия по обеспечению пожарной безопасности»</span>
                 </a>
                 <div class="hierarchy__stage">0%</div>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="5.2.2.7.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">5.2.2.7. Выводы по разделу «Смета на строительство объектов капитального
 строительства»</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section header" data-selected="">
+            <div class="hierarchy__section header" data-selected="" data-number="5.2.2.8.">
                 <a class="hierarchy__item" data-depth="3">
                     <span class="hierarchy__name">5.2.2.8. Выводы по разделу «Иная документация в случаях, предусмотренных
 федеральными законами»
 </span>
                 </a>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="5.2.2.8.1.">
                 <a class="hierarchy__item" data-depth="4">
                     <span class="hierarchy__name">5.2.2.8.1. Мероприятия по обеспечению санитарно-эпидемиологического
 благополучия населения</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section header" data-selected="">
+            <div class="hierarchy__section header" data-selected="" data-number="5.3.">
                 <a class="hierarchy__item" data-depth="2">
-                    <span class="hierarchy__name">5.3.Выводы по результатам проверки достоверности определения сметной стоимости
+                    <span class="hierarchy__name">5.3. Выводы по результатам проверки достоверности определения сметной стоимости
 </span>
                 </a>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="5.3.1.">
                 <a class="hierarchy__item" data-depth="2">
                     <span class="hierarchy__name">5.3.1. Выводы о соответствии (несоответствии) расчетов, содержащихся в сметной
 документации, утвержденным сметным нормативам, сведения о которых
@@ -502,14 +502,14 @@
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="5.3.2.">
                 <a class="hierarchy__item" data-depth="2">
                     <span class="hierarchy__name">5.3.2. Выводы о непревышении (превышении) сметной стоимости строительства,
 реконструкции над укрупненным нормативом цены строительства</span>
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="5.3.3.">
                 <a class="hierarchy__item" data-depth="2">
                     <span class="hierarchy__name">5.3.3. Выводы о соответствии (несоответствии) расчетов, содержащихся в сметной
 документации, физическим объемам работ, включенным в ведомость объемов
@@ -522,7 +522,7 @@
                 </a>
                 <i class="hierarchy__icon fas fa-check"></i>
             </div>
-            <div class="hierarchy__section" data-selected="">
+            <div class="hierarchy__section" data-selected="" data-number="5.3.4.">
                 <a class="hierarchy__item" data-depth="2">
                     <span class="hierarchy__name">5.3.4. Выводы о достоверности или недостоверности определения сметной стоимости
 строительства, реконструкции, капитального ремонта, сноса объекта
@@ -536,13 +536,13 @@
     <div class="conclusion-body">
 
         <div class="application-form__cards">
-            <div class="application-form__card card-form card header">
+            <div class="application-form__card card-form card header" data-number="1.">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">1. Общие положения и сведения о заключении экспертизы</span>
                 </div>
             </div>
     
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-completed="true" data-number="1.1.">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">1.1. Сведения об организации по проведению экспертизы
 </span>
@@ -579,7 +579,7 @@
                     </div>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-completed="true" data-number="1.2.">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">1.2. Сведения о заявителе</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
@@ -619,7 +619,7 @@
                     </div>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-completed="true" data-number="1.3.">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">1.3. Основания для проведения экспертизы</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
@@ -639,7 +639,7 @@
                     </div>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="1.4." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">1.4. Сведения о положительном заключении государственной экологической экспертизы</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
@@ -648,7 +648,7 @@
                     <div class="conclusion-body__message">Не требуется</div>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="1.5." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">1.5. Сведения о составе документов, представленных для проведения экспертизы</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
@@ -697,7 +697,7 @@
                     </div>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="1.6." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">1.6. Сведения о ранее выданных заключениях экспертизы в отношении объекта капитального строительства, проектная документация и (или) результаты инженерных изысканий по которому представлены для проведения экспертизы</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
@@ -706,19 +706,19 @@
                     <div class="conclusion-body__message">Не требуются</div>
                 </div>
             </div>
-            <div class="application-form__card card-form card header">
+            <div class="application-form__card card-form card header" data-number="2.">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">2. Сведения, содержащиеся в документах, представленных для проведения
 экспертизы проектной документации</span>
                 </div>
             </div>
-            <div class="application-form__card card-form card header">
+            <div class="application-form__card card-form card header" data-number="2.1.">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">2.1. Сведения об объекте капитального строительства, применительно к которому
 подготовлена проектная документация</span>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="2.1.1." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">2.1.1. Сведения о наименовании объекта капитального строительства, его почтовый (строительный) адрес или местоположение</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
@@ -727,7 +727,7 @@
                     <div class="conclusion-body__message">Наименование объекта: «Реконструкция кровли нежилого здания по адресу: Челябинская область, Еманжелинский район, посёлок Зауральский, 2 квартал, №3-а».<br>Адрес (местоположение): Российская Федерация, Челябинская область, Еманжелинский район, посёлок Зауральский, 2 квартал, №3-а.</div>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="2.1.2." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">2.1.2. Сведения о функциональном назначении объекта капитального строительства</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
@@ -747,7 +747,7 @@
                     </div>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="2.1.3." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">2.1.3. Сведения о технико-экономических показателях объекта капитального строительства</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
@@ -783,7 +783,7 @@
                     </div>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="2.2." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">2.2. Сведения о зданиях (сооружениях), входящих в состав сложного объекта, применительно к которому подготовлена проектная документация</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
@@ -792,7 +792,7 @@
                     <div class="conclusion-body__message">Не требуются</div>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="2.3." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">2.3. Сведения об источнике (источниках) и размере финансирования строительства, реконструкции, капитального ремонта, сноса объекта капитального строительства</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
@@ -816,7 +816,7 @@
                     </div>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="2.4." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">2.4. Сведения о природных и техногенных условиях территории, на которой
 планируется осуществлять строительство
@@ -846,7 +846,7 @@
                     </div>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="2.5." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">2.5. Сведения об индивидуальных предпринимателях и (или) юридических лицах, подготовивших проектную документацию</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
@@ -894,7 +894,7 @@
                     </div>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="2.6." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">2.6. Сведения об использовании при подготовке проектной документации экономически эффективной проектной повторного использования.</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
@@ -903,7 +903,7 @@
                     <div class="conclusion-body__message">Не требуются</div>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="2.7." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">2.7. Сведения о задании застройщика (технического заказчика) на разработку проектной документации</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
@@ -912,7 +912,7 @@
                     <div class="conclusion-body__message">Задание на проектирование по объекту: «Реконструкция кровли нежилого здания по                        адресу: Челябинская область, Еманжелинский район, поселок Зауральский, 2 квартал, № 3-а», утвержденное директором МБОУ ДО «ДШИ № 3» Таубаевой Р.К.</div>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="2.8." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">2.8. Сведения о документации по планировке территории, о наличии разрешений на
 отклонение от предельных параметров разрешенного строительства,
@@ -925,7 +925,7 @@
                         участок с кадастровым номером 74:28:0202006:6 площадью 655 +/- 9 кв.м.</div>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="2.9." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">2.9. Сведения о технических условиях подключения объекта капитального
 строительства к сетям инженерно-технического обеспечения</span>
@@ -935,7 +935,7 @@
                     <div class="conclusion-body__message">Не требуются</div>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="2.10." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">2.10. Кадастровый номер земельного участка (земельных участков), в пределах
 которого (которых) расположен или планируется расположение объекта
@@ -946,7 +946,7 @@
                     <div class="conclusion-body__message">Кадастровый номер 74:28:0202006:6</div>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="false">
+            <div class="application-form__card card-form card" data-number="2.11." data-completed="false">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">2.11. Сведения о застройщике (техническом заказчике), обеспечившем подготовку
 проектной документации</span>
@@ -1018,7 +1018,7 @@
                     </div>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="3." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">3. Сведения, содержащиеся в документах, представленных для проведения
 экспертизы результатов инженерных изысканий</span>
@@ -1028,12 +1028,12 @@
                     <div class="conclusion-body__message">Не требуется</div>
                 </div>
             </div>
-            <div class="application-form__card card-form card header">
+            <div class="application-form__card card-form card header" data-number="4.">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4. Описание рассмотренной документации (материалов)</span>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.1." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.1. Описание результатов инженерных изысканий</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
@@ -1042,12 +1042,12 @@
                     <div class="conclusion-body__message">Не требуется</div>
                 </div>
             </div>
-            <div class="application-form__card card-form card header">
+            <div class="application-form__card card-form card header" data-number="4.2.">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2. Описание технической части проектной документации</span>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.2.1." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.1. Состав проектной документации (указывается отдельно по каждому разделу
 проектной документации с учетом изменений, внесенных в ходе проведения
@@ -1117,15 +1117,14 @@
                     </div>
                 </div>
             </div>
-            <div class="application-form__card card-form card header">
+            <div class="application-form__card card-form card header" data-number="4.2.2.">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.2. Описание основных решений (мероприятий), принятых в проектной
 документации
 </span>
                 </div>
-
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.2.2.1." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.2.1. Пояснительная записка</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-up card-icon"></i>
@@ -1134,55 +1133,55 @@
                     <div class="conclusion-body__message"><p>&nbsp; &nbsp; Здание постройки середины 60-х годов, эксплуатируемое, расположено в застроенном жилом квартале.<br>&nbsp; &nbsp; Здание неоднократно подвергалась реконструкции и ремонтным работам. На данный момент в здании размещается муниципальное бюджетное образовательноеучреждение дополнительного образования «Детская школа искусств №3».<br>&nbsp; &nbsp; Зона проектирования на данном объекте ограничена заменой плоской мягкойкровли на скатную с холодным чердаком и ремонтом поврежденных участков наружныхстен. Крыша – запроектирована с холодным чердаком и деревянными стропильными конструкциями с организованным наружным водостоком. Кровля - металлочерепица.</p></div>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.2.2.2." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.2.2. Архитектурные решения</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.2.2.3." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.2.3. Конструктивные и объемно-планировочные решения</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.2.2.4." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.2.4. Проект организации строительства</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.2.2.5." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.2.5. Проект организации работ по сносу или демонтажу объектов капитального
 строительства</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.2.2.6." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.2.6. Перечень мероприятий по охране окружающей среды</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.2.2.7." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.2.7. Мероприятия по обеспечению пожарной безопасности</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.2.2.8." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.2.8. Смета на строительство объектов капитального строительства</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card header">
+            <div class="application-form__card card-form card header" data-number="4.2.2.9.">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.2.9. Иная документация, в случаях, предусмотренных федеральными законами</span>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.2.2.9.1." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.2.9.1. Мероприятия по обеспечению санитарно-эпидемиологического
 благополучия населения (и работающих – для производственных объектов)
@@ -1190,7 +1189,7 @@
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.2.2.9.2." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.2.9.2. Перечень мероприятий по гражданской обороне, мероприятий по
 предупреждению чрезвычайных ситуаций природного и техногенного
@@ -1198,78 +1197,78 @@
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card header">
+            <div class="application-form__card card-form card header" data-number="4.2.3.">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.3. Сведения об оперативных изменениях, внесенных заявителем в
 рассматриваемые разделы проектной документации в процессе проведения
 экспертизы</span>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.2.3.1." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.3.1. По разделу «Пояснительная записка»</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.2.3.2." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.3.2. По разделу «Архитектурные решения»</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="false">
+            <div class="application-form__card card-form card" data-number="4.2.3.3." data-completed="false">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.3.3. По разделу «Конструктивные и объемно-планировочные решения»</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.2.3.4." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.3.4. По разделу «Проект организации строительства»</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.2.3.5." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.3.5. По разделу «Проект организации работ по сносу или демонтажу объектов
 капитального строительства»</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="false">
+            <div class="application-form__card card-form card" data-number="4.2.3.6." data-completed="false">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.3.6. По разделу «Перечень мероприятий по охране окружающей среды»</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="false">
+            <div class="application-form__card card-form card" data-number="4.2.3.7." data-completed="false">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.3.7. По разделу «Мероприятия по обеспечению пожарной безопасности»
 </span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.2.3.8." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.3.8. По разделу «Смета на строительство объектов капитального строительства»
 </span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card header">
+            <div class="application-form__card card-form card header" data-number="4.2.3.9.">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.3.9. По разделу «Иная документация, в случаях, предусмотренных федеральными
 законами»</span>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.2.3.9.1." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.3.9.1. Мероприятия по обеспечению санитарно-эпидемиологического
 благополучия населения (и работающих – для производственных объектов)</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.2.3.9.2." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.2.3.9.2. Перечень мероприятий по гражданской обороне, мероприятий по
 предупреждению чрезвычайных ситуаций природного и техногенного
@@ -1277,7 +1276,7 @@
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card header">
+            <div class="application-form__card card-form card header" data-number="4.3.">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.3. Описание сметы на строительство, реконструкцию, капитальный ремонт, снос
 объектов капитального строительства, проведение работ по сохранению объектов
@@ -1285,7 +1284,7 @@
 Федерации</span>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.3.1." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.3.1. Сведения о сметной стоимости строительства, реконструкции, капитального
 ремонта, сноса объекта капитального строительства, работ по сохранению
@@ -1296,13 +1295,13 @@
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.3.2." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.3.2. Информация об использованных сметных нормативах</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="4.3.3." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">4.3.3. Информация о цене строительства объектов, аналогичных по назначению,
 проектной мощности, природным и иным условиям территории, на которой
@@ -1311,12 +1310,12 @@
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card header">
+            <div class="application-form__card card-form card header" data-number="5.">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">5. Выводы по результатам рассмотрения</span>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="5.1." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">5.1. Выводы о соответствии или несоответствии результатов инженерных изысканий
 требованиям технических регламентов
@@ -1324,12 +1323,12 @@
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card header">
+            <div class="application-form__card card-form card header" data-number="5.2.">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">5.2. Выводы в отношении технической части проектной документации</span>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="5.2.1." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">5.2.1. Указание на результаты инженерных изысканий, на соответствие которым
 проводилась оценка проектной документации
@@ -1338,21 +1337,21 @@
                 </div>
             </div>
             <div class="application-form__card card-form card header">
-                <div class="card-form__header card-expand">
+                <div class="card-form__header card-expand" data-number="5.2.2.">
                     <span class="card-form__title">5.2.2. Выводы о соответствии или несоответствии технической части проектной
 документации результатам инженерных изысканий, заданию застройщика или
 технического заказчика на проектирование и требованиям технических
 регламентов</span>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="5.2.2.1." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">5.2.2.1. Выводы о соответствии в отношении технической части проектной
 документации</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="false">
+            <div class="application-form__card card-form card" data-number="5.2.2.2." data-completed="false">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">5.2.2.2. Выводы по разделам: «Архитектурные решения», «Конструктивные и
 объемно-планировочные решения»
@@ -1360,57 +1359,57 @@
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="5.2.2.3." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">5.2.2.3. Выводы по разделу «Проект организации строительства»</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="5.2.2.4." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">5.2.2.4. Выводы по разделу «Проект организации работ по сносу или демонтажу
 объектов капитального строительства»</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="false">
+            <div class="application-form__card card-form card" data-number="5.2.2.5." data-completed="false">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">5.2.2.5. Выводы по разделу «Перечень мероприятий по охране окружающей среды»</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="false">
+            <div class="application-form__card card-form card" data-number="5.2.2.6." data-completed="false">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">5.2.2.6. Выводы по разделу «Мероприятия по обеспечению пожарной безопасности»</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="5.2.2.7." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">5.2.2.7. Выводы по разделу «Смета на строительство объектов капитального
 строительства»</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card header">
+            <div class="application-form__card card-form card header" data-number="5.2.2.8.">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">5.2.2.8. Выводы по разделу «Иная документация в случаях, предусмотренных
 федеральными законами»</span>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="5.2.2.8.1." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">5.2.2.8.1. Мероприятия по обеспечению санитарно-эпидемиологического
 благополучия населения</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card header">
+            <div class="application-form__card card-form card header" data-number="5.3.">
                 <div class="card-form__header card-expand">
-                    <span class="card-form__title">5.3.Выводы по результатам проверки достоверности определения сметной стоимости</span>
+                    <span class="card-form__title">5.3. Выводы по результатам проверки достоверности определения сметной стоимости</span>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="5.3.1." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">5.3.1. Выводы о соответствии (несоответствии) расчетов, содержащихся в сметной
 документации, утвержденным сметным нормативам, сведения о которых
@@ -1421,14 +1420,14 @@
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="5.3.2." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">5.3.2. Выводы о непревышении (превышении) сметной стоимости строительства,
 реконструкции над укрупненным нормативом цены строительства</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="5.3.3." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">5.3.3. Выводы о соответствии (несоответствии) расчетов, содержащихся в сметной
 документации, физическим объемам работ, включенным в ведомость объемов
@@ -1441,7 +1440,7 @@
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
                 </div>
             </div>
-            <div class="application-form__card card-form card" data-completed="true">
+            <div class="application-form__card card-form card" data-number="5.3.4." data-completed="true">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">5.3.4. Выводы о достоверности или недостоверности определения сметной стоимости
 строительства, реконструкции, капитального ремонта, сноса объекта
