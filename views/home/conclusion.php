@@ -24,54 +24,10 @@
             </div>
             <div class="hierarchy__section" data-selected="">
                 <a class="hierarchy__item" data-depth="0">
-                    <span class="hierarchy__name">1.2. Сведения о заявителе</span>
+                    <span class="hierarchy__name">1.3. Основания для проведения экспертизы</span>
                 </a>
                 <span class="hierarchy__stage">33%</span>
             </div>
-            <div class="hierarchy__section" data-selected="">
-                <a class="hierarchy__item" data-depth="0">
-                    <span class="hierarchy__name">1.3. Основания для проведения экспертизы</span>
-                </a>
-                <i class="hierarchy__icon fas fa-check"></i>
-            </div>
-            <div class="hierarchy__section" data-selected="">
-                <a class="hierarchy__item" data-depth="0">
-                    <span class="hierarchy__name">1.1. Сведения об организации по проведению экспертизы</span>
-                </a>
-                <i class="hierarchy__icon fas fa-check"></i>
-            </div>
-            <div class="hierarchy__section" data-selected="">
-                <a class="hierarchy__item" data-depth="0">
-                    <span class="hierarchy__name">1.1. Сведения об организации по проведению экспертизы</span>
-                </a>
-                <i class="hierarchy__icon fas fa-check"></i>
-            </div>
-            <div class="hierarchy__section" data-selected="">
-                <a class="hierarchy__item" data-depth="0">
-                    <span class="hierarchy__name">1.1. Сведения об организации по проведению экспертизы</span>
-                </a>
-                <i class="hierarchy__icon fas fa-check"></i>
-            </div><div class="hierarchy__section" data-selected="">
-                <a class="hierarchy__item" data-depth="0">
-                    <span class="hierarchy__name">1.1. Сведения об организации по проведению экспертизы</span>
-                </a>
-                <i class="hierarchy__icon fas fa-check"></i>
-            </div><div class="hierarchy__section" data-selected="">
-                <a class="hierarchy__item" data-depth="0">
-                    <span class="hierarchy__name">1.1. Сведения об организации по проведению экспертизы</span>
-                </a>
-                <i class="hierarchy__icon fas fa-check"></i>
-            </div>
-            <div class="hierarchy__section" data-selected="">
-                <a class="hierarchy__item" data-depth="0">
-                    <span class="hierarchy__name">1.1. Сведения об организации по проведению экспертизы</span>
-                </a>
-                <i class="hierarchy__icon fas fa-check"></i>
-            </div>
-
-
-
-
 
         </div>
     </div>
