@@ -17,9 +17,10 @@
 }
 
 .conclusion-sidebar {
-   margin: 0 10px 0 0;
+   margin: 0 10px 10px 0;
    align-self: flex-start;
-   min-width: 350px;
+   min-width: 500px;
+   max-width: 500px;
    position: sticky;
    top: 60px;
 }
@@ -40,7 +41,7 @@
 }
 
 .hierarchy__stage {
-   margin: 0 5px;
+   margin: 0 0 0 5px;
 }
 
 .hierarchy__icon.fa-check {
@@ -55,7 +56,11 @@
 }
 
 .card-form__title {
-   text-transform: uppercase;
+   /*text-transform: uppercase;*/
+}
+
+.card-form__body {
+   font-size: 14px;
 }
 
 .form-field__title {
@@ -66,20 +71,20 @@
    width: 80%;
 }
 
-.hierarchy__section:first-child .hierarchy__name {
+.conclusion-sidebar__header .hierarchy__name {
    font-weight: 700;
 }
 
-.hierarchy__section:first-child {
+.conclusion-sidebar__header {
    border-bottom: 1px solid #e0e0e0;
    border-left: unset;
 }
 
-.hierarchy__section:first-child:hover {
+.conclusion-sidebar__header:hover {
    background-color: unset;
 }
 
-.hierarchy__section:first-child .hierarchy__stage {
+.conclusion-sidebar__header .hierarchy__stage {
    font-weight: 700;
    color: unset;
 }
@@ -154,15 +159,68 @@
    font-weight: 700;
 }
 
+.hierarchy__section.header {
+   background-color: #f3f5f6;
+   border-left-color: #f3f5f6;
+}
+
+.hierarchy__item[data-depth='1'] {
+   padding: 0 0 0 5px;
+}
+
+.hierarchy__item[data-depth='2'] {
+   padding: 0 0 0 10px;
+}
+
+.hierarchy__item[data-depth='3'] {
+   padding: 0 0 0 15px;
+}
+
+.hierarchy__item[data-depth='4'] {
+   padding: 0 0 0 20px;
+}
+
+.conclusion-sidebar__hierarchy {
+   align-self: flex-start;
+   cursor: pointer;
+   max-height: 920px;
+   overflow: auto;
+}
+
+.conclusion-sidebar__header {
+   padding: 7px 10px;
+   /*transition: background-color, border-color .1s;*/
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.hierarchy__section:first-child {
+   border-radius: unset;
+}
 
 
+.conclusion-sidebar__hierarchy::-webkit-scrollbar {
+   max-height: 5px;
+   width: 3px;
+   cursor: pointer;
+}
 
+.conclusion-sidebar__hierarchy::-webkit-scrollbar-track {
+   background: #f3f5f6;
+   border-radius: 0;
+   cursor: pointer;
+}
 
+.conclusion-sidebar__hierarchy::-webkit-scrollbar-thumb {
+   background: #f3f5f6;
+   border-radius: 0;
+   cursor: pointer;
+}
 
-
-
-
-
+.conclusion-sidebar__hierarchy::-webkit-scrollbar-thumb:hover {
+   background: #f3f5f6;
+}
 
 
 
