@@ -22,9 +22,6 @@ class BrowserHelper {
 
    // Проверка браузера на наличие promise
    static canPromise () {
-      if (!window.Promise) {
-
-      }
       return !!window.Promise;
    }
 

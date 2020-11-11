@@ -30,7 +30,7 @@ class Validator
     /**
      * Конструктор класса
      *
-     * @param MessageParser $parser экземпляр класса парсинга вывода cmd-сообщения
+     * @param MessageParser $parser экземпляр класса разбора вывода cmd-сообщения
      * @param SignatureValidationShell $shell экземпляр класса для выполения shell-команд (ExternalSignature / InternalSignature)
      */
     public function __construct(MessageParser $parser, SignatureValidationShell $shell)
