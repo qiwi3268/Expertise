@@ -28,9 +28,29 @@ class Test extends PageController
 
     public function doExecute(): void
     {
-        $uri = "/home/expertise_cards/application/view?test[]=1&test[]=2&id_document=1905";
+
+        $URIS = [
+            "home/expertise_cards/applicat1ion/view?test[]=1&test[]=2&id_document=1905",
+            "home/expertise_cards/application/actions/action_2?id_document=1905",
+            "home/application/create?id_document=1905",
+            "home/application/create?id_document=1905",
+        ];
+
+        $uri = $URIS[0];
         $a = URIParser::parseExpertiseCard($uri);
         vd($a);
+
+        $uri = $URIS[1];
+        $a = URIParser::parseActionPage($uri);
+        vd($a);
+
+        $uri = $URIS[1];
+        $a = URIParser::parseAPIActionExecutor($uri);
+        vd($a);
+
+        foreach ($URIS as $URI) {
+            vd(URIParser::parse($URI));
+        }
     }
 }
 

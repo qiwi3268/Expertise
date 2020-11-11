@@ -5,13 +5,18 @@ namespace APIControllers\Home\FileUploader;
 
 use Lib\Exceptions\File as SelfEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
-use Exception;
+use Lib\Exceptions\Transaction as TransactionEx;
+use ReflectionException;
 
 use core\Classes\Request\HttpRequest;
 use Lib\Files\Uploader as UploaderToServer;
 use Lib\DataBase\Transaction;
 
 
+/**
+ * Предназначен для загрузки файлов на сервер, включая проверки и создание соответствующих записей в БД
+ *
+ */
 abstract class Uploader
 {
     protected HttpRequest $request;
@@ -65,15 +70,15 @@ abstract class Uploader
     /**
      * Конструктор класса
      *
-     * @param int $applicationId id заявления
+     * @param string $directory абсолютный путь в ФС сервера до директории загрузки файлов
      * @param int $mainDocumentId id главного документа к которому загружаются файлы
      * @param string $fileTableClass полное наименование класса файловой таблицы
      */
-    public function __construct(int $applicationId, int $mainDocumentId, string $fileTableClass)
+    public function __construct(string $directory, int $mainDocumentId, string $fileTableClass)
     {
         $this->request = HttpRequest::getInstance();
         $this->uploader = new UploaderToServer($_FILES);
-        $this->directory = APPLICATIONS_FILES . "/{$applicationId}";
+        $this->directory = $directory;
         $this->mainDocumentId = $mainDocumentId;
         $this->fileTableClass = $fileTableClass;
     }
@@ -128,8 +133,16 @@ abstract class Uploader
 
 
     /**
-     * @return array
-     * @throws Exception
+     * Предназначен для загрузки файлов на сервер, включая создание записей в БД
+     *
+     * @return array индексный массив с ассоциативным массивом для каждого загруженного файла формата:<br>
+     * 'id'        - id созданной записи для файла<br>
+     * 'name'      - исходное имя файла<br>
+     * 'hash'      - хэш для файла<br>
+     * 'file_size' - размер файла в байтах
+     * @throws SelfEx
+     * @throws TransactionEx
+     * @throws ReflectionException
      */
     public function upload(): array
     {
@@ -244,10 +257,10 @@ abstract class Uploader
      * Предназначен для инициализации свойств класса
      *
      * Необходимо инициализировать (переопределить) свойства:
-     * - inputName (определено по умолчанию)
-     * - allowedFormats (определено по умолчанию)
+     * - inputName        (определено по умолчанию)
+     * - allowedFormats   (определено по умолчанию)
      * - forbiddenSymbols (определено по умолчанию)
-     * - maxFileSize (определено по умолчанию)
+     * - maxFileSize      (определено по умолчанию)
      *
      */
     abstract function initializeProperties(): void;

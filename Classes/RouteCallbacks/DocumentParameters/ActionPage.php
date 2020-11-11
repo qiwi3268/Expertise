@@ -2,7 +2,9 @@
 
 
 namespace Classes\RouteCallbacks\DocumentParameters;
-use Classes\Exceptions\DocumentParameters as SelfEx;
+
+use Lib\Exceptions\URIParser as URIParserEx;
+use Lib\Singles\URIParser;
 
 
 /**
@@ -12,31 +14,19 @@ use Classes\Exceptions\DocumentParameters as SelfEx;
  * - CURRENT_DOCUMENT_ID
  *
  */
-class ActionPage extends DocumentParameters
+class ActionPage
 {
 
     /**
-     * Реализация абстрактного метода
+     * Предназначен для объявления констант
      *
-     * @throws SelfEx
+     * @throws URIParserEx
      */
     public function defineDocumentParameters(): void
     {
-        if (!$this->request->hasInGET('id_document')) {
-            throw new SelfEx("id открытого документа не существует в GET параметрах", 1);
-        }
+        $result = URIParser::parseActionPage(URI);
 
-        // начало текста
-        // home/expertise_cards/
-        // 1 группа:
-        //   любой не пробельный символ один и более раз
-        // /actions/action_
-        // любая цифра один и более раз
-        // конец текста
-        // - регистронезависимые
-        // - использование кодировки utf-8
-        $pattern = "/\Ahome\/expertise_cards\/(\S+)\/actions\/action_\d+\z/iu";
-
-        $this->validateAndDefineParameters($this->request->id_document, $pattern, 1, URN);
+        define('CURRENT_DOCUMENT_TYPE', $result['document_type']);
+        define('CURRENT_DOCUMENT_ID', $result['document_id']);
     }
 }

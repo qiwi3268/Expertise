@@ -2,7 +2,9 @@
 
 
 namespace Classes\RouteCallbacks\DocumentParameters;
-use Classes\Exceptions\DocumentParameters as SelfEx;
+
+use Lib\Exceptions\URIParser as URIParserEx;
+use Lib\Singles\URIParser;
 
 
 /**
@@ -13,35 +15,20 @@ use Classes\Exceptions\DocumentParameters as SelfEx;
  * - CURRENT_VIEW_MODE
  *
  */
-class ExpertiseCard extends DocumentParameters
+class ExpertiseCard
 {
 
     /**
-     * Реализация абстрактного метода
+     * Предназначен для объявления констант
      *
-     * @throws SelfEx
+     * @throws URIParserEx
      */
     public function defineDocumentParameters(): void
     {
-        if (!$this->request->hasInGET('id_document')) {
-            throw new SelfEx("id открытого документа не существует в GET параметрах", 1);
-        }
+        $result = URIParser::parseExpertiseCard(URI);
 
-        // начало текста
-        // home/expertise_cards/
-        // 1 группа
-        //    любой не пробельный символ один и более раз
-        // /
-        // 2 группа:
-        //    любой не пробельный символ один и более раз
-        // конец текста
-        // - регистронезависимые
-        // - использование кодировки utf-8
-        $pattern = "/\Ahome\/expertise_cards\/(\S+)\/(\S+)\z/iu";
-
-        define(
-            'CURRENT_VIEW_MODE',
-            $this->validateAndDefineParameters($this->request->id_document, $pattern, 1,URN)[2]
-        );
+        define('CURRENT_DOCUMENT_TYPE', $result['document_type']);
+        define('CURRENT_DOCUMENT_ID', $result['document_id']);
+        define('CURRENT_VIEW_MODE', $result['view_mode']);
     }
 }

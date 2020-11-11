@@ -10,6 +10,11 @@ use APIControllers\Home\FileUploader\Uploader;
 use Lib\DataBase\Transaction;
 
 
+/**
+ * Файловый загрузчик для таблиц типа
+ * {@see \Tables\Files\Interfaces\FileTableType2}
+ *
+ */
 class Type2 extends Uploader
 {
 
@@ -40,8 +45,8 @@ class Type2 extends Uploader
      * @param array $filesSize
      * @param array $hashes
      * @return Transaction
-     * @throws \Lib\Exceptions\Transaction
-     * @throws \ReflectionException
+     * @throws TransactionEx
+     * @throws ReflectionException
      */
     protected function getCreateTransaction(array $filesName, array $filesSize, array $hashes): Transaction
     {

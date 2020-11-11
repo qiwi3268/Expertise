@@ -20,10 +20,8 @@ use Classes\Application\Helpers\Helper as ApplicationHelper;
 
 /**
  * API предназначен для получения криптографического hash'а к требуемому файлу (для дальнейшего подписания на клиенсткой стороне)
- * <br>
- * <br>
- * <b>***</b> Предполагается, что перед использованием данного API был вызов API_file_checker, поскольку в данном
- * API опускаются проверки: на физическое существование файла, на корректность маппингов и т.д.
+ *
+ * <b>***</b> Предполагается, что перед использованием данного API был вызов FileChecker
  *
  * API result:
  * - ok - ['hash']
@@ -52,7 +50,6 @@ class FileHashGetter extends APIController
             'sign_algorithm' => $sign_algorithm,
             'fs_name'        => $fs_name
             ) = $this->getCheckedRequiredParams(HttpRequest::POST, ['sign_algorithm', 'fs_name']);
-
 
         // Проверка существования указанного алгоритма попдписи
         if (!isset(SIGN_ALGORITHMS[$sign_algorithm])) {

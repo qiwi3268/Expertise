@@ -139,13 +139,9 @@ abstract class Uploader
 
 
     /**
-     * Предназначен для загрузки файлов на сервер, включая создание записей в БД
      *
-     * @return array индексный массив с ассоциативным массивом для каждого загруженного файла формата:<br>
-     * 'id' - id созданной записи для файла<br>
-     * 'name' - исходное имя файла<br>
-     * 'hash' - хэш для файла<br>
-     * 'file_size' - размер файла в байтах
+     *
+     *
      * @throws SelfEx
      * @throws TransactionEx
      * @throws ReflectionException
