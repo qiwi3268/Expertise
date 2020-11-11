@@ -23,7 +23,7 @@ class Cookie
      */
     static public function setNavigationSortName(string $viewName, string $sortName, int $expiresDays = 10): bool
     {
-        return setcookie("navigation[$viewName][sort_name]", $sortName, self::getExpires($expiresDays)) ? true : false;
+        return setcookie("navigation[{$viewName}][sort_name]", $sortName, self::getExpires($expiresDays)) ? true : false;
     }
 
 
@@ -36,7 +36,7 @@ class Cookie
      */
     static public function setNavigationSortType(string $viewName, string $sortType, int $expiresDays = 10): bool
     {
-        return setcookie("navigation[$viewName][sort_type]", $sortType, self::getExpires($expiresDays)) ? true : false;
+        return setcookie("navigation[{$viewName}][sort_type]", $sortType, self::getExpires($expiresDays)) ? true : false;
     }
 
 
@@ -49,7 +49,7 @@ class Cookie
      */
     static public function setNavigationDataPerPage(string $viewName, int $dataPerPage, int $expiresDays = 10): bool
     {
-        return setcookie("navigation[$viewName][data_per_page]", $dataPerPage, self::getExpires($expiresDays)) ? true : false;
+        return setcookie("navigation[{$viewName}][data_per_page]", $dataPerPage, self::getExpires($expiresDays)) ? true : false;
     }
 
 
