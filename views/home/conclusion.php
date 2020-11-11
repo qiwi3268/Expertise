@@ -4,6 +4,10 @@
     <div class="action-header__title">
         <span class="action-header__name">ПРОСМОТР ЗАКЛЮЧЕНИЯ</span>
         <span class="action-header__document">Заявление на экспертизу 2019-10-2035/2020-2-44-ОС от 06.02.2020</span>
+        <div id="xml_download" class="action-header__xml">
+            <div class="xml-text">Заключение XML</div>
+            <i class="xml-icon fas fa-file-download"></i>
+        </div>
     </div>
 </div>
 

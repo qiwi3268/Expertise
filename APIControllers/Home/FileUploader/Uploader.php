@@ -81,6 +81,41 @@ abstract class Uploader
         $this->directory = $directory;
         $this->mainDocumentId = $mainDocumentId;
         $this->fileTableClass = $fileTableClass;
+
+        $this->initializeProperties();
+    }
+
+
+    /**
+     * Предназначен для получения массива расширений файлов, разрешенных к загрузке
+     *
+     * @return array индексный массив
+     */
+    public function getAllowedFormats(): array
+    {
+        return $this->allowedFormats;
+    }
+
+
+    /**
+     * Предназначен для получения массива запрещенных символов в наименовании файла
+     *
+     * @return array индексный массив
+     */
+    public function getForbiddenSymbols(): array
+    {
+        return $this->forbiddenSymbols;
+    }
+
+
+    /**
+     * Предназначен для получения максимально допустимого размера файла
+     *
+     * @return int максимальный размер в Мб
+     */
+    public function getMaxFileSize(): int
+    {
+        return $this->maxFileSize;
     }
 
 
@@ -102,8 +137,8 @@ abstract class Uploader
 
             $debug = [];
 
-            foreach ($uploader->getErrors() as $error) {
-                $debug[] = "file_name: '{$error['name']}', error_text: '{$error['error']}'";
+            foreach ($uploader->getErrors() as ['name' => $name, 'error' => $error]) {
+                $debug[] = "file_name: '{$name}', error_text: '{$error}'";
             }
 
             $debug = implode(', ', $debug);
@@ -113,21 +148,19 @@ abstract class Uploader
         // Проверка на допустимые форматы файлов
         if (!$uploader->checkFilesName($this->allowedFormats, true)) {
             $debug = implode(', ', $uploader->getErrors());
-            throw new SelfEx("Не пройдены проверки на допустимые форматы файлов. {$debug}", 1003);
+            throw new SelfEx("Файлы: '{$debug}' не прошли проверки на допустимые форматы", 1003);
         }
 
         // Проверка на запрещенные символы в файлах
         if (!$uploader->checkFilesName($this->forbiddenSymbols, false)) {
-
             $debug = implode(', ', $uploader->getErrors());
-            throw new SelfEx("Не пройдены проверки на запрещенные символы. {$debug}", 1004);
+            throw new SelfEx("Файлы: '{$debug}' не прошли проверки на запрещенные символы", 1004);
         }
 
         // Проверка на максимальный размер файлов
         if (!$uploader->checkMaxFilesSize($this->maxFileSize)) {
-
             $debug = implode(', ', $uploader->getErrors());
-            throw new SelfEx("Не пройдены проверки на максимально допустимый размер файлов. {$debug}", 1005);
+            throw new SelfEx("Файлы: '{$debug}' не прошли проверки на максимально допустимый размер", 1005);
         }
     }
 
@@ -197,10 +230,11 @@ abstract class Uploader
                     // Имеются только имена успешно загруженных файлов. Находим их хэш
                     $fileIndex = array_search($file, $filesName, true);
 
-                    $hash = $hashes[$fileIndex];
-
                     // Не получилось удалить файл
-                    if ($fileIndex === false || !unlink("{$directory}/{$hash}")) {
+                    if (
+                        $fileIndex === false
+                        || !unlink("{$directory}/{$hashes[$fileIndex]}")
+                    ) {
                         $errorArr[] = $file;
                     }
                 }
@@ -232,10 +266,10 @@ abstract class Uploader
         for ($l = 0; $l < $filesCount; $l++) {
 
             $result[] = [
-                'id'        => $createdIds[$l],
-                'name'      => $filesName[$l],
-                'hash'      => $hashes[$l],
-                'file_size' => $filesSize[$l]
+                'id'              => $createdIds[$l],
+                'name'            => $filesName[$l],
+                'hash'            => $hashes[$l],
+                'human_file_size' => getHumanFileSize($filesSize[$l])
             ];
         }
         return $result;
@@ -250,7 +284,7 @@ abstract class Uploader
      *
      * @return array
      */
-    abstract function getRequiredParams(): array;
+    abstract public function getRequiredParams(): array;
 
 
     /**
@@ -263,7 +297,7 @@ abstract class Uploader
      * - maxFileSize      (определено по умолчанию)
      *
      */
-    abstract function initializeProperties(): void;
+    abstract protected function initializeProperties(): void;
 
 
     /**

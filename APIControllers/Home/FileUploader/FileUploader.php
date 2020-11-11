@@ -23,14 +23,28 @@ use Tables\Docs\Relations\ParentDocumentLinkerFacade;
  * API предназначен для загрузке файлов в контексте документа
  *
  * API result:
- * - ok -
+ * - ok - [['id', 'name', 'hash', 'human_file_size'], ...]
+ * - uepc - Ошибки со стороны пользователя при подготовительной проверке (загружены некорреткные файлы)
  * - 1 - Ошибка при обработке XML схемы table_mappings
  * - 2 - Ошибка при валидации XML схемы table_mappings
- *
+ * - 3 - Ошибка при разборе входного URI
+ * - 4 - При различных типах документа входной параметр 'target_document_id' не может быть null
+ * - 5 - Ошибка при подготовительной проверке перед загрузкой файлов
+ * - 6 - Ошибка при создании записей в файловую таблицу / при переносе загруженного файла / при обновлении флагов загрузки файла
  *
  */
 class FileUploader extends APIController
 {
+
+    /**
+     * Код выхода, соответствующий ошибкам со стороны пользователя при подготовительной проверке
+     *
+     * - файлы не прошли проверки на допустимые форматы
+     * - файлы не прошли проверки на запрещенные символы
+     * - файлы не прошли проверки на максимально допустимый размер
+     *
+     */
+    private const USER_ERROR_PREPARATORY_CHECK = 'uepc';
 
 
     /**
@@ -56,7 +70,7 @@ class FileUploader extends APIController
             'target_document_id' => $targetDocumentId,
             'mapping_level_1'    => $ml_1,
             'mapping_level_2'    => $ml_2
-            ) = $this->getCheckedRequiredParams(HttpRequest::POST, ['uri', 'mapping_level_1', 'mapping_level_2']);
+            ) = $this->getCheckedRequiredParams(HttpRequest::POST, ['uri', 'target_document_id', 'mapping_level_1', 'mapping_level_2']);
 
         // Получение загрузчика
         try {
@@ -119,10 +133,35 @@ class FileUploader extends APIController
             $uploader->preparatoryCheck();
         } catch (FileEx $e) {
 
-            if (in_array($e->getCode(), [1001, 1002])) {
-                $this->logAndExceptionExit(4, $e, 'Ошибка при подготовительной проверке перед загрузкой файлов');
+            $e_code = $e->getCode();
+
+            // Коды технических ошибок
+            if ($e_code == 1001 || $e_code == 1002) {
+
+                $this->logAndExceptionExit(5, $e, 'Ошибка при подготовительной проверке перед загрузкой файлов');
             } else {
-                $this->exceptionExit(5, $e);
+
+                $message = $e->getMessage();
+
+                switch ($e_code) {
+
+                    case 1003 :
+
+                        $debug = implode(', ', $uploader->getAllowedFormats());
+                        $message .= ". Допустимые форматы файлов: '{$debug}'";
+                        break;
+                    case 1004 :
+
+                        $debug = implode(', ', $uploader->getForbiddenSymbols());
+                        $message .= ". Запрещенные символы: '{$debug}'";
+                        break;
+                    case 1005 :
+
+                        $size = $uploader->getMaxFileSize();
+                        $message .= ". Максимально допустимый размер файла: {$size} Мб";
+                        break;
+                }
+                $this->errorExit(self::USER_ERROR_PREPARATORY_CHECK, $message);
             }
         }
 
