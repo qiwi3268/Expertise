@@ -289,7 +289,7 @@ class GeFile {
 
          })
          .catch(exc => {
-            ErrorModal.open('Ошибка при проверке подписи файла', exc);
+            ErrorModal.open('Ошибка при проверке подписи файла', exc.message, exc.code);
             this.removeElement();
          });
    }

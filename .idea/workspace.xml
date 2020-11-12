@@ -2,18 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74c90984-a9a4-4cba-ae30-b5c1e7865a76" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/views/js/PageUtils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings/routes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/settings/routes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/conclusion.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/conclusion.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/group_modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/group_modal.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/css/tmp/modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/tmp/modal.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/application/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/application/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/modals/comments_group.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home/modals/comments_group.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/home/file_uploader.php" beforeDir="false" afterPath="$PROJECT_DIR$/API/home/file_uploader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APIControllers/Home/ExternalSignatureVerifier.php" beforeDir="false" afterPath="$PROJECT_DIR$/APIControllers/Home/ExternalSignatureVerifier.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APIControllers/Home/FileChecker.php" beforeDir="false" afterPath="$PROJECT_DIR$/APIControllers/Home/FileChecker.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APIControllers/Home/FileHashGetter.php" beforeDir="false" afterPath="$PROJECT_DIR$/APIControllers/Home/FileHashGetter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APIControllers/Home/FileUploader/FileUploader.php" beforeDir="false" afterPath="$PROJECT_DIR$/APIControllers/Home/FileUploader/FileUploader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APIControllers/Home/FileUploader/Uploader.php" beforeDir="false" afterPath="$PROJECT_DIR$/APIControllers/Home/FileUploader/Uploader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APIControllers/Home/InternalSignatureVerifier.php" beforeDir="false" afterPath="$PROJECT_DIR$/APIControllers/Home/InternalSignatureVerifier.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APIControllers/Login.php" beforeDir="false" afterPath="$PROJECT_DIR$/APIControllers/Login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/CSP/MessageParser.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/CSP/MessageParser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lib/CSP/Validator.php" beforeDir="false" afterPath="$PROJECT_DIR$/Lib/CSP/Validator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PageControllers/Home/Application/Create.php" beforeDir="false" afterPath="$PROJECT_DIR$/PageControllers/Home/Application/Create.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/API.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/application/save.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/application/save.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/GeFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/GeFile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/modals/ErrorModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/ErrorModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/js/modals/SignHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/modals/SignHandler.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -171,14 +174,7 @@
       <workItem from="1604892812027" duration="18672000" />
       <workItem from="1604979789755" duration="27969000" />
       <workItem from="1605066802776" duration="20300000" />
-      <workItem from="1605154054860" duration="17955000" />
-    </task>
-    <task id="LOCAL-00243" summary="26.10.2020">
-      <created>1603683685069</created>
-      <option name="number" value="00243" />
-      <option name="presentableId" value="LOCAL-00243" />
-      <option name="project" value="LOCAL" />
-      <updated>1603683685070</updated>
+      <workItem from="1605154054860" duration="19367000" />
     </task>
     <task id="LOCAL-00244" summary="26.10.2020_1">
       <created>1603686136384</created>
@@ -516,7 +512,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605155223795</updated>
     </task>
-    <option name="localTasksCounter" value="292" />
+    <task id="LOCAL-00292" summary="12.11.2020_2">
+      <created>1605182907646</created>
+      <option name="number" value="00292" />
+      <option name="presentableId" value="LOCAL-00292" />
+      <option name="project" value="LOCAL" />
+      <updated>1605182907646</updated>
+    </task>
+    <option name="localTasksCounter" value="293" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -533,7 +536,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="02.11.2020_3" />
     <MESSAGE value="02.11.2020_4" />
     <MESSAGE value="02.11.2020_5" />
     <MESSAGE value="02.11.2020_6" />
@@ -558,7 +560,8 @@
     <MESSAGE value="11.11.2020_2" />
     <MESSAGE value="12.11.2020" />
     <MESSAGE value="12.11.2020_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="12.11.2020_1" />
+    <MESSAGE value="12.11.2020_2" />
+    <option name="LAST_COMMIT_MESSAGE" value="12.11.2020_2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#CSS" timestamp="1600747274648">
@@ -593,11 +596,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598852315903" />
-    <state x="524" y="55" width="749" height="918" key="CommitChangelistDialog2" timestamp="1605155222590">
+    <state x="524" y="55" width="749" height="918" key="CommitChangelistDialog2" timestamp="1605182906120">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="491" y="51" width="749" height="918" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603875686112" />
-    <state x="524" y="55" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1605155222590" />
+    <state x="524" y="55" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1605182906120" />
     <state x="655" y="69" key="CommitChangelistDialog2/0.0.2560.1400/-1920.150.1920.1040@0.0.2560.1400" timestamp="1604934609884" />
     <state x="-1241" y="382" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@-1920.209.1920.1040" timestamp="1603032169697" />
     <state x="905" y="266" key="CommitChangelistDialog2/0.0.2560.1400/-1920.209.1920.1040@0.0.2560.1400" timestamp="1603639279350" />

@@ -117,20 +117,21 @@ class API {
                   case 9:
                      // 1046 - Ошибка базы данных, если слишком длинное название у файла
                      if (response.code === 1046) {
-                        reject('Слишком длинное название файла');
+                        reject({message: 'Слишком длинное название файла'});
                      } else {
-                        reject(`message: ${response.message}, code: ${response.code}`);
+                        // reject(`message: ${response.message}, code: ${response.code}`);
+                        reject({message: response.message, code: response.code});
                      }
                      break;
 
                   default:
                      let message = response.error_message !== undefined ? response.error_message : response.message;
-                     reject(message);
+                     reject({message: message});
                }
 
             })
             .catch(exc => {
-               reject(exc);
+               reject({message: exc});
             });
       });
 
@@ -169,7 +170,7 @@ class API {
                resolve(response);
             })
             .catch(exc => {
-               reject(exc.message);
+               reject(exc);
                console.error(exc);
             });
 
@@ -237,17 +238,7 @@ class API {
                resolve(response)
             })
             .catch(exc => {
-
-               if (exc.result) {
-                  switch (exc.result) {
-                     case 'finesr':
-                        // reject('Ошибка при проверке открепленной подписи: ')
-
-                  }
-
-               }
-
-               reject('Ошибка при проверке открепленной подписи: ' + exc.message);
+               reject(exc);
             });
 
  /*        return XHR(
@@ -357,10 +348,12 @@ class API {
             })
             .catch(exc => {
 
-               if (exc.result && exc.result === 'finisr') {
-                  resolve();
-               } else {
-                  reject(exc);
+               switch (exc.result) {
+                  case 'finisr':
+                     resolve();
+                     break;
+                  default:
+                     reject(exc);
                }
 
             });

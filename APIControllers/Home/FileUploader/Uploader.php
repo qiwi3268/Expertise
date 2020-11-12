@@ -19,6 +19,7 @@ use Lib\DataBase\Transaction;
  */
 abstract class Uploader
 {
+
     protected HttpRequest $request;
     private UploaderToServer $uploader;
 

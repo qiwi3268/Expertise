@@ -463,7 +463,8 @@ class SignHandler extends SignView{
          })
          .catch(exc => {
             this.is_signing = false;
-            ErrorModal.open('Ошибка при загрузке файла открепленной подписи', exc);
+            // ErrorModal.open('Ошибка при загрузке файла открепленной подписи', exc);
+            ErrorModal.open('Ошибка при загрузке файла открепленной подписи', exc.message, exc.code);
             // console.error(exc);
          });
    }

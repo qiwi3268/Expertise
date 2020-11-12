@@ -66,46 +66,8 @@ class MessageParser
 
         $parts = explode(PHP_EOL, $message);
 
-        // Возможны ситуации, когда из-за отсутствия прогресс-бара проверки подписи Signature verifying и ErrorCode
-        // окажутся в одной строке, т.к. символ переноса строк принадлежит прогресс-бару. В таком случае искусственно
-        // добавляем блок ErrorCode к parts
-        $tmp = array_filter($parts, fn($part) => icontainsAll($part, 'Signature verifying...', 'ErrorCode:'));
-        if (!empty($tmp)) {
-
-            $tmp = array_shift($tmp);
-
-            // любой символ один и более раз
-            // Signature verifying...
-            // любой символ ноль и более раз
-            // 1 группа:
-            //    [ErrorCode:
-            //    пробельный символ ноль и более раз
-            //    любой символ один и более раз
-            //    ]
-            // - регистронезависимые
-            // - использование кодировки utf-8
-            $pattern = "/.+Signature verifying\.\.\..*(\[ErrorCode:\s*.+])/iu";
-            $parts[] = getHandlePregMatch($pattern, $tmp, false)[1];
-        }
-
-        // Аналогичная ситуация с Error
-        $tmp = array_filter($parts, fn($part) => icontainsAll($part, 'Signature verifying...', 'Error:'));
-        if (!empty($tmp)) {
-
-            $tmp = array_shift($tmp);
-
-            // любой символ один и более раз
-            // Signature verifying...
-            // любой символ ноль и более раз
-            // 1 группа:
-            //    Error:
-            //    пробельный символ ноль и более раз
-            //    любой символ один и более раз
-            // - регистронезависимые
-            // - использование кодировки utf-8
-            $pattern = "/.+Signature verifying\.\.\..*(Error:\s*.+)/iu";
-            $parts[] = getHandlePregMatch($pattern, $tmp, false)[1];
-        }
+        $this->checkOneLineParts($parts, "/.+Signature verifying\.\.\..*(\[ErrorCode:\s*.+])/iu", 'Signature verifying...', 'ErrorCode:');
+        $this->checkOneLineParts($parts, "/.+Signature verifying\.\.\..*(Error:\s*.+)/iu", 'Signature verifying...', 'Error:');
 
         foreach ($parts as $part) {
 
@@ -125,6 +87,32 @@ class MessageParser
             }
         }
         return $result;
+    }
+
+
+    /**
+     * Предназначен для проверки на то, не оказались ли нужные части в одной строке
+     *
+     * Возможны ситуации, когда из-за отсутствия прогресс-бара проверки подписи некоторые части сообщения
+     * окажутся в одной строке, т.к. символ переноса строк принадлежит прогресс-бару.
+     *
+     * Например, Signature verifying и ErrorCode или Signature verifying и Error
+     *
+     * @param array $parts <i>ссылка</i> на массив частей сообщения
+     * @param string $pattern шаблон для поиска нужно части, которая находится в 1 группе
+     * @param string ...$needles <i>перечисление</i> необходимых вхождений
+     * @throws FunctionsEx
+     */
+    private function checkOneLineParts(array &$parts, string $pattern, string ...$needles): void
+    {
+        foreach ($parts as $part) {
+
+            if (call_user_func_array('icontainsAll', [$part, ...$needles])) {
+
+                $parts[] = getHandlePregMatch($pattern, $part, false)[1];
+                return;
+            }
+        }
     }
 
 
@@ -155,7 +143,7 @@ class MessageParser
         $matches = getHandlePregMatch($pattern, $signer, true)[0]; // Массив полных вхождений шаблона
 
         $count = 0;             // Количество найденных ФИО
-        $FIOs = [];             // Массив с фамилиями, именами и отчествами для вывода exception'а
+        $debug = [];            // Массив с фамилиями, именами и отчествами для вывода exception'а
 
         // Получаем слова
         // любой символ кириллицы один и более раз
@@ -177,17 +165,17 @@ class MessageParser
                     $count++;
                     break;
                 }
-                $FIOs[] = $part;
+                $debug[] = $part;
             }
         }
 
-        $FIOs = implode(', ', $FIOs);
+        $debug = implode(', ', $debug);
 
         // В БД не нашлось подходящего имени
-        if ($count === 0) throw new SelfEx("В БД не нашлось имени из ФИО: '{$FIOs}'", 1);
+        if ($count === 0) throw new SelfEx("В БД не нашлось имени из ФИО: '{$debug}'", 1);
 
         // В одном Signer нашлось больше одного ФИО
-        if ($count > 1) throw new SelfEx("В одном Signer: '{$signer}' нашлось больше одного ФИО: '{$FIOs}'", 2);
+        if ($count > 1) throw new SelfEx("В одном Signer: '{$signer}' нашлось больше одного ФИО", 2);
 
         return $result;
     }
