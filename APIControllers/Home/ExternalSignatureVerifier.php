@@ -12,6 +12,7 @@ use Lib\Exceptions\CSPValidator as CSPValidatorEx;
 use Lib\Exceptions\TableMappings as TableMappingsEx;
 use Lib\Exceptions\XMLValidator as XMLValidatorEx;
 use functions\Exceptions\Functions as FunctionsEx;
+use ReflectionException;
 
 use core\Classes\Request\HttpRequest;
 use Lib\DataBase\Transaction;
@@ -25,19 +26,32 @@ use Classes\Application\Helpers\Helper as ApplicationHelper;
 
 
 /**
- * API предназначен для
+ * API предназначен для валидации открепленной подписи к файлу
+ * В случае корректной подписи создаются соответствующие записи в таблице подписей
+ *
+ * todo про fileChecker
  *
  * API result:
-
+ *
  *
  */
 class ExternalSignatureVerifier extends APIController
 {
 
     /**
+     * Код выхода, соответствующий случаю, когда вместо файла открепленной подписи загружен файл без подписи
+     *
+     */
+    private const FILE_WITHOUT_SIGN_RESULT = 'fwsr';
+
+
+    /**
      * Реализация абстрактного метода
      *
+     * @throws DataBaseEx
      * @throws RequestEx
+     * @throws TransactionEx
+     * @throws ReflectionException
      */
     public function doExecute(): void
     {
@@ -87,8 +101,6 @@ class ExternalSignatureVerifier extends APIController
             $this->logAndErrorExit(4, "id заявления исходного файла: '{$application_id}' не равен id заявления файла подписи: '{$tmp_id}'");
         }
 
-        // *** Опускаем проверку на null по причине предшествующего API_file_checker
-        // todo написать про то что файл чекер нужен заранее
         $dataFileAssoc = $fileTable::getAssocByIdMainDocumentAndHash($application_id, $hash_data);
         $signFileAssoc = $fileTable::getAssocByIdMainDocumentAndHash($application_id, $hash_sign);
 
@@ -103,26 +115,20 @@ class ExternalSignatureVerifier extends APIController
             $validateResults = $validator->validate($fs_data, $fs_sign);
         } catch (ShellEx $e) {
 
-            // Lib\CSP\Shell:exec
-            // Исполняемая команда: не произвела вывод или произошла ошибка
             $this->logAndExceptionExit(6, $e, "Произошла внутренняя ошибка 'Lib\Exceptions\Shell'");
         } catch (FunctionsEx $e) {
 
-            // getHandlePregMatch
-            // Произошла ошибка или нет вхождений шаблона при работе функции getHandlePregMatch
             $this->logAndExceptionExit(7, $e, "Произошла внутренняя ошибка 'functions\Exceptions\Functions'");
         } catch (CSPMessageParserEx $e) {
 
-            // Lib\CSP\MessageParser::getFIO
             $this->logAndExceptionExit(8, $e, "Произошла внутренняя ошибка 'Lib\Exceptions\CSPMessageParser'");
         } catch (CSPValidatorEx $e) {
 
-            // Lib\CSP\Validator::validate
             $code = $e->getCode();
 
             // Вместо открепленной подписи загружен файл без подписи
             if ($code == 4 && $validator->isSignatureVerifyingNotStarted()) {
-                $this->errorExit(777);
+                $this->errorExit(self::FILE_WITHOUT_SIGN_RESULT, 'Вместо открепленной подписи загружен файл без подписи');
             }
 
             //  Был передан пустой файл открепленной подписи
@@ -133,9 +139,10 @@ class ExternalSignatureVerifier extends APIController
             $this->logAndExceptionExit(10, $e, "Произошла внутренняя ошибка 'Lib\Exceptions\CSPValidator'");
         }
 
-        // Открепленная подпись не может содержать более одного подписанта, т.е.
-        // в данном случае встроенная подпись меньше 20 Кб
-        if (count($validateResults) > 1) {
+        $validateResult = array_unshift($validateResults);
+
+        // Открепленная подпись не может содержать более одного подписанта, т.е. в данном случае встроенная подпись меньше 20 Кб
+        if (!empty($validateResults)) {
             $this->errorExit(11, 'Загруженный файл не является открепленной подписью');
         }
 
@@ -145,28 +152,23 @@ class ExternalSignatureVerifier extends APIController
         $transaction = new Transaction();
 
         // Заполняем транзакцию для создания записи в таблице подписей
-        foreach ($validateResults as &$result) {
+        $transaction->add($signTable, 'create', [
+            $id_sign,
+            1,
+            $id_data,
+            $validateResult['fio'],
+            $validateResult['certificate'],
+            $validateResult['signature_verify']['result'] ? 1 : 0,
+            $validateResult['signature_verify']['message'],
+            $validateResult['signature_verify']['user_message'],
+            $validateResult['certificate_verify']['result'] ? 1 : 0,
+            $validateResult['certificate_verify']['message'],
+            $validateResult['certificate_verify']['user_message']
+        ]);
 
-            $transaction->add($signTable, 'create', [
-                $id_sign,
-                1,
-                $id_data,
-                $result['fio'],
-                $result['certificate'],
-                $result['signature_verify']['result'] ? 1 : 0,
-                $result['signature_verify']['message'],
-                $result['signature_verify']['user_message'],
-                $result['certificate_verify']['result'] ? 1 : 0,
-                $result['certificate_verify']['message'],
-                $result['certificate_verify']['user_message']
-            ]);
-
-            // Удаляем результаты, которые не нужны на клиентской стороне
-            unset($result['signature_verify']['message']);
-            unset($result['certificate_verify']['message']);
-        }
-        unset($result);
-
+        // Удаляем данные, которые не нужны на клиентской стороне
+        unset($validateResult['signature_verify']['message']);
+        unset($validateResult['certificate_verify']['message']);
 
         try {
             $transaction->start();
@@ -175,7 +177,7 @@ class ExternalSignatureVerifier extends APIController
         }
 
         // Все прошло успешно
-        $this->successExit(['validate_results' => $validateResults]);
+        $this->successExit(['validate_results' => [$validateResult]]);
     }
 
 

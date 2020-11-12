@@ -290,7 +290,7 @@ class Navigation
 
                 foreach ($block['refs'] as ['value' => $value]) {
                     // Валидация ссылки на указанную страницу --------------------------------------------------
-                    if (!containsAll($value, 'http') && ($value[0] != '/')) {
+                    if (!contains($value, 'http') && ($value[0] != '/')) {
                         throw new SelfEx("Ссылка: '{$value}' в блоке: '{$block['label']}' на внутренний ресурс должна начинаться с символа '/'", 10);
                     }
                 }

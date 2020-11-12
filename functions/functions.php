@@ -15,7 +15,7 @@ function enableAutoloadRegister(): void
 
         $path = null;
 
-        if (containsAll($className, '\\')) {
+        if (contains($className, '\\')) {
 
             $namespacePath = str_replace('\\', '/', $className);
 

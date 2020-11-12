@@ -29,6 +29,14 @@ class Test extends PageController
     public function doExecute(): void
     {
 
+        $a = ['123'];
+        $b = array_shift($a);
+
+        vd($a);
+
+        vd($b);
+
+
         $URIS = [
             "home/expertise_cards/applicat1ion/view?test[]=1&test[]=2&id_document=1905",
             "home/expertise_cards/application/actions/action_2?id_document=1905",

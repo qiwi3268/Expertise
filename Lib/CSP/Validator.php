@@ -44,26 +44,26 @@ class Validator
      * Предназначен для формирования массива с результатами валидации ЭЦП файла
      *
      * @param string ...$paths <i>перечисление</i> путей к файлам:<br>
-     * В случае <b>shell = InternalSignature</b> передается 1 параметр - абсолютный путь в ФС сервера к файлу со встроенной подписью<br>
-     * В случае <b>shell = ExternalSignature</b> передается 2 параметра - абсолютный путь в ФС сервера к файлу, абсолютный путь в ФС сервера к файлу открепленной подписи
+     * В случае shell = InternalSignature передается 1 параметр - абсолютный путь в ФС сервера к файлу со встроенной подписью<br>
+     * В случае shell = ExternalSignature передается 2 параметра - абсолютный путь в ФС сервера к файлу, абсолютный путь в ФС сервера к файлу открепленной подписи
      * @return array массив формата:<br>
-     * 0 : <i>array</i><br>
+     * 0 (array) :
+     * <br><br>
+     * fio (string) : Фамилия Имя Отчество
+     * <br><br>
+     * certificate (string) : данные сертификата
+     * <br><br>
+     * signature_verify (array) : <br>
+     * result (bool)            : верна подпись или нет<br>
+     * message (string)         : вывод исполняемой команды результата проверки подписи<br>
+     * user_message (string)    : пользовательское сообщение на основе результата проверки подписи<br>
      * <br>
-     * fio <i>string</i>: Фамилия Имя Отчество<br>
+     * certificate_verify (array) : <br>
+     * result (bool)              : сертификат действителен или нет<br>
+     * message (string)           : вывод исполняемой команды результата проверки подписи (сертификата)<br>
+     * user_message (string)      : пользовательское сообщение на основе результата проверки подписи (сертификата)<br>
      * <br>
-     * certificate <i>string</i>: данные сертификата<br>
-     * <br>
-     * signature_verify : <i>array</i><br>
-     * result <i>bool</i>: <b>true</b> подпись верна, <b>false</b> в противном случае<br>
-     * message <i>string</i>: вывод исполняемой команды результата проверки подписи<br>
-     * user_message <i>string</i>: пользовательское сообщение на основе результата проверки подписи<br>
-     * <br>
-     * certificate_verify : <i>array</i><br>
-     * result <i>bool</i>: <b>true</b> сертификат действителен, <b>false</b> в противном случае<br>
-     * message <i>string</i>: вывод исполняемой команды результата проверки подписи (сертификата)<br>
-     * user_message <i>string</i>: пользовательское сообщение на основе результата проверки подписи (сертификата)<br>
-     * <br>
-     * 1 : <i>array</i>...<br>
+     * 1 (array) : ...
      *
      * @throws ShellEx
      * @throws SelfEx
@@ -75,10 +75,8 @@ class Validator
         // Получение результатов валидации подписи С проверкой цепочки сертификатов
         $errChain_message = $this->shell->execErrChain($paths);
         $errChain_messageParts = $this->parser->getMessagePartsWithoutTechnicalPart($errChain_message);
-        $errChain_results = $this->getValidateResults($errChain_messageParts);
 
-        $this->lastErrorCode = $errChain_results['errorCode']; // Запись последнего кода ошибки
-        $errChain_signers = $errChain_results['signers'];
+        list('errorCode' => $this->lastErrorCode, 'signers' => $errChain_signers) = $this->getValidateResults($errChain_messageParts);
 
         foreach ($errChain_signers as &$signer) {
 
@@ -92,8 +90,7 @@ class Validator
             //  поэтому нет смысла в повторной проверке подписи без проверки цепочки сертификатов)
             if (
                 $signer['result']
-                || (!$signer['result']
-                    && ($signer['message'] == 'Error: Invalid Signature.' || $signer['message'] == 'Error: Invalid algorithm specified.'))
+                || (!$signer['result'] && ($signer['message'] == 'Error: Invalid Signature.' || $signer['message'] == 'Error: Invalid algorithm specified.'))
             ) {
 
                 $signatureVerify = [
@@ -102,25 +99,26 @@ class Validator
                     'user_message' => $this->getSignatureUserMessage($signer['message'])
                 ];
 
-           // Результат с проверкой цепочки сертификатов невалидный и при этом нет ошибки, что подпись невалидная
+           // Результат с проверкой цепочки сертификатов невалидный и при этом нет ошибки, что подпись невалидная или использован недействительный алгоритм подписи
            // Производим повторную проверку подписи без проверки цепочки сертификатов
             } else {
 
                 // Получение результатов валидации подписи БЕЗ проверкой цепочки сертификатов
-                $noChain_message = $this->shell->execNoChain($paths);
-                $noChain_messageParts = $this->parser->getMessagePartsWithoutTechnicalPart($noChain_message);
-                $noChain_results = $this->getValidateResults($noChain_messageParts);
+                if (!isset($noChain_signers)) {
 
-                $this->lastErrorCode = $noChain_results['errorCode']; // Запись последнего кода ошибки
-                $noChain_signers = $noChain_results['signers'];
+                    $noChain_message = $this->shell->execNoChain($paths);
+                    $noChain_messageParts = $this->parser->getMessagePartsWithoutTechnicalPart($noChain_message);
+
+                    list('errorCode' => $this->lastErrorCode, 'signers' => $noChain_signers) = $this->getValidateResults($noChain_messageParts);
+                }
 
                 // Находим текущий итерируемый signer среди signers нового результата валидаци
-                $noChain_signer = array_filter($noChain_signers, fn($tmp_signer) => ($signer['certificate'] == $tmp_signer['certificate']));
+                $ind = getFirstArrayEntryIndex($noChain_signers, 'certificate', $signer['certificate']);
 
-                if (empty($noChain_signer)) {
+                if (is_null($ind)) {
                     throw new SelfEx('В результате проверки БЕЗ цепочки сертификатов не был найден подписант из результатов проверки С цепочкой сертификатов', 6);
                 }
-                $noChain_signer = array_shift($noChain_signer);
+                $noChain_signer = $noChain_signers[$ind];
 
                 // Результат проверки сертификата остается от проверки с цепочкой сертификата ------------------
                 $signatureVerify = [
@@ -153,17 +151,18 @@ class Validator
      *
      * @param array $messageParts
      * @return array массив формата:<br>
-     * signers : <i>array</i><br>
+     * signers (array) :
+     * <br><br>
+     * 0 (array) :
+     * <br><br>
+     * fio (string)         : Фамилия Имя Отчество<br>
+     * certificate (string) : данные сертификата<br>
+     * result (bool)        : результат проверки подписи<br>
+     * message (string)     : сообщение результата проверки подписи<br>
      * <br>
-     * 0 : <i>array</i><br>
-     * fio <i>string</i>: Фамилия Имя Отчество<br>
-     * certificate <i>string</i>: данные сертификата<br>
-     * result <i>bool</i>: результат проверки подписи<br>
-     * message <i>string</i>: сообщение результата проверки подписи<br>
-     * <br>
-     * 1 : <i>array</i>...<br>
-     * <br>
-     * errorCode <i>string</i>: код ошибки
+     * 1 (array) : ...
+     * <br><br>
+     * errorCode (string) : код ошибки
      *
      * @throws SelfEx
      * @throws FunctionsEx
@@ -190,7 +189,7 @@ class Validator
             //              Signer: ... (следующий подписант)
             //      Error: ...
             //      ErrorCode: ...
-            if (containsAll($part, 'Signer:')) {
+            if (contains($part, 'Signer:')) {
 
                 $FIO = $this->parser->getFIO($part);
 
@@ -227,7 +226,7 @@ class Validator
                     'result'      => $verifyResult,
                     'message'     => $next_1_part
                 ];
-            } elseif (containsAll($part, 'ErrorCode:')) {
+            } elseif (contains($part, 'ErrorCode:')) {
 
                 $errorCodes[] = $this->parser->getErrorCode($part);
             } elseif (containsAny(

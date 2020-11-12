@@ -88,13 +88,8 @@ class NodeStructure
 
             foreach ($node as $key => $value) {
 
-                if (containsAll($key, 'is_')) {
-                    $handleNode[$key] = (bool)$value;
-                } else {
-                    $handleNode[$key] = $value;
-                }
+                $handleNode[$key] = contains($key, 'is_') ? (bool)$value : $value;
             }
-
             $result[] = $handleNode;
         }
         return $result;
