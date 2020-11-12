@@ -131,7 +131,7 @@ class Calendar {
    /**
     * Скрытый инпут поля с датой, в который записывается выбранная дата
     *
-    * @type {HTMLElement}
+    * @type {HTMLInputElement}
     */
    result_input;
 
@@ -409,9 +409,11 @@ class Calendar {
       }
    }
 
-   // Предназначен для предназначен для смены выбранной даты
-   // Принимает параметры-------------------------------
-   // day         number : номер дня
+   /**
+    * Устанавливает выбранную дату
+    *
+    * @param {HTMLElement} day_element - выбранная дата
+    */
    setSelectedDate (day_element) {
       this.current_date.setDate(+day_element.innerHTML);
       this.selected_day = this.current_date.getDate();
@@ -428,7 +430,11 @@ class Calendar {
       this.putItems();
    }
 
-   // Предназначен для получения форматированной строки с выбранной датой
+   /**
+    * Получает форматированную строку с выбранной датой
+    *
+    * @return {string}
+    */
    getDateString () {
       let date_string;
       let day = this.selected_day < 10 ? `0${this.selected_day}` : this.selected_day;
@@ -441,7 +447,9 @@ class Calendar {
       return date_string;
    }
 
-   // Предназначен для удаления выбранной даты
+   /**
+    * Удаляет выбранную дату
+    */
    removeSelectedItem () {
       let selected_item = this.body.querySelector('.calendar__item.selected');
       if (selected_item) {
@@ -449,7 +457,9 @@ class Calendar {
       }
    }
 
-   // Предназначен для смены выбранного элемента дня
+   /**
+    * Меняет выбранный день
+    */
    changeSelectedDay () {
       let days = Array.from(this.body.querySelectorAll('.calendar__item'));
 
@@ -462,7 +472,9 @@ class Calendar {
       }
    }
 
-   // Предназначен для добавления обработчика для заголовка с выбранной датой
+   /**
+    * Обрабатывает нажатие на заголовок с выбранной датой
+    */
    handleDateLabel () {
       this.selected_date_label.addEventListener('click', () => {
          if (this.level > 1) {
@@ -472,7 +484,9 @@ class Calendar {
       });
    }
 
-   // Предназначен для добавления обработчика стрелок для смены страниц в каледаре
+   /**
+    * Обрабатывает нажатие на стрелки переключения страниц календаря
+    */
    handleArrows () {
       let arrow_left = mQS(this.element, '.calendar__arrow.left');
       let arrow_right = mQS(this.element, '.calendar__arrow.right');
@@ -485,13 +499,20 @@ class Calendar {
    // Принимает параметры-------------------------------
    // offset         number : 1 - следующая страница
    //                        -1 - предыдущая страница
+
+   /**
+    * Обработчик нажатия на стрелку переключения страницы календаря
+    *
+    * @param {number} offset 1 - следующая страница,
+    *                        -1 - предыдущая страница
+    */
    arrowClickListener (offset) {
       switch (this.level) {
          case 3 :
-            this.changeCurrentMonth(this.current_month + 1 * offset);
+            this.changeCurrentMonth(this.current_month + offset);
             break;
          case 2 :
-            this.changeCurrentYear(this.current_year + 1 * offset);
+            this.changeCurrentYear(this.current_year + offset);
             break;
          case 1 :
             this.changeCurrentYear(this.current_year + 10 * offset);
@@ -504,6 +525,13 @@ class Calendar {
    // Принимает параметры-------------------------------
    // select         Element : родительское поле
    // result_input   Element : поле с выбранной датой
+
+   /**
+    * Очищает календарь и устанавливает родительское поле
+    *
+    * @param {HTMLElement} select родительское поле
+    * @param {HTMLInputElement} result_input поле, в которое записывается результат
+    */
    clear (select, result_input) {
       let field_value = mQS(select, '[data-field_value]', 11);
 
@@ -516,9 +544,11 @@ class Calendar {
       this.init();
    }
 
-   // Предназначен для смены отображаемого месяца и добавления новых элементов
-   // Принимает параметры------------------------------
-   // month_num         number : номер нового месяца
+   /**
+    * Меняет отображаемый месяц
+    *
+    * @param {number} month_num номер нового месяца
+    */
    changeCurrentMonth (month_num) {
       this.current_date.setMonth(month_num);
       this.current_date.setDate(this.selected_day);
@@ -527,9 +557,11 @@ class Calendar {
       this.current_year = this.current_date.getFullYear();
    }
 
-   // Предназначен для смены отображаемого года и добавления новых элементов
-   // Принимает параметры-------------------------------
-   // year_num         number : новый год
+   /**
+    * Меняет отображаемый год
+    *
+    * @param {number} year_num новый год
+    */
    changeCurrentYear (year_num) {
       this.current_date.setFullYear(year_num);
       this.current_year = this.current_date.getFullYear();
@@ -537,32 +569,39 @@ class Calendar {
       this.putItems();
    }
 
-   // Предназначен для получения короткого названия месяца по числовому значению
-   // Принимает параметры-------------------------------
-   // month_num           number : номер месяца
-   // Возвращает параметры------------------------------
-   // months[month_num]   string : короткое название месяца
+   /**
+    * Получает короткое название месяца по номеру
+    *
+    * @param {number} month_num номер месяца
+    * @return {string}
+    */
    getMonthString (month_num) {
       let months = ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];
       return months[month_num];
    }
 
-   // Предназначен для получния полного названия отображаемого месяца
-   // Возвращает параметры------------------------------
-   // months[this.current_month]      string : полное название отображаемого месяца
+   /**
+    * Получает полное название месяца по номеру отображаемого месяца
+    *
+    * @return {string}
+    */
    getFullMonthString () {
       let months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль',
          'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
       return months[this.current_month];
    }
 
-   // Предназначен для отображения модального окна календаря
+   /**
+    * Отображает модальное окно календаря
+    */
    show () {
       this.element.classList.add('active');
       this.overlay.classList.add('active');
    }
 
-   // Предназначен для позиционирования календаря возле родительского поля
+   /**
+    * Устанавливает позицию модального окна календаря возле родительского поля
+    */
    setPosition () {
       let coordinates = this.select.getBoundingClientRect();
       let coordinates_with_offset = Calendar.getCoords(this.select);
@@ -570,15 +609,17 @@ class Calendar {
       this.element.style.left = coordinates.left + 'px';
    }
 
-   // Предназначен для закрытия модального окна календаря
+   /**
+    * Закрывает модальное окно календаря
+    */
    close () {
       this.element.classList.remove('active');
       this.overlay.classList.remove('active');
    }
 
-
-
-   // Предназначен для добавления события клика по фону календаря
+   /**
+    * Обрабатывает нажатие на фон календаря
+    */
    handleOverlay () {
       this.overlay = document.getElementById('calendar_overlay');
       this.overlay.addEventListener('click', () => this.close());
@@ -617,11 +658,12 @@ class Calendar {
       return this.instance;
    }
 
-   // Предназначен для получения координат элемента относительно документа
-   // Принимает параметры-------------------------------
-   // elem           Element : элемент, для которого нужно получить координаты
-   // Возвращает параметры------------------------------
-   // coordinates     Object : координаты элемента
+   /**
+    * Получает координаты элемента относительно документа
+    *
+    * @param {|HTMLElement} elem элемент, координаты которого нужно получить
+    * @return {{top: number, left: number}}
+    */
    static getCoords (elem) {
       let box = elem.getBoundingClientRect();
 
