@@ -19,14 +19,7 @@
    max-height: 500px;
    overflow-x: hidden;
    overflow-y: auto;
-}
-
-.modal__items::-webkit-scrollbar-track {
-   border-radius: unset;
-}
-
-.modal__items::-webkit-scrollbar-thumb {
-   border-radius: unset;
+   scrollbar-width: thin;
 }
 
 .modal__item {
@@ -73,7 +66,21 @@
 
 /* tmp========================================= */
 
+.modal ::-webkit-scrollbar {
+   cursor: pointer;
+}
 
+.modal ::-webkit-scrollbar-track {
+   background: #f1f1f1;
+}
+
+.modal ::-webkit-scrollbar-thumb {
+   background: red;
+}
+
+.modal ::-webkit-scrollbar-thumb:hover {
+   background: red;
+}
 /* tmp========================================= */
 
 

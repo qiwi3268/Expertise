@@ -202,21 +202,15 @@
 
 
 .conclusion-sidebar__hierarchy::-webkit-scrollbar {
-   max-height: 5px;
    width: 3px;
-   cursor: pointer;
 }
 
 .conclusion-sidebar__hierarchy::-webkit-scrollbar-track {
    background: #f3f5f6;
-   border-radius: 0;
-   cursor: pointer;
 }
 
 .conclusion-sidebar__hierarchy::-webkit-scrollbar-thumb {
    background: #f3f5f6;
-   border-radius: 0;
-   cursor: pointer;
 }
 
 .conclusion-sidebar__hierarchy::-webkit-scrollbar-thumb:hover {

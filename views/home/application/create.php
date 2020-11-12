@@ -53,8 +53,7 @@
     </div>
 
     <div class="application-form__cards">
-        <input type="hidden" name="id_application" value="<?= $_VT->getValue('id_application') ?>">
-
+        <input id="id_document" type="hidden" value="<?= $_VT->getValue('id_document') ?>">
         <div class="application-form__block" data-block data-dependency_scope>
 
             <div class="card-form application-form__card card" data-type="purpose" data-card>

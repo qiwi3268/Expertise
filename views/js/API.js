@@ -14,12 +14,13 @@ class API {
          XHR(method, url, form, headers, responseType, timeout, uploadProgressCallback)
             .then(response => {
 
-               if (response === null) {
+               // if (response.result === null) {
+
+               if (this.isJSON(response)) {
                   reject({message:'Не получен ответ от сервера. Обратитесь к администратору'});
                }
 
                switch (response.result) {
-
                   case SUCCESS_RESULT:
                      resolve(response);
                      break;
@@ -35,15 +36,26 @@ class API {
 
             })
             .catch(exc => {
-               reject(exc);
+               reject({message: `Непредвиденная ошибка при выполнении запроса: ${exc}`});
+               // reject(exc);
             });
 
       });
 
    }
 
+   static isJSON (response) {
+      try {
+         JSON.parse(response);
+      } catch (e) {
+         return false;
+      }
+      return true;
+   }
+
    /**
     * Флаг, указывающий происходит ли обработка запроса на API
+    *
     * @return {*}
     */
    static get is_in_progress() {
@@ -126,6 +138,7 @@ class API {
 
    static getUploadFormData (files, mapping_1, mapping_2, id_structure_node) {
       let form_data = new FormData();
+
       form_data.append('id_application', getIdDocument());
       form_data.append('mapping_level_1', mapping_1);
       form_data.append('mapping_level_2', mapping_2);
@@ -213,7 +226,31 @@ class API {
       return new Promise((resolve, reject) => {
          let form_data = this.getExternalVerifyFormData(fs_name_data, fs_name_sign, mapping_1, mapping_2);
 
-         return XHR(
+         this.sendRequest('post',
+            '/home/API_external_signature_verifier',
+            form_data,
+            null,
+            'json',
+            null,
+            null)
+            .then(response => {
+               resolve(response)
+            })
+            .catch(exc => {
+
+               if (exc.result) {
+                  switch (exc.result) {
+                     case 'finesr':
+                        // reject('Ошибка при проверке открепленной подписи: ')
+
+                  }
+
+               }
+
+               reject('Ошибка при проверке открепленной подписи: ' + exc.message);
+            });
+
+ /*        return XHR(
             'post',
             '/home/API_external_signature_verifier',
             form_data,
@@ -230,20 +267,21 @@ class API {
                      resolve(response.validate_results);
                      break;
 
-                  case 6.1:
+                  case 'fwsr':
                      reject('Загружен файл без открепленной подписи');
+                     // reject(response.message);
                      break;
 
                   default:
                      let message = response.error_message !== undefined ? response.error_message : response.message;
                      reject(`Ошибка при проверке открепленной подписи:\n${message}`);
-
+                     // reject(response.message);
                }
 
             })
             .catch(exc => {
                reject('Ошибка при проверке открепленной подписи: ' + exc);
-            });
+            });*/
       });
 
    }
@@ -307,7 +345,28 @@ class API {
       return new Promise((resolve, reject) => {
          let form_data = this.getInternalVerifyFormData(fs_name, ge_file);
 
-         XHR(
+         this.sendRequest('post',
+            '/home/API_internal_signature_verifier',
+            form_data,
+            null,
+            'json',
+            null,
+            verify_callback)
+            .then(response => {
+               resolve(response.validate_results);
+            })
+            .catch(exc => {
+
+               if (exc.result && exc.result === 'finisr') {
+                  resolve();
+               } else {
+                  reject(exc);
+               }
+
+            });
+
+
+/*         XHR(
             'post',
             '/home/API_internal_signature_verifier',
             form_data,
@@ -340,7 +399,7 @@ class API {
             })
             .catch(exc => {
                reject('Ошибка при проверке встроенной подписи: ' + exc);
-            });
+            });*/
 
       });
    }
@@ -457,8 +516,34 @@ class API {
       let url = new URL(window.location.href);
       let id_document = url.searchParams.get('id_document');
 
+      console.log('uri');
+      console.log(this.getURI());
+
       form_data.append('path_name', action_path);
       form_data.append('id_document', id_document);
    }
 
+   static getURI () {
+      let path = window.location.pathname;
+      let url = new URL(window.location.href);
+      let search = url.searchParams;
+
+      let id_document;
+      if (search.has('id_document')) {
+         id_document = search.get('id_document');
+      } else {
+         let id_input = document.getElementById('id_document');
+         if (!id_input) {
+            ErrorModal.open(
+               'Ошибка при получении параметра страницы',
+               'Не найден параметр id_document'
+            );
+            return null;
+         }
+
+         id_document = id_input.value;
+      }
+
+      return `${path}?${id_document}`;
+   }
 }
