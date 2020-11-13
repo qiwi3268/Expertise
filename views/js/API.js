@@ -14,9 +14,7 @@ class API {
          XHR(method, url, form, headers, responseType, timeout, uploadProgressCallback)
             .then(response => {
 
-               // if (response.result === null) {
-
-               if (this.isJSON(response)) {
+               if (typeof response !== 'object' || response.result === null) {
                   reject({message:'Не получен ответ от сервера. Обратитесь к администратору'});
                }
 
@@ -37,21 +35,24 @@ class API {
             })
             .catch(exc => {
                reject({message: `Непредвиденная ошибка при выполнении запроса: ${exc}`});
-               // reject(exc);
+               console.error(exc);
             });
 
       });
 
    }
 
+   /*
    static isJSON (response) {
       try {
          JSON.parse(response);
       } catch (e) {
+         console.log('catch json');
          return false;
       }
+      console.log('valid json');
       return true;
-   }
+   }*/
 
    /**
     * Флаг, указывающий происходит ли обработка запроса на API
@@ -197,11 +198,21 @@ class API {
    }
 
    static externalSignatureVerify (fs_name_data, fs_name_sign, mapping_1, mapping_2) {
+      let form_data = this.getExternalVerifyFormData(fs_name_data, fs_name_sign, mapping_1, mapping_2);
+      return this.sendRequest(
+         'post',
+         '/home/API_external_signature_verifier',
+         form_data,
+         null,
+         'json',
+         null,
+         null);
 
-      return new Promise((resolve, reject) => {
+
+/*      return new Promise((resolve, reject) => {
          let form_data = this.getExternalVerifyFormData(fs_name_data, fs_name_sign, mapping_1, mapping_2);
 
-         this.sendRequest('post',
+          return this.sendRequest('post',
             '/home/API_external_signature_verifier',
             form_data,
             null,
@@ -215,7 +226,7 @@ class API {
                reject(exc);
             });
 
-      });
+      });*/
 
    }
 

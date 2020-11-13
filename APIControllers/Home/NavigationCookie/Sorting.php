@@ -5,6 +5,7 @@ namespace APIControllers\Home\NavigationCookie;
 
 use core\Classes\Exceptions\Request as RequestEx;
 use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
+use Lib\Exceptions\Logger as LoggerEx;
 
 use core\Classes\ControllersInterface\APIController;
 use core\Classes\Request\HttpRequest;
@@ -67,9 +68,10 @@ class Sorting extends APIController
     /**
      * Реализация абстрактного метода
      *
+     * @throws LoggerEx
      */
     protected function getErrorLogger(): Logger
     {
-        return new Logger(LOGS_API_ERRORS, 'NavigationCookieSorting.log');
+        return new Logger(LOGS_API_ERRORS . '/NavigationCookieSorting.log');
     }
 }

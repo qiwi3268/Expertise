@@ -106,9 +106,8 @@ abstract class APIController extends Controller
 
             $this->logAndExceptionExit('Uncaught Exception', $e, 'Необработанное исключение');
         }
-
         $debug = static::class;
-        $this->errorExit('No exit', "Класс: '{$debug}' не завершил свою работу выходом");
+        $this->logAndErrorExit('No exit', "Класс: '{$debug}' не завершил свою работу выходом");
     }
 
 

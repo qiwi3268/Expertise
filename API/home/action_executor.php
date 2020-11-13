@@ -56,7 +56,7 @@ use Tables\Locators\DocumentTypeTableLocator;
 //
 
 try {
-    $errorLogger = new Logger(LOGS . '/actions/errors', 'API_action_executor.log');
+    $errorLogger = new Logger(LOGS . '/actions/errors/API_action_executor.log');
 
     if (!Session::isAuthorized()) {
 

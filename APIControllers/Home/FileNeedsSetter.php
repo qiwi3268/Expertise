@@ -10,6 +10,7 @@ use Lib\Exceptions\XMLValidator as XMLValidatorEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Exceptions\PrimitiveValidator as PrimitiveValidatorEx;
 use Lib\Exceptions\Transaction as TransactionEx;
+use Lib\Exceptions\Logger as LoggerEx;
 use ReflectionException;
 
 use core\Classes\Request\HttpRequest;
@@ -185,9 +186,10 @@ class FileNeedsSetter extends APIController
     /**
      * Реализация абстрактного метода
      *
+     * @throws LoggerEx
      */
     protected function getErrorLogger(): Logger
     {
-        return new Logger(LOGS_API_ERRORS, 'FileNeedsSetter.log');
+        return new Logger(LOGS_API_ERRORS . '/FileNeedsSetter.log');
     }
 }

@@ -10,6 +10,7 @@ use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Exceptions\File as FileEx;
 use Lib\Exceptions\URIParser as URIParserEx;
 use Tables\Exceptions\Tables as TablesEx;
+use Lib\Exceptions\Logger as LoggerEx;
 
 use core\Classes\Request\HttpRequest;
 use core\Classes\ControllersInterface\APIController;
@@ -178,9 +179,10 @@ class FileUploader extends APIController
     /**
      * Реализация абстрактного метода
      *
+     * @throws LoggerEx
      */
     protected function getErrorLogger(): Logger
     {
-        return new Logger(LOGS_API_ERRORS, 'FileUploader.log');
+        return new Logger(LOGS_API_ERRORS . '/FileUploader.log');
     }
 }

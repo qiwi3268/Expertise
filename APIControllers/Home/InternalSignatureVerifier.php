@@ -10,6 +10,7 @@ use Lib\Exceptions\CSPValidator as CSPValidatorEx;
 use Lib\Exceptions\TableMappings as TableMappingsEx;
 use Lib\Exceptions\XMLValidator as XMLValidatorEx;
 use functions\Exceptions\Functions as FunctionsEx;
+use Lib\Exceptions\Logger as LoggerEx;
 use ReflectionException;
 use Exception;
 
@@ -169,9 +170,10 @@ class InternalSignatureVerifier extends APIController
     /**
      * Реализация абстрактного метода
      *
+     * @throws LoggerEx
      */
     protected function getErrorLogger(): Logger
     {
-        return new Logger(LOGS_API_ERRORS, 'InternalSignatureVerifier.log');
+        return new Logger(LOGS_API_ERRORS . '/InternalSignatureVerifier.log');
     }
 }

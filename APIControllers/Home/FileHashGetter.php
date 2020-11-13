@@ -7,6 +7,7 @@ use core\Classes\Exceptions\Request as RequestEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Exceptions\Shell as ShellEx;
 use functions\Exceptions\Functions as FunctionsEx;
+use Lib\Exceptions\Logger as LoggerEx;
 
 use core\Classes\Request\HttpRequest;
 use core\Classes\ControllersInterface\APIController;
@@ -14,8 +15,6 @@ use Lib\Singles\Logger;
 use Lib\CSP\MessageParser;
 use Lib\CSP\FileHash;
 use Classes\Application\Helpers\Helper as ApplicationHelper;
-
-//Блок проверки маппинга - не нужен, т.к. производится на предыдущем этапе - в file_checker
 
 
 /**
@@ -109,9 +108,10 @@ class FileHashGetter extends APIController
     /**
      * Реализация абстрактного метода
      *
+     * @throws LoggerEx
      */
     protected function getErrorLogger(): Logger
     {
-        return new Logger(LOGS_API_ERRORS, 'FileHashGetter.log');
+        return new Logger(LOGS_API_ERRORS . '/FileHashGetter.log');
     }
 }

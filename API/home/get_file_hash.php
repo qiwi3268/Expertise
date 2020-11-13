@@ -53,7 +53,7 @@ try {
     /** @var string $P_fs_name */
     extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
 
-    $logger = new Logger(LOGS . '/csp/errors', 'API_get_file_hash.log');
+    $logger = new Logger(LOGS . '/csp/errors/API_get_file_hash.log');
 
     // Проверка заявителя на доступ к заявлению не нужна, т.к. производится на предыдущем этапе - в file_checker
     // Блок проверки маппинга - не нужен, т.к. производится на предыдущем этапе - в file_checker

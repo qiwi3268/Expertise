@@ -71,7 +71,7 @@ try {
     /** @var string $P_mapping_level_2 */
     extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
 
-    $logger = new Logger(LOGS . '/csp/errors', 'API_internal_signature_verifier.log');
+    $logger = new Logger(LOGS . '/csp/errors/API_internal_signature_verifier.log');
 
     // Блок проверки маппинга
     $mapping = new SignsTableMapping($P_mapping_level_1, $P_mapping_level_2);
