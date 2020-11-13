@@ -98,6 +98,7 @@ class SignView {
       this.modal.classList.remove('active');
       this.overlay.classList.remove('active');
       this.validate_info.dataset.active = 'false';
+      enableScroll();
    }
 
    /**
@@ -125,6 +126,7 @@ class SignView {
          this.fillSignsInfo(validate_results);
       }
 
+      disableScroll();
    }
 
    /**

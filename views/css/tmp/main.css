@@ -246,7 +246,7 @@ textarea.form-field__input.invalid {
 }
 
 .modal.active,
-.modal__pagination.active,
+.misc__pagination.active,
 .overlay.active,
 .modal__close.active {
    opacity: 1;

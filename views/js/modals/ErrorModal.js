@@ -71,6 +71,7 @@ class ErrorModal {
    static close () {
       ErrorModal.modal.classList.remove('active');
       ErrorModal.overlay.classList.remove('active');
+      enableScroll();
    }
 
    static open (title, message, code = null) {
@@ -87,6 +88,7 @@ class ErrorModal {
          this.code.style.display = 'none';
       }
 
+      disableScroll();
    }
 
 }

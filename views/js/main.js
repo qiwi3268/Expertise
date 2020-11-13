@@ -95,20 +95,14 @@ function getDateFromString (date_string) {
    );
 }
 
-function noScroll () {
-   // window.scrollTo(0, 0);
-}
-
 function disableScroll () {
-   // document.body.style.position = 'fixed';
-   // document.body.style.top = `-${window.scrollY}px`;
-   // document.body.classList.add('stop-scrolling');
+   document.body.style.height = '100%';
+   document.body.style.overflow = 'hidden';
 }
 
 function enableScroll () {
-   // document.body.style.position = '';
-   // document.body.style.top = '';
-   // document.body.classList.remove('stop-scrolling');
+   document.body.style.height = null;
+   document.body.style.overflow = null;
 }
 
 // Предназначен для получения id текущего заявления

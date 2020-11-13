@@ -171,16 +171,19 @@
                         ></div>
                     </div>
                 </div>
-                <div class="modal" data-misc_modal data-result_callback="additional_section">
+                <div class="modal misc" data-misc_modal data-result_callback="additional_section">
                     <i class="modal__close fas fa-times" data-misc_close></i>
-                    <div class="modal__items" data-misc_body>
-                        <?php foreach ($_VT->getValue('main_block_341') as $pageNumber => $page): ?>
-                            <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
-                                <?php foreach ($page as $item): ?>
-                                    <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
-                                <?php endforeach; ?>
-                            </div>
-                        <?php endforeach; ?>
+                    <div class="misc__wrapper">
+                        <div class="misc__body" data-misc_body>
+                            <?php foreach ($_VT->getValue('main_block_341') as $pageNumber => $page): ?>
+                                <div class="misc__page" data-misc_page="<?= $pageNumber ?>">
+                                    <?php foreach ($page as $item): ?>
+                                        <div class="misc__item" data-misc_item
+                                             data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
             </div>

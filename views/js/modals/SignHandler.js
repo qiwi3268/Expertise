@@ -204,6 +204,7 @@ class SignHandler extends SignView{
          this.delete_sign_btn.dataset.active = 'false';
 
          this.closeInfoBlocks();
+         enableScroll();
       }
    }
 
@@ -620,6 +621,7 @@ class SignHandler extends SignView{
 
       }
 
+      disableScroll();
    }
 
 }

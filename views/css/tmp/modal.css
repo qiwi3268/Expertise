@@ -1,53 +1,44 @@
-
-.alert-modal__message {
-   cursor: default;
-   font-size: 18px;
-   padding: 15px 25px 15px 15px;
-}
-
-
-.modal__page {
+.misc__page {
    display: none;
    flex-direction: column;
 }
 
-.modal__page.active {
+.misc__page.active {
    display: flex;
 }
 
-.modal__items {
+.misc__body {
    max-height: 500px;
    overflow-x: hidden;
    overflow-y: auto;
    scrollbar-width: thin;
 }
 
-.modal__item {
+.misc__item {
    cursor: pointer;
    padding: 15px 25px;
    transition: 0.15s;
 }
 
-.modal__item:hover {
+.misc__item:hover {
    background-color: #f2f2f2;
 }
 
-.modal__item:last-child {
+.misc__item:last-child {
    border-radius: 0 0 4px 4px;
 }
 
-.modal__item:first-child {
+.misc__item:first-child {
    border-radius: 4px 0 0 0;
 }
 
-.modal__pagination {
+.misc__pagination {
    border-top: 1px solid #e0e0e0;
    display: flex;
    justify-content: center;
    opacity: 0;
    visibility: hidden;
 }
-
 
 .pagination__item {
    align-self: center;
@@ -66,25 +57,19 @@
 
 /* tmp========================================= */
 
-.modal ::-webkit-scrollbar {
-   cursor: pointer;
+
+
+.misc ::-webkit-scrollbar-thumb {
+   background: #93b0d1;
 }
 
-.modal ::-webkit-scrollbar-track {
-   background: #f1f1f1;
-}
-
-.modal ::-webkit-scrollbar-thumb {
-   background: red;
-}
-
-.modal ::-webkit-scrollbar-thumb:hover {
-   background: red;
-}
 /* tmp========================================= */
 
 
-
+.misc__wrapper {
+   overflow: hidden;
+   border-radius: 4px;
+}
 
 
 
