@@ -3,9 +3,12 @@
 
 namespace Lib\Singles;
 
-use Exception;
-use core\Classes\Session;
 use Lib\Exceptions\Logger as SelfEx;
+use Exception;
+
+use core\Classes\Request\Request;
+use core\Classes\Session;
+
 
 
 /**
@@ -90,14 +93,12 @@ class Logger
     {
         $date = date('d.m.Y H:i:s');
 
-        $user = 'Пользователь';
-        if (Session::isAuthorized()) {
-
-            $id = Session::getUserId();
-            $user = "{$user} id: {$id}";
+        if (Request::isWeb()) {
+            $user = Session::isAuthorized() ? 'id: ' . Session::getUserId() : 'Не авторизован';
         } else {
-            $user = "{$user} не авторизован";
+            $user = 'cron';
         }
+
         $message = "{$date} | {$user} | {$message}" . PHP_EOL;
         if (file_put_contents("{$this->logsDir}/{$this->logsName}", $message, FILE_APPEND) === false) {
             throw new SelfEx('Произошла ошибка при попытке записать логируемое сообщение', 5);

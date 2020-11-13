@@ -174,32 +174,6 @@ class API {
                console.error(exc);
             });
 
-/*         XHR(
-            'post',
-            '/home/API_file_checker',
-            form_data,
-            null,
-            'json'
-         )
-            .then(response => {
-
-               switch (response.result) {
-
-                  case 7:
-                     resolve(response);
-                     break;
-
-                  default:
-                     let message = response.error_message !== undefined ? response.error_message : response.message;
-                     reject(`Ошибка при проверке файла:\n${message}`);
-
-               }
-
-            })
-            .catch(exc => {
-               reject('Ошибка при проверке файла: ' + exc);
-            });*/
-
       });
 
    }
@@ -241,38 +215,6 @@ class API {
                reject(exc);
             });
 
- /*        return XHR(
-            'post',
-            '/home/API_external_signature_verifier',
-            form_data,
-            null,
-            'json',
-            null,
-            null
-         )
-            .then(response => {
-
-               switch (response.result) {
-
-                  case 9:
-                     resolve(response.validate_results);
-                     break;
-
-                  case 'fwsr':
-                     reject('Загружен файл без открепленной подписи');
-                     // reject(response.message);
-                     break;
-
-                  default:
-                     let message = response.error_message !== undefined ? response.error_message : response.message;
-                     reject(`Ошибка при проверке открепленной подписи:\n${message}`);
-                     // reject(response.message);
-               }
-
-            })
-            .catch(exc => {
-               reject('Ошибка при проверке открепленной подписи: ' + exc);
-            });*/
       });
 
    }
@@ -425,30 +367,6 @@ class API {
             ErrorModal.open('Ошибка при обновлении file needs', exc.message);
          });
 
-/*      XHR(
-         'post',
-         '/home/API_file_needs_setter',
-         form_data,
-         null,
-         'json',
-         null,
-         null
-      )
-         .then(response => {
-
-            switch (response.result) {
-               case 9:
-                  console.log(response);
-                  FileNeeds.clear();
-                  break;
-               default:
-                  console.log(response);
-            }
-
-         })
-         .catch(error => {
-            ErrorModal.open('Ошибка при обновлении file needs', error.message);
-         });*/
    }
 
    static getFilesNeedsFormData () {

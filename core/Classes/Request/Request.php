@@ -128,6 +128,28 @@ abstract class Request
 
 
     /**
+     * Предназначен для проверки того, запущен ли скрипт из командной строки
+     *
+     * @return bool
+     */
+    static public function isCli(): bool
+    {
+        return !isset($_SERVER['REQUEST_METHOD']);
+    }
+
+
+    /**
+     * Предназначен для проверки того, запущен ли скрипт как web-приложение
+     *
+     * @return bool
+     */
+    static public function isWeb(): bool
+    {
+        return isset($_SERVER['REQUEST_METHOD']);
+    }
+
+
+    /**
      * Конструктор класса
      *
      * Метод, в котором дочерние классы должны заполнить массив параметров запроса
