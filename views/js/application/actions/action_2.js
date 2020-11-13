@@ -173,7 +173,7 @@ function removeExpert (drop_area) {
 /**
  * Отображает блок с экспертами раздела при переносе
  *
- * @param {HTMLElement} drop_area - область, относящаяся к разделу, в которую переносятся эксперты
+ * @param {DropArea} drop_area - область, относящаяся к разделу, в которую переносятся эксперты
  */
 function showExpertsBlock (drop_area) {
    let assigned_experts = drop_area.element.querySelector('.section__experts');

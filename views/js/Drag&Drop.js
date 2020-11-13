@@ -284,7 +284,7 @@ class DragElement {
          remove_button.addEventListener('click', () => {
 
             let remove_callback = this.getRemoveElementCallback(remove_button);
-            remove_callback(drop_area, this);
+            remove_callback(drop_area);
             this.transformed_elem.remove();
 
             // Показываем исходный элемент, если он скрыт

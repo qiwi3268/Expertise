@@ -17,6 +17,18 @@ use Lib\Singles\PrimitiveValidator;
 abstract class ExecutionActions
 {
 
+    /**
+     * Нет обязательного параметра POST / GET запроса
+     *
+     */
+    public const MISSING_PARAMS_CODE = 3004;
+    
+    /**
+     * Ошибка во время исполнения действия
+     *
+     */
+    public const ACTION_ERROR_CODE = 3005;
+
     protected array $clearPOST;
     protected array $clearGET;
     protected PrimitiveValidator $primitiveValidator;

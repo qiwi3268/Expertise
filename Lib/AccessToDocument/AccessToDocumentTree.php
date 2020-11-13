@@ -71,7 +71,7 @@ class AccessToDocumentTree
     public function __construct(string $documentType, int $documentId)
     {
         if (!method_exists($this, $documentType)) {
-            throw new SelfEx("В классе Lib\AccessToDocument\AccessToDocumentTree не реализован метод типа документа: '{$documentType}'", 2);
+            throw new SelfEx("В классе Lib\AccessToDocument\AccessToDocumentTree не реализован метод типа документа: '{$documentType}'", 2001);
         }
 
         $this->treeHandler = DocumentTreeHandler::setInstanceByKey('AccessToDocumentTree', $documentType, $documentId);

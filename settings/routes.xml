@@ -95,9 +95,6 @@
         </page>
 
         <page urn="home/API_action_executor">
-
-            <callback_template id="DocumentParameters_APIActionExecutor" />
-
             <files>
                 <dir path="/API/home/" ext=".php">
                     <file name="action_executor" />
@@ -558,17 +555,5 @@
                 </namespace>
             </callbacks>
         </template>
-
-        <!-- API выполнения действий -->
-        <template id="DocumentParameters_APIActionExecutor">
-            <callbacks>
-                <namespace name="\Classes\RouteCallbacks\DocumentParameters">
-                    <class name="APIActionExecutor" type="instance">
-                        <method name="defineDocumentParameters"/>
-                    </class>
-                </namespace>
-            </callbacks>
-        </template>
-
     </callback_templates>
 </routes>

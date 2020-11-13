@@ -287,6 +287,7 @@ class Misc {
     * Отображает модальное окно справочника или выводит ошибку заполнения
     */
    open () {
+
       if (!this.is_empty) {
          this.modal.classList.add('active');
 

@@ -17,10 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
    });
 
-
-   console.log('URI');
-   console.log(PageUtils.getURI());
-
 });
 
 /**

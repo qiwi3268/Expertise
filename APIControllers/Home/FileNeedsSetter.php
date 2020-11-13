@@ -4,7 +4,6 @@
 namespace APIControllers\Home;
 
 use core\Classes\Exceptions\Request as RequestEx;
-use Lib\Exceptions\DataBase;
 use Lib\Exceptions\TableMappings as TableMappingsEx;
 use Lib\Exceptions\XMLValidator as XMLValidatorEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
@@ -53,6 +52,7 @@ class FileNeedsSetter extends APIController
      * Реализация абстрактного метода
      *
      * @throws RequestEx
+     * @throws DataBaseEx
      * @throws TransactionEx
      * @throws ReflectionException
      */

@@ -14,18 +14,7 @@ use Tables\Locators\DocumentTypeTableLocator;
 //
 // API result:
 // Classes\RouteCallbacks\DocumentParameters\APIActionExecutor----------
-//	1  - Нет обязательных параметров POST запроса
-//       {result, error_message : текст ошибки}
-//	2  - Произошла ошибка при определении типа открытого документа
-//       {result, error_message : текст ошибки}
-//	3  - Открытый тип документа не определен в константе DOCUMENT_TYPE
-//       {result, error_message : текст ошибки}
-//	4  - id открытого документа не является целочисленным значением
-//       {result, error_message : текст ошибки}
-//	5  - Неизвестная ошибка Classes\Exceptions\DocumentParameters
-//       {result, error_message : текст ошибки}
-//  6  - Непредвиденная ошибка метода Classes\DocumentParameters\APIActionExecutor::defineDocumentParameters
-//       {result, message : текст ошибки, code: код ошибки}
+
 // ---------------------------------------------------------------------
 //  8  - Отсутствует авторизация на сервере
 //       {result, error_message : текст ошибки}

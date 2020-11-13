@@ -53,7 +53,7 @@ class HtmlHead extends PageController
                     ->addCssSource(self::ROOT_CSS, 'entry.css')
                     ->addCssSource(self::TMP_CSS, 'null.css', 'header.css', 'footer.css', 'main.css', 'modal.css', 'radio.css', 'calendar.css', 'file_modal.css', 'files.css', 'documentation.css', 'multiple_block.css', 'sign_modal.css', 'create_application.css')
                     ->addJsSource(self::ROOT_LIB_JS, 'lib_XHR.js', 'cadesplugin_api.js')
-                    ->addJsSource(self::ROOT_JS, 'ErrorHandler.js', 'main.js', 'API.js', 'section.js', 'validation.js', 'DependenciesHandler.js', 'radio.js', 'PerfectCades.js', 'BrowserHelper.js', 'FileChecker.js', 'FileNeeds.js', 'MultipleBlock.js', 'FileField.js', 'GeFile.js', 'PartBlock.js')
+                    ->addJsSource(self::ROOT_JS, 'ErrorHandler.js', 'main.js', 'API.js', 'section.js', 'validation.js', 'DependenciesHandler.js', 'radio.js', 'PerfectCades.js', 'BrowserHelper.js', 'FileChecker.js', 'FileNeeds.js', 'MultipleBlock.js', 'FileField.js', 'GeFile.js', 'PartBlock.js', 'PageUtils.js')
                     ->addJsSource(self::MODALS_JS, 'Calendar.js', 'ErrorModal.js', 'FileUploader.js', 'Misc.js', 'SignView.js', 'SignHandler.js')
                     ->addJsSource(self::APPLICATION_JS, 'create.js', 'save.js', 'sidebar.js');
                 break;
