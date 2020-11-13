@@ -206,28 +206,8 @@ class API {
          null,
          'json',
          null,
-         null);
-
-
-/*      return new Promise((resolve, reject) => {
-         let form_data = this.getExternalVerifyFormData(fs_name_data, fs_name_sign, mapping_1, mapping_2);
-
-          return this.sendRequest('post',
-            '/home/API_external_signature_verifier',
-            form_data,
-            null,
-            'json',
-            null,
-            null)
-            .then(response => {
-               resolve(response)
-            })
-            .catch(exc => {
-               reject(exc);
-            });
-
-      });*/
-
+         null
+      );
    }
 
    static getExternalVerifyFormData (fs_name_data, fs_name_sign, mapping_1, mapping_2) {
@@ -310,42 +290,6 @@ class API {
                }
 
             });
-
-
-/*         XHR(
-            'post',
-            '/home/API_internal_signature_verifier',
-            form_data,
-            null,
-            'json',
-            null,
-            verify_callback
-         )
-            .then(response => {
-
-               switch (response.result) {
-                  case 5.2:
-                     alert('Открепленная подпись 2');
-                     reject(`Ошибка при проверке встроенной подписи: \nЗагружена встроенная подпись`);
-                     break;
-
-                  case 5.1:
-                     resolve();
-                     break;
-
-                  case 8:
-                     resolve(response.validate_results);
-                     break;
-
-                  default:
-                     let message = response.error_message !== undefined ? response.error_message : response.message;
-                     reject(`Ошибка при проверке встроенной подписи: \n${message}`);
-               }
-
-            })
-            .catch(exc => {
-               reject('Ошибка при проверке встроенной подписи: ' + exc);
-            });*/
 
       });
    }
@@ -438,34 +382,8 @@ class API {
       let url = new URL(window.location.href);
       let id_document = url.searchParams.get('id_document');
 
-      console.log('uri');
-      console.log(this.getURI());
-
       form_data.append('path_name', action_path);
       form_data.append('id_document', id_document);
    }
 
-   static getURI () {
-      let path = window.location.pathname;
-      let url = new URL(window.location.href);
-      let search = url.searchParams;
-
-      let id_document;
-      if (search.has('id_document')) {
-         id_document = search.get('id_document');
-      } else {
-         let id_input = document.getElementById('id_document');
-         if (!id_input) {
-            ErrorModal.open(
-               'Ошибка при получении параметра страницы',
-               'Не найден параметр id_document'
-            );
-            return null;
-         }
-
-         id_document = id_input.value;
-      }
-
-      return `${path}?${id_document}`;
-   }
 }

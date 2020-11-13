@@ -112,8 +112,8 @@ class ExternalSignatureVerifier extends APIController
             $this->logAndErrorExit(4, "id заявления исходного файла: '{$application_id}' не равен id заявления файла подписи: '{$tmp_id}'");
         }
 
-        $dataFileAssoc = $fileTable::getAssocByIdMainDocumentAndHash($application_id, $hash_data);
-        $signFileAssoc = $fileTable::getAssocByIdMainDocumentAndHash($application_id, $hash_sign);
+        $dataFileAssoc = $fileTable::getAssocByHash($hash_data);
+        $signFileAssoc = $fileTable::getAssocByHash($hash_sign);
 
         if ($signFileAssoc['file_size'] / 1024 > 20) {
             $this->errorExit(self::FILE_IS_NOT_EXTERNAL_SIGN_RESULT, 'Проверяемый файл не является открепленной подписью');

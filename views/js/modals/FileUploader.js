@@ -17,6 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
    });
 
+
+   console.log('URI');
+   console.log(PageUtils.getURI());
+
 });
 
 /**
@@ -234,7 +238,9 @@ class FileUploader {
 
       for (let file_data of Array.from(files)) {
 
-         if (!FileChecker.checkExtension(file_data.name)) {
+         this.modal_body.appendChild(this.createFileModalItem(file_data));
+
+   /*      if (!FileChecker.checkExtension(file_data.name)) {
 
             ErrorModal.open(
                'Ошибка при загрузке файла',
@@ -253,9 +259,8 @@ class FileUploader {
             break;
 
          } else {
-            this.modal_body.appendChild(this.createFileModalItem(file_data));
          }
-
+*/
       }
 
    }

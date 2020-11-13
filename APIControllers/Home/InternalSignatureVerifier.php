@@ -94,18 +94,12 @@ class InternalSignatureVerifier extends APIController
         }
 
         try {
-
-            // Получение id файла
-            list(
-                'application_id' => $application_id,
-                'file_name'      => $hash_sign
-                ) = ApplicationHelper::parseApplicationFilePath($fs_sign);
+            $hash_sign = ApplicationHelper::parseApplicationFilePath($fs_sign)['file_name'];
         } catch (FunctionsEx $e) {
-
             $this->logAndExceptionExit(3, $e, "Ошибка при разборе 'fs_name_sign'");
         }
 
-        $signFileAssoc = $fileTable::getAssocByIdMainDocumentAndHash($application_id, $hash_sign);
+        $signFileAssoc = $fileTable::getAssocByHash($hash_sign);
 
         $validator = new Validator(new MessageParser(true), new InternalSignature());
 

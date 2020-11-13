@@ -183,6 +183,7 @@ abstract class Uploader
         $uploader = $this->uploader;
         $inputName = $this->inputName;
         $directory = $this->directory;
+        $fileTableClass = $this->fileTableClass;
 
         $filesCount = $uploader->getFilesCount($inputName);
 
@@ -193,8 +194,10 @@ abstract class Uploader
         do {
 
             $hash = bin2hex(random_bytes(40)); // Длина 80 символов
-            if (!file_exists("{$directory}/{$hash}")) {
-
+            if (
+                !$fileTableClass::checkExistByHash($hash)
+                && !file_exists("{$directory}/{$hash}")
+            ) {
                 $hashes[] = $hash;
                 $uniqueHashCount++;
             }
@@ -210,7 +213,7 @@ abstract class Uploader
         );
 
         try {
-            $createdIds = $createTransaction->start()->getLastResults()[$this->fileTableClass]['create'];
+            $createdIds = $createTransaction->start()->getLastResults()[$fileTableClass]['create'];
         } catch (DataBaseEx $e) {
             throw new SelfEx(exceptionToString($e, 'Ошибка при создании записей в файловую таблицу'), 1006);
         }
@@ -253,7 +256,7 @@ abstract class Uploader
         // Транзакция обновления флагов загрузки файла на сервер в таблице
         $transaction = new Transaction();
 
-        foreach ($createdIds as $id) $transaction->add($this->fileTableClass, 'setUploadedById', [$id]);
+        foreach ($createdIds as $id) $transaction->add($fileTableClass, 'setUploadedById', [$id]);
 
         try {
             $transaction->start();

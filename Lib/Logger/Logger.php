@@ -9,8 +9,6 @@ abstract class Logger
     public const DATE       = 0;
     public const AUTHOR     = 1;
     public const MESSAGE    = 2;
-    public const NEED_EMAIL = 3;
-    public const SEND_EMAIL = 4;
 
     public const CSV_DELIMITER = ';';
     public const CSV_ENCLOSURE = '"';

@@ -44,8 +44,7 @@
     <div class="group-modal__body">
 <!--        <div class="group-modal__wrapper">-->
             <div class="group-modal__comments">
-                <div class="group-modal__wrapper">
-                    <div id="tmp_comment_1" class="group-modal__comment group-comment">
+                <div id="tmp_comment_1" class="group-modal__comment group-comment">
                         <div class="group-comment__header">
                             <div class="group-comment__description">
                                 <i class="group-comment__icon fas fa-list-ul"></i>
@@ -75,7 +74,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="tmp_comment_2" class="group-modal__comment group-comment">
+                <div id="tmp_comment_2" class="group-modal__comment group-comment">
                         <div class="group-comment__header">
                             <div class="group-comment__description">
                                 <i class="group-comment__icon fas fa-list-ul"></i>
@@ -104,7 +103,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
 <!--        </div>-->
 <!--        <div class="group-modal__wrapper">-->
@@ -387,8 +385,6 @@
                         </div>
                     </div>
                 </div>
-    
-    
             </div>
 <!--        </div>-->
     </div>

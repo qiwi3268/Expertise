@@ -25,7 +25,7 @@ class Writer extends Logger
     }
 
 
-    public function write(string $message, bool $needEmail): void
+    public function write(string $message): void
     {
         if (Request::isWeb()) {
             $author = Session::isAuthorized() ? 'id: ' . Session::getUserId() : 'Не авторизован';
@@ -37,14 +37,12 @@ class Writer extends Logger
             parent::DATE       => date('d.m.Y H:i:s'),
             parent::AUTHOR     => $author,
             parent::MESSAGE    => $message,
-            parent::NEED_EMAIL => (int)$needEmail,
-            parent::SEND_EMAIL => 0
         ];
 
         if (($f = fopen($this->path, 'a')) === false) {
             throw new SelfEx("Ошибка при работе функции 'fopen'", 2);
         }
-        if (fputcsv($f, $line, parent::CSV_DELIMITER, parent::CSV_ENCLOSURE, parent::CSV_ESCAPE_CHAR) === false) {
+        if (fputcsv($f,$line, parent::CSV_DELIMITER, parent::CSV_ENCLOSURE, parent::CSV_ESCAPE_CHAR) === false) {
             throw new SelfEx("Ошибка при работе функции 'fputcsv'", 2);
         }
         fclose($f);

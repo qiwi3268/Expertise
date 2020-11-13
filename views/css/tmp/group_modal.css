@@ -11,12 +11,6 @@
    /*flex-direction: row;*/
 }
 
-/*
-.group-modal ::-webkit-scrollbar {
-   background: #9db4d0;
-}
-*/
-
 .group-modal ::-webkit-scrollbar-thumb {
    background: #9db4d0;
 }
@@ -37,9 +31,15 @@
 
 
    background-color: #f2f2f2;
-   overflow-y: auto;
-   /*border-radius: 4px;*/
+
+   /*overflow-y: auto;*/
+   /*overflow: hidden;*/
 }
+
+.group-modal__comments > * {
+   overflow: auto;
+}
+
 
 .group-modal__messages {
    background-color: #f2f2f2;
@@ -119,7 +119,6 @@
 
    background-color: #fff;
    margin: 0 0 3px 0;
-   border-radius: 4px;
 }
 
 .group-message__header {

@@ -1,10 +1,11 @@
 class PageUtils {
    uri;
+   path;
+   search_params;
 
    static get instance() {
       return this._instance;
    }
-
    static set instance(instance) {
       this._instance = instance;
    }
@@ -43,7 +44,6 @@ class PageUtils {
 
       return `${this.path}?id_document=${id_document}`;
    }
-
 
    static getURI () {
       return PageUtils.getInstance().uri;

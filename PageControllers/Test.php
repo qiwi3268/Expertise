@@ -32,6 +32,7 @@ use RecursiveDirectoryIterator;
 use RecursiveCallbackFilterIterator;
 use RecursiveIteratorIterator;
 use SplFileObject;
+use Tables\Files\grbs;
 
 
 class Test extends PageController
@@ -39,7 +40,11 @@ class Test extends PageController
 
     public function doExecute(): void
     {
-        $path = LOGS . "/lala.csv";
+
+        $a = grbs::getAssocByHash('7627568f5df225a0f806efaa2882c99ad437d745eba1a63a95768f9671de7010d28946060ad68d29');
+        vd($a);
+
+        /*$path = LOGS . "/lala.csv";
         $logger = new Writer($path);
         //$logger->write("Пр \r\n ивет23", false);
 
@@ -49,7 +54,7 @@ class Test extends PageController
 
         foreach ($reader as $line) {
             vd($line);
-        }
+        }*/
     }
 }
 
