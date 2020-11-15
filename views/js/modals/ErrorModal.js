@@ -71,6 +71,7 @@ class ErrorModal {
    static close () {
       ErrorModal.modal.classList.remove('active');
       ErrorModal.overlay.classList.remove('active');
+      enableScroll();
    }
 
    static open (title, message, code = null) {
@@ -81,12 +82,13 @@ class ErrorModal {
       this.message.innerHTML = message;
 
       if (code) {
-         this.code.innerHTML = 'Код ошибки: ' + code;
+         this.code.innerHTML = 'Техническая ошибка. Обратитесь к администратору с кодом ошибки: ' + code;
          this.code.style.display = null;
       } else {
          this.code.style.display = 'none';
       }
 
+      disableScroll();
    }
 
 }

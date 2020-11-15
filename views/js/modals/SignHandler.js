@@ -204,6 +204,7 @@ class SignHandler extends SignView{
          this.delete_sign_btn.dataset.active = 'false';
 
          this.closeInfoBlocks();
+         enableScroll();
       }
    }
 
@@ -447,9 +448,9 @@ class SignHandler extends SignView{
 
          })
          // Обрабатываем результаты валидации
-         .then(validate_results => {
+         .then(check_response => {
 
-            this.handleValidateResults(id_sign, validate_results);
+            this.handleValidateResults(id_sign, check_response.validate_results);
 
             this.certs.dataset.active = 'false';
             this.actions.dataset.active = 'false';
@@ -463,7 +464,9 @@ class SignHandler extends SignView{
          })
          .catch(exc => {
             this.is_signing = false;
-            ErrorModal.open('Ошибка при загрузке файла открепленной подписи', exc);
+            // ErrorModal.open('Ошибка при загрузке файла открепленной подписи', exc);
+            ErrorModal.open('Ошибка при загрузке файла открепленной подписи', exc.message, exc.code);
+            // console.error(exc);
          });
    }
 
@@ -618,6 +621,7 @@ class SignHandler extends SignView{
 
       }
 
+      disableScroll();
    }
 
 }

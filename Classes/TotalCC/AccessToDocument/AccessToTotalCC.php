@@ -41,7 +41,7 @@ class AccessToTotalCC extends AccessToDocument
 
             if (in_array($stageId, $deniedStagesId)) {
                 //todo заглушка
-                //throw new SelfEx('Отсутствует доступ к документу "Сводное замечание / заключение" для заявителя', 6);
+                //throw new SelfEx('Отсутствует доступ к документу "Сводное замечание / заключение" для заявителя', 4001);
             }
 
         }

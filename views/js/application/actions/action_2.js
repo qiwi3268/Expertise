@@ -173,7 +173,7 @@ function removeExpert (drop_area) {
 /**
  * Отображает блок с экспертами раздела при переносе
  *
- * @param {HTMLElement} drop_area - область, относящаяся к разделу, в которую переносятся эксперты
+ * @param {DropArea} drop_area - область, относящаяся к разделу, в которую переносятся эксперты
  */
 function showExpertsBlock (drop_area) {
    let assigned_experts = drop_area.element.querySelector('.section__experts');
@@ -347,4 +347,30 @@ function toggleCommonPart (expert) {
    current_expert.forEach(expert_copy => {
       expert_copy.dataset.common_part = is_common_part;
    });
+}
+
+/**
+ * Устанавливает название дополнительного раздела, если такой раздел не был создан
+ * и добавляет возможность перенести в него экспертов
+ *
+ * @param {HTMLElement} selected_item - выбранный элемент справочника
+ * @param {Misc} misc - объект справочника, к которому отностится элемент
+ */
+function setAdditionalSection (selected_item, misc) {
+
+   if (
+      !document.querySelector(`[data-misc_field][data-id='${selected_item.dataset.id}']`)
+      || misc.field.dataset.id === selected_item.dataset.id
+   ) {
+      misc.field.dataset.id = selected_item.dataset.id;
+      misc.field.setAttribute('data-drop_area', '');
+      misc.select.classList.remove('empty');
+      let misc_value = misc.select.querySelector('[data-field_value]');
+      misc_value.innerHTML = selected_item.innerHTML;
+   } else {
+      let section = selected_item.closest('[data-misc_field]');
+      section.remove();
+      ErrorModal.open('Ошибка при добавлении раздела', 'Такой раздел уже создан');
+   }
+
 }

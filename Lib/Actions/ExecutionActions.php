@@ -17,6 +17,18 @@ use Lib\Singles\PrimitiveValidator;
 abstract class ExecutionActions
 {
 
+    /**
+     * Нет обязательного параметра POST / GET запроса
+     * todo убрать
+     */
+    public const MISSING_PARAMS_CODE = 3004;
+
+    /**
+     * Ошибка во время исполнения действия
+     *
+     */
+    public const ACTION_ERROR_CODE = 3005;
+
     protected array $clearPOST;
     protected array $clearGET;
     protected PrimitiveValidator $primitiveValidator;
@@ -44,6 +56,9 @@ abstract class ExecutionActions
     {
         $this->clearPOST = clearHtmlArr($_POST);
         $this->clearGET = clearHtmlArr($_GET);
+
+        //todo тут переделать на реквесты
+
         $this->primitiveValidator = new PrimitiveValidator();
 
         $this->childClassName = static::class;

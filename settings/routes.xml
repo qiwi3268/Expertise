@@ -71,19 +71,19 @@
         </page>
 
         <page urn="home/API_external_signature_verifier">
-            <files>
-                <dir path="/API/home/" ext=".php">
-                    <file name="external_signature_verifier" />
-                </dir>
-            </files>
+            <controllers>
+                <namespace name="\APIControllers\Home">
+                    <class name="ExternalSignatureVerifier" />
+                </namespace>
+            </controllers>
         </page>
 
         <page urn="home/API_internal_signature_verifier">
-            <files>
-                <dir path="/API/home/" ext=".php">
-                    <file name="internal_signature_verifier" />
-                </dir>
-            </files>
+            <controllers>
+                <namespace name="\APIControllers\Home">
+                    <class name="InternalSignatureVerifier" />
+                </namespace>
+            </controllers>
         </page>
 
         <page urn="home/API_navigation_cookie">
@@ -95,9 +95,6 @@
         </page>
 
         <page urn="home/API_action_executor">
-
-            <callback_template id="DocumentParameters_APIActionExecutor" />
-
             <files>
                 <dir path="/API/home/" ext=".php">
                     <file name="action_executor" />
@@ -558,17 +555,5 @@
                 </namespace>
             </callbacks>
         </template>
-
-        <!-- API выполнения действий -->
-        <template id="DocumentParameters_APIActionExecutor">
-            <callbacks>
-                <namespace name="\Classes\RouteCallbacks\DocumentParameters">
-                    <class name="APIActionExecutor" type="instance">
-                        <method name="defineDocumentParameters"/>
-                    </class>
-                </namespace>
-            </callbacks>
-        </template>
-
     </callback_templates>
 </routes>

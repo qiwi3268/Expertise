@@ -22,7 +22,7 @@ class Type1 extends Uploader
      * Реализация абстрактного метода
      *
      */
-    function getRequiredParams(): array
+    public function getRequiredParams(): array
     {
         return [];
     }
@@ -32,7 +32,7 @@ class Type1 extends Uploader
      * Реализация абстрактного метода
      *
      */
-    function initializeProperties(): void
+    protected function initializeProperties(): void
     {
         return;
     }

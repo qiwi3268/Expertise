@@ -53,8 +53,7 @@
     </div>
 
     <div class="application-form__cards">
-        <input type="hidden" name="id_application" value="<?= $_VT->getValue('id_application') ?>">
-
+        <input id="id_document" type="hidden" value="<?= $_VT->getValue('id_document') ?>">
         <div class="application-form__block" data-block data-dependency_scope>
 
             <div class="card-form application-form__card card" data-type="purpose" data-card>
@@ -77,16 +76,18 @@
                             <span class="form-field__error" data-field_error>Поле обязательно для заполнения</span>
                         </div>
 
-                        <div class="modal" data-misc_modal data-result_callback="document_field">
+                        <div class="modal misc" data-misc_modal data-result_callback="document_field">
                             <i class="modal__close fas fa-times" data-misc_close></i>
-                            <div class="modal__items" data-misc_body>
-                                <?php foreach ($_VT->getValue('expertise_purpose') as $pageNumber => $page): ?>
-                                    <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
-                                        <?php foreach ($page as $item): ?>
-                                            <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                <?php endforeach; ?>
+                            <div class="misc__wrapper">
+                                <div class="misc__body" data-misc_body>
+                                    <?php foreach ($_VT->getValue('expertise_purpose') as $pageNumber => $page): ?>
+                                        <div class="misc__page" data-misc_page="<?= $pageNumber ?>">
+                                            <?php foreach ($page as $item): ?>
+                                                <div class="misc__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
                         </div>
                         <input class="form-field__result" data-field_result type="hidden" data-misc_result name="expertise_purpose">
@@ -152,16 +153,19 @@
                             </div>
                             <span class="form-field__error" data-field_error>Поле обязательно для заполнения</span>
                         </div>
-                        <div class="modal" data-misc_modal data-result_callback="document_field">
+                        <div class="modal misc" data-misc_modal data-result_callback="document_field">
                             <i class="modal__close fas fa-times" data-misc_close></i>
-                            <div class="modal__items" data-misc_body>
-                                <?php foreach ($_VT->getValue('type_of_object') as $pageNumber => $page): ?>
-                                    <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
-                                        <?php foreach ($page as $item): ?>
-                                            <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                <?php endforeach; ?>
+                            <div class="misc__wrapper">
+                                <div class="misc__body" data-misc_body>
+                                    <?php foreach ($_VT->getValue('type_of_object') as $pageNumber => $page): ?>
+                                        <div class="misc__page" data-misc_page="<?= $pageNumber ?>">
+                                            <?php foreach ($page as $item): ?>
+                                                <div class="misc__item" data-misc_item
+                                                     data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
                         </div>
                         <input class="form-field__result" data-field_result type="hidden" data-misc_result name="type_of_object">
@@ -181,16 +185,19 @@
                             </div>
                             <span class="form-field__error" data-field_error>Поле обязательно для заполнения</span>
                         </div>
-                        <div class="modal" data-misc_modal data-result_callback="document_field">
+                        <div class="modal misc" data-misc_modal data-result_callback="document_field">
                             <i class="modal__close fas fa-times" data-misc_close></i>
-                            <div class="modal__items" data-misc_body>
-                                <?php foreach ($_VT->getValue('functional_purpose') as $pageNumber => $page): ?>
-                                    <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
-                                        <?php foreach ($page as $item): ?>
-                                            <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                <?php endforeach; ?>
+                            <div class="misc__wrapper">
+                                <div class="misc__body" data-misc_body>
+                                    <?php foreach ($_VT->getValue('functional_purpose') as $pageNumber => $page): ?>
+                                        <div class="misc__page" data-misc_page="<?= $pageNumber ?>">
+                                            <?php foreach ($page as $item): ?>
+                                                <div class="misc__item" data-misc_item
+                                                     data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
                         </div>
                         <input class="form-field__result" data-field_result type="hidden" data-misc_result name="functional_purpose">
@@ -211,9 +218,11 @@
                             </div>
                             <span class="form-field__error" data-field_error>Поле обязательно для заполнения</span>
                         </div>
-                        <div class="modal" data-misc_modal data-result_callback="document_field">
+                        <div class="modal misc" data-misc_modal data-result_callback="document_field">
                             <i class="modal__close fas fa-times" data-misc_close></i>
-                            <div class="modal__items" data-misc_body></div>
+                            <div class="misc__wrapper">
+                                <div class="misc__body" data-misc_body></div>
+                            </div>
                         </div>
                         <input class="form-field__result" data-field_result type="hidden" data-misc_result name="functional_purpose_subsector">
                     </div>
@@ -233,9 +242,11 @@
                             </div>
                             <span class="form-field__error" data-field_error>Поле обязательно для заполнения</span>
                         </div>
-                        <div class="modal" data-misc_modal data-result_callback="document_field">
+                        <div class="modal misc" data-misc_modal data-result_callback="document_field">
                             <i class="modal__close fas fa-times" data-misc_close></i>
-                            <div class="modal__items" data-misc_body></div>
+                            <div class="misc__wrapper">
+                                <div class="misc__body" data-misc_body></div>
+                            </div>
                         </div>
                         <input class="form-field__result" data-field_result type="hidden" data-misc_result name="functional_purpose_group">
                     </div>
@@ -319,9 +330,11 @@
                             </div>
                             <span class="form-field__error" data-field_error>Поле обязательно для заполнения</span>
                         </div>
-                        <div class="modal" data-misc_modal data-result_callback="document_field">
+                        <div class="modal misc" data-misc_modal data-result_callback="document_field">
                             <i class="modal__close fas fa-times" data-misc_close></i>
-                            <div class="modal__items" data-misc_body></div>
+                            <div class="misc__wrapper">
+                                <div class="misc__body" data-misc_body></div>
+                            </div>
                         </div>
                         <input class="form-field__result" data-field_result type="hidden" data-misc_result name="type_of_work">
                     </div>
@@ -410,16 +423,19 @@
                                 </div>
                                 <span class="form-field__error" data-field_error>Поле обязательно для заполнения</span>
                             </div>
-                            <div class="modal" data-misc_modal data-result_callback="document_field">
+                            <div class="modal misc" data-misc_modal data-result_callback="document_field">
                                 <i class="modal__close fas fa-times" data-misc_close></i>
-                                <div class="modal__items" data-misc_body>
-                                    <?php foreach ($_VT->getValue('cultural_object_type') as $pageNumber => $page): ?>
-                                        <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
-                                            <?php foreach ($page as $item): ?>
-                                                <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    <?php endforeach; ?>
+                                <div class="misc__wrapper">
+                                    <div class="misc__body" data-misc_body>
+                                        <?php foreach ($_VT->getValue('cultural_object_type') as $pageNumber => $page): ?>
+                                            <div class="misc__page" data-misc_page="<?= $pageNumber ?>">
+                                                <?php foreach ($page as $item): ?>
+                                                    <div class="misc__item" data-misc_item
+                                                         data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </div>
                             </div>
                             <input class="form-field__result" data-field_result type="hidden" data-misc_result name="cultural_object_type">
@@ -465,16 +481,19 @@
                                 </div>
                                 <span class="form-field__error" data-field_error>Поле обязательно для заполнения</span>
                             </div>
-                            <div class="modal" data-misc_modal data-result_callback="document_field">
+                            <div class="modal misc" data-misc_modal data-result_callback="document_field">
                                 <i class="modal__close fas fa-times" data-misc_close></i>
-                                <div class="modal__items" data-misc_body>
-                                    <?php foreach ($_VT->getValue('national_project') as $pageNumber => $page): ?>
-                                        <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
-                                            <?php foreach ($page as $item): ?>
-                                                <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    <?php endforeach; ?>
+                                <div class="misc__wrapper">
+                                    <div class="misc__body" data-misc_body>
+                                        <?php foreach ($_VT->getValue('national_project') as $pageNumber => $page): ?>
+                                            <div class="misc__page" data-misc_page="<?= $pageNumber ?>">
+                                                <?php foreach ($page as $item): ?>
+                                                    <div class="misc__item" data-misc_item
+                                                         data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </div>
                             </div>
                             <input class="form-field__result" data-field_result data-misc_result type="hidden" name="national_project">
@@ -495,9 +514,11 @@
                                 </div>
                                 <span class="form-field__error" data-field_error>Поле обязательно для заполнения</span>
                             </div>
-                            <div class="modal" data-misc_modal data-result_callback="document_field">
+                            <div class="modal misc" data-misc_modal data-result_callback="document_field">
                                 <i class="modal__close fas fa-times" data-misc_close></i>
-                                <div class="modal__items" data-misc_body></div>
+                                <div class="misc__wrapper">
+                                    <div class="misc__body" data-misc_body></div>
+                                </div>
                             </div>
                             <input class="form-field__result" data-field_result data-misc_result type="hidden" name="federal_project">
                         </div>
@@ -535,16 +556,19 @@
                             </div>
                             <span class="form-field__error" data-field_error>Поле обязательно для заполнения</span>
                         </div>
-                        <div class="modal" data-misc_modal data-result_callback="document_field">
+                        <div class="modal misc" data-misc_modal data-result_callback="document_field">
                             <i class="modal__close fas fa-times" data-misc_close></i>
-                            <div class="modal__items" data-misc_body>
-                                <?php foreach ($_VT->getValue('curator') as $pageNumber => $page): ?>
-                                    <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
-                                        <?php foreach ($page as $item): ?>
-                                            <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                <?php endforeach; ?>
+                            <div class="misc__wrapper">
+                                <div class="misc__body" data-misc_body>
+                                    <?php foreach ($_VT->getValue('curator') as $pageNumber => $page): ?>
+                                        <div class="misc__page" data-misc_page="<?= $pageNumber ?>">
+                                            <?php foreach ($page as $item): ?>
+                                                <div class="misc__item" data-misc_item
+                                                     data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
                         </div>
                         <input class="form-field__result" data-field_result type="hidden" data-misc_result name="curator">
@@ -619,16 +643,19 @@
                                         </div>
                                         <span class="form-field__error" data-field_error>Поле обязательно для заполнения</span>
                                     </div>
-                                    <div class="modal" data-misc_modal data-result_callback="document_field">
+                                    <div class="modal misc" data-misc_modal data-result_callback="document_field">
                                         <i class="modal__close fas fa-times" data-misc_close></i>
-                                        <div class="modal__items" data-misc_body>
-                                            <?php foreach ($_VT->getValue('budget_level') as $pageNumber => $page): ?>
-                                                <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
-                                                    <?php foreach ($page as $item): ?>
-                                                        <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
-                                                    <?php endforeach; ?>
-                                                </div>
-                                            <?php endforeach; ?>
+                                        <div class="misc__wrapper">
+                                            <div class="misc__body" data-misc_body>
+                                                <?php foreach ($_VT->getValue('budget_level') as $pageNumber => $page): ?>
+                                                    <div class="misc__page" data-misc_page="<?= $pageNumber ?>">
+                                                        <?php foreach ($page as $item): ?>
+                                                            <div class="misc__item" data-misc_item
+                                                                 data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                                        <?php endforeach; ?>
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            </div>
                                         </div>
                                     </div>
                                     <input class="form-field__result" data-field_result data-misc_result type="hidden" data-multiple_block_field="budget_level" name="budget_level">

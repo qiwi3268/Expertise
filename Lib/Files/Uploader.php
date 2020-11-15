@@ -226,7 +226,7 @@ class Uploader
 
                 foreach ($formats as $format) {
 
-                    if (containsAll($files['name'][$l], $format)) {
+                    if (contains($files['name'][$l], $format)) {
 
                         $formatFlag = true;
                         break;

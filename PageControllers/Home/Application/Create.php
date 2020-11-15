@@ -74,7 +74,7 @@ class Create extends PageController
         }
 
         $this->VT->setValue('numerical_name', $appNumName);
-        $this->VT->setValue('id_application', $applicationId);
+        $this->VT->setValue('id_document', $applicationId);
 
         // Инициализация справочников
         $miscInitializer = new MiscInitializer([

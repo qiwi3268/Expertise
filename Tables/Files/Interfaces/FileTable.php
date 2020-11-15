@@ -18,6 +18,17 @@ interface FileTable
      */
     static public function deleteById(int $id): void;
 
+
+    /**
+     * Предназначен для проверки существования записи по ее hash'у
+     *
+     * @param string $hash
+     * @return bool <b>true</b> запись существует<br>
+     * <b>false</b> в противном случае
+     */
+    static public function checkExistByHash(string $hash): bool;
+
+
     /**
      * Предназначен для установки флага загрузки файла на сервер
      *
@@ -47,25 +58,13 @@ interface FileTable
 
 
     /**
-     * Предназначен для получения ассоциативного массива записи по по id главного документа и её hash'у
+     * Предназначен для получения ассоциативного массива записи по её hash'у
      *
-     * @param int $id_main_document id главного документа
      * @param string $hash hash записи
      * @return array|null <b>array</b> ассоциативный массив, если запись существует<br>
      * <b>null</b> в противном случае
      */
-    static public function getAssocByIdMainDocumentAndHash(int $id_main_document, string $hash): ?array;
-
-
-    /**
-     * Предназначен для получения id записи по id главного документа и её hash'у
-     *
-     * @param int $id_main_document id главного документа
-     * @param string $hash hash записи
-     * @return int|null <b>int</b> id записи, если она существует<br>
-     * <b>null</b> в противном случае
-     */
-    static public function getIdByIdMainDocumentAndHash(int $id_main_document, string $hash): ?int;
+    static public function getAssocByHash(string $hash): ?array;
 
 
     /**

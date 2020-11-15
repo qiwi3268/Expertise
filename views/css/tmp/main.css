@@ -116,19 +116,12 @@ textarea {
    width: 8px;
 }
 
-.modal ::-webkit-scrollbar {
-   max-height: 5px;
-   width: 4px;
-}
-
 .field textarea::-webkit-scrollbar-track {
    background: #f1f1f1;
-   border-radius: unset;
 }
 
 .field textarea::-webkit-scrollbar-thumb {
    background: #dedede;
-   border-radius: unset;
 }
 
 .field textarea::-webkit-scrollbar-thumb:hover {
@@ -192,21 +185,15 @@ textarea.form-field__input.invalid {
 }
 
 ::-webkit-scrollbar {
-   max-height: 5px;
    width: 5px;
-   cursor: pointer;
 }
 
 ::-webkit-scrollbar-track {
    background: #f1f1f1;
-   border-radius: 3px;
-   cursor: pointer;
 }
 
 ::-webkit-scrollbar-thumb {
    background: #ffd354;
-   border-radius: 3px;
-   cursor: pointer;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -259,7 +246,7 @@ textarea.form-field__input.invalid {
 }
 
 .modal.active,
-.modal__pagination.active,
+.misc__pagination.active,
 .overlay.active,
 .modal__close.active {
    opacity: 1;

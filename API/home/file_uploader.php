@@ -65,10 +65,10 @@ try {
     extract(clearHtmlArr($_POST), EXTR_PREFIX_ALL, 'P');
 
     // Проверка заявителя на доступ к загрузке файлов в указанное заявление
-    if (Session::isApp()) {
+    //if (Session::isApp()) {
         //TODO для заявителя необходимо реализовать проверку, что он имеет право получать документы из указанного заявления
         //exit result 2
-    }
+    //}
 
     $files = new Uploader($_FILES);
 

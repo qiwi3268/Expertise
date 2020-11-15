@@ -5,15 +5,21 @@ namespace APIControllers\Home\FileUploader;
 
 use Lib\Exceptions\File as SelfEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
-use Exception;
+use Lib\Exceptions\Transaction as TransactionEx;
+use ReflectionException;
 
 use core\Classes\Request\HttpRequest;
 use Lib\Files\Uploader as UploaderToServer;
 use Lib\DataBase\Transaction;
 
 
+/**
+ * Предназначен для загрузки файлов на сервер, включая проверки и создание соответствующих записей в БД
+ *
+ */
 abstract class Uploader
 {
+
     protected HttpRequest $request;
     private UploaderToServer $uploader;
 
@@ -76,6 +82,41 @@ abstract class Uploader
         $this->directory = $directory;
         $this->mainDocumentId = $mainDocumentId;
         $this->fileTableClass = $fileTableClass;
+
+        $this->initializeProperties();
+    }
+
+
+    /**
+     * Предназначен для получения массива расширений файлов, разрешенных к загрузке
+     *
+     * @return array индексный массив
+     */
+    public function getAllowedFormats(): array
+    {
+        return $this->allowedFormats;
+    }
+
+
+    /**
+     * Предназначен для получения массива запрещенных символов в наименовании файла
+     *
+     * @return array индексный массив
+     */
+    public function getForbiddenSymbols(): array
+    {
+        return $this->forbiddenSymbols;
+    }
+
+
+    /**
+     * Предназначен для получения максимально допустимого размера файла
+     *
+     * @return int максимальный размер в Мб
+     */
+    public function getMaxFileSize(): int
+    {
+        return $this->maxFileSize;
     }
 
 
@@ -97,8 +138,8 @@ abstract class Uploader
 
             $debug = [];
 
-            foreach ($uploader->getErrors() as $error) {
-                $debug[] = "file_name: '{$error['name']}', error_text: '{$error['error']}'";
+            foreach ($uploader->getErrors() as ['name' => $name, 'error' => $error]) {
+                $debug[] = "file_name: '{$name}', error_text: '{$error}'";
             }
 
             $debug = implode(', ', $debug);
@@ -108,34 +149,41 @@ abstract class Uploader
         // Проверка на допустимые форматы файлов
         if (!$uploader->checkFilesName($this->allowedFormats, true)) {
             $debug = implode(', ', $uploader->getErrors());
-            throw new SelfEx("Не пройдены проверки на допустимые форматы файлов. {$debug}", 1003);
+            throw new SelfEx("Файлы: '{$debug}' не прошли проверки на допустимые форматы", 1003);
         }
 
         // Проверка на запрещенные символы в файлах
         if (!$uploader->checkFilesName($this->forbiddenSymbols, false)) {
-
             $debug = implode(', ', $uploader->getErrors());
-            throw new SelfEx("Не пройдены проверки на запрещенные символы. {$debug}", 1004);
+            throw new SelfEx("Файлы: '{$debug}' не прошли проверки на запрещенные символы", 1004);
         }
 
         // Проверка на максимальный размер файлов
         if (!$uploader->checkMaxFilesSize($this->maxFileSize)) {
-
             $debug = implode(', ', $uploader->getErrors());
-            throw new SelfEx("Не пройдены проверки на максимально допустимый размер файлов. {$debug}", 1005);
+            throw new SelfEx("Файлы: '{$debug}' не прошли проверки на максимально допустимый размер", 1005);
         }
     }
 
 
     /**
-     * @return array
-     * @throws Exception
+     * Предназначен для загрузки файлов на сервер, включая создание записей в БД
+     *
+     * @return array индексный массив с ассоциативным массивом для каждого загруженного файла формата:<br>
+     * 'id'        - id созданной записи для файла<br>
+     * 'name'      - исходное имя файла<br>
+     * 'hash'      - хэш для файла<br>
+     * 'file_size' - размер файла в байтах
+     * @throws SelfEx
+     * @throws TransactionEx
+     * @throws ReflectionException
      */
     public function upload(): array
     {
         $uploader = $this->uploader;
         $inputName = $this->inputName;
         $directory = $this->directory;
+        $fileTableClass = $this->fileTableClass;
 
         $filesCount = $uploader->getFilesCount($inputName);
 
@@ -146,8 +194,10 @@ abstract class Uploader
         do {
 
             $hash = bin2hex(random_bytes(40)); // Длина 80 символов
-            if (!file_exists("{$directory}/{$hash}")) {
-
+            if (
+                !$fileTableClass::checkExistByHash($hash)
+                && !file_exists("{$directory}/{$hash}")
+            ) {
                 $hashes[] = $hash;
                 $uniqueHashCount++;
             }
@@ -163,7 +213,7 @@ abstract class Uploader
         );
 
         try {
-            $createdIds = $createTransaction->start()->getLastResults()[$this->fileTableClass]['create'];
+            $createdIds = $createTransaction->start()->getLastResults()[$fileTableClass]['create'];
         } catch (DataBaseEx $e) {
             throw new SelfEx(exceptionToString($e, 'Ошибка при создании записей в файловую таблицу'), 1006);
         }
@@ -184,10 +234,11 @@ abstract class Uploader
                     // Имеются только имена успешно загруженных файлов. Находим их хэш
                     $fileIndex = array_search($file, $filesName, true);
 
-                    $hash = $hashes[$fileIndex];
-
                     // Не получилось удалить файл
-                    if ($fileIndex === false || !unlink("{$directory}/{$hash}")) {
+                    if (
+                        $fileIndex === false
+                        || !unlink("{$directory}/{$hashes[$fileIndex]}")
+                    ) {
                         $errorArr[] = $file;
                     }
                 }
@@ -205,7 +256,7 @@ abstract class Uploader
         // Транзакция обновления флагов загрузки файла на сервер в таблице
         $transaction = new Transaction();
 
-        foreach ($createdIds as $id) $transaction->add($this->fileTableClass, 'setUploadedById', [$id]);
+        foreach ($createdIds as $id) $transaction->add($fileTableClass, 'setUploadedById', [$id]);
 
         try {
             $transaction->start();
@@ -219,10 +270,10 @@ abstract class Uploader
         for ($l = 0; $l < $filesCount; $l++) {
 
             $result[] = [
-                'id'        => $createdIds[$l],
-                'name'      => $filesName[$l],
-                'hash'      => $hashes[$l],
-                'file_size' => $filesSize[$l]
+                'id'              => $createdIds[$l],
+                'name'            => $filesName[$l],
+                'hash'            => $hashes[$l],
+                'human_file_size' => getHumanFileSize($filesSize[$l])
             ];
         }
         return $result;
@@ -237,20 +288,20 @@ abstract class Uploader
      *
      * @return array
      */
-    abstract function getRequiredParams(): array;
+    abstract public function getRequiredParams(): array;
 
 
     /**
      * Предназначен для инициализации свойств класса
      *
      * Необходимо инициализировать (переопределить) свойства:
-     * - inputName (определено по умолчанию)
-     * - allowedFormats (определено по умолчанию)
+     * - inputName        (определено по умолчанию)
+     * - allowedFormats   (определено по умолчанию)
      * - forbiddenSymbols (определено по умолчанию)
-     * - maxFileSize (определено по умолчанию)
+     * - maxFileSize      (определено по умолчанию)
      *
      */
-    abstract function initializeProperties(): void;
+    abstract protected function initializeProperties(): void;
 
 
     /**

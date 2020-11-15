@@ -30,6 +30,26 @@ trait FileTable
 
     /**
      * Реализация метода интерфейса
+     * {@see \Tables\Files\Interfaces\FileTable::checkExistByHash()}
+     *
+     * @param string $hash
+     * @return bool
+     * @throws DataBaseEx
+     */
+    static public function checkExistByHash(string $hash): bool
+    {
+        $table = self::$tableName;
+
+        $query = "SELECT COUNT(*)>0
+                  FROM `{$table}`
+                  WHERE `hash`=?";
+        // Автоматическое преобразование к bool типу
+        return ParametrizedQuery::getSimpleArray($query, [$hash])[0];
+    }
+
+
+    /**
+     * Реализация метода интерфейса
      * {@see \Tables\Files\Interfaces\FileTable::setUploadedById()}
      *
      * @param int $id
@@ -90,42 +110,20 @@ trait FileTable
 
     /**
      * Реализация метода интерфейса
-     * {@see \Tables\Files\Interfaces\FileTable::getAssocByIdMainDocumentAndHash()}
+     * {@see \Tables\Files\Interfaces\FileTable::getAssocByHash()}
      *
-     * @param int $id_main_document
      * @param string $hash
      * @return array|null
      * @throws DataBaseEx
      */
-    static public function getAssocByIdMainDocumentAndHash(int $id_main_document, string $hash): ?array
+    static public function getAssocByHash(string $hash): ?array
     {
         $table = self::$tableName;
 
         $query = "SELECT *
                   FROM `{$table}`
-                  WHERE `id_main_document`=? AND `hash`=?";
-        $result = ParametrizedQuery::getFetchAssoc($query, [$id_main_document, $hash]);
-        return $result ? $result[0] : null;
-    }
-
-
-    /**
-     * Реализация метода интерфейса
-     * {@see \Tables\Files\Interfaces\FileTable::getIdByIdMainDocumentAndHash()}
-     *
-     * @param int $id_main_document
-     * @param string $hash
-     * @return int|null
-     * @throws DataBaseEx
-     */
-    static public function getIdByIdMainDocumentAndHash(int $id_main_document, string $hash): ?int
-    {
-        $table = self::$tableName;
-
-        $query = "SELECT `id`
-                  FROM `{$table}`
-                  WHERE `id_main_document`=? AND `hash`=?";
-        $result = ParametrizedQuery::getSimpleArray($query, [$id_main_document, $hash]);
+                  WHERE `hash`=?";
+        $result = ParametrizedQuery::getFetchAssoc($query, [$hash]);
         return $result ? $result[0] : null;
     }
 

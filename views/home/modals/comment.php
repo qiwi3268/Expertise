@@ -43,16 +43,19 @@
                     </div>
                     <span class="form-field__error" data-field_error>Поле обязательно для заполнения</span>
                 </div>
-                <div class="modal" data-misc_modal data-result_callback="document_field">
+                <div class="modal misc" data-misc_modal data-result_callback="document_field">
                     <i class="modal__close fas fa-times" data-misc_close></i>
-                    <div class="modal__items" data-misc_body>
-                        <?php foreach ($_VT->getValue('comment_criticality') as $pageNumber => $page): ?>
-                            <div class="modal__page" data-misc_page="<?= $pageNumber ?>">
-                                <?php foreach ($page as $item): ?>
-                                    <div class="modal__item" data-misc_item data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
-                                <?php endforeach; ?>
-                            </div>
-                        <?php endforeach; ?>
+                    <div class="misc__wrapper">
+                        <div class="misc__body" data-misc_body>
+                            <?php foreach ($_VT->getValue('comment_criticality') as $pageNumber => $page): ?>
+                                <div class="misc__page" data-misc_page="<?= $pageNumber ?>">
+                                    <?php foreach ($page as $item): ?>
+                                        <div class="misc__item" data-misc_item
+                                             data-id="<?= $item['id'] ?>"><?= $item['name'] ?></div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
                 <input id="comment_criticality_value" class="form-field__result" data-field_result type="hidden" data-misc_result name="comment_criticality">

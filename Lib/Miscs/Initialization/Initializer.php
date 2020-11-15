@@ -58,7 +58,7 @@ class Initializer
 
         foreach ($miscs as $misc) {
 
-            $className = containsAll($misc, '\\') ? $misc : self::DEFAULT_MISC_NAMESPACE . "\\{$misc}";
+            $className = contains($misc, '\\') ? $misc : self::DEFAULT_MISC_NAMESPACE . "\\{$misc}";
 
             $primitiveValidator->validateClassExist($className);
 

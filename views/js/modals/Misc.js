@@ -175,6 +175,7 @@ class Misc {
     * Закрывает модальное окно справочника
     */
    close () {
+
       this.modal.classList.remove('active');
       Misc.overlay.classList.remove('active');
 
@@ -182,6 +183,7 @@ class Misc {
          this.pagination.element.classList.remove('active');
       }
 
+      enableScroll();
    }
 
    /**
@@ -247,20 +249,20 @@ class Misc {
       pages.forEach((page, index) => {
          modal_page = document.createElement('DIV');
          modal_page.dataset.misc_page = index;
-         modal_page.classList.add('modal__page');
+         modal_page.classList.add('misc__page');
 
          page.forEach(item => {
             modal_item = document.createElement('SPAN');
             modal_item.dataset.id = item.id;
             modal_item.dataset.misc_item = item.id;
-            modal_item.classList.add('modal__item');
+            modal_item.classList.add('misc__item');
             modal_item.innerHTML = item.name;
 
             modal_page.appendChild(modal_item);
          });
 
          this.body.appendChild(modal_page);
-         this.pages = this.body.querySelectorAll('.modal__page');
+         this.pages = this.body.querySelectorAll('.misc__page');
       });
    }
 
@@ -271,7 +273,7 @@ class Misc {
       let items;
 
       this.pages.forEach(page => {
-         items = page.querySelectorAll('.modal__item');
+         items = page.querySelectorAll('.misc__item');
          items.forEach(item => {
             item.addEventListener('click', () => {
 
@@ -298,7 +300,7 @@ class Misc {
          this.active_page.classList.add('active');
 
          // Устанавливаем максимальную высоту модального окна по высоте первой страницы
-         let body = this.modal.querySelector('.modal__items');
+         let body = this.modal.querySelector('.misc__body');
          body.style.height = body.offsetHeight + 'px';
 
          Misc.overlay.classList.add('active');
@@ -306,6 +308,7 @@ class Misc {
          ErrorModal.open('Ошибка справочника', this.error_message);
       }
 
+      disableScroll();
    }
 
    /**
@@ -498,7 +501,9 @@ class Pagination {
     */
    addToModal (misc) {
       this.misc = misc;
-      this.misc.modal.appendChild(this.element);
+
+      let misc_wrapper = this.misc.modal.querySelector('.misc__wrapper');
+      misc_wrapper.appendChild(this.element);
 
       this.page_label.innerHTML = `1/${this.misc.pages.length}`;
       this.arrow_left.style.visibility = 'hidden';
@@ -511,7 +516,7 @@ class Pagination {
     */
    constructor () {
       this.element = document.createElement('DIV');
-      this.element.classList.add('modal__pagination', 'pagination');
+      this.element.classList.add('misc__pagination', 'pagination');
 
       this.initArrows();
 
@@ -635,29 +640,3 @@ function setDocumentFieldValue (selected_item, misc) {
    validateMisc(misc);
 }
 
-/**
- * Устанавливает название дополнительного раздела, если такой раздел не был создан
- * и добавляет возможность перекинуть в него экспертов
- *
- * @param {HTMLElement} selected_item - выбранный элемент справочника
- * @param {Misc} misc - объект справочника, к которому отностится элемент
- */
-function setAdditionalSection (selected_item, misc) {
-
-   if (
-      !document.querySelector(`[data-misc_field][data-id='${selected_item.dataset.id}']`)
-      || misc.field.dataset.id === selected_item.dataset.id
-   ) {
-      misc.field.dataset.id = selected_item.dataset.id;
-      // misc.field.dataset.drop_area = '';
-      misc.field.setAttribute('data-drop_area', '');
-      misc.select.classList.remove('empty');
-      let misc_value = misc.select.querySelector('[data-field_value]');
-      misc_value.innerHTML = selected_item.innerHTML;
-   } else {
-      let section = selected_item.closest('[data-misc_field]');
-      section.remove();
-      ErrorModal.open('Ошибка при добавлении раздела', 'Такой раздел уже создан');
-   }
-
-}

@@ -64,7 +64,7 @@ function getSaveApplicationFormData() {
 
    // MultipleBlock.appendMultipleBlocks(form_data);
 
-   let id_application = document.querySelector('[name="id_application"]').value;
+   let id_application = document.getElementById('id_document').value;
    form_data.append('id_application', id_application);
 
    let fields = document.querySelectorAll('[data-field_result]:not([data-multiple_block_field])');

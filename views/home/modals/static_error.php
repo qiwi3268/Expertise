@@ -44,18 +44,21 @@
                      static_error.style.visibility = 'hidden';
                      setTimeout(() => static_error.remove(), 300);
                  }"
-
+                 
+                 onmouseover="this.style.opacity='1';"
+                 
+                 onmouseout="this.style.opacity='.5';"
+                 
                  style="
-                   position: absolute;
-                   top: -23px;
-                   right: -25px;
-                   padding: 5px 10px 5px 10px;
-                   font-size: 26px;
                    border-radius: 3px;
-                   box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
-                   background-color: #ffffff;
-                   color: #343a40;
-                   cursor: pointer;"
+                   color: #fff;
+                   opacity: .5;
+                   transition: opacity .3s;
+                   cursor: pointer;
+                   font-size: 34px;
+                   padding: 5px 10px 5px 10px;
+                   position: absolute;
+                   right: -50px;"
             >
             </div>
             <div style="padding: 10px 15px; border-bottom: 1px solid #cccccc;">

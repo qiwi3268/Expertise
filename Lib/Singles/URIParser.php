@@ -52,8 +52,8 @@ class URIParser
      * @param string $URI
      * @return array ассоциативный массив формата:<br>
      * 'document_type' - тип документа<br>
-     * 'document_id' - id документа<br>
-     * 'view_mode' - режим просмотра<br>
+     * 'document_id'   - id документа<br>
+     * 'view_mode'     - режим просмотра<br>
      * @throws SelfEx
      */
     static public function parseExpertiseCard(string $URI): array
@@ -80,7 +80,7 @@ class URIParser
      * @param string $URI
      * @return array ассоциативный массив формата:<br>
      * 'document_type' - тип документа<br>
-     * 'document_id' - id документа<br>
+     * 'document_id'   - id документа<br>
      * @throws SelfEx
      */
     static public function parseActionPage(string $URI): array
@@ -106,8 +106,8 @@ class URIParser
      * @param string $URI
      * @return array ассоциативный массив формата:<br>
      * 'document_type' - тип документа<br>
-     * 'document_id' - id документа<br>
-     * 'page_name' - наименование страницы без первого '/' и GET-параметров
+     * 'document_id'   - id документа<br>
+     * 'page_name'     - наименование страницы без первого '/' и GET-параметров
      * @throws SelfEx
      */
     static public function parseAPIActionExecutor(string $URI): array
@@ -136,7 +136,7 @@ class URIParser
      * @param string $URI
      * @return array ассоциативный массив формата:<br>
      * 'document_type' - тип документа<br>
-     * 'document_id' - id документа<br>
+     * 'document_id'   - id документа<br>
      * @throws SelfEx
      */
     static public function parse(string $URI): array
@@ -180,7 +180,7 @@ class URIParser
      *
      * @param string $URI
      * @return array ассоциативный массив формата:<br>
-     * 'path' - путь запроса<br>
+     * 'path'   - путь запроса<br>
      * 'params' - массив GET-параметров, среди которых есть (int)'id_document'
      * @throws SelfEx
      */

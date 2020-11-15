@@ -7,6 +7,7 @@ use core\Classes\Exceptions\Request as RequestEx;
 use Lib\Exceptions\DataBase as DataBaseEx;
 use Lib\Exceptions\Shell as ShellEx;
 use functions\Exceptions\Functions as FunctionsEx;
+use Lib\Exceptions\Logger as LoggerEx;
 
 use core\Classes\Request\HttpRequest;
 use core\Classes\ControllersInterface\APIController;
@@ -14,8 +15,6 @@ use Lib\Singles\Logger;
 use Lib\CSP\MessageParser;
 use Lib\CSP\FileHash;
 use Classes\Application\Helpers\Helper as ApplicationHelper;
-
-//Блок проверки маппинга - не нужен, т.к. производится на предыдущем этапе - в file_checker
 
 
 /**
@@ -25,13 +24,13 @@ use Classes\Application\Helpers\Helper as ApplicationHelper;
  *
  * API result:
  * - ok - ['hash']
- * - 1 - Получен неопределенный алгоритм подписи
- * - 2 - Произошла ошибка при парсинге входного параметра fs_name
- * - 3 - Произошла ошибка при выполнении shell-команды
- * - 4 - Произошла ошибка при получении ErrorCode
- * - 5 - Исполняемая команда по получению hash-файла завершилась с ошибкой
- * - 6 - Произошла ошибка при чтении созданного hash-файла
- * - 7 - Произошла ошибка при удалении созданного hash-файла
+ * - 1  - Получен неопределенный алгоритм подписи
+ * - 2  - Произошла ошибка при парсинге входного параметра fs_name
+ * - 3  - Произошла ошибка при выполнении shell-команды
+ * - 4  - Произошла ошибка при получении ErrorCode
+ * - 5  - Исполняемая команда по получению hash-файла завершилась с ошибкой
+ * - 6  - Произошла ошибка при чтении созданного hash-файла
+ * - 7  - Произошла ошибка при удалении созданного hash-файла
  *
  */
 class FileHashGetter extends APIController
@@ -109,9 +108,10 @@ class FileHashGetter extends APIController
     /**
      * Реализация абстрактного метода
      *
+     * @throws LoggerEx
      */
     protected function getErrorLogger(): Logger
     {
-        return new Logger(LOGS_API_ERRORS, 'FileHashGetter.log');
+        return new Logger(LOGS_API_ERRORS . '/FileHashGetter.log');
     }
 }

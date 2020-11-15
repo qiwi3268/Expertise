@@ -35,7 +35,7 @@ class Helper
 
 
     /**
-     * Предназначен для парсинга абсолютного пути в ФС серерва к файлу заявления
+     * Предназначен для разбора абсолютного пути в ФС серерва к файлу из директории заявления
      *
      * @param string $path абсолютный путь в ФС сервера к файлу
      * @return array ассоциативный массив с параметрами:<br>
@@ -47,9 +47,10 @@ class Helper
     static public function parseApplicationFilePath(string $path): array
     {
 
-        // Экранирование абсолютного путь в ФС сервера к директории файлов заявлений
+        // Экранирование
         $applicationDir = preg_quote(APPLICATIONS_FILES, '/');
 
+        // начало строки
         // директория файлов заявлений
         // слэш
         // 1 группа:
@@ -57,9 +58,8 @@ class Helper
         // слэш
         // 2 группа:
         //   любой не пробельный символ один и более раз
-        // - регистронезависимые
-        // - использование кодировки utf-8
-        $pattern = "/{$applicationDir}\/(\d+)\/(\S+)/iu";
+        // конец строки
+        $pattern = "/^{$applicationDir}\/(\d+)\/(\S+)$/";
         $matches = getHandlePregMatch($pattern, $path, false);
 
         return [

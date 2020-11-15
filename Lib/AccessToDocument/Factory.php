@@ -41,7 +41,7 @@ class Factory
                 $class = '\Classes\Section\AccessToDocument\AccessToSection';
                 break;
             default :
-                throw new SelfEx('Методу Lib\AccessToDocument\Factory::getObject не удалось распознать тип документа', 1);
+                throw new SelfEx('Методу Lib\AccessToDocument\Factory::getObject не удалось распознать тип документа', 1001);
         }
 
         $reflectionClass = new ReflectionClass($class);
