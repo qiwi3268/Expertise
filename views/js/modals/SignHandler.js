@@ -298,8 +298,9 @@ class SignHandler extends SignView{
 
       certs.forEach(cert => {
          let cert_item = document.createElement('DIV');
-         cert_item.value = cert.value;
          cert_item.classList.add('sign-modal__cert');
+         cert_item.setAttribute('data-cert', '');
+         cert_item.setAttribute('data-thumb', cert.thumb);
 
          let cert_text = document.createElement('SPAN');
          cert_text.innerHTML = cert.text;
@@ -326,12 +327,14 @@ class SignHandler extends SignView{
          selected_cert.dataset.selected = 'false';
          selected_cert.removeAttribute('data-state');
       }
+
       cert_item.dataset.selected = 'true';
 
       // При выборе сертификата получаем информацию о нем
       GeCades.getCertInfo()
          // Добавляем на страницу данные о выбранном сертификате
          .then(cert_info => {
+            console.log(cert_info);
             this.fillCertInfo(cert_info, cert_item);
          })
          .catch(exc => {

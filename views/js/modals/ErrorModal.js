@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
    ErrorModal.init();
-
 });
 
 class ErrorModal {

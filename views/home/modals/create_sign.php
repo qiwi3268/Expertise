@@ -14,9 +14,9 @@
     </div>
     
     <div class="sign-modal__file-body">
-        <div class="sign-modal__file-info">
+<!--        <div class="sign-modal__file-info">-->
             <div class="sign-modal__file"></div>
-        </div>
+<!--        </div>-->
         
         <div class="sign-modal__buttons">
             <div id="signature_delete" class="sign-modal__btn sign-modal__upload" data-active="false">

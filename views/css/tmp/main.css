@@ -324,9 +324,9 @@ textarea.form-field__input.invalid {
 }
 
 .card-body {
-   max-height: 0;
+/*   max-height: 0;
    overflow: hidden;
-   transition: max-height .3s;
+   transition: max-height .3s;*/
 }
 
 .arrow-up {

@@ -166,9 +166,7 @@ class Misc {
     */
    handleCloseButton () {
       let close_btn = this.modal.querySelector('[data-misc_close]');
-      close_btn.addEventListener('click', () => {
-         this.close();
-      });
+      close_btn.addEventListener('click', () => this.close());
    }
 
    /**
@@ -208,6 +206,8 @@ class Misc {
       let misc_values = document.querySelector(`[data-target_change="${this.name}"]`);
 
       if (misc_values) {
+
+
          // Инпут со значением родительского поля
          //todo добавить scope
          let parent_misc_result = document.querySelector(`[data-misc_result][name='${misc_values.dataset.when_change}']`);
@@ -215,6 +215,10 @@ class Misc {
          if (parent_misc_result) {
             // Массив массивов всех значений
             let related_items = JSON.parse(misc_values.value);
+
+
+            console.log(related_items);
+
             // По значению родительского справочника берем нужный массив со страницами
             let new_pages = related_items[parent_misc_result.value];
 
@@ -254,7 +258,7 @@ class Misc {
          page.forEach(item => {
             modal_item = document.createElement('SPAN');
             modal_item.dataset.id = item.id;
-            modal_item.dataset.misc_item = item.id;
+            // modal_item.dataset.misc_item = item.id;
             modal_item.classList.add('misc__item');
             modal_item.innerHTML = item.name;
 

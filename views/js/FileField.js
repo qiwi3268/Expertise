@@ -52,7 +52,7 @@ class FileField {
     */
    files;
 
-   /**
+   /**f
     * Создает объект файлового поля
     *
     * @param {HTMLElement} element - блок файлового поля
