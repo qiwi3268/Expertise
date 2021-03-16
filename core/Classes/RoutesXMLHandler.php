@@ -54,6 +54,8 @@ final class RoutesXMLHandler
      */
     public function __construct()
     {
+        //phpinfo();
+
         if (($data = simplexml_load_file(SETTINGS . '/routes.xml')) === false) {
             throw new SelfEx("Ошибка при инициализации XML схемы маршрутизации", 1);
         }

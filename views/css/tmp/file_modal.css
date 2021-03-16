@@ -35,7 +35,7 @@
    position: absolute;
    top: 0;
    transition: .15s;
-   width: 0;
+
    z-index: -1;
 }
 
@@ -72,11 +72,6 @@
    font-size: 14px;
 }
 
-.file-modal__delete-icon {
-   cursor: pointer;
-   font-size: 20px;
-   margin: 0 10px;
-}
 
 .file-modal__actions {
    border-top: 2px solid #ffd354;
@@ -108,3 +103,4 @@
 .file-modal__button:hover {
    background-color: #f2f2f2;
 }
+

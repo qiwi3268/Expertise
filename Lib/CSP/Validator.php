@@ -235,6 +235,7 @@ class Validator
                 'Error: The parameter is incorrect.',
                 'Error: The streamed cryptographic message is not ready to return data.',
                 "Error: Can't open file",
+                "Error: Certificate chain is not checked for this certificate (chain status 0x10000)",
                 'Unknown error.')
             ){
 

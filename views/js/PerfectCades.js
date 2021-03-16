@@ -188,7 +188,7 @@ class GeCades {
 
                   // Отпечаток подписи
                   let thumbprint = yield cert.Thumbprint;
-                  cert_data.value = thumbprint;
+                  cert_data.thumb = thumbprint;
                   GeCades.setCertificateToGlobalMap(thumbprint, cert);
 
 
@@ -437,7 +437,7 @@ class GeCades {
          return null
       }
 
-      return GeCades.globalCertsMap.get(selected_cert.value);
+      return GeCades.globalCertsMap.get(selected_cert.dataset.thumb);
    }
 
    // Возвращает код алгоритма в зависимости от значения в открытом ключе
@@ -465,15 +465,10 @@ class GeCades {
 
    // Возвращает ФИО владельца
    static getName (SubjectName) {
-      let CN = '';
       let SN = '';
       let G = '';
 
-      let index_CN = SubjectName.indexOf('CN=', 0);
-      if (index_CN !== -1) {
-         let CN_sep = SubjectName.indexOf(',', index_CN);
-         CN = `${SubjectName.substring(index_CN + 3, CN_sep)}`;
-      }
+      let name;
 
       let index_SN = SubjectName.indexOf('SN=', 0);
       if (index_SN !== -1) {
@@ -487,7 +482,20 @@ class GeCades {
          G = `${SubjectName.substring(index_G + 2, G_sep)}`;
       }
 
-      return `${CN}, ${SN} ${G}`;
+      if (SN.length === 0) {
+         let CN = '';
+         let index_CN = SubjectName.indexOf('CN=', 0);
+         if (index_CN !== -1) {
+            let CN_sep = SubjectName.indexOf(',', index_CN);
+            CN = `${SubjectName.substring(index_CN + 3, CN_sep)}`;
+         }
+
+         name = `${CN}${G}`;
+      } else {
+         name = `${SN} ${G}`;
+      }
+
+      return name;
    }
 
    // Возвращает CN (организация) сведения
@@ -502,7 +510,6 @@ class GeCades {
    // Возвращает форматированную дату из объекта Date
    // в формате дд.мм.гггг
    static formattedDateTo_ddmmyyyy (date) {
-
       let monthDate = GeCades.AddZero(date.getDate() + 1);
       let month = GeCades.AddZero(date.getMonth());
       return monthDate + '.' + month + '.' + date.getFullYear();

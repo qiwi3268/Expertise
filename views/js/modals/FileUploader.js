@@ -302,8 +302,10 @@ class FileUploader {
       upload_button.addEventListener('click', () => {
          if (!this.is_uploading && this.is_opened) {
             // Вызываем событие для выбора файла у стандартного инпута
+
             this.file_input.click();
             this.clearModal();
+
          }
       });
 
@@ -333,7 +335,7 @@ class FileUploader {
     */
    sendFiles () {
 
-      this.progress_bar.style.transition = '.15s';
+      // this.progress_bar.style.transition = '.15s';
       this.is_uploading = true;
 
       let files = Array.from(this.file_input.files);
@@ -472,9 +474,9 @@ class FileUploader {
     * Очищает заголовок модального окна файлового загрузчика
     */
    clearModalTitle () {
-      this.progress_bar.style.transition = '0s';
+      // this.progress_bar.style.transition = '0s';
       this.modal_title.innerHTML = 'Выберите или перетащите файлы';
-      this.progress_bar.style.width = '0';
+      this.progress_bar.style.width = null;
    }
 
 }

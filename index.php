@@ -5,6 +5,8 @@ ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
+//phpinfo();
+
 require_once '/var/www/html/core/defined_variables.php';
 require_once ROOT . '/functions/functions.php';
 

@@ -51,7 +51,7 @@ function handleTextAreasResize () {
 // Предназначен для раскрытия или сужения блока анкеты
 // Принимает параметры-------------------------------
 // card       Element : блок, для раскрытия или сужения
-function expandCard (card) {
+/*function expandCard (card) {
    let card_body = card.querySelector('.card-body');
    let card_arrow = card.querySelector('.card-icon');
 
@@ -69,7 +69,7 @@ function expandCard (card) {
       changeParentCardMaxHeight(card_body);
    }
 
-}
+}*/
 
 // todo не вызывать где не надо
 function resizeCard (inner_element) {
@@ -80,6 +80,7 @@ function resizeCard (inner_element) {
       changeParentCardMaxHeight(card_body);
    }
 }
+/*
 
 // Предназначен для изменения максимальной высоты блока анкеты при изменении контенета
 // Принимает параметры-------------------------------
@@ -108,11 +109,14 @@ function changeParentCardMaxHeight (inner_element, value = null) {
    }
 
 }
+*/
 
+/*
 function getFullHeight (element) {
    let style = window.getComputedStyle(element);
    return element.scrollHeight + parseInt(style.marginTop) + parseInt(style.marginBottom);
 }
+*/
 
 // Предназначен для обработки события отпускания кнопки мыши
 // при изменении размера текстового поля
@@ -121,3 +125,122 @@ function getFullHeight (element) {
 function expandListener (text_area) {
    changeParentCardMaxHeight(text_area);
 }
+
+// Предназначен для раскрытия или сужения блока анкеты
+// Принимает параметры-------------------------------
+// card       Element : блок, для раскрытия или сужения
+function expandCard (card) {
+   let card_body = card.querySelector('.card-body');
+   let card_arrow = card.querySelector('.card-icon');
+
+   //переворачиваем стрелку
+   if (card_arrow) {
+      card_arrow.classList.toggle('arrow-down');
+      card_arrow.classList.toggle('arrow-up');
+   }
+
+   card_body.style.maxHeight = getFullHeight(card_body);
+
+   console.log(getFullHeight(card_body));
+
+   if (card_body.style.display === 'block') {
+      // Сужаем блок
+      console.log('сужаем');
+      // card_body.style.display = null;
+      // card_body.style.transition = 'max-height .3s';
+
+      setTimeout(() => {
+         // card_body.style.maxHeight = null;
+         card_body.style.maxHeight = 0;
+      }, 1);
+
+      setTimeout(() => {
+         // card_body.style.maxHeight = null;
+         card_body.style.display = null;
+
+      }, 300);
+
+   } else {
+      // Раскрываем блок
+      changeParentCardMaxHeight(card_body);
+   }
+
+}
+
+// Предназначен для изменения максимальной высоты блока анкеты при изменении контенета
+// Принимает параметры-------------------------------
+// inner_element       Element : элемент, по которому получаем родительский блок анкеты
+// value               string : значение высоты
+function changeParentCardMaxHeight (inner_element, value = null) {
+   let card_body = inner_element.closest('.card-body');
+
+   // card_body.style.transition = `${card_body.scrollHeight / 2500 + 0.2}s`;
+   // card_body.style.transition = `${card_body.scrollHeight / 2500 + 0.2}s cubic-bezier(0.65, 0, 0.35, 1)`;
+
+
+   /*   console.log(getFullHeight(card_body) );
+      let h = 0;
+      let full_h = getFullHeight(card_body);
+      if (!value) {
+
+         while (h < full_h) {
+            card_body.style.height = full_h + 'px';
+            console.log(getFullHeight(card_body));
+            h += 1;
+         }
+         // card_body.style.height = 0;
+         // card_body.style.maxHeight = getFullHeight(card_body) + 'px';
+      } else {
+         console.log('tut');
+         // card_body.style.maxHeight = value;
+         card_body.style.height = 0;
+
+      }
+      */
+
+   card_body.style.display = 'block';
+   card_body.style.maxHeight = 0;
+   // card_body.style.transition = 'max-height .3s';
+
+   // let h = 0;
+   // let full_h = getFullHeight(card_body);
+
+
+   console.log(value);
+
+   if (!value) {
+
+      card_body.style.maxHeight = getFullHeight(card_body) + 'px';
+      // while (h < full_h) {
+      //    card_body.style.maxHeight = full_h + 'px';
+      //    console.log(getFullHeight(card_body));
+      //    h += 1;
+      // }
+
+
+      setTimeout(() => {
+         card_body.style.maxHeight = null;
+
+      }, 300);
+
+   } else {
+      card_body.style.maxHeight = value;
+   }
+
+   // Если текущий раскрывающийся блок находится внутри друго раскрывающегося,
+   // меняем высоту родительского
+   let card_container = card_body.closest('.card').parentElement;
+   let parent_card_body = card_container.closest('.card-body');
+   if (parent_card_body) {
+
+      let parent_card_height = getFullHeight(card_container) + getFullHeight(card_body) + 'px';
+      changeParentCardMaxHeight(card_container, parent_card_height);
+   }
+
+}
+
+function getFullHeight (element) {
+   let style = window.getComputedStyle(element);
+   return element.scrollHeight + parseInt(style.marginTop) + parseInt(style.marginBottom);
+}
+

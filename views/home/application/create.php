@@ -56,7 +56,7 @@
         <input id="id_document" type="hidden" value="<?= $_VT->getValue('id_document') ?>">
         <div class="application-form__block" data-block data-dependency_scope>
 
-            <div class="card-form application-form__card card" data-type="purpose" data-card>
+            <div class="card-form application-form__card card" data-type="purpose">
                 <div class="card-form__header card-expand">
                     <span class="card-form__title">СВЕДЕНИЯ О ЦЕЛИ ОБРАЩЕНИЯ</span>
                     <i class="card-form__icon-expand fas fa-chevron-down arrow-down card-icon"></i>
